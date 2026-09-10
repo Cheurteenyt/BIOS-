@@ -212,9 +212,12 @@ Everything here descends from a four-volume study auditing the Omarchy repo,
 the AM4 vendor BIOS landscape, and the question "what can an agent do that
 the vendor BIOS cannot?" — see [docs/research/](docs/research/). The
 **English edition** of the full series (79 pages, updated September 2026 so
-the blueprint chapters report their shipped state) is attached to the
-[study-en release](https://github.com/Cheurteenyt/BIOS-/releases/tag/study-en):
+the blueprint chapters report their shipped state) lives in-repo at
+[docs/research/pdf/](docs/research/pdf/) (`vol1`–`vol4`, `*-en.pdf` files):
 *Beyond the BIOS* (22 p.) · *The Agent and the Firmware* (24 p.) · *What the
-BIOS Cannot See* (15 p.) · *Misconfigured or Faulty* (18 p.). The reference
+BIOS Cannot See* (15 p.) · *Misconfigured or Faulty* (18 p.); the French
+originals are archived beside them, and the same English PDFs are attached
+to the [study-en release](https://github.com/Cheurteenyt/BIOS-/releases/tag/study-en).
+The reference
 test platform is a Ryzen 9 5950X + RTX 3070 on ASUS B450/B550; the board is
 **never** hardcoded — it is read from SMBIOS at run time.
