@@ -32,6 +32,11 @@ same journaling, status carried (dry-run / applied / rolled-back / refused).
     omarchy-firmware rehearse [--backend twin|real] [--json]
                                   — the dress rehearsal: the whole behavioural
                                     contract in one command (day-0 drill)
+    omarchy-firmware rehearse-diff LEFT.json RIGHT.json [--json] [--latest]
+                                  — twin → real: the named list of surprises
+    omarchy-firmware capture [--out PATH] [--json]
+                                  — the day-0 photograph: a T0 snapshot of what
+                                    this machine really is (twin-1.1 fodder)
     omarchy-firmware selftest     — full demo on the twin fixtures
     omarchy-firmware tiers        — display the T0-T3 contract
     omarchy-firmware mcp          — start the MCP stdio server
@@ -44,7 +49,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import actions, audit, boot, cve_kb, cve_watch, diagnostics, fwupd, gpu, journal, ram, rehearse, report, rollback, settings as settings_mod, smbios, stage, storage, tiers, twin
+from . import actions, audit, boot, capture, cve_kb, cve_watch, diagnostics, fwupd, gpu, journal, ram, rehearse, report, rollback, settings as settings_mod, smbios, stage, storage, tiers, twin
 
 
 def _emit(data: dict, as_json: bool) -> None:
@@ -322,6 +327,21 @@ def build_parser() -> argparse.ArgumentParser:
                      help="do not write the rehearsal report file")
     prh.add_argument("--json", action="store_true")
 
+    prd = sub.add_parser("rehearse-diff", help="twin → real: the named list "
+                         "of surprises between two rehearsal reports")
+    prd.add_argument("left", nargs="?", help="left report (the twin run)")
+    prd.add_argument("right", nargs="?", help="right report (the real run)")
+    prd.add_argument("--latest", action="store_true",
+                     help="pick the most recent twin + real reports from "
+                          "the state dir (no paths needed)")
+    prd.add_argument("--json", action="store_true")
+
+    pcp = sub.add_parser("capture", help="the day-0 photograph — a T0 "
+                         "snapshot of what this machine really is")
+    pcp.add_argument("--out", help="write the snapshot to PATH instead of "
+                     "the state dir")
+    pcp.add_argument("--json", action="store_true")
+
     pr = sub.add_parser("report", help="supervised-loop digest (P4): days, tools, write statuses")
     pr.add_argument("--days", type=int, default=5, help="window in days (default 5)")
     pr.add_argument("--json", action="store_true")
@@ -515,6 +535,55 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(rehearse.render(data))
         return 0 if data.get("verdict") == "green" else 1
+
+    if args.cmd == "rehearse-diff":
+        if args.latest:
+            pair = rehearse.latest_reports()
+            if pair is None:
+                journal.record("rehearse-diff", "T0", argv[1:], "refused",
+                               "no twin+real report pair in the state dir")
+                print("REFUSED: no twin+real report pair found in "
+                      f"{rehearse._report_dir()} — run 'rehearse --backend "
+                      "twin' then 'rehearse --backend real' first",
+                      file=sys.stderr)
+                return 2
+            left_p, right_p = pair
+        else:
+            if not args.left or not args.right:
+                journal.record("rehearse-diff", "T0", argv[1:], "refused",
+                               "missing LEFT/RIGHT report arguments")
+                print("REFUSED: rehearse-diff needs LEFT.json RIGHT.json "
+                      "(or --latest)", file=sys.stderr)
+                return 2
+            left_p, right_p = Path(args.left), Path(args.right)
+        try:
+            left = rehearse.load_report(left_p)
+            right = rehearse.load_report(right_p)
+        except ValueError as exc:
+            journal.record("rehearse-diff", "T0",
+                           ["rehearse-diff", str(left_p), str(right_p)],
+                           "refused", str(exc)[:160])
+            print(f"REFUSED: {exc}", file=sys.stderr)
+            return 2
+        d = rehearse.diff_reports(left, right)
+        d["journal_entry"] = journal.record(
+            "rehearse-diff", "T0",
+            ["rehearse-diff", str(left_p), str(right_p)],
+            "ok" if d["verdict"] == "clean" else "found",
+            f"twin→real: {d['counts']}")
+        if args.json:
+            print(json.dumps(d, ensure_ascii=False, indent=2))
+        else:
+            print(rehearse.render_diff(d))
+        return 0 if d["verdict"] == "clean" else 1
+
+    if args.cmd == "capture":
+        data = capture.capture(out=args.out)
+        if args.json:
+            print(json.dumps(data, ensure_ascii=False, indent=2))
+        else:
+            print(capture.render(data))
+        return 0
 
     if args.cmd == "selftest":
         fx = twin.resolve_fixture_dir("b450-plus")

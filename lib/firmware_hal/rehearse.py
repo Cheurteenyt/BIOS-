@@ -668,3 +668,173 @@ def render(report: dict) -> str:
     if report.get("report_file"):
         lines.append(f"report: {report['report_file']}")
     return "\n".join(lines)
+
+
+# -------------------------------------------------------------------- diff
+
+
+DIFF_SCHEMA = "omarchy-firmware/rehearsal-diff@1"
+
+_CLASSES = ("identical", "content-shift", "improvement",
+            "regression", "not-comparable")
+
+
+def load_report(path) -> dict:
+    """Load a rehearsal report and refuse anything that is not one."""
+    p = Path(path)
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except OSError as exc:
+        raise ValueError(f"cannot read {p}: {exc}") from exc
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"{p} is not valid JSON: {exc}") from exc
+    if not isinstance(data, dict) \
+            or data.get("schema") != "omarchy-firmware/rehearsal@1" \
+            or not isinstance(data.get("probes"), list):
+        raise ValueError(
+            f"{p} is not a rehearsal report "
+            f"(schema omarchy-firmware/rehearsal@1 expected, got "
+            f"{data.get('schema') if isinstance(data, dict) else type(data).__name__})")
+    return data
+
+
+def latest_reports() -> tuple[Path, Path] | None:
+    """The most recent twin report + the most recent real report.
+
+    Day-0 ergonomics: `rehearse-diff --latest` needs zero paths — the two
+    runs are already on disk (rehearsal-*.json, timestamped names sort
+    chronologically; the last of each backend wins).
+    """
+    by_backend: dict[str, list[Path]] = {"twin": [], "real": []}
+    for f in sorted(_report_dir().glob("rehearsal-*.json")):
+        try:
+            backend = json.loads(f.read_text(encoding="utf-8")).get("backend")
+        except (OSError, json.JSONDecodeError, ValueError):
+            continue
+        if backend in by_backend:
+            by_backend[backend].append(f)
+    if not by_backend["twin"] or not by_backend["real"]:
+        return None
+    return by_backend["twin"][-1], by_backend["real"][-1]
+
+
+def diff_reports(left: dict, right: dict) -> dict:
+    """Twin → real: the named list of surprises, day-0 readable.
+
+    Row classes, honestly separated:
+      identical      same status (and facts) — the contract replayed;
+      content-shift  same status, different facts — EXPECTED on day-0
+                     (real sensor names, real numbers vs the twin's);
+      improvement    fail → pass (surprising, in the good direction);
+      regression     pass → fail or probe lost — investigate;
+      not-comparable twin-only probes the real backend skips by design.
+    `verdict` grades the DAY, not the machine: clean = no regression and
+    nothing lost; review = at least one named surprise to look at.
+    Content-shifts never fail the diff — they are the point of day-0.
+    """
+    for side, rep in (("left", left), ("right", right)):
+        if rep.get("schema") != "omarchy-firmware/rehearsal@1":
+            raise ValueError(f"{side} report is not a rehearsal report "
+                             f"(got schema {rep.get('schema')!r})")
+
+    def _index(rep: dict) -> dict:
+        return {p.get("id"): p for p in rep.get("probes", [])}
+
+    li, ri = _index(left), _index(right)
+    rows: list[dict] = []
+    counts = {k: 0 for k in _CLASSES}
+
+    def _row(pid: str, lp: dict | None, rp: dict | None,
+             cls: str, detail: str) -> None:
+        counts[cls] += 1
+        row = {"id": pid,
+               "title": (lp or rp or {}).get("title", ""),
+               "class": cls, "detail": detail,
+               "left_status": (lp or {}).get("status"),
+               "right_status": (rp or {}).get("status")}
+        if cls == "content-shift":
+            row["left_observed"] = (lp or {}).get("observed")
+            row["right_observed"] = (rp or {}).get("observed")
+        if cls == "regression":
+            row["left_observed"] = (lp or {}).get("observed")
+            row["right_observed"] = (rp or {}).get("observed")
+            row["expected"] = (lp or {}).get("expected")
+        rows.append(row)
+
+    for pid, lp in li.items():
+        rp = ri.get(pid)
+        if rp is None:
+            _row(pid, lp, None, "regression",
+                 "probe missing on the right report (version drift?)")
+            continue
+        if rp.get("status") == "skip":
+            _row(pid, lp, rp, "not-comparable",
+                 str(rp.get("observed", "twin-only probe — day-0 covers "
+                            "it live")))
+            continue
+        ls, rs = lp.get("status"), rp.get("status")
+        if ls == rs == "pass":
+            if lp.get("observed") == rp.get("observed"):
+                _row(pid, lp, rp, "identical", "same status, same facts")
+            else:
+                _row(pid, lp, rp, "content-shift",
+                     "same status, different facts (twin vs real)")
+        elif ls == rs:
+            _row(pid, lp, rp, "identical", f"both {ls} (shared red — the "
+                 "contract itself, not a twin/real gap)")
+        elif ls == "pass" and rs == "fail":
+            _row(pid, lp, rp, "regression", "pass → fail on the machine")
+        elif ls == "fail" and rs == "pass":
+            _row(pid, lp, rp, "improvement", "fail → pass on the machine")
+        else:
+            _row(pid, lp, rp, "content-shift", f"{ls} → {rs}")
+
+    for pid in ri:
+        if pid not in li:
+            _row(pid, None, ri[pid], "regression",
+                 "probe unknown to the left report (version drift?)")
+
+    surprises = counts["regression"]
+    return {
+        "schema": DIFF_SCHEMA,
+        "ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+        "left": {"backend": left.get("backend"), "ts": left.get("ts"),
+                 "verdict": left.get("verdict"),
+                 "counts": left.get("counts")},
+        "right": {"backend": right.get("backend"), "ts": right.get("ts"),
+                  "verdict": right.get("verdict"),
+                  "counts": right.get("counts")},
+        "counts": counts,
+        "surprises": surprises,
+        "verdict": "clean" if surprises == 0 else "review",
+        "rows": rows,
+    }
+
+
+def render_diff(d: dict) -> str:
+    """Human rendering of the diff — the day-0 debrief, one line per row."""
+    if d.get("verdict") not in ("clean", "review"):
+        return f"rehearsal diff aborted: {d.get('error')}"
+    marks = {"identical": "ok", "content-shift": "~", "improvement": "++",
+             "regression": "!!", "not-comparable": "--"}
+    l, r = d["left"], d["right"]
+    lines = [f"== Rehearsal diff — {l.get('backend')} ({l.get('ts')}) → "
+             f"{r.get('backend')} ({r.get('ts')}) =="]
+    for row in d["rows"]:
+        cls = row["class"]
+        lines.append(f"  {marks[cls]:<2} {row['id']:<24} {row['detail']}")
+        if cls == "content-shift":
+            lines.append(f"       twin : {str(row.get('left_observed'))[:100]}")
+            lines.append(f"       real : {str(row.get('right_observed'))[:100]}")
+        if cls == "regression":
+            lines.append(f"       expected: {str(row.get('expected'))[:100]}")
+            lines.append(f"       twin : {str(row.get('left_observed'))[:100]}")
+            lines.append(f"       real : {str(row.get('right_observed'))[:100]}")
+    c = d["counts"]
+    lines.append("counts: "
+                 + ", ".join(f"{c[k]} {k}" for k in _CLASSES))
+    lines.append(f"verdict: {d['verdict']} — {d['surprises']} surprise(s) "
+                 + ("— nothing to investigate."
+                    if d["verdict"] == "clean" else
+                    "— each !! above is a named day-0 finding."))
+    return "\n".join(lines)

@@ -80,6 +80,8 @@ is refused by design. Flashing (T3) has no call path.
 ./install.sh                                # user-level install (Omarchy / Arch)
 omarchy-firmware twin                       # meet TWIN-1, the rehearsal machine
 omarchy-firmware rehearse --backend twin    # the WHOLE contract, no hardware
+omarchy-firmware rehearse-diff --latest     # day-0 debrief: the named surprises
+omarchy-firmware capture                    # day-0 photograph: T0 snapshot
 omarchy-firmware audit status               # real machine: full inventory
 omarchy-firmware diag quick                 # passive thermal check (~1 s)
 omarchy-firmware diag storage --json        # disks + PCIe links (vol. 4)
@@ -97,7 +99,7 @@ omarchy-firmware report                    # the supervised-loop digest (P4)
 Try everything **without any hardware** — TWIN-1, the digital twin of the
 target machine: 12 pre-recorded thermal scenarios (5950X physics), 3 board
 fixture sets (issues + clean), a sysfs tree for deterministic T1 dry-runs,
-a 262-check test suite, and an MCP conformance smoke:
+a 277-check test suite, and an MCP conformance smoke:
 
 ```bash
 omarchy-firmware twin                       # the profile + resolved assets
@@ -105,7 +107,7 @@ omarchy-firmware rehearse --backend twin    # 28 probes, one verdict
 omarchy-firmware diag scenarios             # the list
 omarchy-firmware diag quick --scenario no-paste --json
 omarchy-firmware selftest                   # full demo on the twin
-python3 tests/test_suite.py                 # 262 checks, zero dependency
+python3 tests/test_suite.py                 # 277 checks, zero dependency
 python3 tests/mcp_smoke.py                  # MCP handshake + T1 dry-run proof
 ```
 
@@ -194,7 +196,7 @@ smoke on every push — see [.github/workflows/ci.yml](.github/workflows/ci.yml)
 | P2 | + `fw.diag.thermal`: signature engine, probe, baseline, timer | 8 scenarios named one by one, measured frugality ✓ |
 | P3 | + storage/GPU/RAM/settings T0 diagnostics + the T1 HAL (`cpu.epp.set`, `fans.curve.set`) | 177 checks, MCP 11-tool conformance, verified rollback, mechanical curve guards ✓ |
 | P4 | + the supervised loop: `fw.cve.watch` (KB freshness, drift, fwupd advisories), the human-gated T2 staging (`update stage`, `update rollback`), the loop report, the weekly watch timer | code complete: 246 checks, 12 scenarios, MCP 12-tool conformance · the 5-day criterion itself is measured on the real machine — see [docs/first-run.md](docs/first-run.md) |
-| **P5 — this repo** | + the digital twin and the dress rehearsal: TWIN-1 promoted from test fixtures to an installable machine profile, `rehearse` (28 behavioural probes, one verdict, a diffable report), the installed-layout fix (lib + twin staged by install.sh) | 262 checks, rehearsal green on TWIN-1 on py3.12/3.13, installed-binary rehearsal green outside the repo · day-0 behaviour proven before the machine — see [docs/digital-twin.md](docs/digital-twin.md) |
+| **P5 — this repo** | + the digital twin and the dress rehearsal: TWIN-1 promoted from test fixtures to an installable machine profile, `rehearse` (28 behavioural probes, one verdict, a diffable report), `rehearse-diff --latest` (the day-0 debrief: surprises named and classified), `capture` (the read-only day-0 photograph), the installed-layout fix (lib + twin staged by install.sh) | 277 checks, rehearsal green on TWIN-1 on py3.12/3.13, installed-binary rehearsal green outside the repo · day-0 behaviour proven before the machine — see [docs/digital-twin.md](docs/digital-twin.md) |
 
 ## Provenance
 

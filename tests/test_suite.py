@@ -870,6 +870,143 @@ check("rehearse: scenario probes stay deterministic on the real machine",
           if q["id"] in {"diag-pump-dead", "diag-no-paste", "diag-heatwave",
                          "diag-undetermined"}))
 
+# --- rehearse-diff: the day-0 instrument ---------------------------------------
+import subprocess  # noqa: E402
+
+from firmware_hal import capture  # noqa: E402
+
+rep_copy = json.loads(json.dumps(rep))
+d0 = rehearse.diff_reports(rep_copy, rep_copy)
+check("rehearse-diff: a report against itself is clean",
+      d0["schema"] == "omarchy-firmware/rehearsal-diff@1"
+      and d0["verdict"] == "clean" and d0["surprises"] == 0
+      and len(d0["rows"]) == len(rep["probes"]),
+      json.dumps(d0["counts"]))
+
+real_sim = json.loads(json.dumps(rep))
+for row in real_sim["probes"]:
+    if row["id"] == "diag-live":
+        row["status"] = "fail"
+        row["observed"] = "rc=1 verdict=None (simulated regression)"
+    elif row["id"] == "audit-status":
+        row["observed"] = f"{row.get('observed')} [real facts differ]"
+d1 = rehearse.diff_reports(rep, real_sim)
+regs = [r for r in d1["rows"] if r["class"] == "regression"]
+shifts = [r for r in d1["rows"] if r["class"] == "content-shift"]
+check("rehearse-diff: a pass→fail shift is one named regression, verdict review",
+      d1["verdict"] == "review" and len(regs) == 1
+      and regs[0]["id"] == "diag-live" and d1["surprises"] == 1,
+      json.dumps(d1["counts"]))
+check("rehearse-diff: same-status different-facts is a content-shift, never a failure",
+      len(shifts) == 1 and shifts[0]["id"] == "audit-status"
+      and shifts[0]["left_observed"] != shifts[0]["right_observed"],
+      json.dumps(d1["counts"]))
+check("rehearse-diff: regression rows carry expected + both observed sides",
+      bool(regs[0].get("expected"))
+      and regs[0]["left_observed"] is not None
+      and regs[0]["right_observed"] is not None, "")
+
+skip_sim = json.loads(json.dumps(rep))
+for row in skip_sim["probes"]:
+    if row["id"] in twin_only_ids:
+        row["status"] = "skip"
+        row["observed"] = "twin-only probe — day-0 covers it live"
+d2 = rehearse.diff_reports(rep, skip_sim)
+check("rehearse-diff: twin-only probes are not-comparable, never surprises",
+      d2["verdict"] == "clean"
+      and d2["counts"]["not-comparable"] == len(twin_only_ids)
+      and all(r["class"] != "regression" for r in d2["rows"]),
+      json.dumps(d2["counts"]))
+
+try:
+    rehearse.diff_reports({"schema": "someone-else@9"}, rep)
+    refused_schema = False
+except ValueError:
+    refused_schema = True
+check("rehearse-diff: a foreign schema is structurally refused (ValueError)",
+      refused_schema, "")
+
+proc_d = subprocess.run(
+    [sys.executable, str(ROOT / "bin" / "omarchy-firmware"), "rehearse-diff",
+     str(rep["report_file"]), str(rep["report_file"]), "--json"],
+    capture_output=True, text=True)
+try:
+    d3 = json.loads(proc_d.stdout)
+except json.JSONDecodeError:
+    d3 = {}
+check("rehearse-diff: the CLI exits 0 clean on identical reports, journaled",
+      proc_d.returncode == 0 and d3.get("verdict") == "clean"
+      and journal.show(1)[0]["tool"] == "rehearse-diff"
+      and journal.show(1)[0]["status"] == "ok", proc_d.stderr[:120])
+
+bad = Path(tempfile.mkdtemp(prefix="ofw-badrep-")) / "not-a-report.json"
+bad.write_text(json.dumps({"hello": True}), encoding="utf-8")
+proc_d2 = subprocess.run(
+    [sys.executable, str(ROOT / "bin" / "omarchy-firmware"), "rehearse-diff",
+     str(bad), str(rep["report_file"])], capture_output=True, text=True)
+check("rehearse-diff: a non-report is REFUSED with exit 2, journaled as refused",
+      proc_d2.returncode == 2 and "REFUSED" in proc_d2.stderr
+      and journal.show(1)[0]["tool"] == "rehearse-diff"
+      and journal.show(1)[0]["status"] == "refused", proc_d2.stderr[:120])
+
+tmp_state = tempfile.mkdtemp(prefix="ofw-state-")
+old_state = os.environ.get("XDG_STATE_HOME")
+os.environ["XDG_STATE_HOME"] = tmp_state
+try:
+    seed = {"schema": "omarchy-firmware/rehearsal@1", "ts": "seed",
+            "verdict": "green", "counts": {}, "probes": rep["probes"]}
+    rdir = rehearse._report_dir()
+    (rdir / "rehearsal-20260101-000001.json").write_text(
+        json.dumps(dict(seed, backend="twin")), encoding="utf-8")
+    (rdir / "rehearsal-20260101-000002.json").write_text(
+        json.dumps(dict(seed, backend="real")), encoding="utf-8")
+    pair = rehearse.latest_reports()
+finally:
+    if old_state is not None:
+        os.environ["XDG_STATE_HOME"] = old_state
+    else:
+        os.environ.pop("XDG_STATE_HOME", None)
+check("rehearse-diff: --latest resolves the freshest twin+real pair",
+      pair is not None and pair[0].name.endswith("000001.json")
+      and pair[1].name.endswith("000002.json"), str(pair))
+
+# --- capture: the day-0 photograph ---------------------------------------------
+snap = capture.capture()
+need_sections = {"board", "cve_posture", "boot", "fwupd_local", "kb_freshness",
+                 "storage", "gpu", "ram", "settings", "thermal",
+                 "cpu_epp", "hwmon", "environment"}
+check("capture: the photograph holds the ten T0 sections + cpu/hwmon/env detail",
+      snap["schema"] == "omarchy-firmware/capture@1"
+      and need_sections <= set(snap["sections"]),
+      str(sorted(set(snap["sections"]) - need_sections))[:120])
+check("capture: provenance is honest — twin-sourced, roots named, tool versioned",
+      snap["backend"] == "twin-sourced"
+      and bool(snap["sections"]["cpu_epp"]["data"]["root"])
+      and bool(snap["sections"]["hwmon"]["data"]["root"])
+      and snap["sections"]["environment"]["data"]["omarchy_firmware"] == "0.6.0",
+      str(snap.get("twin_source")))
+epp_now = [c["epp_current"] for c in snap["sections"]["cpu_epp"]["data"]["cpus"]]
+check("capture: the twin's EPP tree is mirrored exactly",
+      epp_now == ["balance_performance", "balance_performance"]
+      and all("performance" in (c["epp_available"] or "")
+              for c in snap["sections"]["cpu_epp"]["data"]["cpus"]),
+      str(epp_now))
+hw_chips = snap["sections"]["hwmon"]["data"]["chips"]
+check("capture: the twin's nct6798 structure is recorded with pwm values",
+      len(hw_chips) == 1 and hw_chips[0]["name"] == "nct6798"
+      and len(hw_chips[0]["pwms"]) >= 3
+      and hw_chips[0]["pwms"][0]["value"] == "128",
+      str(hw_chips[:1])[:160])
+check("capture: the snapshot is written and journaled as capture",
+      Path(snap["capture_file"]).exists()
+      and journal.show(1)[0]["tool"] == "capture"
+      and journal.show(1)[0]["status"] == "ok", snap["capture_file"][-48:])
+check("capture: read-only by construction — no --confirm anywhere in its surface",
+      "--confirm" not in (ROOT / "bin" / "omarchy-firmware-capture")
+      .read_text(encoding="utf-8")
+      and "--confirm" not in (ROOT / "lib" / "firmware_hal" / "capture.py")
+      .read_text(encoding="utf-8"), "")
+
 # restore the T1 sysfs environment for any later section
 for k, v in sysfs_saved.items():
     if v is not None:

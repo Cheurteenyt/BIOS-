@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+# omarchy:summary=The day-0 debrief — twin → real rehearsal diff, the named list of surprises
+# omarchy:args=LEFT.json RIGHT.json | --latest [--json]
+# omarchy:examples=omarchy-firmware rehearse-diff --latest | omarchy-firmware rehearse-diff twin.json real.json
+
+import os
+import sys
+
+_here = os.path.dirname(os.path.realpath(__file__))
+for _cand in (os.path.join(os.path.dirname(_here), "lib"),  # repo checkout
+              os.path.expanduser(  # install.sh layout (P5)
+                  "~/.local/share/omarchy-firmware/lib")):
+    if os.path.isdir(_cand):
+        sys.path.insert(0, _cand)
+        break
+
+from firmware_hal.cli import main  # noqa: E402
+
+if __name__ == "__main__":
+    sys.exit(main(["rehearse-diff"] + sys.argv[1:]))

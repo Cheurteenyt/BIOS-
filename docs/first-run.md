@@ -58,8 +58,10 @@ Sanity checks:
 ```bash
 omarchy-firmware tiers          # the 14-tool contract prints
 omarchy-firmware selftest       # full twin demo, exit 0
+omarchy-firmware capture        # day-0 photograph BEFORE anything else
 omarchy-firmware rehearse       # day-0 drill: 28 probes on THIS machine
-python3 tests/test_suite.py     # 262 checks (run from the clone)
+omarchy-firmware rehearse-diff --latest   # twin → real: the named surprises
+python3 tests/test_suite.py     # 277 checks (run from the clone)
 python3 tests/mcp_smoke.py      # needs pip install 'mcp>=1.0,<2'
 ```
 

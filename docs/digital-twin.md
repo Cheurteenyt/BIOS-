@@ -107,13 +107,23 @@ is the point: **the twin proves the tool, the machine proves the truth.**
 
 1. **Now (before the machine):** `install.sh`, then
    `omarchy-firmware rehearse --backend twin` → expect `green`, 28/28.
-2. **Day 0 (Sept. 16, on the machine):** `omarchy-firmware rehearse`
-   (default backend = real). Structural probes must pass again; content
-   probes now measure the actual machine. Twin-only probes report their
-   skip honestly; the manual drills of `docs/first-run.md` cover the rest.
-3. **Diff the two reports** (`rehearsal-*.json`, stable probe ids): what
-   changed between the twin and reality is precisely the list of machine
-   surprises worth writing down — and the twin's next revision.
+2. **Day 0 (Sept. 16, on the machine):** `omarchy-firmware capture` —
+   the photograph: one read-only snapshot of what this machine really
+   is (the ten T0 collections + per-cpu EPP + per-chip hwmon, every
+   section provenance-tagged). Keep the file: it is the ground truth
+   the twin approximates, the before/after for future BIOS updates,
+   and the raw material for the twin's next revision.
+3. Then `omarchy-firmware rehearse` (default backend = real).
+   Structural probes must pass again; content probes now measure the
+   actual machine. Twin-only probes report their skip honestly; the
+   manual drills of `docs/first-run.md` cover the rest.
+4. **Debrief:** `omarchy-firmware rehearse-diff --latest` — the twin →
+   real comparison by stable probe id, zero paths. `!!` rows are named
+   day-0 findings (investigate); `~` rows are the expected content
+   harvest (real facts vs twin facts); `--` rows are twin-only drills
+   covered live. What the diff names is precisely the list of machine
+   surprises worth writing down — and the twin's next revision
+   (TWIN-1.1, fed by the capture).
 
 ## The install fix the rehearsal class of tooling exists to catch
 

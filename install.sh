@@ -85,6 +85,8 @@ echo "  omarchy-firmware diag probe --seconds 30   # active: time constant"
 echo "  omarchy-firmware report              # supervised-loop digest (P4)"
 echo "  omarchy-firmware selftest            # demo on the twin fixtures"
 echo "  omarchy-firmware rehearse            # day-0 drill on THIS machine"
+echo "  omarchy-firmware capture             # day-0 photograph (read-only T0 snapshot)"
+echo "  omarchy-firmware rehearse-diff --latest    # twin → real: the named surprises"
 echo
 echo "Human-only T2 (staging):"
 echo "  omarchy-firmware update stage --device GUID   # dry-run plan, then --confirm YOURSELF"

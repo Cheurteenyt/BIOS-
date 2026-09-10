@@ -4,6 +4,39 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## 0.6.0 — the day-0 instruments: `rehearse-diff` + `capture`
+
+Sept. 16 must be a replay day — so the debrief is a tool, not a
+manual `jq` session. Two CLI instruments land (the 12-tool MCP
+surface is untouched):
+
+**Added**
+- `rehearse-diff LEFT.json RIGHT.json` (and `--latest`, which picks the
+  freshest twin + real reports from the state dir — zero paths on
+  day 0): compares two rehearsal reports by stable probe id and names
+  every surprise, honestly classified — `identical`, `content-shift`
+  (same status, different facts — the EXPECTED day-0 harvest: real
+  sensor names, real numbers), `improvement`, `regression` (pass →
+  fail or probe lost — investigate), `not-comparable` (twin-only
+  probes the real backend skips by design). Verdict `clean`/`review`
+  grades the DAY, not the machine; content-shifts never fail a diff —
+  they are the point of day 0. Exit 0/1; non-reports are REFUSED
+  (exit 2), journaled even then. Schema `omarchy-firmware/rehearsal-diff@1`.
+- `capture [--out PATH]`: the day-0 photograph — one read-only T0
+  snapshot of what the machine really is: the ten T0 collections plus
+  per-cpu EPP facts, per-chip hwmon structure (pwm values, enables,
+  auto-point temps) and the environment block. Every section carries
+  its provenance (`twin-sourced` vs `live`, roots named); a sensorless
+  host records nulls and section errors, never guesses. No confirm
+  flag exists; the only artifact is the snapshot file. The cpu/hwmon
+  sections mirror the twin-sysfs shapes, so turning a surprise into a
+  TWIN-1.1 fixture is a copy-edit, not a rewrite. Schema
+  `omarchy-firmware/capture@1`.
+- `bin/omarchy-firmware-rehearse-diff`, `bin/omarchy-firmware-capture`
+  (staged by install.sh's existing bin glob).
+- tests 262 → 277 (diff classes + refusals + --latest resolution;
+  capture sections, provenance, twin mirroring, read-only meta-scan).
+
 ## 0.5.1 — the mcp-surface probe honours the clean SDK refusal
 
 **Fixed**

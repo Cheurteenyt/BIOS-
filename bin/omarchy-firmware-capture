@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+# omarchy:summary=The day-0 photograph — a read-only T0 snapshot of what this machine really is
+# omarchy:args=[--out PATH] [--json]
+# omarchy:examples=omarchy-firmware capture | omarchy-firmware capture --before.json --json
+
+import os
+import sys
+
+_here = os.path.dirname(os.path.realpath(__file__))
+for _cand in (os.path.join(os.path.dirname(_here), "lib"),  # repo checkout
+              os.path.expanduser(  # install.sh layout (P5)
+                  "~/.local/share/omarchy-firmware/lib")):
+    if os.path.isdir(_cand):
+        sys.path.insert(0, _cand)
+        break
+
+from firmware_hal.cli import main  # noqa: E402
+
+if __name__ == "__main__":
+    sys.exit(main(["capture"] + sys.argv[1:]))
