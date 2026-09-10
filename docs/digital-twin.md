@@ -74,7 +74,7 @@ schema `omarchy-firmware/rehearsal@1`, the last 10 kept):
 | T2 gates | `stage-plan-nvme`, `stage-board-refused`, `stage-confirm-refused`, `rollback-inventory` | dry-run plan with six gates, the AM4 gap refused with the EZ Flash path named, the motivation gate cannot be waived, rollback stays a refusal-by-design |
 | Diagnostics | `diag-scenarios`, `diag-pump-dead`, `diag-no-paste`, `diag-heatwave`, `diag-undetermined`, `diag-storage/gpu/ram/settings`, `diag-live` | each scenario names THE fault and nothing else; sensorless hosts degrade honestly |
 | T1 gates | `t1-epp-gate`, `t1-epp-dryrun-plan`, `t1-epp-undo-gate`, `t1-fans-gate`, `t1-fans-show` | without the human gesture: **refused (exit 2) or dry-run (exit 0) — never applied**; the twin plan carries the full diff and the backing file is untouched |
-| MCP | `mcp-surface` | real stdio session: initialize, tools/list == the exact 12 contract tools, one T0 call answers |
+| MCP | `mcp-surface` | two contract outcomes: full stdio session (initialize, tools/list == the exact 12 contract tools, one T0 call answers) where the `mcp` SDK is installed, or the server's clean SDK-refusal (exit 1, pin named) where it is not |
 | Bookkeeping | `journal-integrity`, `report-digest` | every probe left a trace; the digest answers |
 
 Backend rule: structural expectations hold on **both** backends; content

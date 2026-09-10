@@ -4,6 +4,21 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## 0.5.1 — the mcp-surface probe honours the clean SDK refusal
+
+**Fixed**
+- CI: the `test-suite` job is stdlib-only by design, so the MCP server
+  performs its documented clean refusal (`mcp` package absent — exit 1,
+  the message names the `mcp>=1.0,<2` pin). The rehearsal's `mcp-surface`
+  probe counted that legitimate behaviour as a failure and turned the
+  whole rehearsal red on both Python legs (259/262). The probe now
+  accepts exactly two outcomes, both contract behaviour: the full
+  handshake (exact 12-tool surface + one T0 call) where the SDK is
+  installed, or the clean SDK-refusal where it is not — a hung or
+  crashed server is still a failure. The deep handshake remains proven
+  by the dedicated `mcp conformance` job and by day-0 on a machine with
+  `python-mcp` installed.
+
 ## 0.5.0 — Phase 5: the digital twin (TWIN-1) and the dress rehearsal
 
 Sept. 16 must be a replay day, not a discovery day. The fixture set is
