@@ -1,0 +1,30 @@
+{
+  "Devices": [
+    {
+      "Name": "Samsung SSD 980 PRO 1TB",
+      "DeviceId": "a1b2c3d4-nvme-samsung-980pro",
+      "Guid": [
+        "b2a1c3d4-0000-4000-8000-000000000001"
+      ],
+      "VersionOld": "3B2QGXA7",
+      "VersionNew": "5B2QGXA7",
+      "Version": "5B2QGXA7",
+      "UpdateState": "success",
+      "Created": "2026-03-14T02:11:00",
+      "ModifiedDate": "2026-03-14T02:11:00"
+    },
+    {
+      "Name": "TPM 2.0",
+      "DeviceId": "tpm-fixture-device",
+      "Guid": [
+        "b2a1c3d4-0000-4000-8000-000000000002"
+      ],
+      "VersionOld": "3.10.2.0",
+      "VersionNew": "3.10.4.0",
+      "Version": "3.10.4.0",
+      "UpdateState": "success",
+      "Created": "2026-01-08T23:40:00",
+      "ModifiedDate": "2026-01-08T23:40:00"
+    }
+  ]
+}

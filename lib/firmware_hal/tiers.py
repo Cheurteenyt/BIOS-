@@ -8,15 +8,18 @@ its declared tier and its out-of-scope refusal test.
 
 from __future__ import annotations
 
-# The full thirteen-tool contract (vol. 2 table 5.1 + vol. 3 ch. 5 + vol. 4).
-# T2 tools remain DECLARED but NOT implemented: any invocation fails with
-# an explicit error, never a silence. T1 tools are implemented with the
+# The full fourteen-tool contract (vol. 2 table 5.1 + vol. 3 ch. 5 +
+# vol. 4 + roadmap P4). T2 tools are human-only: fw.update.stage is
+# implemented on the CLI alone (dry-run plan + explicit --confirm by the
+# human), fw.rollback is a refusal-by-design with an inventory. Neither
+# is reachable from the MCP surface. T1 tools are implemented with the
 # two-key rule (dry-run by default, explicit confirm to apply).
 TOOL_TIERS: dict[str, str] = {
     "fw.audit.status": "T0",
     "fw.audit.cve": "T0",
     "fw.boot.inspect": "T0",
     "fw.update.check": "T0",
+    "fw.cve.watch": "T0",
     "fw.diag.thermal": "T0",
     "fw.diag.storage": "T0",
     "fw.diag.gpu": "T0",
@@ -33,15 +36,31 @@ TIER_MEANING = {
     "T0": "read-only, journaled — free access for the agent",
     "T1": "reversible write: dry-run by default, explicit confirm to apply, "
           "backup + rollback store (implemented for cpu.epp.set, fans.curve.set)",
-    "T2": "NVRAM/capsule write, explicit human confirmation — Phase 4",
+    "T2": "NVRAM/capsule transaction, HUMAN-only: fw.update.stage exists on "
+          "the CLI (dry-run default, --confirm by the human), fw.rollback is "
+          "a refusal-by-design with an inventory — neither is agent-callable",
     "T3": "physical flash, EZ Flash — forbidden to the agent; the human executes",
 }
 
-# Tools exposed by this codebase (P1 + P2 audits/diagnostics, P3 writes).
+# Tools exposed by this codebase (P1 audits, P2 thermal, P3 machine-wide
+# T0 + T1 writes, P4 watch + staging).
 IMPLEMENTED_T0 = ["fw.audit.status", "fw.audit.cve", "fw.boot.inspect",
-                  "fw.update.check", "fw.diag.thermal", "fw.diag.storage",
-                  "fw.diag.gpu", "fw.diag.ram", "fw.diag.settings"]
+                  "fw.update.check", "fw.cve.watch", "fw.diag.thermal",
+                  "fw.diag.storage", "fw.diag.gpu", "fw.diag.ram",
+                  "fw.diag.settings"]
 IMPLEMENTED_T1 = ["cpu.epp.set", "fans.curve.set"]
+
+# T2: where the human finds them (never in the MCP surface).
+T2_HINTS = {
+    "fw.update.stage":
+        "T2 staging is human-only by contract: the agent may PREPARE the "
+        "plan (dry-run) with `omarchy-firmware update stage --device GUID`, "
+        "the human alone applies --confirm on the CLI.",
+    "fw.rollback":
+        "firmware rollback does not exist as a runtime operation on "
+        "single-BIOS AM4; `omarchy-firmware update rollback` prints the "
+        "honest inventory instead of pretending.",
+}
 
 # T3 tools: no call path exists, not even an elegant refusal.
 # Flashing goes through the human alone (guided EZ Flash, see vol. 2 ch. 8).
@@ -73,9 +92,12 @@ def assert_phase1(tool: str) -> str:
                   (t == "T1" and tool in IMPLEMENTED_T1)
     if not implemented:
         from . import PHASE  # late import: avoids any ordering dependency
-        raise TierRefused(
+        msg = (
             f"'{tool}' is declared tier {t} but not implemented in the current "
             f"phase ({PHASE}). Implemented: "
             f"T0={', '.join(IMPLEMENTED_T0)}; T1={', '.join(IMPLEMENTED_T1)}."
         )
+        if t == "T2" and tool in T2_HINTS:
+            msg += " " + T2_HINTS[tool]
+        raise TierRefused(msg)
     return t

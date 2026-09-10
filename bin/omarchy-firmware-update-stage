@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+# omarchy:summary=Stage a fwupd firmware update (T2 — HUMAN only: dry-run plan by default, --confirm applies the staging, --cancel revokes it before reboot)
+# omarchy:args=--device GUID [--reason TEXT] [--confirm] | --cancel | [--json] [--fixture-dir DIR]
+# omarchy:examples=omarchy firmware update stage --device b2a1c3d4-0001 | omarchy firmware update stage --device GUID --reason 'vendor security fix' --confirm | omarchy firmware update stage --cancel
+
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "lib"))
+from firmware_hal.cli import main  # noqa: E402
+
+args = sys.argv[1:]
+if not args:
+    args = ["update", "stage"]
+elif args[0].startswith("-"):
+    args = ["update", "stage"] + args
+sys.exit(main(args))

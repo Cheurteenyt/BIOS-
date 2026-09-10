@@ -9,17 +9,24 @@ implemented in code, not in intentions.
 
 | Tier | Nature | Guard rails | Status |
 |---|---|---|---|
-| **T0** | reads + deterministic diagnostics | journaled, read-only by construction | **implemented (9 tools)** |
+| **T0** | reads + deterministic diagnostics + watch | journaled, read-only by construction | **implemented (10 tools)** |
 | **T1** | reversible writes (EPP, fan curves) | dry-run default · confirm key · backup store · undo · mechanical curve guards · journal | **implemented (2 tools)** — see [t1-write-layer.md](t1-write-layer.md) |
-| **T2** | NVRAM/capsule staging (updates, boot entries) | explicit human confirmation, tool by tool · staged, not applied · rollback | declared, refused |
+| **T2** | firmware transaction (staging, rollback) | **human-only CLI**: dry-run plan by default, `--confirm` typed by the human · motivation (`--reason`) mandatory · transaction record + cancel until reboot · rollback refused by design | **implemented, outside the MCP surface (P4)** — see [t1-write-layer.md](t1-write-layer.md) |
 | **T3** | physical flash (EZ Flash) | **never the agent.** It produces a dated, checksummed walkthrough; the human executes | forever human |
 
 Structural facts of this repo (tested, not promised):
 
 - `fw.flash.write` and `fw.nvram.raw.write` are in `FORBIDDEN_FOREVER` — no
   call path exists, not even a refusal: the tool does not exist.
-- Declared-but-unimplemented T2 tools raise `TierRefused` with the exact
-  reason, at every surface (CLI, MCP).
+- The T2 tools are not in the MCP surface at all: `fw.update.stage` refuses
+  there with the exact human CLI path; `fw.rollback` is a refusal-by-design
+  that answers with the rollback inventory instead of pretending. Staging
+  applies at the NEXT reboot (by fwupd itself — this base never reboots),
+  carries a mandatory `--reason`, and is cancellable until that reboot.
+- The KB updater obeys the two-key rule on DATA: stage shows the sha256,
+  `--confirm --sha256` activates, a mismatch is refused (supply-chain
+  guard), `--revert` restores. A knowledge base that changed silently
+  would poison every inference built on it.
 - The two T1 writes enforce the two-key rule in code: without the explicit
   confirm flag they are dry-runs that touch nothing; a write always
   backs up first; undo restores. A fan curve that does not end at full
@@ -37,12 +44,14 @@ what stops it:
 |---|---|---|
 | **bad measurement** | coarse Super I/O ADC (± 3 %) reading 11.4 V on a healthy PSU | confidence levels · cross-checks (multimeter advice) · thresholds owned as orders of magnitude |
 | **bad interpretation** | a high R_th blamed on paste when the pump is dying | named findings with evidence · anti-double-diagnosis · "undetermined" instead of a guess |
-| **bad action** | an agent "helpfully" reordering boot entries | T1: two keys (dry-run default + confirm), backup, undo · T2/T3: refused or nonexistent |
+| **bad action** | an agent "helpfully" reordering boot entries, or staging a BIOS flash "to be safe" | T1: two keys (dry-run default + confirm), backup, undo · T2: human-only CLI, mandatory `--reason`, cancel until reboot · T3: nonexistent |
 
 The residual risk quadrant — an action that is both **grave and
 irreversible** — is kept empty **by construction**: nothing in the T1 set
-(EPP, fan curves) is irreversible, and everything irreversible (flash) is
-outside the agent's reach forever.
+(EPP, fan curves) is irreversible; staging is reversible until the human
+reboots and the human is the one who reboots; firmware rollback does not
+exist as a runtime operation here (refused by design, with an inventory);
+and everything irreversible (flash) is outside the agent's reach forever.
 
 ## The 8 rules
 
@@ -75,7 +84,9 @@ outside the agent's reach forever.
 
 - The journal lives in the user's XDG state dir, like the rest; nothing runs
   as root; the MCP server is one user process on stdio (no listening port).
-- `--refresh` (LVFS metadata) is the only network touch, on explicit human
-  request; the CVE knowledge base is local and versioned.
+- Network touches are explicit human requests only: `--refresh` (LVFS
+  metadata) and the KB updater `--from URL`. Nothing polls, nothing
+  auto-refreshes; the weekly watch timer reads local state only.
 - Fixture mode is for tests and demos — the journal marks fixture calls so a
-  demo can never be mistaken for a real machine's history.
+  demo can never be mistaken for a real machine's history; fixture-mode
+  staging without `FW_FWUPD_BIN` refuses to execute anything.

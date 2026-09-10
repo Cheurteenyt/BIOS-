@@ -4,6 +4,48 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## 0.4.0 — Phase 4: the supervised loop (CVE watch + human-gated T2 staging)
+
+**Added**
+- `fw.cve.watch` (T0, MCP tool #12): knowledge-base freshness (generated
+  date, age, entry count, sha256, packaged vs override), exposure replay,
+  drift since the previous watch (added/changed/removed entry ids), and a
+  fwupd advisory cross-check — CVE ids in release notes correlated against
+  the KB; unknown ones are listed as candidates for the next KB revision.
+  Never touches the network.
+- KB updater (`omarchy-firmware-cve-update`, `lib/firmware_hal/kb_update.py`):
+  the two-key rule applied to DATA — stage (`--file`/`--from`) validates
+  the schema and shows the sha256, `--confirm --sha256 HEX` activates the
+  local override (mismatch = supply-chain refusal), `--revert` restores,
+  `--status` shows what is in force. Journaled as `kb.update`.
+- T2 staging (`omarchy-firmware update stage`, `lib/firmware_hal/stage.py`):
+  HUMAN-only CLI (not in the MCP surface). Dry-run plan by default with six
+  explicit gates (exact GUID, updatable, candidate, version differs, power,
+  mandatory `--reason`); `--confirm` executes the exact command through an
+  injectable fwupdmgr (`FW_FWUPD_BIN`), writes a transaction record, never
+  reboots; `--cancel` revokes until reboot and reports `/system-update`.
+  A motherboard outside LVFS is refused with the AM4 gap and the EZ Flash
+  human path named.
+- `fw.rollback` (`omarchy-firmware update rollback`,
+  `lib/firmware_hal/rollback.py`): refusal-by-design with the honest
+  inventory — T1 rollback frames, pending transaction, fwupd history,
+  FlashBack machine truth. Journaled `refused-by-design`, exit 0.
+- Loop report (`omarchy-firmware report --days N`): the supervised-loop
+  digest — per-day calls/tools/statuses, errors, KB age, rollback frames,
+  pending transaction. View-only, does not journal itself.
+- Weekly watch units (`omarchy-firmware-watch.{service,timer}`, installed
+  INACTIVE): the CVE watch on a weekly schedule, same one-shot frugality.
+- `docs/first-run.md`: the day-0 drill + the 5-day supervised-loop
+  protocol that measures the P4 exit criterion on the real machine.
+- Fixture `fwupd-history.json` + a candidate advisory (CVE-2026-4478) in
+  `fwupd-updates.json`; CVE knowledge-base texts translated to English.
+
+**Changed**
+- Contract grown to fourteen tools (10 T0 + 2 T1 + 2 T2 declared); the
+  T2 refusals now carry their human-path pointers (`T2_HINTS`).
+- Test suite 177 → 233 checks; MCP smoke proves 12 tools and a real
+  `fw.cve.watch` call.
+
 ## 0.3.0 — Phase 3: full T0 diagnostics + T1 reversible writes
 
 **Added**

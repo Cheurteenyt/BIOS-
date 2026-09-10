@@ -121,10 +121,28 @@ and the optional longitudinal timer. The baseline (`baseline.json`, XDG
 state) keeps 200 entries of dated measurements — the thermal memory the BIOS
 does not have, and the substrate of S12.
 
+## The P4 seams — watch, staging, report
+
+Phase 4 adds three seams without touching the existing ones:
+
+- **cve_watch.py** sits on top of `cve_kb` (freshness, drift baseline in
+  XDG state) and `fwupd` (advisory cross-check). It reads only; the KB
+  override precedence lives in `cve_kb.load_kb()` — XDG override first,
+  packaged fallback, corrupt override never crashes a tool.
+- **stage.py / rollback.py** are the T2 layer: they reuse `fwupd`'s
+  device/update parsing, add the gate engine and the transaction record,
+  and are reachable from the CLI only. The fwupdmgr binary is injectable
+  (`FW_FWUPD_BIN`) so tests stay hermetic; fixture mode without the
+  injection refuses to execute anything.
+- **report.py** reads the journal as a view (no self-journaling) — the
+  one-implementation-three-consumers rule does not extend to it: a
+  report has no MCP tool by design, the CLI is the single consumer.
+
 ## Versioning and compatibility
 
 - `firmware_hal.__version__` tracks the package; `PHASE` names the current
-  scope in one phrase (`P2 — read-only + thermal diagnostics`).
+  scope in one phrase (`P4 — supervised loop: CVE watch + human-gated T2
+  staging`).
 - Tool output dicts are the API: renaming a key is a breaking change and
   must land together with `tests/test_suite.py` updates.
 - Tested on Python 3.12+; no compiled dependency; runs anywhere dmidecode,

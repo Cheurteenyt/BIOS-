@@ -9,7 +9,7 @@
           "Version": "5B2QGXB7",
           "Size": 8388608,
           "Urgency": "medium",
-          "Description": "Fixes a rare controller lock-up under sustained NVMe queue depth. Requires reboot to apply."
+          "Description": "Fixes a rare controller lock-up under sustained NVMe queue depth. Addresses CVE-2026-4478. Requires reboot to apply."
         }
       ]
     }

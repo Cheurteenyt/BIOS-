@@ -14,12 +14,14 @@ before your first commit and before your first `fw.*` call.
    conclusion is a defect.
 2. **The agent proposes, the HAL disposes, the human decides.** You may read
    everything (T0). You may propose actions with evidence and next steps.
-   The current phase (P3) implements exactly two T1 writes — `cpu.epp.set`
+   The current phase (P4) implements exactly two T1 writes — `cpu.epp.set`
    and `fans.curve.set` — both **dry-run by default**: without an explicit
    confirm flag (`--confirm` / `confirm: true`) they return the plan and
    write nothing. Only request `confirm` after the human has seen the plan.
-   Everything beyond those two (NVRAM, firmware staging, flashing) is
-   refused or has no call path.
+   The T2 layer is **human-only on the CLI**: you may prepare a staging plan
+   (`update stage --device GUID`, dry-run) but `--confirm` is typed by the
+   human, and `fw.rollback` is a refusal-by-design. Flashing (T3) has no
+   call path at all.
 3. **Leave the system as you found it.** Reads are journaled, nothing else
    changes. No background daemon, no enabled timers, no side effects outside
    `~/.local/state/omarchy-firmware/`.
@@ -29,32 +31,38 @@ before your first commit and before your first `fw.*` call.
 ```
 bin/                     entry points, one per tool, with # omarchy:* metadata
 lib/firmware_hal/        the base: tiers, journal, collectors, diagnostics,
-                         T1 actions, CLI, MCP server
+                         T1 actions, T2 staging, KB watch/updater, CLI, MCP server
 agents/skills/firmware/  the skill — conduct rules consumed by harnesses
-etc/systemd/user/        one-shot service + timer (NEVER enabled by install)
+etc/systemd/user/        one-shot services + timers (NEVER enabled by install)
 tests/                   fixtures (3 board sets: issues + clean) + 8 thermal
                          scenarios + test suite + MCP smoke
-tests/test_suite.py      177 checks, stdlib only — must pass before any push
-tests/mcp_smoke.py       MCP conformance: handshake, 11 tools, T1 dry-run
-docs/                    architecture, security doctrine, T1 write layer,
-                         diagnostics catalog, frugality
+tests/test_suite.py      233 checks, stdlib only — must pass before any push
+tests/mcp_smoke.py       MCP conformance: handshake, 12 tools, T1 dry-run
+docs/                    architecture, security doctrine, write layers (T1+T2),
+                         diagnostics catalog, frugality, first-run protocol
 docs/research/           the four study volumes the code descends from
 .github/workflows/ci.yml the CI: contract suite (py 3.11/3.13) + MCP smoke
 ```
 
 ## 2. The tier contract is frozen
 
-`lib/firmware_hal/tiers.py` declares thirteen tools with their tier (T0-T3).
+`lib/firmware_hal/tiers.py` declares fourteen tools with their tier (T0-T3).
 Rules that govern any change:
 
 - A new tool enters `TOOL_TIERS` **with its tier** and a refusal test
   (out-of-scope tools must raise `TierRefused`).
 - Implemented T0 tools are listed in `IMPLEMENTED_T0`; implemented T1 tools
   in `IMPLEMENTED_T1`. Anything else is refused with the exact reason,
-  never a silence.
+  never a silence. T2 refusals carry their `T2_HINTS` pointer (the human
+  CLI path) — keep them true when the CLI moves.
 - T1 code lives in `lib/firmware_hal/actions.py` and obeys the two-key
   rule: dry-run default, explicit `confirm` to write, backup before write,
   undo through the rollback store. See [docs/t1-write-layer.md].
+- T2 code lives in `lib/firmware_hal/stage.py` (staging gates, transaction
+  record, cancel) and `rollback.py` (refusal-by-design + inventory). T2 is
+  NEVER added to the MCP surface: the agent prepares, the human applies.
+  The KB updater (`kb_update.py`) applies the same two-key rule to DATA:
+  stage, then `--confirm --sha256` with the shown hash.
 - `FORBIDDEN_FOREVER` (`fw.flash.write`, `fw.nvram.raw.write`) has no call
   path, not even an elegant refusal. Do not add one.
 - Writing to efivarfs, reordering efibootmgr entries, disabling Secure Boot,
@@ -80,7 +88,7 @@ Rules that govern any change:
 ## 4. Testing discipline
 
 ```bash
-python3 tests/test_suite.py        # 177 checks — must print "177/177 tests PASS"
+python3 tests/test_suite.py        # 233 checks — must print "233/233 tests PASS"
 python3 tests/mcp_smoke.py         # MCP conformance (needs the optional mcp pkg)
 python3 bin/omarchy-firmware selftest
 ```
@@ -89,10 +97,15 @@ python3 bin/omarchy-firmware selftest
   fault it encodes (`no-paste` → `interface-degraded` + `instant-rise`…), not
   a catch-all list. Same discipline for the storage/GPU/RAM fixtures: the
   fixture set encodes the faults, the clean set must produce zero findings.
-- Every declared-but-unimplemented tool must keep its refusal test.
+- Every declared-but-unimplemented tool must keep its refusal test — including
+  the T2 refusals naming their human path.
 - Every T1 behavior must be tested on a temp sysfs tree (`FW_SYSFS_CPU`,
   `FW_SYSFS_HWMON`): dry-run writes nothing, confirm writes + backs up,
   undo restores, mechanical guards refuse.
+- Every T2 staging behavior must be tested with `FW_FWUPD_BIN` pointing at a
+  fake fwupdmgr: gates, refusal without reason, staged transaction, cancel,
+  and the fwupd-failure path. Fixture mode without `FW_FWUPD_BIN` refuses to
+  execute anything.
 - CI (`.github/workflows/ci.yml`) runs the suite on Python 3.11 and 3.13
   plus the MCP smoke on every push — a red CI is a broken contract.
 - Before any push: suite green, smoke green (where `mcp` is installed),
@@ -117,6 +130,8 @@ python3 bin/omarchy-firmware selftest
 - Remedies are proposed, never applied unilaterally: paste, dusting, BIOS
   updates are human gestures. The two T1 writes exist because they are
   reversible; even then: dry-run first, show the plan, ask, then `--confirm`.
+  For staging, prepare the plan (`update stage --device GUID`) and hand the
+  `--confirm` command to the human with the reason spelled out.
 - After any T1 write, verify the result with the matching T0 read
   (`diag settings` for EPP, `fans curve show` for curves) and offer the undo
   before leaving.

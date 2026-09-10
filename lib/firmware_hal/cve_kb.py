@@ -14,12 +14,41 @@ import json
 from pathlib import Path
 
 from . import smbios
+from .journal import state_dir
 
 DATA = Path(__file__).parent / "data" / "cve_am4.json"
 
+_OVERRIDE = "cve-kb-override.json"
+
+
+def _override_path() -> Path:
+    """Local KB override (XDG state) — written only by the two-key updater."""
+    return state_dir() / _OVERRIDE
+
+
+def active_path() -> Path:
+    """The KB file actually in force: local override first, packaged fallback."""
+    ov = _override_path()
+    if ov.exists():
+        try:
+            if json.loads(ov.read_text(encoding="utf-8")).get("entries"):
+                return ov
+        except (OSError, json.JSONDecodeError):
+            pass  # a corrupt override falls back to the packaged KB
+    return DATA
+
+
+def kb_source() -> str:
+    return "override" if active_path() == _override_path() else "packaged"
+
 
 def load_kb() -> dict:
-    return json.loads(DATA.read_text(encoding="utf-8"))
+    try:
+        return json.loads(active_path().read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        # last resort: the packaged KB, whatever it takes — a watch or audit
+        # must never crash because of a bad local override.
+        return json.loads(DATA.read_text(encoding="utf-8"))
 
 
 def _date_of(board: dict) -> str | None:

@@ -1,0 +1,13 @@
+[Unit]
+Description=omarchy-firmware — weekly CVE watch (T0, read-only)
+Documentation=https://github.com/Cheurteenyt/BIOS-
+
+[Service]
+Type=oneshot
+# The watch is a T0 read like the doctor: KB freshness, drift, fwupd
+# advisories. It NEVER refreshes the knowledge base by itself and NEVER
+# touches the network — the KB update is a human CLI with a two-key
+# rule. One-shot, zero residency, journaled.
+ExecStart=%h/.local/bin/omarchy-firmware-cve-watch --json
+StandardOutput=null
+StandardError=journal

@@ -31,7 +31,7 @@ radiator fan dead       →  coolant hot, R_th healthy              →  named
 The BIOS watches Tctl, throttles, then shuts down — without ever saying why.
 This base correlates the very same sensors and **says the fault's name**.
 
-## What it does today (11 tools: 9 T0 read-only + 2 T1 reversible writes)
+## What it does today (12 tools: 10 T0 read-only + 2 T1 reversible writes + the human-only T2 layer)
 
 | MCP tool | CLI | Tier | Answers |
 |---|---|---|---|
@@ -39,6 +39,7 @@ This base correlates the very same sensors and **says the fault's name**.
 | `fw.audit.cve` | `omarchy-firmware audit cve` | T0 | "Am I exposed to LogoFAIL?" — BIOS version vs known AM4 CVEs (fTPM stutter, LogoFAIL, Sinkclose, VU#382314, CVE-2026-6726/6727) |
 | `fw.boot.inspect` | `omarchy-firmware boot inspect` | T0 | "Is my boot chain healthy?" — efibootmgr, UKI/Limine detection, Snapper snapshots |
 | `fw.update.check` | `omarchy-firmware update check` | T0 | "Any updates?" — local fwupd state, 15-min cache, no network |
+| `fw.cve.watch` | `omarchy-firmware audit cve-watch` | T0 | "Is the CVE timeline current?" — KB freshness, drift since last watch, fwupd advisory correlation (P4) |
 | `fw.diag.thermal` | `omarchy-firmware diag quick` | T0 | "Why is it hot?" — pump, paste/mounting (R_th), radiator fan, VRM, 12 V, long-term drift |
 | `fw.diag.storage` | `omarchy-firmware diag storage` | T0 | "Is my disk lying to me?" — NVMe media errors/spare/wear, SATA reallocated/pending/CRC, PCIe links |
 | `fw.diag.gpu` | `omarchy-firmware diag gpu` | T0 | "Is my GPU sick or just capped?" — Xid history, thermal slowdown, BAR1 (ReBAR), link width |
@@ -46,6 +47,13 @@ This base correlates the very same sensors and **says the fault's name**.
 | `fw.diag.settings` | `omarchy-firmware diag settings` | T0 | "What is mis-adjusted?" — Secure Boot, SVM/VT-x, IOMMU, EPP, fan mode, TPM; the invisible listed honestly |
 | `cpu.epp.set` | `omarchy-firmware cpu epp set VALUE` | T1 | "Fix the efficiency hint" — every CPU, **dry-run by default**, `--confirm` applies, backup + undo |
 | `fans.curve.set` | `omarchy-firmware fans curve set --file F` | T1 | "Replace the Q-Fan curve" — nct67xx hardware curve, mechanical guard (last point = 255), **dry-run by default**, undo |
+
+Two more tools exist **outside the MCP surface, on the CLI alone** (P4):
+
+| CLI | Tier | What it does |
+|---|---|---|
+| `omarchy-firmware update stage --device GUID` | T2 | **Human-only**: dry-run plan (gates, exact command, rollback reality) by default; `--confirm --reason '...'` stages a fwupd update — the firmware is flashed by fwupd at the NEXT reboot, which this tool never triggers. `--cancel` revokes before reboot |
+| `omarchy-firmware update rollback` | T2 | **Refused by design**: firmware rollback does not exist as a runtime operation on single-BIOS AM4 — the tool answers with the honest inventory (T1 store, pending transaction, fwupd history, FlashBack) |
 
 Every call — even reads — is appended to an access journal
 (`~/.local/state/omarchy-firmware/journal.jsonl`): the agent cannot touch the
@@ -60,7 +68,9 @@ Reads are free and unlimited (T0, journaled). The only two writes this
 package can ever do are T1: **reversible, dry-run by default, backed up
 before applied, rolled back on demand** — and mechanically incapable of
 capping cooling (a fan curve that does not end at full speed is refused
-before any write). Everything else (NVRAM, flashing) has no call path.
+before any write). T2 staging is a human CLI gesture (dry-run plan by
+default, the agent can prepare it but never apply it); firmware rollback
+is refused by design. Flashing (T3) has no call path.
 
 ## Quick start
 
@@ -75,17 +85,20 @@ omarchy-firmware diag settings              # SVM, IOMMU, EPP, fan mode
 omarchy-firmware cpu epp set balance_performance   # T1 DRY-RUN (plan only)
 omarchy-firmware cpu epp set balance_performance --confirm  # apply + backup
 omarchy-firmware fans curve set --file curve.json   # T1 DRY-RUN
+omarchy-firmware audit cve-watch           # KB freshness + advisory drift (P4)
+omarchy-firmware update stage --device GUID  # T2 DRY-RUN plan (human-only layer)
+omarchy-firmware report                    # the supervised-loop digest (P4)
 ```
 
 Try everything **without any hardware** — 8 pre-recorded thermal scenarios
-(5950X physics), 3 board fixture sets (issues + clean), a 177-check test
+(5950X physics), 3 board fixture sets (issues + clean), a 233-check test
 suite, and an MCP conformance smoke:
 
 ```bash
 omarchy-firmware diag scenarios             # the list
 omarchy-firmware diag quick --scenario no-paste --json
 omarchy-firmware selftest                   # full demo
-python3 tests/test_suite.py                 # 177 checks, zero dependency
+python3 tests/test_suite.py                 # 233 checks, zero dependency
 python3 tests/mcp_smoke.py                  # MCP handshake + T1 dry-run proof
 ```
 
@@ -117,11 +130,12 @@ No daemon, no embedded model, no framework. Stdlib-only for the CLI;
 13 agent harnesses             ← unchanged
    │  MCP stdio
 omarchy-firmware-mcp           ← typed wrapper: declared tier, structural refusals,
-                                 T1 dry-run by default (confirm = second key)
+                                 T1 dry-run by default (confirm = second key),
+                                 T2 NOT in the surface (human-only CLI)
    │
 omarchy-firmware (CLI)         ← functional reference, # omarchy:* metadata
    │
-lib/firmware_hal/              ← T0 collectors + T1 actions + journal + CVE KB
+lib/firmware_hal/              ← T0 collectors + T1 actions + T2 staging + journal + CVE KB
    │
 dmidecode · efibootmgr · fwupd · smartctl · lspci · nvidia-smi · hwmon · snapper
 ```
@@ -132,27 +146,30 @@ path: a human types the same thing, a shell script too.
 ## The tier contract
 
 ```
-T0  read-only + diagnostics, journaled             ← THIS REPO (9 tools)
+T0  read-only + diagnostics + watch, journaled     ← THIS REPO (10 tools)
 T1  reversible writes (EPP, fan curves)            ← THIS REPO (2 tools):
                                                    dry-run default, confirm key,
                                                    backup store, undo
-T2  NVRAM/capsule writes (stage, rollback)         declared, refused — Phase 4
+T2  firmware transaction (stage, rollback)         human-only CLI (P4): stage =
+                                                   dry-run plan + --confirm by the
+                                                   human; rollback = refused by design
 T3  physical flash (EZ Flash)                      never the agent: it produces the
                                                    walkthrough, the human executes
 ```
 
 Project rule: no tool enters the server without its declared tier and its
-out-of-scope refusal test. The declared T2 tools answer `REFUSED` with the
-exact reason; `fw.flash.write` does not even exist.
+out-of-scope refusal test. The T2 tools refuse the MCP surface with the exact
+human path; `fw.flash.write` does not even exist.
 
 ## Documentation
 
 | Document | Content |
 |---|---|
 | [AGENTS.md](AGENTS.md) | how AI agents operate in this repo — read this first |
+| [docs/first-run.md](docs/first-run.md) | the day-1 runbook + the 5-day supervised loop protocol (P4 exit criterion) |
 | [docs/architecture.md](docs/architecture.md) | layers, contract, fixtures, one-implementation-three-consumers |
 | [docs/security-doctrine.md](docs/security-doctrine.md) | tiers, error sources, barriers, the 8 rules |
-| [docs/t1-write-layer.md](docs/t1-write-layer.md) | the two-key rule, rollback store, mechanical curve guards |
+| [docs/t1-write-layer.md](docs/t1-write-layer.md) | the two-key rule, rollback store, mechanical curve guards, the human-gated T2 staging |
 | [docs/diagnostics-catalog.md](docs/diagnostics-catalog.md) | the named hardware findings and their measurable evidence |
 | [docs/frugality.md](docs/frugality.md) | the resource budget, L1/L2/L3, why the timer is optional |
 | [docs/research/](docs/research/) | the four original study volumes (FR, PDF) + English summaries |
@@ -166,8 +183,8 @@ smoke on every push — see [.github/workflows/ci.yml](.github/workflows/ci.yml)
 |---|---|---|
 | P1 | 4 T0 tools + skill + journal | 10 state questions without any write ✓ |
 | P2 | + `fw.diag.thermal`: signature engine, probe, baseline, timer | 8 scenarios named one by one, measured frugality ✓ |
-| **P3 — this repo** | + storage/GPU/RAM/settings T0 diagnostics + the T1 HAL (`cpu.epp.set`, `fans.curve.set`) | 177 checks, MCP 11-tool conformance, verified rollback, mechanical curve guards ✓ |
-| P4 | supervised loop: CVE watch, T2 staging | 5 days of loop without false positive nor unconfirmed write |
+| P3 | + storage/GPU/RAM/settings T0 diagnostics + the T1 HAL (`cpu.epp.set`, `fans.curve.set`) | 177 checks, MCP 11-tool conformance, verified rollback, mechanical curve guards ✓ |
+| **P4 — this repo** | + the supervised loop: `fw.cve.watch` (KB freshness, drift, fwupd advisories), the human-gated T2 staging (`update stage`, `update rollback`), the loop report, the weekly watch timer | code complete: 233 checks, MCP 12-tool conformance · the 5-day criterion itself is measured on the real machine — see [docs/first-run.md](docs/first-run.md) |
 
 ## Provenance
 

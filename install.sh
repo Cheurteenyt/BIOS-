@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# install.sh — installs the omarchy-firmware base (P2: T0 read-only + thermal diagnostics)
+# install.sh — installs the omarchy-firmware base (P4: T0 reads + T1 reversible
+# writes + human-gated T2 staging)
 # for the user, in the spirit of the Omarchy repo:
 #   bin/   -> ~/.local/bin (on the PATH)
 #   skill  -> ~/.config/omarchy/agents/skills/firmware/SKILL.md
@@ -13,7 +14,7 @@ BIN_DIR="${HOME}/.local/bin"
 SKILL_DIR="${HOME}/.config/omarchy/agents/skills/firmware"
 UNIT_DIR="${HOME}/.config/systemd/user"
 
-echo "== omarchy-firmware — Phase 2 (read-only + thermal diagnostics) =="
+echo "== omarchy-firmware — Phase 4 (supervised loop: T0 reads, T1 reversible writes, human-gated T2) =="
 
 # 1) Bins
 mkdir -p "$BIN_DIR"
@@ -28,13 +29,16 @@ install -m 0644 "$SRC/agents/skills/firmware/SKILL.md" "$SKILL_DIR/SKILL.md"
 echo "  skill: $SKILL_DIR/SKILL.md"
 
 # 2bis) systemd units — provided but NEVER enabled here (vol. 3, ch. 4):
-# no resident daemon, the doctor is a one-shot that a timer wakes up.
+# no resident daemon, the doctor is a one-shot that a timer wakes up;
+# the weekly watch timer (P4) is the same: an explicit choice.
 mkdir -p "$UNIT_DIR"
-for u in "$SRC"/etc/systemd/user/omarchy-firmware-doctor.{service,timer}; do
+for u in "$SRC"/etc/systemd/user/omarchy-firmware-doctor.{service,timer} \
+         "$SRC"/etc/systemd/user/omarchy-firmware-watch.{service,timer}; do
   install -m 0644 "$u" "$UNIT_DIR/$(basename "$u")"
   echo "  unit: $UNIT_DIR/$(basename "$u") (inactive)"
 done
 echo "  option: systemctl --user enable --now omarchy-firmware-doctor.timer"
+echo "  option: systemctl --user enable --now omarchy-firmware-watch.timer   # weekly CVE watch"
 
 # 3) System dependencies — checked, never silently installed
 missing=()
@@ -52,10 +56,15 @@ command -v fwupdmgr >/dev/null 2>&1 || echo "  note: fwupd missing — fw.update
 echo
 echo "Installation complete. Try:"
 echo "  omarchy-firmware audit status        # on the real machine"
+echo "  omarchy-firmware audit cve-watch     # KB freshness + fwupd advisories (P4)"
 echo "  omarchy-firmware diag quick          # passive thermal diagnostics (T0)"
 echo "  omarchy-firmware diag probe --seconds 30   # active: time constant"
-echo "  omarchy-firmware diag scenarios      # the 8 bundled scenarios"
+echo "  omarchy-firmware report              # supervised-loop digest (P4)"
 echo "  omarchy-firmware selftest            # demo without hardware"
+echo
+echo "Human-only T2 (staging):"
+echo "  omarchy-firmware update stage --device GUID   # dry-run plan, then --confirm YOURSELF"
+echo "  omarchy-firmware update rollback              # the honest rollback inventory"
 echo
 echo "MCP server (the 13 harnesses):"
 echo "  pip install mcp   # or: pacman -S python-mcp"

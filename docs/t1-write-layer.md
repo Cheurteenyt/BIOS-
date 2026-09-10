@@ -1,10 +1,13 @@
-# The T1 write layer — two keys, one backup, mechanical guards
+# The write layers — two keys, one backup, mechanical guards (T1) + the human gate (T2)
 
 Volume 4 (ch. 4) promised that if the agent ever writes, it would be under
 mechanical, structural constraints — never under good will. Phase 3 makes
 that promise executable for exactly **two targets**: the CPU EPP hint and
-the fan curve of an ASUS-class Super I/O. This document is the contract of
-that implementation (`lib/firmware_hal/actions.py`).
+the fan curve of an ASUS-class Super I/O. Phase 4 completes the picture
+with the T2 firmware transaction, which the agent can **prepare** but only
+the human can **apply**. This document is the contract of that
+implementation (`lib/firmware_hal/actions.py`, `stage.py`, `rollback.py`,
+`kb_update.py`).
 
 ## The five mechanical rules
 
@@ -92,7 +95,71 @@ tree injected through `FW_SYSFS_CPU` / `FW_SYSFS_HWMON`:
 Volume 4's catalogue lists 18 named findings; only a small subset has a
 software remedy that is *reversible* (the reversibility criterion is what
 defines T1). Paste, dusting, reseating, cable swaps are physical; BIOS
-settings beyond EPP/fans are NVRAM (T2, Phase 4, human-confirmed);
-flashing is T3 — human-only forever. "Omniscience in reading, chastity in
-writing" is the doctrine; these two writes are the chastity's exception,
-engineered to stay reversible.
+settings beyond EPP/fans are NVRAM; flashing is T3 — human-only forever.
+"Omniscience in reading, chastity in writing" is the doctrine; these two
+writes are the chastity's exception, engineered to stay reversible.
+
+---
+
+# The T2 layer — a firmware transaction the human owns (P4)
+
+A staged update is reversible until one specific instant: the reboot that
+lets fwupd flash the capsule. The whole T2 design hangs on that line.
+
+## fw.update.stage — the gates (`lib/firmware_hal/stage.py`)
+
+The dry-run plan is the default and the only thing that exists without a
+human at the keyboard. Each gate is explicit, journaled, and refused
+loudly:
+
+1. **device-found** — exact GUID match only, never a fuzzy one;
+2. **device-updatable** — a motherboard that is not LVFS-manageable is
+   refused with the AM4 coverage gap named and the human path (EZ Flash,
+   T3) pointed at;
+3. **candidate-found** — fwupd must actually announce an update;
+4. **version-differs** — a no-op staging is refused;
+5. **power** — internal-device staging on battery is refused (a desktop
+   AM4 without battery entries reads as "unknown — desktop assumption");
+6. **motivation** — `--reason` is mandatory at confirm: a firmware flash
+   without a stated why is a bad action by definition (barrage B).
+
+With `--confirm` (typed by the human on the CLI — the MCP surface refuses
+this tool with the exact command named), all gates must pass, then the
+exact command is executed through `FW_FWUPD_BIN` (injectable for tests;
+fixture mode without it refuses to execute anything real), the fwupd
+output is captured, and a **transaction record** is written to XDG state
+with device, from→to, reason, command and the note that this tool NEVER
+reboots. `--cancel` marks the transaction cancelled before any reboot and
+reports whether a `/system-update` symlink exists (fwupd's own queue) so
+the human can verify before rebooting.
+
+## fw.rollback — the refusal-by-design (`lib/firmware_hal/rollback.py`)
+
+Firmware rollback does not exist as a runtime operation on single-BIOS
+AM4 boards; pretending otherwise would put the tool inside the
+"grave + irreversible" quadrant the doctrine keeps empty. So the tool
+refuses, and answers the real question — "if something goes wrong, where
+do I stand?" — with the honest inventory: T1 rollback frames (epp/fans),
+any pending staging transaction, fwupd's own update history, and the
+machine truth (USB BIOS FlashBack / vendor re-flash = human operations).
+Journaled as `refused-by-design`, exit code 0: the inventory IS the
+answer.
+
+## The KB updater — two keys on DATA (`lib/firmware_hal/kb_update.py`)
+
+The CVE knowledge base feeds every inference the audit makes, so it gets
+write discipline too: `--file/--from` stages (validates schema, shows the
+sha256 and the entry diff, touches nothing); `--confirm --sha256 HEX`
+activates only when the hash matches exactly (a mismatch is a
+supply-chain red flag, never "just applied"); `--revert` restores the
+previous override or removes it. The override lives in XDG state — the
+packaged KB moves only through git commits — and the watch baseline is
+intentionally not reset: the next `fw.cve.watch` must name the change.
+
+## The loop report — the P4 evidence (`report.py`)
+
+`omarchy-firmware report --days N` aggregates the journal into the
+day-by-day evidence the exit criterion needs: calls, statuses (every
+`applied`/`staged` must be preceded by its `dry-run`), errors, KB age,
+rollback frames, pending transaction. A report is a view — it does not
+journal itself. The false-positive review stays human, by design.

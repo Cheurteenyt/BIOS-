@@ -5,9 +5,10 @@
 
 Proves, over a real stdio session against bin/omarchy-firmware-mcp:
   - the initialize/2024-11-05 handshake answers;
-  - tools/list exposes exactly the 11 contract tools (9 T0 + 2 T1);
+  - tools/list exposes exactly the 12 contract tools (10 T0 + 2 T1);
   - tools/call fw.diag.thermal names the fixture fault;
   - tools/call fw.audit.cve returns findings;
+  - tools/call fw.cve.watch reports KB freshness and the fwupd cross-check;
   - tools/call cpu.epp.set without confirm is a DRY-RUN (nothing written).
 
 Exit code 0 = conformance proved; 1 = any deviation; 77 = mcp missing.
@@ -47,9 +48,9 @@ for n in (0, 1):
 os.environ["FW_SYSFS_CPU"] = str(CPU)
 
 EXPECTED = {"fw.audit.status", "fw.audit.cve", "fw.boot.inspect",
-            "fw.update.check", "fw.diag.thermal", "fw.diag.storage",
-            "fw.diag.gpu", "fw.diag.ram", "fw.diag.settings",
-            "cpu.epp.set", "fans.curve.set"}
+            "fw.update.check", "fw.cve.watch", "fw.diag.thermal",
+            "fw.diag.storage", "fw.diag.gpu", "fw.diag.ram",
+            "fw.diag.settings", "cpu.epp.set", "fans.curve.set"}
 
 init = {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {
     "protocolVersion": "2024-11-05", "capabilities": {},
@@ -60,6 +61,8 @@ call_thermal = {"jsonrpc": "2.0", "id": 3, "method": "tools/call",
                 "params": {"name": "fw.diag.thermal", "arguments": {}}}
 call_cve = {"jsonrpc": "2.0", "id": 4, "method": "tools/call",
             "params": {"name": "fw.audit.cve", "arguments": {}}}
+call_watch = {"jsonrpc": "2.0", "id": 6, "method": "tools/call",
+              "params": {"name": "fw.cve.watch", "arguments": {}}}
 call_epp = {"jsonrpc": "2.0", "id": 5, "method": "tools/call",
             "params": {"name": "cpu.epp.set",
                        "arguments": {"value": "performance"}}}
@@ -102,10 +105,9 @@ try:
 
     r = ask(list_tools)
     names = {t["name"] for t in r["result"]["tools"]}
-    expect("tools/list = the 11 contract tools", names == EXPECTED,
+    expect("tools/list = the 12 contract tools", names == EXPECTED,
            f"got {sorted(names)}")
-    tiers = {t["name"]: t.get("annotations") for t in r["result"]["tools"]}
-    expect("11 tools listed", len(r["result"]["tools"]) == 11)
+    expect("12 tools listed", len(r["result"]["tools"]) == 12)
 
     r = ask(call_thermal)
     payload = json.loads(r["result"]["content"][0]["text"])
@@ -120,6 +122,16 @@ try:
     payload = json.loads(r["result"]["content"][0]["text"])
     expect("fw.audit.cve returns findings",
            len(payload.get("findings", [])) == 5, json.dumps(payload)[:200])
+
+    r = ask(call_watch)
+    payload = json.loads(r["result"]["content"][0]["text"])
+    expect("fw.cve.watch reports KB freshness",
+           payload.get("kb", {}).get("entry_count") == 5
+           and payload["kb"].get("sha256"), json.dumps(payload)[:200])
+    expect("fw.cve.watch records the baseline",
+           payload.get("drift", {}).get("status") == "baseline-recorded")
+    expect("fw.cve.watch journaled",
+           payload.get("journal_entry", {}).get("tool") == "fw.cve.watch")
 
     r = ask(call_epp)
     payload = json.loads(r["result"]["content"][0]["text"])
@@ -137,4 +149,4 @@ print()
 if failures:
     print(f"MCP CONFORMANCE FAILED: {len(failures)} check(s): {failures}")
     sys.exit(1)
-print("MCP CONFORMANCE OK — 11 tools, journaled, T1 dry-run by default.")
+print("MCP CONFORMANCE OK — 12 tools, journaled, T1 dry-run by default.")

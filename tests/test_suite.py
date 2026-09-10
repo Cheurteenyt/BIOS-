@@ -106,20 +106,23 @@ check("journal: re-readable", journal.show()[0]["tool"] == "fw.audit.status")
 try:
     tiers.assert_phase1("fw.update.stage")
     check("tiers: T2 refused (update.stage)", False, "should have been refused")
-except tiers.TierRefused:
-    check("tiers: T2 refused (update.stage)", True)
+except tiers.TierRefused as exc:
+    # P4: the refusal names the human CLI path — the agent prepares, the human applies
+    check("tiers: T2 refused (update.stage)", "update stage --device" in str(exc), str(exc))
 try:
     tiers.assert_phase1("fw.rollback")
     check("tiers: T2 refused (rollback)", False, "should have been refused")
-except tiers.TierRefused:
-    check("tiers: T2 refused (rollback)", True)
+except tiers.TierRefused as exc:
+    check("tiers: T2 refused (rollback)", "inventory" in str(exc), str(exc))
 try:
     tiers.assert_phase1("fw.flash.write")
     check("tiers: unknown T3 refused", False)
 except tiers.TierRefused:
     check("tiers: unknown T3 refused", True)
-check("tiers: contract = 13 tools", len(tiers.TOOL_TIERS) == 13)
-check("tiers: 9 T0 implemented", len(tiers.IMPLEMENTED_T0) == 9)
+check("tiers: contract = 14 tools", len(tiers.TOOL_TIERS) == 14)
+check("tiers: 10 T0 implemented", len(tiers.IMPLEMENTED_T0) == 10)
+check("tiers: cve.watch declared T0", tiers.tier_of("fw.cve.watch") == "T0"
+      and "fw.cve.watch" in tiers.IMPLEMENTED_T0)
 check("tiers: 2 T1 implemented", len(tiers.IMPLEMENTED_T1) == 2)
 check("tiers: epp declared T1", tiers.tier_of("cpu.epp.set") == "T1")
 check("tiers: fans declared T1", tiers.tier_of("fans.curve.set") == "T1")
@@ -146,7 +149,7 @@ check("cli: fixture mark", sum(1 for x in entries if x.get("fixture")) >= 4)
 a = audit.collect(FIX_A)
 check("audit: composite", a.get("board", {}).get("board_product") and a.get("boot", {}).get("chain"))
 check("audit: sensors", a.get("sensors", {}).get("chip_count") == 2, json.dumps(a.get("sensors"))[:120])
-check("audit: P3 phase declared", "P3" in (a.get("phase") or ""), a.get("phase"))
+check("audit: P4 phase declared", "P4" in (a.get("phase") or ""), a.get("phase"))
 
 # ------------------------------------------------------------------ diag ---
 # The physical diagnostics (vol. 3): every scenario must name THE fault,
@@ -237,10 +240,13 @@ check("cli: diag journaled",
       all(e["tool"] == "fw.diag.thermal" and e["tier"] == "T0" for e in last),
       str(last))
 
-# MCP server: the eleven tools are declared with their tiers
+# MCP server: the twelve tools are declared with their tiers
 from firmware_hal import mcp_server as _mcp_server  # noqa: E402
 specs = {s["name"]: s["risk_tier"] for s in _mcp_server._tool_specs()}
-check("mcp: 11 tools declared", len(specs) == 11, str(specs))
+check("mcp: 12 tools declared", len(specs) == 12, str(specs))
+check("mcp: fw.cve.watch T0", specs.get("fw.cve.watch") == "T0")
+check("mcp: T2 tools NOT in MCP surface",
+      "fw.update.stage" not in specs and "fw.rollback" not in specs)
 check("mcp: fw.diag.thermal T0", specs.get("fw.diag.thermal") == "T0")
 check("mcp: 4 new T0 declared",
       all(specs.get(f"fw.diag.{t}") == "T0"
@@ -543,6 +549,216 @@ check("cli: every T1 journal entry carries a truthful status",
       all(e["status"] in ("dry-run", "applied", "rolled-back", "refused",
                           "error", "ok")  # ok = the read-only show, T0 flow
           for e in t1_entries))
+
+
+# -------------------------------------------------------------------- P4 ---
+# Phase 4 — the supervised loop: fw.cve.watch (T0), the two-key KB
+# updater, the human-gated T2 staging and the refusal-by-design rollback.
+from firmware_hal import cve_watch, kb_update, report, rollback, stage  # noqa: E402
+
+# --- fw.cve.watch: freshness, baseline, drift ------------------------------
+w = cve_watch.collect(FIX_A)
+check("watch: kb info present",
+      w["kb"]["sha256"] and w["kb"]["entry_count"] == len(cve_kb.load_kb()["entries"]),
+      json.dumps(w["kb"])[:150])
+check("watch: age_days is a sane int", w["kb"]["age_days"] is not None and w["kb"]["age_days"] >= 0)
+check("watch: exposure replay matches the audit",
+      w["exposure"]["entries"] == 5, json.dumps(w["exposure"]))
+check("watch: first run records the baseline", w["drift"]["status"] == "baseline-recorded")
+w2 = cve_watch.collect(FIX_A)
+check("watch: unchanged KB -> no change", w2["drift"]["status"] == "no-change")
+check("watch: fwupd cross-check available", w2["fwupd_cross_check"]["available"] is True)
+check("watch: candidate advisory found (CVE-2026-4478 unknown to the KB)",
+      "CVE-2026-4478" in w2["fwupd_cross_check"]["candidates"],
+      json.dumps(w2["fwupd_cross_check"])[:200])
+
+# --- kb.update: the two-key rule applied to DATA ----------------------------
+kb_tmp = Path(tempfile.mkdtemp(prefix="ofw-kb-"))
+base = cve_kb.load_kb()
+new_kb = dict(base)
+new_kb["entries"] = list(base["entries"]) + [
+    {"id": "test-new-advisory-2026", "title": "Test advisory", "year": 2026,
+     "severity": "medium", "fixed_from_bios_date": None}]
+new_kb["generated"] = time.strftime("%Y-%m-%d")
+kb_file = kb_tmp / "kb.json"
+kb_file.write_text(json.dumps(new_kb, ensure_ascii=False), encoding="utf-8")
+import hashlib  # noqa: E402
+kb_sha = hashlib.sha256(kb_file.read_bytes()).hexdigest()
+
+staged = kb_update.stage(str(kb_file))
+check("kb: stage is a dry-run", staged["status"] == "dry-run")
+check("kb: stage shows the full hash", staged["sha256"] == kb_sha)
+check("kb: nothing activated at stage", not cve_kb._override_path().exists())
+try:
+    kb_update.activate(str(kb_file), url=False, sha256=None)
+    check("kb: confirm without sha refused", False)
+except kb_update.KbRefused:
+    check("kb: confirm without sha refused", True)
+try:
+    kb_update.activate(str(kb_file), url=False, sha256="0" * 64)
+    check("kb: sha mismatch refused (supply-chain guard)", False)
+except kb_update.KbRefused:
+    check("kb: sha mismatch refused (supply-chain guard)", True)
+applied = kb_update.activate(str(kb_file), url=False, sha256=kb_sha)
+check("kb: activate with the exact sha applies", applied["status"] == "applied")
+check("kb: override now in force", cve_kb.kb_source() == "override")
+check("kb: load_kb returns the override", cve_kb.load_kb()["generated"] == new_kb["generated"])
+w3 = cve_watch.collect(FIX_A)
+check("watch: drift names the added entry after an override",
+      w3["drift"]["status"] == "changed"
+      and "test-new-advisory-2026" in w3["drift"]["added"],
+      json.dumps(w3["drift"])[:200])
+rev = kb_update.revert()
+check("kb: revert restores the packaged KB", rev["status"] == "reverted"
+      and cve_kb.kb_source() == "packaged")
+# corrupt override: the tools fall back to the packaged KB instead of crashing
+cve_kb._override_path().write_text("{not json", encoding="utf-8")
+check("kb: corrupt override falls back to packaged", cve_kb.kb_source() == "packaged")
+cve_kb._override_path().unlink()
+
+# updater CLI end to end
+rc = kb_update.main(["--file", str(kb_file), "--json"])
+check("kb cli: stage rc=0", rc == 0)
+rc = kb_update.main(["--file", str(kb_file), "--confirm",
+                     "--sha256", "deadbeef"])
+check("kb cli: wrong sha rc=2", rc == 2)
+rc = kb_update.main(["--file", str(kb_file), "--confirm", "--sha256", kb_sha, "--json"])
+check("kb cli: confirm rc=0", rc == 0)
+rc = kb_update.main(["--revert", "--json"])
+check("kb cli: revert rc=0", rc == 0)
+
+# --- fw.update.stage: T2, human-only ----------------------------------------
+GUID_NVME = "b2a1c3d4-0000-4000-8000-000000000001"
+GUID_BOARD = "b2a1c3d4-0000-4000-8000-000000000003"
+
+plan_nvme = stage.plan(GUID_NVME, fixture_dir=str(FIX_A))
+check("stage: NVMe plan dry-run",
+      plan_nvme["status"] == "dry-run" and plan_nvme["tier"] == "T2",
+      json.dumps(plan_nvme["gates"])[:250])
+check("stage: NVMe plan passes all hard gates",
+      all(g["result"] in ("pass", "pending") for g in plan_nvme["gates"]),
+      json.dumps(plan_nvme["gates"])[:250])
+check("stage: command sheet is exact",
+      plan_nvme["command"] == ["fwupdmgr", "install", GUID_NVME]
+      or plan_nvme["command"][0] == "fwupdmgr", str(plan_nvme["command"]))
+check("stage: plan states the rollback reality",
+      "FlashBack" in plan_nvme["rollback_reality"])
+
+plan_board = stage.plan(GUID_BOARD, fixture_dir=str(FIX_A))
+check("stage: motherboard refused (AM4 LVFS gap, T3 path named)",
+      plan_board["status"] == "refused"
+      and "EZ Flash" in json.dumps(plan_board["gates"]),
+      json.dumps(plan_board["gates"])[:250])
+plan_unknown = stage.plan("00000000-0000-4000-8000-0000000000ff",
+                          fixture_dir=str(FIX_A))
+check("stage: unknown GUID refused (exact match only)",
+      plan_unknown["status"] == "refused")
+
+plan_no_reason = stage.apply(GUID_NVME, reason=None, fixture_dir=str(FIX_A))
+check("stage: apply without a reason refused (bad-action barrage)",
+      plan_no_reason["status"] == "refused" and "motivation" in json.dumps(plan_no_reason))
+
+# fake fwupdmgr: the staged path without touching any real tool
+fake_bin = kb_tmp / "fake-fwupdmgr"
+fake_bin.write_text(
+    "#!/usr/bin/env python3\n"
+    "import sys\n"
+    "if len(sys.argv) >= 3 and sys.argv[1] == 'install':\n"
+    "    print('Staged update for', sys.argv[2]); sys.exit(0)\n"
+    "print('unexpected call', sys.argv); sys.exit(9)\n")
+fake_bin.chmod(0o755)
+os.environ["FW_FWUPD_BIN"] = str(fake_bin)
+# the confirm path is exercised through the CLI — the human gesture
+rc = cli.main(["update", "stage", "--device", GUID_NVME,
+               "--reason", "vendor security fix (test)", "--confirm",
+               "--fixture-dir", str(FIX_A), "--json"])
+check("stage: CLI confirm with reason + fake fwupdmgr rc=0", rc == 0)
+txj = json.loads((stage._transaction_path()).read_text(encoding="utf-8"))
+check("stage: transaction recorded with the reason",
+      txj.get("reason") == "vendor security fix (test)"
+      and txj.get("status") == "staged")
+check("stage: transaction states the tool never reboots",
+      "NEVER reboots" in txj.get("note", ""))
+check("stage: staged call journaled by the CLI boundary",
+      journal.show(1)[0]["tool"] == "fw.update.stage"
+      and journal.show(1)[0]["status"] == "staged", str(journal.show(1)))
+# failing fwupdmgr: honest error, nothing staged (direct call, no journal check)
+bad_bin = kb_tmp / "bad-fwupdmgr"
+bad_bin.write_text("#!/usr/bin/env python3\nimport sys\nsys.exit(3)\n")
+bad_bin.chmod(0o755)
+os.environ["FW_FWUPD_BIN"] = str(bad_bin)
+tx = stage._transaction_path()
+tx.unlink() if tx.exists() else None
+st_bad = stage.apply(GUID_NVME, reason="test", fixture_dir=str(FIX_A))
+check("stage: fwupd failure -> status error, nothing staged",
+      st_bad["status"] == "error", json.dumps(st_bad)[:200])
+os.environ["FW_FWUPD_BIN"] = str(fake_bin)
+rc = cli.main(["update", "stage", "--device", GUID_NVME,
+               "--reason", "re-stage for cancel test", "--confirm",
+               "--fixture-dir", str(FIX_A), "--json"])
+check("stage: re-stage via CLI works after an error", rc == 0)
+rc = cli.main(["update", "stage", "--cancel", "--json"])
+check("stage: CLI cancel rc=0 and journaled cancelled",
+      rc == 0 and journal.show(1)[0]["status"] == "cancelled",
+      str(journal.show(1)))
+rc = cli.main(["update", "stage", "--cancel", "--json"])
+check("stage: second CLI cancel rc=2 (refused honestly)",
+      rc == 2 and journal.show(1)[0]["status"] == "refused")
+del os.environ["FW_FWUPD_BIN"]
+
+# MCP refuses T2 with the pointer to the human path
+try:
+    _mcp_server._run_tool("fw.update.stage")
+    check("mcp: fw.update.stage refused (T2 human-only)", False)
+except tiers.TierRefused as exc:
+    check("mcp: fw.update.stage refused (T2 human-only)",
+          "update stage --device" in str(exc), str(exc)[:150])
+
+# stage CLI end to end
+rc = cli.main(["update", "stage", "--device", GUID_NVME,
+               "--fixture-dir", str(FIX_A), "--json"])
+check("cli: update stage plan rc=0 (dry-run journaled)", rc == 0)
+rc = cli.main(["update", "stage", "--json"])
+check("cli: update stage without --device rc=2", rc == 2)
+
+# --- fw.rollback: the refusal-by-design with the inventory -------------------
+inv = rollback.inventory(FIX_A)
+check("rollback: refused by design",
+      inv["status"] == "refused-by-design" and inv["tier"] == "T2")
+check("rollback: T1 store visible",
+      set(inv["t1_rollback_store"]) == {"epp", "fans"},
+      json.dumps(inv["t1_rollback_store"]))
+check("rollback: fwupd history parsed (2 past events)",
+      inv["fwupd_history"]["available"] and len(inv["fwupd_history"]["events"]) == 2,
+      json.dumps(inv["fwupd_history"])[:200])
+check("rollback: machine truth names FlashBack as the human path",
+      any("FlashBack" in m for m in inv["machine_truth"]))
+rc = cli.main(["update", "rollback", "--fixture-dir", str(FIX_A), "--json"])
+check("cli: update rollback rc=0 (an answer, not an error)", rc == 0)
+check("cli: rollback journaled refused-by-design",
+      journal.show(1)[0]["tool"] == "fw.rollback"
+      and journal.show(1)[0]["status"] == "refused-by-design")
+
+# --- report: the supervised-loop digest --------------------------------------
+n_before = len(journal.show(10 ** 6))
+rep = report.collect(days=5)
+n_after = len(journal.show(10 ** 6))
+check("report: view only — does not journal itself", n_before == n_after)
+check("report: totals include the statuses written so far",
+      rep["totals_by_status"].get("ok", 0) >= 1
+      and rep["totals_by_status"].get("staged", 0) >= 1,
+      json.dumps(rep["totals_by_status"]))
+check("report: today is in the window",
+      time.strftime("%Y-%m-%d") in rep["days"], str(sorted(rep["days"])))
+check("report: verdict mentions refused-by-design count",
+      "refused" in rep["verdict"], rep["verdict"])
+rc = cli.main(["report", "--json"])
+check("cli: report rc=0", rc == 0)
+
+# cve-watch CLI end to end (journaled like every T0 read)
+rc = cli.main(["audit", "cve-watch", "--fixture-dir", str(FIX_A), "--json"])
+check("cli: audit cve-watch rc=0", rc == 0)
+check("cli: cve-watch journaled", journal.show(1)[0]["tool"] == "fw.cve.watch")
 
 
 # -------------------------------------------------------------- output --

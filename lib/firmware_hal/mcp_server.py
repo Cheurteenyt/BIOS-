@@ -5,10 +5,13 @@ spirit of the repo" (vol. 2, ch. 9). The server speaks stdio (MCP JSON-RPC),
 consumable by the thirteen Omarchy harnesses (claude, codex, opencode…)
 via the standard MCP configuration.
 
-Contractual (project rule, vol. 2 ch. 9 + vol. 3 ch. 5 + vol. 4 ch. 4):
-  - every tool declares its tier — nine T0 (audit + diagnostics) and two T1
-    (reversible writes under the two-key rule);
-  - any out-of-scope tool is structurally refused, not judged;
+Contractual (project rule, vol. 2 ch. 9 + vol. 3 ch. 5 + vol. 4 ch. 4 + P4):
+  - every tool declares its tier — ten T0 (audit + diagnostics + watch)
+    and two T1 (reversible writes under the two-key rule);
+  - any out-of-scope tool is structurally refused, not judged; the T2
+    tools are NOT in this surface: fw.update.stage is human-only on the
+    CLI (the refusal names the exact command), fw.rollback is a
+    refusal-by-design;
   - T1 dry-run is the DEFAULT: without `confirm: true` the agent only gets
     the plan — the write never happens;
   - every call is journaled like its CLI equivalent;
@@ -23,13 +26,13 @@ from __future__ import annotations
 import json
 import sys
 
-from . import actions, audit, boot, cve_kb, diagnostics, fwupd, gpu, journal, ram, settings as settings_mod, storage, tiers
+from . import actions, audit, boot, cve_kb, cve_watch, diagnostics, fwupd, gpu, journal, ram, settings as settings_mod, storage, tiers
 
 _SERVER_NAME = "omarchy-firmware"
 
 
 def _tool_specs() -> list[dict]:
-    """Specifications of the eleven tools — the visible face of the contract."""
+    """Specifications of the twelve tools — the visible face of the contract."""
     return [
         {
             "name": "fw.audit.status",
@@ -68,6 +71,19 @@ def _tool_specs() -> list[dict]:
                 "Local firmware update state via fwupd (15-min cache, no network "
                 "without human request). On a desktop AM4 board, the motherboard's "
                 "absence from the LVFS is the expected result and is reported as such."
+            ),
+            "input_schema": {"type": "object", "properties": {}, "additionalProperties": False},
+        },
+        {
+            "name": "fw.cve.watch",
+            "risk_tier": "T0",
+            "description": (
+                "Knowledge-base freshness and advisory drift (P4): age of the AM4 "
+                "CVE timeline in force, sha256, drift since the previous watch, and "
+                "CVE ids advertised by fwupd release notes correlated against the KB "
+                "(unknown ones are candidates for the next KB revision — nothing is "
+                "added automatically). Refreshing the KB is a human CLI "
+                "(omarchy-firmware-cve-update, two-key rule). Read-only, journaled."
             ),
             "input_schema": {"type": "object", "properties": {}, "additionalProperties": False},
         },
@@ -215,6 +231,7 @@ def _run_tool(name: str, params: dict | None = None) -> dict:
         "fw.audit.cve": lambda: cve_kb.collect(fx),
         "fw.boot.inspect": lambda: boot.collect(fx),
         "fw.update.check": lambda: fwupd.check_updates(fx, refresh=False),
+        "fw.cve.watch": lambda: cve_watch.collect(fx),
         "fw.diag.storage": lambda: storage.collect(fx),
         "fw.diag.gpu": lambda: gpu.collect(fx),
         "fw.diag.ram": lambda: ram.collect(fx),

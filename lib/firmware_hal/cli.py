@@ -7,9 +7,13 @@ asks for --json, the human keeps the default). T1 calls go through _guard_t1:
 same journaling, status carried (dry-run / applied / rolled-back / refused).
 
     omarchy-firmware audit status [--json] [--fixture-dir DIR]
-    omarchy-firmware audit cve    [--json] [--fixture-dir DIR]
+    omarchy-firmware audit cve       [--json] [--fixture-dir DIR]
+    omarchy-firmware audit cve-watch [--json] [--fixture-dir DIR]  (T0, P4)
     omarchy-firmware boot inspect [--json] [--fixture-dir DIR]
     omarchy-firmware update check [--json] [--refresh] [--fixture-dir DIR]
+    omarchy-firmware update stage --device GUID [--reason TEXT] [--confirm]
+                                   [--cancel] [--fixture-dir DIR]  (T2, human)
+    omarchy-firmware update rollback [--json] [--fixture-dir DIR]  (T2, by design)
     omarchy-firmware diag quick   [--json] [--scenario NAME] [--no-record]
     omarchy-firmware diag probe   [--json] [--seconds N] [--scenario NAME]
     omarchy-firmware diag scenarios            — list the bundled scenarios
@@ -23,6 +27,7 @@ same journaling, status carried (dry-run / applied / rolled-back / refused).
     omarchy-firmware fans curve set --file FILE [--confirm]      (T1, dry-run default)
     omarchy-firmware fans curve undo [--confirm] [--json]        (T1 rollback)
     omarchy-firmware journal [N]
+    omarchy-firmware report [--days N] [--json]  — supervised-loop digest (P4)
     omarchy-firmware selftest     — full demo on fixtures and scenarios
     omarchy-firmware tiers        — display the T0-T3 contract
     omarchy-firmware mcp          — start the MCP stdio server
@@ -35,7 +40,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import actions, audit, boot, cve_kb, diagnostics, fwupd, gpu, journal, ram, settings as settings_mod, smbios, storage, tiers
+from . import actions, audit, boot, cve_kb, cve_watch, diagnostics, fwupd, gpu, journal, ram, report, rollback, settings as settings_mod, smbios, stage, storage, tiers
 
 
 def _emit(data: dict, as_json: bool) -> None:
@@ -147,6 +152,35 @@ def _summary_t1(data: dict) -> str:
     return str(data.get("note") or data.get("status"))[:160]
 
 
+# T2 statuses and their exit codes: a refusal is an answer here, not a
+# crash — refused-by-design exits 0 because the inventory IS the result.
+_T2_EXIT = {"dry-run": 0, "staged": 0, "cancelled": 0, "reverted": 0,
+            "applied": 0, "ok": 0, "refused-by-design": 0,
+            "refused": 2, "error": 1}
+
+
+def _guard_t2(tool: str, argv: list[str], fn, args, *, fixture: bool = False):
+    """T2 flow: journal with the transaction status, exit code per outcome."""
+    try:
+        tier = tiers.tier_of(tool)
+    except tiers.TierRefused as exc:
+        print(f"REFUSED: {exc}", file=sys.stderr)
+        return 2
+    try:
+        data = fn()
+        status = data.get("status", "dry-run")
+        data["journal_entry"] = journal.record(
+            tool, tier, argv, status,
+            str(data.get("note") or data.get("verdict") or status)[:200],
+            fixture=fixture)
+        _emit(data, args.json)
+        return _T2_EXIT.get(status, 1)
+    except Exception as exc:  # noqa: BLE001 — the boundary CLI tells everything
+        journal.record(tool, tier, argv, "error", str(exc)[:200], fixture=fixture)
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
+
+
 def _render_diag(data: dict) -> str:
     """Human rendering of the diagnostic: verdict first, evidence next."""
     m = data.get("measurements", {})
@@ -186,18 +220,32 @@ def build_parser() -> argparse.ArgumentParser:
     common(s1)
     s2 = asub.add_parser("cve", help="version / known-CVE cross-check (vol. 1, ch. 5)")
     common(s2)
+    s2w = asub.add_parser("cve-watch", help="KB freshness, drift, fwupd advisory cross-check (P4)")
+    common(s2w)
 
     pb = sub.add_parser("boot", help="boot chain (inspect)")
     bsub = pb.add_subparsers(dest="boot_cmd", required=True)
     s3 = bsub.add_parser("inspect", help="efibootmgr entries, UKI/Limine, snapshots")
     common(s3)
 
-    pu = sub.add_parser("update", help="firmware updates (check)")
+    pu = sub.add_parser("update", help="firmware updates (check | stage | rollback)")
     usub = pu.add_subparsers(dest="update_cmd", required=True)
     s4 = usub.add_parser("check", help="local fwupd state — 15-min cache, no network")
     s4.add_argument("--refresh", action="store_true",
                     help="refresh LVFS metadata (the only network access, on request)")
     common(s4)
+    s4s = usub.add_parser("stage", help="stage a fwupd update (T2 — HUMAN only, dry-run default)")
+    s4s.add_argument("--device", metavar="GUID", default=None,
+                     help="exact fwupd GUID of the target device")
+    s4s.add_argument("--reason", metavar="TEXT", default=None,
+                     help="why this update — mandatory at confirm, journaled")
+    s4s.add_argument("--confirm", action="store_true",
+                     help="execute the staging (default: plan only — a HUMAN gesture)")
+    s4s.add_argument("--cancel", action="store_true",
+                     help="mark the pending transaction cancelled (before reboot)")
+    common(s4s)
+    s4r = usub.add_parser("rollback", help="rollback inventory — refused by design, honest answer (T2)")
+    common(s4r)
 
     pd = sub.add_parser("diag", help="physical diagnostics (vol. 3-4)")
     dsub = pd.add_subparsers(dest="diag_cmd", required=True)
@@ -259,6 +307,10 @@ def build_parser() -> argparse.ArgumentParser:
     pj.add_argument("limit", nargs="?", type=int, default=20)
     pj.add_argument("--json", action="store_true")
 
+    pr = sub.add_parser("report", help="supervised-loop digest (P4): days, tools, write statuses")
+    pr.add_argument("--days", type=int, default=5, help="window in days (default 5)")
+    pr.add_argument("--json", action="store_true")
+
     sub.add_parser("selftest", help="full demo on bundled fixtures")
     sub.add_parser("tiers", help="display the T0-T3 contract")
     sub.add_parser("mcp", help="start the MCP stdio server (4 T0 tools)")
@@ -279,6 +331,11 @@ def main(argv: list[str] | None = None) -> int:
                       lambda: cve_kb.collect(args.fixture_dir), args,
                       fixture=args.fixture_dir is not None)
 
+    if args.cmd == "audit" and args.audit_cmd == "cve-watch":
+        return _guard("fw.cve.watch", argv,
+                      lambda: cve_watch.collect(args.fixture_dir), args,
+                      fixture=args.fixture_dir is not None)
+
     if args.cmd == "boot" and args.boot_cmd == "inspect":
         return _guard("fw.boot.inspect", argv,
                       lambda: boot.collect(args.fixture_dir), args,
@@ -288,6 +345,30 @@ def main(argv: list[str] | None = None) -> int:
         return _guard("fw.update.check", argv,
                       lambda: fwupd.check_updates(args.fixture_dir, args.refresh), args,
                       fixture=args.fixture_dir is not None)
+
+    if args.cmd == "update" and args.update_cmd == "stage":
+        if args.cancel:
+            return _guard_t2("fw.update.stage", argv, stage.cancel, args,
+                             fixture=args.fixture_dir is not None)
+        if not args.device:
+            print("update stage: --device GUID is required (or --cancel)",
+                  file=sys.stderr)
+            return 2
+        if args.confirm:
+            return _guard_t2(
+                "fw.update.stage", argv,
+                lambda: stage.apply(args.device, args.reason,
+                                    fixture_dir=args.fixture_dir), args,
+                fixture=args.fixture_dir is not None)
+        return _guard_t2(
+            "fw.update.stage", argv,
+            lambda: stage.plan(args.device, args.fixture_dir, reason=args.reason),
+            args, fixture=args.fixture_dir is not None)
+
+    if args.cmd == "update" and args.update_cmd == "rollback":
+        return _guard_t2("fw.rollback", argv,
+                         lambda: rollback.inventory(args.fixture_dir), args,
+                         fixture=args.fixture_dir is not None)
 
     if args.cmd == "diag" and args.diag_cmd == "scenarios":
         rows = diagnostics.list_scenarios()
@@ -377,6 +458,23 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"    {e['summary']}")
         return 0
 
+    if args.cmd == "report":
+        data = report.collect(days=max(1, args.days))
+        if args.json:
+            print(json.dumps(data, ensure_ascii=False, indent=2))
+        else:
+            print(f"Supervised-loop report — {data['verdict']}")
+            for day, b in data["days"].items():
+                print(f"\n  {day}: {b['calls']} call(s), {b['errors']} error(s)")
+                for t, n in b["tools"].items():
+                    print(f"    {t:<20} x{n}")
+                sts = ", ".join(f"{s} x{n}" for s, n in b["statuses"].items())
+                if sts:
+                    print(f"    statuses: {sts}")
+            print("\nReview each raised finding against reality; mark the "
+                  "false positives. That annotated journal is the P4 evidence.")
+        return 0
+
     if args.cmd == "selftest":
         fx = Path(__file__).resolve().parent.parent.parent / "tests" / "fixtures" / "b450-plus"
         if not fx.exists():
@@ -388,6 +486,7 @@ def main(argv: list[str] | None = None) -> int:
             ("fw.audit.cve", lambda: cve_kb.collect(str(fx))),
             ("fw.boot.inspect", lambda: boot.collect(str(fx))),
             ("fw.update.check", lambda: fwupd.check_updates(str(fx))),
+            ("fw.cve.watch", lambda: cve_watch.collect(str(fx))),
             ("fw.diag.storage", lambda: storage.collect(str(fx))),
             ("fw.diag.gpu", lambda: gpu.collect(str(fx))),
             ("fw.diag.ram", lambda: ram.collect(str(fx))),
@@ -407,9 +506,18 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.cmd == "tiers":
-        print("Tool contract (vol. 2 table 5.1 + vol. 3 diagnostics) — one declared tier per tool:\n")
+        print("Tool contract (vol. 2 table 5.1 + vol. 3 diagnostics + P4) — one declared tier per tool:\n")
         for tool, tier in tiers.TOOL_TIERS.items():
-            mark = "✓ implemented" if tool in tiers.IMPLEMENTED_T0 else "… later phase"
+            if tool in tiers.IMPLEMENTED_T0:
+                mark = "✓ read-only"
+            elif tool in tiers.IMPLEMENTED_T1:
+                mark = "✓ two-key reversible"
+            elif tool == "fw.update.stage":
+                mark = "human-only CLI (P4)"
+            elif tool == "fw.rollback":
+                mark = "refused-by-design (P4)"
+            else:
+                mark = "… later phase"
             print(f"  {tool:<18} {tier}   {mark}")
         print("\nTier meanings:")
         for t, meaning in tiers.TIER_MEANING.items():

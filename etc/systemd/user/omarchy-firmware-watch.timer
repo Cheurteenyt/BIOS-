@@ -1,0 +1,12 @@
+[Unit]
+Description=Weekly scheduling of the omarchy-firmware CVE watch (P4)
+
+[Timer]
+# Voluntarily low frequency: a knowledge-base freshness check is a few
+# hashed reads once a week. The supervised loop itself is the doctor
+# timer (15 min); this one only watches the timeline's drift.
+OnCalendar=Mon *-*-* 09:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

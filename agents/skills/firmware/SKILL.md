@@ -2,8 +2,9 @@
 name: firmware
 description: >
   Audit and diagnostics of this machine's firmware/BIOS and hardware via
-  the omarchy-firmware base (Phase 3: full read-only diagnostics + two
-  reversible writes). Use whenever a question touches the BIOS, UEFI,
+  the omarchy-firmware base (Phase 4: full read-only diagnostics, two
+  reversible writes, the CVE watch, and the human-gated T2 staging).
+  Use whenever a question touches the BIOS, UEFI,
   NVRAM, the boot chain, fwupd, firmware CVEs, temperatures, disks, GPU,
   memory speed, BIOS settings, or a suspected hardware fault. Triggers:
   BIOS, UEFI, firmware, NVRAM, efibootmgr, boot entries, boot order, ESP,
@@ -14,20 +15,22 @@ description: >
   GPU, XMP, EXPO, DOCP, RAM speed, Resizable BAR, SVM, VT-x, IOMMU, EPP,
   fan curve, "where does my BIOS stand", "am I exposed", "why is it
   running hot", "is my disk dying", BIOS update. Writes are limited to
-  two T1 reversible actions (dry-run by default): see the Scope section.
+  two T1 reversible actions (dry-run by default); T2 staging is prepared
+  by the agent but applied only by the human: see the Scope section.
 ---
 
-# Firmware Skill (Phase 3 — full T0 diagnostics + T1 reversible writes)
+# Firmware Skill (Phase 4 — full T0 diagnostics + T1 writes + the supervised loop)
 
 Work from evidence. The goal is an honest picture of the firmware AND the
-hardware, not a plausible story. Nine tools are T0: pure reads, journaled
+hardware, not a plausible story. Ten tools are T0: pure reads, journaled
 in `~/.local/state/omarchy-firmware/journal.jsonl`. Two tools are T1:
 reversible writes, **dry-run by default** — they never touch anything
-without an explicit confirm flag, and they back up before they write. If
-a question requires anything else, it is out of scope — see Scope and
-Tiers.
+without an explicit confirm flag, and they back up before they write.
+The T2 staging layer exists on the CLI alone: the agent prepares the
+plan, the human types `--confirm`. If a question requires anything
+else, it is out of scope — see Scope and Tiers.
 
-## The eleven tools (first call first)
+## The twelve tools (first call first)
 
 | Tool | CLI | Tier | What it answers |
 |---|---|---|---|
@@ -35,6 +38,7 @@ Tiers.
 | `fw.audit.cve` | `omarchy-firmware audit cve --json` | T0 | "Am I exposed to LogoFAIL?" — AM4 version/CVE cross-check |
 | `fw.boot.inspect` | `omarchy-firmware boot inspect --json` | T0 | "Is my boot chain healthy?" — efibootmgr, UKI/Limine, snapshots |
 | `fw.update.check` | `omarchy-firmware update check --json` | T0 | "Are there updates?" — local fwupd state, 15-min cache |
+| `fw.cve.watch` | `omarchy-firmware audit cve-watch --json` | T0 | "Is the CVE timeline current?" — KB freshness, drift since last watch, fwupd advisory candidates |
 | `fw.diag.thermal` | `omarchy-firmware diag quick --json` | T0 | "Why is it running hot?" — signatures: pump, paste/mounting (R_th), fan, VRM, 12 V, trend |
 | `fw.diag.storage` | `omarchy-firmware diag storage --json` | T0 | "Is my disk lying to me?" — NVMe media/spare/wear, SATA reallocated/pending, PCIe links |
 | `fw.diag.gpu` | `omarchy-firmware diag gpu --json` | T0 | "Is my GPU sick or capped?" — Xid history, thermal slowdown, BAR1, link width |
@@ -88,9 +92,9 @@ load) and propose `diag probe`.
 
 | Tier | Status | Meaning |
 |---|---|---|
-| T0 | **implemented (9 tools)** | read-only + diagnostics, journaled |
+| T0 | **implemented (10 tools)** | read-only + diagnostics + watch, journaled |
 | T1 | **implemented (2 tools)** | reversible writes: dry-run default, explicit confirm, backup + undo, mechanical guards |
-| T2 | next phase | NVRAM/capsule writes (fw.update.stage, fw.rollback) — human confirmation, tool by tool |
+| T2 | **implemented, human-only CLI** | firmware transaction: `update stage` (dry-run plan by default, `--confirm --reason` typed by the human, `--cancel` until reboot) and `update rollback` (refused by design, prints the inventory) — NEVER in the MCP surface |
 | T3 | **never** | physical flash, EZ Flash: the human executes, the agent prepares the dated, verified walkthrough |
 
 ## T1 conduct (the only two writes in existence here)
@@ -106,6 +110,28 @@ load) and propose `diag probe`.
 3. Anything else — efivarfs, boot entries, Secure Boot, NVRAM, flash —
    stays forbidden: no path exists, do not improvise one through direct
    shell commands.
+
+## T2 conduct (staging: the agent prepares, the human applies)
+
+1. When a firmware update becomes advisable (a CVE fix, a vendor bug you
+   can name), run the dry-run plan first: `omarchy-firmware update stage
+   --device GUID --json`. Read the gates aloud: exact device, candidate
+   version, power, rollback reality.
+2. Refusals are answers: a motherboard outside LVFS means the update
+   goes through EZ Flash (T3) — produce the walkthrough, stop there.
+3. Hand the human the exact confirm command WITH the reason spelled out:
+   `update stage --device GUID --reason '<the why>' --confirm`. Never
+   type `--confirm` yourself through any shell path: T2 confirm is a
+   human gesture by contract.
+4. Remind them: `update stage --cancel` works until they reboot, and the
+   firmware is flashed by fwupd at the next reboot — the tool never
+   reboots. After the flash, `update rollback` shows where the rollback
+   surfaces stand (it will honestly tell you firmware rollback does not
+   exist at runtime on this platform).
+5. If the weekly watch reports the KB stale or unknown fwupd advisories:
+   stage the KB update (`omarchy-firmware-cve-update --file ...`) and let
+   the human confirm with the shown sha256 — data follows the two-key
+   rule too.
 
 Absolute prohibitions for the agent, even if another path seems to exist:
 writing to efivarfs, deleting/reordering efibootmgr entries, running

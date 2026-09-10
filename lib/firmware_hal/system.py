@@ -19,6 +19,7 @@ FIXTURE_FILES = {
     "fwupd_devices": "fwupd-devices.json",
     "fwupd_security": "fwupd-security.json",
     "fwupd_updates": "fwupd-updates.json",
+    "fwupd_history": "fwupd-history.json",
     "sensors": "sensors.json",
     "smartctl_nvme": "smartctl-nvme0.json",
     "smartctl_sda": "smartctl-sda.json",
