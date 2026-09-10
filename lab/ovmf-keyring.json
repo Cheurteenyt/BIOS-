@@ -1,0 +1,678 @@
+{
+ "schema": "omarchy-firmware/ovmf-keyring@1",
+ "date": "2026-09-11",
+ "note": "byte-level walk of real OVMF variable stores (Debian edk2 2025.02); read-only",
+ "stores": {
+  "OVMF_VARS_4M.fd": {
+   "file": "OVMF_VARS_4M.fd",
+   "store_sig": "AAF32C78-947B-439A-A180-2E144EC37792",
+   "store_size": 262072,
+   "stats": {
+    "live": 0,
+    "deleted": 0,
+    "aborted": 0,
+    "live_bytes": 0,
+    "deleted_bytes": 0
+   },
+   "keyring": {},
+   "bootorder": null,
+   "records": []
+  },
+  "OVMF_VARS_4M.ms.fd": {
+   "file": "OVMF_VARS_4M.ms.fd",
+   "store_sig": "AAF32C78-947B-439A-A180-2E144EC37792",
+   "store_size": 262072,
+   "stats": {
+    "live": 21,
+    "deleted": 18,
+    "aborted": 0,
+    "live_bytes": 9167,
+    "deleted_bytes": 3468
+   },
+   "keyring": {
+    "db": [
+     {
+      "type": "X509 DER certificate",
+      "owner": "77FA9ABD-0359-4D32-BD60-28F4E78F784B",
+      "size": 1499,
+      "subject": "US / Washington / Redmond / Microsoft Corporation / Microsoft Root Certificate Authority 2010 / US"
+     },
+     {
+      "type": "X509 DER certificate",
+      "owner": "77FA9ABD-0359-4D32-BD60-28F4E78F784B",
+      "size": 1556,
+      "subject": "US / Washington / Redmond / Microsoft Corporation / Microsoft Corporation Third Party Marketplace Root / US"
+     }
+    ],
+    "dbx": [
+     {
+      "type": "SHA-256 hash",
+      "owner": "A0BAA8A3-041D-48A8-BC87-C36D121B5E3D",
+      "size": 32,
+      "subject": "e3b0c44298fc1c149afbf4c8996fb924..."
+     }
+    ],
+    "KEK": [
+     {
+      "type": "X509 DER certificate",
+      "owner": "A0BAA8A3-041D-48A8-BC87-C36D121B5E3D",
+      "size": 961,
+      "subject": "Debian / Debian UEFI Secure Boot (PK/KEK key) / debian-devel@lists.debian.org / Debian / Debian UEFI Secure Boot (PK/KEK key) / debian-devel@lists.debian.org"
+     },
+     {
+      "type": "X509 DER certificate",
+      "owner": "77FA9ABD-0359-4D32-BD60-28F4E78F784B",
+      "size": 1516,
+      "subject": "US / Washington / Redmond / Microsoft Corporation / Microsoft Corporation Third Party Marketplace Root / US"
+     }
+    ],
+    "PK": [
+     {
+      "type": "X509 DER certificate",
+      "owner": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+      "size": 961,
+      "subject": "Debian / Debian UEFI Secure Boot (PK/KEK key) / debian-devel@lists.debian.org / Debian / Debian UEFI Secure Boot (PK/KEK key) / debian-devel@lists.debian.org"
+     }
+    ]
+   },
+   "bootorder": null,
+   "records": [
+    {
+     "name": "CustomMode",
+     "state": "0x3c",
+     "attrs": "0x3",
+     "size": 1,
+     "guid": "C076EC0C-7028-4399-A072-71EE5C448B9F"
+    },
+    {
+     "name": "certdb",
+     "state": "0x3f",
+     "attrs": "0x27",
+     "size": 4,
+     "guid": "D9BEE56E-75DC-49D9-B4D7-B534210F637A"
+    },
+    {
+     "name": "VendorKeysNv",
+     "state": "0x3c",
+     "attrs": "0x23",
+     "size": 1,
+     "guid": "9073E4E0-60EC-4B6E-9903-4C223C260F3C"
+    },
+    {
+     "name": "MTC",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 4,
+     "guid": "EB704011-1402-11D3-8E77-00A0C969723B"
+    },
+    {
+     "name": "BootOrder",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 2,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "Boot0000",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 62,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "Timeout",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 2,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "PlatformLang",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 3,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "Lang",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 4,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "VarErrorFlag",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 1,
+     "guid": "04B37FE8-F6AE-480B-BDD5-37D98C5E89AA"
+    },
+    {
+     "name": "ConIn",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 34,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 73,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConIn",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 107,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ErrOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 73,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 146,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConIn",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 180,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ErrOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 146,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConIn",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 243,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 209,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ErrOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 209,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConIn",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 258,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 241,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "Key0000",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 14,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "Key0001",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 14,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 178,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConOut",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 146,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConIn",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 195,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ErrOut",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 146,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "BootOrder",
+     "state": "0x3d",
+     "attrs": "0x7",
+     "size": 4,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "Boot0001",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 110,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "MemoryTypeInformation",
+     "state": "0x3f",
+     "attrs": "0x3",
+     "size": 48,
+     "guid": "4C19049F-4137-4DD3-9C10-8B97A83FFDFA"
+    },
+    {
+     "name": "CustomMode",
+     "state": "0x3c",
+     "attrs": "0x3",
+     "size": 1,
+     "guid": "C076EC0C-7028-4399-A072-71EE5C448B9F"
+    },
+    {
+     "name": "db",
+     "state": "0x3f",
+     "attrs": "0x27",
+     "size": 3143,
+     "guid": "D719B2CB-3D3A-4596-A3BC-DAD00E67656F"
+    },
+    {
+     "name": "dbx",
+     "state": "0x3f",
+     "attrs": "0x27",
+     "size": 76,
+     "guid": "D719B2CB-3D3A-4596-A3BC-DAD00E67656F"
+    },
+    {
+     "name": "KEK",
+     "state": "0x3f",
+     "attrs": "0x27",
+     "size": 2565,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "PK",
+     "state": "0x3f",
+     "attrs": "0x27",
+     "size": 1005,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "VendorKeysNv",
+     "state": "0x3f",
+     "attrs": "0x23",
+     "size": 1,
+     "guid": "9073E4E0-60EC-4B6E-9903-4C223C260F3C"
+    },
+    {
+     "name": "SecureBootEnable",
+     "state": "0x3f",
+     "attrs": "0x3",
+     "size": 1,
+     "guid": "F0A30BC7-AF08-4556-99C4-001009C93A44"
+    },
+    {
+     "name": "CustomMode",
+     "state": "0x3f",
+     "attrs": "0x3",
+     "size": 1,
+     "guid": "C076EC0C-7028-4399-A072-71EE5C448B9F"
+    }
+   ]
+  },
+  "OVMF_VARS_4M.snakeoil.fd": {
+   "file": "OVMF_VARS_4M.snakeoil.fd",
+   "store_sig": "AAF32C78-947B-439A-A180-2E144EC37792",
+   "store_size": 262072,
+   "stats": {
+    "live": 21,
+    "deleted": 18,
+    "aborted": 0,
+    "live_bytes": 5547,
+    "deleted_bytes": 3468
+   },
+   "keyring": {
+    "db": [
+     {
+      "type": "X509 DER certificate",
+      "owner": "A0BAA8A3-041D-48A8-BC87-C36D121B5E3D",
+      "size": 987,
+      "subject": "US / Colorado / Fort Collins / SnakeOil / SnakeOil Test Key for EFI Secure Boot / US"
+     }
+    ],
+    "dbx": [
+     {
+      "type": "SHA-256 hash",
+      "owner": "A0BAA8A3-041D-48A8-BC87-C36D121B5E3D",
+      "size": 32,
+      "subject": "e3b0c44298fc1c149afbf4c8996fb924..."
+     }
+    ],
+    "KEK": [
+     {
+      "type": "X509 DER certificate",
+      "owner": "A0BAA8A3-041D-48A8-BC87-C36D121B5E3D",
+      "size": 987,
+      "subject": "US / Colorado / Fort Collins / SnakeOil / SnakeOil Test Key for EFI Secure Boot / US"
+     }
+    ],
+    "PK": [
+     {
+      "type": "X509 DER certificate",
+      "owner": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+      "size": 987,
+      "subject": "US / Colorado / Fort Collins / SnakeOil / SnakeOil Test Key for EFI Secure Boot / US"
+     }
+    ]
+   },
+   "bootorder": null,
+   "records": [
+    {
+     "name": "CustomMode",
+     "state": "0x3c",
+     "attrs": "0x3",
+     "size": 1,
+     "guid": "C076EC0C-7028-4399-A072-71EE5C448B9F"
+    },
+    {
+     "name": "certdb",
+     "state": "0x3f",
+     "attrs": "0x27",
+     "size": 4,
+     "guid": "D9BEE56E-75DC-49D9-B4D7-B534210F637A"
+    },
+    {
+     "name": "VendorKeysNv",
+     "state": "0x3c",
+     "attrs": "0x23",
+     "size": 1,
+     "guid": "9073E4E0-60EC-4B6E-9903-4C223C260F3C"
+    },
+    {
+     "name": "MTC",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 4,
+     "guid": "EB704011-1402-11D3-8E77-00A0C969723B"
+    },
+    {
+     "name": "BootOrder",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 2,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "Boot0000",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 62,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "Timeout",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 2,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "PlatformLang",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 3,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "Lang",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 4,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "VarErrorFlag",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 1,
+     "guid": "04B37FE8-F6AE-480B-BDD5-37D98C5E89AA"
+    },
+    {
+     "name": "ConIn",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 34,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 73,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConIn",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 107,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ErrOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 73,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 146,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConIn",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 180,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ErrOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 146,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConIn",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 243,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 209,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ErrOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 209,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConIn",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 258,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 241,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "Key0000",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 14,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "Key0001",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 14,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConOut",
+     "state": "0x3c",
+     "attrs": "0x7",
+     "size": 178,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConOut",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 146,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ConIn",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 195,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "ErrOut",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 146,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "BootOrder",
+     "state": "0x3d",
+     "attrs": "0x7",
+     "size": 4,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "Boot0001",
+     "state": "0x3f",
+     "attrs": "0x7",
+     "size": 110,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "MemoryTypeInformation",
+     "state": "0x3f",
+     "attrs": "0x3",
+     "size": 48,
+     "guid": "4C19049F-4137-4DD3-9C10-8B97A83FFDFA"
+    },
+    {
+     "name": "CustomMode",
+     "state": "0x3c",
+     "attrs": "0x3",
+     "size": 1,
+     "guid": "C076EC0C-7028-4399-A072-71EE5C448B9F"
+    },
+    {
+     "name": "db",
+     "state": "0x3f",
+     "attrs": "0x27",
+     "size": 1031,
+     "guid": "D719B2CB-3D3A-4596-A3BC-DAD00E67656F"
+    },
+    {
+     "name": "dbx",
+     "state": "0x3f",
+     "attrs": "0x27",
+     "size": 76,
+     "guid": "D719B2CB-3D3A-4596-A3BC-DAD00E67656F"
+    },
+    {
+     "name": "KEK",
+     "state": "0x3f",
+     "attrs": "0x27",
+     "size": 1031,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "PK",
+     "state": "0x3f",
+     "attrs": "0x27",
+     "size": 1031,
+     "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+    },
+    {
+     "name": "VendorKeysNv",
+     "state": "0x3f",
+     "attrs": "0x23",
+     "size": 1,
+     "guid": "9073E4E0-60EC-4B6E-9903-4C223C260F3C"
+    },
+    {
+     "name": "SecureBootEnable",
+     "state": "0x3f",
+     "attrs": "0x3",
+     "size": 1,
+     "guid": "F0A30BC7-AF08-4556-99C4-001009C93A44"
+    },
+    {
+     "name": "CustomMode",
+     "state": "0x3f",
+     "attrs": "0x3",
+     "size": 1,
+     "guid": "C076EC0C-7028-4399-A072-71EE5C448B9F"
+    }
+   ]
+  }
+ }
+}

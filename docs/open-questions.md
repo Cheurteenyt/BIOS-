@@ -64,7 +64,13 @@ the screen is gone, the chip socket becomes the screen.
   campaign (2026-09-11):** real VBIOS ROMs parsed — display pre-OS is
   literally an Option ROM (0x55AA/PCIR, x86 code, e.g. vendor
   0x1234:0x1111); a real DSDT table was read at header level too. The
-  display is a swappable driver with a physical body.
+  display is a swappable driver with a physical body. **Second ring
+  (2026-09-11):** the shipped NVRAM itself proves the doctrine —
+  `ConOut`/`ErrOut` in the real variable store decode to a `PNP0501`
+  serial UART at **115200 8N1** (`EFI_UART_DEVICE_PATH` shape, verified
+  against the bytes), `ConIn` adds a `PNP0303` keyboard. The never-dying
+  channel is a first-class console in the shipped store, not a lab
+  artifact.
 - DAY-0: does the board expose a UART header or a vendor debug path? Physical
   inspection + vendor datasheet.
 - VOL-5: serial debug builds (coreboot console over UART) on sacrificial
@@ -89,6 +95,12 @@ often means no POST); Boot Guard is never (fused).
   boards also carry a .CAP USB recovery path; AMD Platform Secure Boot
   (PSP) is the AMD Boot Guard — silicon again.
 - DAY-0: verify each toggle against the real setup screens and the dump.
+  **Second ring (2026-09-11) adds the row vocabulary:** the kill-list rows
+  have a byte-level anatomy now — each switch is an NVRAM variable with a
+  namespace GUID, attributes, and an owner module; the security x-ray
+  maps who carries `SecureBootEnable` / `CustomMode` (`SecureBootConfigDxe`
+  + the variable service only). Deletion is a state-byte flip — a killed
+  feature leaves archaeology until FTW reclaim.
 
 ## Q4 — Who enforces the walls? (the enforcement map)
 
@@ -107,7 +119,14 @@ The five walls from `lab/coreboot-notes.md`, each with an owner:
   prepared — PSP Directory (`$PSP`) / BIOS Directory (`$BDIR`) tables
   located via the FET pointer chain (coreboot PSP Integration Guide;
   dayzerosec/3mdeb); the lens is written and validated on non-AMD
-  images (honest zeros), waiting for the real dump.
+  images (honest zeros), waiting for the real dump. **Second ring
+  (2026-09-11):** the OVMF enforcement map is concrete — nearly every
+  driver waits on `VariableArch`/`VariableWriteArch` (28/29 depex PUSHes;
+  the write gate is the platform's critical path); the security
+  namespaces are carried by exactly two modules (`SecureBootConfigDxe`,
+  the variable service); strict-NX changes **zero** module topology
+  (145 vs 145 GUIDs) — policy is census-invisible, so day-0 must read
+  PCDs/policy, not just module lists.
 - DAY-0: `$BPM`/`$KSH` presence from `spi-map` (existence only — fused vs.
   deactivated is NOT determinable from the image, and the tool says so).
 
@@ -123,6 +142,17 @@ until someone parses them offline.
   `dbx`, `certdb`, …) — and the heuristic also catches utf-16 strings
   inside variable DATA (boot-entry descriptions); the "labels only"
   label is exactly what covers that. See `lab/ovmf-findings.md`.
+  **Second ring (2026-09-11) — the store is a journal, walked byte by
+  byte:** 39 records (21 live / 18 deleted / 0 aborted) per populated
+  store; the authenticated variable format is the DEFAULT (all three
+  shipped variants, even without Secure Boot); deletion = state-byte
+  flip, so a real store keeps boot archaeology (console enumeration
+  retried 5–6×, `BootOrder` deleted twice, `CustomMode` flipped thrice);
+  the keyring parsed with a mini-DER walker (PK/KEK/db = X509,
+  `dbx` = the SHA-256 of the empty string — a placeholder that revokes
+  nothing); `certdb` is a 4-byte integrity record, not a signature
+  list; `EVSA` marker absent — 0.7.1 taxonomy confirmed. See
+  `lab/findings-second-ring.md` + `lab/ovmf-keyring.json`.
 - DAY-0: real names/counts, read-only; deeper parsing happens **offline from
   `day0-spi.bin`**, never on the live machine.
 
@@ -138,7 +168,17 @@ kernel has a GUID and often a UI name — and `spi-map` extracts both.
   storage, display, crypto, config UI — and 9 SMM modules on the
   SMM_REQUIRE build. Key lesson: a naive scan of a compressed image
   counts almost nothing; the census must decompress before counting.
-  Full census: `lab/ovmf-findings.md`.
+  Full census: `lab/ovmf-findings.md`. **Second ring (2026-09-11):**
+  the chain is resolved to file level and by position — `Boot0000`
+  = UiApp (`462CAA21…`, FFS type-0x09, 114 KB) inside the DXEFV
+  (FvName `7CB8BDC9…`, proven at the ext-header position); `BootOrder`
+  is DELETED in the shipped store — BDS rebuilds the order each boot;
+  the whole 4 MiB flash (VARS+CODE) reassembled and re-read by the
+  frozen `spi-map` (3 FVs, honest summary) — the tool's first
+  whole-flash rehearsal. Also: 37 DXE drivers ship with **no depex at
+  all** (spine by absence), zero BEFORE/AFTER constraints, and the
+  two most-waited protocols are `PcdProtocol` and
+  `DevicePathUtilities`.
 - DAY-0: the module list **is** the census — expect compression
   (LZMA or Tiano sections) on a vendor image; 0 visible modules means
   "decompress next", not "empty firmware". Flag anything network-ish
@@ -158,6 +198,14 @@ the image; behavior is not.
   feature (Secure Boot) restructures the platform's privilege
   topology. Also learned: two files can share a UI name (`CpuDxe`
   twice, distinct GUIDs) — names are labels, GUIDs are identity.
+  **Second ring (2026-09-11):** the migration is itemized —
+  `VarErrorFlag` moves from `VariableRuntimeDxe` into `VariableSmm`,
+  `TcgMorLockSmm` appears (even the MOR lock goes to ring -2), every
+  SMM servant carries a depex while `PiSmmCore` needs none; the
+  secure-boot build also amputates the UEFI Shell and its dynamic
+  commands (an unsigned-code surface removed, not just relocated);
+  and the authenticated variable FORMAT is the default everywhere —
+  Secure Boot moves the service, not the format.
 - DAY-0: the real SMM module names, read-only.
 - VOL-5: deeper analysis only on sacrificial hardware.
 
@@ -173,7 +221,16 @@ enrichment. **Noted as a post-freeze lever; no tool added during the freeze.**
   ACPI tables absent, iomem synthetic. A truncated mirror says
   "containerized environment", not "tool failure". On bare-metal
   TWIN-1 the mirror opens fully; `capture --live` provenance-tags both
-  worlds either way.
+  worlds either way. **Second ring (2026-09-11) — the contract, doc
+  side:** efivarfs entries are `Name-GUID` files with a u32 attribute
+  prefix — the same bits read from the store; reading is zero-write by
+  construction; TimeBasedAuth variables (PK/KEK/db/dbx) require signed
+  sets — the keyring parsed in the second ring is exactly what makes an
+  unsigned SetVariable fail; and the measurement channel (TPM PCRs 0–7
+  at `/sys/class/tpm/tpm0/pcr-sha256/N`, event log under
+  `/sys/kernel/security/tpm0/`) is a read-only truth probe of "what
+  booted". TPM modules present in BOTH OVMF builds (`Tcg2Dxe`,
+  `TcgMor`; `TcgMorLockSmm` on secboot).
 
 ---
 
@@ -187,6 +244,11 @@ enrichment. **Noted as a post-freeze lever; no tool added during the freeze.**
 | NVRAM variable names          | Q3 (kill-list), Q5 (hidden settings) |
 | ME region + version           | Q3 (ME partial disable), Q4 |
 | `$BPM`/`$KSH` presence        | Q4 (Boot Guard) |
+
+Second-ring offline probes (run on `day0-spi.bin` after the day-0 capture,
+never on the live machine): NVRAM journal walk + keyring subjects (Q3, Q5),
+boot-option device-path decode (Q6), depex census + security x-ray (Q1, Q4,
+Q7), TPM PCR read from Linux (Q8).
 
 The protocol stays: `capture --live` → `rehearse` → `rehearse-diff --latest`,
 optionally `sudo omarchy-firmware spi-map --save-dump day0-spi.bin` + sha256.
