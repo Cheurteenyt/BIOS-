@@ -60,7 +60,11 @@ definition. That is exactly why Volume 5 demands an external programmer: when
 the screen is gone, the chip socket becomes the screen.
 
 - NOW: `lab/ovmf-smoke.sh` is headless by construction — the serial log *is*
-  the display. Proof that boot does not require display.
+  the display. Proof that boot does not require display. **Massive
+  campaign (2026-09-11):** real VBIOS ROMs parsed — display pre-OS is
+  literally an Option ROM (0x55AA/PCIR, x86 code, e.g. vendor
+  0x1234:0x1111); a real DSDT table was read at header level too. The
+  display is a swappable driver with a physical body.
 - DAY-0: does the board expose a UART header or a vendor debug path? Physical
   inspection + vendor datasheet.
 - VOL-5: serial debug builds (coreboot console over UART) on sacrificial
@@ -77,6 +81,13 @@ setup-exposed is switchable; ME is partial on consumer silicon (full disable
 often means no POST); Boot Guard is never (fused).
 
 - NOW: seed from the vendor manual and coreboot board notes.
+  **Massive campaign (2026-09-11) seeds for TWIN-1 (B450-PLUS):** no
+  coreboot port exists anywhere on the web (standing claim holds); the
+  B450 family ships USB BIOS FlashBack — a CPU-independent VENDOR
+  rescue path (verify the physical button at day-0; it writes the
+  chip, so it stays outside our hands, Volume 5 rules only); ASUS
+  boards also carry a .CAP USB recovery path; AMD Platform Secure Boot
+  (PSP) is the AMD Boot Guard — silicon again.
 - DAY-0: verify each toggle against the real setup screens and the dump.
 
 ## Q4 — Who enforces the walls? (the enforcement map)
@@ -92,6 +103,11 @@ The five walls from `lab/coreboot-notes.md`, each with an owner:
 | EC | separate chip, separate firmware, **never on the SPI bus** |
 
 - NOW: table drafted; per-board assignment pending real data.
+  **Massive campaign (2026-09-11):** the AMD half of the map is
+  prepared — PSP Directory (`$PSP`) / BIOS Directory (`$BDIR`) tables
+  located via the FET pointer chain (coreboot PSP Integration Guide;
+  dayzerosec/3mdeb); the lens is written and validated on non-AMD
+  images (honest zeros), waiting for the real dump.
 - DAY-0: `$BPM`/`$KSH` presence from `spi-map` (existence only — fused vs.
   deactivated is NOT determinable from the image, and the tool says so).
 
@@ -151,6 +167,13 @@ dmidecode, efivarfs listings, MSR access, PCIe config space — a runtime mirror
 of firmware state. Cross-checking the mirror against the image (what the
 firmware declares vs. what the machine reports) is future digital-twin
 enrichment. **Noted as a post-freeze lever; no tool added during the freeze.**
+
+- NOW: **the mirror is an environment property** (campaign, 2026-09-11):
+  probed from inside a containerized VM — DMI absent, efivarfs absent,
+  ACPI tables absent, iomem synthetic. A truncated mirror says
+  "containerized environment", not "tool failure". On bare-metal
+  TWIN-1 the mirror opens fully; `capture --live` provenance-tags both
+  worlds either way.
 
 ---
 
