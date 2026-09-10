@@ -4,6 +4,38 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## 0.6.2 — the photograph, for real
+
+The day-0 protocol's core artifact is `capture` — the photograph of what
+the machine really is. This release closes the trap that would have made
+that photograph picture the wrong machine, and two frugality debts.
+
+**Added**
+- `capture --live`: the day-0 form. Twin assets (fixtures, sysfs tree)
+  are ignored and the roots are the real `/sys` — necessary because
+  install.sh stages TWIN-1 beside the tool, and the twin-aware default
+  would resolve it on the very machine day-0 wants to photograph.
+- The twin-aware default is now LOUD: a resolved twin is stated in the
+  snapshot (`capture_note`) and in the human render — photographing
+  TWIN-1 while believing one photographs the machine is exactly the
+  day-0 mistake this tool exists to prevent.
+- Every capture section carries its measured cost in `ms`: the
+  frugality budget (~0.3 s per one-shot) is a claim, so the photograph
+  measures itself — on real hardware this names the slow collector.
+
+**Changed**
+- `cve-watch`: the KB file is parsed exactly ONCE per command (it was
+  parsed four times — `kb_info`, the drift hashes ×2, the fwupd
+  cross-check — and threaded through `cve_kb.collect` too). Enforced by
+  a counting test.
+
+**Fixed**
+- `capture`: the `cpu_epp` / `hwmon` detail sections are covered by the
+  same error discipline as the ten T0 collections — a bad sysfs root is
+  recorded in `section_errors`, it can no longer crash the photograph.
+- tests 281 → 287: the twin note, the live form, the per-section ms,
+  the bogus-root discipline and the single KB parse are all structural.
+
 ## 0.6.1 — the distribution: pinned, canaried, bit-verified
 
 The day-0 payload now ships the way the thesis says tools should ship:

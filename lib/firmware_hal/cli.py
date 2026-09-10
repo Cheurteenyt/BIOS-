@@ -34,9 +34,11 @@ same journaling, status carried (dry-run / applied / rolled-back / refused).
                                     contract in one command (day-0 drill)
     omarchy-firmware rehearse-diff LEFT.json RIGHT.json [--json] [--latest]
                                   — twin → real: the named list of surprises
-    omarchy-firmware capture [--out PATH] [--json]
+    omarchy-firmware capture [--live] [--out PATH] [--json]
                                   — the day-0 photograph: a T0 snapshot of what
-                                    this machine really is (twin-1.1 fodder)
+                                    this machine really is (twin-1.1 fodder);
+                                    --live ignores the twin and reads the real
+                                    /sys — the P5 protocol day-0 form
     omarchy-firmware selftest     — full demo on the twin fixtures
     omarchy-firmware tiers        — display the T0-T3 contract
     omarchy-firmware mcp          — start the MCP stdio server
@@ -338,6 +340,11 @@ def build_parser() -> argparse.ArgumentParser:
 
     pcp = sub.add_parser("capture", help="the day-0 photograph — a T0 "
                          "snapshot of what this machine really is")
+    pcp.add_argument("--live", action="store_true",
+                     help="photograph THIS machine: twin assets (fixtures, "
+                          "sysfs) are ignored — the day-0 form; without it, "
+                          "a resolved twin is photographed and the snapshot "
+                          "says so loudly")
     pcp.add_argument("--out", help="write the snapshot to PATH instead of "
                      "the state dir")
     pcp.add_argument("--json", action="store_true")
@@ -578,7 +585,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0 if d["verdict"] == "clean" else 1
 
     if args.cmd == "capture":
-        data = capture.capture(out=args.out)
+        data = capture.capture(out=args.out, live=args.live)
         if args.json:
             print(json.dumps(data, ensure_ascii=False, indent=2))
         else:

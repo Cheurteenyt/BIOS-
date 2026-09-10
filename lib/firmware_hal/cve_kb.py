@@ -73,8 +73,9 @@ def _status(entry: dict, bios_date: str | None) -> tuple[str, str]:
             f"({entry.get('fixed_hint', 'n/a')})")
 
 
-def collect(fixture_dir=None) -> dict:
-    kb = load_kb()
+def collect(fixture_dir=None, kb: dict | None = None) -> dict:
+    if kb is None:
+        kb = load_kb()
     board = smbios.collect(fixture_dir)
     if board.get("error"):
         return {"error": f"board not identified: {board['error']}", "findings": []}

@@ -1015,6 +1015,73 @@ for k, v in sysfs_saved.items():
         os.environ[k] = v
 
 
+# --- capture: the day-0 photograph, for real (0.6.2) ----------------------------
+# The trap this closes: on the machine, install.sh stages TWIN-1 beside the
+# tool — so the default (twin-aware) capture resolves the twin automatically
+# and photographs TWIN-1, not the machine. The snapshot must SAY so loudly,
+# and the day-0 protocol must have a live form that ignores the twin.
+check("capture: the twin form is loud — a resolved twin is named, never passed off as the machine",
+      snap.get("capture_note") is not None
+      and "--live" in snap["capture_note"]
+      and snap.get("live") is False
+      and snap["backend"] == "twin-sourced", str(snap.get("capture_note"))[:120])
+
+check("capture: the photograph measures its own cost — every section carries ms",
+      all(isinstance(s.get("ms"), (int, float)) and s["ms"] >= 0
+          for s in snap["sections"].values())
+      and len(snap["sections"]) >= 13, str(sorted(snap["sections"]))[:120])
+
+snap_live = capture.capture(live=True)
+check("capture --live: the day-0 form photographs THIS machine — twin assets ignored",
+      snap_live["backend"] == "live" and snap_live["live"] is True
+      and "capture_note" not in snap_live
+      and snap_live["sections"]["cpu_epp"]["data"]["root"] == "/sys/devices/system/cpu"
+      and snap_live["sections"]["hwmon"]["data"]["root"] == "/sys/class/hwmon",
+      str(snap_live["sections"]["cpu_epp"]["data"])[:80])
+
+check("capture --live: honest on a strange host — data or recorded error, never a crash",
+      set(snap_live["sections"]) == set(snap["sections"])
+      and all(sec["data"] is not None or name in snap_live["section_errors"]
+              for name, sec in snap_live["sections"].items())
+      and all(isinstance(sec.get("ms"), (int, float))
+              for sec in snap_live["sections"].values()),
+      str(snap_live["section_errors"])[:160])
+
+_bogus_root = ROOT / "tests" / "fixtures" / "does-not-exist"
+_saved_cpu, _saved_hw = os.environ.get("FW_SYSFS_CPU"), os.environ.get("FW_SYSFS_HWMON")
+os.environ["FW_SYSFS_CPU"] = str(ROOT / "tests" / "fixtures" / "twin-sysfs" / "cpu")
+os.environ["FW_SYSFS_HWMON"] = str(_bogus_root)
+try:
+    snap_bogus = capture.capture()
+finally:
+    if _saved_cpu is not None:
+        os.environ["FW_SYSFS_CPU"] = _saved_cpu
+    else:
+        os.environ.pop("FW_SYSFS_CPU", None)
+    if _saved_hw is not None:
+        os.environ["FW_SYSFS_HWMON"] = _saved_hw
+    else:
+        os.environ.pop("FW_SYSFS_HWMON", None)
+check("capture: a bogus sysfs root is recorded honestly, it never crashes the photograph",
+      snap_bogus["sections"]["hwmon"]["data"] is None
+      and "hwmon" in snap_bogus["section_errors"]
+      and isinstance(snap_bogus["sections"]["cpu_epp"]["data"], dict)
+      and len(snap_bogus["sections"]["cpu_epp"]["data"]["cpus"]) >= 1,
+      str(snap_bogus["section_errors"])[:160])
+
+_orig_load_kb, _kb_parses = cve_kb.load_kb, {"n": 0}
+def _counting_load_kb():
+    _kb_parses["n"] += 1
+    return _orig_load_kb()
+cve_kb.load_kb = _counting_load_kb
+try:
+    cve_watch.collect(str(FIX_A))
+finally:
+    cve_kb.load_kb = _orig_load_kb
+check("cve-watch: the KB file is parsed exactly once per command — measured frugality",
+      _kb_parses["n"] == 1, f"parsed {_kb_parses['n']} times")
+
+
 # --- distribution pinning discipline (0.6.1) ----------------------------------
 # The policy: the installer floats, the payload is pinned, the MCP SDK pin is
 # exact, and a scheduled canary keeps the float honest. These scans make the

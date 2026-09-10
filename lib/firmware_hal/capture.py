@@ -11,9 +11,21 @@ timestamped JSON snapshot. Three uses:
      captures is the firmware change, in facts, not impressions.
 
 Honesty rules: every section carries its provenance ("twin-sourced" vs
-"live", roots named); a sensorless host records nulls and section
-errors, never guesses; no confirm flag exists and nothing here writes
-to the machine — the only artifact is the snapshot file itself.
+"live", roots named) and its measured cost in ms — the frugality budget
+is a claim, so the photograph measures itself; a sensorless host records
+nulls and section errors, never guesses; no confirm flag exists and
+nothing here writes to the machine — the only artifact is the snapshot
+file itself.
+
+Two forms:
+  capture          — twin-aware (development, demos): when twin assets
+                     resolve they are photographed, and the snapshot says
+                     so LOUDLY (capture_note), because photographing
+                     TWIN-1 while believing one photographs the machine is
+                     exactly the day-0 mistake this tool exists to prevent;
+  capture --live   — the day-0 form: twin assets (fixtures, sysfs tree)
+                     are ignored, the roots are the real /sys. The P5
+                     protocol step 2 is `omarchy-firmware capture --live`.
 """
 
 from __future__ import annotations
@@ -116,40 +128,66 @@ def _sections(fx: str | None) -> list[tuple[str, object]]:
 # ----------------------------------------------------------------- capture
 
 
-def capture(*, out: str | None = None) -> dict:
-    """One T0 photograph of this machine, written as a snapshot file."""
-    fx = os.environ.get("FW_FIXTURE_DIR") or twin.resolve_fixture_dir()
-    desc = twin.describe()
-    applied = twin.apply_sysfs_env()
-    origin = "live" if desc.get("source") == "MISSING" else "twin-sourced"
+def capture(*, out: str | None = None, live: bool = False) -> dict:
+    """One T0 photograph, written as a snapshot file.
+
+    live=False (default): twin-aware — when twin assets resolve, they are
+    photographed and the snapshot says so loudly (capture_note).
+    live=True: photograph THIS machine — twin fixtures and the twin sysfs
+    tree are ignored, the detail roots are the real /sys. Day 0 wants
+    --live: the twin is installed beside the tool precisely on the machine
+    this flag exists to photograph.
+    """
+    if live:
+        fx = None
+        desc: dict = {"source": "MISSING"}
+        applied: dict = {}
+        cpu_root = "/sys/devices/system/cpu"
+        hwmon_root = "/sys/class/hwmon"
+        origin = "live"
+    else:
+        fx = os.environ.get("FW_FIXTURE_DIR") or twin.resolve_fixture_dir()
+        desc = twin.describe()
+        applied = twin.apply_sysfs_env()
+        origin = "live" if desc.get("source") == "MISSING" else "twin-sourced"
+        cpu_root = os.environ.get("FW_SYSFS_CPU")
+        hwmon_root = os.environ.get("FW_SYSFS_HWMON")
+
+    def _run(name: str, fn, *args) -> None:
+        t0 = time.perf_counter()
+        try:
+            data = fn(*args)
+            if isinstance(data, dict):
+                data.pop("journal_entry", None)  # the snapshot stays clean
+            sec = {"origin": origin, "data": data}
+        except Exception as exc:  # noqa: BLE001 — a section failure is recorded
+            errors[name] = f"{type(exc).__name__}: {exc}"[:120]
+            sec = {"origin": origin, "data": None}
+        sec["ms"] = round((time.perf_counter() - t0) * 1000.0, 1)
+        sections[name] = sec
 
     sections: dict[str, dict] = {}
     errors: dict[str, str] = {}
     for name, fn in _sections(fx):
-        try:
-            data = fn()
-            if isinstance(data, dict):
-                data.pop("journal_entry", None)  # the snapshot stays clean
-            sections[name] = {"origin": origin, "data": data}
-        except Exception as exc:  # noqa: BLE001 — a section failure is recorded
-            errors[name] = f"{type(exc).__name__}: {exc}"[:120]
-            sections[name] = {"origin": origin, "data": None}
-
-    cpu_root = os.environ.get("FW_SYSFS_CPU")
-    hwmon_root = os.environ.get("FW_SYSFS_HWMON")
-    sections["cpu_epp"] = {"origin": origin, "data": _cpu_detail(cpu_root)}
-    sections["hwmon"] = {"origin": origin, "data": _hwmon_detail(hwmon_root)}
-    sections["environment"] = {"origin": "host", "data": _environment()}
+        _run(name, fn)
+    _run("cpu_epp", _cpu_detail, cpu_root)
+    _run("hwmon", _hwmon_detail, hwmon_root)
+    _run("environment", _environment)
 
     snap: dict = {
         "schema": CAPTURE_SCHEMA,
         "ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "backend": origin,
+        "live": live,
         "twin_source": desc.get("source"),
         "twin_note": f"sysfs applied: {applied or 'none'}",
         "sections": sections,
         "section_errors": errors,
     }
+    if origin == "twin-sourced":
+        snap["capture_note"] = (
+            "twin assets resolved automatically — this is TWIN-1's "
+            "photograph, not this machine's; day 0 wants `capture --live`")
     dest = (Path(out) if out else
             journal.state_dir() / "captures"
             / f"capture-{time.strftime('%Y%m%d-%H%M%S')}.json")
@@ -157,9 +195,13 @@ def capture(*, out: str | None = None) -> dict:
     dest.write_text(json.dumps(snap, ensure_ascii=False, indent=2),
                     encoding="utf-8")
     snap["capture_file"] = str(dest)
+    argv = ["capture"]
+    if live:
+        argv.append("--live")
+    if out:
+        argv += ["--out", str(dest)]
     journal.record(
-        "capture", "T0",
-        ["capture", "--out", str(dest)] if out else ["capture"], "ok",
+        "capture", "T0", argv, "ok",
         f"{origin}: {len(sections)} sections, {len(errors)} error(s) — "
         f"schema {CAPTURE_SCHEMA}")
     return snap
@@ -169,6 +211,8 @@ def render(snap: dict) -> str:
     """Human rendering — what was read, from where, with what roots."""
     lines = [f"== Capture — backend: {snap['backend']} "
              f"(twin source: {snap.get('twin_source')}) =="]
+    if snap.get("capture_note"):
+        lines.append(f"  NOTE: {snap['capture_note']}")
     for name, sec in snap["sections"].items():
         d = sec.get("data")
         if d is None:

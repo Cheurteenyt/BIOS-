@@ -64,9 +64,10 @@ def _entry_hashes(kb: dict) -> dict[str, str]:
     return out
 
 
-def kb_info() -> dict:
+def kb_info(kb: dict | None = None) -> dict:
     """Freshness of the ACTIVE knowledge base (override or packaged)."""
-    kb = cve_kb.load_kb()
+    if kb is None:
+        kb = cve_kb.load_kb()
     path = cve_kb.active_path()
     try:
         sha = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -91,9 +92,8 @@ def kb_info() -> dict:
     }
 
 
-def _fwupd_advisories(fixture_dir) -> dict:
+def _fwupd_advisories(fixture_dir, kb: dict) -> dict:
     """CVE ids advertised by fwupd release notes, correlated with the KB."""
-    kb = cve_kb.load_kb()
     kb_cves: dict[str, str] = {}  # cve id -> kb entry id
     for e in kb.get("entries", []):
         blob = json.dumps(e, ensure_ascii=False)
@@ -118,10 +118,14 @@ def _fwupd_advisories(fixture_dir) -> dict:
 
 
 def collect(fixture_dir=None) -> dict:
-    kb = kb_info()
-    sha = kb.get("sha256")
+    # the KB file is parsed exactly ONCE per command and threaded through:
+    # frugality is a hard constraint, and four parses could even disagree
+    # if the KB changed under our feet mid-command.
+    kb = cve_kb.load_kb()
+    kb_i = kb_info(kb)
+    sha = kb_i.get("sha256")
 
-    audit = cve_kb.collect(fixture_dir)
+    audit = cve_kb.collect(fixture_dir, kb=kb)
     findings = audit.get("findings", [])
     exposed = sum(1 for f in findings if f["status"].startswith("potentially"))
     unknown = sum(1 for f in findings if f["status"].startswith("unknown"))
@@ -137,7 +141,7 @@ def collect(fixture_dir=None) -> dict:
         drift = {"status": "no-change", "since": prev.get("ts")}
     else:
         prev_h = prev.get("entry_hashes", {})
-        cur_h = _entry_hashes(cve_kb.load_kb())
+        cur_h = _entry_hashes(kb)
         drift = {
             "status": "changed",
             "since": prev.get("ts"),
@@ -150,15 +154,15 @@ def collect(fixture_dir=None) -> dict:
     state = {
         "ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "sha256": sha,
-        "entry_hashes": _entry_hashes(cve_kb.load_kb()),
+        "entry_hashes": _entry_hashes(kb),
     }
     _write_state(state)
 
-    cross = _fwupd_advisories(fixture_dir)
+    cross = _fwupd_advisories(fixture_dir, kb)
 
     parts = [
-        f"KB {kb.get('generated')} ({kb.get('age_days')} d, "
-        f"{kb.get('entry_count')} entries, source {kb.get('source')})",
+        f"KB {kb_i.get('generated')} ({kb_i.get('age_days')} d, "
+        f"{kb_i.get('entry_count')} entries, source {kb_i.get('source')})",
         f"{exposed} potential exposure(s), {unknown} unknown, drift "
         f"{drift['status']}",
     ]
@@ -168,10 +172,10 @@ def collect(fixture_dir=None) -> dict:
             "— candidates for the next KB revision (human decides)")
     verdict = " ; ".join(parts) + (
         ". Refresh the KB with omarchy-firmware-cve-update if stale — "
-        "two-key rule, nothing automatic." if kb.get("stale") else ".")
+        "two-key rule, nothing automatic." if kb_i.get("stale") else ".")
 
     return {
-        "kb": kb,
+        "kb": kb_i,
         "exposure": {
             "potential": exposed,
             "unknown": unknown,

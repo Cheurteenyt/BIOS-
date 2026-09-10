@@ -50,7 +50,7 @@ Structural rules (unchanged):
     (optional systemd timer), the agent is called only on anomaly.
 """
 
-__version__ = "0.6.1"
+__version__ = "0.6.2"
 
 PHASE = "P5 — the digital twin (TWIN-1) and the dress rehearsal on top of "\
         "the P4 supervised loop"
