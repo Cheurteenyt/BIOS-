@@ -39,7 +39,8 @@ tests/                   fixtures (3 board sets: issues + clean) + 8 thermal
 tests/test_suite.py      233 checks, stdlib only — must pass before any push
 tests/mcp_smoke.py       MCP conformance: handshake, 12 tools, T1 dry-run
 docs/                    architecture, security doctrine, write layers (T1+T2),
-                         diagnostics catalog, frugality, first-run protocol
+                         diagnostics catalog, vendor BIOS heritage, frugality,
+                         first-run protocol
 docs/research/           the four study volumes the code descends from
 .github/workflows/ci.yml the CI: contract suite (py 3.11/3.13) + MCP smoke
 ```

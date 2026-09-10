@@ -145,5 +145,6 @@ Phase 4 adds three seams without touching the existing ones:
   staging`).
 - Tool output dicts are the API: renaming a key is a breaking change and
   must land together with `tests/test_suite.py` updates.
-- Tested on Python 3.12+; no compiled dependency; runs anywhere dmidecode,
-  efibootmgr and hwmon exist — and reports honestly where they do not.
+- Tested on Python 3.11+ (CI runs the suite on 3.11 and 3.13); no compiled
+  dependency; runs anywhere dmidecode, efibootmgr and hwmon exist — and
+  reports honestly where they do not.

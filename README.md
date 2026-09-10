@@ -4,8 +4,8 @@
 
 > **Read-only firmware & hardware intelligence layer for Omarchy.** Audits BIOS,
 > boot chain and AM4 CVEs, and names physical faults the BIOS can't see: dead
-> AIO pump, missing thermal paste, hot VRM, sagging 12 V rail. 5 MCP tools, all
-> read-only — *the agent explains, the firmware protects.*
+> AIO pump, missing thermal paste, hot VRM, sagging 12 V rail. 12 MCP tools
+> (10 read-only + 2 reversible) — *the agent explains, the firmware protects.*
 
 **omarchy-firmware** is a read-only firmware and hardware intelligence layer for
 [Omarchy](https://github.com/basecamp/omarchy) (Arch Linux) machines. It lets AI
@@ -173,6 +173,7 @@ human path; `fw.flash.write` does not even exist.
 | [docs/security-doctrine.md](docs/security-doctrine.md) | tiers, error sources, barriers, the 8 rules |
 | [docs/t1-write-layer.md](docs/t1-write-layer.md) | the two-key rule, rollback store, mechanical curve guards, the human-gated T2 staging |
 | [docs/diagnostics-catalog.md](docs/diagnostics-catalog.md) | the named hardware findings and their measurable evidence |
+| [docs/vendor-bios-heritage.md](docs/vendor-bios-heritage.md) | what ASUS/MSI/Gigabyte/ASRock actually shipped, what we keep, what we answer — the vendor-facing coherence audit |
 | [docs/frugality.md](docs/frugality.md) | the resource budget, L1/L2/L3, why the timer is optional |
 | [docs/research/](docs/research/) | the four original study volumes (FR, PDF) + English summaries |
 
