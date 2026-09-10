@@ -4,6 +4,22 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## 0.4.1 — Scenario hardening: the full signature surface exercised
+
+**Added**
+- 4 bundled thermal scenarios (12 total): `case-fan-dead` (S2 — a dead
+  case fan the AIO hides from Tctl), `runaway` (S7 — undamped end-of-load
+  slope), `heatwave` (S8 — Tjmax fold-back with a HEALTHY interface, the
+  room is the cause), `hot-nvme` (S11 — a hot spot outside the CPU view).
+- 13 contract checks (246 total): every new scenario must name THE fault
+  and nothing else — no instant-rise where the rise is slow, no interface
+  verdict where the hardware is fine.
+
+**Fixed**
+- S11 emitted one finding PER SAMPLE instead of per sensor: a 30-sample
+  probe with a hot NVMe produced 30 copies of the same finding. Aggregated
+  to the per-sensor max across the series (same rule as the fans dict).
+
 ## 0.4.0 — Phase 4: the supervised loop (CVE watch + human-gated T2 staging)
 
 **Added**

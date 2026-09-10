@@ -157,7 +157,7 @@ check("audit: P4 phase declared", "P4" in (a.get("phase") or ""), a.get("phase")
 SCEN = diagnostics.SCENARIO_DIR
 
 sc_all = {p.stem for p in SCEN.glob("*.json")}
-check("diag: 8 bundled scenarios", len(sc_all) == 8, str(sorted(sc_all)))
+check("diag: 12 bundled scenarios", len(sc_all) == 12, str(sorted(sc_all)))
 
 
 def _run(scen, baseline=None):
@@ -204,6 +204,36 @@ r = _run("v12-sag")
 ids = {f["id"] for f in r["findings"]}
 check("diag 12v: attention verdict", r["verdict"] == "attention", r["verdict"])
 check("diag 12v: low rail detected", "v12-low" in ids)
+
+r = _run("case-fan-dead")
+ids = {f["id"] for f in r["findings"]}
+check("diag casefan: attention verdict", r["verdict"] == "attention", r["verdict"])
+check("diag casefan: dead head named", "fan-zero-rpm" in ids, str(ids))
+check("diag casefan: interface stays healthy (the AIO hides it)",
+      0.2 <= (r["measurements"]["r_th"] or 9) <= 0.32, str(r["measurements"]["r_th"]))
+
+r = _run("runaway")
+ids = {f["id"] for f in r["findings"]}
+check("diag runaway: critical verdict", r["verdict"] == "critical", r["verdict"])
+check("diag runaway: undamped slope named", "runaway" in ids, str(ids))
+check("diag runaway: no instant-rise (85 °C reached late)",
+      "instant-rise" not in ids, str(ids))
+
+r = _run("heatwave")
+ids = {f["id"] for f in r["findings"]}
+check("diag heatwave: attention verdict", r["verdict"] == "attention", r["verdict"])
+check("diag heatwave: fold-back observed", "thermal-protection-active" in ids,
+      str(ids))
+check("diag heatwave: interface stays healthy (the room is the cause)",
+      0.2 <= (r["measurements"]["r_th"] or 9) <= 0.41, str(r["measurements"]["r_th"]))
+check("diag heatwave: radiator saturation named", "coolant-hot" in ids)
+
+r = _run("hot-nvme")
+ids = {f["id"] for f in r["findings"]}
+check("diag nvme: hotspot named", "hot-sensor" in ids, str(ids))
+check("diag nvme: one finding per sensor, no duplication", len(ids) == 1, str(ids))
+check("diag nvme: CPU verdict stays honest",
+      r["verdict"].startswith("healthy"), r["verdict"])
 
 # trend: the scenario alone stays under the absolute thresholds (honesty);
 # the longitudinal baseline is what names the slow degradation.

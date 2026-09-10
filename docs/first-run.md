@@ -34,7 +34,7 @@ Sanity checks:
 ```bash
 omarchy-firmware tiers          # the 14-tool contract prints
 omarchy-firmware selftest       # full fixture demo, exit 0
-python3 tests/test_suite.py     # 233 checks (run from the clone)
+python3 tests/test_suite.py     # 246 checks (run from the clone)
 python3 tests/mcp_smoke.py      # needs pip install mcp
 ```
 

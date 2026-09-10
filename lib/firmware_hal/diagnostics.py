@@ -370,8 +370,16 @@ def diagnose(samples: list[dict], meta: dict | None = None,
             "and random resets.", "low"))
 
     # --- S11: hot generic sensors ----------------------------------------------
+    # One finding per sensor, not per sample: aggregate the max across the
+    # series (same rule as the fans dict above — a 30-sample probe must not
+    # produce 30 copies of the same finding).
+    hot_seen: dict[str, float] = {}
     for s in samples:
         for k, v in (s.get("hot_sensors") or {}).items():
+            if v is not None:
+                hot_seen[k] = max(hot_seen.get(k, 0.0), v)
+    for k, v in sorted(hot_seen.items()):
+        if v >= SEUILS["generic_temp"]:
             findings.append(_finding(
                 "hot-sensor", "info",
                 f"Sensor \u00ab {k} \u00bb at {v} °C",

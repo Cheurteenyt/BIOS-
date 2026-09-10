@@ -92,15 +92,15 @@ omarchy-firmware update stage --device GUID  # T2 DRY-RUN plan (human-only layer
 omarchy-firmware report                    # the supervised-loop digest (P4)
 ```
 
-Try everything **without any hardware** — 8 pre-recorded thermal scenarios
-(5950X physics), 3 board fixture sets (issues + clean), a 233-check test
+Try everything **without any hardware** — 12 pre-recorded thermal scenarios
+(5950X physics), 3 board fixture sets (issues + clean), a 246-check test
 suite, and an MCP conformance smoke:
 
 ```bash
 omarchy-firmware diag scenarios             # the list
 omarchy-firmware diag quick --scenario no-paste --json
 omarchy-firmware selftest                   # full demo
-python3 tests/test_suite.py                 # 233 checks, zero dependency
+python3 tests/test_suite.py                 # 246 checks, zero dependency
 python3 tests/mcp_smoke.py                  # MCP handshake + T1 dry-run proof
 ```
 
@@ -187,7 +187,7 @@ smoke on every push — see [.github/workflows/ci.yml](.github/workflows/ci.yml)
 | P1 | 4 T0 tools + skill + journal | 10 state questions without any write ✓ |
 | P2 | + `fw.diag.thermal`: signature engine, probe, baseline, timer | 8 scenarios named one by one, measured frugality ✓ |
 | P3 | + storage/GPU/RAM/settings T0 diagnostics + the T1 HAL (`cpu.epp.set`, `fans.curve.set`) | 177 checks, MCP 11-tool conformance, verified rollback, mechanical curve guards ✓ |
-| **P4 — this repo** | + the supervised loop: `fw.cve.watch` (KB freshness, drift, fwupd advisories), the human-gated T2 staging (`update stage`, `update rollback`), the loop report, the weekly watch timer | code complete: 233 checks, MCP 12-tool conformance · the 5-day criterion itself is measured on the real machine — see [docs/first-run.md](docs/first-run.md) |
+| **P4 — this repo** | + the supervised loop: `fw.cve.watch` (KB freshness, drift, fwupd advisories), the human-gated T2 staging (`update stage`, `update rollback`), the loop report, the weekly watch timer | code complete: 246 checks, 12 scenarios, MCP 12-tool conformance · the 5-day criterion itself is measured on the real machine — see [docs/first-run.md](docs/first-run.md) |
 
 ## Provenance
 

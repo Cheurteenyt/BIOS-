@@ -1,0 +1,261 @@
+{
+ "meta": {
+  "title": "NVMe at 87 °C — a hot spot the CPU view never shows",
+  "cooling": "liquid",
+  "note": "SSD under the GPU heatsink, dead airflow pocket: info-tier finding, CPU verdict stays honest (healthy at idle)"
+ },
+ "samples": [
+  {
+   "t": 0.0,
+   "tctl": 53.5,
+   "ambient": 31.0,
+   "coolant": 33.5,
+   "vrm": 45.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.1,
+    "in1": 12.02
+   },
+   "hot_sensors": {
+    "nvme0": 86.8
+   }
+  },
+  {
+   "t": 1.0,
+   "tctl": 53.6,
+   "ambient": 31.0,
+   "coolant": 33.5,
+   "vrm": 45.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.1,
+    "in1": 12.02
+   },
+   "hot_sensors": {
+    "nvme0": 87.0
+   }
+  },
+  {
+   "t": 2.0,
+   "tctl": 53.7,
+   "ambient": 31.0,
+   "coolant": 33.5,
+   "vrm": 45.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.1,
+    "in1": 12.02
+   },
+   "hot_sensors": {
+    "nvme0": 87.1
+   }
+  },
+  {
+   "t": 3.0,
+   "tctl": 53.8,
+   "ambient": 31.0,
+   "coolant": 33.5,
+   "vrm": 45.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.1,
+    "in1": 12.02
+   },
+   "hot_sensors": {
+    "nvme0": 87.2
+   }
+  },
+  {
+   "t": 4.0,
+   "tctl": 53.5,
+   "ambient": 31.0,
+   "coolant": 33.5,
+   "vrm": 45.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.1,
+    "in1": 12.02
+   },
+   "hot_sensors": {
+    "nvme0": 87.4
+   }
+  },
+  {
+   "t": 5.0,
+   "tctl": 53.6,
+   "ambient": 31.0,
+   "coolant": 33.5,
+   "vrm": 45.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.1,
+    "in1": 12.02
+   },
+   "hot_sensors": {
+    "nvme0": 86.8
+   }
+  },
+  {
+   "t": 6.0,
+   "tctl": 53.7,
+   "ambient": 31.0,
+   "coolant": 33.5,
+   "vrm": 45.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.1,
+    "in1": 12.02
+   },
+   "hot_sensors": {
+    "nvme0": 87.0
+   }
+  },
+  {
+   "t": 7.0,
+   "tctl": 53.8,
+   "ambient": 31.0,
+   "coolant": 33.5,
+   "vrm": 45.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.1,
+    "in1": 12.02
+   },
+   "hot_sensors": {
+    "nvme0": 87.1
+   }
+  },
+  {
+   "t": 8.0,
+   "tctl": 53.5,
+   "ambient": 31.0,
+   "coolant": 33.5,
+   "vrm": 45.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.1,
+    "in1": 12.02
+   },
+   "hot_sensors": {
+    "nvme0": 87.2
+   }
+  },
+  {
+   "t": 9.0,
+   "tctl": 53.6,
+   "ambient": 31.0,
+   "coolant": 33.5,
+   "vrm": 45.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.1,
+    "in1": 12.02
+   },
+   "hot_sensors": {
+    "nvme0": 87.4
+   }
+  },
+  {
+   "t": 10.0,
+   "tctl": 53.7,
+   "ambient": 31.0,
+   "coolant": 33.5,
+   "vrm": 45.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.1,
+    "in1": 12.02
+   },
+   "hot_sensors": {
+    "nvme0": 86.8
+   }
+  },
+  {
+   "t": 11.0,
+   "tctl": 53.8,
+   "ambient": 31.0,
+   "coolant": 33.5,
+   "vrm": 45.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.1,
+    "in1": 12.02
+   },
+   "hot_sensors": {
+    "nvme0": 87.0
+   }
+  }
+ ]
+}

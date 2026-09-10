@@ -46,6 +46,6 @@ Structural rules (unchanged):
     (optional systemd timer), the agent is called only on anomaly.
 """
 
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 
 PHASE = "P4 — supervised loop: CVE watch + human-gated T2 staging"

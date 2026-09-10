@@ -53,7 +53,7 @@ Every collector accepts a fixture directory; when present, expected tool
 output is read from disk instead of executed (`system.py`). Three board
 fixture sets (ASUS TUF B450-PLUS GAMING "issues" — BIOS 3644/2026 — with
 every P3 fault encoded; the same board "clean" — zero findings expected;
-ASUS ROG STRIX B550-F, BIOS 3001/2023) plus eight pre-recorded thermal
+ASUS ROG STRIX B550-F, BIOS 3001/2023) plus twelve pre-recorded thermal
 scenarios (5950X + 240 mm AIO physics) make the whole base — including the
 CVE reasoning, the diagnostic engine and the T1 dry-run plans — fully
 exercisable on any machine:

@@ -1,0 +1,1035 @@
+{
+ "meta": {
+  "title": "Heatwave: Tjmax fold-back with a healthy interface",
+  "cooling": "liquid",
+  "note": "Ambient 36 °C: R_th stays 0.38 (hardware fine), coolant saturates at 52 °C, the CPU folds power — the BIOS throttles silently, we name the room"
+ },
+ "samples": [
+  {
+   "t": 0.0,
+   "tctl": 57.5,
+   "ambient": 36.0,
+   "coolant": 44.5,
+   "vrm": 47.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.08,
+    "in1": 12.0
+   },
+   "phase": "idle"
+  },
+  {
+   "t": 1.0,
+   "tctl": 57.5,
+   "ambient": 36.0,
+   "coolant": 44.5,
+   "vrm": 47.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.08,
+    "in1": 12.0
+   },
+   "phase": "idle"
+  },
+  {
+   "t": 2.0,
+   "tctl": 57.5,
+   "ambient": 36.0,
+   "coolant": 44.5,
+   "vrm": 47.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.08,
+    "in1": 12.0
+   },
+   "phase": "idle"
+  },
+  {
+   "t": 3.0,
+   "tctl": 57.5,
+   "ambient": 36.0,
+   "coolant": 44.5,
+   "vrm": 47.0,
+   "power_w": 30.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.08,
+    "in1": 12.0
+   },
+   "phase": "idle"
+  },
+  {
+   "t": 4.0,
+   "tctl": 60.0,
+   "ambient": 36.0,
+   "coolant": 44.5,
+   "vrm": 47.0,
+   "power_w": 60.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 5.0,
+   "tctl": 62.7,
+   "ambient": 36.0,
+   "coolant": 44.7,
+   "vrm": 47.1,
+   "power_w": 68.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 6.0,
+   "tctl": 65.4,
+   "ambient": 36.0,
+   "coolant": 44.9,
+   "vrm": 47.2,
+   "power_w": 76.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 7.0,
+   "tctl": 68.1,
+   "ambient": 36.0,
+   "coolant": 45.1,
+   "vrm": 47.3,
+   "power_w": 84.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 8.0,
+   "tctl": 70.8,
+   "ambient": 36.0,
+   "coolant": 45.3,
+   "vrm": 47.4,
+   "power_w": 92.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 9.0,
+   "tctl": 73.5,
+   "ambient": 36.0,
+   "coolant": 45.5,
+   "vrm": 47.5,
+   "power_w": 100.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 10.0,
+   "tctl": 76.2,
+   "ambient": 36.0,
+   "coolant": 45.6,
+   "vrm": 47.6,
+   "power_w": 108.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 11.0,
+   "tctl": 78.9,
+   "ambient": 36.0,
+   "coolant": 45.8,
+   "vrm": 47.7,
+   "power_w": 116.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 12.0,
+   "tctl": 81.6,
+   "ambient": 36.0,
+   "coolant": 46.0,
+   "vrm": 47.8,
+   "power_w": 124.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 13.0,
+   "tctl": 84.3,
+   "ambient": 36.0,
+   "coolant": 46.2,
+   "vrm": 47.9,
+   "power_w": 132.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 14.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 46.4,
+   "vrm": 48.0,
+   "power_w": 140.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 15.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 46.6,
+   "vrm": 48.1,
+   "power_w": 140.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 16.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 46.8,
+   "vrm": 48.2,
+   "power_w": 140.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 17.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 47.0,
+   "vrm": 48.3,
+   "power_w": 140.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 18.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 47.2,
+   "vrm": 48.4,
+   "power_w": 140.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 19.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 47.4,
+   "vrm": 48.5,
+   "power_w": 140.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 20.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 47.5,
+   "vrm": 48.6,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 21.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 47.7,
+   "vrm": 48.7,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 22.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 47.9,
+   "vrm": 48.8,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 23.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 48.1,
+   "vrm": 48.9,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 24.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 48.3,
+   "vrm": 49.0,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 25.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 48.5,
+   "vrm": 49.1,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 26.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 48.7,
+   "vrm": 49.2,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 27.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 48.9,
+   "vrm": 49.3,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 28.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 49.1,
+   "vrm": 49.4,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 29.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 49.2,
+   "vrm": 49.5,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 30.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 49.4,
+   "vrm": 49.6,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 31.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 49.6,
+   "vrm": 49.7,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 32.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 49.8,
+   "vrm": 49.8,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 33.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 50.0,
+   "vrm": 49.9,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 34.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 50.2,
+   "vrm": 50.0,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 35.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 50.4,
+   "vrm": 50.1,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 36.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 50.6,
+   "vrm": 50.2,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 37.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 50.8,
+   "vrm": 50.3,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 38.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 51.0,
+   "vrm": 50.4,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 39.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 51.1,
+   "vrm": 50.5,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 40.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 51.3,
+   "vrm": 50.6,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 41.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 51.5,
+   "vrm": 50.7,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 42.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 51.7,
+   "vrm": 50.8,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 43.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 51.9,
+   "vrm": 50.9,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 44.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 52.1,
+   "vrm": 51.0,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 45.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 52.3,
+   "vrm": 51.1,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 46.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 52.5,
+   "vrm": 51.2,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 47.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 52.7,
+   "vrm": 51.3,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 48.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 52.9,
+   "vrm": 51.4,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 49.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 53.0,
+   "vrm": 51.5,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 50.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 53.2,
+   "vrm": 51.6,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 51.0,
+   "tctl": 90.2,
+   "ambient": 36.0,
+   "coolant": 53.4,
+   "vrm": 51.7,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 52.0,
+   "tctl": 89.8,
+   "ambient": 36.0,
+   "coolant": 53.6,
+   "vrm": 51.8,
+   "power_w": 97.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  },
+  {
+   "t": 53.0,
+   "tctl": 90.0,
+   "ambient": 36.0,
+   "coolant": 53.8,
+   "vrm": 51.9,
+   "power_w": 96.0,
+   "fans": {
+    "pump": 1850,
+    "fan1": 620,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.07,
+    "in1": 11.98
+   },
+   "phase": "load"
+  }
+ ]
+}
