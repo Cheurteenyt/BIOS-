@@ -1,0 +1,7 @@
+BootCurrent: 0002
+Timeout: 1 seconds
+BootOrder: 0002,0001,0000
+Boot0000* Windows Boot Manager	HD(1,GPT,6f2f9a11-4c2b-4d55-9d10-3f1e2a7b8c44,0x800,0x100000)/File(\EFI\MICROSOFT\BOOT\BOOTMGFW.EFI)WINDOWS.........x...B.C.O.O.T.F.E.D.O.R.S...
+Boot0001* Limine	HD(1,GPT,6f2f9a11-4c2b-4d55-9d10-3f1e2a7b8c44,0x800,0x100000)/File(\EFI\Limine\LimineX64.efi)
+Boot0002* Omarchy Linux (UKI)	HD(1,GPT,6f2f9a11-4c2b-4d55-9d10-3f1e2a7b8c44,0x800,0x100000)/File(\EFI\Linux\omarchy-6.12-lts.efi)
+MirrorStatus: MIRROR_DONE

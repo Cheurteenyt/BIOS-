@@ -1,0 +1,31 @@
+{
+  "Devices": [
+    {
+      "Name": "Samsung SSD 980 PRO 1TB",
+      "DeviceId": "a1b2c3d4-nvme-samsung-980pro",
+      "Guid": ["b2a1c3d4-0000-4000-8000-000000000001"],
+      "Version": "5B2QGXA7",
+      "Vendor": "Samsung",
+      "Flags": ["Internal", "Updatable", "NeedsReboot"],
+      "Internal": true
+    },
+    {
+      "Name": "TPM 2.0",
+      "DeviceId": "tpm-fixture-device",
+      "Guid": ["b2a1c3d4-0000-4000-8000-000000000002"],
+      "Version": "3.10.4.0",
+      "Vendor": "AMD",
+      "Flags": ["Internal"],
+      "Internal": true
+    },
+    {
+      "Name": "System Firmware",
+      "DeviceId": "system-firmware-fixture",
+      "Guid": ["b2a1c3d4-0000-4000-8000-000000000003"],
+      "Version": "3644",
+      "Vendor": "ASUSTeK COMPUTER INC.",
+      "Flags": ["Internal"],
+      "Internal": true
+    }
+  ]
+}

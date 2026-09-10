@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+# omarchy:summary=Run the MCP server (stdio) exposing the five T0 tools to agent harnesses
+# omarchy:args=[]
+# omarchy:examples=omarchy-firmware mcp   # wire it via your harness MCP config
+
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "lib"))
+from firmware_hal.cli import main  # noqa: E402
+
+sys.exit(main(["mcp"]))

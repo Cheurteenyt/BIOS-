@@ -1,0 +1,7 @@
+{
+  "chips": [
+    {"name": "k10temp", "temps": {"Tctl": 52.4, "Tdie": 49.8}},
+    {"name": "nct6779", "temps": {"SYSTIN": 38.0, "CPUTIN": 47.5}, "fans": {"fan1_input": 1150, "fan2_input": 640}, "volts": {"in0_input": 1.104}}
+  ],
+  "source": "/sys/class/hwmon (fixture)"
+}

@@ -1,0 +1,11 @@
+[Unit]
+Description=Frugal scheduling of the omarchy-firmware thermal diagnostics
+
+[Timer]
+# Voluntarily low frequency: 3 T0 reads every 15 minutes represent ~0.03 %
+# of CPU occupancy cycle and zero bytes of SPI flash.
+OnBootSec=5min
+OnUnitActiveSec=15min
+
+[Install]
+WantedBy=timers.target

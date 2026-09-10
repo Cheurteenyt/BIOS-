@@ -1,0 +1,213 @@
+{
+ "meta": {
+  "title": "B450 VRM overheating under sustained load",
+  "cooling": "liquid",
+  "note": "Moderate Tctl (76 °C) but VRM > 93 °C: stage throttling, invisible to the BIOS"
+ },
+ "samples": [
+  {
+   "t": 0.0,
+   "tctl": 74.0,
+   "ambient": 34.0,
+   "coolant": 35.0,
+   "vrm": 93.0,
+   "power_w": 130.0,
+   "fans": {
+    "pump": 1850,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.09,
+    "in1": 11.95
+   }
+  },
+  {
+   "t": 1.0,
+   "tctl": 74.4,
+   "ambient": 34.0,
+   "coolant": 35.0,
+   "vrm": 93.5,
+   "power_w": 130.0,
+   "fans": {
+    "pump": 1850,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.09,
+    "in1": 11.95
+   }
+  },
+  {
+   "t": 2.0,
+   "tctl": 74.8,
+   "ambient": 34.0,
+   "coolant": 35.0,
+   "vrm": 94.0,
+   "power_w": 130.0,
+   "fans": {
+    "pump": 1850,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.09,
+    "in1": 11.95
+   }
+  },
+  {
+   "t": 3.0,
+   "tctl": 75.2,
+   "ambient": 34.0,
+   "coolant": 35.0,
+   "vrm": 94.5,
+   "power_w": 130.0,
+   "fans": {
+    "pump": 1850,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.09,
+    "in1": 11.95
+   }
+  },
+  {
+   "t": 4.0,
+   "tctl": 75.6,
+   "ambient": 34.0,
+   "coolant": 35.0,
+   "vrm": 95.0,
+   "power_w": 130.0,
+   "fans": {
+    "pump": 1850,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.09,
+    "in1": 11.95
+   }
+  },
+  {
+   "t": 5.0,
+   "tctl": 74.0,
+   "ambient": 34.0,
+   "coolant": 35.0,
+   "vrm": 95.5,
+   "power_w": 130.0,
+   "fans": {
+    "pump": 1850,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.09,
+    "in1": 11.95
+   }
+  },
+  {
+   "t": 6.0,
+   "tctl": 74.4,
+   "ambient": 34.0,
+   "coolant": 35.0,
+   "vrm": 96.0,
+   "power_w": 130.0,
+   "fans": {
+    "pump": 1850,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.09,
+    "in1": 11.95
+   }
+  },
+  {
+   "t": 7.0,
+   "tctl": 74.8,
+   "ambient": 34.0,
+   "coolant": 35.0,
+   "vrm": 96.5,
+   "power_w": 130.0,
+   "fans": {
+    "pump": 1850,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.09,
+    "in1": 11.95
+   }
+  },
+  {
+   "t": 8.0,
+   "tctl": 75.2,
+   "ambient": 34.0,
+   "coolant": 35.0,
+   "vrm": 97.0,
+   "power_w": 130.0,
+   "fans": {
+    "pump": 1850,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.09,
+    "in1": 11.95
+   }
+  },
+  {
+   "t": 9.0,
+   "tctl": 75.6,
+   "ambient": 34.0,
+   "coolant": 35.0,
+   "vrm": 97.5,
+   "power_w": 130.0,
+   "fans": {
+    "pump": 1850,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.09,
+    "in1": 11.95
+   }
+  },
+  {
+   "t": 10.0,
+   "tctl": 74.0,
+   "ambient": 34.0,
+   "coolant": 35.0,
+   "vrm": 98.0,
+   "power_w": 130.0,
+   "fans": {
+    "pump": 1850,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.09,
+    "in1": 11.95
+   }
+  },
+  {
+   "t": 11.0,
+   "tctl": 74.4,
+   "ambient": 34.0,
+   "coolant": 35.0,
+   "vrm": 98.5,
+   "power_w": 130.0,
+   "fans": {
+    "pump": 1850,
+    "fan2": 780,
+    "fan3": 950
+   },
+   "volts": {
+    "in0": 1.09,
+    "in1": 11.95
+   }
+  }
+ ]
+}

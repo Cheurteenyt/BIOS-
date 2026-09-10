@@ -1,0 +1,90 @@
+# dmidecode 3.6
+Getting SMBIOS data from sysfs.
+SMBIOS 3.3.0 present.
+
+Handle 0x0000, DMI type 0, 26 bytes
+BIOS Information
+	Vendor: American Megatrends Inc.
+	Version: 3644
+	Release Date: 08/12/2026
+	Address: 0xF0000
+	Runtime Size: 64 kB
+	ROM Size: 16 MB
+	Characteristics:
+		PCI is supported
+		BIOS is upgradeable
+		BIOS shadowing is allowed
+		Boot from CD is supported
+		Selectable boot is supported
+		EDD is supported
+		Japanese floppy for Toshiba 1.2 MB is supported (int 13h)
+		5.25"/360 kB floppy services are supported (int 13h)
+		5.25"/1.2 MB floppy services are supported (int 13h)
+		3.5"/720 kB floppy services are supported (int 13h)
+		3.5"/2.88 MB floppy services are supported (int 13h)
+		8042 keyboard services are supported (int 9h)
+		CGA/mono video services are supported (int 10h)
+		ACPI is supported
+		USB legacy is supported
+		BIOS boot specification is supported
+		Targeted content distribution is supported
+		UEFI is supported
+	BIOS Revision: 5.19
+	Firmware Revision: 1.19
+
+Handle 0x0001, DMI type 1, 27 bytes
+System Information
+	Manufacturer: ASUS
+	Product Name: System Product Name
+	Version: System Version
+	Serial Number: System Serial Number
+	UUID: 5b2a3c10-8e44-11ef-9cbf-04d9f5a1c2e8
+	Wake-up Type: Power Switch
+	SKU Number: SKU
+	Family: Default string
+
+Handle 0x0002, DMI type 2, 15 bytes
+Base Board Information
+	Manufacturer: ASUSTeK COMPUTER INC.
+	Product Name: TUF Gaming B450-PLUS GAMING
+	Version: Rev X.0x
+	Serial Number: 220811345601045
+	Asset Tag: Default string
+	Features:
+		Board is a hosting board
+		Board is replaceable
+	Location In Chassis: Default string
+	Chassis Handle: 0x0003
+	Type: Motherboard
+	Contained Object Handles: 0
+
+Handle 0x0004, DMI type 4, 48 bytes
+Processor Information
+	Socket Designation: AM4
+	Processor Type: Central Processor
+	Processor Family: Zen
+	Processor Manufacturer: Advanced Micro Devices, Inc.
+	Processor ID: 87 1F 00 00 FF FB 8B 17
+	Processor Version: AMD Ryzen 9 5950X 16-Core Processor
+	Voltage: 1.1 V
+	External Clock: 100 MHz
+	Max Speed: 6600 MHz
+	Current Speed: 3400 MHz
+	Status: Populated, Enabled
+	Processor Upgrade: Socket AM4
+	L1 Cache Handle: 0x0005
+	L2 Cache Handle: 0x0006
+	L3 Cache Handle: 0x0007
+	Serial Number: Unknown
+	Asset Tag: Unknown
+	Part Number: Unknown
+	Core Count: 16
+	Core Enabled: 16
+	Thread Count: 32
+	Characteristics:
+		64-bit capable
+		Multi-Core
+		Hardware Thread
+		Execute Protection
+		Enhanced Virtualization
+		Power/Performance Control

@@ -1,0 +1,12 @@
+[Unit]
+Description=omarchy-firmware — one-shot thermal diagnostics (T0, read-only)
+Documentation=https://github.com/basecamp/omarchy
+
+[Service]
+Type=oneshot
+# Frugal one-shot (vol. 3, ch. 4): the process starts, reads, journals,
+# hands back. No resident daemon — RAM falls back to zero between runs,
+# the timer is the only thing alive.
+ExecStart=%h/.local/bin/omarchy-firmware-doctor quick --json
+StandardOutput=null
+StandardError=journal

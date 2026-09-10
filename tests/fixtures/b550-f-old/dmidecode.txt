@@ -1,0 +1,48 @@
+# dmidecode 3.6 — carte volontairement ancienne (BIOS d'oct. 2023) :
+# sert à démontrer les statuts « potentiellement exposé » de fw.audit.cve.
+Getting SMBIOS data from sysfs.
+SMBIOS 3.3.0 present.
+
+Handle 0x0000, DMI type 0, 26 bytes
+BIOS Information
+	Vendor: American Megatrends Inc.
+	Version: 3001
+	Release Date: 10/18/2023
+	ROM Size: 16 MB
+	Characteristics:
+		PCI is supported
+		BIOS is upgradeable
+		UEFI is supported
+	BIOS Revision: 5.17
+
+Handle 0x0001, DMI type 1, 27 bytes
+System Information
+	Manufacturer: ASUS
+	Product Name: System Product Name
+	Version: System Version
+	UUID: 9c4d2e50-1a33-11ed-b1a2-04d9f5a1c2e8
+	Wake-up Type: Power Switch
+
+Handle 0x0002, DMI type 2, 15 bytes
+Base Board Information
+	Manufacturer: ASUSTeK COMPUTER INC.
+	Product Name: ROG STRIX B550-F GAMING
+	Version: Rev X.0x
+	Serial Number: 231100554102208
+	Asset Tag: Default string
+	Type: Motherboard
+
+Handle 0x0004, DMI type 4, 48 bytes
+Processor Information
+	Socket Designation: AM4
+	Processor Type: Central Processor
+	Processor Family: Zen
+	Processor Manufacturer: Advanced Micro Devices, Inc.
+	Processor ID: 87 1F 00 00 FF FB 8B 17
+	Processor Version: AMD Ryzen 9 5950X 16-Core Processor
+	Current Speed: 3400 MHz
+	Status: Populated, Enabled
+	Processor Upgrade: Socket AM4
+	Core Count: 16
+	Core Enabled: 16
+	Thread Count: 32

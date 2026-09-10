@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+# omarchy:summary=Physical thermal diagnostics (pump, paste, VRM, 12V) — frugal one-shot, T0 read-only
+# omarchy:args=[quick|probe] [--json] [--seconds N] [--scenario NAME] [--no-record]
+# omarchy:examples=omarchy firmware diag quick | omarchy firmware diag probe --seconds 30 | omarchy firmware diag quick --json
+
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "lib"))
+from firmware_hal.cli import main  # noqa: E402
+
+args = sys.argv[1:]
+if not args:
+    args = ["diag", "quick"]                    # bare: passive diagnostics, not a bare error
+elif args[0] in ("quick", "probe", "scenarios"):
+    args = ["diag"] + args
+elif args[0].startswith("-"):
+    args = ["diag", "quick"] + args             # options alone: implicit quick
+sys.exit(main(args))

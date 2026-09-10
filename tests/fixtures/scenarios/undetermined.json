@@ -1,0 +1,69 @@
+{
+ "meta": {
+  "title": "Insufficient sensors — owned verdict",
+  "cooling": null,
+  "note": "k10temp alone, no fan nor ambient: undetermined rather than falsely reassuring"
+ },
+ "samples": [
+  {
+   "t": 0.0,
+   "tctl": 45.2,
+   "ambient": null,
+   "coolant": null,
+   "vrm": null,
+   "power_w": null,
+   "fans": {},
+   "volts": {}
+  },
+  {
+   "t": 1.0,
+   "tctl": 45.2,
+   "ambient": null,
+   "coolant": null,
+   "vrm": null,
+   "power_w": null,
+   "fans": {},
+   "volts": {}
+  },
+  {
+   "t": 2.0,
+   "tctl": 45.2,
+   "ambient": null,
+   "coolant": null,
+   "vrm": null,
+   "power_w": null,
+   "fans": {},
+   "volts": {}
+  },
+  {
+   "t": 3.0,
+   "tctl": 45.2,
+   "ambient": null,
+   "coolant": null,
+   "vrm": null,
+   "power_w": null,
+   "fans": {},
+   "volts": {}
+  },
+  {
+   "t": 4.0,
+   "tctl": 45.2,
+   "ambient": null,
+   "coolant": null,
+   "vrm": null,
+   "power_w": null,
+   "fans": {},
+   "volts": {}
+  },
+  {
+   "t": 5.0,
+   "tctl": 45.2,
+   "ambient": null,
+   "coolant": null,
+   "vrm": null,
+   "power_w": null,
+   "fans": {},
+   "volts": {}
+  }
+ ]
+}

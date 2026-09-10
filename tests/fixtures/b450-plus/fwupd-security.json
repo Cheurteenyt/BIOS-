@@ -1,0 +1,10 @@
+{
+  "HostSecurityId": "HSI:4",
+  "HostSecurityAttributes": [
+    {"AppstreamId": "org.freedesktop.fwupd.security-attr.spi", "HsiResult": "hsi-result-valid", "Title": "SPI flash write protection"},
+    {"AppstreamId": "org.freedesktop.fwupd.security-attr.plt", "HsiResult": "hsi-result-valid", "Title": "Platform firmware runtime validation"},
+    {"AppstreamId": "org.freedesktop.fwupd.security-attr.smm", "HsiResult": "hsi-result-valid", "Title": "SMM lockdown"},
+    {"AppstreamId": "org.freedesktop.fwupd.security-attrEncryptedRam", "HsiResult": "hsi-result-failure", "Title": "Encrypted RAM"},
+    {"AppstreamId": "org.freedesktop.fwupd.security-attr.sb", "HsiResult": "hsi-result-valid", "Title": "Secure Boot enabled"}
+  ]
+}

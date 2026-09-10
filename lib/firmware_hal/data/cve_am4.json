@@ -1,0 +1,65 @@
+{
+  "scope": "Plateformes AMD AM4 desktop (ASUS, MSI, Gigabyte, ASRock) — issue du volume 1, ch. 5",
+  "generated": "2026-09-10",
+  "honesty_note": "Chaque statut est un raisonnement sur des dates, pas une certitude : « potentiellement exposé » et « probablement corrigé » invitent à vérifier la page support du constructeur. Le socle ne lit pas le web en Phase 1.",
+  "entries": [
+    {
+      "id": "ftpm-stutter-2022",
+      "title": "À-coups système périodiques liés au fTPM AMD (sporadic stutter)",
+      "year": 2022,
+      "category": "performance/stabilité",
+      "severity": "moyenne — fuites de paquets NVMe/USB sous charge, pas une faille de sécurité",
+      "applies_if": {"socket": "AM4", "note": "fTPM activé (pas de TPM discret)"},
+      "fixed_from_bios_date": "2022-06-01",
+      "fixed_hint": "AGESA ComboAM4v2 1.2.0.7 et suivantes",
+      "reference": "AMD Security Bulletin / correctif AGESA mai-juin 2022"
+    },
+    {
+      "id": "logofail-2023",
+      "title": "LogoFAIL — parsing d'images du DXE (logos de boot)",
+      "year": 2023,
+      "category": "sécurité — exécution de code au boot",
+      "severity": "critique à la divulgation (nov. 2023)",
+      "applies_if": {"socket": "AM4", "note": "firmware AMI avec images de logo non durcies"},
+      "fixed_from_bios_date": "2024-03-01",
+      "fixed_hint": "vagues de BIOS constructeurs T1 2024 (ASUS à partir de 1202+ selon modèles)",
+      "reference": "Binarly, LogoFAIL (CVE-2023-40238 et famille)"
+    },
+    {
+      "id": "sinkclose-2023-31315",
+      "title": "Sinkclose — élévation de privilèges via le PSP AMD (SMM)",
+      "year": 2024,
+      "cve": "CVE-2023-31315",
+      "category": "sécurité — privilèges Ring -2",
+      "severity": "élevée — exécution au niveau firmware après compromission OS",
+      "applies_if": {"socket": "AM4"},
+      "fixed_from_bios_date": "2024-10-01",
+      "fixed_hint": "AGESA 1.2.0.C (sept. 2024) propagée par les constructeurs en T4 2024",
+      "reference": "IOActive / AMD-SB-4008"
+    },
+    {
+      "id": "vu-382314-2025",
+      "title": "VU#382314 — chaîne de failles du micrologiciel AMD (divulgation déc. 2025)",
+      "year": 2025,
+      "cve": "CVE-2025-14302 et sœurs",
+      "category": "sécurité — PSP/SMU",
+      "severity": "élevée selon configuration",
+      "applies_if": {"socket": "AM4/AM5"},
+      "fixed_from_bios_date": "2026-01-15",
+      "fixed_hint": "correctifs AGESA poussés fin 2025 / début 2026 selon modèles ; vérifier l'avis constructeur",
+      "reference": "CERT/CC VU#382314"
+    },
+    {
+      "id": "cve-2026-6726",
+      "title": "CVE-2026-6726 / CVE-2026-6727 — correctifs AGESA en cours de déploiement (août 2026)",
+      "year": 2026,
+      "cve": "CVE-2026-6726, CVE-2026-6727",
+      "category": "sécurité",
+      "severity": "à confirmer via avis constructeur",
+      "applies_if": {"socket": "AM4/AM5"},
+      "fixed_from_bios_date": null,
+      "fixed_hint": "déploiement constructeur en cours au moment de rédaction — statut inconnu par conception",
+      "reference": "vol. 1, ch. 5, ligne de temps CVE"
+    }
+  ]
+}
