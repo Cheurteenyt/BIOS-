@@ -5,9 +5,19 @@ on:
     branches: [main]
   pull_request:
 
+# Least privilege: the CI only needs to read the code.
+permissions:
+  contents: read
+
+# One run per ref: superseded pushes are cancelled, runners stay free.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
@@ -26,20 +36,50 @@ jobs:
       - name: Selftest on fixtures
         run: python3 bin/omarchy-firmware selftest
 
-      - name: Tier refusals still hold (explicit invocation)
+      - name: Tier safety still holds (explicit invocation, no confirm)
         run: |
-          python3 bin/omarchy-firmware cpu epp set balance_performance --json
           python3 - <<'EOF'
-          import subprocess, sys
+          import json, subprocess, sys
+
+          # Invariant: a T1 write invoked explicitly, WITHOUT --confirm,
+          # must never modify the machine. The documented outcomes are:
+          #   - refused  (exit 2, "REFUSED:" on stderr) — e.g. no EPP
+          #     exposed on the runner (typical for cloud VMs);
+          #   - dry-run  (exit 0, status "dry-run" in JSON) — when the
+          #     hardware is present, the plan is shown, nothing written.
+          # Any other outcome means the safety gate failed -> red CI.
+          p = subprocess.run(
+              [sys.executable, "bin/omarchy-firmware", "cpu", "epp",
+               "set", "balance_performance", "--json"],
+              capture_output=True, text=True)
+
+          out = p.stdout + p.stderr
+          try:
+              payload = json.loads(p.stdout) if p.stdout.strip() else {}
+          except json.JSONDecodeError:
+              payload = {}
+          status = payload.get("status", "")
+
+          refused = p.returncode == 2 and "REFUSED" in out
+          dryrun = p.returncode == 0 and status == "dry-run"
+          assert refused or dryrun, (
+              f"SAFETY GATE FAILED: rc={p.returncode}\n{out[:2000]}")
+          print("T1 without --confirm:",
+                "refused (no EPP on runner)" if refused else "dry-run",
+                "-> nothing written.")
+
           # A T2 tool must stay declared and refused, never executed.
-          p = subprocess.run([sys.executable, "bin/omarchy-firmware", "tiers"],
-                             capture_output=True, text=True)
-          assert "fw.update.stage" in p.stdout and "T2" in p.stdout
+          p2 = subprocess.run(
+              [sys.executable, "bin/omarchy-firmware", "tiers"],
+              capture_output=True, text=True)
+          assert "fw.update.stage" in p2.stdout and "T2" in p2.stdout, (
+              f"T2 declaration missing:\n{p2.stdout[:2000]}")
           print("T2 tools remain declared and refused.")
           EOF
 
   mcp:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: mcp conformance
     steps:
       - uses: actions/checkout@v4
@@ -48,8 +88,8 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Install the optional MCP dependency
-        run: pip install mcp
+      - name: Install the optional MCP dependency (1.x, SDK-stable range)
+        run: pip install -q "mcp>=1.0,<2"
 
       - name: MCP smoke (initialize, tools/list, real calls, T1 dry-run)
         run: python3 tests/mcp_smoke.py

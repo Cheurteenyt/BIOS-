@@ -1,5 +1,7 @@
 # Beyond the BIOS — an agent ↔ firmware bridge for Omarchy
 
+[![ci](https://github.com/Cheurteenyt/BIOS-/actions/workflows/ci.yml/badge.svg)](https://github.com/Cheurteenyt/BIOS-/actions/workflows/ci.yml)
+
 > **Read-only firmware & hardware intelligence layer for Omarchy.** Audits BIOS,
 > boot chain and AM4 CVEs, and names physical faults the BIOS can't see: dead
 > AIO pump, missing thermal paste, hot VRM, sagging 12 V rail. 5 MCP tools, all
