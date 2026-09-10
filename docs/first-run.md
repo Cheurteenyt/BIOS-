@@ -42,10 +42,15 @@ rehearsal proves the contract, the machine proves the truth.
 ### 0.1 Install (user-level, nothing root, nothing resident)
 
 ```bash
-git clone https://github.com/Cheurteenyt/BIOS-.git omarchy-firmware
-cd omarchy-firmware
-./install.sh
+curl -fsSL https://raw.githubusercontent.com/Cheurteenyt/BIOS-/main/install.sh \
+  | bash -s -- --from release
 ```
+
+The installer floats, the payload is pinned: the tagged tarball is fetched
+and verified against its published `SHA256SUMS` before anything runs, and
+the provenance (tag + digest) is echoed — quote it in the day-0 log.
+Development alternative: `git clone https://github.com/Cheurteenyt/BIOS-.git
+omarchy-firmware && cd omarchy-firmware && ./install.sh` (floating main).
 
 `install.sh` copies bins to `~/.local/bin`, the self-contained library
 and TWIN-1 to `~/.local/share/omarchy-firmware/` (lib + twin), the skill
@@ -61,7 +66,7 @@ omarchy-firmware selftest       # full twin demo, exit 0
 omarchy-firmware capture        # day-0 photograph BEFORE anything else
 omarchy-firmware rehearse       # day-0 drill: 28 probes on THIS machine
 omarchy-firmware rehearse-diff --latest   # twin → real: the named surprises
-python3 tests/test_suite.py     # 277 checks (run from the clone)
+python3 tests/test_suite.py     # 281 checks (run from the clone)
 python3 tests/mcp_smoke.py      # needs pip install 'mcp>=1.0,<2'
 ```
 

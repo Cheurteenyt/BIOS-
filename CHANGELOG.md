@@ -4,6 +4,47 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## 0.6.1 — the distribution: pinned, canaried, bit-verified
+
+The day-0 payload now ships the way the thesis says tools should ship:
+reproducible, and shown.
+
+**Added**
+- `install.sh --from <release | tag | main>`: the installer floats, the
+  payload is pinned — the tagged tarball is fetched and verified against
+  its published `SHA256SUMS` BEFORE anything runs; the provenance (tag +
+  digest) is echoed for the day-0 log. `--from release` resolves the
+  latest tag via the API, with a redirect-based fallback when the API is
+  throttled; every failure is loud (bad tag, missing asset, checksum
+  mismatch → refused, exit 1; unknown args → exit 2).
+- GitHub release `v0.6.0`: `omarchy-firmware-0.6.0.tar.gz` (git archive
+  of the annotated tag) + `SHA256SUMS` — the canonical day-0 payload,
+  roundtrip-verified (public download → checksum → install → rehearsal
+  green from the installed tree).
+
+**Changed**
+- CI: the MCP SDK is pinned exactly (`mcp==1.30.0`, proven against the
+  smoke and the full suite's handshake path before the pin was written)
+  and the runners are pinned (`ubuntu-24.04` ×3 — no floating label).
+  A new weekly scheduled job, the **mcp drift canary**, installs the
+  floating `mcp>=1.0,<2` range exactly as a user would and runs the same
+  smoke: if the range drifts, the canary turns red before any machine
+  does. `workflow_dispatch` runs it on demand.
+- install.sh: the post-install smoke no longer pipes `tiers` through
+  `head` — a closed pipe turned the python flush into a racy
+  BrokenPipeError under `set -o pipefail`, killing finished installs
+  (previous sessions won that race by scheduler luck).
+
+**Fixed**
+- `--from` failure paths: `set -e` used to kill the installer inside
+  command substitutions before the guards could speak; every fetch and
+  verify step now fails loudly with an actionable message, and the
+  release-resolution notice goes to stderr (its stdout is captured).
+
+- tests 277 → 281 (the pinning discipline is structural: exact SDK pin
+  inside 1.x, canary present and guarded, runners pinned, install.sh
+  bit-verifies before staging).
+
 ## 0.6.0 — the day-0 instruments: `rehearse-diff` + `capture`
 
 Sept. 16 must be a replay day — so the debrief is a tool, not a

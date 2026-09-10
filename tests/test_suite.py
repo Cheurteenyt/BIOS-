@@ -15,6 +15,7 @@ Covers, in the spirit of the project rule of vol. 2 (ch. 9):
 
 import json
 import os
+import re
 import sys
 import tempfile
 import time
@@ -26,6 +27,7 @@ sys.path.insert(0, str(ROOT / "lib"))
 os.environ.setdefault("XDG_STATE_HOME", tempfile.mkdtemp())  # isolated journal
 
 from firmware_hal import actions, audit, boot, boot as bootmod, cli, cve_kb, diagnostics, fwupd, gpu, journal, mcp_server, ram, sensors, settings as settings_mod, smbios, storage, tiers  # noqa: E402
+from firmware_hal import __version__ as FW_VERSION  # noqa: E402
 
 FIX_A = ROOT / "tests" / "fixtures" / "b450-plus"
 FIX_B = ROOT / "tests" / "fixtures" / "b550-f-old"
@@ -983,7 +985,7 @@ check("capture: provenance is honest — twin-sourced, roots named, tool version
       snap["backend"] == "twin-sourced"
       and bool(snap["sections"]["cpu_epp"]["data"]["root"])
       and bool(snap["sections"]["hwmon"]["data"]["root"])
-      and snap["sections"]["environment"]["data"]["omarchy_firmware"] == "0.6.0",
+      and snap["sections"]["environment"]["data"]["omarchy_firmware"] == FW_VERSION,
       str(snap.get("twin_source")))
 epp_now = [c["epp_current"] for c in snap["sections"]["cpu_epp"]["data"]["cpus"]]
 check("capture: the twin's EPP tree is mirrored exactly",
@@ -1011,6 +1013,36 @@ check("capture: read-only by construction — no --confirm anywhere in its surfa
 for k, v in sysfs_saved.items():
     if v is not None:
         os.environ[k] = v
+
+
+# --- distribution pinning discipline (0.6.1) ----------------------------------
+# The policy: the installer floats, the payload is pinned, the MCP SDK pin is
+# exact, and a scheduled canary keeps the float honest. These scans make the
+# policy structural — a lazy pin bump or a silent ubuntu-latest drift turns red.
+ci_text = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+inst_text = (ROOT / "install.sh").read_text(encoding="utf-8")
+
+pin = re.search(r'pip install -q "mcp==(\d+)\.(\d+)\.(\d+)"', ci_text)
+check("ci: the MCP SDK is pinned exactly, inside the documented 1.x range",
+      bool(pin) and int(pin.group(1)) == 1 and ci_text.count('"mcp==') == 1,
+      "no exact pip pin" if not pin else str(pin.group(0)))
+
+check("ci: the drift canary floats exactly as a user would — scheduled + dispatch only",
+      "schedule:" in ci_text and "workflow_dispatch" in ci_text
+      and ci_text.count('pip install -q "mcp>=1.0,<2"') == 1
+      and "if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'" in ci_text,
+      "")
+
+check("ci: runners are pinned (ubuntu-24.04 ×3), no floating runner label",
+      ci_text.count("runs-on: ubuntu-24.04") == 3
+      and "runs-on: ubuntu-latest" not in ci_text,
+      str(ci_text.count("runs-on: ubuntu-24.04")))
+
+check("install.sh: the payload is bit-verified before anything runs",
+      "--from" in inst_text and "sha256sum -c" in inst_text
+      and "releases/download/" in inst_text and "CHECKSUM MISMATCH" in inst_text
+      and "releases/latest" in inst_text,
+      "")
 
 
 # -------------------------------------------------------------- output --

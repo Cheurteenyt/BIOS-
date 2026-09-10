@@ -37,7 +37,7 @@ agents/skills/firmware/  the skill — conduct rules consumed by harnesses
 etc/systemd/user/        one-shot services + timers (NEVER enabled by install)
 tests/                   fixtures (3 board sets: issues + clean) + twin-sysfs
                          + 12 thermal scenarios + test suite + MCP smoke
-tests/test_suite.py      277 checks, stdlib only — must pass before any push
+tests/test_suite.py      281 checks, stdlib only — must pass before any push
 tests/mcp_smoke.py       MCP conformance: handshake, 12 tools, T1 dry-run
 docs/                    architecture, security doctrine, write layers (T1+T2),
                          diagnostics catalog, digital twin, vendor BIOS
@@ -90,7 +90,7 @@ Rules that govern any change:
 ## 4. Testing discipline
 
 ```bash
-python3 tests/test_suite.py        # 277 checks — must print "277/277 tests PASS"
+python3 tests/test_suite.py        # 281 checks — must print "281/281 tests PASS"
 python3 tests/mcp_smoke.py         # MCP conformance (needs the optional mcp pkg)
 python3 bin/omarchy-firmware selftest
 omarchy-firmware rehearse --backend twin   # 28 probes — must print "green"

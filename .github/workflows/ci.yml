@@ -4,6 +4,14 @@ on:
   push:
     branches: [main]
   pull_request:
+  schedule:
+    # Weekly drift canary (Monday 04:17 UTC): re-runs the MCP smoke against
+    # the FLOATING 'mcp>=1.0,<2' range a user would actually install. If the
+    # SDK drifted and the range broke, the canary turns red BEFORE any
+    # machine does — then the exact pin below gets bumped. Day 0 is for
+    # replay, not discovery; CI's job is to keep it that way.
+    - cron: "17 4 * * 1"
+  workflow_dispatch: {}
 
 # Least privilege: the CI only needs to read the code.
 permissions:
@@ -16,7 +24,10 @@ concurrency:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    # Runner pinned: ubuntu-latest will someday jump to a newer image and
+    # silently change the environment under us. Reproducibility is a choice.
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     strategy:
       fail-fast: false
@@ -78,7 +89,8 @@ jobs:
           EOF
 
   mcp:
-    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     name: mcp conformance
     steps:
@@ -88,8 +100,34 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Install the optional MCP dependency (1.x, SDK-stable range)
-        run: pip install -q "mcp>=1.0,<2"
+      # Exact pin, proven against the smoke + the full suite (handshake path)
+      # before being committed here. The version FLOAT is exercised on a
+      # schedule by the canary job below — never on a machine we care about.
+      # Bump procedure: validate the new version locally against
+      # tests/mcp_smoke.py, then change this pin in the same commit.
+      - name: Install the pinned MCP SDK (exact, drift caught by the canary)
+        run: pip install -q "mcp==1.30.0"
 
       - name: MCP smoke (initialize, tools/list, real calls, T1 dry-run)
+        run: python3 tests/mcp_smoke.py
+
+  canary:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    name: mcp drift canary (floating >=1.0,<2)
+    concurrency:
+      group: ci-canary
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install the floating range exactly as a user would
+        run: pip install -q "mcp>=1.0,<2"
+
+      - name: MCP smoke against the floating SDK
         run: python3 tests/mcp_smoke.py
