@@ -195,13 +195,50 @@ def _tool_specs() -> list[dict]:
     ]
 
 
+def _t1_argv(name: str, params: dict) -> list[str]:
+    """The journal line must carry WHAT was requested, not just the tool
+    name (the CLI journals its full argv — the MCP side stays equivalent)."""
+    argv = [name]
+    if name == "cpu.epp.set":
+        if params.get("value"):
+            argv.append(f"value={params['value']}")
+    elif name == "fans.curve.set":
+        c = params.get("curve")
+        if isinstance(c, dict):
+            argv.append(f"hwmon={c.get('hwmon')}")
+            argv.append(f"pwm={c.get('pwm')}")
+    if params.get("confirm"):
+        argv.append("confirm=true")
+    if params.get("undo"):
+        argv.append("undo=true")
+    return argv
+
+
 def _run_tool(name: str, params: dict | None = None) -> dict:
     import os
     params = params or {}
     tier = tiers.assert_phase1(name)  # refuses out-of-scope with the exact reason
     fx = os.environ.get("FW_FIXTURE_DIR") or None  # tests/acceptance without hardware
     scenario = os.environ.get("FW_DIAG_SCENARIO") or None  # thermal scenario without hardware
+    argv = _t1_argv(name, params) if name in ("cpu.epp.set", "fans.curve.set") \
+        else [name]
 
+    try:
+        return _run_tool_body(name, params, tier, fx, scenario, argv)
+    except actions.ActionRefused as exc:
+        # a refused call leaves the same trace as its CLI equivalent:
+        # the boundary journals EVERY call with its status (actions.py rule).
+        journal.record(name, tier, argv, "refused", str(exc)[:200],
+                       fixture=fx is not None)
+        raise
+    except Exception as exc:  # noqa: BLE001 — journaled, then re-raised
+        journal.record(name, tier, argv, "error", str(exc)[:200],
+                       fixture=fx is not None)
+        raise
+
+
+def _run_tool_body(name: str, params: dict, tier: str,
+                   fx: str | None, scenario: str | None, argv: list[str]) -> dict:
     if name == "fw.diag.thermal":
         data = diagnostics.quick(scenario=scenario, fixture_dir=fx, record=False)
         data["journal_entry"] = journal.record(
@@ -221,7 +258,7 @@ def _run_tool(name: str, params: dict | None = None) -> dict:
                 confirm=bool(params.get("confirm")),
                 undo=bool(params.get("undo")))
         data["journal_entry"] = journal.record(
-            name, tier, [name], data.get("status", "dry-run"),
+            name, tier, argv, data.get("status", "dry-run"),
             str(data.get("note") or data.get("status"))[:160],
             fixture=fx is not None)
         return data

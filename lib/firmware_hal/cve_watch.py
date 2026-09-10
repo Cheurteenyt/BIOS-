@@ -32,6 +32,7 @@ import time
 from pathlib import Path
 
 from . import cve_kb, fwupd, journal
+from .atomic import atomic_write_text
 
 _CVE_RE = re.compile(r"CVE-\d{4}-\d{4,7}", re.IGNORECASE)
 _WATCH_STATE = "cve-watch.json"
@@ -49,11 +50,13 @@ def _read_state() -> dict | None:
         return None
 
 
-def _write_state(state: dict) -> None:
+def _write_state(state: dict) -> bool:
+    """Persist the drift baseline atomically; False = stated by the caller."""
     try:
-        _state_path().write_text(json.dumps(state, ensure_ascii=False), encoding="utf-8")
+        atomic_write_text(_state_path(), json.dumps(state, ensure_ascii=False))
+        return True
     except OSError:
-        pass  # the watch must never fail on its own bookkeeping
+        return False  # the watch must never fail on its own bookkeeping
 
 
 def _entry_hashes(kb: dict) -> dict[str, str]:
@@ -117,7 +120,14 @@ def _fwupd_advisories(fixture_dir, kb: dict) -> dict:
     }
 
 
-def collect(fixture_dir=None) -> dict:
+def collect(fixture_dir=None, record: bool = True) -> dict:
+    """KB freshness + exposure + drift + fwupd cross-check.
+
+    record=True (default) persists the drift baseline (cve-watch.json) —
+    the standing watch verb. record=False is for compositions that must
+    stay read-only on the STATE side too (capture): the watch answers, but
+    the baseline is left exactly as it was.
+    """
     # the KB file is parsed exactly ONCE per command and threaded through:
     # frugality is a hard constraint, and four parses could even disagree
     # if the KB changed under our feet mid-command.
@@ -156,7 +166,7 @@ def collect(fixture_dir=None) -> dict:
         "sha256": sha,
         "entry_hashes": _entry_hashes(kb),
     }
-    _write_state(state)
+    state_persisted = _write_state(state) if record else False
 
     cross = _fwupd_advisories(fixture_dir, kb)
 
@@ -183,5 +193,9 @@ def collect(fixture_dir=None) -> dict:
         },
         "drift": drift,
         "fwupd_cross_check": cross,
+        "baseline": ("persisted" if state_persisted else
+                     "not persisted (read-only composition)" if not record else
+                     "NOT persisted — the state dir refused the write; the "
+                     "next watch will re-baseline"),
         "verdict": verdict,
     }

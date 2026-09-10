@@ -1112,6 +1112,190 @@ check("install.sh: the payload is bit-verified before anything runs",
       "")
 
 
+# --- hardening: the write-path audit (0.6.3) ------------------------------------
+# The undo path reads targets from a STATE file; the MCP boundary must journal
+# its refusals; a failed fwupd check must not read as a clean one; state files
+# must survive a crash mid-write. Each check locks one of those in.
+import firmware_hal.atomic as _atomic  # noqa: E402,F401 — the module must import
+from firmware_hal import mcp_server  # noqa: E402
+
+_H0 = os.environ.get("XDG_STATE_HOME")
+_C0, _W0 = os.environ.get("FW_SYSFS_CPU"), os.environ.get("FW_SYSFS_HWMON")
+os.environ["XDG_STATE_HOME"] = tempfile.mkdtemp()
+
+# 1. undo path validation — a tampered rollback store must never become an
+#    arbitrary-file-write primitive (rule 5 applies to the undo path too).
+_tdir = Path(tempfile.mkdtemp())
+_tcpu = _tdir / "cpu"
+for _n in (0, 1):
+    _d = _tcpu / f"cpu{_n}" / "cpufreq"
+    _d.mkdir(parents=True)
+    (_d / "energy_performance_available_preferences").write_text("performance\n")
+    (_d / "energy_performance_preference").write_text("balance_performance\n")
+_evil = _tdir / "evil.txt"
+_evil.write_text("untouched")
+os.environ["FW_SYSFS_CPU"] = str(_tcpu)
+_rb = journal.state_dir() / "rollback" / "epp.json"
+_rb.parent.mkdir(parents=True, exist_ok=True)
+_rb.write_text(json.dumps([{"ts": "tampered", "targets": {
+    str(_evil): "0",
+    "/etc/shadow": "x"}}]))
+r_tamper = actions.epp_set(undo=True, confirm=True)
+check("t1 undo: a tampered rollback store is refused, never written through",
+      r_tamper["status"] == "refused" and r_tamper["restored"] == {}
+      and len(r_tamper["refused"]) == 2
+      and _evil.read_text() == "untouched",
+      str(r_tamper)[:220])
+
+# 2. one failing target does not abort the undo of the others
+rb2 = json.dumps([{"ts": "t", "targets": {
+    str(_tcpu / "cpu1" / "cpufreq" / "energy_performance_preference"): "performance",
+    str(_tcpu / "cpu9" / "cpufreq" / "energy_performance_preference"): "performance"}}])
+_rb.write_text(rb2)
+r_undo = actions.epp_set(undo=True, confirm=True)
+check("t1 undo: one missing target does not abort the restoration of the others",
+      r_undo["status"] == "rolled-back"
+      and len(r_undo["restored"]) == 1 and len(r_undo["refused"]) == 1
+      and "performance"
+      in (_tcpu / "cpu1" / "cpufreq" / "energy_performance_preference").read_text(),
+      str(r_undo)[:200])
+
+# 3. partial: some writes refused is reported, never claimed as a clean apply
+_pdir = Path(tempfile.mkdtemp())
+_pcpu = _pdir / "cpu"
+for _n in (0, 1):
+    _d = _pcpu / f"cpu{_n}" / "cpufreq"
+    _d.mkdir(parents=True)
+    (_d / "energy_performance_available_preferences").write_text("performance\n")
+    (_d / "energy_performance_preference").write_text("balance_performance\n")
+os.environ["FW_SYSFS_CPU"] = str(_pcpu)
+_epp1 = _pcpu / "cpu1" / "cpufreq" / "energy_performance_preference"
+if os.geteuid() == 0:
+    check("t1 partial: (root cannot be chmod-blocked — check skipped)", True)
+else:
+    _epp1.chmod(0)
+    try:
+        r_partial = actions.epp_set("performance", confirm=True)
+    finally:
+        _epp1.chmod(0o644)
+    check("t1 partial: a refused write makes the status 'partial', not 'applied'",
+          r_partial["status"] == "partial" and len(r_partial["applied"]) == 1
+          and len(r_partial["refused"]) == 1
+          and "half-adjusted" in (r_partial.get("note") or ""),
+          str(r_partial)[:200])
+
+# 4. a corrupt rollback store is moved aside, the store restarts fresh
+_rb.parent.mkdir(parents=True, exist_ok=True)
+_rb.write_text("{not json at all")
+actions._backup("epp", {str(_pcpu / "cpu0" / "cpufreq"
+                               / "energy_performance_preference"): "performance"})
+check("rollback store: a corrupt file is moved aside (.bad-), never silently reset",
+      bool(json.loads(_rb.read_text())[-1].get("targets"))
+      and list(_rb.parent.glob("epp.json.bad-*")),
+      str(list(_rb.parent.glob("epp.json.bad-*"))))
+
+# 5. journal guards: show(0), stray non-object lines
+journal.record("probe.journal", "T0", ["probe"], "ok", "guard test")
+with journal.journal_path().open("a", encoding="utf-8") as _fh:
+    _fh.write("123\n")                 # valid JSON, not an object
+    _fh.write("not json at all\n")     # not JSON
+check("journal: show(0) is empty, not the whole file", journal.show(0) == [])
+check("journal: non-object lines are skipped, never crash the views",
+      all(isinstance(e, dict) for e in journal.show(10 ** 6)), "")
+
+# 6. stage cancel: a persistence failure is an error, never a fake 'cancelled'
+_stage_state = tempfile.mkdtemp()
+_saved = (stage._read_transaction, stage._transaction_path,
+          stage.atomic_write_text)
+stage._read_transaction = lambda: {"status": "staged", "guid": "x"}
+stage._transaction_path = lambda: Path(_stage_state) / "t.json"
+def _boom(_p, _t):
+    raise OSError("state dir vanished")
+stage.atomic_write_text = _boom
+try:
+    r_cancel = stage.cancel()
+finally:
+    stage._read_transaction, stage._transaction_path, stage.atomic_write_text = _saved
+check("stage: a cancel that cannot persist is an error, never a fake 'cancelled'",
+      r_cancel["status"] == "error" and "NOT PERSISTED" in r_cancel["note"],
+      str(r_cancel)[:180])
+
+# 7. MCP refusals are journaled like their CLI equivalent
+os.environ["FW_SYSFS_CPU"] = str(_pcpu)
+_refused_raised = False
+try:
+    mcp_server._run_tool("cpu.epp.set", {"value": "bogus"})
+except actions.ActionRefused:
+    _refused_raised = True
+_mcp_last = journal.show(1)[0]
+check("mcp: a refused T1 call is journaled with its requested value",
+      _refused_raised and _mcp_last["tool"] == "cpu.epp.set"
+      and _mcp_last["status"] == "refused"
+      and "value=bogus" in _mcp_last["argv"],
+      str(_mcp_last)[:180])
+
+# 8. fwupd: exit 1 is the nominal 'no updates'; anything else is 'unavailable'
+_orig_run = fwupd.system.run
+try:
+    fwupd.system.run = lambda *a, **k: (_ for _ in ()).throw(
+        fwupd.system.ToolError("fwupdmgr failed (exit code 1)", returncode=1))
+    _r1 = fwupd.check_updates(refresh=True)
+    fwupd.system.run = lambda *a, **k: (_ for _ in ()).throw(
+        fwupd.system.ToolError("fwupdmgr failed (exit code 7)", returncode=7))
+    _r7 = fwupd.check_updates(refresh=True)
+finally:
+    fwupd.system.run = _orig_run
+check("fwupd: exit code 1 stays the nominal 'no updates announced'",
+      "no updates" in _r1["status"], _r1["status"])
+check("fwupd: a real failure reads 'unavailable', never a fake clean bill",
+      _r7["status"] == "unavailable", str(_r7)[:140])
+
+# 9. capture stays read-only on the STATE side too (drift baseline untouched)
+os.environ["XDG_STATE_HOME"] = tempfile.mkdtemp()
+os.environ["FW_SYSFS_CPU"] = str(_tcpu)
+try:
+    cve_watch.collect(str(FIX_A))  # establishes a drift baseline
+    _cw = journal.state_dir() / "cve-watch.json"
+    _before = _cw.read_text()
+    snap_pure = capture.capture()
+    _after = _cw.read_text()
+    check("capture: read-only by construction — the drift baseline is untouched",
+          _before == _after
+          and snap_pure["sections"]["kb_freshness"]["data"]["baseline"]
+          == "not persisted (read-only composition)",
+          str(snap_pure["sections"]["kb_freshness"]["data"].get("baseline"))[:90])
+finally:
+    pass
+
+# 10. structural pins for the 0.6.3 hardening
+check("kb update: the two-key compare is constant-time (hmac.compare_digest)",
+      "compare_digest"
+      in (ROOT / "lib" / "firmware_hal" / "kb_update.py").read_text(encoding="utf-8"),
+      "")
+check("install.sh: the temp payload dir never outlives the fetch (--from)",
+      "trap 'rm -rf \"$tmp\"' EXIT" in inst_text, "")
+check("bin wrappers: the installed-lib fallback honours XDG_DATA_HOME",
+      all("XDG_DATA_HOME" in (ROOT / "bin" / f).read_text(encoding="utf-8")
+          for f in os.listdir(ROOT / "bin") if f.startswith("omarchy-firmware")),
+      "")
+check("journal: the append is one atomic write under flock",
+      "fcntl.flock" in (ROOT / "lib" / "firmware_hal" / "journal.py")
+      .read_text(encoding="utf-8")
+      and "os.write(fd, line)" in (ROOT / "lib" / "firmware_hal" / "journal.py")
+      .read_text(encoding="utf-8"), "")
+
+# restore this block's environment
+if _H0 is not None:
+    os.environ["XDG_STATE_HOME"] = _H0
+else:
+    os.environ.pop("XDG_STATE_HOME", None)
+for _var, _old in (("FW_SYSFS_CPU", _C0), ("FW_SYSFS_HWMON", _W0)):
+    if _old is not None:
+        os.environ[_var] = _old
+    else:
+        os.environ.pop(_var, None)
+
+
 # -------------------------------------------------------------- output --
 fails = [t for t in _tests if not t[1]]
 verbose = "-v" in sys.argv

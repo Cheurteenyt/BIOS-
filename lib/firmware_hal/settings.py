@@ -140,9 +140,10 @@ def collect(fixture_dir=None) -> dict:
         if p.exists():
             data = json.loads(p.read_text(encoding="utf-8"))
         else:
-            data = {}
-            data["error"] = "settings fixture missing"
-            return {"tool": "fw.diag.settings", **data}
+            # same shape as every other branch: findings + verdict always exist
+            return {"tool": "fw.diag.settings", "findings": [],
+                    "verdict": "unavailable",
+                    "error": "settings fixture missing"}
     else:
         data = {
             "secure_boot": _secure_boot(),

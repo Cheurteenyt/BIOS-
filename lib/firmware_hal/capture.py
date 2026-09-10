@@ -15,7 +15,9 @@ Honesty rules: every section carries its provenance ("twin-sourced" vs
 is a claim, so the photograph measures itself; a sensorless host records
 nulls and section errors, never guesses; no confirm flag exists and
 nothing here writes to the machine — the only artifact is the snapshot
-file itself.
+file itself, and the embedded watch/fwupd sections run with their own
+state persistence off (the drift baseline and the update cache are NOT
+touched by a photograph).
 
 Two forms:
   capture          — twin-aware (development, demos): when twin assets
@@ -38,6 +40,7 @@ from pathlib import Path
 
 from . import audit, boot, cve_kb, cve_watch, diagnostics, fwupd, gpu, \
     journal, ram, settings as settings_mod, storage, twin
+from .atomic import atomic_write_text
 
 CAPTURE_SCHEMA = "omarchy-firmware/capture@1"
 
@@ -114,8 +117,9 @@ def _sections(fx: str | None) -> list[tuple[str, object]]:
         ("board", lambda: audit.collect(fx)),
         ("cve_posture", lambda: cve_kb.collect(fx)),
         ("boot", lambda: boot.collect(fx)),
-        ("fwupd_local", lambda: fwupd.check_updates(fx, refresh=False)),
-        ("kb_freshness", lambda: cve_watch.collect(fx)),
+        ("fwupd_local", lambda: fwupd.check_updates(fx, refresh=False,
+                                                    persist_cache=False)),
+        ("kb_freshness", lambda: cve_watch.collect(fx, record=False)),
         ("storage", lambda: storage.collect(fx)),
         ("gpu", lambda: gpu.collect(fx)),
         ("ram", lambda: ram.collect(fx)),
@@ -148,6 +152,8 @@ def capture(*, out: str | None = None, live: bool = False) -> dict:
     else:
         fx = os.environ.get("FW_FIXTURE_DIR") or twin.resolve_fixture_dir()
         desc = twin.describe()
+        saved_sysfs = {v: os.environ.get(v)
+                       for v in ("FW_SYSFS_CPU", "FW_SYSFS_HWMON")}
         applied = twin.apply_sysfs_env()
         origin = "live" if desc.get("source") == "MISSING" else "twin-sourced"
         cpu_root = os.environ.get("FW_SYSFS_CPU")
@@ -166,13 +172,17 @@ def capture(*, out: str | None = None, live: bool = False) -> dict:
         sec["ms"] = round((time.perf_counter() - t0) * 1000.0, 1)
         sections[name] = sec
 
-    sections: dict[str, dict] = {}
-    errors: dict[str, str] = {}
-    for name, fn in _sections(fx):
-        _run(name, fn)
-    _run("cpu_epp", _cpu_detail, cpu_root)
-    _run("hwmon", _hwmon_detail, hwmon_root)
-    _run("environment", _environment)
+    try:
+        sections: dict[str, dict] = {}
+        errors: dict[str, str] = {}
+        for name, fn in _sections(fx):
+            _run(name, fn)
+        _run("cpu_epp", _cpu_detail, cpu_root)
+        _run("hwmon", _hwmon_detail, hwmon_root)
+        _run("environment", _environment)
+    finally:
+        if not live:
+            twin.restore_sysfs_env(saved=saved_sysfs)
 
     snap: dict = {
         "schema": CAPTURE_SCHEMA,
@@ -192,8 +202,7 @@ def capture(*, out: str | None = None, live: bool = False) -> dict:
             journal.state_dir() / "captures"
             / f"capture-{time.strftime('%Y%m%d-%H%M%S')}.json")
     dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text(json.dumps(snap, ensure_ascii=False, indent=2),
-                    encoding="utf-8")
+    atomic_write_text(dest, json.dumps(snap, ensure_ascii=False, indent=2))
     snap["capture_file"] = str(dest)
     argv = ["capture"]
     if live:

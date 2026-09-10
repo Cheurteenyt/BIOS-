@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 # omarchy:summary=The day-0 photograph — a read-only T0 snapshot of what this machine really is
-# omarchy:args=[--out PATH] [--json]
-# omarchy:examples=omarchy-firmware capture | omarchy-firmware capture --before.json --json
+# omarchy:args=[--live] [--out PATH] [--json]
+# omarchy:examples=omarchy-firmware capture --live | omarchy-firmware capture --live --json
 
 import os
 import sys
 
 _here = os.path.dirname(os.path.realpath(__file__))
+_xdg = os.environ.get("XDG_DATA_HOME") or os.path.expanduser("~/.local/share")
 for _cand in (os.path.join(os.path.dirname(_here), "lib"),  # repo checkout
-              os.path.expanduser(  # install.sh layout (P5)
-                  "~/.local/share/omarchy-firmware/lib")):
+              os.path.join(_xdg,  # install.sh layout (P5), XDG_DATA_HOME-aware
+                           "omarchy-firmware", "lib")):
     if os.path.isdir(_cand):
         sys.path.insert(0, _cand)
         break

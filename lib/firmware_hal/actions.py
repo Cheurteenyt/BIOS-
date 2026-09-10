@@ -27,10 +27,12 @@ dry-run | applied | rolled-back | refused.
 from __future__ import annotations
 
 import os
+import re
 import time
 from pathlib import Path
 
 from . import journal
+from .atomic import atomic_write_text
 
 # ---- sysfs roots (env-injectable: tests run on a temp tree) ----------------
 
@@ -68,16 +70,28 @@ def _write(p: Path, value: str) -> None:
 
 
 def _backup(name: str, values: dict[str, str]) -> int:
-    """Append one backup frame to the rollback store; return its id."""
+    """Append one backup frame to the rollback store; return its id.
+
+    A corrupt store never blocks a backup: the bad file is moved aside
+    (*.bad-<ts>) and the store restarts fresh — losing undo history is
+    stated, never silent (the .bad file keeps the evidence).
+    """
     p = _rollback_dir() / f"{name}.json"
     frames = []
     if p.exists():
         try:
             frames = json_loads(p.read_text(encoding="utf-8"))
+            if not isinstance(frames, list):
+                raise ValueError("rollback store must be a list")
         except Exception:  # noqa: BLE001 — a corrupt store never blocks a backup
+            bad = _rollback_dir() / f"{name}.json.bad-{time.strftime('%Y%m%d-%H%M%S')}"
+            try:
+                p.rename(bad)
+            except OSError:
+                pass
             frames = []
     frames.append({"ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "targets": values})
-    p.write_text(json_dumps(frames[-10:]), encoding="utf-8")  # keep the last 10
+    atomic_write_text(p, json_dumps(frames[-10:]))  # keep the last 10
     return len(frames) - 1
 
 
@@ -112,6 +126,46 @@ def json_dumps(obj) -> str:
 
 EPP_ROLLBACK = "epp"
 
+# Undo writes to paths restored from a state file. Rule 5 ("only the
+# declared targets") applies THERE TOO: a tampered or corrupted rollback
+# store must never become an arbitrary-file-write primitive.
+_EPP_TARGET_RE = re.compile(
+    r"^cpu\d+/cpufreq/energy_performance_preference$")
+_POINT_ATTR_RE = re.compile(
+    r"^pwm\d+(_enable|_auto_point\d+_temp|_auto_point\d+_pwm)$")
+
+
+def _check_undo_path(path_s: str, root: Path, attr_re: re.Pattern) -> str | None:
+    """None when the stored path is a legitimate target, else the reason.
+
+    The pattern may describe the attribute name alone (fan attrs:
+    `pwm1_enable`) or the path relative to the root (EPP:
+    `cpu0/cpufreq/energy_performance_preference`) — both forms are
+    accepted, and the path MUST resolve inside the root either way.
+    """
+    p = Path(path_s)
+    try:
+        rp = p.resolve()
+        rr = root.resolve()
+    except OSError:
+        return f"{path_s} (unresolvable)"
+    if not str(rp).startswith(str(rr) + os.sep):
+        return f"{path_s} (outside {root})"
+    try:
+        rel = str(rp.relative_to(rr))
+    except ValueError:  # pragma: no cover — startswith already guaranteed it
+        return f"{path_s} (outside {root})"
+    if not (attr_re.match(p.name) or attr_re.match(rel)):
+        return f"{path_s} (not a declared target attribute)"
+    return None
+
+
+def _undo_targets(frame: dict, root: Path, attr_re: re.Pattern):
+    """Yield (path, old_value, refusal_reason) for each stored target."""
+    for path_s, old in (frame.get("targets") or {}).items():
+        reason = _check_undo_path(str(path_s), root, attr_re)
+        yield str(path_s), old, reason
+
 
 def _epp_targets(cpu_root: Path) -> list[Path]:
     return sorted(cpu_root.glob("cpu[0-9]*/cpufreq/energy_performance_preference"))
@@ -127,18 +181,28 @@ def epp_set(value: str | None = None, confirm: bool = False,
             frame = _pop_backup(EPP_ROLLBACK)
             restored = {}
             refused = []
-            for path_s, old in frame["targets"].items():
+            for path_s, old, reason in _undo_targets(frame, root, _EPP_TARGET_RE):
+                if reason:
+                    refused.append(f"{path_s} — {reason}")
+                    continue
                 p = Path(path_s)
                 if not p.exists():
                     refused.append(f"{path_s} (gone since backup)")
                     continue
-                _write(p, old)
-                restored[path_s] = old
+                try:
+                    _write(p, str(old))
+                    restored[path_s] = old
+                except ActionRefused as exc:
+                    refused.append(str(exc))
             return {"tool": "cpu.epp.set", "action": "undo",
-                    "status": "rolled-back",
+                    "status": "rolled-back" if restored else "refused",
                     "restored": restored,
                     "refused": refused,
-                    "note": "previous EPP values restored from the rollback store"}
+                    "note": "previous EPP values restored from the rollback store"
+                            if restored else
+                            "nothing restored — every stored target failed the "
+                            "rule-5 check or the write; the rollback store is "
+                            "kept for inspection"}
         return {"tool": "cpu.epp.set", "action": "undo", "status": "dry-run",
                 "plan": "restore the last backed-up EPP values (rollback "
                         "store, latest frame) — re-run with confirm=True"}
@@ -193,8 +257,12 @@ def epp_set(value: str | None = None, confirm: bool = False,
             applied[p] = value
         except ActionRefused as exc:
             refused.append(str(exc))
-    return {"tool": "cpu.epp.set", "status": "applied", "backup_id": backup_id,
+    status = "applied" if not refused else "partial"
+    return {"tool": "cpu.epp.set", "status": status, "backup_id": backup_id,
             "value": value, "applied": applied, "refused": refused,
+            "note": ("some targets refused — the machine is left half-adjusted; "
+                     "inspect `refused`, then `cpu epp undo --confirm` restores "
+                     "the backup" if refused else None),
             "undo": "cpu epp undo --confirm restores the previous values"}
 
 
@@ -268,16 +336,28 @@ def fans_curve_set(curve: dict | None = None, confirm: bool = False,
         if confirm:
             frame = _pop_backup(FANS_ROLLBACK)
             restored, refused = {}, []
-            for path_s, old in frame["targets"].items():
+            for path_s, old, reason in _undo_targets(frame, root, _POINT_ATTR_RE):
+                if reason:
+                    refused.append(f"{path_s} — {reason}")
+                    continue
                 p = Path(path_s)
                 if not p.exists():
                     refused.append(f"{path_s} (gone since backup)")
                     continue
-                _write(p, old)
-                restored[path_s] = old
+                try:
+                    _write(p, str(old))
+                    restored[path_s] = old
+                except ActionRefused as exc:
+                    refused.append(str(exc))
             return {"tool": "fans.curve.set", "action": "undo",
-                    "status": "rolled-back", "restored": restored,
-                    "refused": refused}
+                    "status": "rolled-back" if restored else "refused",
+                    "restored": restored,
+                    "refused": refused,
+                    "note": ("previous fan curve restored from the rollback "
+                             "store") if restored else
+                            ("nothing restored — every stored target failed the "
+                             "rule-5 check or the write; the rollback store is "
+                             "kept for inspection")}
         return {"tool": "fans.curve.set", "action": "undo", "status": "dry-run",
                 "plan": "restore the last backed-up fan curve (enable + "
                         "auto points) — re-run with confirm=True"}
@@ -358,9 +438,13 @@ def fans_curve_set(curve: dict | None = None, confirm: bool = False,
             applied += 1
         except ActionRefused as exc:
             refused.append(str(exc))
-    return {"tool": "fans.curve.set", "status": "applied",
+    return {"tool": "fans.curve.set",
+            "status": "applied" if not refused else "partial",
             "backup_id": backup_id, "chip": real_name, "pwm": pwm_n,
             "applied_writes": applied, "refused": refused,
+            "note": ("some writes refused — the fan is left half-configured; "
+                     "inspect `refused`, then `fans curve undo --confirm` "
+                     "restores the previous curve") if refused else None,
             "undo": "fans curve undo --confirm restores the previous curve"}
 
 

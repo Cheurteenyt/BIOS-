@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import hmac
 import json
 import shutil
 import sys
@@ -41,6 +42,7 @@ import urllib.request
 from pathlib import Path
 
 from . import cve_kb, journal
+from .atomic import atomic_write_bytes
 
 
 class KbRefused(Exception):
@@ -128,7 +130,7 @@ def activate(source: str, url: bool, sha256: str) -> dict:
             "confirmation requires the exact sha256 shown at staging "
             "(--sha256 HEX) — the two-key rule applies to data too")
     cand = _load_candidate(source, url)
-    if cand["sha256"].lower() != sha256.lower():
+    if not hmac.compare_digest(cand["sha256"].lower(), sha256.lower()):
         raise KbRefused(
             f"sha256 mismatch: staged {cand['sha256'][:16]}…, given "
             f"{sha256[:16]}… — the file changed between stage and confirm "
@@ -137,10 +139,10 @@ def activate(source: str, url: bool, sha256: str) -> dict:
     if override.exists():
         shutil.copy2(override, backup)  # keep one generation of rollback
     payload = json.dumps(cand["kb"], ensure_ascii=False, indent=1).encode("utf-8")
-    override.write_bytes(payload)
+    atomic_write_bytes(override, payload)
     # NOTE: the watch baseline is intentionally NOT reset — the next
     # fw.cve.watch must name the change (added/removed entries).
-    entry = journal.record("kb.update", "T0", ["kb.update", "--confirm"], "applied",
+    entry = journal.record("kb.update", "T1", ["kb.update", "--confirm"], "applied",
                            f"KB override activated: {len(cand['ids'])} entries, "
                            f"sha256 {cand['sha256'][:16]}…")
     return {
@@ -170,7 +172,7 @@ def revert() -> dict:
     else:
         override.unlink()
         note = "override removed — packaged KB back in force"
-    entry = journal.record("kb.update", "T0", ["kb.update", "--revert"], "applied", note)
+    entry = journal.record("kb.update", "T1", ["kb.update", "--revert"], "applied", note)
     return {"tool": "kb.update", "status": "reverted", "note": note,
             "journal_entry": entry}
 
@@ -219,11 +221,13 @@ def main(argv: list[str] | None = None) -> int:
         else:
             data = stage(args.file or args.from_url, url=args.from_url is not None)
     except KbRefused as exc:
-        journal.record("kb.update", "T0", argv or [], "refused", str(exc)[:200])
+        tier = "T1" if (args.confirm or args.revert) else "T0"
+        journal.record("kb.update", tier, argv or [], "refused", str(exc)[:200])
         print(f"REFUSED: {exc}", file=sys.stderr)
         return 2
     except (OSError, urllib.error.URLError) as exc:  # type: ignore[attr-defined]
-        journal.record("kb.update", "T0", argv or [], "error", str(exc)[:200])
+        tier = "T1" if (args.confirm or args.revert) else "T0"
+        journal.record("kb.update", tier, argv or [], "error", str(exc)[:200])
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
 

@@ -35,6 +35,7 @@ import time
 from pathlib import Path
 
 from . import journal, twin
+from .atomic import atomic_write_text
 
 NVME_GUID = "b2a1c3d4-0000-4000-8000-000000000001"
 BOARD_GUID = "b2a1c3d4-0000-4000-8000-000000000003"
@@ -582,7 +583,9 @@ def run_rehearsal(backend: str = "real", *, write_report: bool = True) -> dict:
     else:
         twin_note = "live machine — twin assets untouched"
 
-    curve_path = Path(tempfile.mkstemp(suffix=".json")[1])
+    fd, curve_name = tempfile.mkstemp(suffix=".json")
+    os.close(fd)  # the path is what matters; the fd must not leak
+    curve_path = Path(curve_name)
     curve_path.write_text(json.dumps(CURVE), encoding="utf-8")
     ctx["curve"] = curve_path
 
@@ -634,8 +637,7 @@ def run_rehearsal(backend: str = "real", *, write_report: bool = True) -> dict:
     }
     if write_report:
         out = _report_dir() / f"rehearsal-{time.strftime('%Y%m%d-%H%M%S')}.json"
-        out.write_text(json.dumps(report, ensure_ascii=False, indent=2),
-                       encoding="utf-8")
+        atomic_write_text(out, json.dumps(report, ensure_ascii=False, indent=2))
         report["report_file"] = str(out)
         _prune_reports()
     journal.record("rehearse", "T0", ["rehearse", "--backend", backend],

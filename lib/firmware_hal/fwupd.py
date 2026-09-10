@@ -18,6 +18,7 @@ import time
 from pathlib import Path
 
 from . import system
+from .atomic import atomic_write_text
 from .journal import state_dir
 
 CACHE_TTL = 15 * 60  # seconds — table 6.1: 15-min cache
@@ -97,8 +98,13 @@ def collect_devices(fixture_dir=None) -> dict:
     }
 
 
-def check_updates(fixture_dir=None, refresh: bool = False) -> dict:
-    """Local update state, with a 15-min cache outside fixture mode."""
+def check_updates(fixture_dir=None, refresh: bool = False,
+                  persist_cache: bool = True) -> dict:
+    """Local update state, with a 15-min cache outside fixture mode.
+
+    persist_cache=False (compositions like capture) reads exactly the same
+    answer but leaves the cache file untouched.
+    """
     cache = state_dir() / "cache-update.json"
     if fixture_dir is None and not refresh and cache.exists():
         try:
@@ -129,15 +135,24 @@ def check_updates(fixture_dir=None, refresh: bool = False) -> dict:
         result["status"] = "up to date" if not result["updates"] else "updates available"
     except system.ToolMissing:
         result["status"] = "fwupdmgr missing (pacman -S fwupd)"
-    except Exception as exc:
-        # fwupd exit code 1 = "no updates": nominal case, not a failure.
-        result["status"] = "up to date (no updates announced by the daemon)"
+    except system.ToolError as exc:
+        if exc.returncode == 1:
+            # fwupd exit code 1 = "no updates": nominal case, not a failure.
+            result["status"] = "up to date (no updates announced by the daemon)"
+            result["note"] = str(exc)[:200]
+        else:
+            # daemon dead, timeout, real error: a failed check must NOT be
+            # indistinguishable from a clean one in the status line.
+            result["status"] = "unavailable"
+            result["note"] = str(exc)[:200]
+    except Exception as exc:  # noqa: BLE001
+        result["status"] = "unavailable"
         result["note"] = str(exc)[:200]
 
-    if fixture_dir is None:
+    if fixture_dir is None and persist_cache:
         try:
             result["fetched_at"] = time.time()
-            cache.write_text(json.dumps(result, ensure_ascii=False), encoding="utf-8")
+            atomic_write_text(cache, json.dumps(result, ensure_ascii=False))
         except OSError:
             pass
     return result

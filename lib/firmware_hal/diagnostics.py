@@ -31,6 +31,7 @@ import time
 from pathlib import Path
 
 from . import journal, sensors, twin
+from .atomic import atomic_write_text
 
 PKG_ROOT = Path(__file__).resolve().parents[2]
 
@@ -477,8 +478,9 @@ def record_baseline(result: dict) -> dict | None:
     try:
         entries = load_baseline()
         entries.append(entry)
-        _baseline_path().write_text(
-            json.dumps(entries[-200:], ensure_ascii=False, indent=1), encoding="utf-8")
+        atomic_write_text(
+            _baseline_path(),
+            json.dumps(entries[-200:], ensure_ascii=False, indent=1))
     except OSError:
         return None
     return entry

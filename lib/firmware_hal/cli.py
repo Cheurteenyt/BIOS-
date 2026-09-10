@@ -138,7 +138,11 @@ def _guard_t1(tool: str, argv: list[str], fn, args, *, fixture: bool = False):
         data["journal_entry"] = journal.record(
             tool, tier, argv, status, _summary_t1(data), fixture=fixture)
         _emit(data, args.json)
-        return 2 if status == "refused" else 0
+        if status == "refused":
+            return 2
+        if status == "partial":
+            return 1  # some writes failed: not ok, not refused — a failure
+        return 0
     except actions.ActionRefused as exc:
         journal.record(tool, tier, argv, "refused", str(exc)[:200], fixture=fixture)
         print(f"REFUSED: {exc}", file=sys.stderr)
@@ -153,6 +157,12 @@ def _summary_t1(data: dict) -> str:
     if data.get("status") == "dry-run":
         n = len(data.get("diff", {}) or data.get("plan_writes", []) or {})
         return f"dry-run plan ({n} change(s)) — nothing written"
+    if data.get("status") == "partial":
+        n = data.get("applied_writes")
+        if n is None:
+            n = len(data.get("applied") or {})
+        return (f"partial: {n} write(s) applied, {len(data.get('refused') or [])} "
+                f"refused — backup #{data.get('backup_id')} available for undo")
     if data.get("status") == "applied":
         n = data.get("applied_writes")
         if n is None:
@@ -501,7 +511,12 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.cmd == "report":
-        data = report.collect(days=max(1, args.days))
+        try:
+            data = report.collect(days=max(1, args.days))
+        except Exception as exc:  # noqa: BLE001 — journaled, then stated
+            journal.record("report", "T0", argv, "error", str(exc)[:200])
+            print(f"ERROR: {exc}", file=sys.stderr)
+            return 1
         if args.json:
             print(json.dumps(data, ensure_ascii=False, indent=2))
         else:
@@ -535,8 +550,13 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.cmd == "rehearse":
-        data = rehearse.run_rehearsal(backend=args.backend,
-                                      write_report=not args.no_report)
+        try:
+            data = rehearse.run_rehearsal(backend=args.backend,
+                                          write_report=not args.no_report)
+        except Exception as exc:  # noqa: BLE001 — the drill itself must journal
+            journal.record("rehearse", "T0", argv, "error", str(exc)[:200])
+            print(f"ERROR: {exc}", file=sys.stderr)
+            return 1
         if args.json:
             print(json.dumps(data, ensure_ascii=False, indent=2))
         else:
@@ -547,7 +567,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.latest:
             pair = rehearse.latest_reports()
             if pair is None:
-                journal.record("rehearse-diff", "T0", argv[1:], "refused",
+                journal.record("rehearse-diff", "T0", argv, "refused",
                                "no twin+real report pair in the state dir")
                 print("REFUSED: no twin+real report pair found in "
                       f"{rehearse._report_dir()} — run 'rehearse --backend "
@@ -557,7 +577,7 @@ def main(argv: list[str] | None = None) -> int:
             left_p, right_p = pair
         else:
             if not args.left or not args.right:
-                journal.record("rehearse-diff", "T0", argv[1:], "refused",
+                journal.record("rehearse-diff", "T0", argv, "refused",
                                "missing LEFT/RIGHT report arguments")
                 print("REFUSED: rehearse-diff needs LEFT.json RIGHT.json "
                       "(or --latest)", file=sys.stderr)
@@ -585,7 +605,12 @@ def main(argv: list[str] | None = None) -> int:
         return 0 if d["verdict"] == "clean" else 1
 
     if args.cmd == "capture":
-        data = capture.capture(out=args.out, live=args.live)
+        try:
+            data = capture.capture(out=args.out, live=args.live)
+        except Exception as exc:  # noqa: BLE001 — a failed photograph is journaled
+            journal.record("capture", "T0", argv, "error", str(exc)[:200])
+            print(f"ERROR: {exc}", file=sys.stderr)
+            return 1
         if args.json:
             print(json.dumps(data, ensure_ascii=False, indent=2))
         else:

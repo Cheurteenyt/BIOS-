@@ -37,15 +37,16 @@ def _read_all() -> list[dict]:
     out = []
     for line in p.read_text(encoding="utf-8").splitlines():
         try:
-            out.append(json.loads(line))
+            parsed = json.loads(line)
         except json.JSONDecodeError:
             continue
+        if isinstance(parsed, dict):  # same discipline as journal.show
+            out.append(parsed)
     return out
 
 
 def collect(days: int = 5) -> dict:
     entries = _read_all()
-    today = time.strftime("%Y-%m-%d")
     per_day: dict[str, dict] = {}
 
     def day_bucket(day: str) -> dict:

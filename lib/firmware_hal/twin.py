@@ -126,6 +126,27 @@ def apply_sysfs_env(force: bool = False) -> dict:
     return applied
 
 
+def restore_sysfs_env(applied: dict | None = None,
+                      saved: dict | None = None) -> None:
+    """Undo apply_sysfs_env() in-process.
+
+    A long-lived process (the MCP server, a library consumer) must not keep
+    T1 writes silently retargeted at the twin tree after a capture or a
+    rehearsal. Prefer passing `saved` (var -> previous value or None),
+    captured BEFORE applying: it restores even variables the caller had set
+    to begin with. Without `saved`, every applied variable is unset.
+    """
+    source = saved if saved is not None else {
+        var: None for var in applied
+        if applied.get(var) and applied[var] != "caller-set (respected)"
+    }
+    for var, old in source.items():
+        if old is None:
+            os.environ.pop(var, None)
+        else:
+            os.environ[var] = old
+
+
 def describe() -> dict:
     """What the twin is, where its assets resolve from — for `twin` status."""
     root = twin_root()

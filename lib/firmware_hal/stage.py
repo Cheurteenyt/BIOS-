@@ -38,6 +38,7 @@ import time
 from pathlib import Path
 
 from . import fwupd, journal
+from .atomic import atomic_write_text
 
 _TRANSACTION = "stage-transaction.json"
 
@@ -228,9 +229,9 @@ def apply(guid: str, reason: str | None, fixture_dir=None) -> dict:
                     "stage --cancel (before rebooting).",
         }
         try:
-            _transaction_path().write_text(
-                json.dumps(transaction, ensure_ascii=False, indent=1),
-                encoding="utf-8")
+            atomic_write_text(
+                _transaction_path(),
+                json.dumps(transaction, ensure_ascii=False, indent=1))
         except OSError as exc:
             return {"tool": "fw.update.stage", "tier": "T2",
                     "status": "error",
@@ -264,10 +265,16 @@ def cancel() -> dict:
     t["status"] = "cancelled"
     t["cancelled_ts"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
     try:
-        _transaction_path().write_text(
-            json.dumps(t, ensure_ascii=False, indent=1), encoding="utf-8")
-    except OSError:
-        pass
+        atomic_write_text(
+            _transaction_path(), json.dumps(t, ensure_ascii=False, indent=1))
+    except OSError as exc:
+        # The on-disk transaction still says "staged": announcing a cancel
+        # that did not persist would let the human reboot INTO the flash.
+        return {"tool": "fw.update.stage", "tier": "T2", "status": "error",
+                "note": f"CANCEL NOT PERSISTED — the transaction record "
+                        f"could not be written: {exc}. The staged update is "
+                        f"still pending; fix the state dir and retry before "
+                        f"any reboot."}
     system_update = Path("/system-update")
     return {
         "tool": "fw.update.stage", "tier": "T2", "status": "cancelled",

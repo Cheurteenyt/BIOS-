@@ -62,13 +62,16 @@ resolve_latest() {
 fetch_and_install() {
   local ref="$1" tmp ver
   tmp="$(mktemp -d)"
+  # whatever the failure (bad tag, checksum mismatch, aborted smoke), the
+  # temp dir never outlives this function — no debris, no half-downloaded
+  # payloads left for the next run to trip over.
+  trap 'rm -rf "$tmp"' EXIT
 
   if [[ "$ref" == "main" ]]; then
     echo "== fetching main (floating reference — development) =="
     command -v git >/dev/null 2>&1 || { echo "  git required for --from main" >&2; exit 1; }
     git clone --depth 1 "https://github.com/$REPO.git" "$tmp/src"
     bash "$tmp/src/install.sh"
-    rm -rf "$tmp"
     return
   fi
 
@@ -96,7 +99,6 @@ fetch_and_install() {
   mkdir -p "$tmp/src"
   tar -xzf "$tmp/omarchy-firmware-$ver.tar.gz" -C "$tmp/src"
   bash "$tmp/src/omarchy-firmware-$ver/install.sh"
-  rm -rf "$tmp"
 }
 
 FROM_REF=""

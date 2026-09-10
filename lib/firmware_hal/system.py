@@ -34,6 +34,20 @@ class ToolMissing(Exception):
     """The source CLI is not installed — reported honestly, never guessed."""
 
 
+class ToolError(RuntimeError):
+    """The source CLI answered with a non-zero exit code.
+
+    Subclasses RuntimeError so existing `except RuntimeError` handlers keep
+    working, but carries the exit code: callers that give special meanings
+    to specific codes (fwupd: 1 = "no updates", a nominal answer) can
+    distinguish them from a dead daemon or a timeout.
+    """
+
+    def __init__(self, message: str, returncode: int | None = None):
+        super().__init__(message)
+        self.returncode = returncode
+
+
 def run(cmd: list[str], fixture_dir: str | Path | None = None,
         fixture_key: str | None = None, timeout: int = 30) -> str:
     """Run cmd, or read the matching fixture when fixture_dir is provided."""
@@ -54,10 +68,11 @@ def run(cmd: list[str], fixture_dir: str | Path | None = None,
 
     if proc.returncode != 0:
         # dmidecode/efibootmgr sometimes output useful data even with a
-        # non-zero code; fwupd is strict. We forward the reason.
+        # non-zero code; fwupd is strict. We forward the reason + the code.
         err = (proc.stderr or proc.stdout or "").strip().splitlines()
-        raise RuntimeError(
+        raise ToolError(
             f"{cmd[0]} failed (exit code {proc.returncode})"
-            + (f": {err[-1]}" if err else "")
+            + (f": {err[-1]}" if err else ""),
+            returncode=proc.returncode,
         )
     return proc.stdout

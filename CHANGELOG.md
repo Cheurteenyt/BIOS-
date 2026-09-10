@@ -4,6 +4,75 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## 0.6.3 — the write-path audit
+
+A deep pass over the code with one question: where could this tool lie,
+crash, or write where it must not? Fifteen findings, all closed, each
+locked by a test (287 → 302).
+
+**Fixed — the write paths (T1/T2)**
+- `undo` validated its targets: the paths it writes come from the
+  rollback store in XDG state, so a tampered store could turn the
+  two-key undo into an arbitrary-file-write primitive. Every stored
+  target is now checked against the sysfs root AND the declared
+  attribute patterns (rule 5 applies to the undo path too); refused
+  targets are listed, nothing is guessed.
+- `undo` aborted on the first failing target, leaving the rest
+  unrestored: it now continues and reports per-target errors, exactly
+  like the apply path.
+- A partial apply (some writes refused) reported status `applied` with
+  exit 0: it now reports `partial` (CLI exit 1) with a note pointing at
+  `undo` — the machine left half-adjusted is stated, never hidden.
+- `update stage --cancel` swallowed a failed persistence and answered
+  `cancelled` while the on-disk transaction still said `staged` — the
+  human could reboot INTO the flash. It now returns `error` with
+  CANCEL NOT PERSISTED.
+
+**Fixed — the audit trail**
+- MCP refused/error calls left ZERO journal entries (the CLI journaled
+  them): a refused T1 attempt through an agent harness is now recorded
+  with its requested value, like its CLI equivalent.
+- `journal`/`report` crashed on stray non-object JSONL lines (an
+  interleaved fragment): skipped now, never a crash. `journal 0` dumped
+  the WHOLE file (`lines[-0:]`): returns empty now.
+- The journal append was a buffered text write: a timer run and a
+  manual call could interleave half-flushed lines. It is one `os.write`
+  on an O_APPEND fd under flock now.
+- `kb.update` labelled its data WRITES as tier T0; activate/revert are
+  journaled T1 now. The two-key sha256 compare is constant-time
+  (`hmac.compare_digest`).
+
+**Fixed — honesty of statuses**
+- A failed fwupd check (daemon dead, timeout) was reported as
+  "up to date (no updates announced by the daemon)" and cached for
+  15 minutes: exit code 1 keeps its nominal meaning, any other failure
+  now reads `unavailable`.
+- A corrupt rollback store was silently reset to `[]` — the new backup
+  destroyed the previous undo history without a word: the bad file is
+  moved aside (`*.bad-<ts>`) as evidence, the store restarts fresh.
+- `capture` claimed the snapshot was its only artifact while rewriting
+  the watch baseline and the update cache: the embedded sections now
+  run with persistence off (`record=False`, `persist_cache=False`) — a
+  photograph touches nothing, stated in the module contract.
+
+**Fixed — robustness**
+- All state files the tool depends on (rollback store, staging
+  transaction, watch baseline, KB override, update cache, snapshots,
+  rehearsal reports) are written atomically now (temp sibling +
+  `os.replace`) via the new `firmware_hal.atomic` module: a crash or a
+  full disk can no longer leave a half-written file a later read would
+  misinterpret.
+- `install.sh --from` cleans its temp dir on EVERY exit path (trap),
+  not only on success — no debris, no half-downloaded payloads.
+- The bin wrappers resolve the installed library through
+  `XDG_DATA_HOME` too — with a non-default data home, install.sh staged
+  the lib where the wrappers could not find it (first real session
+  would have died on ModuleNotFoundError, again).
+- `capture`/`report`/`rehearse` journal a failed invocation instead of
+  escaping as a raw traceback; twin sysfs env vars are restored
+  in-process after a capture; a stray fd from the rehearsal's curve
+  temp file is closed; two stale bin comments fixed.
+
 ## 0.6.2 — the photograph, for real
 
 The day-0 protocol's core artifact is `capture` — the photograph of what
