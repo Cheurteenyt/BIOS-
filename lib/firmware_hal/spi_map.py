@@ -58,12 +58,18 @@ FFS3_GUID = "5473C07A-3DCB-4DCA-BD6F-1E9689E7349A"
 _FS_GUID_NAMES = {
     FFS2_GUID: "FFS2 (PI firmware filesystem v2)",
     FFS3_GUID: "FFS3 (PI firmware filesystem v3)",
-    "EE4E5898-3914-4259-9D6E-DC7BD79403CF": "system NV data store",
-    "FFF12B8D-7696-4C8B-A985-2747075B4F50": "variable store (EVSA)",
+    # 0.7.1 label correction — the real-firmware probe on OVMF proved that
+    # EE4E5898 is the LZMA custom decompress GUID (it appears inside
+    # GUID-defined SECTIONS, never as an FV filesystem); it had been
+    # mislabelled "system NV data store" by the synthetic fixture that
+    # borrowed it as one. FFF12B8D is EFI_SYSTEM_NV_DATA_FV_GUID.
+    "EE4E5898-3914-4259-9D6E-DC7BD79403CF":
+        "LZMA custom decompress GUID (section signature, not a filesystem)",
+    "FFF12B8D-7696-4C8B-A985-2747075B4F50":
+        "system NV data FV (EFI_SYSTEM_NV_DATA_FV_GUID)",
     "AAF32C78-947B-439A-A180-2E144EC37792": "authenticated variable store",
 }
-_NV_STORE_GUIDS = {"EE4E5898-3914-4259-9D6E-DC7BD79403CF",
-                   "FFF12B8D-7696-4C8B-A985-2747075B4F50",
+_NV_STORE_GUIDS = {"FFF12B8D-7696-4C8B-A985-2747075B4F50",
                    "AAF32C78-947B-439A-A180-2E144EC37792"}
 
 _FILE_TYPES = {

@@ -1361,7 +1361,12 @@ def _build_spi_image() -> bytes:
         fv1[off:off + len(f)] = f
         off += (len(f) + 7) & ~7
     img[0x10000:0x10000 + len(fv1)] = fv1
-    fv2 = bytearray(_mk_fv("EE4E5898-3914-4259-9D6E-DC7BD79403CF", 0x2000))
+    # 0.7.1 fixture correction: this is the REAL authenticated variable
+    # store GUID (AAF32C78), as found on real 4M OVMF images. The fixture
+    # previously borrowed EE4E5898 — which is actually the LZMA custom
+    # decompress GUID — and that borrow is exactly what mislabelled the
+    # parser. Real firmware taught us the truth; the fixture now uses it.
+    fv2 = bytearray(_mk_fv("AAF32C78-947B-439A-A180-2E144EC37792", 0x2000))
     nv = b""
     for _nm in ("Setup", "BootOrder", "FwVersion"):
         nv += _nm.encode("utf-16-le") + b"\x00\x00" + b"\xff\xff"
@@ -1441,6 +1446,27 @@ check("spi-map: deliberately NOT in the MCP surface (a declared gesture, "
       .read_text(encoding="utf-8")
       and "spi-map" not in (ROOT / "lib" / "firmware_hal" / "mcp_server.py")
       .read_text(encoding="utf-8"), "")
+
+# 0.7.1 — the real-firmware lesson, frozen as a test: the probe on OVMF
+# (lab world, 2026-09-11) proved EE4E5898 is the LZMA custom decompress
+# GUID, not a filesystem/store. An FV carrying it must be LABELLED as
+# LZMA and must NOT be scanned for variable names.
+_lz_path = Path(tempfile.mkdtemp()) / "lzma-guid-fv.bin"
+_lz_img = bytearray(_mk_fv("EE4E5898-3914-4259-9D6E-DC7BD79403CF", 0x1000))
+_lz_img += bytearray(0x1000 - len(_lz_img))    # standalone file: the body must
+                                               # match the declared FV length,
+                                               # or the bounds guard refuses it
+_lz_nv = "Setup".encode("utf-16-le") + b"\x00\x00\xff\xff"
+_lz_img[0x48:0x48 + len(_lz_nv)] = _lz_nv
+_lz_path.write_bytes(bytes(_lz_img))
+_spl = spi_map.collect(dump_path=str(_lz_path))
+check("spi-map 0.7.1: the LZMA GUID is labelled honestly and is NOT "
+      "treated as a variable store",
+      _spl["status"] == "ok"
+      and "LZMA" in _spl["firmware_volumes"][0]["filesystem"]
+      and not _spl["firmware_volumes"][0].get("nvram_names")
+      and _spl["summary"]["nvram_names"] == 0,
+      str(_spl["firmware_volumes"])[:140])
 
 _sp_state = os.environ.get("XDG_STATE_HOME")
 os.environ["XDG_STATE_HOME"] = tempfile.mkdtemp()

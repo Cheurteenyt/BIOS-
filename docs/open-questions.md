@@ -102,7 +102,11 @@ enumeration reveals names and sizes; field semantics stay vendor-internal
 until someone parses them offline.
 
 - NOW: `spi-map` NVRAM section enumerates variable names with an honest
-  heuristic label.
+  heuristic label. **First real answer (lab world, OVMF):** a populated
+  real store yields real names (`BootOrder`, `SecureBootEnable`, `KEK`,
+  `dbx`, `certdb`, …) — and the heuristic also catches utf-16 strings
+  inside variable DATA (boot-entry descriptions); the "labels only"
+  label is exactly what covers that. See `lab/ovmf-findings.md`.
 - DAY-0: real names/counts, read-only; deeper parsing happens **offline from
   `day0-spi.bin`**, never on the live machine.
 
@@ -111,7 +115,17 @@ until someone parses them offline.
 SEC → PEI → DXE → BDS → shim → kernel. Every module that runs before the
 kernel has a GUID and often a UI name — and `spi-map` extracts both.
 
-- DAY-0: the module list **is** the census. Flag anything network-ish
+- NOW: **first real census performed (lab world, OVMF, 2026-09-11).**
+  The compression wall inside the image was pierced in-memory
+  (stdlib `lzma`, read-only): 115 DXE modules named on the plain
+  build — full network stack (DHCP→IP→TCP→TLS→HTTP→iSCSI/PXE),
+  storage, display, crypto, config UI — and 9 SMM modules on the
+  SMM_REQUIRE build. Key lesson: a naive scan of a compressed image
+  counts almost nothing; the census must decompress before counting.
+  Full census: `lab/ovmf-findings.md`.
+- DAY-0: the module list **is** the census — expect compression
+  (LZMA or Tiano sections) on a vendor image; 0 visible modules means
+  "decompress next", not "empty firmware". Flag anything network-ish
   (HTTP boot, AMT/MEI helpers) and anything storage-ish (RAID OpROM).
 - VOL-5: measuring what any of it actually *does* (behavior, not presence).
 
@@ -121,7 +135,13 @@ SMM handlers execute invisible to the OS, triggered by SMIs, at higher
 privilege than anything Linux can inspect. Presence and names are visible in
 the image; behavior is not.
 
-- NOW: `spi-map` counts SMM modules separately (`smm_drivers` summary field).
+- NOW: `spi-map` counts SMM modules separately (`smm_drivers` summary
+  field). **First real answer (lab world, OVMF):** on the SMM_REQUIRE
+  build, variable services move INSIDE SMM — `PiSmmCore`,
+  `PiSmmCpuDxeSmm`, `VariableSmm`, `SmmLockBox` — one setup-visible
+  feature (Secure Boot) restructures the platform's privilege
+  topology. Also learned: two files can share a UI name (`CpuDxe`
+  twice, distinct GUIDs) — names are labels, GUIDs are identity.
 - DAY-0: the real SMM module names, read-only.
 - VOL-5: deeper analysis only on sacrificial hardware.
 

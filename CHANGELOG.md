@@ -4,6 +4,43 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## 0.7.1 — the honest labels
+
+A real-firmware correction. The deep-dive investigation on actual OVMF
+images (lab world, Debian's edk2 package, read-only, zero bytes written)
+proved two filesystem-GUID labels wrong and — better — found why: the
+synthetic fixture had borrowed the LZMA custom decompress GUID
+(`EE4E5898…`) as a variable-store GUID, and the parser inherited the
+mistake. Real firmware taught us the truth; the fixture now uses it.
+
+**Fixed**
+- `EE4E5898-3914-4259-9D6E-DC7BD79403CF` relabelled: "LZMA custom
+  decompress GUID (section signature, not a filesystem)" — it appears
+  inside GUID-defined SECTIONS (we used it to pierce OVMF's compressed
+  FVMAIN_COMPACT in memory), never as an FV filesystem; removed from
+  the variable-store set, so an FV carrying it is no longer scanned
+  for variable names.
+- `FFF12B8D-7696-4C8B-A985-2747075B4F50` relabelled to what it is:
+  "system NV data FV (EFI_SYSTEM_NV_DATA_FV_GUID)" (was "variable
+  store (EVSA)").
+- The synthetic fixture now uses the real authenticated variable store
+  GUID (`AAF32C78…`) — the GUID real 4M images actually carry.
+- New test freezes the lesson: an FV carrying the LZMA GUID is
+  labelled as LZMA and yields zero variable names. Tests 322 → 323.
+
+**Investigation (the first real firmware the parser has read)**
+- `lab/ovmf-findings.md`: on real OVMF the parser reports honestly —
+  no descriptor (descriptorless image, expected), 2 outer FVs, and 0
+  visible modules because FVMAIN_COMPACT is LZMA-compressed: the
+  compression wall vendor images hide behind too. Pierced in-memory
+  (stdlib `lzma`, read-only): PEIFV + DXEFV, 115 DXE modules and (on
+  the SMM_REQUIRE build) 9 SMM modules, by name; the plain vs secboot
+  delta shows Secure Boot arriving together with SMM-hosted variable
+  services; a REAL populated variable store yields 22 real variable
+  names (and shows the utf-16 heuristic also catches strings inside
+  variable DATA — the label holds: names are heuristic, GUIDs are
+  identity).
+
 ## 0.7.0 — the map of the invisible
 
 One step beyond the runtime frontier. The tool now crosses the edge of
