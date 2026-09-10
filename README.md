@@ -1,5 +1,10 @@
 # Beyond the BIOS — an agent ↔ firmware bridge for Omarchy
 
+> **Read-only firmware & hardware intelligence layer for Omarchy.** Audits BIOS,
+> boot chain and AM4 CVEs, and names physical faults the BIOS can't see: dead
+> AIO pump, missing thermal paste, hot VRM, sagging 12 V rail. 5 MCP tools, all
+> read-only — *the agent explains, the firmware protects.*
+
 **omarchy-firmware** is a read-only firmware and hardware intelligence layer for
 [Omarchy](https://github.com/basecamp/omarchy) (Arch Linux) machines. It lets AI
 agents — claude, codex, opencode, any MCP-compatible harness — audit the BIOS,
