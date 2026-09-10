@@ -1,0 +1,271 @@
+{
+ "schema": "omarchy-firmware/ovmf-kill-list@1",
+ "date": "2026-09-11",
+ "note": "blueprint-grade amputation lists, extracted from the OVMF plain-build census; GUIDs are identity; our future firmware will not ship the network stack; read-only derivation, zero bytes written",
+ "families": {
+  "network": [
+   {
+    "guid": "A210F973-229D-4F4D-AA37-9895E6C9EABA",
+    "name": "DpcDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "A2F436EA-A127-4EF8-957C-8048606FF670",
+    "name": "SnpDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "E4F61863-FE2C-4B56-A8F4-08519BC439DF",
+    "name": "VlanConfigDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "025BBFC7-E6A9-4B8B-82AD-6815A1AEAF4A",
+    "name": "MnpDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "529D3F93-E8E9-4E73-B1E1-BDF6A9D50113",
+    "name": "ArpDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "94734718-0BBC-47FB-96A5-EE7A5AE6A2AD",
+    "name": "Dhcp4Dxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "9FB1A1F3-3B71-4324-B39A-745CBB015FFF",
+    "name": "Ip4Dxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B",
+    "name": "Udp4Dxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "DC3641B8-2FA8-4ED3-BC1F-F9962A03454B",
+    "name": "Mtftp4Dxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "95E3669D-34BE-4775-A651-7EA41B69D89E",
+    "name": "Dhcp6Dxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C",
+    "name": "Ip6Dxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "D912C7BC-F098-4367-92BA-E911083C7B0E",
+    "name": "Udp6Dxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "99F03B99-98D8-49DD-A8D3-3219D0FFE41E",
+    "name": "Mtftp6Dxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "1A7E4468-2F55-4A56-903C-01265EB7622B",
+    "name": "TcpDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "B95E9FDA-26DE-48D2-8807-1F9107AC5E3A",
+    "name": "UefiPxeBcDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+    "name": "TlsDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "B219E140-DFFC-11E3-B956-0022681E6906",
+    "name": "DnsDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "2366C20F-E15A-11E3-8BF1-E4115B28BC50",
+    "name": "HttpDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "22EA234F-E72A-11E4-91F9-28D2447C4829",
+    "name": "HttpUtilitiesDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "ECEBCB00-D9C8-11E4-AF3D-8CDCD426C973",
+    "name": "HttpBootDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "86CDDF93-4872-4597-8AF9-A35AE4D3725F",
+    "name": "IScsiDxe",
+    "type": "DXE"
+   }
+  ],
+  "storage": [
+   {
+    "guid": "83DD3B39-7CAF-4FAC-A542-E050B767E3A7",
+    "name": "VirtioPciDeviceDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "0170F60C-1D40-4651-956D-F0BD9879D527",
+    "name": "Virtio10",
+    "type": "DXE"
+   },
+   {
+    "guid": "11D92DFB-3CA9-4F93-BA2E-4780ED3E03B5",
+    "name": "VirtioBlkDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "FAB5D4F4-83C0-4AAF-8480-442D11DF6CEA",
+    "name": "VirtioScsiDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "23CACE14-EBA4-49F6-9681-C697FF0B649E",
+    "name": "VirtioSerialDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "6B38F7B4-AD98-40E9-9093-ACA2B5A253C4",
+    "name": "DiskIoDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "1FA1F39E-FEFF-4AAE-BD7B-38A070A3B609",
+    "name": "PartitionDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "28A03FF4-12B3-4305-A417-BB1A4F94081E",
+    "name": "RamDiskDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "0167CCC4-D0F7-4F21-A3EF-9E64B7CDCE8B",
+    "name": "ScsiBus",
+    "type": "DXE"
+   },
+   {
+    "guid": "0A66E322-3740-4CCE-AD62-BD172CECCA35",
+    "name": "ScsiDisk",
+    "type": "DXE"
+   },
+   {
+    "guid": "820C59BB-274C-43B2-83EA-DAC673035A59",
+    "name": "SataController",
+    "type": "DXE"
+   },
+   {
+    "guid": "5E523CB4-D397-4986-87BD-A6DD8B22F455",
+    "name": "AtaAtapiPassThruDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "19DF145A-B1D4-453F-8507-38816676D7F6",
+    "name": "AtaBusDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "5BE3BDF4-53CF-46A3-A6A9-73C34A6E5EE3",
+    "name": "NvmExpressDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "961578FE-B6B7-44C3-AF35-6BC705CD2B1F",
+    "name": "Fat",
+    "type": "DXE"
+   },
+   {
+    "guid": "905F13B0-8F91-4B0A-BD76-E1E78F9422E4",
+    "name": "UdfDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "7BD9DDF7-8B83-488E-AEC9-24C78610289C",
+    "name": "VirtioFsDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "58E26F0D-CBAC-4BBA-B70F-18221415665A",
+    "name": "VirtioRngDxe",
+    "type": "DXE"
+   }
+  ],
+  "usb": [
+   {
+    "guid": "2FB92EFA-2EE0-4BAE-9EB6-7464125E1EF7",
+    "name": "UhciDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "BDFE430E-8F2A-4DB0-9991-6F856594777E",
+    "name": "EhciDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "B7F50E91-A759-412C-ADE4-DCD03E7F7C28",
+    "name": "XhciDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "240612B7-A063-11D4-9A3A-0090273FC14D",
+    "name": "UsbBusDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "2D2E62CF-9ECF-43B7-8219-94E7FC713DFE",
+    "name": "UsbKbDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E",
+    "name": "UsbMassStorageDxe",
+    "type": "DXE"
+   }
+  ],
+  "display": [
+   {
+    "guid": "51CCF399-4FDF-4E55-A45B-E123F84D456A",
+    "name": "ConPlatformDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "408EDCEC-CF6D-477C-A5A8-B4844E3DE281",
+    "name": "ConSplitterDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "CCCB0C28-4B24-11D5-9A5A-0090273FC14D",
+    "name": "GraphicsConsoleDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "9E863906-A40F-4875-977F-5B93FF237FC6",
+    "name": "TerminalDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "E3752948-B9A1-4770-90C4-DF41C38986BE",
+    "name": "QemuVideoDxe",
+    "type": "DXE"
+   },
+   {
+    "guid": "D6099B94-CD97-4CC5-8714-7F6312701A8A",
+    "name": "VirtioGpuDxe",
+    "type": "DXE"
+   }
+  ]
+ },
+ "other_modules": 84
+}

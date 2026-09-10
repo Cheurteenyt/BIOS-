@@ -70,7 +70,14 @@ the screen is gone, the chip socket becomes the screen.
   serial UART at **115200 8N1** (`EFI_UART_DEVICE_PATH` shape, verified
   against the bytes), `ConIn` adds a `PNP0303` keyboard. The never-dying
   channel is a first-class console in the shipped store, not a lab
-  artifact.
+  artifact. **Third ring (2026-09-11) — the facade has a price tag:**
+  the setup's own vocabulary, read from the bytes — UiApp 165 distinct
+  utf-16 strings, BdsDxe 95 (including the Debian fingerprint
+  "Grub Bootloader"), SecureBootConfigDxe 99 ("Are you sure you want to
+  delete PK? Secure boot will be disabled!"), Tcg2ConfigDxe 64 (the
+  TPM screens). ~423 sentences across 4 modules vs 115 DXE modules —
+  the hidden surface has a denominator and a method now (utf-16
+  census per setup module, transferable to day-0 screenshots).
 - DAY-0: does the board expose a UART header or a vendor debug path? Physical
   inspection + vendor datasheet.
 - VOL-5: serial debug builds (coreboot console over UART) on sacrificial
@@ -100,7 +107,12 @@ often means no POST); Boot Guard is never (fused).
   namespace GUID, attributes, and an owner module; the security x-ray
   maps who carries `SecureBootEnable` / `CustomMode` (`SecureBootConfigDxe`
   + the variable service only). Deletion is a state-byte flip — a killed
-  feature leaves archaeology until FTW reclaim.
+  feature leaves archaeology until FTW reclaim. **Third ring
+  (2026-09-11) adds the amputation lists:** `lab/ovmf-kill-list.json` —
+  the blueprint's first machine-readable kill-list with GUIDs; the
+  network stack alone is 21 modules (Snp→Mnp→Arp→DHCP→IP→UDP→TCP→
+  TLS→HTTP→PXE→iSCSI), plus storage (18), usb (6), display (6) for
+  context. "Will not ship" now has a GUID-precise meaning.
 
 ## Q4 — Who enforces the walls? (the enforcement map)
 
@@ -129,6 +141,21 @@ The five walls from `lab/coreboot-notes.md`, each with an owner:
   PCDs/policy, not just module lists.
 - DAY-0: `$BPM`/`$KSH` presence from `spi-map` (existence only — fused vs.
   deactivated is NOT determinable from the image, and the tool says so).
+  **Third ring (2026-09-11) — the policy is localizable, and the AMD
+  walls get a checklist:** Debian's strict-NX vs secboot differ in
+  exactly THREE bytes — one in BdsDxe `.text`, two in IScsiDxe
+  `.text`, everything else (DxeCore, PcdDxe, all PEIMs/SMM)
+  byte-identical: the PCD database is identical, so policy is NOT a
+  platform bake but compiled per-module, and NO census below hash-diff
+  can see it — the day-0 rule is hash-diff against a known-good
+  reference (same module list proves nothing). Upstream context: the
+  W^X/NX-clean boot-chain work (kraxel; Fedora Edk2Security). On the
+  AMD side: the SPI window (`0xFED80000` family) exposes up to FOUR
+  Rom Protect ranges (coreboot #4094) — the AMD mirror of Intel's
+  PR0-PR4; the SMM lock is an MSR (`0xC0010111`, SMM_LOCK bit 0,
+  IOActive); and the PSP **shares the SPI flash storage with the
+  system BIOS** (coreboot PSP doc) — any Volume-5 protect decision
+  has two consumers of the same silicon.
 
 ## Q5 — What does NVRAM really hold? (the hidden settings)
 
@@ -154,7 +181,15 @@ until someone parses them offline.
   list; `EVSA` marker absent — 0.7.1 taxonomy confirmed. See
   `lab/findings-second-ring.md` + `lab/ovmf-keyring.json`.
 - DAY-0: real names/counts, read-only; deeper parsing happens **offline from
-  `day0-spi.bin`**, never on the live machine.
+  `day0-spi.bin`**, never on the live machine. **Third ring (2026-09-11)
+  — the store is priced:** the populated stores use 4.82 %/3.44 % of
+  the `0x3FFB8` region (95 %+ free); the vendor's own boot history
+  rewrote 3,468 B of superseded journal records
+  (ConIn/ConOut/ErrOut/CustomMode/BootOrder/VendorKeysNv); 278,528 B
+  live beyond the store as FTW working + spare. The zero-write
+  doctrine's wear share: **0.00 %** of every number in the table — the
+  same budget walk on day-0 prices the vendor baseline before we
+  touch anything.
 
 ## Q6 — What talks before Linux? (the boot chain census)
 
@@ -178,7 +213,18 @@ kernel has a GUID and often a UI name — and `spi-map` extracts both.
   whole-flash rehearsal. Also: 37 DXE drivers ship with **no depex at
   all** (spine by absence), zero BEFORE/AFTER constraints, and the
   two most-waited protocols are `PcdProtocol` and
-  `DevicePathUtilities`.
+  `DevicePathUtilities`. **Third ring (2026-09-11) — the firmware's
+  own chain closes the loop:** the first instruction at 0xFFFFFFF0 is
+  not a jump but a CR0 fork (`mov eax,cr0; test al,1; jz` + 16-bit
+  and 32-bit branches) whose BOTH targets land inside the ResetVector
+  file (`1BA0062E…`, raw, 2,872 B, top of flash); then SecMain
+  (45,566 B) → the LZMA wall (1,569,609 B → 16,122,000 B, ×10.3) →
+  PeiCore (28,602 B) + 14 PEIMs → DxeIpl (50,110 B) → DxeCore
+  (139,390 B) → BdsDxe (86,650 B) → UiApp (114,414 B), every hop with
+  GUID/offset/size; the DXEFV FvName read at the inner ext header
+  (`0x60` — note: > HeaderLength, the bytes win) confirms `7CB8BDC9…`
+  from a second independent position; and the code budget closes
+  exactly: 3,440,640 + 212,992 = 3,653,632 B.
 - DAY-0: the module list **is** the census — expect compression
   (LZMA or Tiano sections) on a vendor image; 0 visible modules means
   "decompress next", not "empty firmware". Flag anything network-ish
@@ -230,7 +276,17 @@ enrichment. **Noted as a post-freeze lever; no tool added during the freeze.**
   at `/sys/class/tpm/tpm0/pcr-sha256/N`, event log under
   `/sys/kernel/security/tpm0/`) is a read-only truth probe of "what
   booted". TPM modules present in BOTH OVMF builds (`Tcg2Dxe`,
-  `TcgMor`; `TcgMorLockSmm` on secboot).
+  `TcgMor`; `TcgMorLockSmm` on secboot). **Third ring (2026-09-11) —
+  the mirror sees what the flash never shipped:** the unified 4 MiB
+  image contains ZERO ACPI/SMBIOS table signatures (DSDT, FACP, RSDT,
+  XSDT, APIC, HPET, `_SB_`, `RSD PTR `, `_SM_`, SMBIOS, BGRT, WAET —
+  all honest zeros); the only occurrences inside the inflated payload
+  are generator constants inside AcpiTableDxe, QemuFwCfgAcpiPlatform,
+  SmbiosDxe, BootGraphicsResourceTableDxe. Beyond shipped/absent there
+  is a third category — RUNTIME-BUILT — so the mirror's ACPI/SMBIOS
+  tables are things the firmware BUILDS; a hit in a vendor image must
+  be classified table-shipped (raw section) vs generator-string
+  (inside a PE) by position.
 
 ---
 
@@ -249,6 +305,15 @@ Second-ring offline probes (run on `day0-spi.bin` after the day-0 capture,
 never on the live machine): NVRAM journal walk + keyring subjects (Q3, Q5),
 boot-option device-path decode (Q6), depex census + security x-ray (Q1, Q4,
 Q7), TPM PCR read from Linux (Q8).
+
+Third-ring instruments (same rule — offline from the dump, never live):
+whole-image FFS hash diff vs a known-good reference (Q4 — the only
+policy-grade census), ACPI/SMBIOS signature scan with table-shipped vs
+generator-string classification (Q8), utf-16 vocabulary census per setup
+module (Q1), NVRAM budget walk — used/deleted/free/superseded bytes (Q5),
+network-family module classification (Q3), AMD-side read-only checklist:
+Rom Protect ranges in the SPI window, SMM-lock MSR, PSP/chipset
+co-consumers of the chip (Q4).
 
 The protocol stays: `capture --live` → `rehearse` → `rehearse-diff --latest`,
 optionally `sudo omarchy-firmware spi-map --save-dump day0-spi.bin` + sha256.
