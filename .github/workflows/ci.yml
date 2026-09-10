@@ -17,9 +17,11 @@ on:
 permissions:
   contents: read
 
-# One run per ref: superseded pushes are cancelled, runners stay free.
+# One run per ref AND per event: superseded pushes are cancelled, runners
+# stay free — and a manual canary dispatch never cancels a push run (they
+# test different things: the exact pin vs the floating range).
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
