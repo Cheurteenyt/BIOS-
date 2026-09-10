@@ -30,10 +30,17 @@ import statistics
 import time
 from pathlib import Path
 
-from . import journal, sensors
+from . import journal, sensors, twin
 
 PKG_ROOT = Path(__file__).resolve().parents[2]
-SCENARIO_DIR = PKG_ROOT / "tests" / "fixtures" / "scenarios"
+
+
+def _scenario_dir() -> Path:
+    """Bundled scenarios: repository layout, or the installed twin (P5)."""
+    resolved = twin.resolve_scenario_dir()
+    if resolved is not None:
+        return resolved
+    return PKG_ROOT / "tests" / "fixtures" / "scenarios"
 
 # ---------------------------------------------------------------------------
 # Thresholds — orders of magnitude calibrated for a 5950X (PPT 142 W,
@@ -117,8 +124,9 @@ def read_sample(fixture_dir=None) -> dict:
 # ---------------------------------------------------------------------------
 def list_scenarios() -> list[dict]:
     out = []
-    if SCENARIO_DIR.is_dir():
-        for p in sorted(SCENARIO_DIR.glob("*.json")):
+    scenario_dir = _scenario_dir()
+    if scenario_dir.is_dir():
+        for p in sorted(scenario_dir.glob("*.json")):
             try:
                 meta = json.loads(p.read_text(encoding="utf-8")).get("meta", {})
                 out.append({"name": p.stem, "meta": meta})
@@ -131,11 +139,12 @@ def load_scenario(name_or_path: str) -> dict:
     """Load a scenario by short name or absolute path."""
     p = Path(name_or_path)
     if not p.is_absolute():
-        p = SCENARIO_DIR / f"{name_or_path}.json"
+        scenario_dir = _scenario_dir()
+        p = scenario_dir / f"{name_or_path}.json"
     if not p.exists():
         raise FileNotFoundError(
             f"scenario not found: {name_or_path} "
-            f"(bundled: {', '.join(sorted(x.stem for x in SCENARIO_DIR.glob('*.json'))) or 'none'})"
+            f"(bundled: {', '.join(sorted(x.stem for x in _scenario_dir().glob('*.json'))) or 'none'})"
         )
     return json.loads(p.read_text(encoding="utf-8"))
 

@@ -4,6 +4,54 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## 0.5.0 — Phase 5: the digital twin (TWIN-1) and the dress rehearsal
+
+Sept. 16 must be a replay day, not a discovery day. The fixture set is
+promoted to a first-class machine profile and one command walks the
+entire behavioural contract against it.
+
+**Added**
+- `lib/firmware_hal/twin.py` — TWIN-1: the profile of the reference
+  machine (B450-PLUS / 5950X / RTX 3070 / 980 PRO / AIO 240) plus asset
+  resolution (`FW_TWIN_DIR` → installed twin → repository fixtures) and
+  `apply_sysfs_env()`, the deterministic T1 dry-run surface. `twin` and
+  `twin --json` print the profile and where its assets resolved from.
+- `omarchy-firmware rehearse [--backend twin|real]` and
+  `bin/omarchy-firmware-rehearse` — the dress rehearsal: 28 behavioural
+  probes (contract, T0 collections, T2 gates, T1 gates, diagnostics,
+  MCP stdio session, journal, report), each with a stable id, an
+  expectation and an honest observation; verdict `green`/`red` and a
+  diffable JSON report (`omarchy-firmware/rehearsal@1`) under XDG state
+  (last 10 kept), journaled as `rehearse`. Backend rule: structural
+  expectations hold on both backends; twin-only content probes skip
+  honestly on real hardware; the four scenario probes stay deterministic
+  on both. No-write guarantee enforced by a suite-level scan: the
+  human-confirm flag may appear only in `stage-confirm-refused`, where
+  refusal IS the expected outcome.
+- `twin-sysfs` fixture tree — a minimal /sys (EPP ×2 cpus, nct6798 with
+  three curve slots) so T1 dry-run plans are exercisable on any host.
+- `docs/digital-twin.md` — the concept, the profile, the probe table,
+  the honesty statement ("the twin proves the tool, the machine proves
+  the truth") and the P5 protocol (rehearse now → day 0 → diff reports).
+- `docs/first-run.md` Step −1 — the dress rehearsal before the machine.
+
+**Fixed**
+- install.sh never staged the library: the first real session would have
+  died on `ModuleNotFoundError` from `~/.local/bin`. install.sh now
+  stages a self-contained layout (`lib/` + `twin/` under
+  `~/.local/share/omarchy-firmware/`), every bin resolves it as a
+  fallback, and the rehearsal was run against that installed layout,
+  outside the repository, to prove it (28/28 green).
+- The MCP server's missing-package message now names the version pin
+  (`mcp>=1.0,<2` — 2.x renamed FastMCP) and the underlying ImportError.
+- Scenario resolution is twin-aware (`diagnostics._scenario_dir()`), so
+  `diag scenarios` and `selftest` work from the installed layout too.
+
+**Changed**
+- Test suite 246 → 262 checks (twin resolution, rehearsal green on
+  TWIN-1, probe surface locked at 28, no-write scan, honest-skip map);
+  suite and MCP smoke green on Python 3.12 and 3.13.
+
 ## 0.4.1 — Scenario hardening: the full signature surface exercised
 
 **Added**

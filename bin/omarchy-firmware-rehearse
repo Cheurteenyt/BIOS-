@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# omarchy:summary=Run the MCP server (stdio) exposing the five T0 tools to agent harnesses
-# omarchy:args=[]
-# omarchy:examples=omarchy-firmware mcp   # wire it via your harness MCP config
+# omarchy:summary=The dress rehearsal — the whole behavioural contract of omarchy-firmware in one command
+# omarchy:args=[--backend twin|real] [--json] [--no-report]
+# omarchy:examples=omarchy firmware rehearse --backend twin | omarchy firmware rehearse (day-0, on the machine)
 
 import os
 import sys
@@ -13,6 +13,8 @@ for _cand in (os.path.join(os.path.dirname(_here), "lib"),  # repo checkout
     if os.path.isdir(_cand):
         sys.path.insert(0, _cand)
         break
+
 from firmware_hal.cli import main  # noqa: E402
 
-sys.exit(main(["mcp"]))
+if __name__ == "__main__":
+    sys.exit(main(["rehearse"] + sys.argv[1:]))

@@ -292,10 +292,12 @@ def build_server():
 def serve() -> int:
     try:
         mcp = build_server()
-    except ImportError:
+    except ImportError as exc:
         print(
-            "The MCP server requires the 'mcp' package.\n"
-            "  pip install mcp      (or pacman -S python-mcp)\n"
+            "The MCP server requires the 'mcp' package (version 1.x: "
+            "pin 'mcp>=1.0,<2' — 2.x renamed FastMCP).\n"
+            f"  underlying reason: {exc}\n"
+            "  pip install 'mcp>=1.0,<2'   (or pacman -S python-mcp)\n"
             "The CLI remains usable without it: omarchy-firmware selftest",
             file=sys.stderr,
         )

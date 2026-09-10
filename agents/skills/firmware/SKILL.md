@@ -47,6 +47,12 @@ else, it is out of scope — see Scope and Tiers.
 | `cpu.epp.set` | `omarchy-firmware cpu epp set VALUE` | T1 | efficiency hint of every CPU — dry-run default, `--confirm` + undo |
 | `fans.curve.set` | `omarchy-firmware fans curve set --file F` | T1 | nct67xx hardware curve — dry-run default, mechanical guard, undo |
 
+The toolbox is self-verifying: `omarchy-firmware rehearse --backend twin`
+replays the whole contract (28 probes) against TWIN-1, the bundled
+rehearsal machine — run it when the host is unfamiliar (fresh install,
+post-update, new harness). It performs no write; see
+[docs/digital-twin.md](../../docs/digital-twin.md).
+
 **Rule 1 — the agent proposes, the HAL disposes, the human decides.**
 T1 writes: dry-run first, SHOW the plan to the human, get an explicit
 agreement, only then confirm. A write is always followed by a T0

@@ -14,7 +14,7 @@ before your first commit and before your first `fw.*` call.
    conclusion is a defect.
 2. **The agent proposes, the HAL disposes, the human decides.** You may read
    everything (T0). You may propose actions with evidence and next steps.
-   The current phase (P4) implements exactly two T1 writes — `cpu.epp.set`
+   The current phase (P5) implements exactly two T1 writes — `cpu.epp.set`
    and `fans.curve.set` — both **dry-run by default**: without an explicit
    confirm flag (`--confirm` / `confirm: true`) they return the plan and
    write nothing. Only request `confirm` after the human has seen the plan.
@@ -31,16 +31,17 @@ before your first commit and before your first `fw.*` call.
 ```
 bin/                     entry points, one per tool, with # omarchy:* metadata
 lib/firmware_hal/        the base: tiers, journal, collectors, diagnostics,
-                         T1 actions, T2 staging, KB watch/updater, CLI, MCP server
+                         T1 actions, T2 staging, KB watch/updater, twin
+                         (TWIN-1 + rehearsal), CLI, MCP server
 agents/skills/firmware/  the skill — conduct rules consumed by harnesses
 etc/systemd/user/        one-shot services + timers (NEVER enabled by install)
-tests/                   fixtures (3 board sets: issues + clean) + 12 thermal
-                         scenarios + test suite + MCP smoke
-tests/test_suite.py      246 checks, stdlib only — must pass before any push
+tests/                   fixtures (3 board sets: issues + clean) + twin-sysfs
+                         + 12 thermal scenarios + test suite + MCP smoke
+tests/test_suite.py      262 checks, stdlib only — must pass before any push
 tests/mcp_smoke.py       MCP conformance: handshake, 12 tools, T1 dry-run
 docs/                    architecture, security doctrine, write layers (T1+T2),
-                         diagnostics catalog, vendor BIOS heritage, frugality,
-                         first-run protocol
+                         diagnostics catalog, digital twin, vendor BIOS
+                         heritage, frugality, first-run protocol
 docs/research/           the four study volumes the code descends from
 .github/workflows/ci.yml the CI: contract suite (py 3.11/3.13) + MCP smoke
 ```
@@ -89,9 +90,10 @@ Rules that govern any change:
 ## 4. Testing discipline
 
 ```bash
-python3 tests/test_suite.py        # 246 checks — must print "246/246 tests PASS"
+python3 tests/test_suite.py        # 262 checks — must print "262/262 tests PASS"
 python3 tests/mcp_smoke.py         # MCP conformance (needs the optional mcp pkg)
 python3 bin/omarchy-firmware selftest
+omarchy-firmware rehearse --backend twin   # 28 probes — must print "green"
 ```
 
 - Every scenario in `tests/fixtures/scenarios/` must make the engine name THE
@@ -109,6 +111,12 @@ python3 bin/omarchy-firmware selftest
   execute anything.
 - CI (`.github/workflows/ci.yml`) runs the suite on Python 3.11 and 3.13
   plus the MCP smoke on every push — a red CI is a broken contract.
+- The dress rehearsal (`rehearse`, 28 probes) must stay **green on TWIN-1**:
+  it is the executable form of this whole discipline. Its no-write
+  guarantee is enforced by a scan — the human-confirm flag may appear only
+  in `stage-confirm-refused`, where refusal IS the expected outcome. If you
+  add a probe, add its counterpart assertion, and keep ids stable (reports
+  are diffed across machines).
 - Before any push: suite green, smoke green (where `mcp` is installed),
   `selftest` clean, no new dependency.
 

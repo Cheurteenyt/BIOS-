@@ -14,6 +14,29 @@ the tooling refuses to take for you.
 
 ---
 
+## Step −1 — the dress rehearsal (before the machine, any host)
+
+The whole day-0 surface is executable without the target machine — that
+is what TWIN-1, the digital twin, is for (see
+[docs/digital-twin.md](digital-twin.md)). Run it once wherever you are:
+
+```bash
+omarchy-firmware twin                        # the profile + resolved assets
+omarchy-firmware rehearse --backend twin     # 28 probes, expect: green
+```
+
+Expect `verdict: green — 28 pass, 0 fail, 0 skip` and a JSON report under
+`~/.local/state/omarchy-firmware/rehearse/`. Keep it: on day 0 you run
+the same command with `--backend real` and **diff the two reports** —
+what changed between the twin and the machine is your list of real
+surprises, already named.
+
+Day 0 below remains the authority for the manual gestures (the T1
+confirm key, the T2 human layer, the sensor reality check) — the
+rehearsal proves the contract, the machine proves the truth.
+
+---
+
 ## Day 0 — install, baseline, drills
 
 ### 0.1 Install (user-level, nothing root, nothing resident)
@@ -24,8 +47,9 @@ cd omarchy-firmware
 ./install.sh
 ```
 
-`install.sh` copies bins to `~/.local/bin`, the skill to
-`~/.config/omarchy/agents/skills/firmware/`, and the systemd units
+`install.sh` copies bins to `~/.local/bin`, the self-contained library
+and TWIN-1 to `~/.local/share/omarchy-firmware/` (lib + twin), the skill
+to `~/.config/omarchy/agents/skills/firmware/`, and the systemd units
 **disabled**. It never enables a timer and never touches the ESP or
 NVRAM.
 
@@ -33,9 +57,10 @@ Sanity checks:
 
 ```bash
 omarchy-firmware tiers          # the 14-tool contract prints
-omarchy-firmware selftest       # full fixture demo, exit 0
-python3 tests/test_suite.py     # 246 checks (run from the clone)
-python3 tests/mcp_smoke.py      # needs pip install mcp
+omarchy-firmware selftest       # full twin demo, exit 0
+omarchy-firmware rehearse       # day-0 drill: 28 probes on THIS machine
+python3 tests/test_suite.py     # 262 checks (run from the clone)
+python3 tests/mcp_smoke.py      # needs pip install 'mcp>=1.0,<2'
 ```
 
 ### 0.2 The T0 sweep — the honest baseline

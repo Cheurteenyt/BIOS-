@@ -12,6 +12,10 @@ freshness, drift and fwupd advisory cross-check, still T0 — plus the
 human-gated T2 layer on the CLI alone: fw.update.stage (dry-run plan by
 default, --confirm is a human gesture, never the agent's) and
 fw.rollback, a refusal-by-design with an honest inventory.
+Phase 5 (the digital twin): TWIN-1, the rehearsal machine — the fixture
+set promoted to an installable machine profile — and `rehearse`, the
+dress rehearsal: 28 behavioural probes, one verdict, a diffable report.
+Sept. 16 must be a replay day, not a discovery day.
 
     fw.audit.status      T0   full inventory (board, BIOS, boot, fwupd)
     fw.audit.cve         T0   version / known-CVE cross-check (vol. 1, ch. 5)
@@ -46,6 +50,7 @@ Structural rules (unchanged):
     (optional systemd timer), the agent is called only on anomaly.
 """
 
-__version__ = "0.4.1"
+__version__ = "0.5.0"
 
-PHASE = "P4 — supervised loop: CVE watch + human-gated T2 staging"
+PHASE = "P5 — the digital twin (TWIN-1) and the dress rehearsal on top of "\
+        "the P4 supervised loop"

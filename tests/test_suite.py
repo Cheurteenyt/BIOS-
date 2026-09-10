@@ -154,7 +154,7 @@ check("audit: P4 phase declared", "P4" in (a.get("phase") or ""), a.get("phase")
 # ------------------------------------------------------------------ diag ---
 # The physical diagnostics (vol. 3): every scenario must name THE fault,
 # not a catch-all list. The scenarios are the pre-recorded physics.
-SCEN = diagnostics.SCENARIO_DIR
+SCEN = diagnostics._scenario_dir()
 
 sc_all = {p.stem for p in SCEN.glob("*.json")}
 check("diag: 12 bundled scenarios", len(sc_all) == 12, str(sorted(sc_all)))
@@ -789,6 +789,91 @@ check("cli: report rc=0", rc == 0)
 rc = cli.main(["audit", "cve-watch", "--fixture-dir", str(FIX_A), "--json"])
 check("cli: audit cve-watch rc=0", rc == 0)
 check("cli: cve-watch journaled", journal.show(1)[0]["tool"] == "fw.cve.watch")
+
+
+# -------------------------------------------------------------------- P5 ---
+# Phase 5 — the digital twin (TWIN-1) and the dress rehearsal: the whole
+# behavioural contract executable in one command, long before the machine.
+from firmware_hal import rehearse, twin  # noqa: E402
+
+# --- twin: the profile and its resolution ------------------------------------
+prof = twin.PROFILE
+check("twin: the profile names the reference machine",
+      prof["name"] == "TWIN-1" and "B450-PLUS" in prof["board"]
+      and "5950X" in prof["cpu"] and "3070" in prof["gpu"])
+fx_twin = twin.resolve_fixture_dir("b450-plus")
+check("twin: fixture set resolves to a real board directory",
+      bool(fx_twin) and (Path(fx_twin) / "dmidecode.txt").exists())
+scen = twin.resolve_scenario_dir()
+check("twin: 12 bundled scenarios resolve",
+      scen is not None and len(list(scen.glob("*.json"))) == 12)
+
+sysfs_saved = {k: os.environ.get(k) for k in ("FW_SYSFS_CPU", "FW_SYSFS_HWMON")}
+for k in sysfs_saved:
+    os.environ.pop(k, None)
+applied = twin.apply_sysfs_env()
+check("twin: sysfs env applied (cpu + hwmon)",
+      "FW_SYSFS_CPU" in applied and "FW_SYSFS_HWMON" in applied,
+      str(applied))
+check("twin: epp backing file is a real preferences tree",
+      (Path(applied["FW_SYSFS_CPU"]) / "cpu0" / "cpufreq"
+       / "energy_performance_available_preferences").exists())
+override = tempfile.mkdtemp(prefix="ofw-twin-")
+(Path(override) / "b450-plus").mkdir()
+os.environ["FW_TWIN_DIR"] = override
+check("twin: FW_TWIN_DIR override wins",
+      twin.resolve_fixture_dir("b450-plus")
+      == str(Path(override) / "b450-plus"))
+os.environ.pop("FW_TWIN_DIR", None)
+
+# --- rehearse: the whole contract, green on TWIN-1 ----------------------------
+rep = rehearse.run_rehearsal("twin", write_report=True)
+check("rehearse: green on TWIN-1", rep["verdict"] == "green",
+      rehearse.render(rep)[:500])
+check("rehearse: the probe surface is locked at 28",
+      len(rep["probes"]) == 28, str(len(rep["probes"])))
+check("rehearse: all probes pass, none skipped on the twin",
+      rep["counts"] == {"pass": 28, "fail": 0, "skip": 0},
+      json.dumps(rep["counts"]))
+check("rehearse: probe ids unique (diff-stable report)",
+      len({p["id"] for p in rep["probes"]}) == len(rep["probes"]))
+check("rehearse: report written and schema-tagged",
+      bool(rep.get("report_file")) and Path(rep["report_file"]).exists()
+      and rep["schema"] == "omarchy-firmware/rehearsal@1")
+check("rehearse: journaled as rehearse",
+      journal.show(1)[0]["tool"] == "rehearse"
+      and journal.show(1)[0]["status"] == "ok")
+
+# --- rehearse: the no-write guarantee, enforced by construction ----------------
+twin_ctx = {"fixture": twin.resolve_fixture_dir(), "sysfs_epp": None,
+            "curve": Path(tempfile.gettempdir()) / "ofw-curve.json",
+            "mcp_env": {}, "is_twin": True}
+probes_t = rehearse.build_probes("twin", twin_ctx)
+confirm_ids = [q["id"] for q in probes_t
+               if any(a == "--confirm" for a in q["argv"])]
+check("rehearse: the human-confirm flag appears ONLY where refusal is "
+      "the expected outcome",
+      confirm_ids == ["stage-confirm-refused"], str(confirm_ids))
+gate_ids = {"t1-epp-gate", "t1-epp-undo-gate", "t1-fans-gate"}
+check("rehearse: every write-gesture probe asserts 'never applied'",
+      all("never applied" in q["expected"]
+          for q in probes_t if q["id"] in gate_ids) and len(gate_ids) == 3)
+
+real_probes = rehearse.build_probes("real", dict(twin_ctx, is_twin=False))
+twin_only_ids = {q["id"] for q in real_probes if q.get("twin_only")}
+check("rehearse: twin-only probes marked for honest skip on real",
+      twin_only_ids == {"stage-plan-nvme", "stage-board-refused",
+                        "stage-confirm-refused", "t1-epp-dryrun-plan"},
+      str(sorted(twin_only_ids)))
+check("rehearse: scenario probes stay deterministic on the real machine",
+      all(not q.get("twin_only") for q in real_probes
+          if q["id"] in {"diag-pump-dead", "diag-no-paste", "diag-heatwave",
+                         "diag-undetermined"}))
+
+# restore the T1 sysfs environment for any later section
+for k, v in sysfs_saved.items():
+    if v is not None:
+        os.environ[k] = v
 
 
 # -------------------------------------------------------------- output --

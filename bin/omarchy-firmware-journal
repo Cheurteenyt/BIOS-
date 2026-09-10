@@ -6,7 +6,13 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "lib"))
+_here = os.path.dirname(os.path.realpath(__file__))
+for _cand in (os.path.join(os.path.dirname(_here), "lib"),  # repo checkout
+              os.path.expanduser(  # install.sh layout (P5)
+                  "~/.local/share/omarchy-firmware/lib")):
+    if os.path.isdir(_cand):
+        sys.path.insert(0, _cand)
+        break
 from firmware_hal.cli import main  # noqa: E402
 
 sys.exit(main(["journal", *sys.argv[1:]]))

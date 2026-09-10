@@ -138,6 +138,28 @@ Phase 4 adds three seams without touching the existing ones:
   one-implementation-three-consumers rule does not extend to it: a
   report has no MCP tool by design, the CLI is the single consumer.
 
+## The P5 seam — the twin and the rehearsal
+
+Phase 5 adds one seam, purely additive:
+
+- **twin.py** is the machine profile + asset resolver: `FW_TWIN_DIR`
+  override → installed twin (`~/.local/share/omarchy-firmware/twin`,
+  staged by `install.sh`) → repository `tests/fixtures/`. The scenario
+  loader (`diagnostics._scenario_dir()`) and `selftest` now resolve through
+  it, which is what makes the installed CLI self-contained. It owns
+  `apply_sysfs_env()` — the deterministic T1 dry-run surface
+  (`FW_SYSFS_CPU` / `FW_SYSFS_HWMON`), always respecting caller-set values.
+- **rehearse.py** is the meta-tool: it drives the real CLI as
+  subprocesses (the same binaries a human types), checks each expected
+  behaviour with named check functions, and writes a diffable report to
+  XDG state. It is CLI-only (like `doctor`) — not an MCP tool, so the
+  12-tool agent surface is unchanged. Its no-write guarantee is enforced
+  by a suite-level scan of `build_probes()`.
+- `install.sh` stages `lib/` + `twin/` under
+  `~/.local/share/omarchy-firmware/`; the bins resolve that path as a
+  fallback. This closes the pre-P5 gap where an installed binary could not
+  find its library at all.
+
 ## Versioning and compatibility
 
 - `firmware_hal.__version__` tracks the package; `PHASE` names the current

@@ -28,7 +28,11 @@ same journaling, status carried (dry-run / applied / rolled-back / refused).
     omarchy-firmware fans curve undo [--confirm] [--json]        (T1 rollback)
     omarchy-firmware journal [N]
     omarchy-firmware report [--days N] [--json]  — supervised-loop digest (P4)
-    omarchy-firmware selftest     — full demo on fixtures and scenarios
+    omarchy-firmware twin         — the digital twin: profile + resolved assets
+    omarchy-firmware rehearse [--backend twin|real] [--json]
+                                  — the dress rehearsal: the whole behavioural
+                                    contract in one command (day-0 drill)
+    omarchy-firmware selftest     — full demo on the twin fixtures
     omarchy-firmware tiers        — display the T0-T3 contract
     omarchy-firmware mcp          — start the MCP stdio server
 """
@@ -40,7 +44,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import actions, audit, boot, cve_kb, cve_watch, diagnostics, fwupd, gpu, journal, ram, report, rollback, settings as settings_mod, smbios, stage, storage, tiers
+from . import actions, audit, boot, cve_kb, cve_watch, diagnostics, fwupd, gpu, journal, ram, rehearse, report, rollback, settings as settings_mod, smbios, stage, storage, tiers, twin
 
 
 def _emit(data: dict, as_json: bool) -> None:
@@ -307,6 +311,17 @@ def build_parser() -> argparse.ArgumentParser:
     pj.add_argument("limit", nargs="?", type=int, default=20)
     pj.add_argument("--json", action="store_true")
 
+    pt = sub.add_parser("twin", help="the digital twin: profile and resolved assets")
+    pt.add_argument("--json", action="store_true")
+    prh = sub.add_parser("rehearse", help="the dress rehearsal — the whole "
+                                            "behavioural contract, one command")
+    prh.add_argument("--backend", choices=["twin", "real"], default="real",
+                     help="twin = TWIN-1 fixtures (rehearsal); "
+                          "real = this machine (day-0 drill)")
+    prh.add_argument("--no-report", action="store_true",
+                     help="do not write the rehearsal report file")
+    prh.add_argument("--json", action="store_true")
+
     pr = sub.add_parser("report", help="supervised-loop digest (P4): days, tools, write statuses")
     pr.add_argument("--days", type=int, default=5, help="window in days (default 5)")
     pr.add_argument("--json", action="store_true")
@@ -475,12 +490,41 @@ def main(argv: list[str] | None = None) -> int:
                   "false positives. That annotated journal is the P4 evidence.")
         return 0
 
+    if args.cmd == "twin":
+        data = twin.describe()
+        if args.json:
+            print(json.dumps(data, ensure_ascii=False, indent=2))
+        else:
+            prof = data["profile"]
+            print(f"{prof['name']} — {prof['story']}")
+            for k in ("board", "cpu", "gpu", "storage", "cooling", "boot"):
+                print(f"  {k:<8}: {prof[k]}")
+            print(f"  assets  : {', '.join(prof['assets']['fixtures'])} "
+                  f"+ {prof['assets']['scenarios']} scenarios "
+                  f"+ sysfs ({', '.join(prof['assets']['sysfs'])})")
+            print(f"  resolved: {data['source']} — root {data['asset_root']}")
+            print(f"  honesty : {prof['cannot_prove']}")
+            print("\nRehearse against it: omarchy-firmware rehearse --backend twin")
+        return 0
+
+    if args.cmd == "rehearse":
+        data = rehearse.run_rehearsal(backend=args.backend,
+                                      write_report=not args.no_report)
+        if args.json:
+            print(json.dumps(data, ensure_ascii=False, indent=2))
+        else:
+            print(rehearse.render(data))
+        return 0 if data.get("verdict") == "green" else 1
+
     if args.cmd == "selftest":
-        fx = Path(__file__).resolve().parent.parent.parent / "tests" / "fixtures" / "b450-plus"
-        if not fx.exists():
-            print(f"fixtures not found: {fx}", file=sys.stderr)
+        fx = twin.resolve_fixture_dir("b450-plus")
+        if fx is None:
+            print("twin fixtures not found (repo tests/ or installed twin)",
+                  file=sys.stderr)
             return 1
-        print(f"== demo on fixtures ({fx.name}) — no hardware required ==")
+        fx = Path(fx)
+        print(f"== demo on the twin ({twin.TWIN_NAME}: {fx.name}) — "
+              f"no hardware required ==")
         for tool, fn in (
             ("fw.audit.status", lambda: audit.collect(str(fx))),
             ("fw.audit.cve", lambda: cve_kb.collect(str(fx))),
