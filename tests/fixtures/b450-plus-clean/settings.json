@@ -1,0 +1,47 @@
+{
+  "secure_boot": {
+    "readable": true,
+    "enabled": true
+  },
+  "virtualization": {
+    "cpu_vendor": "AuthenticAMD",
+    "cpu_flag": "svm",
+    "flag_present": true,
+    "kvm_device_present": true
+  },
+  "iommu": {
+    "kernel_cmdline": "root=UUID=... rw quiet zfs=..., video=...}",
+    "iommu_param_present": true,
+    "groups_count": 12
+  },
+  "epp": {
+    "available": [
+      "default",
+      "performance",
+      "balance_performance",
+      "balance_power",
+      "power"
+    ],
+    "current": "balance_performance",
+    "governor": "schedutil",
+    "cpus": 32
+  },
+  "fan_control": {
+    "chips": [
+      {
+        "name": "nct6798",
+        "pwm_enable": {
+          "pwm1": 2,
+          "pwm2": 2,
+          "pwm3": 0,
+          "pwm4": 2
+        }
+      }
+    ]
+  },
+  "tpm": {
+    "present": true,
+    "device": "/sys/class/tpm/tpm0"
+  },
+  "boot_mode": "uefi"
+}

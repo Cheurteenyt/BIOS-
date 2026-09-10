@@ -1,0 +1,81 @@
+
+==============NVSMI LOG==============
+
+NVML Version : 580.82.09
+Driver Version : 580.82.09
+CUDA Version : 13.0
+
+Attached GPUs : 1
+GPU 00000000:01:00.0
+    Product Name : NVIDIA GeForce RTX 3070
+    Product Brand : GeForce
+    Product Architecture : Ampere
+    Display Mode : Enabled
+    Display Active : Enabled
+    Persistence Mode : Enabled
+    MIG Mode
+        Current : N/A
+        Pending : N/A
+    GPU Virtualization Mode
+        Virtualization Mode : Pass-Through
+    Host Driver Version : N/A
+    Serial Number : N/A
+    UUID : GPU-3f4c2b1a-9e8d-7c6b-5a49-382716549302
+    Minor Number : 0
+    VBIOS Version : 94.04.4C.40.8B
+    GSP Firmware Version : 580.82.09
+    Multiboard : N/A
+    Board Part Number : 3070-08G-RTX
+    Part Number : 2215 1450001
+    GPU Part Number : 2484-895
+
+    Temperature
+        GPU Current Temp : 47 C
+        GPU Shutdown Temp : 95 C
+        GPU Slowdown Temp : 92 C
+        GPU Mem Current Temp : 44 C
+        GPU Mem Max Operating Temp : 95 C
+        GPU Acceleration Off Rec. Temp : 88 C
+        GPU Mem Slowdown Temp : 92 C
+
+    Power Readings
+        Power Management : Supported
+        Power Draw : 22.10 W
+        Power Limit : 220.00 W
+        Default Power Limit : 220.00 W
+        Enforced Power Limit : 220.00 W
+        Min Power Limit : 100.00 W
+        Max Power Limit : 240.00 W
+
+    Clocks Event Reasons
+        Gpu Idle : Active
+        SW Power Cap : Not Active
+        HW Slowdown : Thermal : Not Active
+        HW Slowdown : Thermal Braking : Not Active
+        HW Power Brake Slowdown : Not Active
+        Sync Boost : Not Active
+        SW Thermal Slowdown : Not Active
+
+    Clocks
+        Graphics : 210 MHz
+        SM : 210 MHz
+        Memory : 405 MHz
+        Video Encoding/Decoding : 324 MHz
+
+    Applications Clocks
+        Graphics : N/A
+        Memory : N/A
+
+    Max Clocks
+        Graphics : 1965 MHz
+        SM : 1965 MHz
+        Memory : 7001 MHz
+
+    ECC Mode
+        Current : N/A
+        Pending : N/A
+
+    BAR1 Memory Usage
+        Total : 8192 MiB
+        Used : 1 MiB
+        Free : 8191 MiB

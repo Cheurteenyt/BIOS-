@@ -25,10 +25,11 @@ sys.path.insert(0, str(ROOT / "lib"))
 
 os.environ.setdefault("XDG_STATE_HOME", tempfile.mkdtemp())  # isolated journal
 
-from firmware_hal import audit, boot, boot as bootmod, cli, cve_kb, diagnostics, fwupd, journal, sensors, smbios, tiers  # noqa: E402
+from firmware_hal import actions, audit, boot, boot as bootmod, cli, cve_kb, diagnostics, fwupd, gpu, journal, mcp_server, ram, sensors, settings as settings_mod, smbios, storage, tiers  # noqa: E402
 
 FIX_A = ROOT / "tests" / "fixtures" / "b450-plus"
 FIX_B = ROOT / "tests" / "fixtures" / "b550-f-old"
+FIX_CLEAN = ROOT / "tests" / "fixtures" / "b450-plus-clean"
 
 _tests: list[tuple[str, bool, str]] = []
 
@@ -103,17 +104,26 @@ check("journal: re-readable", journal.show()[0]["tool"] == "fw.audit.status")
 
 # ---------------------------------------------------------------- tiers ---
 try:
-    tiers.assert_phase1("cpu.epp.set")
-    check("tiers: T1 refused", False, "cpu.epp.set should have been refused")
+    tiers.assert_phase1("fw.update.stage")
+    check("tiers: T2 refused (update.stage)", False, "should have been refused")
 except tiers.TierRefused:
-    check("tiers: T1 refused", True)
+    check("tiers: T2 refused (update.stage)", True)
+try:
+    tiers.assert_phase1("fw.rollback")
+    check("tiers: T2 refused (rollback)", False, "should have been refused")
+except tiers.TierRefused:
+    check("tiers: T2 refused (rollback)", True)
 try:
     tiers.assert_phase1("fw.flash.write")
     check("tiers: unknown T3 refused", False)
 except tiers.TierRefused:
     check("tiers: unknown T3 refused", True)
-check("tiers: contract = 9 tools", len(tiers.TOOL_TIERS) == 9)
-check("tiers: 5 T0 implemented", len(tiers.IMPLEMENTED_T0) == 5)
+check("tiers: contract = 13 tools", len(tiers.TOOL_TIERS) == 13)
+check("tiers: 9 T0 implemented", len(tiers.IMPLEMENTED_T0) == 9)
+check("tiers: 2 T1 implemented", len(tiers.IMPLEMENTED_T1) == 2)
+check("tiers: epp declared T1", tiers.tier_of("cpu.epp.set") == "T1")
+check("tiers: fans declared T1", tiers.tier_of("fans.curve.set") == "T1")
+check("tiers: T1 accepted by scope", tiers.assert_phase1("cpu.epp.set") == "T1")
 check("tiers: no T3 path", "fw.flash.write" not in tiers.TOOL_TIERS)
 
 # ------------------------------------------------------------------ cli ---
@@ -136,7 +146,7 @@ check("cli: fixture mark", sum(1 for x in entries if x.get("fixture")) >= 4)
 a = audit.collect(FIX_A)
 check("audit: composite", a.get("board", {}).get("board_product") and a.get("boot", {}).get("chain"))
 check("audit: sensors", a.get("sensors", {}).get("chip_count") == 2, json.dumps(a.get("sensors"))[:120])
-check("audit: P2 read-only phase", "read-only" in (a.get("phase") or ""))
+check("audit: P3 phase declared", "P3" in (a.get("phase") or ""), a.get("phase"))
 
 # ------------------------------------------------------------------ diag ---
 # The physical diagnostics (vol. 3): every scenario must name THE fault,
@@ -227,11 +237,313 @@ check("cli: diag journaled",
       all(e["tool"] == "fw.diag.thermal" and e["tier"] == "T0" for e in last),
       str(last))
 
-# MCP server: the fifth tool is declared T0
-from firmware_hal import mcp_server  # noqa: E402
-specs = {s["name"]: s["risk_tier"] for s in mcp_server._tool_specs()}
-check("mcp: 5 tools declared", len(specs) == 5, str(specs))
+# MCP server: the eleven tools are declared with their tiers
+from firmware_hal import mcp_server as _mcp_server  # noqa: E402
+specs = {s["name"]: s["risk_tier"] for s in _mcp_server._tool_specs()}
+check("mcp: 11 tools declared", len(specs) == 11, str(specs))
 check("mcp: fw.diag.thermal T0", specs.get("fw.diag.thermal") == "T0")
+check("mcp: 4 new T0 declared",
+      all(specs.get(f"fw.diag.{t}") == "T0"
+          for t in ("storage", "gpu", "ram", "settings")))
+check("mcp: T1 tools declared",
+      specs.get("cpu.epp.set") == "T1" and specs.get("fans.curve.set") == "T1")
+
+# ------------------------------------------------------------- storage ---
+# The b450-plus fixture set encodes: healthy NVMe, SATA with reallocated +
+# pending sectors, NVMe controller on a degraded PCIe link.
+st = storage.collect(FIX_A)
+ids = {f["id"] for f in st["findings"]}
+check("storage: nvme read", any(d["kind"] == "nvme" for d in st["disks"]))
+check("storage: nvme itself healthy",
+      not any(i.startswith("storage-nvme") for i in ids), str(ids))
+check("storage: sata reallocated named (defective)",
+      "storage-sata-reallocated" in ids, str(ids))
+check("storage: sata pending named", "storage-sata-pending" in ids, str(ids))
+check("storage: pcie link degraded named (mis-adjusted)",
+      "storage-pcie-degraded" in ids, str(ids))
+check("storage: unsafe-shutdown ratio stays honest (3/412)",
+      "storage-unsafe-shutdowns" not in ids, str(ids))
+check("storage: verdict critical", st["verdict"] == "critical", st["verdict"])
+check("storage: findings carry category",
+      all(f.get("category") in ("defective", "mis-adjusted", "degraded")
+          for f in st["findings"]))
+check("storage: evidence on every finding",
+      all(f.get("evidence") and f.get("next_steps") for f in st["findings"]))
+
+st_clean = storage.collect(FIX_CLEAN)
+check("storage clean: healthy verdict", st_clean["verdict"] == "healthy",
+      json.dumps(st_clean["findings"])[:200])
+check("storage clean: no finding", st_clean["findings"] == [])
+check("storage clean: absent SATA tolerated",
+      not any(d["kind"] == "sata" for d in st_clean["disks"]))
+
+# synthetic: GPU link width degraded (x8 out of x16) is named by fw.diag.gpu
+tmp_lspci = Path(tempfile.mkdtemp())
+(tmp_lspci / "lspci.txt").write_text(
+    (FIX_A / "lspci.txt").read_text().replace(
+        "Speed 8GT/s (downgraded), Width x16", "Speed 8GT/s (downgraded), Width x8", 1))
+gp_syn = gpu.collect(tmp_lspci)
+check("gpu synthetic: width degraded named",
+      "gpu-pcie-degraded" in {f["id"] for f in gp_syn["findings"]},
+      str(gp_syn["findings"])[:200])
+
+# ----------------------------------------------------------------- gpu ---
+gp = gpu.collect(FIX_A)
+ids = {f["id"] for f in gp["findings"]}
+check("gpu: xid errors named", "gpu-xid-errors" in ids, str(ids))
+check("gpu: xid codes parsed (13, 62)",
+      sorted({x["code"] for x in gp.get("xid_errors", [])}) == [13, 62],
+      str(gp.get("xid_errors")))
+check("gpu: xid 13/62 = attention, not panic", gp["verdict"] == "attention",
+      gp["verdict"])
+check("gpu: BAR1 256 MiB -> ReBAR finding", "gpu-bar1-small" in ids, str(ids))
+check("gpu: no thermal slowdown (Not Active in fixture)",
+      "gpu-thermal-slowdown" not in ids, str(ids))
+check("gpu: driver read", gp["nvidia"]["driver"] == "580.82.09",
+      str(gp["nvidia"]))
+check("gpu: GSP firmware read (vol. 1 ch. nvidia)",
+      gp["nvidia"]["gsp_firmware"] == "580.82.09")
+check("gpu: x16 link not flagged", "gpu-pcie-degraded" not in ids)
+
+gp_clean = gpu.collect(FIX_CLEAN)
+check("gpu clean: healthy verdict", gp_clean["verdict"] == "healthy",
+      json.dumps(gp_clean["findings"])[:200])
+check("gpu clean: no Xid in log", gp_clean.get("xid_errors") == [])
+check("gpu clean: BAR1 8192 -> no finding",
+      "gpu-bar1-small" not in {f["id"] for f in gp_clean["findings"]})
+
+# synthetic: Xid 79 (fell off the bus) is the critical class
+tmp_dmesg = Path(tempfile.mkdtemp())
+(tmp_dmesg / "dmesg.txt").write_text(
+    "[  9.00] nvidia: module loaded\n"
+    "[ 10.00] NVRM: Xid (PCI:0000:01:00): 79, GPU has fallen off the bus\n")
+gp79 = gpu.collect(tmp_dmesg)
+check("gpu synthetic: Xid 79 critical",
+      gp79["verdict"] == "critical"
+      and gp79["findings"][0]["id"] == "gpu-xid-errors",
+      json.dumps(gp79["findings"])[:200])
+
+# ----------------------------------------------------------------- ram ---
+rm = ram.collect(FIX_A)
+ids = {f["id"] for f in rm["findings"]}
+check("ram: xmp-off named (2133 vs 3600)", "ram-xmp-off" in ids, str(ids))
+check("ram: 2 populated, 2 empty",
+      rm["slots"]["populated"] == 2 and rm["slots"]["empty"] == 2,
+      str(rm["slots"]))
+check("ram: total 32 GB", rm["total_installed_gb"] == 32)
+check("ram: ECC absence reported honestly",
+      rm["ecc"]["available"] is False and rm["ecc"]["smbios_type"] == "None")
+check("ram: verdict attention", rm["verdict"] == "attention", rm["verdict"])
+check("ram: next step cites the profile",
+      all("XMP/EXPO/DOCP" in f["next_steps"] for f in rm["findings"]
+          if f["id"] == "ram-xmp-off"))
+
+rm_clean = ram.collect(FIX_CLEAN)
+check("ram clean: configured = rated 3600",
+      all(m["configured_speed"] == 3600 for m in rm_clean["modules"]
+          if (m.get("size") or "").startswith("16")),
+      json.dumps(rm_clean["modules"])[:200])
+check("ram clean: healthy verdict", rm_clean["verdict"] == "healthy")
+check("ram clean: no finding", rm_clean["findings"] == [])
+
+# synthetic: EDAC uncorrected errors -> critical
+tmp_edac = Path(tempfile.mkdtemp())
+(tmp_edac / "edac.json").write_text(
+    '{"mc": [{"id": "mc0", "ce_count": 12, "ue_count": 3}]}')
+(tmp_edac / "dmidecode-memory.txt").write_text(
+    (FIX_A / "dmidecode-memory.txt").read_text())
+rm_err = ram.collect(tmp_edac)
+ids = {f["id"] for f in rm_err["findings"]}
+check("ram synthetic: uncorrected errors critical",
+      "ram-uncorrected-errors" in ids and rm_err["verdict"] == "critical",
+      str(ids))
+
+# ------------------------------------------------------------ settings ---
+se = settings_mod.collect(FIX_A)
+ids = {f["id"] for f in se["findings"]}
+check("settings: svm off named", "settings-virtualization-off" in ids, str(ids))
+check("settings: epp pinned named", "settings-epp-pinned" in ids, str(ids))
+check("settings: fans on bios default named",
+      "settings-fans-bios-default" in ids, str(ids))
+check("settings: iommu off (info) named", "settings-iommu-off" in ids, str(ids))
+check("settings: secure boot read (on)", se["secure_boot"]["enabled"] is True)
+check("settings: needs_bios_check lists the invisible",
+      len(se["needs_bios_check"]) >= 4, str(se["needs_bios_check"]))
+check("settings: ReBAR honesty (in needs_bios_check, not a finding)",
+      any("Resizable BAR" in x for x in se["needs_bios_check"]))
+check("settings: verdict attention", se["verdict"] == "attention", se["verdict"])
+
+se_clean = settings_mod.collect(FIX_CLEAN)
+check("settings clean: no attention finding",
+      not any(f["severity"] == "attention" for f in se_clean["findings"]),
+      json.dumps(se_clean["findings"])[:200])
+
+# -------------------------------------------- T1 actions: epp (two keys) ---
+T1_STATE = tempfile.mkdtemp()  # isolated rollback store
+os.environ["XDG_STATE_HOME"] = T1_STATE
+T1_TMP = Path(tempfile.mkdtemp())
+cpu_root = T1_TMP / "cpu"
+for n in (0, 1):
+    d = cpu_root / f"cpu{n}" / "cpufreq"
+    d.mkdir(parents=True)
+    (d / "energy_performance_available_preferences").write_text(
+        "default performance balance_performance balance_power power\n")
+    (d / "energy_performance_preference").write_text("balance_performance\n")
+os.environ["FW_SYSFS_CPU"] = str(cpu_root)
+
+EPP0 = cpu_root / "cpu0" / "cpufreq" / "energy_performance_preference"
+EPP1 = cpu_root / "cpu1" / "cpufreq" / "energy_performance_preference"
+
+r = actions.epp_set("performance")
+check("t1 epp: dry-run by default", r["status"] == "dry-run", str(r)[:120])
+check("t1 epp: dry-run changes nothing",
+      EPP0.read_text().strip() == "balance_performance")
+check("t1 epp: plan carries the diff", len(r["diff"]) == 2, str(r.get("diff"))[:120])
+
+try:
+    actions.epp_set("bogus")
+    check("t1 epp: invalid value refused", False)
+except actions.ActionRefused as exc:
+    check("t1 epp: invalid value refused", "available" in str(exc), str(exc)[:120])
+
+r = actions.epp_set("performance", confirm=True)
+check("t1 epp: confirm applies", r["status"] == "applied", str(r)[:200])
+check("t1 epp: value written on both cpus",
+      EPP0.read_text().strip() == "performance"
+      and EPP1.read_text().strip() == "performance")
+check("t1 epp: backup stored", r.get("backup_id") is not None
+      and (journal.state_dir() / "rollback" / "epp.json").exists())
+
+r = actions.epp_set("performance", confirm=True)
+check("t1 epp: idempotent re-run is a dry-run note",
+      r["status"] == "dry-run" and "already" in r.get("note", ""), str(r)[:120])
+
+r = actions.epp_set(undo=True, confirm=True)
+check("t1 epp: undo rolls back", r["status"] == "rolled-back", str(r)[:200])
+check("t1 epp: previous values restored",
+      EPP0.read_text().strip() == "balance_performance")
+
+r2 = actions.epp_set(undo=True)  # no confirm: dry-run plan
+check("t1 epp: undo without confirm is a dry-run", r2["status"] == "dry-run")
+
+# ------------------------------------------------ T1 actions: fans curve ---
+hw_root = T1_TMP / "hwmon" / "hwmon0"
+hw_root.mkdir(parents=True)
+(hw_root / "name").write_text("nct6798\n")
+(hw_root / "pwm1").write_text("128\n")
+(hw_root / "pwm1_enable").write_text("2\n")
+for k, (t, p) in enumerate([(40, "64"), (60, "128"), (80, "255")], start=1):
+    (hw_root / f"pwm1_auto_point{k}_temp").write_text(f"{t}\n")
+    (hw_root / f"pwm1_auto_point{k}_pwm").write_text(f"{p}\n")
+os.environ["FW_SYSFS_HWMON"] = str(T1_TMP / "hwmon")
+
+CURVE = {"hwmon": "nct6798", "pwm": 1, "points": [
+    {"temp": 40, "pwm": 90}, {"temp": 60, "pwm": 140},
+    {"temp": 85, "pwm": 255}]}  # 3 points = the 3 slots the tmp chip exposes
+
+try:
+    actions.fans_curve_set({"hwmon": "nct6798", "pwm": 1, "points": [
+        {"temp": 40, "pwm": 90}, {"temp": 55, "pwm": 120},
+        {"temp": 70, "pwm": 180}, {"temp": 85, "pwm": 255}]})
+    check("t1 fans: more points than slots refused", False,
+          "dropping a point could drop the mandatory 255 tail")
+except actions.ActionRefused:
+    check("t1 fans: more points than slots refused", True)
+
+for bad, why in (
+        ({"hwmon": "nct6798", "pwm": 1, "points": [
+            {"temp": 40, "pwm": 90}, {"temp": 85, "pwm": 200}]},
+         "last point pwm != 255"),
+        ({"hwmon": "nct6798", "pwm": 1, "points": [
+            {"temp": 40, "pwm": 90}, {"temp": 95, "pwm": 255}]},
+         "last point temp > 90"),
+        ({"hwmon": "nct6798", "pwm": 1, "points": [
+            {"temp": 60, "pwm": 90}, {"temp": 50, "pwm": 255}]},
+         "temps not ascending"),
+        ({"hwmon": "nct6798", "pwm": 1, "points": [{"temp": 40, "pwm": 90}]},
+         "single point")):
+    try:
+        actions.fans_curve_set(bad)
+        check(f"t1 fans: refused ({why})", False)
+    except actions.ActionRefused as exc:
+        check(f"t1 fans: refused ({why})",
+              any(frag in str(exc).lower()
+                  for frag in ("curve", "point", "255", "90", "temp")),
+              str(exc)[:120])
+
+try:
+    actions.fans_curve_set({"hwmon": "coretemp", "pwm": 1, "points": CURVE["points"]})
+    check("t1 fans: unsupported chip refused", False)
+except actions.ActionRefused:
+    check("t1 fans: unsupported chip refused", True)
+
+r = actions.fans_curve_set(CURVE)
+check("t1 fans: dry-run by default", r["status"] == "dry-run")
+check("t1 fans: plan lists the writes", len(r["plan_writes"]) >= 5, str(r)[:150])
+check("t1 fans: dry-run writes nothing", (hw_root / "pwm1_enable").read_text().strip() == "2")
+
+r = actions.fans_curve_set(CURVE, confirm=True)
+check("t1 fans: confirm applies", r["status"] == "applied", str(r)[:200])
+check("t1 fans: mode switched to hardware curve (5)",
+      (hw_root / "pwm1_enable").read_text().strip() == "5")
+check("t1 fans: point temps written",
+      (hw_root / "pwm1_auto_point3_temp").read_text().strip() == "85")
+check("t1 fans: last point is 255 (mechanical guard honoured)",
+      (hw_root / "pwm1_auto_point3_pwm").read_text().strip() == "255")
+
+r = actions.fans_curve_set(undo=True, confirm=True)
+check("t1 fans: undo rolls back", r["status"] == "rolled-back", str(r)[:200])
+check("t1 fans: previous curve restored",
+      (hw_root / "pwm1_enable").read_text().strip() == "2"
+      and (hw_root / "pwm1_auto_point1_pwm").read_text().strip() == "64")
+
+show = actions.fans_curve_show()
+check("t1 fans: show lists the chip", show["chips"][0]["name"] == "nct6798")
+
+# ------------------------------------------------------ MCP T1 dry-run ---
+os.environ["FW_SYSFS_CPU"] = str(cpu_root)
+r = _mcp_server._run_tool("cpu.epp.set", {"value": "performance"})
+check("mcp: epp dry-run default", r["status"] == "dry-run", str(r)[:150])
+check("mcp: epp dry-run journaled", r["journal_entry"]["status"] == "dry-run")
+r = _mcp_server._run_tool("cpu.epp.set", {"value": "performance", "confirm": True})
+check("mcp: confirm applies", r["status"] == "applied", str(r)[:150])
+actions.epp_set(undo=True, confirm=True)  # leave the tree as found
+
+# -------------------------------------------------------- CLI end to end ---
+os.environ["XDG_STATE_HOME"] = T1_STATE
+for sub in ("storage", "gpu", "ram", "settings"):
+    rc = cli.main(["diag", sub, "--json", "--fixture-dir", str(FIX_A)])
+    check(f"cli: diag {sub} rc=0", rc == 0)
+rc = cli.main(["cpu", "epp", "set", "performance", "--json"])
+check("cli: epp set dry-run rc=0", rc == 0)
+rc = cli.main(["cpu", "epp", "set", "bogus", "--json"])
+check("cli: epp invalid refused rc=2", rc == 2)
+rc = cli.main(["cpu", "epp", "set", "performance", "--confirm", "--json"])
+check("cli: epp confirm applied rc=0", rc == 0)
+rc = cli.main(["cpu", "epp", "undo", "--confirm", "--json"])
+check("cli: epp undo rc=0", rc == 0)
+rc = cli.main(["fans", "curve", "show", "--json"])
+check("cli: fans show rc=0", rc == 0)
+curve_file = T1_TMP / "curve.json"
+curve_file.write_text(json.dumps(CURVE))
+rc = cli.main(["fans", "curve", "set", "--file", str(curve_file), "--json"])
+check("cli: fans set dry-run rc=0", rc == 0)
+rc = cli.main(["fans", "curve", "set", "--file", str(curve_file),
+               "--confirm", "--json"])
+check("cli: fans set applied rc=0", rc == 0)
+rc = cli.main(["fans", "curve", "undo", "--confirm", "--json"])
+check("cli: fans undo rc=0", rc == 0)
+
+t1_entries = [e for e in journal.show(50) if e["tier"] == "T1"]
+check("cli: T1 calls journaled with statuses",
+      len(t1_entries) >= 5
+      and {e["status"] for e in t1_entries} >= {"dry-run", "applied", "rolled-back"},
+      str([(e["tool"], e["status"]) for e in t1_entries])[:200])
+check("cli: every T1 journal entry carries a truthful status",
+      all(e["status"] in ("dry-run", "applied", "rolled-back", "refused",
+                          "error", "ok")  # ok = the read-only show, T0 flow
+          for e in t1_entries))
+
 
 # -------------------------------------------------------------- output --
 fails = [t for t in _tests if not t[1]]

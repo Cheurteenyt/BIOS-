@@ -2,37 +2,51 @@
 name: firmware
 description: >
   Audit and diagnostics of this machine's firmware/BIOS and hardware via
-  the omarchy-firmware base (Phase 2: read-only + thermal diagnostics).
-  Use whenever a question touches the BIOS, UEFI, NVRAM, the boot chain,
-  fwupd, firmware CVEs, temperatures, or a suspected hardware fault.
-  Triggers: BIOS, UEFI, firmware, NVRAM, efibootmgr, boot entries, boot
-  order, ESP, Limine, UKI, Secure Boot, fTPM, TPM, AGESA, LogoFAIL,
-  Sinkclose, firmware CVE, fwupd, LVFS, dmidecode, SMBIOS, CPU running
-  hot, overheating, throttling, temperature, thermal paste, AIO pump, fan,
-  VRM, dust, thermal diagnostics, "where does my BIOS stand", "am I
-  exposed", "why is it running hot", BIOS update. Phase 2 covers NO
-  writes: see the Scope section.
+  the omarchy-firmware base (Phase 3: full read-only diagnostics + two
+  reversible writes). Use whenever a question touches the BIOS, UEFI,
+  NVRAM, the boot chain, fwupd, firmware CVEs, temperatures, disks, GPU,
+  memory speed, BIOS settings, or a suspected hardware fault. Triggers:
+  BIOS, UEFI, firmware, NVRAM, efibootmgr, boot entries, boot order, ESP,
+  Limine, UKI, Secure Boot, fTPM, TPM, AGESA, LogoFAIL, Sinkclose,
+  firmware CVE, fwupd, LVFS, dmidecode, SMBIOS, CPU running hot,
+  overheating, throttling, temperature, thermal paste, AIO pump, fan,
+  VRM, dust, thermal diagnostics, NVMe, SMART, reallocated sectors, Xid,
+  GPU, XMP, EXPO, DOCP, RAM speed, Resizable BAR, SVM, VT-x, IOMMU, EPP,
+  fan curve, "where does my BIOS stand", "am I exposed", "why is it
+  running hot", "is my disk dying", BIOS update. Writes are limited to
+  two T1 reversible actions (dry-run by default): see the Scope section.
 ---
 
-# Firmware Skill (Phase 2 — read-only + thermal diagnostics)
+# Firmware Skill (Phase 3 — full T0 diagnostics + T1 reversible writes)
 
 Work from evidence. The goal is an honest picture of the firmware AND the
-hardware, not a plausible story. Every tool below is T0: pure reads,
-journaled in `~/.local/state/omarchy-firmware/journal.jsonl`. If a question
-requires a write, it is out of scope — see Scope and Tiers.
+hardware, not a plausible story. Nine tools are T0: pure reads, journaled
+in `~/.local/state/omarchy-firmware/journal.jsonl`. Two tools are T1:
+reversible writes, **dry-run by default** — they never touch anything
+without an explicit confirm flag, and they back up before they write. If
+a question requires anything else, it is out of scope — see Scope and
+Tiers.
 
-## The five T0 tools (first call first)
+## The eleven tools (first call first)
 
-| Tool | CLI | What it answers |
-|---|---|---|
-| `fw.audit.status` | `omarchy-firmware audit status --json` | "Where does my firmware stand?" — board, BIOS, boot, fwupd, sensors |
-| `fw.audit.cve` | `omarchy-firmware audit cve --json` | "Am I exposed to LogoFAIL?" — AM4 version/CVE cross-check |
-| `fw.boot.inspect` | `omarchy-firmware boot inspect --json` | "Is my boot chain healthy?" — efibootmgr, UKI/Limine, snapshots |
-| `fw.update.check` | `omarchy-firmware update check --json` | "Are there updates?" — local fwupd state, 15-min cache |
-| `fw.diag.thermal` | `omarchy-firmware diag quick --json` | "Why is it running hot?" — signatures: pump, paste/mounting (R_th), fan, VRM, 12 V, trend |
+| Tool | CLI | Tier | What it answers |
+|---|---|---|---|
+| `fw.audit.status` | `omarchy-firmware audit status --json` | T0 | "Where does my firmware stand?" — board, BIOS, boot, fwupd, sensors |
+| `fw.audit.cve` | `omarchy-firmware audit cve --json` | T0 | "Am I exposed to LogoFAIL?" — AM4 version/CVE cross-check |
+| `fw.boot.inspect` | `omarchy-firmware boot inspect --json` | T0 | "Is my boot chain healthy?" — efibootmgr, UKI/Limine, snapshots |
+| `fw.update.check` | `omarchy-firmware update check --json` | T0 | "Are there updates?" — local fwupd state, 15-min cache |
+| `fw.diag.thermal` | `omarchy-firmware diag quick --json` | T0 | "Why is it running hot?" — signatures: pump, paste/mounting (R_th), fan, VRM, 12 V, trend |
+| `fw.diag.storage` | `omarchy-firmware diag storage --json` | T0 | "Is my disk lying to me?" — NVMe media/spare/wear, SATA reallocated/pending, PCIe links |
+| `fw.diag.gpu` | `omarchy-firmware diag gpu --json` | T0 | "Is my GPU sick or capped?" — Xid history, thermal slowdown, BAR1, link width |
+| `fw.diag.ram` | `omarchy-firmware diag ram --json` | T0 | "Is my RAM at the paid speed?" — rated vs configured (XMP/EXPO/DOCP), EDAC |
+| `fw.diag.settings` | `omarchy-firmware diag settings --json` | T0 | "What is mis-adjusted?" — Secure Boot, SVM/VT-x, IOMMU, EPP, fan mode |
+| `cpu.epp.set` | `omarchy-firmware cpu epp set VALUE` | T1 | efficiency hint of every CPU — dry-run default, `--confirm` + undo |
+| `fans.curve.set` | `omarchy-firmware fans curve set --file F` | T1 | nct67xx hardware curve — dry-run default, mechanical guard, undo |
 
-**Rule 1 — the agent proposes, the HAL disposes, the human decides.** The
-base cannot write: that is structural, not politeness.
+**Rule 1 — the agent proposes, the HAL disposes, the human decides.**
+T1 writes: dry-run first, SHOW the plan to the human, get an explicit
+agreement, only then confirm. A write is always followed by a T0
+verification read and the undo offer.
 
 **Rule 2 — audit first.** `fw.audit.status` is always the first call.
 Never reason from a guessed board: the platform is read from SMBIOS
@@ -74,10 +88,24 @@ load) and propose `diag probe`.
 
 | Tier | Status | Meaning |
 |---|---|---|
-| T0 | **implemented (P2)** | read-only + diagnostics, journaled |
-| T1 | next phase | reversible writes (EPP, fan curves) — dry-run, saved profile, rollback |
+| T0 | **implemented (9 tools)** | read-only + diagnostics, journaled |
+| T1 | **implemented (2 tools)** | reversible writes: dry-run default, explicit confirm, backup + undo, mechanical guards |
 | T2 | next phase | NVRAM/capsule writes (fw.update.stage, fw.rollback) — human confirmation, tool by tool |
 | T3 | **never** | physical flash, EZ Flash: the human executes, the agent prepares the dated, verified walkthrough |
+
+## T1 conduct (the only two writes in existence here)
+
+1. `cpu epp set VALUE` — plan first (dry-run output), cite the diff
+   (current -> proposed, all CPUs), ask, then `--confirm` / `confirm:
+   true`. Verify with `diag settings` and offer `cpu epp undo`.
+2. `fans curve set --file curve.json` — validate the curve BEFORE
+   proposing: 2-7 points, temps ascending, last point pwm=255 at <= 90 °C
+   (the guard refuses anything else — cooling can never be capped).
+   Dry-run, show `plan_writes`, ask, confirm. Verify with
+   `fans curve show` and offer `fans curve undo`.
+3. Anything else — efivarfs, boot entries, Secure Boot, NVRAM, flash —
+   stays forbidden: no path exists, do not improvise one through direct
+   shell commands.
 
 Absolute prohibitions for the agent, even if another path seems to exist:
 writing to efivarfs, deleting/reordering efibootmgr entries, running
@@ -87,10 +115,11 @@ through direct shell commands.
 
 ## Privilege rules (inherited from the omarchy skill)
 
-The five T0 tools run as the user; dmidecode/efibootmgr may require sudo
+The T0 tools run as the user; dmidecode/efibootmgr may require sudo
 depending on the machine. With a terminal: `sudo`. Without a terminal
 (background process): `pkexec`. Do not wrap a command that already
-handles elevation.
+handles elevation. T1 writes touch sysfs files owned by root; run them
+with `sudo` in a terminal, and never inside an unattended loop.
 
 ## Honesty about limits (vol. 1, ch. 4 and vol. 3, ch. 6)
 

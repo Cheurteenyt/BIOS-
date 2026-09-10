@@ -8,15 +8,20 @@ its declared tier and its out-of-scope refusal test.
 
 from __future__ import annotations
 
-# The full nine-tool contract (vol. 2 table 5.1 + vol. 3, ch. 5).
-# T1/T2 tools remain DECLARED but NOT implemented: any invocation fails with
-# an explicit error, never a silence.
+# The full thirteen-tool contract (vol. 2 table 5.1 + vol. 3 ch. 5 + vol. 4).
+# T2 tools remain DECLARED but NOT implemented: any invocation fails with
+# an explicit error, never a silence. T1 tools are implemented with the
+# two-key rule (dry-run by default, explicit confirm to apply).
 TOOL_TIERS: dict[str, str] = {
     "fw.audit.status": "T0",
     "fw.audit.cve": "T0",
     "fw.boot.inspect": "T0",
     "fw.update.check": "T0",
     "fw.diag.thermal": "T0",
+    "fw.diag.storage": "T0",
+    "fw.diag.gpu": "T0",
+    "fw.diag.ram": "T0",
+    "fw.diag.settings": "T0",
     "cpu.epp.set": "T1",
     "fans.curve.set": "T1",
     "fw.update.stage": "T2",
@@ -26,14 +31,17 @@ TOOL_TIERS: dict[str, str] = {
 # What this codebase actually exposes.
 TIER_MEANING = {
     "T0": "read-only, journaled — free access for the agent",
-    "T1": "reversible write (dry-run default, profile saved, rollback) — Phase 3",
+    "T1": "reversible write: dry-run by default, explicit confirm to apply, "
+          "backup + rollback store (implemented for cpu.epp.set, fans.curve.set)",
     "T2": "NVRAM/capsule write, explicit human confirmation — Phase 4",
     "T3": "physical flash, EZ Flash — forbidden to the agent; the human executes",
 }
 
-# Tools exposed by this codebase (P1 + P2: thermal diagnostics).
+# Tools exposed by this codebase (P1 + P2 audits/diagnostics, P3 writes).
 IMPLEMENTED_T0 = ["fw.audit.status", "fw.audit.cve", "fw.boot.inspect",
-                  "fw.update.check", "fw.diag.thermal"]
+                  "fw.update.check", "fw.diag.thermal", "fw.diag.storage",
+                  "fw.diag.gpu", "fw.diag.ram", "fw.diag.settings"]
+IMPLEMENTED_T1 = ["cpu.epp.set", "fans.curve.set"]
 
 # T3 tools: no call path exists, not even an elegant refusal.
 # Flashing goes through the human alone (guided EZ Flash, see vol. 2 ch. 8).
@@ -54,12 +62,20 @@ def tier_of(tool: str) -> str:
 
 
 def assert_phase1(tool: str) -> str:
-    """Refuse any tool not implemented in the current phase, with the exact reason."""
+    """Refuse any tool not implemented in the current phase, with the exact reason.
+
+    Historical name kept: the first scope was Phase 1's T0 base; the check
+    now covers implemented T0 *and* implemented T1 (two-key rule handled by
+    the caller).
+    """
     t = tier_of(tool)
-    if t != "T0" or tool not in IMPLEMENTED_T0:
+    implemented = (t == "T0" and tool in IMPLEMENTED_T0) or \
+                  (t == "T1" and tool in IMPLEMENTED_T1)
+    if not implemented:
         from . import PHASE  # late import: avoids any ordering dependency
         raise TierRefused(
             f"'{tool}' is declared tier {t} but not implemented in the current "
-            f"phase ({PHASE}). Current scope: {', '.join(IMPLEMENTED_T0)}."
+            f"phase ({PHASE}). Implemented: "
+            f"T0={', '.join(IMPLEMENTED_T0)}; T1={', '.join(IMPLEMENTED_T1)}."
         )
     return t

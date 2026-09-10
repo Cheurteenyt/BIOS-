@@ -1,0 +1,11 @@
+[    0.000000] Linux version 6.12.30-omarchy-lts (gcc 15.1.1) #1 SMP PREEMPT_DYNAMIC
+[    0.412345] pci 0000:00:00.0: [1022:1483] type 00 class 0x060000
+[    2.118456] nvme nvme0: pci function 0000:02:00.0
+[    2.201234] nvme0n1: p1
+[    7.890123] nvidia: loading out-of-tree module into the kernel.
+[    8.012345] nvidia-nvlink: Nvlink Core is being initialized, major device number 239
+[    8.345678] nvidia-modeset: Loading NVIDIA Kernel Mode Setting Driver for UNIX platforms 580.82.09
+[    9.111222] nvidia-gpu 0000:01:00.3: NVIDIA GPU Firmware Interface (GSP) ready
+[   45.678901] NVRM: Xid (PCI:0000:01:00): 13, pid=2345, name=blender, Graphical Engine fault: Graphics Engine 0x1
+[  112.223344] NVRM: Xid (PCI:0000:01:00): 62, pid=0, name=[], Internal micro-controller halt
+[  130.404505] NVRM: Xid (PCI:0000:01:00): 13, pid=3111, name=blender, Graphical Engine fault: Graphics Engine 0x1

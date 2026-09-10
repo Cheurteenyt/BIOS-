@@ -40,26 +40,34 @@ agent surface, a JSON dump of the same dict). There is no agent-only code
 path: a human typing `omarchy-firmware audit status` and an agent calling
 `fw.audit.status` execute the same function through the same `_guard` flow.
 
-`_guard` is the single pipeline: check the tier → execute → journal the call
-(ok or error) → emit (human or `--json`). Anything that bypasses `_guard`
-would bypass journaling; code review and tests both enforce that nothing does.
+`_guard` is the single pipeline for T0: check the tier → execute → journal
+the call (ok or error) → emit (human or `--json`). T1 calls go through
+`_guard_t1`: same journaling, but the status carries the two-key outcome
+(`dry-run` / `applied` / `rolled-back` / `refused`). Anything that bypasses
+the guards would bypass journaling; code review and tests both enforce that
+nothing does.
 
 ### Fixtures over hardware
 
 Every collector accepts a fixture directory; when present, expected tool
-output is read from disk instead of executed (`system.py`). Two complete
-board fixtures (ASUS TUF B450-PLUS GAMING, BIOS 3644/2026; ASUS ROG STRIX
-B550-F, BIOS 3001/2023) plus eight pre-recorded thermal scenarios (5950X +
-240 mm AIO physics) make the whole base — including the CVE reasoning and
-the diagnostic engine — fully exercisable on any machine:
+output is read from disk instead of executed (`system.py`). Three board
+fixture sets (ASUS TUF B450-PLUS GAMING "issues" — BIOS 3644/2026 — with
+every P3 fault encoded; the same board "clean" — zero findings expected;
+ASUS ROG STRIX B550-F, BIOS 3001/2023) plus eight pre-recorded thermal
+scenarios (5950X + 240 mm AIO physics) make the whole base — including the
+CVE reasoning, the diagnostic engine and the T1 dry-run plans — fully
+exercisable on any machine:
 
 - development without hardware;
 - CI without hardware;
 - acceptance without hardware (`FW_FIXTURE_DIR`, `FW_DIAG_SCENARIO`);
 - reproducible demo (`selftest`, `diag scenarios`).
 
-The board is never hardcoded. The fixtures exist precisely so nothing needs
-to be.
+The T1 layer has its own injection point: `FW_SYSFS_CPU` and
+`FW_SYSFS_HWMON` redirect the write targets to a temp sysfs tree, so the
+two-key rule, the backups, the undo and the mechanical guards are all tested
+without touching a real machine. The board is never hardcoded. The fixtures
+exist precisely so nothing needs to be.
 
 ### The access journal
 

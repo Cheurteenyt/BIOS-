@@ -3,7 +3,8 @@
 The CLI is the only functional reference; the MCP server is just a typed
 wrapper around it. Every T0 call goes through here, gets journaled, and
 prints human-readable or --json output depending on the consumer (the agent
-asks for --json, the human keeps the default).
+asks for --json, the human keeps the default). T1 calls go through _guard_t1:
+same journaling, status carried (dry-run / applied / rolled-back / refused).
 
     omarchy-firmware audit status [--json] [--fixture-dir DIR]
     omarchy-firmware audit cve    [--json] [--fixture-dir DIR]
@@ -12,6 +13,15 @@ asks for --json, the human keeps the default).
     omarchy-firmware diag quick   [--json] [--scenario NAME] [--no-record]
     omarchy-firmware diag probe   [--json] [--seconds N] [--scenario NAME]
     omarchy-firmware diag scenarios            — list the bundled scenarios
+    omarchy-firmware diag storage [--json] [--fixture-dir DIR]   (T0)
+    omarchy-firmware diag gpu     [--json] [--fixture-dir DIR]   (T0)
+    omarchy-firmware diag ram     [--json] [--fixture-dir DIR]   (T0)
+    omarchy-firmware diag settings [--json] [--fixture-dir DIR]  (T0)
+    omarchy-firmware cpu epp set VALUE [--confirm] [--json]      (T1, dry-run default)
+    omarchy-firmware cpu epp undo [--confirm] [--json]           (T1 rollback)
+    omarchy-firmware fans curve show  [--json]                   (read)
+    omarchy-firmware fans curve set --file FILE [--confirm]      (T1, dry-run default)
+    omarchy-firmware fans curve undo [--confirm] [--json]        (T1 rollback)
     omarchy-firmware journal [N]
     omarchy-firmware selftest     — full demo on fixtures and scenarios
     omarchy-firmware tiers        — display the T0-T3 contract
@@ -25,7 +35,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import audit, boot, cve_kb, diagnostics, fwupd, journal, smbios, tiers
+from . import actions, audit, boot, cve_kb, diagnostics, fwupd, gpu, journal, ram, settings as settings_mod, smbios, storage, tiers
 
 
 def _emit(data: dict, as_json: bool) -> None:
@@ -99,6 +109,44 @@ def _summary_of(data: dict) -> str:
     return "inventory completed"
 
 
+def _guard_t1(tool: str, argv: list[str], fn, args, *, fixture: bool = False):
+    """T1 flow: journal with the action status, exit code per outcome."""
+    try:
+        tier = tiers.assert_phase1(tool)
+    except tiers.TierRefused as exc:
+        print(f"REFUSED: {exc}", file=sys.stderr)
+        return 2
+    try:
+        data = fn()
+        status = data.get("status", "dry-run")
+        data["journal_entry"] = journal.record(
+            tool, tier, argv, status, _summary_t1(data), fixture=fixture)
+        _emit(data, args.json)
+        return 2 if status == "refused" else 0
+    except actions.ActionRefused as exc:
+        journal.record(tool, tier, argv, "refused", str(exc)[:200], fixture=fixture)
+        print(f"REFUSED: {exc}", file=sys.stderr)
+        return 2
+    except Exception as exc:  # noqa: BLE001 — the boundary CLI tells everything
+        journal.record(tool, tier, argv, "error", str(exc)[:200], fixture=fixture)
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
+
+
+def _summary_t1(data: dict) -> str:
+    if data.get("status") == "dry-run":
+        n = len(data.get("diff", {}) or data.get("plan_writes", []) or {})
+        return f"dry-run plan ({n} change(s)) — nothing written"
+    if data.get("status") == "applied":
+        n = data.get("applied_writes")
+        if n is None:
+            n = len(data.get("applied") or {})
+        return f"applied: {n} write(s), backup #{data.get('backup_id')}"
+    if data.get("status") == "rolled-back":
+        return f"rolled back: {len(data.get('restored', {}))} value(s) restored"
+    return str(data.get("note") or data.get("status"))[:160]
+
+
 def _render_diag(data: dict) -> str:
     """Human rendering of the diagnostic: verdict first, evidence next."""
     m = data.get("measurements", {})
@@ -151,7 +199,7 @@ def build_parser() -> argparse.ArgumentParser:
                     help="refresh LVFS metadata (the only network access, on request)")
     common(s4)
 
-    pd = sub.add_parser("diag", help="physical thermal diagnostics (vol. 3)")
+    pd = sub.add_parser("diag", help="physical diagnostics (vol. 3-4)")
     dsub = pd.add_subparsers(dest="diag_cmd", required=True)
     d1 = dsub.add_parser("quick", help="passive: 3 reads, immediate verdict, frugal one-shot")
     d1.add_argument("--scenario", metavar="NAME", default=None,
@@ -167,6 +215,45 @@ def build_parser() -> argparse.ArgumentParser:
     common(d2)
     d3 = dsub.add_parser("scenarios", help="list the bundled thermal scenarios")
     common(d3)
+    d4 = dsub.add_parser("storage", help="NVMe/SATA SMART + PCIe links (vol. 4)")
+    common(d4)
+    d5 = dsub.add_parser("gpu", help="Xid history, clock limits, BAR1, link width (vol. 4)")
+    common(d5)
+    d6 = dsub.add_parser("ram", help="rated vs configured speed, EDAC counters (vol. 4)")
+    common(d6)
+    d7 = dsub.add_parser("settings", help="observable BIOS settings audit (vol. 4)")
+    common(d7)
+
+    pc = sub.add_parser("cpu", help="T1 CPU actions (epp)")
+    csub = pc.add_subparsers(dest="cpu_cmd", required=True)
+    ce = csub.add_parser("epp", help="energy performance preference (T1, reversible)")
+    esub = ce.add_subparsers(dest="epp_cmd", required=True)
+    es1 = esub.add_parser("set", help="set EPP on every CPU (dry-run unless --confirm)")
+    es1.add_argument("value", metavar="VALUE",
+                     help="one of the available preferences (e.g. balance_performance)")
+    es1.add_argument("--confirm", action="store_true",
+                     help="apply for real (default: dry-run plan only)")
+    common(es1)
+    es2 = esub.add_parser("undo", help="restore the last backed-up EPP values")
+    es2.add_argument("--confirm", action="store_true")
+    common(es2)
+
+    pf = sub.add_parser("fans", help="T1 fan actions (curve)")
+    fsub = pf.add_subparsers(dest="fans_cmd", required=True)
+    fc = fsub.add_parser("curve", help="Smart Fan curve on nct67xx (T1, reversible)")
+    fsub2 = fc.add_subparsers(dest="curve_cmd", required=True)
+    fs1 = fsub2.add_parser("set", help="write a curve (dry-run unless --confirm)")
+    fs1.add_argument("--file", metavar="FILE", required=True,
+                     help='JSON: {"hwmon": "nct6798", "pwm": 1, '
+                          '"points": [{"temp": 40, "pwm": 90}, ...]}')
+    fs1.add_argument("--confirm", action="store_true",
+                     help="apply for real (default: dry-run plan only)")
+    common(fs1)
+    fs2 = fsub2.add_parser("undo", help="restore the last backed-up curve")
+    fs2.add_argument("--confirm", action="store_true")
+    common(fs2)
+    fs3 = fsub2.add_parser("show", help="read current modes and curves (no write)")
+    common(fs3)
 
     pj = sub.add_parser("journal", help="T0 access journal")
     pj.add_argument("limit", nargs="?", type=int, default=20)
@@ -242,6 +329,41 @@ def main(argv: list[str] | None = None) -> int:
             print(_render_diag(data))
         return 0
 
+    if args.cmd == "diag" and args.diag_cmd in (
+            "storage", "gpu", "ram", "settings"):
+        tool = {"storage": "fw.diag.storage", "gpu": "fw.diag.gpu",
+                "ram": "fw.diag.ram", "settings": "fw.diag.settings"}[args.diag_cmd]
+        fn = {"storage": storage.collect, "gpu": gpu.collect,
+              "ram": ram.collect, "settings": settings_mod.collect}[args.diag_cmd]
+        return _guard(tool, argv, lambda: fn(args.fixture_dir), args,
+                      fixture=args.fixture_dir is not None)
+
+    if args.cmd == "cpu" and args.cpu_cmd == "epp":
+        if args.epp_cmd == "set":
+            return _guard_t1("cpu.epp.set", argv,
+                             lambda: actions.epp_set(args.value, confirm=args.confirm),
+                             args)
+        return _guard_t1("cpu.epp.set", argv,
+                         lambda: actions.epp_set(undo=True, confirm=args.confirm), args)
+
+    if args.cmd == "fans" and args.fans_cmd == "curve":
+        if args.curve_cmd == "set":
+            try:
+                curve = json.loads(Path(args.file).read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError) as exc:
+                print(f"ERROR: curve file unreadable: {exc}", file=sys.stderr)
+                return 1
+            return _guard_t1("fans.curve.set", argv,
+                             lambda: actions.fans_curve_set(curve, confirm=args.confirm),
+                             args)
+        if args.curve_cmd == "undo":
+            return _guard_t1("fans.curve.set", argv,
+                             lambda: actions.fans_curve_set(undo=True, confirm=args.confirm),
+                             args)
+        # fans curve show — a read, still through the journal
+        return _guard("fans.curve.set", argv,
+                      lambda: actions.fans_curve_show(), args, fixture=False)
+
     if args.cmd == "journal":
         entries = journal.show(args.limit)
         if getattr(args, "json", False):
@@ -266,6 +388,10 @@ def main(argv: list[str] | None = None) -> int:
             ("fw.audit.cve", lambda: cve_kb.collect(str(fx))),
             ("fw.boot.inspect", lambda: boot.collect(str(fx))),
             ("fw.update.check", lambda: fwupd.check_updates(str(fx))),
+            ("fw.diag.storage", lambda: storage.collect(str(fx))),
+            ("fw.diag.gpu", lambda: gpu.collect(str(fx))),
+            ("fw.diag.ram", lambda: ram.collect(str(fx))),
+            ("fw.diag.settings", lambda: settings_mod.collect(str(fx))),
         ):
             data = fn()
             print(f"\n--- {tool} (T0) ---")

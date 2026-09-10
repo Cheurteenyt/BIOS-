@@ -1,0 +1,55 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.13"]
+    name: test-suite (py${{ matrix.python }})
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Contract test suite (stdlib only, no hardware)
+        run: python3 tests/test_suite.py
+
+      - name: Selftest on fixtures
+        run: python3 bin/omarchy-firmware selftest
+
+      - name: Tier refusals still hold (explicit invocation)
+        run: |
+          python3 bin/omarchy-firmware cpu epp set balance_performance --json
+          python3 - <<'EOF'
+          import subprocess, sys
+          # A T2 tool must stay declared and refused, never executed.
+          p = subprocess.run([sys.executable, "bin/omarchy-firmware", "tiers"],
+                             capture_output=True, text=True)
+          assert "fw.update.stage" in p.stdout and "T2" in p.stdout
+          print("T2 tools remain declared and refused.")
+          EOF
+
+  mcp:
+    runs-on: ubuntu-latest
+    name: mcp conformance
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install the optional MCP dependency
+        run: pip install mcp
+
+      - name: MCP smoke (initialize, tools/list, real calls, T1 dry-run)
+        run: python3 tests/mcp_smoke.py

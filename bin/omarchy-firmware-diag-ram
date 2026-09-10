@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+# omarchy:summary=Memory audit (rated vs configured speed / XMP-EXPO-DOCP, EDAC errors) — T0 read-only
+# omarchy:args=[--json] [--fixture-dir DIR]
+# omarchy:examples=omarchy firmware diag ram --json | omarchy firmware diag ram
+
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "lib"))
+from firmware_hal.cli import main  # noqa: E402
+
+args = sys.argv[1:]
+if not args:
+    args = ["diag", "ram"]
+elif args[0].startswith("-"):
+    args = ["diag", "ram"] + args
+sys.exit(main(args))

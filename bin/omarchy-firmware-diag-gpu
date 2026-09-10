@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+# omarchy:summary=GPU health audit (Xid history, thermal slowdown, BAR1, PCIe link) — T0 read-only
+# omarchy:args=[--json] [--fixture-dir DIR]
+# omarchy:examples=omarchy firmware diag gpu --json | omarchy firmware diag gpu
+
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "lib"))
+from firmware_hal.cli import main  # noqa: E402
+
+args = sys.argv[1:]
+if not args:
+    args = ["diag", "gpu"]
+elif args[0].startswith("-"):
+    args = ["diag", "gpu"] + args
+sys.exit(main(args))

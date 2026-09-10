@@ -14,11 +14,18 @@ from pathlib import Path
 
 FIXTURE_FILES = {
     "dmidecode": "dmidecode.txt",
+    "dmidecode_memory": "dmidecode-memory.txt",
     "efibootmgr": "efibootmgr.txt",
     "fwupd_devices": "fwupd-devices.json",
     "fwupd_security": "fwupd-security.json",
     "fwupd_updates": "fwupd-updates.json",
     "sensors": "sensors.json",
+    "smartctl_nvme": "smartctl-nvme0.json",
+    "smartctl_sda": "smartctl-sda.json",
+    "lspci": "lspci.txt",
+    "nvidia_smi": "nvidia-smi.txt",
+    "dmesg": "dmesg.txt",
+    "edac": "edac.json",
 }
 
 

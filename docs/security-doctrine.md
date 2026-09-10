@@ -9,17 +9,21 @@ implemented in code, not in intentions.
 
 | Tier | Nature | Guard rails | Status |
 |---|---|---|---|
-| **T0** | reads + deterministic diagnostics | journaled, read-only by construction | **implemented (P2)** |
-| **T1** | reversible writes (EPP, fan curves) | dry-run default · saved profile · rollback · journal | next phase |
-| **T2** | NVRAM/capsule staging (updates, boot entries) | explicit human confirmation, tool by tool · staged, not applied · rollback | later |
+| **T0** | reads + deterministic diagnostics | journaled, read-only by construction | **implemented (9 tools)** |
+| **T1** | reversible writes (EPP, fan curves) | dry-run default · confirm key · backup store · undo · mechanical curve guards · journal | **implemented (2 tools)** — see [t1-write-layer.md](t1-write-layer.md) |
+| **T2** | NVRAM/capsule staging (updates, boot entries) | explicit human confirmation, tool by tool · staged, not applied · rollback | declared, refused |
 | **T3** | physical flash (EZ Flash) | **never the agent.** It produces a dated, checksummed walkthrough; the human executes | forever human |
 
 Structural facts of this repo (tested, not promised):
 
 - `fw.flash.write` and `fw.nvram.raw.write` are in `FORBIDDEN_FOREVER` — no
   call path exists, not even a refusal: the tool does not exist.
-- Declared-but-unimplemented T1/T2 tools raise `TierRefused` with the exact
+- Declared-but-unimplemented T2 tools raise `TierRefused` with the exact
   reason, at every surface (CLI, MCP).
+- The two T1 writes enforce the two-key rule in code: without the explicit
+  confirm flag they are dry-runs that touch nothing; a write always
+  backs up first; undo restores. A fan curve that does not end at full
+  speed is refused before any write — cooling can never be capped.
 - Writing to efivarfs, reordering efibootmgr entries, disabling Secure Boot,
   flashing via `flashrom` — none of these paths exists in the base, and the
   skill instructs agents to never improvise them via shell.
@@ -33,7 +37,7 @@ what stops it:
 |---|---|---|
 | **bad measurement** | coarse Super I/O ADC (± 3 %) reading 11.4 V on a healthy PSU | confidence levels · cross-checks (multimeter advice) · thresholds owned as orders of magnitude |
 | **bad interpretation** | a high R_th blamed on paste when the pump is dying | named findings with evidence · anti-double-diagnosis · "undetermined" instead of a guess |
-| **bad action** | an agent "helpfully" reordering boot entries | no write path (P2) · future T1/T2 gates: dry-run, confirmation, rollback |
+| **bad action** | an agent "helpfully" reordering boot entries | T1: two keys (dry-run default + confirm), backup, undo · T2/T3: refused or nonexistent |
 
 The residual risk quadrant — an action that is both **grave and
 irreversible** — is kept empty **by construction**: nothing in the T1 set
