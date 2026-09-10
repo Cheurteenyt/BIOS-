@@ -4,6 +4,63 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## 0.7.0 — the map of the invisible
+
+One step beyond the runtime frontier. The tool now crosses the edge of
+the flash chip — **read-only** — and inventories what lives below: the
+"things never seen" where the vol. 4 pathologies sit at the source.
+
+**Added**
+- `fw.spi.map` (T0, the fifteenth tool): read-only cartography of the
+  SPI flash. Sources, in priority order: `--dump PATH` (offline
+  analysis), `FW_SPI_DUMP` (fixture/CI form), else one `flashrom -r`
+  live read (root; flashrom reads twice — read + verify — and the
+  module writes nothing, ever; the temporary dump is deleted after
+  parsing unless `--save-dump` keeps it).
+- The parser (stdlib only): the Intel flash descriptor (FLVALSIG,
+  FLMAP0/FRBA, the five FLREG regions), firmware volumes (`_FVH`,
+  header checksum verified, classified by filesystem GUID), FFS files
+  counted by type, DXE and SMM modules with GUIDs and UI names,
+  variable-store names (utf-16 heuristic, labelled), the ME region with
+  a best-effort version guess (labelled), and the `$BPM`/`$KSH` boot
+  manifests — with the honest note that the fused-vs-deactivated
+  Boot Guard state is NOT determinable from the image alone.
+- `capture --spi-read`: the map joins the photograph when, and only
+  when, the human passes the flag. The snapshot carries
+  `"spi_read": true`, a `spi_note`, and the section is labelled
+  "spi-read (0 bytes written)". The default photograph NEVER reads the
+  chip — proven by a structural test.
+- `lab/` — the disposable machine (the QEMU half of the replacement
+  question): `lab/README.md` (the doctrine: replace in the lab, +0
+  octet in the fleet), `lab/ovmf-smoke.sh` (OVMF boots in QEMU,
+  headless, boot log captured — the first "replacing the firmware"
+  experiment, risk-free), `lab/coreboot-notes.md` (the Volume 5
+  doctrine: the sacrificial board, dump-first, external programmer,
+  candidate machines, the non-negotiable sequence).
+- `docs/spi-map.md` — the module document: the rule, the usage, the
+  honesty labels, the September 2026 ruling (replacement = Volume 5 on
+  dedicated hardware, never the day-0 machine).
+- Tests 302 → 322: a synthetic SPI image built byte by byte in the
+  suite (descriptor, FFS2 volume with DXE/SMM files, variable store,
+  `$MN2` manifest, `$BPM`/`$KSH`) exercises the whole parser, plus the
+  never-by-default guarantee, the MCP-surface exclusion and the CLI
+  end to end.
+
+**Changed**
+- The contract grows from fourteen to fifteen tools; `fw.spi.map` is
+  declared T0 read-only, journaled through the single `_guard` flow,
+  and deliberately outside the MCP surface (an SPI read is a declared
+  gesture, not an ambient tool — the conformance smoke stays at 12).
+
+**Honesty**
+- A failed SPI read (no flashrom, no root, kernel lockdown, timeout)
+  answers `"status": "unavailable"` with its reason — a capture keeps
+  going, a map never guesses.
+- Two parser subtleties caught by the suite before they could lie on a
+  real image: the utf-16 UI-name split that ate the last character of
+  every ASCII name, and the version regex that truncated 4-digit
+  build numbers to 3.
+
 ## 0.6.3 — the write-path audit
 
 A deep pass over the code with one question: where could this tool lie,

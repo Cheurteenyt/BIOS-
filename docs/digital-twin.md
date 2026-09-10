@@ -69,7 +69,7 @@ schema `omarchy-firmware/rehearsal@1`, the last 10 kept):
 
 | Family | Probes | Asserts |
 |---|---|---|
-| Contract | `contract-tiers` | the 14-tool contract displays, T2 declared |
+| Contract | `contract-tiers` | the 15-tool contract displays, T2 declared |
 | T0 collections | `audit-status`, `audit-cve`, `audit-cve-watch`, `boot-inspect`, `update-check` | exit 0, JSON shapes, board/chain content on the twin |
 | T2 gates | `stage-plan-nvme`, `stage-board-refused`, `stage-confirm-refused`, `rollback-inventory` | dry-run plan with six gates, the AM4 gap refused with the EZ Flash path named, the motivation gate cannot be waived, rollback stays a refusal-by-design |
 | Diagnostics | `diag-scenarios`, `diag-pump-dead`, `diag-no-paste`, `diag-heatwave`, `diag-undetermined`, `diag-storage/gpu/ram/settings`, `diag-live` | each scenario names THE fault and nothing else; sensorless hosts degrade honestly |

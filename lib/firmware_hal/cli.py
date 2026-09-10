@@ -34,11 +34,18 @@ same journaling, status carried (dry-run / applied / rolled-back / refused).
                                     contract in one command (day-0 drill)
     omarchy-firmware rehearse-diff LEFT.json RIGHT.json [--json] [--latest]
                                   — twin → real: the named list of surprises
-    omarchy-firmware capture [--live] [--out PATH] [--json]
+    omarchy-firmware capture [--live] [--spi-read] [--out PATH] [--json]
                                   — the day-0 photograph: a T0 snapshot of what
                                     this machine really is (twin-1.1 fodder);
                                     --live ignores the twin and reads the real
                                     /sys — the P5 protocol day-0 form
+    omarchy-firmware spi-map [--dump PATH] [--save-dump PATH] [--json]
+                             [--out PATH]
+                                  — the map of the invisible: read-only
+                                    cartography of the SPI flash (firmware
+                                    volumes, DXE/SMM modules, variable stores,
+                                    ME/PSP region, boot manifests); 0 bytes
+                                    written, explicit deep probe, never default
     omarchy-firmware selftest     — full demo on the twin fixtures
     omarchy-firmware tiers        — display the T0-T3 contract
     omarchy-firmware mcp          — start the MCP stdio server
@@ -51,7 +58,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import actions, audit, boot, capture, cve_kb, cve_watch, diagnostics, fwupd, gpu, journal, ram, rehearse, report, rollback, settings as settings_mod, smbios, stage, storage, tiers, twin
+from . import actions, audit, boot, capture, cve_kb, cve_watch, diagnostics, fwupd, gpu, journal, ram, rehearse, report, rollback, settings as settings_mod, smbios, spi_map, stage, storage, tiers, twin
 
 
 def _emit(data: dict, as_json: bool) -> None:
@@ -355,9 +362,25 @@ def build_parser() -> argparse.ArgumentParser:
                           "sysfs) are ignored — the day-0 form; without it, "
                           "a resolved twin is photographed and the snapshot "
                           "says so loudly")
+    pcp.add_argument("--spi-read", action="store_true",
+                     help="EXPLICIT deep probe: also read the SPI flash "
+                          "(flashrom -r, read-only, 0 bytes written) and map "
+                          "its firmware volumes, DXE/SMM modules, variable "
+                          "stores, ME region and boot manifests; never runs "
+                          "by default, requires root when it reads live")
     pcp.add_argument("--out", help="write the snapshot to PATH instead of "
                      "the state dir")
     pcp.add_argument("--json", action="store_true")
+
+    psm = sub.add_parser("spi-map", help="the map of the invisible — read-only "
+                         "cartography of the SPI flash (explicit deep probe, "
+                         "0 bytes written)")
+    psm.add_argument("--dump", help="analyse an existing dump file instead of "
+                     "reading the flash (also: FW_SPI_DUMP env)")
+    psm.add_argument("--save-dump", help="keep the flashrom dump at PATH "
+                     "(default: the temporary dump is deleted after parsing)")
+    psm.add_argument("--out", help="also write the JSON map to PATH")
+    psm.add_argument("--json", action="store_true")
 
     pr = sub.add_parser("report", help="supervised-loop digest (P4): days, tools, write statuses")
     pr.add_argument("--days", type=int, default=5, help="window in days (default 5)")
@@ -606,7 +629,8 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "capture":
         try:
-            data = capture.capture(out=args.out, live=args.live)
+            data = capture.capture(out=args.out, live=args.live,
+                                   spi_read=args.spi_read)
         except Exception as exc:  # noqa: BLE001 — a failed photograph is journaled
             journal.record("capture", "T0", argv, "error", str(exc)[:200])
             print(f"ERROR: {exc}", file=sys.stderr)
@@ -616,6 +640,11 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(capture.render(data))
         return 0
+
+    if args.cmd == "spi-map":
+        return _guard("fw.spi.map", argv,
+                      lambda: spi_map.collect(args.dump, args.save_dump), args,
+                      fixture=False)
 
     if args.cmd == "selftest":
         fx = twin.resolve_fixture_dir("b450-plus")

@@ -16,6 +16,12 @@ Phase 5 (the digital twin): TWIN-1, the rehearsal machine — the fixture
 set promoted to an installable machine profile — and `rehearse`, the
 dress rehearsal: 28 behavioural probes, one verdict, a diffable report.
 Sept. 16 must be a replay day, not a discovery day.
+Beyond the runtime: `fw.spi.map` (0.7.0, "the map of the invisible") —
+an EXPLICIT, read-only cartography of the flash chip itself (firmware
+volumes, DXE/SMM modules, variable stores, ME/PSP region, boot
+manifests). +0 octet means zero bytes written: the chip is read
+(flashrom -r reads twice, verifies), parsed, and never touched.
+Deliberately not in the MCP surface: an SPI read is a declared gesture.
 
     fw.audit.status      T0   full inventory (board, BIOS, boot, fwupd)
     fw.audit.cve         T0   version / known-CVE cross-check (vol. 1, ch. 5)
@@ -27,6 +33,7 @@ Sept. 16 must be a replay day, not a discovery day.
     fw.diag.gpu          T0   Xid history, thermal slowdown, BAR1, link width
     fw.diag.ram          T0   rated vs configured speed (XMP/EXPO), EDAC
     fw.diag.settings     T0   observable BIOS settings: SVM, IOMMU, EPP, fans
+    fw.spi.map           T0   read-only SPI cartography (explicit deep probe)
     cpu.epp.set          T1   EPP hint of every CPU (dry-run default, undo)
     fans.curve.set       T1   Smart Fan curve, nct67xx (dry-run default, undo)
     fw.update.stage      T2   human-only CLI: staged fwupd transaction
@@ -50,7 +57,7 @@ Structural rules (unchanged):
     (optional systemd timer), the agent is called only on anomaly.
 """
 
-__version__ = "0.6.3"
+__version__ = "0.7.0"
 
 PHASE = "P5 — the digital twin (TWIN-1) and the dress rehearsal on top of "\
         "the P4 supervised loop"

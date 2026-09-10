@@ -8,8 +8,8 @@ its declared tier and its out-of-scope refusal test.
 
 from __future__ import annotations
 
-# The full fourteen-tool contract (vol. 2 table 5.1 + vol. 3 ch. 5 +
-# vol. 4 + roadmap P4). T2 tools are human-only: fw.update.stage is
+# The full fifteen-tool contract (vol. 2 table 5.1 + vol. 3 ch. 5 +
+# vol. 4 + roadmap P4 + the P5.5 SPI deep probe). T2 tools are human-only: fw.update.stage is
 # implemented on the CLI alone (dry-run plan + explicit --confirm by the
 # human), fw.rollback is a refusal-by-design with an inventory. Neither
 # is reachable from the MCP surface. T1 tools are implemented with the
@@ -25,6 +25,7 @@ TOOL_TIERS: dict[str, str] = {
     "fw.diag.gpu": "T0",
     "fw.diag.ram": "T0",
     "fw.diag.settings": "T0",
+    "fw.spi.map": "T0",
     "cpu.epp.set": "T1",
     "fans.curve.set": "T1",
     "fw.update.stage": "T2",
@@ -47,7 +48,7 @@ TIER_MEANING = {
 IMPLEMENTED_T0 = ["fw.audit.status", "fw.audit.cve", "fw.boot.inspect",
                   "fw.update.check", "fw.cve.watch", "fw.diag.thermal",
                   "fw.diag.storage", "fw.diag.gpu", "fw.diag.ram",
-                  "fw.diag.settings"]
+                  "fw.diag.settings", "fw.spi.map"]
 IMPLEMENTED_T1 = ["cpu.epp.set", "fans.curve.set"]
 
 # T2: where the human finds them (never in the MCP surface).

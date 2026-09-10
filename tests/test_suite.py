@@ -121,8 +121,8 @@ try:
     check("tiers: unknown T3 refused", False)
 except tiers.TierRefused:
     check("tiers: unknown T3 refused", True)
-check("tiers: contract = 14 tools", len(tiers.TOOL_TIERS) == 14)
-check("tiers: 10 T0 implemented", len(tiers.IMPLEMENTED_T0) == 10)
+check("tiers: contract = 15 tools", len(tiers.TOOL_TIERS) == 15)
+check("tiers: 11 T0 implemented", len(tiers.IMPLEMENTED_T0) == 11)
 check("tiers: cve.watch declared T0", tiers.tier_of("fw.cve.watch") == "T0"
       and "fw.cve.watch" in tiers.IMPLEMENTED_T0)
 check("tiers: 2 T1 implemented", len(tiers.IMPLEMENTED_T1) == 2)
@@ -1294,6 +1294,190 @@ for _var, _old in (("FW_SYSFS_CPU", _C0), ("FW_SYSFS_HWMON", _W0)):
         os.environ[_var] = _old
     else:
         os.environ.pop(_var, None)
+
+
+# --- spi-map: the map of the invisible (0.7.0) ---------------------------------
+# The parser is exercised against a synthetic SPI image built byte by byte:
+# a flash descriptor (FLVALSIG + FLMAP0/FRBA + FLREG regions), one FFS2
+# volume carrying a DXE driver, a DXE core and an SMM module, one variable
+# store carrying utf-16 names, a $MN2 manifest with an ASCII version, and
+# the $BPM/$KSH boot manifests. No hardware, no flashrom, no writes.
+from firmware_hal import spi_map  # noqa: E402
+import io  # noqa: E402
+from contextlib import redirect_stdout  # noqa: E402
+
+
+def _gb(s: str) -> bytes:
+    a, b, c, rest = s.split("-", 3)
+    return (int(a, 16).to_bytes(4, "little") + int(b, 16).to_bytes(2, "little")
+            + int(c, 16).to_bytes(2, "little") + bytes.fromhex(rest.replace("-", "")))
+
+
+def _mk_fv(fs_guid: str, length: int) -> bytes:
+    hdr = bytearray(0x48)
+    hdr[0x10:0x20] = _gb(fs_guid)
+    hdr[0x20:0x28] = int(length).to_bytes(8, "little")
+    hdr[0x28:0x2C] = b"_FVH"
+    hdr[0x30:0x32] = (0x48).to_bytes(2, "little")
+    csum = sum(int.from_bytes(hdr[i:i + 2], "little")
+               for i in range(0, 0x48, 2)) & 0xFFFF
+    hdr[0x32:0x34] = ((0x10000 - csum) & 0xFFFF).to_bytes(2, "little")
+    return bytes(hdr)
+
+
+def _mk_ffs(guid: str, ftype: int, name: str, body: bytes = b"") -> bytes:
+    ui = bytearray(4)
+    ui[3] = 0x15                                   # USER_INTERFACE section
+    ui += name.encode("utf-16-le") + b"\x00\x00"
+    ui[0:3] = len(ui).to_bytes(3, "little")
+    pe = bytearray(4)
+    pe[3] = 0x10                                   # PE32 section
+    pe += body
+    pe[0:3] = len(pe).to_bytes(3, "little")
+    data = bytes(ui) + bytes(pe)
+    hdr = bytearray(24)
+    hdr[0:16] = _gb(guid)
+    hdr[18] = ftype
+    hdr[19] = 0x40
+    total = 24 + len(data)
+    hdr[20:23] = total.to_bytes(3, "little")
+    hdr[23] = 0xF8                                 # state, active-low: data valid
+    return bytes(hdr) + data
+
+
+def _build_spi_image() -> bytes:
+    img = bytearray(0x40000)                       # 256 KiB synthetic flash
+    img[0x10:0x14] = (0x0FF0A55A).to_bytes(4, "little")   # FLVALSIG
+    img[0x40:0x44] = ((0x08 << 12) | (5 << 24)).to_bytes(4, "little")  # FRBA=0x80, NR=5
+    img[0x80:0x84] = (3 << 16).to_bytes(4, "little")   # descriptor 0x0000-0x3FFF
+    img[0x84:0x88] = (0x10 | (0x3F << 16)).to_bytes(4, "little")  # BIOS 0x10000-0x3FFFF
+    img[0x88:0x8C] = (1 | (2 << 16)).to_bytes(4, "little")        # ME 0x1000-0x2FFF
+    fv1 = bytearray(_mk_fv("8C8CE578-8A3D-4F1C-9935-896185C32DD3", 0x4000))
+    off = 0x48
+    for f in (_mk_ffs("00000000-1111-2222-3333-444444444444", 0xF0, "PAD"),
+              _mk_ffs("11111111-2222-3333-4444-555555555555", 0x07, "TestDxe"),
+              _mk_ffs("99999999-8888-7777-6666-555555555555", 0x05, "DxeCore"),
+              _mk_ffs("66666666-7777-8888-9999-aaaaaaaaaaaa", 0x0A, "TestSmm")):
+        fv1[off:off + len(f)] = f
+        off += (len(f) + 7) & ~7
+    img[0x10000:0x10000 + len(fv1)] = fv1
+    fv2 = bytearray(_mk_fv("EE4E5898-3914-4259-9D6E-DC7BD79403CF", 0x2000))
+    nv = b""
+    for _nm in ("Setup", "BootOrder", "FwVersion"):
+        nv += _nm.encode("utf-16-le") + b"\x00\x00" + b"\xff\xff"
+    fv2[0x48:0x48 + len(nv)] = nv
+    img[0x20000:0x20000 + len(fv2)] = fv2
+    img[0x1800:0x180C] = b"$MN2\x00\x00\x00\x00FTPR"
+    img[0x180C:0x1818] = b"15.0.42.1234"
+    img[0x30000:0x30008] = b"$BPM$KSH"
+    return bytes(img)
+
+
+_sp_path = Path(tempfile.mkdtemp()) / "synthetic-spi.bin"
+_sp_path.write_bytes(_build_spi_image())
+os.environ["FW_SPI_DUMP"] = str(_sp_path)
+try:
+    _spm = spi_map.collect()
+finally:
+    os.environ.pop("FW_SPI_DUMP", None)
+check("spi-map: FW_SPI_DUMP honoured, the map reads and reports",
+      _spm["status"] == "ok" and _spm["origin"] == "file", str(_spm)[:120])
+check("spi-map: read-only by construction — bytes_written is a structural zero",
+      _spm["read_only"] is True and _spm["bytes_written"] == 0, "")
+_spreg = {r["name"]: r for r in _spm["descriptor"]["regions"]}
+check("spi-map: descriptor parsed — BIOS region bounds from the FLREG macro",
+      _spm["descriptor"]["present"]
+      and _spreg["BIOS"]["base"] == 0x10000
+      and _spreg["BIOS"]["limit"] == 0x3FFFF, str(_spm["descriptor"])[:140])
+check("spi-map: ME region present at its descriptor address",
+      _spreg["ME"]["used"] and _spreg["ME"]["base"] == 0x1000, str(_spreg.get("ME")))
+check("spi-map: two firmware volumes, header checksums verified",
+      _spm["summary"]["fv_count"] == 2,
+      str([f["offset"] for f in _spm["firmware_volumes"]]))
+_spfv1 = _spm["firmware_volumes"][0]
+check("spi-map: FFS2 classified by filesystem GUID",
+      _spfv1["filesystem"].startswith("FFS2"), _spfv1["filesystem"])
+check("spi-map: FFS files counted by type (pad, dxe_driver, dxe_core, smm)",
+      _spfv1["files"] == 4
+      and _spfv1["by_type"].get("dxe_driver") == 1
+      and _spfv1["by_type"].get("smm_driver") == 1
+      and _spfv1["by_type"].get("pad") == 1, str(_spfv1.get("by_type")))
+check("spi-map: DXE driver named, GUID round-tripped",
+      any(e["name"] == "TestDxe"
+          and e["guid"] == "11111111-2222-3333-4444-555555555555"
+          for e in _spfv1.get("dxe_drivers", [])),
+      str(_spfv1.get("dxe_drivers"))[:120])
+check("spi-map: SMM module named — the ring-(-2) inventory exists",
+      any(e["name"] == "TestSmm"
+          and e["guid"].lower() == "66666666-7777-8888-9999-aaaaaaaaaaaa"
+          for e in _spfv1.get("smm_drivers", [])),
+      str(_spfv1.get("smm_drivers"))[:120])
+check("spi-map: variable names by utf-16 heuristic",
+      set(_spm["nvram"]["names"]) >= {"Setup", "BootOrder", "FwVersion"},
+      str(_spm["nvram"]["names"])[:120])
+check("spi-map: ME version guess is present AND labelled heuristic",
+      _spm["me"]["region_present"]
+      and _spm["me"]["version_guess"] == "15.0.42.1234"
+      and "heuristic" in _spm["me"]["note"], str(_spm["me"])[:140])
+check("spi-map: boot manifests found, fused state honestly out of reach",
+      _spm["boot_guard"]["bpm_found"] and _spm["boot_guard"]["km_found"]
+      and "NOT determinable" in _spm["boot_guard"]["note"],
+      str(_spm["boot_guard"])[:160])
+check("spi-map: the map measures itself and hashes its image",
+      len(_spm["image"]["sha256"]) == 64 and _spm["ms"] >= 0
+      and _spm["ms_read"] >= 0, "")
+_which0 = spi_map.shutil.which
+spi_map.shutil.which = lambda *a, **k: None
+try:
+    _spu = spi_map.collect()
+finally:
+    spi_map.shutil.which = _which0
+check("spi-map: no flashrom and no dump → 'unavailable', never a guess",
+      _spu["status"] == "unavailable" and "flashrom" in _spu["reason"],
+      str(_spu)[:140])
+check("spi-map: deliberately NOT in the MCP surface (a declared gesture, "
+      "not an ambient tool)",
+      "spi_map" not in (ROOT / "lib" / "firmware_hal" / "mcp_server.py")
+      .read_text(encoding="utf-8")
+      and "spi-map" not in (ROOT / "lib" / "firmware_hal" / "mcp_server.py")
+      .read_text(encoding="utf-8"), "")
+
+_sp_state = os.environ.get("XDG_STATE_HOME")
+os.environ["XDG_STATE_HOME"] = tempfile.mkdtemp()
+os.environ["FW_SPI_DUMP"] = str(_sp_path)
+try:
+    _snap_def = capture.capture()
+    check("capture: the default photograph NEVER reads the SPI",
+          "spi_map" not in _snap_def["sections"]
+          and _snap_def.get("spi_read") is False,
+          str(sorted(_snap_def["sections"]))[:140])
+    _snap_spi = capture.capture(spi_read=True)
+    _spdata = _snap_spi["sections"].get("spi_map", {}).get("data") or {}
+    check("capture: --spi-read adds the map, loudly labelled",
+          _snap_spi.get("spi_read") is True
+          and _snap_spi["sections"]["spi_map"]["origin"]
+          == "spi-read (0 bytes written)"
+          and _spdata.get("status") == "ok"
+          and "0 bytes written" in _snap_spi.get("spi_note", ""),
+          str(_snap_spi.get("spi_note"))[:140])
+    check("capture: the spi_map summary lands in the human render",
+          "FV(s)" in capture.render(_snap_spi)
+          and "0 bytes written" in capture.render(_snap_spi), "")
+    _spbuf = io.StringIO()
+    with redirect_stdout(_spbuf):
+        _sp_rc = cli.main(["spi-map", "--dump", str(_sp_path), "--json"])
+    check("cli: spi-map --dump --json runs green end to end",
+          _sp_rc == 0 and '"omarchy-firmware/spi-map@1"' in _spbuf.getvalue(),
+          f"rc={_sp_rc} {_spbuf.getvalue()[:100]}")
+    check("cli: spi-map is journaled like every T0 tool",
+          "fw.spi.map" in (journal.state_dir() / "journal.jsonl")
+          .read_text(encoding="utf-8"), "")
+finally:
+    os.environ.pop("FW_SPI_DUMP", None)
+    if _sp_state is not None:
+        os.environ["XDG_STATE_HOME"] = _sp_state
+    else:
+        os.environ.pop("XDG_STATE_HOME", None)
 
 
 # -------------------------------------------------------------- output --

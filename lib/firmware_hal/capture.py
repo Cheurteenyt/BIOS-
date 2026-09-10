@@ -28,6 +28,12 @@ Two forms:
   capture --live   — the day-0 form: twin assets (fixtures, sysfs tree)
                      are ignored, the roots are the real /sys. The P5
                      protocol step 2 is `omarchy-firmware capture --live`.
+
+One explicit extra: capture --spi-read adds the spi_map section — a
+read-only cartography of the flash chip itself (flashrom -r, 0 bytes
+written, see spi_map.py). It is NEVER taken by default: an SPI read is
+a declared deep probe, not an ambient tool, and it is not part of the
+MCP surface either.
 """
 
 from __future__ import annotations
@@ -39,7 +45,7 @@ import time
 from pathlib import Path
 
 from . import audit, boot, cve_kb, cve_watch, diagnostics, fwupd, gpu, \
-    journal, ram, settings as settings_mod, storage, twin
+    journal, ram, settings as settings_mod, spi_map, storage, twin
 from .atomic import atomic_write_text
 
 CAPTURE_SCHEMA = "omarchy-firmware/capture@1"
@@ -132,7 +138,8 @@ def _sections(fx: str | None) -> list[tuple[str, object]]:
 # ----------------------------------------------------------------- capture
 
 
-def capture(*, out: str | None = None, live: bool = False) -> dict:
+def capture(*, out: str | None = None, live: bool = False,
+            spi_read: bool = False) -> dict:
     """One T0 photograph, written as a snapshot file.
 
     live=False (default): twin-aware — when twin assets resolve, they are
@@ -141,6 +148,8 @@ def capture(*, out: str | None = None, live: bool = False) -> dict:
     tree are ignored, the detail roots are the real /sys. Day 0 wants
     --live: the twin is installed beside the tool precisely on the machine
     this flag exists to photograph.
+    spi_read=True: add the spi_map section — an explicit, read-only
+    cartography of the flash chip (0 bytes written). Never the default.
     """
     if live:
         fx = None
@@ -180,6 +189,10 @@ def capture(*, out: str | None = None, live: bool = False) -> dict:
         _run("cpu_epp", _cpu_detail, cpu_root)
         _run("hwmon", _hwmon_detail, hwmon_root)
         _run("environment", _environment)
+        if spi_read:
+            _run("spi_map", lambda: spi_map.collect())
+            if "spi_map" in sections:
+                sections["spi_map"]["origin"] = "spi-read (0 bytes written)"
     finally:
         if not live:
             twin.restore_sysfs_env(saved=saved_sysfs)
@@ -189,6 +202,7 @@ def capture(*, out: str | None = None, live: bool = False) -> dict:
         "ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "backend": origin,
         "live": live,
+        "spi_read": spi_read,
         "twin_source": desc.get("source"),
         "twin_note": f"sysfs applied: {applied or 'none'}",
         "sections": sections,
@@ -198,6 +212,10 @@ def capture(*, out: str | None = None, live: bool = False) -> dict:
         snap["capture_note"] = (
             "twin assets resolved automatically — this is TWIN-1's "
             "photograph, not this machine's; day 0 wants `capture --live`")
+    if spi_read:
+        snap["spi_note"] = ("SPI read requested explicitly (--spi-read): "
+                            "read-only, 0 bytes written, not part of the "
+                            "default photograph")
     dest = (Path(out) if out else
             journal.state_dir() / "captures"
             / f"capture-{time.strftime('%Y%m%d-%H%M%S')}.json")
@@ -207,6 +225,8 @@ def capture(*, out: str | None = None, live: bool = False) -> dict:
     argv = ["capture"]
     if live:
         argv.append("--live")
+    if spi_read:
+        argv.append("--spi-read")
     if out:
         argv += ["--out", str(dest)]
     journal.record(
@@ -233,6 +253,16 @@ def render(snap: dict) -> str:
             names = [c.get("name") for c in d.get("chips", [])]
             lines.append(f"  {name:<14} {len(d.get('chips') or [])} chip(s) "
                          f"{names if names else ''}, root {d.get('root')}")
+        elif name == "spi_map" and isinstance(d, dict):
+            if d.get("status") == "ok":
+                s2 = d.get("summary") or {}
+                lines.append(f"  {name:<14} {s2.get('fv_count', 0)} FV(s), "
+                             f"{s2.get('dxe_drivers', 0)} DXE, "
+                             f"{s2.get('smm_drivers', 0)} SMM — read-only "
+                             "SPI, 0 bytes written")
+            else:
+                lines.append(f"  {name:<14} UNAVAILABLE — "
+                             f"{str(d.get('reason'))[:70]}")
         elif isinstance(d, dict):
             key = d.get("verdict") or d.get("status") or f"{len(d)} keys"
             lines.append(f"  {name:<14} {str(key)[:70]}")

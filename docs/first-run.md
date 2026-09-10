@@ -61,14 +61,19 @@ NVRAM.
 Sanity checks:
 
 ```bash
-omarchy-firmware tiers          # the 14-tool contract prints
+omarchy-firmware tiers          # the 15-tool contract prints
 omarchy-firmware selftest       # full twin demo, exit 0
 omarchy-firmware capture --live # day-0 photograph BEFORE anything else —
                                 # the REAL machine: twin assets ignored
 omarchy-firmware rehearse       # day-0 drill: 28 probes on THIS machine
 omarchy-firmware rehearse-diff --latest   # twin → real: the named surprises
-python3 tests/test_suite.py     # 302 checks (run from the clone)
+python3 tests/test_suite.py     # 322 checks (run from the clone)
 python3 tests/mcp_smoke.py      # needs pip install 'mcp>=1.0,<2'
+
+# OPTIONAL deep probe — one step beyond the runtime frontier (see
+# docs/spi-map.md). Reads the flash chip (root, flashrom), writes NOTHING.
+# Not part of the day-0 protocol: a declared gesture, run when wanted.
+sudo omarchy-firmware spi-map --save-dump day0-spi.bin   # + sha256 it
 ```
 
 ### 0.2 The T0 sweep — the honest baseline
