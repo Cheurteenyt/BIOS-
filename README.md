@@ -208,9 +208,13 @@ smoke on every push — see [.github/workflows/ci.yml](.github/workflows/ci.yml)
 
 ## Provenance
 
-Everything here descends from a four-volume study (*Beyond the BIOS*, in
-French) auditing the Omarchy repo, the AM4 vendor BIOS landscape, and the
-question "what can an agent do that the vendor BIOS cannot?" — see
-[docs/research/](docs/research/). The reference test platform is a Ryzen 9
-5950X + RTX 3070 on ASUS B450/B550; the board is **never** hardcoded — it is
-read from SMBIOS at run time.
+Everything here descends from a four-volume study auditing the Omarchy repo,
+the AM4 vendor BIOS landscape, and the question "what can an agent do that
+the vendor BIOS cannot?" — see [docs/research/](docs/research/). The
+**English edition** of the full series (79 pages, updated September 2026 so
+the blueprint chapters report their shipped state) is attached to the
+[study-en release](https://github.com/Cheurteenyt/BIOS-/releases/tag/study-en):
+*Beyond the BIOS* (22 p.) · *The Agent and the Firmware* (24 p.) · *What the
+BIOS Cannot See* (15 p.) · *Misconfigured or Faulty* (18 p.). The reference
+test platform is a Ryzen 9 5950X + RTX 3070 on ASUS B450/B550; the board is
+**never** hardcoded — it is read from SMBIOS at run time.
