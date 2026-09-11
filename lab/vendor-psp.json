@@ -1,0 +1,7258 @@
+{
+ "schema": "omarchy-firmware/vendor-psp@1",
+ "date": "2026-09-11",
+ "note": "the PSP lens: the $PSP/$PL2 and $BHD/$BL2 directory tables parsed, validated (fletcher32, entry fit) and cross-checked against psptool 3.6 \u2014 full agreement, 74/74 directories across five specimens; the ring-11 $BSP zero is closed by source: the verified BIOS directory magics are $BHD/$BL2, $BSP exists in no generation this instrument knows",
+ "tables_source": "type tables and fletcher32 imported at runtime from psptool 3.6 (PSPTool project, GPL-3.0, Hardware Security Group, Uni Hamburg) \u2014 transcribed from no memory",
+ "layout_registered": {
+  "psp_entry": "16 B: type u8, subprogram u8, flags u16 (instance = flags>>3&0xF), size u32, offset u32, rsv0 u32 (address_mode = rsv0>>30&3)",
+  "bios_entry": "24 B: type u8, region_type u8, flags u16 (instance = flags>>4&0xF, subprogram = flags>>8&0x7), size u32, offset u32, rsv0 u32, destination u64",
+  "header": "16 B: cookie, checksum (fletcher32 over bytes from 0x8), count u32, additional_info u32 (address mode bits)",
+  "address_modes": "0 = x86 physical (& 0xFFFFFF when rom>16M and addr>0xFF000000), 1 = flash offset, 2/3 = directory-relative",
+  "secondary_l2_types": [
+   64,
+   73,
+   112
+  ],
+  "tertiary_types": [
+   72,
+   74
+  ]
+ },
+ "specimens": [
+  {
+   "id": "msi-b450-tomahawk-max",
+   "version": "7C02v3G1",
+   "bytes": 33554432,
+   "sha256_16": "2ab433d61c93adb4",
+   "magic_scan": {
+    "$PSP": 26,
+    "$PL2": 18,
+    "$BHD": 24,
+    "$BL2": 17,
+    "$BSP": 0,
+    "$BIO": 0
+   },
+   "directories_validated": 18,
+   "rejected_candidates": 69,
+   "psptool_crosscheck": {
+    "psptool_dirs": 18,
+    "agree": "18/18",
+    "all_agree": true,
+    "join_rule": "file offset = get_address() when inside the image, else the dict key (the 32-MiB image keys by masked address label)"
+   },
+   "directories": [
+    {
+     "magic": "$PSP",
+     "offset": "0xa8000",
+     "count": 16,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x3",
+      "0x8",
+      "0x8",
+      "0xa",
+      "0x21",
+      "0x30",
+      "0x31",
+      "0x32",
+      "0x33",
+      "0x34",
+      "0x35",
+      "0x36",
+      "0x24",
+      "0x40"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x158000",
+     "count": 13,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x60",
+      "0x68",
+      "0x60",
+      "0x60",
+      "0x68",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x70"
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x178000",
+     "count": 23,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x3",
+      "0x8",
+      "0x12",
+      "0x8",
+      "0x12",
+      "0x8",
+      "0x12",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x24",
+      "0x30",
+      "0x31",
+      "0x32",
+      "0x33",
+      "0x34",
+      "0x35",
+      "0x36",
+      "0x37",
+      "0x40"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x278000",
+     "count": 15,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x60",
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x70"
+     ]
+    },
+    {
+     "magic": "$PL2",
+     "offset": "0x2d0000",
+     "count": 23,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x1",
+      "0x2",
+      "0xc",
+      "0x4",
+      "0x8",
+      "0x8",
+      "0x12",
+      "0x9",
+      "0xa",
+      "0xb",
+      "0xd",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x30",
+      "0x31",
+      "0x32",
+      "0x33",
+      "0x34",
+      "0x35",
+      "0x36"
+     ]
+    },
+    {
+     "magic": "$BL2",
+     "offset": "0x400000",
+     "count": 19,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x60",
+      "0x68",
+      "0x60",
+      "0x60",
+      "0x68",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x67"
+     ]
+    },
+    {
+     "magic": "$PL2",
+     "offset": "0x420000",
+     "count": 31,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x1",
+      "0x0",
+      "0x2",
+      "0x4",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x24",
+      "0x25",
+      "0x25",
+      "0x25",
+      "0x28",
+      "0x30",
+      "0x31",
+      "0x32",
+      "0x33",
+      "0x34",
+      "0x35",
+      "0x36",
+      "0x37",
+      "0x8",
+      "0x12",
+      "0x8",
+      "0x12"
+     ]
+    },
+    {
+     "magic": "$BL2",
+     "offset": "0x56f000",
+     "count": 22,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x60",
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x6a"
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x10d1000",
+     "count": 30,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xa",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x45",
+      "0x28",
+      "0x2a",
+      "0x2d",
+      "0x30",
+      "0x42",
+      "0x43",
+      "0x44",
+      "0x4e",
+      "0x50",
+      "0x51",
+      "0x8",
+      "0x12",
+      "0x2a",
+      "0x24",
+      "0x30",
+      "0x4"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x12d1000",
+     "count": 22,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66"
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x1301000",
+     "count": 4,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x21",
+      "0x40"
+     ]
+    },
+    {
+     "magic": "$PL2",
+     "offset": "0x1302000",
+     "count": 28,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x1",
+      "0x0",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x20",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x28",
+      "0x2d",
+      "0x30",
+      "0x3c",
+      "0x44",
+      "0x45",
+      "0x45",
+      "0x47",
+      "0x50",
+      "0x51",
+      "0x58",
+      "0x59",
+      "0x5c",
+      "0x4"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x1461000",
+     "count": 1,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x70"
+     ]
+    },
+    {
+     "magic": "$BL2",
+     "offset": "0x1462000",
+     "count": 12,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66"
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x1481000",
+     "count": 4,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x21",
+      "0x40"
+     ]
+    },
+    {
+     "magic": "$PL2",
+     "offset": "0x1482000",
+     "count": 27,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x1",
+      "0x0",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x20",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x28",
+      "0x2d",
+      "0x30",
+      "0x3c",
+      "0x44",
+      "0x45",
+      "0x45",
+      "0x47",
+      "0x50",
+      "0x51",
+      "0x58",
+      "0x59",
+      "0x4"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x15e1000",
+     "count": 1,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x70"
+     ]
+    },
+    {
+     "magic": "$BL2",
+     "offset": "0x15e2000",
+     "count": 11,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gigabyte-b450-aorus-pro",
+   "version": "F67c",
+   "bytes": 16777216,
+   "sha256_16": "091cf42e235289dd",
+   "magic_scan": {
+    "$PSP": 13,
+    "$PL2": 5,
+    "$BHD": 14,
+    "$BL2": 5,
+    "$BSP": 0,
+    "$BIO": 0
+   },
+   "directories_validated": 14,
+   "rejected_candidates": 23,
+   "psptool_crosscheck": {
+    "psptool_dirs": 14,
+    "agree": "14/14",
+    "all_agree": true,
+    "join_rule": "file offset = get_address() when inside the image, else the dict key (the 32-MiB image keys by masked address label)"
+   },
+   "directories": [
+    {
+     "magic": "$PSP",
+     "offset": "0x110000",
+     "count": 24,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0xc",
+      "0x4",
+      "0x8",
+      "0x8",
+      "0x12",
+      "0x9",
+      "0xa",
+      "0xb",
+      "0xd",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x30",
+      "0x31",
+      "0x32",
+      "0x33",
+      "0x34",
+      "0x35",
+      "0x36"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x240000",
+     "count": 19,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x60",
+      "0x68",
+      "0x60",
+      "0x60",
+      "0x68",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x67"
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x260000",
+     "count": 31,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0x4",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x24",
+      "0x25",
+      "0x25",
+      "0x25",
+      "0x28",
+      "0x30",
+      "0x31",
+      "0x32",
+      "0x33",
+      "0x34",
+      "0x35",
+      "0x36",
+      "0x37",
+      "0x8",
+      "0x12",
+      "0x8",
+      "0x12"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x3af000",
+     "count": 22,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x60",
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x6a"
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x3df000",
+     "count": 31,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xa",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x45",
+      "0x28",
+      "0x2a",
+      "0x2d",
+      "0x30",
+      "0x42",
+      "0x43",
+      "0x44",
+      "0x4e",
+      "0x50",
+      "0x51",
+      "0x8",
+      "0x12",
+      "0x2a",
+      "0x24",
+      "0x30",
+      "0x4",
+      "0x54"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x5df000",
+     "count": 22,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66"
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x60f000",
+     "count": 4,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x21",
+      "0x40"
+     ]
+    },
+    {
+     "magic": "$PL2",
+     "offset": "0x610000",
+     "count": 29,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x1",
+      "0x0",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x20",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x28",
+      "0x2d",
+      "0x30",
+      "0x3c",
+      "0x44",
+      "0x45",
+      "0x45",
+      "0x47",
+      "0x50",
+      "0x51",
+      "0x58",
+      "0x59",
+      "0x5c",
+      "0x4",
+      "0x54"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x76f000",
+     "count": 1,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x70"
+     ]
+    },
+    {
+     "magic": "$BL2",
+     "offset": "0x770000",
+     "count": 12,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66"
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x78f000",
+     "count": 4,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x21",
+      "0x40"
+     ]
+    },
+    {
+     "magic": "$PL2",
+     "offset": "0x790000",
+     "count": 29,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x1",
+      "0x0",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x20",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x28",
+      "0x2d",
+      "0x30",
+      "0x3c",
+      "0x44",
+      "0x45",
+      "0x45",
+      "0x47",
+      "0x50",
+      "0x51",
+      "0x58",
+      "0x59",
+      "0x4",
+      "0x54",
+      "0x5c"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x8ef000",
+     "count": 1,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x70"
+     ]
+    },
+    {
+     "magic": "$BL2",
+     "offset": "0x8f0000",
+     "count": 11,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "asrock-b450-steel-legend",
+   "version": "10.41 Beta",
+   "bytes": 16777216,
+   "sha256_16": "d94afae9eecd64ca",
+   "magic_scan": {
+    "$PSP": 13,
+    "$PL2": 5,
+    "$BHD": 14,
+    "$BL2": 5,
+    "$BSP": 0,
+    "$BIO": 0
+   },
+   "directories_validated": 14,
+   "rejected_candidates": 23,
+   "psptool_crosscheck": {
+    "psptool_dirs": 14,
+    "agree": "14/14",
+    "all_agree": true,
+    "join_rule": "file offset = get_address() when inside the image, else the dict key (the 32-MiB image keys by masked address label)"
+   },
+   "directories": [
+    {
+     "magic": "$PSP",
+     "offset": "0x110000",
+     "count": 24,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0xc",
+      "0x4",
+      "0x8",
+      "0x8",
+      "0x12",
+      "0x9",
+      "0xa",
+      "0xb",
+      "0xd",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x30",
+      "0x31",
+      "0x32",
+      "0x33",
+      "0x34",
+      "0x35",
+      "0x36"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x240000",
+     "count": 17,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x60",
+      "0x60",
+      "0x68",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x67"
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x260000",
+     "count": 31,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0x4",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x24",
+      "0x25",
+      "0x25",
+      "0x25",
+      "0x28",
+      "0x30",
+      "0x31",
+      "0x32",
+      "0x33",
+      "0x34",
+      "0x35",
+      "0x36",
+      "0x37",
+      "0x8",
+      "0x12",
+      "0x8",
+      "0x12"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x3af000",
+     "count": 20,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x6a"
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x3df000",
+     "count": 32,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xa",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x45",
+      "0x28",
+      "0x2a",
+      "0x2d",
+      "0x30",
+      "0x42",
+      "0x43",
+      "0x44",
+      "0x4e",
+      "0x50",
+      "0x51",
+      "0x8",
+      "0x12",
+      "0x2a",
+      "0x24",
+      "0x30",
+      "0x5c",
+      "0x4",
+      "0x54"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x5df000",
+     "count": 25,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66",
+      "0x6d",
+      "0x6d",
+      "0x6d"
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x60f000",
+     "count": 4,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x21",
+      "0x40"
+     ]
+    },
+    {
+     "magic": "$PL2",
+     "offset": "0x610000",
+     "count": 29,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x1",
+      "0x0",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x20",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x28",
+      "0x2d",
+      "0x30",
+      "0x3c",
+      "0x44",
+      "0x45",
+      "0x45",
+      "0x47",
+      "0x50",
+      "0x51",
+      "0x58",
+      "0x59",
+      "0x5c",
+      "0x4",
+      "0x54"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x76f000",
+     "count": 1,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x70"
+     ]
+    },
+    {
+     "magic": "$BL2",
+     "offset": "0x770000",
+     "count": 15,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66",
+      "0x6d",
+      "0x6d",
+      "0x6d"
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x78f000",
+     "count": 4,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x21",
+      "0x40"
+     ]
+    },
+    {
+     "magic": "$PL2",
+     "offset": "0x790000",
+     "count": 29,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x1",
+      "0x0",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x20",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x28",
+      "0x2d",
+      "0x30",
+      "0x3c",
+      "0x44",
+      "0x45",
+      "0x45",
+      "0x47",
+      "0x50",
+      "0x51",
+      "0x58",
+      "0x59",
+      "0x4",
+      "0x54",
+      "0x5c"
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x8ef000",
+     "count": 1,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x70"
+     ]
+    },
+    {
+     "magic": "$BL2",
+     "offset": "0x8f0000",
+     "count": 14,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x6d",
+      "0x6d",
+      "0x6d"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "4655",
+   "bytes": 16777216,
+   "sha256_16": "284ea676ee6cbf42",
+   "magic_scan": {
+    "$PSP": 13,
+    "$PL2": 5,
+    "$BHD": 14,
+    "$BL2": 5,
+    "$BSP": 0,
+    "$BIO": 0
+   },
+   "directories_validated": 14,
+   "rejected_candidates": 23,
+   "psptool_crosscheck": {
+    "psptool_dirs": 14,
+    "agree": "14/14",
+    "all_agree": true,
+    "join_rule": "file offset = get_address() when inside the image, else the dict key (the 32-MiB image keys by masked address label)"
+   },
+   "directories": [
+    {
+     "magic": "$PSP",
+     "offset": "0x129000",
+     "count": 24,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0xc",
+      "0x4",
+      "0x8",
+      "0x8",
+      "0x12",
+      "0x9",
+      "0xa",
+      "0xb",
+      "0xd",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x30",
+      "0x31",
+      "0x32",
+      "0x33",
+      "0x34",
+      "0x35",
+      "0x36"
+     ],
+     "entries": [
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 576,
+       "offset": "0x129400",
+       "sha256_16": "8efddcaaf84990cf",
+       "head": "010000001bb987c359494606"
+      },
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 50560,
+       "offset": "0x129700",
+       "sha256_16": "d30e2cbe4de3de54",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x2",
+       "name": "PSP_FW_TRUSTED_OS",
+       "flags": "0x0",
+       "size": 270924,
+       "offset": "0x135d00",
+       "sha256_16": "b0516d2a8c5caa78",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0xc",
+       "name": "PSP_BOOT_TIME_TRUSTLETS",
+       "flags": "0x0",
+       "size": 143955,
+       "offset": "0x178000",
+       "sha256_16": "1c8f224ff663e511",
+       "head": "000000000000000000000000",
+       "strings": [
+        "HMAC Signature Key for PSP Data saved in DRAM"
+       ]
+      },
+      {
+       "type": "0x4",
+       "name": "PSP_NV_DATA",
+       "flags": "0x0",
+       "size": 131072,
+       "offset": "0xa0000",
+       "sha256_16": "b5a41c3758763bbe",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 120928,
+       "offset": "0x19b300",
+       "sha256_16": "acfb4abd7d47c94b",
+       "head": "534d5552554c4553534d5552",
+       "strings": [
+        "SMURULESSMURULES"
+       ]
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 103520,
+       "offset": "0x1b8c00",
+       "sha256_16": "fa18d34a45ce5979",
+       "head": "534d5552554c4553534d5552",
+       "strings": [
+        "SMURULESSMURULES"
+       ]
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 9408,
+       "offset": "0x1d2100",
+       "sha256_16": "a6ca90d73f2bd672",
+       "head": "534d5552554c4553534d5552",
+       "strings": [
+        "SMURULESSMURULES"
+       ]
+      },
+      {
+       "type": "0x9",
+       "name": "SEC_DBG_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 832,
+       "offset": "0x1d4600",
+       "sha256_16": "17383dca94997925",
+       "head": "010000002921e28f4ae94533"
+      },
+      {
+       "type": "0xa",
+       "name": "OEM_PSP_FW_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 832,
+       "offset": "0x1d4a00",
+       "sha256_16": "18209a247b0f1a49",
+       "head": "01000000279394cac2c24efb"
+      },
+      {
+       "type": "0xb",
+       "name": "SOFT_FUSE_CHAIN_01",
+       "flags": "0x0",
+       "size": null,
+       "offset": "0x1"
+      },
+      {
+       "type": "0xd",
+       "name": "PSP_BOOT_TIME_TRUSTLETS_KEY",
+       "flags": "0x0",
+       "size": 832,
+       "offset": "0x1d4e00",
+       "sha256_16": "94675973154370f7",
+       "head": "010000001e384edefa944110"
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 11552,
+       "offset": "0x1d5200",
+       "sha256_16": "ea7f827e49369349",
+       "head": "534d5552554c4553534d5552",
+       "strings": [
+        "SMURULESSMURULES"
+       ]
+      },
+      {
+       "type": "0x13",
+       "name": "DEBUG_UNLOCK",
+       "flags": "0x0",
+       "size": 6432,
+       "offset": "0x1d8000",
+       "sha256_16": "bee25c9996c805c3",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x1d9a00",
+       "sha256_16": "0b1429e143abef50",
+       "head": "50d00f3cbcb8f1945a7daa87"
+      },
+      {
+       "type": "0x22",
+       "name": "TOKEN_UNLOCK",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x1da000",
+       "sha256_16": "f47a8ec3e9aff231",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 3072,
+       "offset": "0x1db000",
+       "sha256_16": "cc4cd5c16ef9e8a0",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x30",
+       "name": "ABL0",
+       "flags": "0x0",
+       "size": 3504,
+       "offset": "0x1dbc00",
+       "sha256_16": "76ca45872ef8f171",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x31",
+       "name": "ABL1",
+       "flags": "0x0",
+       "size": 52320,
+       "offset": "0x1dca00",
+       "sha256_16": "608249b3c0fed72b",
+       "head": "000000000000000000000000",
+       "strings": [
+        "FpSP=x"
+       ]
+      },
+      {
+       "type": "0x32",
+       "name": "ABL2",
+       "flags": "0x0",
+       "size": 41440,
+       "offset": "0x1e9700",
+       "sha256_16": "f9600527c930b120",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x33",
+       "name": "ABL3",
+       "flags": "0x0",
+       "size": 45568,
+       "offset": "0x1f3900",
+       "sha256_16": "acdaa7f76634ea76",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x34",
+       "name": "ABL4",
+       "flags": "0x0",
+       "size": 40128,
+       "offset": "0x1feb00",
+       "sha256_16": "822da740405cb337",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x35",
+       "name": "ABL5",
+       "flags": "0x0",
+       "size": 54720,
+       "offset": "0x208800",
+       "sha256_16": "dde3f6d2d935aeda",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x36",
+       "name": "ABL6",
+       "flags": "0x0",
+       "size": 45024,
+       "offset": "0x215e00",
+       "sha256_16": "604831a9ec600f1e",
+       "head": "000000000000000000000000"
+      }
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x259000",
+     "count": 19,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x60",
+      "0x68",
+      "0x60",
+      "0x60",
+      "0x68",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x67"
+     ],
+     "entries": [
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x10",
+       "size": 8192,
+       "offset": "0x25a000",
+       "sha256_16": "57d809cb0fe3fd39",
+       "head": "4150434220002000d00f0000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x10",
+       "size": 8192,
+       "offset": "0x25c000",
+       "sha256_16": "57d809cb0fe3fd39",
+       "head": "4150434220002000d00f0000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x0",
+       "size": 8192,
+       "offset": "0x25e000",
+       "sha256_16": "0673a58baa7b7b7f",
+       "head": "41504342200020004c190000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x20",
+       "size": 8192,
+       "offset": "0x260000",
+       "sha256_16": "aed851bb17bf9e09",
+       "head": "41504342200020004c190000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x0",
+       "size": 8192,
+       "offset": "0x262000",
+       "sha256_16": "0673a58baa7b7b7f",
+       "head": "41504342200020004c190000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x20",
+       "size": 8192,
+       "offset": "0x264000",
+       "sha256_16": "aed851bb17bf9e09",
+       "head": "41504342200020004c190000"
+      },
+      {
+       "type": "0x61",
+       "name": "APOB",
+       "flags": "0x0",
+       "size": 0,
+       "offset": "0x0"
+      },
+      {
+       "type": "0x62",
+       "name": "BIOS",
+       "flags": "0xb",
+       "size": 3145760,
+       "offset": "0xf02000",
+       "verdict": "out-of-image"
+      },
+      {
+       "type": "0x63",
+       "name": "APOB_NV_COPY",
+       "flags": "0x0",
+       "size": 163840,
+       "offset": "0x101000",
+       "sha256_16": "5639b95c2f8d2a2d",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x0",
+       "size": 3200,
+       "offset": "0x266000",
+       "sha256_16": "5265bb5ecb3e863c",
+       "head": "242015080e82000804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x10",
+       "size": 3200,
+       "offset": "0x266d00",
+       "sha256_16": "c00b6b19fd5c3960",
+       "head": "192016045012000804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x20",
+       "size": 3200,
+       "offset": "0x267a00",
+       "sha256_16": "c4215a75ec44a9bc",
+       "head": "242022083911000804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x30",
+       "size": 3200,
+       "offset": "0x268700",
+       "sha256_16": "7bff0c2e7f9ea81f",
+       "head": "172031010c10000804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x40",
+       "size": 3200,
+       "offset": "0x269400",
+       "sha256_16": "00d615d06fbcca5c",
+       "head": "162006102a00000804800000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x10",
+       "size": 15424,
+       "offset": "0x26a100",
+       "sha256_16": "08518d379e36f735",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x10",
+       "size": 816,
+       "offset": "0x26de00",
+       "sha256_16": "66d077ade06860da",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x40",
+       "size": 17936,
+       "offset": "0x26e200",
+       "sha256_16": "ba6819f96c812ba1",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x40",
+       "size": 800,
+       "offset": "0x272900",
+       "sha256_16": "0c0d954ec4727137",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x67",
+       "name": "CORE_MCE_DATA",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x273000",
+       "sha256_16": "f47a8ec3e9aff231",
+       "head": "ffffffffffffffffffffffff"
+      }
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x279000",
+     "count": 31,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0x4",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x24",
+      "0x25",
+      "0x25",
+      "0x25",
+      "0x28",
+      "0x30",
+      "0x31",
+      "0x32",
+      "0x33",
+      "0x34",
+      "0x35",
+      "0x36",
+      "0x37",
+      "0x8",
+      "0x12",
+      "0x8",
+      "0x12"
+     ],
+     "entries": [
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 576,
+       "offset": "0x279400",
+       "sha256_16": "752b195fe49c18e0",
+       "head": "0100000060bba67e1a434c6b"
+      },
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 62400,
+       "offset": "0x279700",
+       "sha256_16": "b8e2f3411b411631",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x2",
+       "name": "PSP_FW_TRUSTED_OS",
+       "flags": "0x0",
+       "size": 66320,
+       "offset": "0x288b00",
+       "sha256_16": "a7358f8c808282c8",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x4",
+       "name": "PSP_NV_DATA",
+       "flags": "0x0",
+       "size": 131072,
+       "offset": "0xa0000",
+       "sha256_16": "b5a41c3758763bbe",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 132688,
+       "offset": "0x298f00",
+       "sha256_16": "45e5ed4b44c55768",
+       "head": "00621e0000621e0000000000"
+      },
+      {
+       "type": "0x9",
+       "name": "SEC_DBG_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 832,
+       "offset": "0x2b9600",
+       "sha256_16": "aa625670831e9b7f",
+       "head": "01000000ed224f1d8e4a4c81"
+      },
+      {
+       "type": "0xb",
+       "name": "SOFT_FUSE_CHAIN_01",
+       "flags": "0x0",
+       "size": null,
+       "offset": "0x1"
+      },
+      {
+       "type": "0xc",
+       "name": "PSP_BOOT_TIME_TRUSTLETS",
+       "flags": "0x0",
+       "size": 86032,
+       "offset": "0x2b9a00",
+       "sha256_16": "5fb1ed58ffd063d2",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 17520,
+       "offset": "0x2ceb00",
+       "sha256_16": "2abb84a3eae0b795",
+       "head": "00621e0000621e0000000000"
+      },
+      {
+       "type": "0x13",
+       "name": "DEBUG_UNLOCK",
+       "flags": "0x0",
+       "size": 6640,
+       "offset": "0x2d3000",
+       "sha256_16": "858fb80554d2bfa6",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x2d4a00",
+       "sha256_16": "cff60e0efd90b3c3",
+       "head": "2ef9a17d93ae1b7307845b22"
+      },
+      {
+       "type": "0x22",
+       "name": "TOKEN_UNLOCK",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x2d5000",
+       "sha256_16": "f47a8ec3e9aff231",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 6528,
+       "offset": "0x2d6000",
+       "sha256_16": "979ad8eec5bb802a",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 6496,
+       "offset": "0x2d7a00",
+       "sha256_16": "a334f090ce29e2eb",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 6528,
+       "offset": "0x2d9400",
+       "sha256_16": "979ad8eec5bb802a",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x25",
+       "name": "MP2_FW",
+       "flags": "0x0",
+       "size": 8945,
+       "offset": "0x2dae00",
+       "sha256_16": "1adfb7b3e9667323",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x25",
+       "name": "MP2_FW",
+       "flags": "0x0",
+       "size": 15288,
+       "offset": "0x2dd100",
+       "sha256_16": "2387ada45753b540",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x25",
+       "name": "MP2_FW",
+       "flags": "0x0",
+       "size": 9208,
+       "offset": "0x2e0d00",
+       "sha256_16": "feab284172ae606b",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x28",
+       "name": "DRIVER_ENTRIES",
+       "flags": "0x0",
+       "size": 124816,
+       "offset": "0x2e3100",
+       "sha256_16": "a76a12b6bf800d50",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x30",
+       "name": "ABL0",
+       "flags": "0x0",
+       "size": 3520,
+       "offset": "0x301900",
+       "sha256_16": "2f9fcf98127ee452",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x31",
+       "name": "ABL1",
+       "flags": "0x0",
+       "size": 54800,
+       "offset": "0x302700",
+       "sha256_16": "7072bcd36601923a",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x32",
+       "name": "ABL2",
+       "flags": "0x0",
+       "size": 37520,
+       "offset": "0x30fe00",
+       "sha256_16": "be8653cfb57ad377",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x33",
+       "name": "ABL3",
+       "flags": "0x0",
+       "size": 49776,
+       "offset": "0x319100",
+       "sha256_16": "3a06ec0ef1043ea2",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x34",
+       "name": "ABL4",
+       "flags": "0x0",
+       "size": 56736,
+       "offset": "0x325400",
+       "sha256_16": "87ea0358d8acd88d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x35",
+       "name": "ABL5",
+       "flags": "0x0",
+       "size": 55280,
+       "offset": "0x333200",
+       "sha256_16": "0869621f113f1951",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x36",
+       "name": "ABL6",
+       "flags": "0x0",
+       "size": 41056,
+       "offset": "0x340a00",
+       "sha256_16": "afcbdb36e092a199",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x37",
+       "name": "ABL7",
+       "flags": "0x0",
+       "size": 55952,
+       "offset": "0x34ab00",
+       "sha256_16": "d74a9b2f736d34ff",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 142464,
+       "offset": "0x358600",
+       "sha256_16": "44fa5c58aa6e3497",
+       "head": "004425000044250000000000"
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 27536,
+       "offset": "0x37b300",
+       "sha256_16": "d9f187ce8c867cae",
+       "head": "004425000044250000000000"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 144032,
+       "offset": "0x381f00",
+       "sha256_16": "9bc12dbd963165f9",
+       "head": "005c1e04005c1e0400000000"
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 28016,
+       "offset": "0x3a5200",
+       "sha256_16": "01b5f93905b3f984",
+       "head": "005c1e04005c1e0400000000"
+      }
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x3c8000",
+     "count": 22,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x60",
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x6a"
+     ],
+     "entries": [
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x10",
+       "size": 8192,
+       "offset": "0x3c9000",
+       "sha256_16": "4c0b6d00ed67b34c",
+       "head": "415043422000200030170000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x10",
+       "size": 8192,
+       "offset": "0x3cb000",
+       "sha256_16": "4c0b6d00ed67b34c",
+       "head": "415043422000200030170000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x0",
+       "size": 8192,
+       "offset": "0x3cd000",
+       "sha256_16": "27d9e4cf1e9cad1f",
+       "head": "4150434220002000c01d0000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x0",
+       "size": 8192,
+       "offset": "0x3cf000",
+       "sha256_16": "27d9e4cf1e9cad1f",
+       "head": "4150434220002000c01d0000"
+      },
+      {
+       "type": "0x61",
+       "name": "APOB",
+       "flags": "0x0",
+       "size": 0,
+       "offset": "0x0"
+      },
+      {
+       "type": "0x62",
+       "name": "BIOS",
+       "flags": "0xb",
+       "size": 3145760,
+       "offset": "0xf02000",
+       "verdict": "out-of-image"
+      },
+      {
+       "type": "0x63",
+       "name": "APOB_NV_COPY",
+       "flags": "0x0",
+       "size": 163840,
+       "offset": "0x101000",
+       "sha256_16": "5639b95c2f8d2a2d",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x10",
+       "size": 15424,
+       "offset": "0x3d1000",
+       "sha256_16": "99cb2cfe2c412550",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x10",
+       "size": 816,
+       "offset": "0x3d4d00",
+       "sha256_16": "6de41b58e5ce03d6",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x40",
+       "size": 17936,
+       "offset": "0x3d5100",
+       "sha256_16": "dc15e77e614d238d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x40",
+       "size": 800,
+       "offset": "0x3d9800",
+       "sha256_16": "6edbad2750543328",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x110",
+       "size": 18480,
+       "offset": "0x3d9c00",
+       "sha256_16": "bb837b6198d6f671",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x110",
+       "size": 880,
+       "offset": "0x3de500",
+       "sha256_16": "614892a8f04af388",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x140",
+       "size": 18336,
+       "offset": "0x3de900",
+       "sha256_16": "3d6148237d7b2a6d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x140",
+       "size": 832,
+       "offset": "0x3e3100",
+       "sha256_16": "5588e41e6bd619f9",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x0",
+       "size": 3200,
+       "offset": "0x3e3500",
+       "sha256_16": "0278afeb5e283cc4",
+       "head": "242016071b10100804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x10",
+       "size": 3200,
+       "offset": "0x3e4200",
+       "sha256_16": "29623b671f985f99",
+       "head": "242009050401200804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x20",
+       "size": 3200,
+       "offset": "0x3e4f00",
+       "sha256_16": "f9b1fa4ca35aca28",
+       "head": "162020110400100804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x30",
+       "size": 3200,
+       "offset": "0x3e5c00",
+       "sha256_16": "a97b43a6e7485138",
+       "head": "182005060280100804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x40",
+       "size": 3200,
+       "offset": "0x3e6900",
+       "sha256_16": "1566e60b7971ce0e",
+       "head": "242012110e81100804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x50",
+       "size": 3200,
+       "offset": "0x3e7600",
+       "sha256_16": "f6277078c63b9977",
+       "head": "182006110211100804800000"
+      },
+      {
+       "type": "0x6a",
+       "name": "UNNAMED",
+       "flags": "0x0",
+       "size": 1380,
+       "offset": "0x3e8300",
+       "sha256_16": "48ec1a5e479b62b2",
+       "head": "000000000000000000000000"
+      }
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x3f8000",
+     "count": 31,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xa",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x45",
+      "0x28",
+      "0x2a",
+      "0x2d",
+      "0x30",
+      "0x42",
+      "0x43",
+      "0x44",
+      "0x4e",
+      "0x50",
+      "0x51",
+      "0x8",
+      "0x12",
+      "0x2a",
+      "0x24",
+      "0x30",
+      "0x4",
+      "0x54"
+     ],
+     "entries": [
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x3f8400",
+       "sha256_16": "fa3259fae10bcbae",
+       "head": "01000000fd90b04b797743c6"
+      },
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 98304,
+       "offset": "0x3f8900",
+       "sha256_16": "80901dae80667b0a",
+       "head": "000000000000000000000000",
+       "strings": [
+        "DRAM Encryption Key for PSP Data saved in DRAM",
+        "HMAC Signature Key for PSP Data saved in DRAM",
+        "NV Storage Encryption Key for PSP Data saved off-chip",
+        "PSPFW Bootloader Version",
+        "Per-SPI, Per-CPU RPMC Root Key for PSP Data saved in SPI-ROM",
+        "SMUFW Version"
+       ]
+      },
+      {
+       "type": "0x2",
+       "name": "PSP_FW_TRUSTED_OS",
+       "flags": "0x0",
+       "size": 66256,
+       "offset": "0x410900",
+       "sha256_16": "d91debb22fd29b73",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 133184,
+       "offset": "0x420c00",
+       "sha256_16": "db1839aa183e49c2",
+       "head": "489181d2350aa429fba3f476"
+      },
+      {
+       "type": "0x9",
+       "name": "SEC_DBG_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1600,
+       "offset": "0x441500",
+       "sha256_16": "c0992eaa221c545e",
+       "head": "010000009231f29a1d414a39"
+      },
+      {
+       "type": "0xa",
+       "name": "OEM_PSP_FW_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1600,
+       "offset": "0x441c00",
+       "sha256_16": "aec282d11d41ac66",
+       "head": "01000000ad5028d66c89425e"
+      },
+      {
+       "type": "0xb",
+       "name": "SOFT_FUSE_CHAIN_01",
+       "flags": "0x0",
+       "size": null,
+       "offset": "0x1"
+      },
+      {
+       "type": "0xc",
+       "name": "PSP_BOOT_TIME_TRUSTLETS",
+       "flags": "0x0",
+       "size": 131328,
+       "offset": "0x442300",
+       "sha256_16": "90aab5f862fd1905",
+       "head": "000000000000000000000000",
+       "strings": [
+        "PspFtpmHandler"
+       ]
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 1056,
+       "offset": "0x462400",
+       "sha256_16": "76a3ac47a8073b95",
+       "head": "00d7e9f8ccbee352dcc0a448"
+      },
+      {
+       "type": "0x13",
+       "name": "DEBUG_UNLOCK",
+       "flags": "0x0",
+       "size": 9280,
+       "offset": "0x462900",
+       "sha256_16": "6b8357ad284d2da2",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x464e00",
+       "sha256_16": "d9269d7005aa3e0e",
+       "head": "059bef4a60354f2312cccf5c"
+      },
+      {
+       "type": "0x22",
+       "name": "TOKEN_UNLOCK",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x465000",
+       "sha256_16": "f47a8ec3e9aff231",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 10704,
+       "offset": "0x466000",
+       "sha256_16": "e9e3d99221249b7b",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x45",
+       "name": "TOS_SECURITY_POLICY",
+       "flags": "0x0",
+       "size": 3296,
+       "offset": "0x468a00",
+       "sha256_16": "30f98e33470a23d3",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x28",
+       "name": "DRIVER_ENTRIES",
+       "flags": "0x0",
+       "size": 108432,
+       "offset": "0x469700",
+       "sha256_16": "5fc254e70e2ead14",
+       "head": "000000000000000000000000",
+       "strings": [
+        "10.0.0.0",
+        "HMAC Signature Key for PSP Data saved in DRAM"
+       ]
+      },
+      {
+       "type": "0x2a",
+       "name": "MP5_FW",
+       "flags": "0x0",
+       "size": 58912,
+       "offset": "0x483f00",
+       "sha256_16": "f8085ce7dbbc5dbf",
+       "head": "95b48e1af95d9068dcdfc678"
+      },
+      {
+       "type": "0x2d",
+       "name": "S0I3_DRIVER",
+       "flags": "0x0",
+       "size": 12544,
+       "offset": "0x492600",
+       "sha256_16": "123eaa527c48de65",
+       "head": "000000000000000000000000",
+       "strings": [
+        "AMD AGESA Driver"
+       ]
+      },
+      {
+       "type": "0x30",
+       "name": "ABL0",
+       "flags": "0x0",
+       "size": 511680,
+       "offset": "0x495700",
+       "sha256_16": "f67f88a0bcf1949d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x42",
+       "name": "FW_GEC_OR_DXIO_PHY_SRAM_FW",
+       "flags": "0x0",
+       "size": 4336,
+       "offset": "0x512600",
+       "sha256_16": "04a86884ae9a44a3",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x43",
+       "name": "DXIO_PHY_SRAM_FW_PUBKEY",
+       "flags": "0x0",
+       "size": 1600,
+       "offset": "0x513700",
+       "sha256_16": "108321d942c6eff5",
+       "head": "0100000060fd3b519db54f67"
+      },
+      {
+       "type": "0x44",
+       "name": "FW_XHCI",
+       "flags": "0x0",
+       "size": 8704,
+       "offset": "0x513e00",
+       "sha256_16": "6ddcab96977e9a17",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x4e",
+       "name": "PMU_PUBKEY",
+       "flags": "0x0",
+       "size": 1600,
+       "offset": "0x516000",
+       "sha256_16": "f4269648d27a0c2b",
+       "head": "01000000cc0d9a6b137b4380"
+      },
+      {
+       "type": "0x50",
+       "name": "BL_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 3792,
+       "offset": "0x516700",
+       "sha256_16": "95da5d31ede6f9f4",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x51",
+       "name": "TOS_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1520,
+       "offset": "0x517600",
+       "sha256_16": "9e1b793350a27000",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 112960,
+       "offset": "0x517c00",
+       "sha256_16": "b8059916684191ec",
+       "head": "0e25c3cfd038ee4d40ec31a7"
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 1056,
+       "offset": "0x533600",
+       "sha256_16": "a6600962452a7afd",
+       "head": "21e3539f48330071c72cfda3"
+      },
+      {
+       "type": "0x2a",
+       "name": "MP5_FW",
+       "flags": "0x0",
+       "size": 53376,
+       "offset": "0x533b00",
+       "sha256_16": "5234c3d8e970285d",
+       "head": "2dbcc63659aa9e3f33ba2cb1"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 4448,
+       "offset": "0x540c00",
+       "sha256_16": "2ea960d35dd204d8",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x30",
+       "name": "ABL0",
+       "flags": "0x0",
+       "size": 545168,
+       "offset": "0x541e00",
+       "sha256_16": "fb2dd80cf1a35325",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x4",
+       "name": "PSP_NV_DATA",
+       "flags": "0x0",
+       "size": 131072,
+       "offset": "0xa0000",
+       "sha256_16": "b5a41c3758763bbe",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x54",
+       "name": "PSP_NVRAM",
+       "flags": "0x0",
+       "size": 262144,
+       "offset": "0xc0000",
+       "sha256_16": "3b874d3ba46c638f",
+       "head": "ffffffffffffffffffffffff"
+      }
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x5f8000",
+     "count": 22,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66"
+     ],
+     "entries": [
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x100",
+       "size": 16384,
+       "offset": "0x5f9000",
+       "sha256_16": "75b11345ef9178e5",
+       "head": "4150434280003000243b0000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x100",
+       "size": 4096,
+       "offset": "0x5fd000",
+       "sha256_16": "6b8d88130bc9f170",
+       "head": "4150434280003000d8010000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x180",
+       "size": 480,
+       "offset": "0x5fe000",
+       "sha256_16": "ead07062157267ba",
+       "head": "4150434280003000e0010000"
+      },
+      {
+       "type": "0x61",
+       "name": "APOB",
+       "flags": "0x0",
+       "size": 0,
+       "offset": "0x0"
+      },
+      {
+       "type": "0x62",
+       "name": "BIOS",
+       "flags": "0xb",
+       "size": 3145760,
+       "offset": "0xf02000",
+       "verdict": "out-of-image"
+      },
+      {
+       "type": "0x63",
+       "name": "APOB_NV_COPY",
+       "flags": "0x0",
+       "size": 163840,
+       "offset": "0x101000",
+       "sha256_16": "5639b95c2f8d2a2d",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x10",
+       "size": 20000,
+       "offset": "0x5fe200",
+       "sha256_16": "59041912b51d8a94",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x10",
+       "size": 1120,
+       "offset": "0x603100",
+       "sha256_16": "33e2b1298115ca9f",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x40",
+       "size": 20256,
+       "offset": "0x603600",
+       "sha256_16": "effbcc225e48076d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x40",
+       "size": 1088,
+       "offset": "0x608600",
+       "sha256_16": "87541a075f0aa4dc",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x0",
+       "size": 5568,
+       "offset": "0x608b00",
+       "sha256_16": "72089265a025f253",
+       "head": "242005121312200a05800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x30",
+       "size": 5568,
+       "offset": "0x60a100",
+       "sha256_16": "396f339375e7a1e2",
+       "head": "242011113010200a05800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x40",
+       "size": 5568,
+       "offset": "0x60b700",
+       "sha256_16": "fdaf5195f6802819",
+       "head": "202021012500200a05800000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x0",
+       "size": 16384,
+       "offset": "0x60d000",
+       "sha256_16": "9455d28f538890f0",
+       "head": "4150434280003000f0200000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x611000",
+       "sha256_16": "6a805ca9c7a8cc61",
+       "head": "4150434280003000d8010000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x80",
+       "size": 480,
+       "offset": "0x612000",
+       "sha256_16": "3570136aa73ec518",
+       "head": "4150434280003000e0010000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x110",
+       "size": 18832,
+       "offset": "0x612200",
+       "sha256_16": "7e636edfc9992776",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x110",
+       "size": 1120,
+       "offset": "0x616c00",
+       "sha256_16": "b7b13321399b2b68",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x140",
+       "size": 19424,
+       "offset": "0x617100",
+       "sha256_16": "865b488baa318d5d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x140",
+       "size": 1088,
+       "offset": "0x61bd00",
+       "sha256_16": "c0f00660924e62f9",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x10",
+       "size": 3200,
+       "offset": "0x61c200",
+       "sha256_16": "61636f8910e6ae3c",
+       "head": "242018113510700804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x20",
+       "size": 3200,
+       "offset": "0x61cf00",
+       "sha256_16": "a22b8075cac88bca",
+       "head": "182006120400700804800000"
+      }
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x628000",
+     "count": 4,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x21",
+      "0x40"
+     ],
+     "entries": [
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x628400",
+       "sha256_16": "99123c2fb495d52b",
+       "head": "01000000144ed093dc644601"
+      },
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 131072,
+       "offset": "0x629400",
+       "sha256_16": "7b4fc6f6a746a849",
+       "head": "000000000000000000000000",
+       "strings": [
+        "$PL2SpiPspRead content of PSP header failed = 0x%x",
+        "%s: Loading BIXBY SMU FW FAIL ",
+        "ASF remote power down detected, setting PSP boot mode to S5 cold",
+        "AgesaBL Execution Completed",
+        "AgesaBL0 start to run...",
+        "DRAM Encryption Key for PSP Data saved in DRAM",
+        "Default SpiRom: PSP",
+        "Error: RsmuTimeoutEnable->NULL pointer with Idx=%d",
+        "Error: RsmuTimeoutEnable->UmMapSmu failed with Idx=%d",
+        "GetPspFwHeader() exit...RetStatus=0x%X",
+        "GetPspFwHeader() start...EntryType=0x%X",
+        "HMAC Signature Key for PSP Data saved in DRAM",
+        "LoadSMUFWToDram",
+        "Load_Run_AgesaBL() start...",
+        "Loading SMU FW to SRAM Start...",
+        "NV Storage Encryption Key for PSP Data saved off-chip"
+       ]
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x628900",
+       "sha256_16": "f146f72103545689",
+       "head": "79f6e5acf43697db356b32dc"
+      },
+      {
+       "type": "0x40",
+       "name": "PSP_FW_L2_PTR",
+       "flags": "0x0",
+       "size": 1024,
+       "offset": "0x629000",
+       "sha256_16": "f626409219430190",
+       "head": "24504c328ff355401c000000"
+      }
+     ]
+    },
+    {
+     "magic": "$PL2",
+     "offset": "0x629000",
+     "count": 28,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x1",
+      "0x0",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x20",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x28",
+      "0x2d",
+      "0x30",
+      "0x3c",
+      "0x44",
+      "0x45",
+      "0x45",
+      "0x47",
+      "0x50",
+      "0x51",
+      "0x58",
+      "0x59",
+      "0x4",
+      "0x54"
+     ],
+     "entries": [
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 67776,
+       "offset": "0x629400",
+       "sha256_16": "4b27166a30d4c1b2",
+       "head": "000000000000000000000000",
+       "strings": [
+        "$PL2SpiPspRead content of PSP header failed = 0x%x",
+        "%s: Loading BIXBY SMU FW FAIL ",
+        "ASF remote power down detected, setting PSP boot mode to S5 cold",
+        "AgesaBL Execution Completed",
+        "AgesaBL0 start to run...",
+        "DRAM Encryption Key for PSP Data saved in DRAM",
+        "Default SpiRom: PSP",
+        "Error: RsmuTimeoutEnable->NULL pointer with Idx=%d",
+        "Error: RsmuTimeoutEnable->UmMapSmu failed with Idx=%d",
+        "GetPspFwHeader() exit...RetStatus=0x%X",
+        "GetPspFwHeader() start...EntryType=0x%X",
+        "HMAC Signature Key for PSP Data saved in DRAM",
+        "LoadSMUFWToDram",
+        "Load_Run_AgesaBL() start...",
+        "Loading SMU FW to SRAM Start...",
+        "NV Storage Encryption Key for PSP Data saved off-chip"
+       ]
+      },
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x639d00",
+       "sha256_16": "99123c2fb495d52b",
+       "head": "01000000144ed093dc644601"
+      },
+      {
+       "type": "0x2",
+       "name": "PSP_FW_TRUSTED_OS",
+       "flags": "0x0",
+       "size": 103280,
+       "offset": "0x63a200",
+       "sha256_16": "9bfbb050c85a45e9",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 135216,
+       "offset": "0x653600",
+       "sha256_16": "03247ba15c07b80c",
+       "head": "08de449d64e8bcb0366c8aed"
+      },
+      {
+       "type": "0x9",
+       "name": "SEC_DBG_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x674700",
+       "sha256_16": "440809659468e1af",
+       "head": "010000000475d16675bd4c4f"
+      },
+      {
+       "type": "0xb",
+       "name": "SOFT_FUSE_CHAIN_01",
+       "flags": "0x0",
+       "size": null,
+       "offset": "0x20000001"
+      },
+      {
+       "type": "0xc",
+       "name": "PSP_BOOT_TIME_TRUSTLETS",
+       "flags": "0x0",
+       "size": 131328,
+       "offset": "0x674c00",
+       "sha256_16": "bee423edd19602da",
+       "head": "000000000000000000000000",
+       "strings": [
+        "PspFtpmHandler"
+       ]
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 65792,
+       "offset": "0x694d00",
+       "sha256_16": "7711d6033ddc950a",
+       "head": "e770c49f6cefa8af7808b248"
+      },
+      {
+       "type": "0x13",
+       "name": "DEBUG_UNLOCK",
+       "flags": "0x0",
+       "size": 8448,
+       "offset": "0x6a4e00",
+       "sha256_16": "8cbe46f993a3d9c3",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x20",
+       "name": "HARDWARE_IP_CONFIG",
+       "flags": "0x0",
+       "size": 1636,
+       "offset": "0x6a6f00",
+       "sha256_16": "98a034dfd642bab1",
+       "head": "f90d5fff0550412b9bbe9615"
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x6a7600",
+       "sha256_16": "f146f72103545689",
+       "head": "79f6e5acf43697db356b32dc"
+      },
+      {
+       "type": "0x22",
+       "name": "TOKEN_UNLOCK",
+       "flags": "0x4",
+       "size": 4096,
+       "offset": "0x6a8000",
+       "sha256_16": "f47a8ec3e9aff231",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 11952,
+       "offset": "0x6a9000",
+       "sha256_16": "6959c258c8388295",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 10848,
+       "offset": "0x6abf00",
+       "sha256_16": "ab31b0fcd16d32f8",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x28",
+       "name": "DRIVER_ENTRIES",
+       "flags": "0x0",
+       "size": 124784,
+       "offset": "0x6aea00",
+       "sha256_16": "a003403735e479b0",
+       "head": "000000000000000000000000",
+       "strings": [
+        "$PSPA0",
+        "10.0.0.0",
+        "HMAC Signature Key for PSP Data saved in DRAM"
+       ]
+      },
+      {
+       "type": "0x2d",
+       "name": "S0I3_DRIVER",
+       "flags": "0x0",
+       "size": 12544,
+       "offset": "0x6cd200",
+       "sha256_16": "fdef3699dcafc9d3",
+       "head": "000000000000000000000000",
+       "strings": [
+        "AMD AGESA Driver"
+       ]
+      },
+      {
+       "type": "0x30",
+       "name": "ABL0",
+       "flags": "0x0",
+       "size": 460496,
+       "offset": "0x6d0300",
+       "sha256_16": "d7ae31db20b39ae9",
+       "head": "000000000000000000000000",
+       "strings": [
+        "Jsmue9",
+        "msmu5q'Yk="
+       ]
+      },
+      {
+       "type": "0x3c",
+       "name": "VBIOS_PRELOAD",
+       "flags": "0x0",
+       "size": 24832,
+       "offset": "0x740a00",
+       "sha256_16": "7b6019f71a00e5da",
+       "head": "000000000000000000000000",
+       "strings": [
+        "SMU Power up GFX",
+        "mmSMUIO_GFX_MISC_CNTL"
+       ]
+      },
+      {
+       "type": "0x44",
+       "name": "FW_XHCI",
+       "flags": "0x0",
+       "size": 26128,
+       "offset": "0x746b00",
+       "sha256_16": "429b13ea0146a75b",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x45",
+       "name": "TOS_SECURITY_POLICY",
+       "flags": "0x0",
+       "size": 7056,
+       "offset": "0x74d200",
+       "sha256_16": "d71f1e7bbffda263",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x45",
+       "name": "TOS_SECURITY_POLICY",
+       "flags": "0x0",
+       "size": 6512,
+       "offset": "0x74ee00",
+       "sha256_16": "9cf339d4d5f8bffd",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x47",
+       "name": "DRTM_TA",
+       "flags": "0x0",
+       "size": 24832,
+       "offset": "0x750800",
+       "sha256_16": "3c1bf67fd503000b",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x50",
+       "name": "BL_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 6400,
+       "offset": "0x756900",
+       "sha256_16": "4db1b8e557c5654b",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x51",
+       "name": "TOS_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 4208,
+       "offset": "0x758200",
+       "sha256_16": "1e886cf1498751cb",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x58",
+       "name": "DMCU_ERAM",
+       "flags": "0x0",
+       "size": 23408,
+       "offset": "0x759300",
+       "sha256_16": "9e8edc4dac4b3336",
+       "head": "511a248093ec3edfc8a1d291"
+      },
+      {
+       "type": "0x59",
+       "name": "DMCU_ISR",
+       "flags": "0x0",
+       "size": 544,
+       "offset": "0x75ef00",
+       "sha256_16": "ba42a0c9b169bf02",
+       "head": "7061459a554652a824a73d3f"
+      },
+      {
+       "type": "0x4",
+       "name": "PSP_NV_DATA",
+       "flags": "0x4",
+       "size": 131072,
+       "offset": "0xa0000",
+       "sha256_16": "b5a41c3758763bbe",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x54",
+       "name": "PSP_NVRAM",
+       "flags": "0x4",
+       "size": 262144,
+       "offset": "0xc0000",
+       "sha256_16": "3b874d3ba46c638f",
+       "head": "ffffffffffffffffffffffff"
+      }
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x788000",
+     "count": 1,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x70"
+     ],
+     "entries": [
+      {
+       "type": "0x70",
+       "name": "UNNAMED",
+       "flags": "0x0",
+       "size": 1024,
+       "offset": "0x789000",
+       "sha256_16": "ee0974548e494d8f",
+       "head": "24424c32a90d6c130c000000"
+      }
+     ]
+    },
+    {
+     "magic": "$BL2",
+     "offset": "0x789000",
+     "count": 12,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66"
+     ],
+     "entries": [
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x2000",
+       "size": 16384,
+       "offset": "0x78a000",
+       "sha256_16": "be893535a51fe603",
+       "head": "415043428000300050220000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x2000",
+       "size": 4096,
+       "offset": "0x78e000",
+       "sha256_16": "6d8818a270079324",
+       "head": "415043428000300010020000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x2080",
+       "size": 536,
+       "offset": "0x78f000",
+       "sha256_16": "8005e34ac60a08df",
+       "head": "415043428000300018020000"
+      },
+      {
+       "type": "0x61",
+       "name": "APOB",
+       "flags": "0x0",
+       "size": 0,
+       "offset": "0x0"
+      },
+      {
+       "type": "0x62",
+       "name": "BIOS",
+       "flags": "0xb",
+       "size": 3145760,
+       "offset": "0xf02000",
+       "verdict": "out-of-image"
+      },
+      {
+       "type": "0x63",
+       "name": "APOB_NV_COPY",
+       "flags": "0x2000",
+       "size": 163840,
+       "offset": "0x101000",
+       "sha256_16": "5639b95c2f8d2a2d",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x10",
+       "size": 18576,
+       "offset": "0x78f300",
+       "sha256_16": "c1916c8f2ecc2202",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x10",
+       "size": 864,
+       "offset": "0x793c00",
+       "sha256_16": "430b0b7e1ddb9add",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x40",
+       "size": 19168,
+       "offset": "0x794000",
+       "sha256_16": "d316856b52d45aaf",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x40",
+       "size": 832,
+       "offset": "0x798b00",
+       "sha256_16": "2bf75cfd0ac20446",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x0",
+       "size": 3200,
+       "offset": "0x798f00",
+       "sha256_16": "52901004b26f88be",
+       "head": "202027010e00600804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x10",
+       "size": 3200,
+       "offset": "0x799c00",
+       "sha256_16": "dab261ffc70116b7",
+       "head": "242018110f01600804800000"
+      }
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x7a8000",
+     "count": 4,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x21",
+      "0x40"
+     ],
+     "entries": [
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x7a8400",
+       "sha256_16": "68d4f650a00e9ea8",
+       "head": "010000006c9ea31abe174727"
+      },
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 131072,
+       "offset": "0x7a9400",
+       "sha256_16": "71c4c84ba25be162",
+       "head": "000000000000000000000000",
+       "strings": [
+        "$PL2SpiPspRead content of PSP header failed = 0x%x",
+        "%s: Loading BIXBY SMU FW FAIL ",
+        "ASF remote power down detected, setting PSP boot mode to S5 cold",
+        "AgesaBL Execution Completed",
+        "AgesaBL0 start to run...",
+        "DRAM Encryption Key for PSP Data saved in DRAM",
+        "Default SpiRom: PSP",
+        "Error: RsmuTimeoutEnable->NULL pointer with Idx=%d",
+        "Error: RsmuTimeoutEnable->UmMapSmu failed with Idx=%d",
+        "GetPspFwHeader() exit...RetStatus=0x%X",
+        "GetPspFwHeader() start...EntryType=0x%X",
+        "HMAC Signature Key for PSP Data saved in DRAM",
+        "LoadSMUFWToDram",
+        "Load_Run_AgesaBL() start...",
+        "Loading SMU FW to SRAM Start...",
+        "NV Storage Encryption Key for PSP Data saved off-chip"
+       ]
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x7a8900",
+       "sha256_16": "ddf514f0e94faf52",
+       "head": "04c54d0efa5b75b2aab329f5"
+      },
+      {
+       "type": "0x40",
+       "name": "PSP_FW_L2_PTR",
+       "flags": "0x0",
+       "size": 1024,
+       "offset": "0x7a9000",
+       "sha256_16": "2a70bad902651073",
+       "head": "24504c321012df1e1c000000"
+      }
+     ]
+    },
+    {
+     "magic": "$PL2",
+     "offset": "0x7a9000",
+     "count": 28,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x1",
+      "0x0",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x20",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x28",
+      "0x2d",
+      "0x30",
+      "0x3c",
+      "0x44",
+      "0x45",
+      "0x45",
+      "0x47",
+      "0x50",
+      "0x51",
+      "0x58",
+      "0x59",
+      "0x4",
+      "0x54"
+     ],
+     "entries": [
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 67776,
+       "offset": "0x7a9400",
+       "sha256_16": "ea8c9a1593983b88",
+       "head": "000000000000000000000000",
+       "strings": [
+        "$PL2SpiPspRead content of PSP header failed = 0x%x",
+        "%s: Loading BIXBY SMU FW FAIL ",
+        "ASF remote power down detected, setting PSP boot mode to S5 cold",
+        "AgesaBL Execution Completed",
+        "AgesaBL0 start to run...",
+        "DRAM Encryption Key for PSP Data saved in DRAM",
+        "Default SpiRom: PSP",
+        "Error: RsmuTimeoutEnable->NULL pointer with Idx=%d",
+        "Error: RsmuTimeoutEnable->UmMapSmu failed with Idx=%d",
+        "GetPspFwHeader() exit...RetStatus=0x%X",
+        "GetPspFwHeader() start...EntryType=0x%X",
+        "HMAC Signature Key for PSP Data saved in DRAM",
+        "LoadSMUFWToDram",
+        "Load_Run_AgesaBL() start...",
+        "Loading SMU FW to SRAM Start...",
+        "NV Storage Encryption Key for PSP Data saved off-chip"
+       ]
+      },
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x7b9d00",
+       "sha256_16": "68d4f650a00e9ea8",
+       "head": "010000006c9ea31abe174727"
+      },
+      {
+       "type": "0x2",
+       "name": "PSP_FW_TRUSTED_OS",
+       "flags": "0x0",
+       "size": 103280,
+       "offset": "0x7ba200",
+       "sha256_16": "16aa95e569ad25ee",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 135392,
+       "offset": "0x7d3600",
+       "sha256_16": "0687e50528b3cd3d",
+       "head": "d942e6bf895b2d651cca9aeb"
+      },
+      {
+       "type": "0x9",
+       "name": "SEC_DBG_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x7f4700",
+       "sha256_16": "3159780e151174aa",
+       "head": "0100000010ac6d6c8aac43f0"
+      },
+      {
+       "type": "0xb",
+       "name": "SOFT_FUSE_CHAIN_01",
+       "flags": "0x0",
+       "size": null,
+       "offset": "0x20000001"
+      },
+      {
+       "type": "0xc",
+       "name": "PSP_BOOT_TIME_TRUSTLETS",
+       "flags": "0x0",
+       "size": 131328,
+       "offset": "0x7f4c00",
+       "sha256_16": "bee423edd19602da",
+       "head": "000000000000000000000000",
+       "strings": [
+        "PspFtpmHandler"
+       ]
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 72720,
+       "offset": "0x814d00",
+       "sha256_16": "54b064a509028326",
+       "head": "4ce50ce016812b42dbd75b22"
+      },
+      {
+       "type": "0x13",
+       "name": "DEBUG_UNLOCK",
+       "flags": "0x0",
+       "size": 8448,
+       "offset": "0x826a00",
+       "sha256_16": "2ba09b53398f1405",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x20",
+       "name": "HARDWARE_IP_CONFIG",
+       "flags": "0x0",
+       "size": 1648,
+       "offset": "0x828b00",
+       "sha256_16": "8b30ae2efc7efe22",
+       "head": "7989513ed9dd2c526d2bccaa"
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x829200",
+       "sha256_16": "ddf514f0e94faf52",
+       "head": "04c54d0efa5b75b2aab329f5"
+      },
+      {
+       "type": "0x22",
+       "name": "TOKEN_UNLOCK",
+       "flags": "0x4",
+       "size": 4096,
+       "offset": "0x82a000",
+       "sha256_16": "f47a8ec3e9aff231",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 11904,
+       "offset": "0x82b000",
+       "sha256_16": "260f9d2b874e76f1",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 10896,
+       "offset": "0x82df00",
+       "sha256_16": "98c6c86fd8f4c0f5",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x28",
+       "name": "DRIVER_ENTRIES",
+       "flags": "0x0",
+       "size": 124784,
+       "offset": "0x830a00",
+       "sha256_16": "4f73085958f4eb49",
+       "head": "000000000000000000000000",
+       "strings": [
+        "$PSPA0",
+        "10.0.0.0",
+        "HMAC Signature Key for PSP Data saved in DRAM"
+       ]
+      },
+      {
+       "type": "0x2d",
+       "name": "S0I3_DRIVER",
+       "flags": "0x0",
+       "size": 12544,
+       "offset": "0x84f200",
+       "sha256_16": "38a29c22c4afa823",
+       "head": "000000000000000000000000",
+       "strings": [
+        "AMD AGESA Driver"
+       ]
+      },
+      {
+       "type": "0x30",
+       "name": "ABL0",
+       "flags": "0x0",
+       "size": 421232,
+       "offset": "0x852300",
+       "sha256_16": "201748879d9ec0d0",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x3c",
+       "name": "VBIOS_PRELOAD",
+       "flags": "0x0",
+       "size": 22848,
+       "offset": "0x8b9100",
+       "sha256_16": "8331043c1df3a8a0",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x44",
+       "name": "FW_XHCI",
+       "flags": "0x0",
+       "size": 26128,
+       "offset": "0x8beb00",
+       "sha256_16": "8c9c423437d388db",
+       "head": "2e2216df62169d96c24e06cb"
+      },
+      {
+       "type": "0x45",
+       "name": "TOS_SECURITY_POLICY",
+       "flags": "0x0",
+       "size": 7056,
+       "offset": "0x8c5200",
+       "sha256_16": "336b2208b14afcc5",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x45",
+       "name": "TOS_SECURITY_POLICY",
+       "flags": "0x0",
+       "size": 6560,
+       "offset": "0x8c6e00",
+       "sha256_16": "87522a626f032afe",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x47",
+       "name": "DRTM_TA",
+       "flags": "0x0",
+       "size": 24832,
+       "offset": "0x8c8800",
+       "sha256_16": "3c1bf67fd503000b",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x50",
+       "name": "BL_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 6400,
+       "offset": "0x8ce900",
+       "sha256_16": "c470f5600d2f02c1",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x51",
+       "name": "TOS_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 4800,
+       "offset": "0x8d0200",
+       "sha256_16": "4a26b8467520d76d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x58",
+       "name": "DMCU_ERAM",
+       "flags": "0x0",
+       "size": 23408,
+       "offset": "0x8d1500",
+       "sha256_16": "9e8edc4dac4b3336",
+       "head": "511a248093ec3edfc8a1d291"
+      },
+      {
+       "type": "0x59",
+       "name": "DMCU_ISR",
+       "flags": "0x0",
+       "size": 544,
+       "offset": "0x8d7100",
+       "sha256_16": "ba42a0c9b169bf02",
+       "head": "7061459a554652a824a73d3f"
+      },
+      {
+       "type": "0x4",
+       "name": "PSP_NV_DATA",
+       "flags": "0x4",
+       "size": 131072,
+       "offset": "0xa0000",
+       "sha256_16": "b5a41c3758763bbe",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x54",
+       "name": "PSP_NVRAM",
+       "flags": "0x4",
+       "size": 262144,
+       "offset": "0xc0000",
+       "sha256_16": "3b874d3ba46c638f",
+       "head": "ffffffffffffffffffffffff"
+      }
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x908000",
+     "count": 1,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x70"
+     ],
+     "entries": [
+      {
+       "type": "0x70",
+       "name": "UNNAMED",
+       "flags": "0x0",
+       "size": 1024,
+       "offset": "0x909000",
+       "sha256_16": "16f86de17001afce",
+       "head": "24424c32386ec7850b000000"
+      }
+     ]
+    },
+    {
+     "magic": "$BL2",
+     "offset": "0x909000",
+     "count": 11,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66"
+     ],
+     "entries": [
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x2000",
+       "size": 16384,
+       "offset": "0x90a000",
+       "sha256_16": "95573c4e2d6e93cc",
+       "head": "415043428000300058220000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x2000",
+       "size": 4096,
+       "offset": "0x90e000",
+       "sha256_16": "11af3097cad16e59",
+       "head": "415043428000300010020000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x2080",
+       "size": 536,
+       "offset": "0x90f000",
+       "sha256_16": "2d2a19a4fe887481",
+       "head": "415043428000300018020000"
+      },
+      {
+       "type": "0x61",
+       "name": "APOB",
+       "flags": "0x0",
+       "size": 0,
+       "offset": "0x0"
+      },
+      {
+       "type": "0x62",
+       "name": "BIOS",
+       "flags": "0xb",
+       "size": 3145760,
+       "offset": "0xf02000",
+       "verdict": "out-of-image"
+      },
+      {
+       "type": "0x63",
+       "name": "APOB_NV_COPY",
+       "flags": "0x2000",
+       "size": 163840,
+       "offset": "0x101000",
+       "sha256_16": "5639b95c2f8d2a2d",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x10",
+       "size": 18576,
+       "offset": "0x90f300",
+       "sha256_16": "0798fd526556e1e4",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x10",
+       "size": 864,
+       "offset": "0x913c00",
+       "sha256_16": "ea01eb8e5ef7db0a",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x40",
+       "size": 19168,
+       "offset": "0x914000",
+       "sha256_16": "ce54b721096fbbf1",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x40",
+       "size": 832,
+       "offset": "0x918b00",
+       "sha256_16": "4f7bb2e5ad7993d6",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x0",
+       "size": 5568,
+       "offset": "0x918f00",
+       "sha256_16": "45d60be204f3f58b",
+       "head": "242011111400500a05800000"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "asus-prime-b450-plus-ref",
+   "version": "3604",
+   "bytes": 16777216,
+   "sha256_16": "dbabcc8c1d7e6dc4",
+   "magic_scan": {
+    "$PSP": 14,
+    "$PL2": 5,
+    "$BHD": 14,
+    "$BL2": 5,
+    "$BSP": 0,
+    "$BIO": 0
+   },
+   "directories_validated": 14,
+   "rejected_candidates": 24,
+   "psptool_crosscheck": {
+    "psptool_dirs": 14,
+    "agree": "14/14",
+    "all_agree": true,
+    "join_rule": "file offset = get_address() when inside the image, else the dict key (the 32-MiB image keys by masked address label)"
+   },
+   "directories": [
+    {
+     "magic": "$PSP",
+     "offset": "0x129000",
+     "count": 24,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0xc",
+      "0x4",
+      "0x8",
+      "0x8",
+      "0x12",
+      "0x9",
+      "0xa",
+      "0xb",
+      "0xd",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x30",
+      "0x31",
+      "0x32",
+      "0x33",
+      "0x34",
+      "0x35",
+      "0x36"
+     ],
+     "entries": [
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 576,
+       "offset": "0x129400",
+       "sha256_16": "8efddcaaf84990cf",
+       "head": "010000001bb987c359494606"
+      },
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 50560,
+       "offset": "0x129700",
+       "sha256_16": "0d7557df7bf6c8ca",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x2",
+       "name": "PSP_FW_TRUSTED_OS",
+       "flags": "0x0",
+       "size": 270924,
+       "offset": "0x135d00",
+       "sha256_16": "f738628cfa9f3afc",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0xc",
+       "name": "PSP_BOOT_TIME_TRUSTLETS",
+       "flags": "0x0",
+       "size": 143795,
+       "offset": "0x178000",
+       "sha256_16": "598e7f48494c9736",
+       "head": "000000000000000000000000",
+       "strings": [
+        "HMAC Signature Key for PSP Data saved in DRAM"
+       ]
+      },
+      {
+       "type": "0x4",
+       "name": "PSP_NV_DATA",
+       "flags": "0x0",
+       "size": 131072,
+       "offset": "0xa0000",
+       "sha256_16": "b5a41c3758763bbe",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 120928,
+       "offset": "0x19b200",
+       "sha256_16": "acfb4abd7d47c94b",
+       "head": "534d5552554c4553534d5552",
+       "strings": [
+        "SMURULESSMURULES"
+       ]
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 103520,
+       "offset": "0x1b8b00",
+       "sha256_16": "fa18d34a45ce5979",
+       "head": "534d5552554c4553534d5552",
+       "strings": [
+        "SMURULESSMURULES"
+       ]
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 9408,
+       "offset": "0x1d2000",
+       "sha256_16": "a6ca90d73f2bd672",
+       "head": "534d5552554c4553534d5552",
+       "strings": [
+        "SMURULESSMURULES"
+       ]
+      },
+      {
+       "type": "0x9",
+       "name": "SEC_DBG_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 832,
+       "offset": "0x1d4500",
+       "sha256_16": "17383dca94997925",
+       "head": "010000002921e28f4ae94533"
+      },
+      {
+       "type": "0xa",
+       "name": "OEM_PSP_FW_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 832,
+       "offset": "0x1d4900",
+       "sha256_16": "18209a247b0f1a49",
+       "head": "01000000279394cac2c24efb"
+      },
+      {
+       "type": "0xb",
+       "name": "SOFT_FUSE_CHAIN_01",
+       "flags": "0x0",
+       "size": null,
+       "offset": "0x1"
+      },
+      {
+       "type": "0xd",
+       "name": "PSP_BOOT_TIME_TRUSTLETS_KEY",
+       "flags": "0x0",
+       "size": 832,
+       "offset": "0x1d4d00",
+       "sha256_16": "94675973154370f7",
+       "head": "010000001e384edefa944110"
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 11552,
+       "offset": "0x1d5100",
+       "sha256_16": "ea7f827e49369349",
+       "head": "534d5552554c4553534d5552",
+       "strings": [
+        "SMURULESSMURULES"
+       ]
+      },
+      {
+       "type": "0x13",
+       "name": "DEBUG_UNLOCK",
+       "flags": "0x0",
+       "size": 6432,
+       "offset": "0x1d7f00",
+       "sha256_16": "77c95d6dd72bdd3a",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x1d9900",
+       "sha256_16": "0b1429e143abef50",
+       "head": "50d00f3cbcb8f1945a7daa87"
+      },
+      {
+       "type": "0x22",
+       "name": "TOKEN_UNLOCK",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x1da000",
+       "sha256_16": "f47a8ec3e9aff231",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 3072,
+       "offset": "0x1db000",
+       "sha256_16": "cc4cd5c16ef9e8a0",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x30",
+       "name": "ABL0",
+       "flags": "0x0",
+       "size": 3504,
+       "offset": "0x1dbc00",
+       "sha256_16": "76ca45872ef8f171",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x31",
+       "name": "ABL1",
+       "flags": "0x0",
+       "size": 52320,
+       "offset": "0x1dca00",
+       "sha256_16": "608249b3c0fed72b",
+       "head": "000000000000000000000000",
+       "strings": [
+        "FpSP=x"
+       ]
+      },
+      {
+       "type": "0x32",
+       "name": "ABL2",
+       "flags": "0x0",
+       "size": 41440,
+       "offset": "0x1e9700",
+       "sha256_16": "f9600527c930b120",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x33",
+       "name": "ABL3",
+       "flags": "0x0",
+       "size": 45568,
+       "offset": "0x1f3900",
+       "sha256_16": "acdaa7f76634ea76",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x34",
+       "name": "ABL4",
+       "flags": "0x0",
+       "size": 40128,
+       "offset": "0x1feb00",
+       "sha256_16": "822da740405cb337",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x35",
+       "name": "ABL5",
+       "flags": "0x0",
+       "size": 54720,
+       "offset": "0x208800",
+       "sha256_16": "dde3f6d2d935aeda",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x36",
+       "name": "ABL6",
+       "flags": "0x0",
+       "size": 45024,
+       "offset": "0x215e00",
+       "sha256_16": "604831a9ec600f1e",
+       "head": "000000000000000000000000"
+      }
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x259000",
+     "count": 19,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x60",
+      "0x68",
+      "0x60",
+      "0x60",
+      "0x68",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x67"
+     ],
+     "entries": [
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x10",
+       "size": 8192,
+       "offset": "0x25a000",
+       "sha256_16": "219474728b9011d6",
+       "head": "4150434220002000d00f0000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x10",
+       "size": 8192,
+       "offset": "0x25c000",
+       "sha256_16": "219474728b9011d6",
+       "head": "4150434220002000d00f0000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x0",
+       "size": 8192,
+       "offset": "0x25e000",
+       "sha256_16": "33c75b47bd2d183c",
+       "head": "41504342200020004c190000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x20",
+       "size": 8192,
+       "offset": "0x260000",
+       "sha256_16": "258b33f062c6508d",
+       "head": "41504342200020004c190000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x0",
+       "size": 8192,
+       "offset": "0x262000",
+       "sha256_16": "33c75b47bd2d183c",
+       "head": "41504342200020004c190000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x20",
+       "size": 8192,
+       "offset": "0x264000",
+       "sha256_16": "258b33f062c6508d",
+       "head": "41504342200020004c190000"
+      },
+      {
+       "type": "0x61",
+       "name": "APOB",
+       "flags": "0x0",
+       "size": 0,
+       "offset": "0x0"
+      },
+      {
+       "type": "0x62",
+       "name": "BIOS",
+       "flags": "0xb",
+       "size": 3145760,
+       "offset": "0xf02000",
+       "verdict": "out-of-image"
+      },
+      {
+       "type": "0x63",
+       "name": "APOB_NV_COPY",
+       "flags": "0x0",
+       "size": 163840,
+       "offset": "0x101000",
+       "sha256_16": "5639b95c2f8d2a2d",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x0",
+       "size": 3200,
+       "offset": "0x266000",
+       "sha256_16": "689883cd220ddd59",
+       "head": "192016040d82000804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x10",
+       "size": 3200,
+       "offset": "0x266d00",
+       "sha256_16": "c00b6b19fd5c3960",
+       "head": "192016045012000804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x20",
+       "size": 3200,
+       "offset": "0x267a00",
+       "sha256_16": "d9d6cf604bc1e1b6",
+       "head": "192004023811000804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x30",
+       "size": 3200,
+       "offset": "0x268700",
+       "sha256_16": "7bff0c2e7f9ea81f",
+       "head": "172031010c10000804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x40",
+       "size": 3200,
+       "offset": "0x269400",
+       "sha256_16": "00d615d06fbcca5c",
+       "head": "162006102a00000804800000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x10",
+       "size": 15424,
+       "offset": "0x26a100",
+       "sha256_16": "08518d379e36f735",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x10",
+       "size": 816,
+       "offset": "0x26de00",
+       "sha256_16": "66d077ade06860da",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x40",
+       "size": 17936,
+       "offset": "0x26e200",
+       "sha256_16": "ba6819f96c812ba1",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x40",
+       "size": 800,
+       "offset": "0x272900",
+       "sha256_16": "0c0d954ec4727137",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x67",
+       "name": "CORE_MCE_DATA",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x273000",
+       "sha256_16": "f47a8ec3e9aff231",
+       "head": "ffffffffffffffffffffffff"
+      }
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x279000",
+     "count": 31,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0x4",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x24",
+      "0x25",
+      "0x25",
+      "0x25",
+      "0x28",
+      "0x30",
+      "0x31",
+      "0x32",
+      "0x33",
+      "0x34",
+      "0x35",
+      "0x36",
+      "0x37",
+      "0x8",
+      "0x12",
+      "0x8",
+      "0x12"
+     ],
+     "entries": [
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 576,
+       "offset": "0x279400",
+       "sha256_16": "752b195fe49c18e0",
+       "head": "0100000060bba67e1a434c6b"
+      },
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 58304,
+       "offset": "0x279700",
+       "sha256_16": "5a0b41cdbc6b4342",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x2",
+       "name": "PSP_FW_TRUSTED_OS",
+       "flags": "0x0",
+       "size": 62224,
+       "offset": "0x287b00",
+       "sha256_16": "2e7982a59474fb37",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x4",
+       "name": "PSP_NV_DATA",
+       "flags": "0x0",
+       "size": 131072,
+       "offset": "0xa0000",
+       "sha256_16": "b5a41c3758763bbe",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 132688,
+       "offset": "0x296f00",
+       "sha256_16": "45e5ed4b44c55768",
+       "head": "00621e0000621e0000000000"
+      },
+      {
+       "type": "0x9",
+       "name": "SEC_DBG_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 832,
+       "offset": "0x2b7600",
+       "sha256_16": "aa625670831e9b7f",
+       "head": "01000000ed224f1d8e4a4c81"
+      },
+      {
+       "type": "0xb",
+       "name": "SOFT_FUSE_CHAIN_01",
+       "flags": "0x0",
+       "size": null,
+       "offset": "0x1"
+      },
+      {
+       "type": "0xc",
+       "name": "PSP_BOOT_TIME_TRUSTLETS",
+       "flags": "0x0",
+       "size": 79104,
+       "offset": "0x2b7a00",
+       "sha256_16": "5bcf18456e02ef8f",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 17520,
+       "offset": "0x2caf00",
+       "sha256_16": "2abb84a3eae0b795",
+       "head": "00621e0000621e0000000000"
+      },
+      {
+       "type": "0x13",
+       "name": "DEBUG_UNLOCK",
+       "flags": "0x0",
+       "size": 6480,
+       "offset": "0x2cf400",
+       "sha256_16": "df2f0fe310e34bd8",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x2d0e00",
+       "sha256_16": "cff60e0efd90b3c3",
+       "head": "2ef9a17d93ae1b7307845b22"
+      },
+      {
+       "type": "0x22",
+       "name": "TOKEN_UNLOCK",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x2d1000",
+       "sha256_16": "f47a8ec3e9aff231",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 6240,
+       "offset": "0x2d2000",
+       "sha256_16": "c144f2c7903e6379",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 6208,
+       "offset": "0x2d3900",
+       "sha256_16": "6d539cffb6c271b3",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 6240,
+       "offset": "0x2d5200",
+       "sha256_16": "c144f2c7903e6379",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x25",
+       "name": "MP2_FW",
+       "flags": "0x0",
+       "size": 8945,
+       "offset": "0x2d6b00",
+       "sha256_16": "1adfb7b3e9667323",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x25",
+       "name": "MP2_FW",
+       "flags": "0x0",
+       "size": 15288,
+       "offset": "0x2d8e00",
+       "sha256_16": "2387ada45753b540",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x25",
+       "name": "MP2_FW",
+       "flags": "0x0",
+       "size": 9208,
+       "offset": "0x2dca00",
+       "sha256_16": "feab284172ae606b",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x28",
+       "name": "DRIVER_ENTRIES",
+       "flags": "0x0",
+       "size": 120720,
+       "offset": "0x2dee00",
+       "sha256_16": "dda64f09f41108d1",
+       "head": "000000000000000000000000",
+       "strings": [
+        "10.0.0.0",
+        "HMAC Signature Key for PSP Data saved in DRAM"
+       ]
+      },
+      {
+       "type": "0x30",
+       "name": "ABL0",
+       "flags": "0x0",
+       "size": 3520,
+       "offset": "0x2fc600",
+       "sha256_16": "d9481d5d5f88fccc",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x31",
+       "name": "ABL1",
+       "flags": "0x0",
+       "size": 54800,
+       "offset": "0x2fd400",
+       "sha256_16": "324c218a5226062e",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x32",
+       "name": "ABL2",
+       "flags": "0x0",
+       "size": 37520,
+       "offset": "0x30ab00",
+       "sha256_16": "bd9d5f2385ba3fc6",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x33",
+       "name": "ABL3",
+       "flags": "0x0",
+       "size": 48352,
+       "offset": "0x313e00",
+       "sha256_16": "bb7046976f35c432",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x34",
+       "name": "ABL4",
+       "flags": "0x0",
+       "size": 56736,
+       "offset": "0x31fb00",
+       "sha256_16": "3d00c9468a69e1c8",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x35",
+       "name": "ABL5",
+       "flags": "0x0",
+       "size": 55200,
+       "offset": "0x32d900",
+       "sha256_16": "aea7fc5dc1dab57c",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x36",
+       "name": "ABL6",
+       "flags": "0x0",
+       "size": 41056,
+       "offset": "0x33b100",
+       "sha256_16": "e0f0e1e6409102b9",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x37",
+       "name": "ABL7",
+       "flags": "0x0",
+       "size": 55952,
+       "offset": "0x345200",
+       "sha256_16": "7551ae490a20ab70",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 142352,
+       "offset": "0x352d00",
+       "sha256_16": "e7c76bb78695922e",
+       "head": "004325000043250000000000"
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 27648,
+       "offset": "0x375a00",
+       "sha256_16": "63b8b5562d185b70",
+       "head": "004325000043250000000000"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 143744,
+       "offset": "0x37c600",
+       "sha256_16": "c7d48d031e75c676",
+       "head": "00551e0400551e0400000000"
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 28144,
+       "offset": "0x39f800",
+       "sha256_16": "deaa0f87666e17b5",
+       "head": "00551e0400551e0400000000"
+      }
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x3c8000",
+     "count": 22,
+     "address_mode": 0,
+     "fletcher32": "ok",
+     "types": [
+      "0x60",
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x6a"
+     ],
+     "entries": [
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x10",
+       "size": 8192,
+       "offset": "0x3c9000",
+       "sha256_16": "d319fb07151395db",
+       "head": "415043422000200030170000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x10",
+       "size": 8192,
+       "offset": "0x3cb000",
+       "sha256_16": "d319fb07151395db",
+       "head": "415043422000200030170000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x0",
+       "size": 8192,
+       "offset": "0x3cd000",
+       "sha256_16": "5ef9d02fe1367737",
+       "head": "4150434220002000c01d0000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x0",
+       "size": 8192,
+       "offset": "0x3cf000",
+       "sha256_16": "5ef9d02fe1367737",
+       "head": "4150434220002000c01d0000"
+      },
+      {
+       "type": "0x61",
+       "name": "APOB",
+       "flags": "0x0",
+       "size": 0,
+       "offset": "0x0"
+      },
+      {
+       "type": "0x62",
+       "name": "BIOS",
+       "flags": "0xb",
+       "size": 3145760,
+       "offset": "0xf02000",
+       "verdict": "out-of-image"
+      },
+      {
+       "type": "0x63",
+       "name": "APOB_NV_COPY",
+       "flags": "0x0",
+       "size": 163840,
+       "offset": "0x101000",
+       "sha256_16": "5639b95c2f8d2a2d",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x10",
+       "size": 15424,
+       "offset": "0x3d1000",
+       "sha256_16": "99cb2cfe2c412550",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x10",
+       "size": 816,
+       "offset": "0x3d4d00",
+       "sha256_16": "6de41b58e5ce03d6",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x40",
+       "size": 17936,
+       "offset": "0x3d5100",
+       "sha256_16": "dc15e77e614d238d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x40",
+       "size": 800,
+       "offset": "0x3d9800",
+       "sha256_16": "6edbad2750543328",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x110",
+       "size": 18480,
+       "offset": "0x3d9c00",
+       "sha256_16": "bb837b6198d6f671",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x110",
+       "size": 880,
+       "offset": "0x3de500",
+       "sha256_16": "614892a8f04af388",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x140",
+       "size": 18336,
+       "offset": "0x3de900",
+       "sha256_16": "3d6148237d7b2a6d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x140",
+       "size": 832,
+       "offset": "0x3e3100",
+       "sha256_16": "5588e41e6bd619f9",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x0",
+       "size": 3200,
+       "offset": "0x3e3500",
+       "sha256_16": "c2d8c51382cf0a23",
+       "head": "192030041610100804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x10",
+       "size": 3200,
+       "offset": "0x3e4200",
+       "sha256_16": "6229aa2a26b54a05",
+       "head": "192017040301200804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x20",
+       "size": 3200,
+       "offset": "0x3e4f00",
+       "sha256_16": "f9b1fa4ca35aca28",
+       "head": "162020110400100804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x30",
+       "size": 3200,
+       "offset": "0x3e5c00",
+       "sha256_16": "a97b43a6e7485138",
+       "head": "182005060280100804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x40",
+       "size": 3200,
+       "offset": "0x3e6900",
+       "sha256_16": "003a5e311a4938c6",
+       "head": "192017040981100804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x50",
+       "size": 3200,
+       "offset": "0x3e7600",
+       "sha256_16": "f6277078c63b9977",
+       "head": "182006110211100804800000"
+      },
+      {
+       "type": "0x6a",
+       "name": "UNNAMED",
+       "flags": "0x0",
+       "size": 1380,
+       "offset": "0x3e8300",
+       "sha256_16": "48ec1a5e479b62b2",
+       "head": "000000000000000000000000"
+      }
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x3f8000",
+     "count": 31,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xa",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x45",
+      "0x28",
+      "0x2a",
+      "0x2d",
+      "0x30",
+      "0x42",
+      "0x43",
+      "0x44",
+      "0x4e",
+      "0x50",
+      "0x51",
+      "0x8",
+      "0x12",
+      "0x2a",
+      "0x24",
+      "0x30",
+      "0x4",
+      "0x54"
+     ],
+     "entries": [
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x3f8400",
+       "sha256_16": "fa3259fae10bcbae",
+       "head": "01000000fd90b04b797743c6"
+      },
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 98304,
+       "offset": "0x3f8900",
+       "sha256_16": "a65b644e50a77251",
+       "head": "000000000000000000000000",
+       "strings": [
+        "DRAM Encryption Key for PSP Data saved in DRAM",
+        "HMAC Signature Key for PSP Data saved in DRAM",
+        "NV Storage Encryption Key for PSP Data saved off-chip",
+        "PSPFW Bootloader Version",
+        "Per-SPI, Per-CPU RPMC Root Key for PSP Data saved in SPI-ROM",
+        "SMUFW Version"
+       ]
+      },
+      {
+       "type": "0x2",
+       "name": "PSP_FW_TRUSTED_OS",
+       "flags": "0x0",
+       "size": 66272,
+       "offset": "0x410900",
+       "sha256_16": "d262a20c07946d1d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 133136,
+       "offset": "0x420c00",
+       "sha256_16": "0954a02fc6177ad2",
+       "head": "10cd4b2bfdd46d6e4e45cc35"
+      },
+      {
+       "type": "0x9",
+       "name": "SEC_DBG_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1600,
+       "offset": "0x441500",
+       "sha256_16": "c0992eaa221c545e",
+       "head": "010000009231f29a1d414a39"
+      },
+      {
+       "type": "0xa",
+       "name": "OEM_PSP_FW_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1600,
+       "offset": "0x441c00",
+       "sha256_16": "aec282d11d41ac66",
+       "head": "01000000ad5028d66c89425e"
+      },
+      {
+       "type": "0xb",
+       "name": "SOFT_FUSE_CHAIN_01",
+       "flags": "0x0",
+       "size": null,
+       "offset": "0x1"
+      },
+      {
+       "type": "0xc",
+       "name": "PSP_BOOT_TIME_TRUSTLETS",
+       "flags": "0x0",
+       "size": 127232,
+       "offset": "0x442300",
+       "sha256_16": "4b8fad08c97e9192",
+       "head": "000000000000000000000000",
+       "strings": [
+        "PspFtpmHandler"
+       ]
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 1056,
+       "offset": "0x461400",
+       "sha256_16": "9c46b0f8ccb6f264",
+       "head": "eb85bb86721a1ed9c2b812fd"
+      },
+      {
+       "type": "0x13",
+       "name": "DEBUG_UNLOCK",
+       "flags": "0x0",
+       "size": 9280,
+       "offset": "0x461900",
+       "sha256_16": "e8a1ecac856da808",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x463e00",
+       "sha256_16": "d9269d7005aa3e0e",
+       "head": "059bef4a60354f2312cccf5c"
+      },
+      {
+       "type": "0x22",
+       "name": "TOKEN_UNLOCK",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x464000",
+       "sha256_16": "f47a8ec3e9aff231",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 10704,
+       "offset": "0x465000",
+       "sha256_16": "e9e3d99221249b7b",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x45",
+       "name": "TOS_SECURITY_POLICY",
+       "flags": "0x0",
+       "size": 3072,
+       "offset": "0x467a00",
+       "sha256_16": "4ef29ca7361963bd",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x28",
+       "name": "DRIVER_ENTRIES",
+       "flags": "0x0",
+       "size": 104336,
+       "offset": "0x468600",
+       "sha256_16": "bb63b1214767c5b3",
+       "head": "000000000000000000000000",
+       "strings": [
+        "10.0.0.0",
+        "HMAC Signature Key for PSP Data saved in DRAM"
+       ]
+      },
+      {
+       "type": "0x2a",
+       "name": "MP5_FW",
+       "flags": "0x0",
+       "size": 58912,
+       "offset": "0x481e00",
+       "sha256_16": "658e9cd70f154e8a",
+       "head": "a846b5c49edff93315f79fda"
+      },
+      {
+       "type": "0x2d",
+       "name": "S0I3_DRIVER",
+       "flags": "0x0",
+       "size": 12544,
+       "offset": "0x490500",
+       "sha256_16": "123eaa527c48de65",
+       "head": "000000000000000000000000",
+       "strings": [
+        "AMD AGESA Driver"
+       ]
+      },
+      {
+       "type": "0x30",
+       "name": "ABL0",
+       "flags": "0x0",
+       "size": 508608,
+       "offset": "0x493600",
+       "sha256_16": "bbfca086ea7ac64c",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x42",
+       "name": "FW_GEC_OR_DXIO_PHY_SRAM_FW",
+       "flags": "0x0",
+       "size": 4336,
+       "offset": "0x50f900",
+       "sha256_16": "04a86884ae9a44a3",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x43",
+       "name": "DXIO_PHY_SRAM_FW_PUBKEY",
+       "flags": "0x0",
+       "size": 1600,
+       "offset": "0x510a00",
+       "sha256_16": "108321d942c6eff5",
+       "head": "0100000060fd3b519db54f67"
+      },
+      {
+       "type": "0x44",
+       "name": "FW_XHCI",
+       "flags": "0x0",
+       "size": 8704,
+       "offset": "0x511100",
+       "sha256_16": "6ddcab96977e9a17",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x4e",
+       "name": "PMU_PUBKEY",
+       "flags": "0x0",
+       "size": 1600,
+       "offset": "0x513300",
+       "sha256_16": "f4269648d27a0c2b",
+       "head": "01000000cc0d9a6b137b4380"
+      },
+      {
+       "type": "0x50",
+       "name": "BL_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 3456,
+       "offset": "0x513a00",
+       "sha256_16": "bc35e707c75c8669",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x51",
+       "name": "TOS_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1520,
+       "offset": "0x514800",
+       "sha256_16": "9e1b793350a27000",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 112928,
+       "offset": "0x514e00",
+       "sha256_16": "c4376da2b32249ea",
+       "head": "cdb9bc7d5337887e51c5f109"
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 1056,
+       "offset": "0x530800",
+       "sha256_16": "0b1441b19151d5c8",
+       "head": "5ad837b4550bb009f4e0842c"
+      },
+      {
+       "type": "0x2a",
+       "name": "MP5_FW",
+       "flags": "0x0",
+       "size": 53376,
+       "offset": "0x530d00",
+       "sha256_16": "9258eab19fe7a30a",
+       "head": "3465036d8d18c7906a567031"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 4448,
+       "offset": "0x53de00",
+       "sha256_16": "2ea960d35dd204d8",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x30",
+       "name": "ABL0",
+       "flags": "0x0",
+       "size": 542704,
+       "offset": "0x53f000",
+       "sha256_16": "93f8ccdc7cb41eac",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x4",
+       "name": "PSP_NV_DATA",
+       "flags": "0x0",
+       "size": 131072,
+       "offset": "0xa0000",
+       "sha256_16": "b5a41c3758763bbe",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x54",
+       "name": "PSP_NVRAM",
+       "flags": "0x0",
+       "size": 262144,
+       "offset": "0xc0000",
+       "sha256_16": "3b874d3ba46c638f",
+       "head": "ffffffffffffffffffffffff"
+      }
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x5f8000",
+     "count": 22,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66",
+      "0x66",
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66"
+     ],
+     "entries": [
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x100",
+       "size": 16384,
+       "offset": "0x5f9000",
+       "sha256_16": "1ebd0f7faddc58e1",
+       "head": "41504342800030000c3b0000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x100",
+       "size": 4096,
+       "offset": "0x5fd000",
+       "sha256_16": "efc247ecf8473f4b",
+       "head": "4150434280003000d8010000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x180",
+       "size": 480,
+       "offset": "0x5fe000",
+       "sha256_16": "824f603c50ef2ac9",
+       "head": "4150434280003000e0010000"
+      },
+      {
+       "type": "0x61",
+       "name": "APOB",
+       "flags": "0x0",
+       "size": 0,
+       "offset": "0x0"
+      },
+      {
+       "type": "0x62",
+       "name": "BIOS",
+       "flags": "0xb",
+       "size": 3145760,
+       "offset": "0xf02000",
+       "verdict": "out-of-image"
+      },
+      {
+       "type": "0x63",
+       "name": "APOB_NV_COPY",
+       "flags": "0x0",
+       "size": 163840,
+       "offset": "0x101000",
+       "sha256_16": "5639b95c2f8d2a2d",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x10",
+       "size": 20000,
+       "offset": "0x5fe200",
+       "sha256_16": "59041912b51d8a94",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x10",
+       "size": 1120,
+       "offset": "0x603100",
+       "sha256_16": "33e2b1298115ca9f",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x40",
+       "size": 20256,
+       "offset": "0x603600",
+       "sha256_16": "effbcc225e48076d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x40",
+       "size": 1088,
+       "offset": "0x608600",
+       "sha256_16": "87541a075f0aa4dc",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x0",
+       "size": 5568,
+       "offset": "0x608b00",
+       "sha256_16": "e83a57368d4c4cfe",
+       "head": "212019070512200a05800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x30",
+       "size": 5568,
+       "offset": "0x60a100",
+       "sha256_16": "2570cbc2474100ec",
+       "head": "212008041610200a05800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x40",
+       "size": 5568,
+       "offset": "0x60b700",
+       "sha256_16": "fdaf5195f6802819",
+       "head": "202021012500200a05800000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x0",
+       "size": 16384,
+       "offset": "0x60d000",
+       "sha256_16": "58bbdbe2a101d39b",
+       "head": "4150434280003000e8200000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x611000",
+       "sha256_16": "b8bbcc32a69fc30f",
+       "head": "4150434280003000d8010000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x80",
+       "size": 480,
+       "offset": "0x612000",
+       "sha256_16": "5a6125b041474970",
+       "head": "4150434280003000e0010000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x110",
+       "size": 18832,
+       "offset": "0x612200",
+       "sha256_16": "7e636edfc9992776",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x110",
+       "size": 1120,
+       "offset": "0x616c00",
+       "sha256_16": "b7b13321399b2b68",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x140",
+       "size": 19424,
+       "offset": "0x617100",
+       "sha256_16": "865b488baa318d5d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x140",
+       "size": 1088,
+       "offset": "0x61bd00",
+       "sha256_16": "c0f00660924e62f9",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x10",
+       "size": 3200,
+       "offset": "0x61c200",
+       "sha256_16": "fb3514e98e669b5e",
+       "head": "202025012110700804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x20",
+       "size": 3200,
+       "offset": "0x61cf00",
+       "sha256_16": "a22b8075cac88bca",
+       "head": "182006120400700804800000"
+      }
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x628000",
+     "count": 4,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x21",
+      "0x40"
+     ],
+     "entries": [
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x628400",
+       "sha256_16": "99123c2fb495d52b",
+       "head": "01000000144ed093dc644601"
+      },
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 131072,
+       "offset": "0x629400",
+       "sha256_16": "95761341338c4f05",
+       "head": "000000000000000000000000",
+       "strings": [
+        "$PL2SpiPspRead content of PSP header failed = 0x%x",
+        "%s: Loading BIXBY SMU FW FAIL ",
+        "ASF remote power down detected, setting PSP boot mode to S5 cold",
+        "AgesaBL Execution Completed",
+        "AgesaBL0 start to run...",
+        "DRAM Encryption Key for PSP Data saved in DRAM",
+        "Default SpiRom: PSP",
+        "Error: RsmuTimeoutEnable->NULL pointer with Idx=%d",
+        "Error: RsmuTimeoutEnable->UmMapSmu failed with Idx=%d",
+        "GetPspFwHeader() exit...RetStatus=0x%X",
+        "GetPspFwHeader() start...EntryType=0x%X",
+        "HMAC Signature Key for PSP Data saved in DRAM",
+        "LoadSMUFWToDram",
+        "Load_Run_AgesaBL() start...",
+        "Loading SMU FW to SRAM Start...",
+        "NV Storage Encryption Key for PSP Data saved off-chip"
+       ]
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x628900",
+       "sha256_16": "f146f72103545689",
+       "head": "79f6e5acf43697db356b32dc"
+      },
+      {
+       "type": "0x40",
+       "name": "PSP_FW_L2_PTR",
+       "flags": "0x0",
+       "size": 1024,
+       "offset": "0x629000",
+       "sha256_16": "2a1b86e8b439aa86",
+       "head": "24504c32ab1039af1c000000"
+      }
+     ]
+    },
+    {
+     "magic": "$PL2",
+     "offset": "0x629000",
+     "count": 28,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x1",
+      "0x0",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x20",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x28",
+      "0x2d",
+      "0x30",
+      "0x3c",
+      "0x44",
+      "0x45",
+      "0x45",
+      "0x47",
+      "0x50",
+      "0x51",
+      "0x58",
+      "0x59",
+      "0x4",
+      "0x54"
+     ],
+     "entries": [
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 67712,
+       "offset": "0x629400",
+       "sha256_16": "1ed7f7f95c7e4dc7",
+       "head": "000000000000000000000000",
+       "strings": [
+        "$PL2SpiPspRead content of PSP header failed = 0x%x",
+        "%s: Loading BIXBY SMU FW FAIL ",
+        "ASF remote power down detected, setting PSP boot mode to S5 cold",
+        "AgesaBL Execution Completed",
+        "AgesaBL0 start to run...",
+        "DRAM Encryption Key for PSP Data saved in DRAM",
+        "Default SpiRom: PSP",
+        "Error: RsmuTimeoutEnable->NULL pointer with Idx=%d",
+        "Error: RsmuTimeoutEnable->UmMapSmu failed with Idx=%d",
+        "GetPspFwHeader() exit...RetStatus=0x%X",
+        "GetPspFwHeader() start...EntryType=0x%X",
+        "HMAC Signature Key for PSP Data saved in DRAM",
+        "LoadSMUFWToDram",
+        "Load_Run_AgesaBL() start...",
+        "Loading SMU FW to SRAM Start...",
+        "NV Storage Encryption Key for PSP Data saved off-chip"
+       ]
+      },
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x639d00",
+       "sha256_16": "99123c2fb495d52b",
+       "head": "01000000144ed093dc644601"
+      },
+      {
+       "type": "0x2",
+       "name": "PSP_FW_TRUSTED_OS",
+       "flags": "0x0",
+       "size": 86912,
+       "offset": "0x63a200",
+       "sha256_16": "7d0f099b99c7fecd",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 135088,
+       "offset": "0x64f600",
+       "sha256_16": "42df88c7947e56f6",
+       "head": "7177a1670055848cd0cdf29c"
+      },
+      {
+       "type": "0x9",
+       "name": "SEC_DBG_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x670600",
+       "sha256_16": "440809659468e1af",
+       "head": "010000000475d16675bd4c4f"
+      },
+      {
+       "type": "0xb",
+       "name": "SOFT_FUSE_CHAIN_01",
+       "flags": "0x0",
+       "size": null,
+       "offset": "0x20000001"
+      },
+      {
+       "type": "0xc",
+       "name": "PSP_BOOT_TIME_TRUSTLETS",
+       "flags": "0x0",
+       "size": 127232,
+       "offset": "0x670b00",
+       "sha256_16": "3b8ba9dd5ea1cbe7",
+       "head": "000000000000000000000000",
+       "strings": [
+        "PspFtpmHandler"
+       ]
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 65648,
+       "offset": "0x68fc00",
+       "sha256_16": "c496b0082dca0471",
+       "head": "74fe85b5b06b5aff6d93f71b"
+      },
+      {
+       "type": "0x13",
+       "name": "DEBUG_UNLOCK",
+       "flags": "0x0",
+       "size": 8448,
+       "offset": "0x69fd00",
+       "sha256_16": "9380dfc6c97f2577",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x20",
+       "name": "HARDWARE_IP_CONFIG",
+       "flags": "0x0",
+       "size": 1636,
+       "offset": "0x6a1e00",
+       "sha256_16": "98a034dfd642bab1",
+       "head": "f90d5fff0550412b9bbe9615"
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x6a2500",
+       "sha256_16": "f146f72103545689",
+       "head": "79f6e5acf43697db356b32dc"
+      },
+      {
+       "type": "0x22",
+       "name": "TOKEN_UNLOCK",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x6a3000",
+       "sha256_16": "f47a8ec3e9aff231",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 12032,
+       "offset": "0x6a4000",
+       "sha256_16": "21f121e508bcf954",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 10928,
+       "offset": "0x6a6f00",
+       "sha256_16": "4f35c96de5db9922",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x28",
+       "name": "DRIVER_ENTRIES",
+       "flags": "0x0",
+       "size": 120688,
+       "offset": "0x6a9a00",
+       "sha256_16": "723da9e542bf43ff",
+       "head": "000000000000000000000000",
+       "strings": [
+        "10.0.0.0",
+        "HMAC Signature Key for PSP Data saved in DRAM"
+       ]
+      },
+      {
+       "type": "0x2d",
+       "name": "S0I3_DRIVER",
+       "flags": "0x0",
+       "size": 12544,
+       "offset": "0x6c7200",
+       "sha256_16": "fdef3699dcafc9d3",
+       "head": "000000000000000000000000",
+       "strings": [
+        "AMD AGESA Driver"
+       ]
+      },
+      {
+       "type": "0x30",
+       "name": "ABL0",
+       "flags": "0x0",
+       "size": 457600,
+       "offset": "0x6ca300",
+       "sha256_16": "761eb773e084ddbd",
+       "head": "000000000000000000000000",
+       "strings": [
+        "Jsmue9",
+        "msmu5q'Yk="
+       ]
+      },
+      {
+       "type": "0x3c",
+       "name": "VBIOS_PRELOAD",
+       "flags": "0x0",
+       "size": 24832,
+       "offset": "0x739f00",
+       "sha256_16": "7b6019f71a00e5da",
+       "head": "000000000000000000000000",
+       "strings": [
+        "SMU Power up GFX",
+        "mmSMUIO_GFX_MISC_CNTL"
+       ]
+      },
+      {
+       "type": "0x44",
+       "name": "FW_XHCI",
+       "flags": "0x0",
+       "size": 26128,
+       "offset": "0x740000",
+       "sha256_16": "429b13ea0146a75b",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x45",
+       "name": "TOS_SECURITY_POLICY",
+       "flags": "0x0",
+       "size": 6640,
+       "offset": "0x746700",
+       "sha256_16": "568bca77a51b12d4",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x45",
+       "name": "TOS_SECURITY_POLICY",
+       "flags": "0x0",
+       "size": 6448,
+       "offset": "0x748100",
+       "sha256_16": "1db895382de42b7a",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x47",
+       "name": "DRTM_TA",
+       "flags": "0x0",
+       "size": 16640,
+       "offset": "0x749b00",
+       "sha256_16": "3214a12b44d23099",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x50",
+       "name": "BL_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 6400,
+       "offset": "0x74dc00",
+       "sha256_16": "4db1b8e557c5654b",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x51",
+       "name": "TOS_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 4208,
+       "offset": "0x74f500",
+       "sha256_16": "1e886cf1498751cb",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x58",
+       "name": "DMCU_ERAM",
+       "flags": "0x0",
+       "size": 23408,
+       "offset": "0x750600",
+       "sha256_16": "9e8edc4dac4b3336",
+       "head": "511a248093ec3edfc8a1d291"
+      },
+      {
+       "type": "0x59",
+       "name": "DMCU_ISR",
+       "flags": "0x0",
+       "size": 544,
+       "offset": "0x756200",
+       "sha256_16": "ba42a0c9b169bf02",
+       "head": "7061459a554652a824a73d3f"
+      },
+      {
+       "type": "0x4",
+       "name": "PSP_NV_DATA",
+       "flags": "0x0",
+       "size": 131072,
+       "offset": "0xa0000",
+       "sha256_16": "b5a41c3758763bbe",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x54",
+       "name": "PSP_NVRAM",
+       "flags": "0x0",
+       "size": 262144,
+       "offset": "0xc0000",
+       "sha256_16": "3b874d3ba46c638f",
+       "head": "ffffffffffffffffffffffff"
+      }
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x788000",
+     "count": 1,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x70"
+     ],
+     "entries": [
+      {
+       "type": "0x70",
+       "name": "UNNAMED",
+       "flags": "0x0",
+       "size": 1024,
+       "offset": "0x789000",
+       "sha256_16": "88cc47f866a766fd",
+       "head": "24424c32a88d30930c000000"
+      }
+     ]
+    },
+    {
+     "magic": "$BL2",
+     "offset": "0x789000",
+     "count": 12,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x66"
+     ],
+     "entries": [
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x0",
+       "size": 16384,
+       "offset": "0x78a000",
+       "sha256_16": "c326a01009ef263a",
+       "head": "415043428000300048220000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x78e000",
+       "sha256_16": "b63798ace32773fe",
+       "head": "415043428000300010020000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x80",
+       "size": 536,
+       "offset": "0x78f000",
+       "sha256_16": "3c1fb3fa5c2328ab",
+       "head": "415043428000300018020000"
+      },
+      {
+       "type": "0x61",
+       "name": "APOB",
+       "flags": "0x0",
+       "size": 0,
+       "offset": "0x0"
+      },
+      {
+       "type": "0x62",
+       "name": "BIOS",
+       "flags": "0xb",
+       "size": 3145760,
+       "offset": "0xf02000",
+       "verdict": "out-of-image"
+      },
+      {
+       "type": "0x63",
+       "name": "APOB_NV_COPY",
+       "flags": "0x0",
+       "size": 163840,
+       "offset": "0x101000",
+       "sha256_16": "5639b95c2f8d2a2d",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x10",
+       "size": 18576,
+       "offset": "0x78f300",
+       "sha256_16": "c1916c8f2ecc2202",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x10",
+       "size": 864,
+       "offset": "0x793c00",
+       "sha256_16": "430b0b7e1ddb9add",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x40",
+       "size": 19168,
+       "offset": "0x794000",
+       "sha256_16": "d316856b52d45aaf",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x40",
+       "size": 832,
+       "offset": "0x798b00",
+       "sha256_16": "2bf75cfd0ac20446",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x0",
+       "size": 3200,
+       "offset": "0x798f00",
+       "sha256_16": "52901004b26f88be",
+       "head": "202027010e00600804800000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x10",
+       "size": 3200,
+       "offset": "0x799c00",
+       "sha256_16": "369df1750e59b5d4",
+       "head": "202019060601600804800000"
+      }
+     ]
+    },
+    {
+     "magic": "$PSP",
+     "offset": "0x7a8000",
+     "count": 4,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x0",
+      "0x1",
+      "0x21",
+      "0x40"
+     ],
+     "entries": [
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x7a8400",
+       "sha256_16": "68d4f650a00e9ea8",
+       "head": "010000006c9ea31abe174727"
+      },
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 131072,
+       "offset": "0x7a9400",
+       "sha256_16": "a71334395024b72d",
+       "head": "000000000000000000000000",
+       "strings": [
+        "$PL2SpiPspRead content of PSP header failed = 0x%x",
+        "%s: Loading BIXBY SMU FW FAIL ",
+        "ASF remote power down detected, setting PSP boot mode to S5 cold",
+        "AgesaBL Execution Completed",
+        "AgesaBL0 start to run...",
+        "DRAM Encryption Key for PSP Data saved in DRAM",
+        "Default SpiRom: PSP",
+        "Error: RsmuTimeoutEnable->NULL pointer with Idx=%d",
+        "Error: RsmuTimeoutEnable->UmMapSmu failed with Idx=%d",
+        "GetPspFwHeader() exit...RetStatus=0x%X",
+        "GetPspFwHeader() start...EntryType=0x%X",
+        "HMAC Signature Key for PSP Data saved in DRAM",
+        "LoadSMUFWToDram",
+        "Load_Run_AgesaBL() start...",
+        "Loading SMU FW to SRAM Start...",
+        "NV Storage Encryption Key for PSP Data saved off-chip"
+       ]
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x7a8900",
+       "sha256_16": "ddf514f0e94faf52",
+       "head": "04c54d0efa5b75b2aab329f5"
+      },
+      {
+       "type": "0x40",
+       "name": "PSP_FW_L2_PTR",
+       "flags": "0x0",
+       "size": 1024,
+       "offset": "0x7a9000",
+       "sha256_16": "f7e82517faf6f2c5",
+       "head": "24504c32c22b02b11c000000"
+      }
+     ]
+    },
+    {
+     "magic": "$PL2",
+     "offset": "0x7a9000",
+     "count": 28,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x1",
+      "0x0",
+      "0x2",
+      "0x8",
+      "0x9",
+      "0xb",
+      "0xc",
+      "0x12",
+      "0x13",
+      "0x20",
+      "0x21",
+      "0x22",
+      "0x24",
+      "0x24",
+      "0x28",
+      "0x2d",
+      "0x30",
+      "0x3c",
+      "0x44",
+      "0x45",
+      "0x45",
+      "0x47",
+      "0x50",
+      "0x51",
+      "0x58",
+      "0x59",
+      "0x4",
+      "0x54"
+     ],
+     "entries": [
+      {
+       "type": "0x1",
+       "name": "PSP_FW_BOOT_LOADER",
+       "flags": "0x0",
+       "size": 67712,
+       "offset": "0x7a9400",
+       "sha256_16": "cb40327fb383e548",
+       "head": "000000000000000000000000",
+       "strings": [
+        "$PL2SpiPspRead content of PSP header failed = 0x%x",
+        "%s: Loading BIXBY SMU FW FAIL ",
+        "ASF remote power down detected, setting PSP boot mode to S5 cold",
+        "AgesaBL Execution Completed",
+        "AgesaBL0 start to run...",
+        "DRAM Encryption Key for PSP Data saved in DRAM",
+        "Default SpiRom: PSP",
+        "Error: RsmuTimeoutEnable->NULL pointer with Idx=%d",
+        "Error: RsmuTimeoutEnable->UmMapSmu failed with Idx=%d",
+        "GetPspFwHeader() exit...RetStatus=0x%X",
+        "GetPspFwHeader() start...EntryType=0x%X",
+        "HMAC Signature Key for PSP Data saved in DRAM",
+        "LoadSMUFWToDram",
+        "Load_Run_AgesaBL() start...",
+        "Loading SMU FW to SRAM Start...",
+        "NV Storage Encryption Key for PSP Data saved off-chip"
+       ]
+      },
+      {
+       "type": "0x0",
+       "name": "AMD_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x7b9d00",
+       "sha256_16": "68d4f650a00e9ea8",
+       "head": "010000006c9ea31abe174727"
+      },
+      {
+       "type": "0x2",
+       "name": "PSP_FW_TRUSTED_OS",
+       "flags": "0x0",
+       "size": 86912,
+       "offset": "0x7ba200",
+       "sha256_16": "f688d4fac8168813",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x8",
+       "name": "SMU_OFFCHIP_FW",
+       "flags": "0x0",
+       "size": 135264,
+       "offset": "0x7cf600",
+       "sha256_16": "d3a28e1597d88413",
+       "head": "765a8add7bf24996baeb075c"
+      },
+      {
+       "type": "0x9",
+       "name": "SEC_DBG_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 1088,
+       "offset": "0x7f0700",
+       "sha256_16": "3159780e151174aa",
+       "head": "0100000010ac6d6c8aac43f0"
+      },
+      {
+       "type": "0xb",
+       "name": "SOFT_FUSE_CHAIN_01",
+       "flags": "0x0",
+       "size": null,
+       "offset": "0x20000001"
+      },
+      {
+       "type": "0xc",
+       "name": "PSP_BOOT_TIME_TRUSTLETS",
+       "flags": "0x0",
+       "size": 127232,
+       "offset": "0x7f0c00",
+       "sha256_16": "3b8ba9dd5ea1cbe7",
+       "head": "000000000000000000000000",
+       "strings": [
+        "PspFtpmHandler"
+       ]
+      },
+      {
+       "type": "0x12",
+       "name": "SMU_OFF_CHIP_FW_2",
+       "flags": "0x0",
+       "size": 71568,
+       "offset": "0x80fd00",
+       "sha256_16": "6b6881698bb6ab36",
+       "head": "2186a580c51d2f5679c0774f"
+      },
+      {
+       "type": "0x13",
+       "name": "DEBUG_UNLOCK",
+       "flags": "0x0",
+       "size": 8448,
+       "offset": "0x821500",
+       "sha256_16": "d99a9852af32e879",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x20",
+       "name": "HARDWARE_IP_CONFIG",
+       "flags": "0x0",
+       "size": 1648,
+       "offset": "0x823600",
+       "sha256_16": "8b30ae2efc7efe22",
+       "head": "7989513ed9dd2c526d2bccaa"
+      },
+      {
+       "type": "0x21",
+       "name": "WRAPPED_IKEK",
+       "flags": "0x0",
+       "size": 16,
+       "offset": "0x823d00",
+       "sha256_16": "ddf514f0e94faf52",
+       "head": "04c54d0efa5b75b2aab329f5"
+      },
+      {
+       "type": "0x22",
+       "name": "TOKEN_UNLOCK",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x824000",
+       "sha256_16": "f47a8ec3e9aff231",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 11904,
+       "offset": "0x825000",
+       "sha256_16": "ff788b86495f4825",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x24",
+       "name": "SEC_GASKET",
+       "flags": "0x0",
+       "size": 10896,
+       "offset": "0x827f00",
+       "sha256_16": "2a2b133c1f76623f",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x28",
+       "name": "DRIVER_ENTRIES",
+       "flags": "0x0",
+       "size": 120688,
+       "offset": "0x82aa00",
+       "sha256_16": "8de2e2997bae3d10",
+       "head": "000000000000000000000000",
+       "strings": [
+        "10.0.0.0",
+        "HMAC Signature Key for PSP Data saved in DRAM"
+       ]
+      },
+      {
+       "type": "0x2d",
+       "name": "S0I3_DRIVER",
+       "flags": "0x0",
+       "size": 12544,
+       "offset": "0x848200",
+       "sha256_16": "38a29c22c4afa823",
+       "head": "000000000000000000000000",
+       "strings": [
+        "AMD AGESA Driver"
+       ]
+      },
+      {
+       "type": "0x30",
+       "name": "ABL0",
+       "flags": "0x0",
+       "size": 417984,
+       "offset": "0x84b300",
+       "sha256_16": "71e0f40eadad385d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x3c",
+       "name": "VBIOS_PRELOAD",
+       "flags": "0x0",
+       "size": 22848,
+       "offset": "0x8b1400",
+       "sha256_16": "8331043c1df3a8a0",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x44",
+       "name": "FW_XHCI",
+       "flags": "0x0",
+       "size": 26128,
+       "offset": "0x8b6e00",
+       "sha256_16": "8c9c423437d388db",
+       "head": "2e2216df62169d96c24e06cb"
+      },
+      {
+       "type": "0x45",
+       "name": "TOS_SECURITY_POLICY",
+       "flags": "0x0",
+       "size": 7016,
+       "offset": "0x8bd500",
+       "sha256_16": "4ca789569c09db23",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x45",
+       "name": "TOS_SECURITY_POLICY",
+       "flags": "0x0",
+       "size": 6512,
+       "offset": "0x8bf100",
+       "sha256_16": "bf7851d7e1308bc9",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x47",
+       "name": "DRTM_TA",
+       "flags": "0x0",
+       "size": 16640,
+       "offset": "0x8c0b00",
+       "sha256_16": "3214a12b44d23099",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x50",
+       "name": "BL_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 6400,
+       "offset": "0x8c4c00",
+       "sha256_16": "c470f5600d2f02c1",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x51",
+       "name": "TOS_PUBLIC_KEY",
+       "flags": "0x0",
+       "size": 4800,
+       "offset": "0x8c6500",
+       "sha256_16": "4a26b8467520d76d",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x58",
+       "name": "DMCU_ERAM",
+       "flags": "0x0",
+       "size": 23408,
+       "offset": "0x8c7800",
+       "sha256_16": "9e8edc4dac4b3336",
+       "head": "511a248093ec3edfc8a1d291"
+      },
+      {
+       "type": "0x59",
+       "name": "DMCU_ISR",
+       "flags": "0x0",
+       "size": 544,
+       "offset": "0x8cd400",
+       "sha256_16": "ba42a0c9b169bf02",
+       "head": "7061459a554652a824a73d3f"
+      },
+      {
+       "type": "0x4",
+       "name": "PSP_NV_DATA",
+       "flags": "0x0",
+       "size": 131072,
+       "offset": "0xa0000",
+       "sha256_16": "b5a41c3758763bbe",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x54",
+       "name": "PSP_NVRAM",
+       "flags": "0x0",
+       "size": 262144,
+       "offset": "0xc0000",
+       "sha256_16": "3b874d3ba46c638f",
+       "head": "ffffffffffffffffffffffff"
+      }
+     ]
+    },
+    {
+     "magic": "$BHD",
+     "offset": "0x908000",
+     "count": 1,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x70"
+     ],
+     "entries": [
+      {
+       "type": "0x70",
+       "name": "UNNAMED",
+       "flags": "0x0",
+       "size": 1024,
+       "offset": "0x909000",
+       "sha256_16": "a2156d8850802877",
+       "head": "24424c3237ee92050b000000"
+      }
+     ]
+    },
+    {
+     "magic": "$BL2",
+     "offset": "0x909000",
+     "count": 11,
+     "address_mode": 1,
+     "fletcher32": "ok",
+     "types": [
+      "0x68",
+      "0x60",
+      "0x68",
+      "0x61",
+      "0x62",
+      "0x63",
+      "0x64",
+      "0x65",
+      "0x64",
+      "0x65",
+      "0x66"
+     ],
+     "entries": [
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x0",
+       "size": 16384,
+       "offset": "0x90a000",
+       "sha256_16": "9e0b36581cdc42cf",
+       "head": "415043428000300050220000"
+      },
+      {
+       "type": "0x60",
+       "name": "APCB",
+       "flags": "0x0",
+       "size": 4096,
+       "offset": "0x90e000",
+       "sha256_16": "29294e894698c68d",
+       "head": "415043428000300010020000"
+      },
+      {
+       "type": "0x68",
+       "name": "APCB_COPY",
+       "flags": "0x80",
+       "size": 536,
+       "offset": "0x90f000",
+       "sha256_16": "cd3e209b5e01704a",
+       "head": "415043428000300018020000"
+      },
+      {
+       "type": "0x61",
+       "name": "APOB",
+       "flags": "0x0",
+       "size": 0,
+       "offset": "0x0"
+      },
+      {
+       "type": "0x62",
+       "name": "BIOS",
+       "flags": "0xb",
+       "size": 3145760,
+       "offset": "0xf02000",
+       "verdict": "out-of-image"
+      },
+      {
+       "type": "0x63",
+       "name": "APOB_NV_COPY",
+       "flags": "0x0",
+       "size": 163840,
+       "offset": "0x101000",
+       "sha256_16": "5639b95c2f8d2a2d",
+       "head": "ffffffffffffffffffffffff"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x10",
+       "size": 18576,
+       "offset": "0x90f300",
+       "sha256_16": "0798fd526556e1e4",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x10",
+       "size": 864,
+       "offset": "0x913c00",
+       "sha256_16": "ea01eb8e5ef7db0a",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x64",
+       "name": "PMU_CODE",
+       "flags": "0x40",
+       "size": 19168,
+       "offset": "0x914000",
+       "sha256_16": "ce54b721096fbbf1",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x65",
+       "name": "PMU_DATA",
+       "flags": "0x40",
+       "size": 832,
+       "offset": "0x918b00",
+       "sha256_16": "4f7bb2e5ad7993d6",
+       "head": "000000000000000000000000"
+      },
+      {
+       "type": "0x66",
+       "name": "MICROCODE_PATCH",
+       "flags": "0x0",
+       "size": 5568,
+       "offset": "0x918f00",
+       "sha256_16": "9fd75a40d226e404",
+       "head": "202008120c00500a05800000"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "cross_release": {
+  "pair": "asus 4655 (2026-08-27) vs 3604 (2022-03-16)",
+  "blob_same": 37,
+  "blob_changed": [
+   {
+    "dir_type": "$BHD",
+    "type": "0x60",
+    "name": "APCB",
+    "sha_4655": [
+     "0673a58baa7b7b7f",
+     "27d9e4cf1e9cad1f",
+     "4c0b6d00ed67b34c",
+     "57d809cb0fe3fd39",
+     "6a805ca9c7a8cc61",
+     "6b8d88130bc9f170",
+     "aed851bb17bf9e09"
+    ],
+    "sha_3604": [
+     "219474728b9011d6",
+     "258b33f062c6508d",
+     "33c75b47bd2d183c",
+     "5ef9d02fe1367737",
+     "b8bbcc32a69fc30f",
+     "d319fb07151395db",
+     "efc247ecf8473f4b"
+    ]
+   },
+   {
+    "dir_type": "$BHD",
+    "type": "0x66",
+    "name": "MICROCODE_PATCH",
+    "sha_4655": [
+     "00d615d06fbcca5c",
+     "0278afeb5e283cc4",
+     "1566e60b7971ce0e",
+     "29623b671f985f99",
+     "396f339375e7a1e2",
+     "5265bb5ecb3e863c",
+     "61636f8910e6ae3c",
+     "72089265a025f253",
+     "7bff0c2e7f9ea81f",
+     "a22b8075cac88bca",
+     "a97b43a6e7485138",
+     "c00b6b19fd5c3960",
+     "c4215a75ec44a9bc",
+     "f6277078c63b9977",
+     "f9b1fa4ca35aca28",
+     "fdaf5195f6802819"
+    ],
+    "sha_3604": [
+     "003a5e311a4938c6",
+     "00d615d06fbcca5c",
+     "2570cbc2474100ec",
+     "6229aa2a26b54a05",
+     "689883cd220ddd59",
+     "7bff0c2e7f9ea81f",
+     "a22b8075cac88bca",
+     "a97b43a6e7485138",
+     "c00b6b19fd5c3960",
+     "c2d8c51382cf0a23",
+     "d9d6cf604bc1e1b6",
+     "e83a57368d4c4cfe",
+     "f6277078c63b9977",
+     "f9b1fa4ca35aca28",
+     "fb3514e98e669b5e",
+     "fdaf5195f6802819"
+    ]
+   },
+   {
+    "dir_type": "$BHD",
+    "type": "0x68",
+    "name": "APCB_COPY",
+    "sha_4655": [
+     "0673a58baa7b7b7f",
+     "27d9e4cf1e9cad1f",
+     "3570136aa73ec518",
+     "4c0b6d00ed67b34c",
+     "57d809cb0fe3fd39",
+     "75b11345ef9178e5",
+     "9455d28f538890f0",
+     "aed851bb17bf9e09",
+     "ead07062157267ba"
+    ],
+    "sha_3604": [
+     "1ebd0f7faddc58e1",
+     "219474728b9011d6",
+     "258b33f062c6508d",
+     "33c75b47bd2d183c",
+     "58bbdbe2a101d39b",
+     "5a6125b041474970",
+     "5ef9d02fe1367737",
+     "824f603c50ef2ac9",
+     "d319fb07151395db"
+    ]
+   },
+   {
+    "dir_type": "$BHD",
+    "type": "0x70",
+    "name": "UNNAMED",
+    "sha_4655": [
+     "16f86de17001afce",
+     "ee0974548e494d8f"
+    ],
+    "sha_3604": [
+     "88cc47f866a766fd",
+     "a2156d8850802877"
+    ]
+   },
+   {
+    "dir_type": "$BL2",
+    "type": "0x60",
+    "name": "APCB",
+    "sha_4655": [
+     "11af3097cad16e59",
+     "6d8818a270079324"
+    ],
+    "sha_3604": [
+     "29294e894698c68d",
+     "b63798ace32773fe"
+    ]
+   },
+   {
+    "dir_type": "$BL2",
+    "type": "0x66",
+    "name": "MICROCODE_PATCH",
+    "sha_4655": [
+     "45d60be204f3f58b",
+     "52901004b26f88be",
+     "dab261ffc70116b7"
+    ],
+    "sha_3604": [
+     "369df1750e59b5d4",
+     "52901004b26f88be",
+     "9fd75a40d226e404"
+    ]
+   },
+   {
+    "dir_type": "$BL2",
+    "type": "0x68",
+    "name": "APCB_COPY",
+    "sha_4655": [
+     "2d2a19a4fe887481",
+     "8005e34ac60a08df",
+     "95573c4e2d6e93cc",
+     "be893535a51fe603"
+    ],
+    "sha_3604": [
+     "3c1fb3fa5c2328ab",
+     "9e0b36581cdc42cf",
+     "c326a01009ef263a",
+     "cd3e209b5e01704a"
+    ]
+   },
+   {
+    "dir_type": "$PL2",
+    "type": "0x1",
+    "name": "PSP_FW_BOOT_LOADER",
+    "sha_4655": [
+     "4b27166a30d4c1b2",
+     "ea8c9a1593983b88"
+    ],
+    "sha_3604": [
+     "1ed7f7f95c7e4dc7",
+     "cb40327fb383e548"
+    ]
+   },
+   {
+    "dir_type": "$PL2",
+    "type": "0x12",
+    "name": "SMU_OFF_CHIP_FW_2",
+    "sha_4655": [
+     "54b064a509028326",
+     "7711d6033ddc950a"
+    ],
+    "sha_3604": [
+     "6b6881698bb6ab36",
+     "c496b0082dca0471"
+    ]
+   },
+   {
+    "dir_type": "$PL2",
+    "type": "0x13",
+    "name": "DEBUG_UNLOCK",
+    "sha_4655": [
+     "2ba09b53398f1405",
+     "8cbe46f993a3d9c3"
+    ],
+    "sha_3604": [
+     "9380dfc6c97f2577",
+     "d99a9852af32e879"
+    ]
+   },
+   {
+    "dir_type": "$PL2",
+    "type": "0x2",
+    "name": "PSP_FW_TRUSTED_OS",
+    "sha_4655": [
+     "16aa95e569ad25ee",
+     "9bfbb050c85a45e9"
+    ],
+    "sha_3604": [
+     "7d0f099b99c7fecd",
+     "f688d4fac8168813"
+    ]
+   },
+   {
+    "dir_type": "$PL2",
+    "type": "0x24",
+    "name": "SEC_GASKET",
+    "sha_4655": [
+     "260f9d2b874e76f1",
+     "6959c258c8388295",
+     "98c6c86fd8f4c0f5",
+     "ab31b0fcd16d32f8"
+    ],
+    "sha_3604": [
+     "21f121e508bcf954",
+     "2a2b133c1f76623f",
+     "4f35c96de5db9922",
+     "ff788b86495f4825"
+    ]
+   },
+   {
+    "dir_type": "$PL2",
+    "type": "0x28",
+    "name": "DRIVER_ENTRIES",
+    "sha_4655": [
+     "4f73085958f4eb49",
+     "a003403735e479b0"
+    ],
+    "sha_3604": [
+     "723da9e542bf43ff",
+     "8de2e2997bae3d10"
+    ]
+   },
+   {
+    "dir_type": "$PL2",
+    "type": "0x30",
+    "name": "ABL0",
+    "sha_4655": [
+     "201748879d9ec0d0",
+     "d7ae31db20b39ae9"
+    ],
+    "sha_3604": [
+     "71e0f40eadad385d",
+     "761eb773e084ddbd"
+    ]
+   },
+   {
+    "dir_type": "$PL2",
+    "type": "0x45",
+    "name": "TOS_SECURITY_POLICY",
+    "sha_4655": [
+     "336b2208b14afcc5",
+     "87522a626f032afe",
+     "9cf339d4d5f8bffd",
+     "d71f1e7bbffda263"
+    ],
+    "sha_3604": [
+     "1db895382de42b7a",
+     "4ca789569c09db23",
+     "568bca77a51b12d4",
+     "bf7851d7e1308bc9"
+    ]
+   },
+   {
+    "dir_type": "$PL2",
+    "type": "0x47",
+    "name": "DRTM_TA",
+    "sha_4655": [
+     "3c1bf67fd503000b"
+    ],
+    "sha_3604": [
+     "3214a12b44d23099"
+    ]
+   },
+   {
+    "dir_type": "$PL2",
+    "type": "0x8",
+    "name": "SMU_OFFCHIP_FW",
+    "sha_4655": [
+     "03247ba15c07b80c",
+     "0687e50528b3cd3d"
+    ],
+    "sha_3604": [
+     "42df88c7947e56f6",
+     "d3a28e1597d88413"
+    ]
+   },
+   {
+    "dir_type": "$PL2",
+    "type": "0xc",
+    "name": "PSP_BOOT_TIME_TRUSTLETS",
+    "sha_4655": [
+     "bee423edd19602da"
+    ],
+    "sha_3604": [
+     "3b8ba9dd5ea1cbe7"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x1",
+    "name": "PSP_FW_BOOT_LOADER",
+    "sha_4655": [
+     "71c4c84ba25be162",
+     "7b4fc6f6a746a849",
+     "80901dae80667b0a",
+     "b8e2f3411b411631",
+     "d30e2cbe4de3de54"
+    ],
+    "sha_3604": [
+     "0d7557df7bf6c8ca",
+     "5a0b41cdbc6b4342",
+     "95761341338c4f05",
+     "a65b644e50a77251",
+     "a71334395024b72d"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x12",
+    "name": "SMU_OFF_CHIP_FW_2",
+    "sha_4655": [
+     "01b5f93905b3f984",
+     "2abb84a3eae0b795",
+     "76a3ac47a8073b95",
+     "a6600962452a7afd",
+     "a6ca90d73f2bd672",
+     "d9f187ce8c867cae",
+     "ea7f827e49369349"
+    ],
+    "sha_3604": [
+     "0b1441b19151d5c8",
+     "2abb84a3eae0b795",
+     "63b8b5562d185b70",
+     "9c46b0f8ccb6f264",
+     "a6ca90d73f2bd672",
+     "deaa0f87666e17b5",
+     "ea7f827e49369349"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x13",
+    "name": "DEBUG_UNLOCK",
+    "sha_4655": [
+     "6b8357ad284d2da2",
+     "858fb80554d2bfa6",
+     "bee25c9996c805c3"
+    ],
+    "sha_3604": [
+     "77c95d6dd72bdd3a",
+     "df2f0fe310e34bd8",
+     "e8a1ecac856da808"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x2",
+    "name": "PSP_FW_TRUSTED_OS",
+    "sha_4655": [
+     "a7358f8c808282c8",
+     "b0516d2a8c5caa78",
+     "d91debb22fd29b73"
+    ],
+    "sha_3604": [
+     "2e7982a59474fb37",
+     "d262a20c07946d1d",
+     "f738628cfa9f3afc"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x24",
+    "name": "SEC_GASKET",
+    "sha_4655": [
+     "2ea960d35dd204d8",
+     "979ad8eec5bb802a",
+     "a334f090ce29e2eb",
+     "cc4cd5c16ef9e8a0",
+     "e9e3d99221249b7b"
+    ],
+    "sha_3604": [
+     "2ea960d35dd204d8",
+     "6d539cffb6c271b3",
+     "c144f2c7903e6379",
+     "cc4cd5c16ef9e8a0",
+     "e9e3d99221249b7b"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x28",
+    "name": "DRIVER_ENTRIES",
+    "sha_4655": [
+     "5fc254e70e2ead14",
+     "a76a12b6bf800d50"
+    ],
+    "sha_3604": [
+     "bb63b1214767c5b3",
+     "dda64f09f41108d1"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x2a",
+    "name": "MP5_FW",
+    "sha_4655": [
+     "5234c3d8e970285d",
+     "f8085ce7dbbc5dbf"
+    ],
+    "sha_3604": [
+     "658e9cd70f154e8a",
+     "9258eab19fe7a30a"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x30",
+    "name": "ABL0",
+    "sha_4655": [
+     "2f9fcf98127ee452",
+     "76ca45872ef8f171",
+     "f67f88a0bcf1949d",
+     "fb2dd80cf1a35325"
+    ],
+    "sha_3604": [
+     "76ca45872ef8f171",
+     "93f8ccdc7cb41eac",
+     "bbfca086ea7ac64c",
+     "d9481d5d5f88fccc"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x31",
+    "name": "ABL1",
+    "sha_4655": [
+     "608249b3c0fed72b",
+     "7072bcd36601923a"
+    ],
+    "sha_3604": [
+     "324c218a5226062e",
+     "608249b3c0fed72b"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x32",
+    "name": "ABL2",
+    "sha_4655": [
+     "be8653cfb57ad377",
+     "f9600527c930b120"
+    ],
+    "sha_3604": [
+     "bd9d5f2385ba3fc6",
+     "f9600527c930b120"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x33",
+    "name": "ABL3",
+    "sha_4655": [
+     "3a06ec0ef1043ea2",
+     "acdaa7f76634ea76"
+    ],
+    "sha_3604": [
+     "acdaa7f76634ea76",
+     "bb7046976f35c432"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x34",
+    "name": "ABL4",
+    "sha_4655": [
+     "822da740405cb337",
+     "87ea0358d8acd88d"
+    ],
+    "sha_3604": [
+     "3d00c9468a69e1c8",
+     "822da740405cb337"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x35",
+    "name": "ABL5",
+    "sha_4655": [
+     "0869621f113f1951",
+     "dde3f6d2d935aeda"
+    ],
+    "sha_3604": [
+     "aea7fc5dc1dab57c",
+     "dde3f6d2d935aeda"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x36",
+    "name": "ABL6",
+    "sha_4655": [
+     "604831a9ec600f1e",
+     "afcbdb36e092a199"
+    ],
+    "sha_3604": [
+     "604831a9ec600f1e",
+     "e0f0e1e6409102b9"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x37",
+    "name": "ABL7",
+    "sha_4655": [
+     "d74a9b2f736d34ff"
+    ],
+    "sha_3604": [
+     "7551ae490a20ab70"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x40",
+    "name": "PSP_FW_L2_PTR",
+    "sha_4655": [
+     "2a70bad902651073",
+     "f626409219430190"
+    ],
+    "sha_3604": [
+     "2a1b86e8b439aa86",
+     "f7e82517faf6f2c5"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x45",
+    "name": "TOS_SECURITY_POLICY",
+    "sha_4655": [
+     "30f98e33470a23d3"
+    ],
+    "sha_3604": [
+     "4ef29ca7361963bd"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x50",
+    "name": "BL_PUBLIC_KEY",
+    "sha_4655": [
+     "95da5d31ede6f9f4"
+    ],
+    "sha_3604": [
+     "bc35e707c75c8669"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0x8",
+    "name": "SMU_OFFCHIP_FW",
+    "sha_4655": [
+     "44fa5c58aa6e3497",
+     "45e5ed4b44c55768",
+     "9bc12dbd963165f9",
+     "acfb4abd7d47c94b",
+     "b8059916684191ec",
+     "db1839aa183e49c2",
+     "fa18d34a45ce5979"
+    ],
+    "sha_3604": [
+     "0954a02fc6177ad2",
+     "45e5ed4b44c55768",
+     "acfb4abd7d47c94b",
+     "c4376da2b32249ea",
+     "c7d48d031e75c676",
+     "e7c76bb78695922e",
+     "fa18d34a45ce5979"
+    ]
+   },
+   {
+    "dir_type": "$PSP",
+    "type": "0xc",
+    "name": "PSP_BOOT_TIME_TRUSTLETS",
+    "sha_4655": [
+     "1c8f224ff663e511",
+     "5fb1ed58ffd063d2",
+     "90aab5f862fd1905"
+    ],
+    "sha_3604": [
+     "4b8fad08c97e9192",
+     "598e7f48494c9736",
+     "5bcf18456e02ef8f"
+    ]
+   }
+  ],
+  "only_in_4655": [],
+  "only_in_3604": []
+ },
+ "constants_seen": {
+  "ftpm": "PspFtpmHandler present in the PSP boot-time trustlets of every specimen \u2014 the fTPM stack is vendor-independent AMD code, the study's fTPM/TPM-stutter lineage applies at this layer to all four boards",
+  "key_management": "bootloader carries DRAM/HMAC/NV-Storage encryption key material and RPMC root key strings",
+  "agesa_bl": "ABL0-ABL7 (AGESA bootloader) instances: 8 on ASUS 4655, each with instance bits"
+ },
+ "reading": [
+  "the PSP layer is a parallel firmware universe under the UEFI volume: 14-18 validated directory trees per image, 31-32-entry main PSP directories, five bootloader instances on ASUS",
+  "fletcher32 validates EVERY parsed directory on every specimen \u2014 the layout constants are proven against real vendor silicon, not assumed",
+  "cross-release, the PSP layer churns where the UEFI packaging stands still: 37 blob contents identical, 38 changed between ASUS 3604 and 4655 \u2014 boot loader, TOS, SMU, ABL0-7, SEC_GASKET, DRIVER_ENTRIES all move; some instances survive byte-identical across four years",
+  "psptool cross-check: 74/74 directories agree on magic and count after joining on the file offset (on the 32-MiB image psptool's dict keys are masked address labels; get_address() carries the true file offset)"
+ ],
+ "honesty": [
+  "the instrument parses directories reachable by magic scan plus one L2 hop; it does not reconstruct the vendor FET chain \u2014 psptool remains the authority for FET-level questions",
+  "$BSP and $BIO both scan zero on all five images; the ring-11 hypothesis ('wrong magic from memory') is confirmed by the verified source",
+  "the MSI double structure asymmetry (mirror dirs at +0x1000000 validate while some primary-half addresses hold no magic) is registered, not explained",
+  "PSP blob contents are fingerprinted (sha256_16, head bytes, embedded strings), not executed or emulated"
+ ]
+}

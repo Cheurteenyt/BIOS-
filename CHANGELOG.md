@@ -4,6 +4,60 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the thirteenth ring (the two lenses: VERSION-strings refuted, names joined, PSP opened)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Lens A — the VERSION-strings lens refutes itself (honestly).**
+Ring 12 registered the 0x14 strings as the candidate name source for
+the UI-stripped ASUS packaging. The lens was built with an
+evidence-per-section decode rule (both conventions attempted on
+every section): 1,992 main-region sections across five specimens
+(2,359 counting every region) decode 100 % under the PI-spec layout
+(BuildNumber u16 then string) — and the strings themselves are
+**build numbers, not names**: eight distinct strings across five
+specimens, seven placeholders (`1.0` ×1,860).
+The ring-12 candidate is refuted by its own measurement; the ASUS
+blindness is structural to the packaging.
+
+**Lens A' — the names recovered anyway (the GUID join).** A 665-GUID
+name map from the other boards' UI sections plus the ring-9 OVMF map
+(precedence registered, base-name conflict rule) baptises ASUS 4655
+at **0.593** named (DXE 0.83, SMM 0.86; 3604: 0.591) with two
+pseudo-conflicts and zero real identity disagreements
+(`gUefiShellFileGuid` vs `MinShell` is the same Shell; `PcdPeim`
+with/without its path is precision, not conflict). The one real
+VERSION string tells a release story: **UefiRaid (`C74F06D2`) moved
+`1.0` → `9.3.0.00308`** between 3604 and 4655 — the version ASRock,
+Gigabyte and MSI already ship — the only version change in four
+years of ASUS releases. The 600-row named register lands in
+`vendor-versions.json` as the day-0 table.
+
+**Lens B — the PSP layer opens.** The verified magics are
+`$PSP`/`$PL2` (PSP) and `$BHD`/`$BL2` (BIOS) — the ring-11 `$BSP`
+zero is closed by source, not assumption. All **74 directories
+across five specimens** parse, fletcher32-validate and agree
+74/74 with psptool 3.6 (type tables and the checksum imported at
+runtime — transcribed from no memory; the 32-MiB join lesson:
+psptool's dict keys are masked address labels, `get_address()`
+carries the true file offset). Cross-release, the PSP layer churns
+where packaging stands still: 37 blob contents identical, 38
+changed between ASUS 3604 and 4655 (bootloader ×5 instances, TOS,
+SMU, ABL0-7, SEC_GASKET), and `PspFtpmHandler` sits in every
+board's trustlets — the fTPM stack is vendor-independent AMD code.
+
+**Also registered**: the MSI double structure is not census-identical
+when pierced (mirror inner FV +0x97000 bytes, +16 files; mirror PSP
+directories validate at depths where primary-half addresses hold no
+magic); module totals cross-checked region-by-offset 4/4 against the
+published ring-11/12 censuses (the earlier "main vs main" mismatch
+was the densest-region pick landing on the mirror — fixed before
+publication).
+
+Files: `lab/findings-thirteenth-ring.md` (the narrative),
+`lab/vendor-versions.json`, `lab/vendor-psp.json` (the evidence).
+
 ## Unreleased — the twelfth ring (the quorum: four vendors, latest official, one grammar)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

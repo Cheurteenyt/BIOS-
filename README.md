@@ -195,7 +195,7 @@ human path; `fw.flash.write` does not even exist.
 | [docs/file-layout.md](docs/file-layout.md) | how the repo is organized and where everything lands once installed |
 | [docs/packaging.md](docs/packaging.md) | lever D: the Arch-native delivery shape (PKGBUILD) beside the day-0 user-space default |
 | [docs/day0-protocol.md](docs/day0-protocol.md) | reading a vendor image: the lab pipeline stage order, the five tripwires, the report skeleton — the lab half of the day-0 doctrine |
-| [lab/README.md](lab/README.md) | the disposable machine: the twelve investigation rings, their JSON evidence, the doctrine |
+| [lab/README.md](lab/README.md) | the disposable machine: the thirteen investigation rings, their JSON evidence, the doctrine |
 | [docs/research/](docs/research/) | the four-volume study *Beyond the BIOS*: per-volume summaries + the FR/EN editions (PDF release assets) |
 
 CI runs the full contract suite (Python 3.11/3.13) and the MCP conformance

@@ -1,0 +1,5706 @@
+{
+ "schema": "omarchy-firmware/vendor-versions@1",
+ "date": "2026-09-11",
+ "note": "lens A closed the question ring 12 registered: the ASUS packaging carries its module identity in VERSION sections (0x14) \u2014 but parsed, those sections hold build numbers ('1.0'), not names, so the candidate lens is refuted by its own measurement; the names are recovered anyway by the GUID join (lens A'), which baptises ASUS modules from the other three boards' UI sections plus the ring-9 OVMF map",
+ "decode_convention": {
+  "rule": "every 0x14 section decoded under BOTH conventions (string@0, string@2 = PI-spec BuildNumber u16 then string); the evidence decides, spec wins ties",
+  "evidence_total_main_regions": {
+   "str@0_only": 0,
+   "str@2_only": 1992,
+   "both": 0,
+   "neither": 0
+  },
+  "evidence_total_all_regions": {
+   "str@0_only": 0,
+   "str@2_only": 2359,
+   "both": 0,
+   "neither": 0
+  },
+  "verdict": "str@2 everywhere \u2014 the PI-spec layout, uniformly, on all five specimens"
+ },
+ "version_vocabulary": {
+  "distinct_strings": 8,
+  "strings": {
+   "0.0": 38,
+   "0.1": 11,
+   "000001": 18,
+   "1.0": 1860,
+   "1.1": 46,
+   "2.0": 6,
+   "7.0": 9,
+   "9.3.0.00308": 4
+  },
+  "reading": "0x14 sections carry build numbers, not names \u2014 the ring-12 candidate lens is refuted by its own measurement"
+ },
+ "specimens": [
+  {
+   "id": "msi-b450-tomahawk-max",
+   "version": "7C02v3G1",
+   "released": "2023-03-09",
+   "bytes": 33554432,
+   "sha256_16": "2ab433d61c93adb4",
+   "main_region": {
+    "offset": "0x59f000",
+    "length": "0x7c1000",
+    "modules": 453,
+    "sections_0x15_ui": 351,
+    "sections_0x14_version": 351,
+    "named_share_ui": 0.775,
+    "named_share_union": 0.775,
+    "decode_evidence": {
+     "str@0_only": 0,
+     "str@2_only": 351,
+     "both": 0,
+     "neither": 0
+    }
+   },
+   "decode_convention": {
+    "winner": "str@2",
+    "evidence": {
+     "str@0_only": 0,
+     "str@2_only": 351,
+     "both": 0
+    },
+    "rule": "higher only-count wins; spec layout wins ties"
+   },
+   "mirror_census_delta": {
+    "original": "0x59f000",
+    "mirror": "0x1601000",
+    "modules": 16,
+    "phases_delta": {
+     "freeform": 2,
+     "SMM": 2,
+     "DXE": 12
+    },
+    "note": "the MSI double structure is not census-identical when pierced: RC.walk_fv shows the mirror's big inner FV at 0xc97000 bytes / 418 files vs the original 0xc00000 / 402; root cause not chased this ring"
+   }
+  },
+  {
+   "id": "gigabyte-b450-aorus-pro",
+   "version": "F67c",
+   "released": "2026-08-18",
+   "bytes": 16777216,
+   "sha256_16": "091cf42e235289dd",
+   "main_region": {
+    "offset": "0x94f000",
+    "length": "0x4f0000",
+    "modules": 498,
+    "sections_0x15_ui": 422,
+    "sections_0x14_version": 422,
+    "named_share_ui": 0.847,
+    "named_share_union": 0.847,
+    "decode_evidence": {
+     "str@0_only": 0,
+     "str@2_only": 422,
+     "both": 0,
+     "neither": 0
+    }
+   },
+   "decode_convention": {
+    "winner": "str@2",
+    "evidence": {
+     "str@0_only": 0,
+     "str@2_only": 422,
+     "both": 0
+    },
+    "rule": "higher only-count wins; spec layout wins ties"
+   }
+  },
+  {
+   "id": "asrock-b450-steel-legend",
+   "version": "10.41 Beta",
+   "released": "2025-04-18",
+   "bytes": 16777216,
+   "sha256_16": "d94afae9eecd64ca",
+   "main_region": {
+    "offset": "0x94f000",
+    "length": "0x4b1000",
+    "modules": 633,
+    "sections_0x15_ui": 382,
+    "sections_0x14_version": 382,
+    "named_share_ui": 0.603,
+    "named_share_union": 0.603,
+    "decode_evidence": {
+     "str@0_only": 0,
+     "str@2_only": 382,
+     "both": 0,
+     "neither": 0
+    }
+   },
+   "decode_convention": {
+    "winner": "str@2",
+    "evidence": {
+     "str@0_only": 0,
+     "str@2_only": 382,
+     "both": 0
+    },
+    "rule": "higher only-count wins; spec layout wins ties"
+   }
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "4655",
+   "released": "2026-08-27",
+   "bytes": 16777216,
+   "sha256_16": "284ea676ee6cbf42",
+   "main_region": {
+    "offset": "0x9c0000",
+    "length": "0x540000",
+    "modules": 600,
+    "sections_0x15_ui": 1,
+    "sections_0x14_version": 420,
+    "named_share_ui": 0.002,
+    "named_share_union": 0.7,
+    "decode_evidence": {
+     "str@0_only": 0,
+     "str@2_only": 420,
+     "both": 0,
+     "neither": 0
+    }
+   },
+   "decode_convention": {
+    "winner": "str@2",
+    "evidence": {
+     "str@0_only": 0,
+     "str@2_only": 420,
+     "both": 0
+    },
+    "rule": "higher only-count wins; spec layout wins ties"
+   },
+   "guid_join_result": {
+    "named_after_join": 356,
+    "share_after_join": 0.593,
+    "named_by_phase": {
+     "DXE": 260,
+     "SMM": 91,
+     "fv_image": 1,
+     "freeform": 1,
+     "DXE-core": 1,
+     "SMM-core": 1,
+     "PEI": 1
+    },
+    "residual": 244
+   }
+  },
+  {
+   "id": "asus-prime-b450-plus-ref",
+   "version": "3604",
+   "released": "2022-03-16",
+   "bytes": 16777216,
+   "sha256_16": "dbabcc8c1d7e6dc4",
+   "main_region": {
+    "offset": "0x9c0000",
+    "length": "0x540000",
+    "modules": 596,
+    "sections_0x15_ui": 1,
+    "sections_0x14_version": 417,
+    "named_share_ui": 0.002,
+    "named_share_union": 0.7,
+    "decode_evidence": {
+     "str@0_only": 0,
+     "str@2_only": 417,
+     "both": 0,
+     "neither": 0
+    }
+   },
+   "decode_convention": {
+    "winner": "str@2",
+    "evidence": {
+     "str@0_only": 0,
+     "str@2_only": 417,
+     "both": 0
+    },
+    "rule": "higher only-count wins; spec layout wins ties"
+   },
+   "guid_join_result": {
+    "named_after_join": 352,
+    "share_after_join": 0.591,
+    "named_by_phase": {
+     "DXE": 259,
+     "SMM": 88,
+     "fv_image": 1,
+     "freeform": 1,
+     "DXE-core": 1,
+     "SMM-core": 1,
+     "PEI": 1
+    },
+    "residual": 244
+   }
+  }
+ ],
+ "cross_release": {
+  "pair": "asus 4655 (2026-08-27) vs 3604 (2022-03-16)",
+  "version_named_guids": {
+   "4655": 420,
+   "3604": 417
+  },
+  "shared_version_named": 415,
+  "same_strings": 414,
+  "changed_strings": 1,
+  "changed_samples": [
+   "C74F06D2-ED92-489B-879C-C0E428A22167"
+  ]
+ },
+ "the_uefiRaid_case": {
+  "guid": "C74F06D2-ED92-489B-879C-C0E428A22167",
+  "identity": "UefiRaid (named by UI on ASRock/Gigabyte/MSI; GUID join for ASUS)",
+  "story": "the ONE VERSION-string change across the four years 3604->4655: the RAID driver moved from the placeholder '1.0' to the real '9.3.0.00308' \u2014 the same version ASRock/Gigabyte/MSI already ship",
+  "size_bytes": {
+   "asus_4655": 348754,
+   "asus_3604": 351938,
+   "asrock": 348778,
+   "gigabyte": 348778,
+   "msi": 348778
+  }
+ },
+ "guid_join": {
+  "map_size": 665,
+  "precedence": [
+   "ovmf-ring9",
+   "manual-ring9",
+   "ui-asrock",
+   "ui-gigabyte",
+   "ui-msi"
+  ],
+  "conflict_rule": "base names (before ' [') must agree; provenance suffixes are not conflicts",
+  "conflicts": 2,
+  "conflict_samples": [
+   {
+    "guid": "7c04a583-9e3e-4f1c-ad65-e05268d0b4d1",
+    "kept": {
+     "name": "gUefiShellFileGuid [guid/ShellPkg]",
+     "source": "ovmf-ring9"
+    },
+    "dropped": {
+     "name": "MinShell",
+     "source": "ui-msi-b450-tomahawk-max"
+    }
+   },
+   {
+    "guid": "9b3ada4f-ae56-4c24-8dea-f03b7558ae50",
+    "kept": {
+     "name": "PcdPeim (MdeModulePkg/Universal/PCD/PcdPeim) [census curated]",
+     "source": "ovmf-ring9"
+    },
+    "dropped": {
+     "name": "PcdPeim",
+     "source": "ui-gigabyte-b450-aorus-pro"
+    }
+   }
+  ]
+ },
+ "asus_main_modules_named": [
+  {
+   "guid": "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF",
+   "phase": "pad",
+   "size": 44,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "414D94AD-998D-47D2-BFCD-4E882241DE32",
+   "phase": "freeform",
+   "size": 2092,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "54F7572F-1FD1-44DA-B635-0E49CAD1E4EF",
+   "phase": "fv_image",
+   "size": 4152,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "84366C9E-CD61-4B6E-8BC7-384541382842",
+   "phase": "fv_image",
+   "size": 43313,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF",
+   "phase": "pad",
+   "size": 44,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "71ED12D1-250B-42FB-8C17-10DCFA771701",
+   "phase": "DXE",
+   "size": 2514,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiLegacyInterrupt",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "59242DD8-E7CF-4979-B60E-A6067E2A185F",
+   "phase": "DXE",
+   "size": 12982,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "LegacyRegion",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "A062CF1F-8473-4AA3-8793-600BC4FFE9A8",
+   "phase": "DXE",
+   "size": 54010,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CsmDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "25ACF158-DD61-4E64-9A49-55851E9A26C7",
+   "phase": "DXE",
+   "size": 13818,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CsmBlockIo",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "29CF55F8-B675-4F5D-8F2F-B87A3ECFD063",
+   "phase": "DXE",
+   "size": 19034,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CsmVideo",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "A08276EC-A0FE-4E06-8670-385336C7D093",
+   "phase": "freeform",
+   "size": 1218,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "C0492C7F-75E2-487C-B2DD-000E6CF7B905",
+   "phase": "fv_image",
+   "size": 606922,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF",
+   "phase": "pad",
+   "size": 44,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A2F436EA-A127-4EF8-957C-8048606FF670",
+   "phase": "DXE",
+   "size": 24266,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SnpDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "A210F973-229D-4F4D-AA37-9895E6C9EABA",
+   "phase": "DXE",
+   "size": 2434,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "DpcDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "025BBFC7-E6A9-4B8B-82AD-6815A1AEAF4A",
+   "phase": "DXE",
+   "size": 30154,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "MnpDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "529D3F93-E8E9-4E73-B1E1-BDF6A9D50113",
+   "phase": "DXE",
+   "size": 13482,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "ArpDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "1A7E4468-2F55-4A56-903C-01265EB7622B",
+   "phase": "DXE",
+   "size": 51914,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TcpDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "B95E9FDA-26DE-48D2-8807-1F9107AC5E3A",
+   "phase": "DXE",
+   "size": 68906,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "UefiPxeBcDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "B219E140-DFFC-11E3-B956-0022681E6906",
+   "phase": "DXE",
+   "size": 43466,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "DnsDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "22EA234F-E72A-11E4-91F9-28D2447C4829",
+   "phase": "DXE",
+   "size": 4610,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "HttpUtilitiesDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "7CA1024F-EB17-11E5-9DBA-28D2447C4829",
+   "phase": "DXE",
+   "size": 4714,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TlsAuthConfigDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+   "phase": "DXE",
+   "size": 1549706,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TlsDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "94734718-0BBC-47FB-96A5-EE7A5AE6A2AD",
+   "phase": "DXE",
+   "size": 34506,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Dhcp4Dxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "9FB1A1F3-3B71-4324-B39A-745CBB015FFF",
+   "phase": "DXE",
+   "size": 57022,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Ip4Dxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "DC3641B8-2FA8-4ED3-BC1F-F9962A03454B",
+   "phase": "DXE",
+   "size": 32266,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Mtftp4Dxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B",
+   "phase": "DXE",
+   "size": 29834,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Udp4Dxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C",
+   "phase": "DXE",
+   "size": 80646,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Ip6Dxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "D912C7BC-F098-4367-92BA-E911083C7B0E",
+   "phase": "DXE",
+   "size": 29322,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Udp6Dxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "95E3669D-34BE-4775-A651-7EA41B69D89E",
+   "phase": "DXE",
+   "size": 33546,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Dhcp6Dxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "99F03B99-98D8-49DD-A8D3-3219D0FFE41E",
+   "phase": "DXE",
+   "size": 32874,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Mtftp6Dxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "1DF36FF9-C7EA-47A3-BD5B-426C250DB776",
+   "phase": "fv_image",
+   "size": 80231,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF",
+   "phase": "pad",
+   "size": 44,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "50F6096D-7C98-4C78-9A1D-C5A1833B6A88",
+   "phase": "DXE",
+   "size": 2774,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiTcgNvflagSample",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "A29A63E3-E4E7-495F-8A6A-07738300CBB3",
+   "phase": "DXE",
+   "size": 32686,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiTcgPlatformDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "2688B232-9C02-4C12-BE1F-857C0FF2AAE3",
+   "phase": "DXE",
+   "size": 1910,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TcgDxeplatform",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "858EBE6F-360F-415B-B7DC-463AAEB03412",
+   "phase": "DXE",
+   "size": 4486,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TcgLegacy",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "0718AD81-F26A-4850-A6EC-F268E309D707",
+   "phase": "DXE",
+   "size": 78366,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Tpm20PlatformDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "4C8BDF60-2085-4577-8A46-96CB180967BC",
+   "phase": "DXE",
+   "size": 10586,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Tpm20Acpi",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "077A3100-1667-45FA-B98C-37651B5073EE",
+   "phase": "DXE",
+   "size": 6722,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TpmSmbiosDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "FD93F9E1-3C73-46E0-B7B8-2BBA3F718F6C",
+   "phase": "SMM",
+   "size": 8858,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TcgSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "C56EDB22-3D78-4705-A222-BDD6BD154DA0",
+   "phase": "SMM",
+   "size": 9846,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TpmClearOnRollbackSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "142204E2-C7B1-4AF9-A729-923758D96D03",
+   "phase": "freeform",
+   "size": 2922,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "0AA31BC6-3379-41E8-825A-53F82CC0F254",
+   "phase": "freeform",
+   "size": 11718,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "7D113AA9-6280-48C6-BACE-DFE7668E8307",
+   "phase": "freeform",
+   "size": 1577,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "5E9CABA3-F2B1-497A-ADAC-24F575E9CDE9",
+   "phase": "DXE",
+   "size": 26890,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TcgDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "39045756-FCA3-49BD-8DAE-C7BAE8389AFF",
+   "phase": "DXE",
+   "size": 81658,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Tcg2Dxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "0135229A-EBB5-4A21-957D-1D20057CF752",
+   "phase": "DXE",
+   "size": 3938,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TCMDXE",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "ADD70A4D-1067-4FA3-A669-94C82877F106",
+   "phase": "DXE",
+   "size": 1190,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TpmNvmeSupport",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+   "phase": "fv_image",
+   "size": 3055540,
+   "ui": null,
+   "version_string": null,
+   "join_name": "FVMAIN FV-image file",
+   "join_source": "manual-ring9"
+  },
+  {
+   "guid": "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF",
+   "phase": "pad",
+   "size": 44,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "FC510EE7-FFDC-11D4-BD41-0080C73C8881",
+   "phase": "freeform",
+   "size": 204,
+   "ui": null,
+   "version_string": null,
+   "join_name": "gAprioriGuid [guid/MdePkg]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "61422D26-81EC-47FF-B6CF-939EAEE73FBA",
+   "phase": "DXE",
+   "size": 23618,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "StatusCodeDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "DB08F6CA-3048-4CD8-9B1F-20BED33ECFE7",
+   "phase": "SMM",
+   "size": 18002,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "StatusCodeSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "CBC59C4A-383A-41EB-A8EE-4498AEA567E4",
+   "phase": "DXE",
+   "size": 27714,
+   "ui": null,
+   "version_string": "0.0",
+   "join_name": "FlashDriver",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "1807040D-5934-41A2-A088-8E0F777F71AB",
+   "phase": "DXE",
+   "size": 58962,
+   "ui": null,
+   "version_string": "0.0",
+   "join_name": "NvramDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "80CF7257-87AB-47F9-A3FE-D50B76D89541",
+   "phase": "DXE",
+   "size": 15390,
+   "ui": null,
+   "version_string": "7.0",
+   "join_name": "PcdDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "AB7ED12E-1D78-4635-AB87-23F00A911EC7",
+   "phase": "DXE",
+   "size": 3522,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "RomLayoutDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "D6A2CB7F-6A18-4E2F-B43B-9920A733700A",
+   "phase": "DXE-core",
+   "size": 59763,
+   "ui": null,
+   "version_string": null,
+   "join_name": "DxeCore (MdeModulePkg/Core/Dxe) [census curated]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "8F4B8F82-9B91-4028-86E6-F4DB7D4C1DFF",
+   "phase": "DXE",
+   "size": 108514,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Bds",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "53BCC14F-C24F-434C-B294-8ED2D4CC1860",
+   "phase": "DXE",
+   "size": 3138,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "DataHubDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "9B680FCE-AD6B-4F3A-B60B-F59899003443",
+   "phase": "DXE",
+   "size": 43330,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "DevicePathDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "CD3BAFB6-50FB-4FE8-8E4E-AB74D2C1A600",
+   "phase": "DXE",
+   "size": 3050,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "EnglishDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "13AC6DD0-73D0-11D4-B06B-00AA00BD6DE7",
+   "phase": "DXE",
+   "size": 14434,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "EbcDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "348C4D62-BFBD-4882-9ECE-C80BB1C4783B",
+   "phase": "DXE",
+   "size": 105506,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "HiiDatabase [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "F80697E9-7FD6-4665-8646-88E33EF71DFC",
+   "phase": "DXE",
+   "size": 44290,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SecurityStubDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "C10194E7-DEB2-4AF4-9EEE-BFFDE4D7D4C7",
+   "phase": "DXE",
+   "size": 1506,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TimestampDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "A19B1FE7-C1BC-49F8-875F-54A5D542443F",
+   "phase": "DXE",
+   "size": 2498,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CpuIo2Dxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "E03ABADF-E536-4E88-B3A0-B77F78EB34FE",
+   "phase": "DXE",
+   "size": 19142,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CpuDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "2785ED8A-795F-43A1-AE2D-6BFFECCBA646",
+   "phase": "DXE",
+   "size": 4850,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AcpiUpdateCpuInfo",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "50FA026A-7DF0-4C61-A12A-951D3948DC25",
+   "phase": "DXE",
+   "size": 5570,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "C7DD8530-96D8-40DD-BE88-CBDF446C6474",
+   "phase": "DXE",
+   "size": 2226,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Stibp",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "1CF59BF9-E3F6-4D9D-BB94-8B857278BBC6",
+   "phase": "DXE",
+   "size": 16982,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "GnbDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "B7A1FDA8-CB3E-4E69-87AF-B67FEC563548",
+   "phase": "DXE",
+   "size": 5186,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "GnbIoApicUpdate",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "03FA15BF-A5C8-4006-81B5-B836E7A70030",
+   "phase": "DXE",
+   "size": 6274,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "GnbSummitRouting",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "DD9D5646-BB53-4199-9B27-2A1696D9BE4E",
+   "phase": "DXE",
+   "size": 10370,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PciDxeInit",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "42363877-5513-4019-BDFE-CC075B6467FD",
+   "phase": "DXE",
+   "size": 5138,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "GnbSocRavenDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "B4536FB5-E251-4EDA-8BCF-D43875BD1A37",
+   "phase": "DXE",
+   "size": 6434,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "GnbRavenRouting",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "399A229D-F654-4CEF-9ED3-6FC3C992E39C",
+   "phase": "DXE",
+   "size": 13858,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PciDxeInit",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "D3B7F871-3F04-48D4-B9C1-5871825D00AA",
+   "phase": "DXE",
+   "size": 6338,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "GnbMatisseRouting",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "3B4D59EC-DFD9-4EC6-BB8A-E0FE2B4264A0",
+   "phase": "DXE",
+   "size": 10434,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PciDxeInit",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "42363877-5513-4019-BDFE-CC075B646711",
+   "phase": "DXE",
+   "size": 4498,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "GnbSocRenoirDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "B4536FB5-E251-4EDA-8BCF-D43875BD1A11",
+   "phase": "DXE",
+   "size": 6370,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "GnbRenoirRouting",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "399A229D-F654-4CEF-9ED3-6FC3C992E311",
+   "phase": "DXE",
+   "size": 13794,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PciDxeInit",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "B7D19491-E55A-470D-8508-85A5DFA41974",
+   "phase": "DXE",
+   "size": 12982,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SbDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "D9EA74E6-0B4D-4916-9821-EB58B86211D8",
+   "phase": "DXE",
+   "size": 4946,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SbPcdDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "11726D68-F147-48DF-AB16-0489818BD570",
+   "phase": "DXE",
+   "size": 3882,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiHpetTimer",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "A7119441-E153-970D-5508-75DCDFA41974",
+   "phase": "DXE",
+   "size": 32918,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SbSocSummitDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "17119241-1153-970D-6509-75DCDFA41774",
+   "phase": "DXE",
+   "size": 34934,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SbSocRavenDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "EECC1363-884B-4FE4-A763-B387951B6DDD",
+   "phase": "DXE",
+   "size": 32278,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SbSocMatisseDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "99C062A1-A4DF-4E99-813B-C283E1EFE761",
+   "phase": "DXE",
+   "size": 32406,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SbSocRenoirDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "87C3E993-B28D-4226-89C9-120DBC92ACBF",
+   "phase": "SMM",
+   "size": 15990,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmBusSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "D4F9FE6D-1696-462A-AC07-C009D1A0189A",
+   "phase": "DXE",
+   "size": 38858,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "IdeConfigSetup",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "E4ECD0B2-E277-4F2B-BECB-E4D75C9A812E",
+   "phase": "DXE",
+   "size": 12554,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "NbDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "5229AE5A-AB8E-4693-A8FD-B7D7CBCE694C",
+   "phase": "DXE",
+   "size": 10914,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PTSataController",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "D17F5B0B-ABEC-4C0B-9E4C-80ABFAAD0379",
+   "phase": "DXE",
+   "size": 3938,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PTDxeInit",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "67820532-7613-4DD3-9ED7-3D9BE3A7DA63",
+   "phase": "DXE",
+   "size": 11426,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Aint13",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "4DF53F89-D421-4F9D-8392-BE3BECC6288E",
+   "phase": "DXE",
+   "size": 4082,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AhciInt13Dxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "FC8CFD34-4D25-478C-83F0-0309C93FFBA4",
+   "phase": "DXE",
+   "size": 83254,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCcxVhDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "E59EA6B0-B05B-4B22-8F3A-242DCBE904A2",
+   "phase": "DXE",
+   "size": 83414,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCcxVhRnDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "3C9A095D-C3CB-4302-96E1-7105A7C46A69",
+   "phase": "DXE",
+   "size": 84982,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCcxZenRvDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "4A1A67D0-E77A-4F0A-AF1D-CC412BE93DC9",
+   "phase": "DXE",
+   "size": 85014,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCcxZenZpDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "B342BEBB-41C3-40AB-AA70-E9F3742D1835",
+   "phase": "DXE",
+   "size": 85942,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCcxZen3Dxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "56AA1233-7407-4058-9E17-88DE138EA15D",
+   "phase": "DXE",
+   "size": 85942,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCcxZen3CznDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "AC38DBC2-8525-48F8-9607-FD9C917BE42E",
+   "phase": "DXE",
+   "size": 1702,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdErrorLogDisplayDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "8624F36D-6DE0-44C3-8322-74AD419D3A90",
+   "phase": "DXE",
+   "size": 2674,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdErrorLogDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "ADFC6F79-AA9F-462B-ABDB-C48E0F6356BF",
+   "phase": "DXE",
+   "size": 27446,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdFabricRnDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "25075106-F537-4BD4-AFA5-CFF0E6F3B2A6",
+   "phase": "DXE",
+   "size": 27702,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdFabricRvDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "656F7E22-5701-4341-A9A7-99A5D40A5245",
+   "phase": "DXE",
+   "size": 38326,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdFabricSspDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "927AE345-BB7B-434F-8D29-71BE0D12AB2C",
+   "phase": "DXE",
+   "size": 29878,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdFabricZpDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "4735EC40-F0B8-4102-A4C1-2E83B6B0C0BD",
+   "phase": "DXE",
+   "size": 40906,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchHuashanDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "AB4E44B3-1786-4BCB-BB8F-98C349140D69",
+   "phase": "DXE",
+   "size": 2314,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchHuashanSsdt",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "8D658AF6-178B-432B-9692-ABE717D9BDA8",
+   "phase": "DXE",
+   "size": 2070,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchHuashanDsdt",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "BA26C482-C1DE-4B97-A8BD-160DFDB984AC",
+   "phase": "DXE",
+   "size": 3218,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchPromontoryGpioDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "84FB407D-D076-4DDD-871F-33373A26BABB",
+   "phase": "DXE",
+   "size": 2742,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchPromontorySsdt",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "A334E8C1-F49F-49AA-9F82-9210205FC1FB",
+   "phase": "DXE",
+   "size": 38250,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchSandstoneDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "3A2A83F2-98AC-4A8B-BBBC-DDDCC655A0D6",
+   "phase": "DXE",
+   "size": 34314,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchShastaDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "4BEB96B4-C069-4C49-845F-1C1CC68CD8D6",
+   "phase": "DXE",
+   "size": 2794,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchShastaSsdt",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "056623DC-1285-4EAF-9446-75C3B00F78C6",
+   "phase": "DXE",
+   "size": 11990,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchMultiFchDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "E05799E5-DB4B-451C-AC87-5893DD8E4295",
+   "phase": "DXE",
+   "size": 34198,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchTaishanDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "84FB407D-D086-4DDD-822F-33373A26BACC",
+   "phase": "DXE",
+   "size": 1802,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchTaishanSsdt",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "9FF8B917-D14C-4A43-9314-123DA3960AD6",
+   "phase": "DXE",
+   "size": 1010,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdMemAm4Dxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "95DE95F8-A215-48C3-814A-40F07B925D24",
+   "phase": "DXE",
+   "size": 3058,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdMemRestoreDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "EA7BF2CC-F154-4CC4-A725-6382C701FBFE",
+   "phase": "DXE",
+   "size": 2962,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdMemSmbiosV2Dxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "FA70AFCC-3715-4D15-8699-F0DF4CAFC6D3",
+   "phase": "DXE",
+   "size": 1874,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioGfxRVDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "ECADBBB6-B0AE-4571-94E3-313C3D27A611",
+   "phase": "DXE",
+   "size": 18666,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioGfxRNDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "73F53712-2A64-4B86-961D-C25B63DF198C",
+   "phase": "DXE",
+   "size": 17274,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioIOMMURVDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "C9C30DD7-91D6-4F75-BF08-846E6020F1A8",
+   "phase": "DXE",
+   "size": 18490,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioIOMMUZPDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "828C017B-BA8E-40E6-BDA4-45B6F9F6A8CD",
+   "phase": "DXE",
+   "size": 23882,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioIOMMUDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "41EF54AD-E2CA-4433-FD27-D9CACA621EAE",
+   "phase": "DXE",
+   "size": 29002,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioIOMMUDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "FECCA19A-D1D3-4CDD-B477-56573F58B1A3",
+   "phase": "DXE",
+   "size": 35478,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioAlibRNDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "AC3AE4F1-6050-4609-B701-6A90B0972E74",
+   "phase": "DXE",
+   "size": 43990,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioAlibDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "E904C5F2-AC68-46D6-AFDA-3A78D9F0CB8C",
+   "phase": "DXE",
+   "size": 44662,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioAlibDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "28AB63A9-5FB0-4C93-9C44-0DD8A1E9101D",
+   "phase": "DXE",
+   "size": 27670,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioAlibRVDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "4A3ED697-E9BC-40FE-BDD5-6F99FCDCE9F4",
+   "phase": "DXE",
+   "size": 42454,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioAlibZpDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "D4F90895-A60B-4E97-B446-2855246F8930",
+   "phase": "DXE",
+   "size": 2162,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioBaseRVDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "351D2427-262C-4A0B-874C-23703B4AA88D",
+   "phase": "DXE",
+   "size": 6550,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioBaseZPDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "D890F055-873A-4E6E-A79F-1B8DD2427FE4",
+   "phase": "DXE",
+   "size": 5558,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioBaseRnDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "4BEECAFE-5F02-432E-44B9-3CA5CA5DF189",
+   "phase": "DXE",
+   "size": 6486,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioBaseSspDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "D7908EC2-227A-472F-8095-6A159DD723D2",
+   "phase": "DXE",
+   "size": 29910,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioPcieRVDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "E0E2C90C-F1AD-4759-8EA9-5B4E770576CD",
+   "phase": "DXE",
+   "size": 31670,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioPcieZPDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "B7784107-973C-4957-905E-54455A47E07D",
+   "phase": "DXE",
+   "size": 28490,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioPcieDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "E1DB609A-D413-4791-C6EE-093D8BC047A4",
+   "phase": "DXE",
+   "size": 51210,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioPcieDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "5AD83885-8955-499B-8E9A-EBC24B6E76B1",
+   "phase": "DXE",
+   "size": 31802,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioSmuV9Dxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "ACDEA335-34B9-4FD0-A4B8-FA4DD0F73958",
+   "phase": "DXE",
+   "size": 38862,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmuV12DxeCZN",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "15E4C005-52C0-444C-8C94-56FFA04C7B36",
+   "phase": "DXE",
+   "size": 27482,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmuV12Dxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "871349B8-C7E6-443A-B9ED-91A41AFFFC82",
+   "phase": "DXE",
+   "size": 63546,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmuV11Dxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "9A29BBE9-74BB-41D3-BCAE-6B086E0FE0C5",
+   "phase": "DXE",
+   "size": 63194,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmuV11DxeVMR",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "6F960C35-FFED-4778-99A1-4D998CE519B9",
+   "phase": "DXE",
+   "size": 30570,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdNbioSmuV10Dxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "5466B9AA-EE2F-4FDB-84A3-A330BE1301FF",
+   "phase": "DXE",
+   "size": 8770,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E74CA1E2-6E5C-4F07-9831-8367B132DB89",
+   "phase": "DXE",
+   "size": 30906,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdPspDxeV2Rn",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "8B786703-E8C7-4BEA-8F07-CDF991B90999",
+   "phase": "DXE",
+   "size": 25050,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdPspDxeV2Rv",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "D14EA3F9-8BD2-49A3-A636-C6F6C08037D5",
+   "phase": "DXE",
+   "size": 30602,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdPspDxeV2Ssp",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "ED8FD9DC-2097-425E-B743-64EFB99D5F0D",
+   "phase": "DXE",
+   "size": 27062,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdPspDxeV2Zp",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "023B3AA9-098F-4027-B83F-B6407DA06569",
+   "phase": "DXE",
+   "size": 3634,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdPspFtpmDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "5B2820BB-9A8A-443D-A84C-73B925C5727A",
+   "phase": "DXE",
+   "size": 25814,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdApcbRvDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "2237C798-93E7-4119-B10C-CF75CD22BFE0",
+   "phase": "DXE",
+   "size": 26326,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdApcbZpDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "4D3708A0-6D9B-47D3-AD87-E80C781BC0A7",
+   "phase": "DXE",
+   "size": 33750,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdApcbDxeV3",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "FE6E1666-591E-4AB8-9531-2BF6433A3925",
+   "phase": "DXE",
+   "size": 9574,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "ApobRnDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "49FC00CF-BBD2-4FD4-B9D1-F084A51EB708",
+   "phase": "DXE",
+   "size": 9670,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "ApobSspDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "6BFF8B94-D98E-4C7E-8300-E5B64701C118",
+   "phase": "DXE",
+   "size": 10278,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "ApobZpRvDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "F1039C39-9299-41FE-8799-5EAFB668EE6C",
+   "phase": "DXE",
+   "size": 14638,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdRasRnApeiDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "E51CF66A-7D79-43D0-9EE8-0A2084BDEAD4",
+   "phase": "DXE",
+   "size": 8822,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdRasRnDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "3CD405CE-2D91-44E9-895D-4459EECD8F9A",
+   "phase": "DXE",
+   "size": 12302,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdRasRvApeiDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "0684C591-19E8-499D-978A-D715636F1DAB",
+   "phase": "DXE",
+   "size": 9018,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdRasRvDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "573A445F-4FB6-C2D3-2CC0-5B9C772CFB94",
+   "phase": "DXE",
+   "size": 14638,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdRasSspApeiDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "F71AAB75-41BE-C209-A324-9B963BBDCB26",
+   "phase": "DXE",
+   "size": 11946,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdRasSspDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "947B9E77-9231-449C-BED5-FD4051BD4E39",
+   "phase": "DXE",
+   "size": 9154,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSocAm4CznDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "CB9B43DD-4233-DB03-E0ED-ED89C0D09CAC",
+   "phase": "DXE",
+   "size": 9090,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSocAm4MtsDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "4FD14235-47A1-E350-123F-75925306279D",
+   "phase": "DXE",
+   "size": 6402,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSocAm4RnDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "90A06ED8-D514-4CC5-B11C-7743BEE24C55",
+   "phase": "DXE",
+   "size": 7458,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSocAm4RvDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "2ADB6E4C-C983-4140-A160-FBC7D6B450D9",
+   "phase": "DXE",
+   "size": 7810,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSocAm4SmDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "FE7D8450-446D-0F9E-FBE7-DBAFF5AF1FF0",
+   "phase": "DXE",
+   "size": 9218,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSocAm4VmrDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "729B3079-8913-4E12-AFEF-2CA264799469",
+   "phase": "DXE",
+   "size": 19354,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdAcpiDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "52A9B223-FAB8-4A24-AEA6-461A59BD3F33",
+   "phase": "DXE",
+   "size": 73146,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSmbiosDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "29D40F30-E8BF-4803-88A6-4247A29A5318",
+   "phase": "DXE",
+   "size": 1282,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdVersionDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "FEC445CC-2466-4DCE-9052-7400E044554F",
+   "phase": "DXE",
+   "size": 9730,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CbsBaseDxeZP",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "17AF0060-A98C-4A03-90AD-6ABED75045BD",
+   "phase": "DXE",
+   "size": 9666,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CbsBaseDxeRV",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "73E8D659-D2A2-4720-8316-B9BAD21E5A29",
+   "phase": "DXE",
+   "size": 6754,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CbsBaseDxeRN",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "338E6713-0295-4C05-A0BB-D945A4595F11",
+   "phase": "DXE",
+   "size": 9314,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CbsBaseDxeSSP",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "A5E369C8-ABF9-4B43-B212-FF1BFD35666D",
+   "phase": "DXE",
+   "size": 134110,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CbsSetupDxeZP",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "F27F4D0C-70E4-413B-A537-FF39A2199AA5",
+   "phase": "DXE",
+   "size": 156242,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CbsSetupDxeRN",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "3E7788CA-2BFC-4FCE-8122-5176CA492D9F",
+   "phase": "DXE",
+   "size": 133586,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CbsSetupDxeRV",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "8E38A88A-C267-4131-A8CD-C0BC80A24CB5",
+   "phase": "DXE",
+   "size": 198130,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CbsSetupDxeSSP",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "8E09C390-1B30-415E-AF5C-D42AB0160F8C",
+   "phase": "DXE",
+   "size": 1938,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiCbsDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "18EBDB3E-95C2-4725-AB63-74B478C475DE",
+   "phase": "DXE",
+   "size": 1218,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCpmSocAm4RvDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "2C6FF095-525C-4128-BD00-B8DA5E52A76E",
+   "phase": "DXE",
+   "size": 1218,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCpmSocAm4SmbRDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "BBB77CB9-762D-436C-AC40-8EE4901C3446",
+   "phase": "DXE",
+   "size": 48642,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdPbsSetupDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "8C8A2E6C-A56C-4A6C-8C9B-B4B6BB4208AE",
+   "phase": "DXE",
+   "size": 2674,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "NvmeRaidDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "E68C55B8-C77B-4F66-834F-D73BFB9F29B3",
+   "phase": "DXE",
+   "size": 11218,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AodDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "57E9EEE9-EB7D-4453-BBF7-6C138BF06458",
+   "phase": "DXE",
+   "size": 16230,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCpmDisplayFeatureDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "71032D4B-4B91-4EC1-AD53-81827FB43108",
+   "phase": "DXE",
+   "size": 3238,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCpmGpioInitDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "C5FA0EE8-2D81-4202-A021-3DA700B3DEAE",
+   "phase": "DXE",
+   "size": 5254,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCpmPcieInitDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "8A867F67-89D8-4134-BBBD-64BBAA5256F5",
+   "phase": "DXE",
+   "size": 1074,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCpmI2cDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "28374747-76FF-41B3-9740-381EFAEF13BC",
+   "phase": "DXE",
+   "size": 15666,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PspPlatformDriver",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "162793AA-0FE7-4010-9818-45F55C5CCC3E",
+   "phase": "DXE",
+   "size": 31842,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCpmInitDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "D60CF145-F97C-4085-A73D-8D399757DFE9",
+   "phase": "DXE",
+   "size": 4514,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiCpmWrapperDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "C178E415-6E49-469A-B73D-F6C5EB4101EB",
+   "phase": "DXE",
+   "size": 6070,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSpiRomProtectDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "1A1E4886-9517-440E-9FDE-3BE44CEE2136",
+   "phase": "DXE",
+   "size": 45618,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CpuDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "1DFB7BFA-BF8E-4D11-9766-2FB0D0442310",
+   "phase": "DXE",
+   "size": 2514,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiAgesaDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "C4ECA0B2-5277-4F2B-3ECB-E4175C94812E",
+   "phase": "DXE",
+   "size": 1122,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiExtraS3Memory",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "899407D7-99FE-43D8-9A21-79EC328CAC21",
+   "phase": "DXE",
+   "size": 1192846,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Setup",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "CCA91175-03E3-442A-B3B8-2E4A335C1DEA",
+   "phase": "DXE",
+   "size": 26966,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "16D0A23E-C09C-407D-A14A-AD058FDD0CA1",
+   "phase": "DXE",
+   "size": 10646,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "ACPI",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "9622E42C-8E38-4A08-9E8F-54F784652F6B",
+   "phase": "DXE",
+   "size": 18274,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AcpiTableDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "BDCE85BB-FBAA-4F4E-9264-501A2C249581",
+   "phase": "DXE",
+   "size": 13986,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "S3SaveStateDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "FA20568B-548B-4B2B-81EF-1BA08D4A3CEC",
+   "phase": "DXE",
+   "size": 37170,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "BootScriptExecutorDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "2BDED685-F733-455F-A840-43A22B791FB3",
+   "phase": "DXE",
+   "size": 1462,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AcpiS3SaveDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "00160F8D-2B35-4DF2-BBE0-B272A8D631F0",
+   "phase": "DXE",
+   "size": 4914,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FirmwarePerformanceDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "C74F06D2-ED92-489B-879C-C0E428A22167",
+   "phase": "DXE",
+   "size": 348754,
+   "ui": null,
+   "version_string": "9.3.0.00308",
+   "join_name": "UefiRaid",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "164E5590-FB7A-47B9-8687-3E91DA499D97",
+   "phase": "DXE",
+   "size": 7190,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiAmdUefiRaid",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "1ED46147-76E3-4171-BCE5-42D368D26AA6",
+   "phase": "DXE",
+   "size": 3474,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "DebugPortTableDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "4E82091E-32A1-4689-8A00-CDE41ED63CDD",
+   "phase": "DXE",
+   "size": 7074,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SioDxeInit",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "B7EE4835-84CE-4B15-BF52-2D11574CE470",
+   "phase": "DXE",
+   "size": 7970,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "HardwareSignatureEntry",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "00364A4C-6A0A-4F08-8FFD-0937F3DBB13E",
+   "phase": "DXE",
+   "size": 2882,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "IdeBusBoard",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "80E66E0A-CCD1-43FA-A7B1-2D5EE0F13910",
+   "phase": "DXE",
+   "size": 32606,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PciRootBridge",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "8F3F1DE2-2FE4-4D5C-A8EC-49E8CCA17EBC",
+   "phase": "DXE",
+   "size": 7426,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "RsdpPlus",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "271B424E-A4CC-4E0E-90A2-7EA4841F12F3",
+   "phase": "DXE",
+   "size": 3266,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "ExportHiiDb",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "580DD900-385D-11D7-883A-00500473D4EB",
+   "phase": "DXE",
+   "size": 72818,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Uhcd",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "171F43DC-C4D9-47A6-9641-65DDCDD5AA30",
+   "phase": "DXE",
+   "size": 118130,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "UsbRtDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "4C006CD9-19BA-4617-8483-609194A1ACFC",
+   "phase": "DXE",
+   "size": 5158,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "UsbInt13",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "21891A9E-763E-4377-8841-8D5C90D88C51",
+   "phase": "DXE",
+   "size": 2994,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "NetworkStackSetupScreen",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "9F3A0016-AE55-4288-829D-D55FD3AAC347",
+   "phase": "DXE",
+   "size": 4290,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiBoardInfo2",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "70E1A818-0BE1-4449-BFD4-9EF68C7F02A8",
+   "phase": "DXE",
+   "size": 38654,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "ReFlash",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "D57C852E-809F-45CF-A377-D77BC0CB78EE",
+   "phase": "DXE",
+   "size": 22710,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A9B700CF-019E-4D8B-A3A7-88E1EA01699E",
+   "phase": "DXE",
+   "size": 25890,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "HddSecurity",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "999BD818-7DF7-4A9A-A502-9B75033E6A0F",
+   "phase": "DXE",
+   "size": 6214,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "EsrtDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "C9A6DE36-FDFF-4FAF-8343-85D9E3470F43",
+   "phase": "DXE",
+   "size": 1990,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "NvmeInt13",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "668706B2-BCFC-4AD4-A185-75E79F3FE169",
+   "phase": "DXE",
+   "size": 32246,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "NvmeDynamicSetup",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "59AF16B0-661D-4865-A381-38DE68385D8D",
+   "phase": "DXE",
+   "size": 6690,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "OpalSecurity",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "0A845224-8675-4241-8AE9-4D94C93DEB90",
+   "phase": "DXE",
+   "size": 13238,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PauseKey",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "B981A835-6EE8-4F4C-AE0B-210AA0BFBF01",
+   "phase": "DXE",
+   "size": 4738,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "RngDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "D4395796-6F4C-4C6B-B9D1-92DAA7199A84",
+   "phase": "DXE",
+   "size": 7682,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiRedFishApi",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "95ECB758-627E-4A2E-B7B8-DC863EFE3425",
+   "phase": "DXE",
+   "size": 7554,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiDeviceGuardApi",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "AD3D267D-50E1-4B94-95D3-1025EF5B8391",
+   "phase": "DXE",
+   "size": 5446,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SecFlashUpdDXE",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "CEF68C66-06AB-4FB3-A3ED-5FFA885B5725",
+   "phase": "DXE",
+   "size": 17110,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmbiosBoard",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "DED7956D-7E20-4F20-91A1-190439B04D5B",
+   "phase": "DXE",
+   "size": 3538,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmbiosGetFlashData",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "7D6DF4FD-3650-4E77-BF3A-84DC988A025C",
+   "phase": "DXE",
+   "size": 50466,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TcgStorageSecurity",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "7B668A4F-45E1-4A26-8DEC-81A4A1E58888",
+   "phase": "DXE",
+   "size": 1058,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PspDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "A77C8452-0821-4544-AE47-257489855F91",
+   "phase": "DXE",
+   "size": 14130,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiPspNvramDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "369DE372-AB36-4CE1-8E45-8806B76DD70F",
+   "phase": "DXE",
+   "size": 10854,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PspResource",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "C0EE640C-B469-4EB1-8F11-46ACA1427307",
+   "phase": "DXE",
+   "size": 8450,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "97AF1D95-203C-42DE-8D6B-D13EB7E5A55A",
+   "phase": "DXE",
+   "size": 14146,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "DB35F260-9C7C-43BC-AAD2-2313B9E8A758",
+   "phase": "DXE",
+   "size": 4226626,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "177B2C74-9674-45F4-AAEB-43F5506AE0FE",
+   "phase": "DXE",
+   "size": 29570,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "54AB7A17-AD08-4F86-83C2-4CF398EBC0AD",
+   "phase": "DXE",
+   "size": 9186,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "F9F5318B-D0ED-4CA8-BE91-1881CEB57F1B",
+   "phase": "DXE",
+   "size": 3846,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "F7ECF277-CD66-4DE8-A425-1D9F899492A7",
+   "phase": "DXE",
+   "size": 4050,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "9501D08D-E19D-4C6B-8DCE-08C5796FBE8C",
+   "phase": "DXE",
+   "size": 3682,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A1902AB9-5394-45F2-857A-12824213EEFB",
+   "phase": "DXE",
+   "size": 7110,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "60741965-84A0-4191-A04F-DF907E6E1F1E",
+   "phase": "DXE",
+   "size": 93782,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "C7A822FA-8FF3-4B43-8A45-BFDA0D1F6668",
+   "phase": "DXE",
+   "size": 79222,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "7E68F4F6-3E06-4452-9678-50ED01A209C4",
+   "phase": "DXE",
+   "size": 75478,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "350E108F-D97A-403C-80C3-07F3AB091AF0",
+   "phase": "DXE",
+   "size": 74358,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "B60BCA70-C90F-4808-8210-5A08BCD69A43",
+   "phase": "DXE",
+   "size": 74230,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "5A91B539-5D1E-46E3-A832-2ABA925863FF",
+   "phase": "DXE",
+   "size": 74390,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "36C117E6-62D3-4624-8550-1168226718AB",
+   "phase": "DXE",
+   "size": 3618,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "C8FD26C4-68B3-4C0D-B06F-338033D61A93",
+   "phase": "DXE",
+   "size": 7218,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "5C0FB3B9-F7BB-467B-A4DC-89D7D5A58432",
+   "phase": "DXE",
+   "size": 18402,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "98584C0B-49D6-4BAF-B542-ECEE2582409C",
+   "phase": "DXE",
+   "size": 22562,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "4EB43107-09AC-49F6-B9DE-16778C13E446",
+   "phase": "DXE",
+   "size": 4194,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "AFB436A3-CE6E-4106-BFA8-ECF7EB1B6486",
+   "phase": "DXE",
+   "size": 7458,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E6667FE9-F8C3-4BC6-8748-F875C12D9BB0",
+   "phase": "DXE",
+   "size": 3298,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "28451AA4-B4C4-4AA9-BE3A-1BBCC2E5553A",
+   "phase": "DXE",
+   "size": 13958,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "062A6204-8C80-4A27-9D09-96654C965894",
+   "phase": "DXE",
+   "size": 3910,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "40B086C3-95B5-444F-A895-CBF484A19A0F",
+   "phase": "DXE",
+   "size": 7142,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "31D244BB-0453-443B-877D-30A86734C101",
+   "phase": "DXE",
+   "size": 18966,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "B11E930D-A082-42E2-A7F2-C63767A4D3E7",
+   "phase": "DXE",
+   "size": 12434,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "AF1450C2-70DE-44D5-80B1-B90D44277990",
+   "phase": "DXE",
+   "size": 10310,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "85DB8287-B268-4DF4-9226-7302B211E303",
+   "phase": "DXE",
+   "size": 4338,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "D05173F7-7683-4C35-843A-39B307142E95",
+   "phase": "DXE",
+   "size": 16434,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "2240157B-A45A-46EB-9A7E-1E79C4781FD7",
+   "phase": "DXE",
+   "size": 12658,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "53D7E8EC-56F5-4F9C-8198-7BFB2ED4E05E",
+   "phase": "DXE",
+   "size": 3238,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "B90510C4-A6DE-4E45-A50C-A46CCAFEEF91",
+   "phase": "DXE",
+   "size": 12434,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "4E37AEAE-F9D7-464D-9969-0FFBEB6F423F",
+   "phase": "DXE",
+   "size": 4706,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "1DACE8EE-CD97-491E-8A0C-305D6437323C",
+   "phase": "DXE",
+   "size": 20794,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E7428F24-EF0C-4AE4-B521-9D247494900E",
+   "phase": "DXE",
+   "size": 4546,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "70943B04-3B8A-4F08-A412-F97C5B02F6BE",
+   "phase": "DXE",
+   "size": 4642,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "C522E695-93FF-4AC7-8220-F849C68C538F",
+   "phase": "DXE",
+   "size": 5538,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "1400F9E6-4BAB-4B68-A53F-58FD240818E6",
+   "phase": "DXE",
+   "size": 2850,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "1202A8F2-99C7-4521-AED5-148C9D6B39C9",
+   "phase": "DXE",
+   "size": 9538,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "84CDF313-73BD-47C5-A810-81A2477154AA",
+   "phase": "DXE",
+   "size": 11274,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E98D33CD-1AEB-46B1-A4B6-0BB4CC655C26",
+   "phase": "DXE",
+   "size": 11954,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "1BA1B581-7DF4-4E46-8F55-9E7B86B5E5FF",
+   "phase": "SMM",
+   "size": 11402,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "B6C1C466-E78A-4202-801A-B7950E956E0B",
+   "phase": "DXE",
+   "size": 4258,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "42857F0A-13F2-4B21-8A23-53D3F714B840",
+   "phase": "DXE",
+   "size": 7250,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CapsuleRuntimeDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "B601F8C4-43B7-4784-95B1-F4226CB40CEE",
+   "phase": "DXE",
+   "size": 7746,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "RuntimeDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "2FA2A6DA-11D5-4DC3-999A-749648B03C56",
+   "phase": "DXE",
+   "size": 15462,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PiSmmIpl [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "41B13735-0E0A-4F67-96D1-B15DA28205FA",
+   "phase": "DXE",
+   "size": 9282,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E23F86E1-056E-4888-B685-CFCD67C179D4",
+   "phase": "DXE",
+   "size": 17474,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SbRun",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "510DF6A1-B6C1-4948-AEE7-59F220F898BD",
+   "phase": "DXE",
+   "size": 12130,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SataController",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "0D42E9AB-5DDE-4CAC-A485-0215C252717F",
+   "phase": "DXE",
+   "size": 8842,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSmmControl",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "7C604CBD-5440-46E1-97F7-A4DF8DD09C1C",
+   "phase": "DXE",
+   "size": 8842,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSmmControl",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "F7673C6A-9C5C-4C54-B086-C6E0B7D03DB8",
+   "phase": "DXE",
+   "size": 8842,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSmmControl",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "688BC4BB-6FDB-4B33-A8E1-D7A952DF4B4A",
+   "phase": "DXE",
+   "size": 8842,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSmmControl",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "77EB6C06-FD48-488B-A1B3-AE0A70801369",
+   "phase": "DXE",
+   "size": 64066,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CryptoDXE",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "755877A6-4F10-4A5C-9B2E-852123B9682C",
+   "phase": "DXE",
+   "size": 11346,
+   "ui": null,
+   "version_string": "0.0",
+   "join_name": "FlashSmiDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "768BEDFD-7B4B-4C9F-B2FF-6377E3387243",
+   "phase": "DXE",
+   "size": 20866,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "NTFS",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "BB8C2CF3-A5E3-49EF-941B-4A01FAC6FD5F",
+   "phase": "DXE",
+   "size": 4726,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmiFlashDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "C7A7030C-C3D8-45EE-BED9-5D9E76762953",
+   "phase": "DXE",
+   "size": 17474,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "MouseDriver",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "628A497D-2BF6-4264-8741-069DBD3399D6",
+   "phase": "DXE",
+   "size": 31750,
+   "ui": null,
+   "version_string": "0.1",
+   "join_name": "ConSplitter",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "43E7ABDD-E352-4CFB-A230-4CDC1D350E5C",
+   "phase": "DXE",
+   "size": 22122,
+   "ui": null,
+   "version_string": "0.1",
+   "join_name": "GraphicsConsole",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "6B38F7B4-AD98-40E9-9093-ACA2B5A253C4",
+   "phase": "DXE",
+   "size": 7850,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "DiskIoDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "1FA1F39E-FEFF-4AAE-BD7B-38A070A3B609",
+   "phase": "DXE",
+   "size": 16426,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PartitionDxe [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "8F5A2E02-538C-4D59-B920-C4786ACBC552",
+   "phase": "DXE",
+   "size": 35714,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Ahci",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "0C989D41-F4B4-4244-9D7F-E9FFB4163273",
+   "phase": "DXE",
+   "size": 6602,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FastBootOption",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "D5D52FED-F8A6-49AC-97AC-7291A60405A6",
+   "phase": "DXE",
+   "size": 9226,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "8EEF9AD2-463E-425F-A4FE-2F6783D6F97E",
+   "phase": "DXE",
+   "size": 27466,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "GenericSio",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "AAECDC89-2A49-46F1-A163-F7979C039998",
+   "phase": "DXE",
+   "size": 34470,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "IdeBusSrc",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "3C1DE39F-D207-408A-AACC-731CFB7F1DD7",
+   "phase": "DXE",
+   "size": 80714,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PciBus",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "3780B594-32A4-4593-B8CE-8A3F404F61F4",
+   "phase": "DXE",
+   "size": 1514,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PlatformToDriver",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "5FECEF6B-5FA4-4570-8163-0CF72A9C04C5",
+   "phase": "DXE",
+   "size": 24710,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Ps2Main",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "2E3AB8B6-AC9D-4D70-A675-54F52FB22D66",
+   "phase": "DXE",
+   "size": 9542,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AtaPassThru",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "961578FE-B6B7-44C3-AF35-6BC705CD2B1F",
+   "phase": "DXE",
+   "size": 27882,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Fat [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "634E8DB5-C432-43BE-A653-9CA2922CC458",
+   "phase": "DXE",
+   "size": 32066,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Nvme",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "2F2295B6-1BB6-4CB7-BB9E-15C2C3424277",
+   "phase": "DXE",
+   "size": 16010,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PcieSataController",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "7A54B36F-F745-462C-B11F-16E03E52B617",
+   "phase": "DXE",
+   "size": 68642,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "27F51949-1577-4CF6-B2E2-AE9392A4EBB7",
+   "phase": "DXE",
+   "size": 12438,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E6EDCD6E-6F99-43D3-ABFA-E3E683683AB6",
+   "phase": "DXE",
+   "size": 4802,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E94F54CD-81EB-47ED-AEC3-856F5DC157A9",
+   "phase": "SMM-core",
+   "size": 44586,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PiSmmCore [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "0C375A90-4C4C-4428-8EA0-531BE8959BF7",
+   "phase": "SMM",
+   "size": 27766,
+   "ui": null,
+   "version_string": "0.0",
+   "join_name": "FlashDriverSmm",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "447A1B58-8F3E-4658-ABAA-9E7B2280B90A",
+   "phase": "SMM",
+   "size": 57534,
+   "ui": null,
+   "version_string": "0.0",
+   "join_name": "NvramSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "A47EE2D8-F60E-42FD-8E58-7BD65EE4C29B",
+   "phase": "SMM",
+   "size": 4690,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CpuIo2Smm [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "33FB3535-F15E-4C17-B303-5EB94595ECB6",
+   "phase": "SMM",
+   "size": 7250,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmmLockBox [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "391626DB-3CEC-4339-A3D6-9CDFF4690E12",
+   "phase": "SMM",
+   "size": 17510,
+   "ui": null,
+   "version_string": "0.0",
+   "join_name": "PrepareWhiteListSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "5CEBCDE6-1096-4FE2-9921-5F8E25281A3E",
+   "phase": "SMM",
+   "size": 7818,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CpuSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "51080191-ED06-4AA0-BFD7-F04837CF70DB",
+   "phase": "SMM",
+   "size": 5734,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SbRomArmorSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "C99E42D0-4964-4B09-B924-4A59E13E4F04",
+   "phase": "SMM",
+   "size": 13466,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SbRunSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "6298FE18-D5EF-42B7-BB0C-295328569842",
+   "phase": "SMM",
+   "size": 3702,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "ResetSmi",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "B40637B3-4270-4D2F-B2B5-D41CFC4E0A56",
+   "phase": "SMM",
+   "size": 4214,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CapsuleSmi",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "6298FE18-D5EF-42B7-BB0C-2953283F5704",
+   "phase": "SMM",
+   "size": 10378,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SleepSmi",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "87EA012D-CBAD-44C1-8431-61193A060941",
+   "phase": "SMM",
+   "size": 4214,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PeriodicSmiControl",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "E566B097-4378-485F-91D0-1C097C190CE2",
+   "phase": "SMM",
+   "size": 3702,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PowerButton",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "0FD41E0B-C4DF-4B4B-863D-17C0DBD6EF56",
+   "phase": "SMM",
+   "size": 4234,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SbSmi",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "750890A6-7ACF-4F4F-81BD-B400C2BEA95A",
+   "phase": "SMM",
+   "size": 8842,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AcpiModeEnable",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "E53734A3-E594-4C25-B1A2-081445650F7F",
+   "phase": "SMM",
+   "size": 10890,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmmChildDispatcher2",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "BC3245BD-B982-4F55-9F79-056AD7E987C5",
+   "phase": "SMM",
+   "size": 11858,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AhciSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "501F30E9-D14F-47DA-AE60-B101E4189D07",
+   "phase": "SMM",
+   "size": 11402,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AhciInt13Smm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "79DE6AEF-BE2D-4BB2-ACBF-0A67E289DBAF",
+   "phase": "SMM",
+   "size": 9390,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCcxVhSmm",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "6E5950E5-8610-4AC9-9153-A3D352124A7A",
+   "phase": "SMM",
+   "size": 9390,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCcxVhRnSmm",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "B759169B-61E2-4F92-9447-23E3DCD33CEC",
+   "phase": "SMM",
+   "size": 9882,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCcxZenRvSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "317BC006-9056-42C8-A1C1-92A1AABBC9EE",
+   "phase": "SMM",
+   "size": 9918,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCcxZenZpSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "61631080-5573-4310-9AC5-0BAFC95E1C1B",
+   "phase": "SMM",
+   "size": 9390,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCcxZen3Smm",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "72B4CDB4-B297-4747-B1BA-5A4839D332AE",
+   "phase": "SMM",
+   "size": 11382,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdFabricRnSmm",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "C1B135AA-7ACB-45D0-80B7-862B8D5F0CD5",
+   "phase": "SMM",
+   "size": 11382,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdFabricRvSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "FB8CE09B-A0DE-467E-9DC6-4465F5987676",
+   "phase": "SMM",
+   "size": 11382,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdFabricSspSmm",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "2E97EA24-5866-4240-A891-D20AFC6074FF",
+   "phase": "SMM",
+   "size": 11382,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdFabricZpSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "E9D7735D-06E2-47B7-B856-2A20138FAEA4",
+   "phase": "SMM",
+   "size": 37674,
+   "ui": null,
+   "version_string": "1.1",
+   "join_name": "FchHuashanSmmInit",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "82ADB73C-E005-4E07-976D-F7F75314EC4F",
+   "phase": "SMM",
+   "size": 24730,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchSmmDispatcher",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "F7DFDECF-9C36-4D43-85A4-6D92DAFC3477",
+   "phase": "SMM",
+   "size": 5366,
+   "ui": null,
+   "version_string": "1.1",
+   "join_name": "FchPromontoryGpioSmmInit",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "4220AB9B-1730-49C5-A89F-B471CF43B221",
+   "phase": "SMM",
+   "size": 5366,
+   "ui": null,
+   "version_string": "1.1",
+   "join_name": "FchPromontorySmmInit",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "652EC62A-DC15-4B73-B6BD-DAA13BF1D88C",
+   "phase": "SMM",
+   "size": 8346,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Cf9ResetSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "4A69756B-209B-4D57-8810-142DAC6BB7B5",
+   "phase": "SMM",
+   "size": 38682,
+   "ui": null,
+   "version_string": "1.1",
+   "join_name": "FchSandstoneSmmInit",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "ADA1C665-7A8A-467C-84EA-7172B2B65862",
+   "phase": "SMM",
+   "size": 11950,
+   "ui": null,
+   "version_string": "1.1",
+   "join_name": "FchSSSataD3ColdSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "2FE607A1-B7D3-41D6-BE4A-DA60BD1CAAAC",
+   "phase": "SMM",
+   "size": 21146,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchSmmDispatcher",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "17AAF4D7-0E18-4B99-87C6-94C8B5F25FB4",
+   "phase": "SMM",
+   "size": 31002,
+   "ui": null,
+   "version_string": "1.1",
+   "join_name": "FchShastaSmmInit",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "347B85F0-E917-4E74-85BA-F494071EEE52",
+   "phase": "SMM",
+   "size": 10926,
+   "ui": null,
+   "version_string": "1.1",
+   "join_name": "FchSHSataD3ColdSmm",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "E048749B-68A4-40C2-9A83-DC2AB34819A8",
+   "phase": "SMM",
+   "size": 23194,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchSmmDispatcher",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "983DC43F-8D09-442A-8A97-B4B6BB0E6D8A",
+   "phase": "SMM",
+   "size": 5258,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Cf9ResetSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "00B8E6B5-83CE-448A-8AC6-CCBC9D5F3BE3",
+   "phase": "SMM",
+   "size": 34586,
+   "ui": null,
+   "version_string": "1.1",
+   "join_name": "FchTaishanSmmInit",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "0948381E-0B3D-43A9-8E03-F2489F2B9E2E",
+   "phase": "SMM",
+   "size": 21678,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FchSmmDispatcher",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "4759E93E-8F44-448F-88A1-BD97FC47BEA5",
+   "phase": "SMM",
+   "size": 25298,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdPspP2CmboxV2",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "5E566252-4F6C-071A-485D-C0B6CD6D05EF",
+   "phase": "SMM",
+   "size": 7286,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdPspP2CmboxV2SmmBuffer",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "07F6A3D8-9320-4BCB-BA8B-4FA6055D909D",
+   "phase": "SMM",
+   "size": 25298,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdPspP2CmboxV2Ssp",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "5A665BC5-9EC5-4230-AF45-27AD9D5E8DEA",
+   "phase": "SMM",
+   "size": 7286,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdPspP2CmboxV2SspSmmBuffer",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "6169AB1C-B05F-4D9C-AFEA-192911E41CE2",
+   "phase": "SMM",
+   "size": 15606,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdPspSmmV2",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "EA94D9D6-BE8B-4BD0-9481-B04348165CFB",
+   "phase": "SMM",
+   "size": 15606,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdPspSmmV2Ssp",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "97A03375-250D-4C59-93A8-F76796725E18",
+   "phase": "SMM",
+   "size": 27310,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdApcbRvSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "599438A7-4292-4977-8C06-FFC16C445E83",
+   "phase": "SMM",
+   "size": 29358,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdApcbZpSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "B1BAC051-D5C2-4AC1-AC7D-9D2F518A1E7B",
+   "phase": "SMM",
+   "size": 34990,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdApcbSmmV3",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "164CE56B-5EBC-4984-B0DA-C12B4F21D2EC",
+   "phase": "SMM",
+   "size": 21182,
+   "ui": null,
+   "version_string": "1.1",
+   "join_name": "AmdRasRvSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "EE8175EF-4C60-82AF-F5E2-8A9EF1FC0A9A",
+   "phase": "SMM",
+   "size": 25278,
+   "ui": null,
+   "version_string": "1.1",
+   "join_name": "AmdRasSspSmm",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "64E6D006-E62A-481E-8F5A-3F76C9184741",
+   "phase": "SMM",
+   "size": 8310,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdSmmCommunication",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "C2C0E2E1-CBDB-454C-8F27-96ACEE196367",
+   "phase": "SMM",
+   "size": 25754,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "BctBaseSmmZP",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "77509744-7507-4B5C-BF6C-3BAB83652F4D",
+   "phase": "SMM",
+   "size": 13978,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "BctBaseSmmRV",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "DC66C1E2-C114-4D0C-ACC0-003F15B3F729",
+   "phase": "SMM",
+   "size": 12442,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "BctBaseSmmRN",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "0F647B12-5FA2-4B5E-9D61-2AB3C51F224E",
+   "phase": "SMM",
+   "size": 13978,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "BctBaseSmmSSP",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "D8367B27-7A08-4AC5-AD1F-C93C3E94225E",
+   "phase": "SMM",
+   "size": 21182,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AodSmmRv",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "5EA93CAF-A8DD-4400-9FF6-FE343BCAF308",
+   "phase": "SMM",
+   "size": 24274,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AodSmmSsp",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "AAF875D2-0968-4585-A40A-B35C9FE0CAEC",
+   "phase": "SMM",
+   "size": 21694,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AodSmmZp",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "C70522D0-0DDB-4623-AAB7-B84DFC47EFFD",
+   "phase": "SMM",
+   "size": 24786,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AodSmmSsp",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "30AF4110-A58E-4EF7-8C75-B725939B3B9F",
+   "phase": "SMM",
+   "size": 13962,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCpmDisplayFeatureSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "CD1C556B-62BF-4EEC-8E73-7731F8E847B2",
+   "phase": "SMM",
+   "size": 5238,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCpmGpioInitSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "30AF1245-A58E-4EF7-8C75-B725939B3B9F",
+   "phase": "SMM",
+   "size": 31334,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmdCpmInitSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "E21F35A8-42FF-4050-82D6-93F7CDFA7073",
+   "phase": "SMM",
+   "size": 6262,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PiSmmCommunicationSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "A3FF0EF5-0C28-42F5-B544-8C7DE1E80014",
+   "phase": "SMM",
+   "size": 38006,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PiSmmCpuDxeSmm [census module]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "2216614E-CDBE-46E7-BA61-9BD2BC640393",
+   "phase": "SMM",
+   "size": 4178,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiPspFlashSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "2AD511C7-1B60-4002-841D-2998DDC138EE",
+   "phase": "SMM",
+   "size": 65126,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CryptoSMM",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "2D59F041-53A4-40D0-A6CD-844DC0DFEF17",
+   "phase": "SMM",
+   "size": 15974,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmmS3SaveState",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "044310AB-77FD-402A-AF1A-87D4120E7329",
+   "phase": "SMM",
+   "size": 7286,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FirmwarePerformanceSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "2486829B-D3F3-47EC-827A-FC104907FC5C",
+   "phase": "SMM",
+   "size": 14454,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmmGenericSio",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "37A01080-2346-4A54-9900-D22B7B687C22",
+   "phase": "SMM",
+   "size": 15534,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmmPciRbIo",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "BE216BA8-38C4-4535-A6CA-5DCA5B43ADDF",
+   "phase": "SMM",
+   "size": 9334,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmiVariable",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "04EAAAA1-29A1-11D7-8838-00500473D4EB",
+   "phase": "SMM",
+   "size": 130678,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "UsbRtSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "E90A7B5E-37B2-43E4-B281-4C8E349045E9",
+   "phase": "SMM",
+   "size": 9318,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "ReFlashSmm",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "4A6D890F-93C3-4B6D-A67D-5F2C4DCE347B",
+   "phase": "SMM",
+   "size": 5202,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "RuntimeSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "6C289241-E240-483F-9E3E-872C0396B599",
+   "phase": "SMM",
+   "size": 5750,
+   "ui": null,
+   "version_string": "0.0",
+   "join_name": "FlashSmiSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "316B1230-0500-4592-8C09-EABA0FB6B07F",
+   "phase": "SMM",
+   "size": 12426,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E5E2C9D9-5BF5-497E-8860-94F81A09ADE0",
+   "phase": "SMM",
+   "size": 13430,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "NvmeSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "57E56594-CE95-46AD-9531-3C49310CA7CE",
+   "phase": "SMM",
+   "size": 22134,
+   "ui": null,
+   "version_string": "2.0",
+   "join_name": "Ofbd",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "316B1230-0500-4592-8C09-EABA0FB6B078",
+   "phase": "SMM",
+   "size": 7782,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmmPcieSataController",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "3370A4BD-8C23-4565-A2A2-065FEEDE6080",
+   "phase": "SMM",
+   "size": 22738,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SecSMIFlash",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "E2A74738-8934-48F5-8412-99E948C8DC1B",
+   "phase": "SMM",
+   "size": 23230,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmbiosDmiEdit",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "BC327DBD-B982-4F55-9F79-056AD7E987C5",
+   "phase": "SMM",
+   "size": 38042,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmiFlash",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "6B85F263-F584-44F8-BB5D-F02C40795D8E",
+   "phase": "SMM",
+   "size": 18058,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmmTcgStorageSec",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "805D1C5A-EF12-490A-9E7B-9F4AA2F97E73",
+   "phase": "SMM",
+   "size": 5750,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiPspNvramSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "DA2122B3-454C-4321-8F43-8A610AFFEB80",
+   "phase": "SMM",
+   "size": 3702,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "PspResumeServicesSmm",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "6B35FEF5-022F-4596-8422-59AFA264C03A",
+   "phase": "SMM",
+   "size": 40622,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "64BEA199-7C6C-4F51-B0DA-F42C897DA5CC",
+   "phase": "SMM",
+   "size": 33894,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "34F85EE2-93C2-4481-B710-D3490CCA6333",
+   "phase": "SMM",
+   "size": 7798,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A420567C-EDE8-45AE-8117-D7773CADC374",
+   "phase": "SMM",
+   "size": 7306,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A3D5ABB6-9DA4-43EE-BE3B-BDC47D70F8FA",
+   "phase": "SMM",
+   "size": 7286,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "6D41FD71-562B-45C1-8C93-53AD8A28EABB",
+   "phase": "SMM",
+   "size": 12426,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "174CF46D-B167-4E6A-B1CD-D41E24EFA0F9",
+   "phase": "SMM",
+   "size": 7834,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "D4DCD37C-90A3-406E-B193-323C6AAC2428",
+   "phase": "SMM",
+   "size": 21110,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "FAA07084-2F2C-480B-BD1B-362093B75468",
+   "phase": "SMM",
+   "size": 7286,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "221F1D4F-034C-4BEA-B2BB-B7A9672B06D7",
+   "phase": "SMM",
+   "size": 11950,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CrbSmi",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "3F78CB8D-72EE-414E-B023-DACA003EFCDE",
+   "phase": "SMM",
+   "size": 16558,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "D36DDD2D-1C66-4210-B77A-2FD9F920E51F",
+   "phase": "SMM",
+   "size": 11438,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "03E51535-D1B9-4745-9BC6-9DA7F6468438",
+   "phase": "SMM",
+   "size": 14014,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "3B68E4AC-78DC-4198-B5B0-9F341E503B7D",
+   "phase": "SMM",
+   "size": 11402,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "3642B53D-2697-4909-AEA2-796546B2ABAE",
+   "phase": "freeform",
+   "size": 44155,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "89D41B4B-42AE-47BA-BA77-87D3BD829E86",
+   "phase": "freeform",
+   "size": 45094,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "8FF19984-0343-4FC7-9059-B41D13F01B89",
+   "phase": "freeform",
+   "size": 45097,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "89D41B4B-42AE-47BA-BA77-87D3BD829E11",
+   "phase": "freeform",
+   "size": 44144,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "DB19CF1F-0B69-460B-98D8-08628073E241",
+   "phase": "freeform",
+   "size": 104,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "63819805-67BB-46EF-AA8D-1524A19A01E4",
+   "phase": "freeform",
+   "size": 20146,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A9F743CA-72A3-4DEF-810C-8F654DAD3A84",
+   "phase": "freeform",
+   "size": 633,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "50971CB2-B4AA-4D90-A221-D8E6A243493B",
+   "phase": "freeform",
+   "size": 219,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "CFFB4188-99B7-476B-AA7F-82EAA1D8CDCB",
+   "phase": "freeform",
+   "size": 2207,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "50971CE2-B4AA-4D90-A222-D8E6A6645932",
+   "phase": "freeform",
+   "size": 64,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "B2B0063D-9326-46F0-8365-25484896F51B",
+   "phase": "freeform",
+   "size": 109,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "8E1C914F-82F6-4AD6-BAE2-C1A33B19B9B1",
+   "phase": "freeform",
+   "size": 15570,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "07D279A1-34E4-4168-993B-178B3ACC68EF",
+   "phase": "DXE",
+   "size": 104594,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AodSetupDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "55538D1E-B4C5-4BD5-B594-9B5BA9774F1E",
+   "phase": "DXE",
+   "size": 105554,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AodSetupDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "A2702A3C-62FD-402D-B8C3-1D18F6C6FDE5",
+   "phase": "DXE",
+   "size": 105554,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AodSetupDxe",
+   "join_source": "ui-gigabyte-b450-aorus-pro"
+  },
+  {
+   "guid": "3C673CCC-25E0-454B-A4B9-108FB8CAAC1A",
+   "phase": "freeform",
+   "size": 5514,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "96A507FB-20F6-44F3-9B91-75ABD0E0493B",
+   "phase": "freeform",
+   "size": 4317,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "5D263214-3BB4-43CC-B203-87D4B1F9E6F2",
+   "phase": "freeform",
+   "size": 4325,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "652EF761-119A-4FD2-B21E-EFD83493BA5A",
+   "phase": "freeform",
+   "size": 4313,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "1CC2006D-FABC-4936-A552-DC1EC2A444D0",
+   "phase": "freeform",
+   "size": 4317,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "78DB63B7-E9F4-4244-90C6-F5845912EB3B",
+   "phase": "freeform",
+   "size": 629,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "245031A5-33E6-4962-9B66-95CF63263666",
+   "phase": "freeform",
+   "size": 734,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "9D695853-A840-4670-9DAE-951116E81151",
+   "phase": "freeform",
+   "size": 3355,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E751E272-9D7A-4E8F-8BB4-522152E8EB49",
+   "phase": "freeform",
+   "size": 3439,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "C7E9B6A4-7149-4135-BDFC-B8327BBC9325",
+   "phase": "freeform",
+   "size": 1352,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E0EC8F82-FD17-4F8D-8DFF-A4CFFBE74C4D",
+   "phase": "freeform",
+   "size": 168,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "AFFF8088-6ABC-4EBE-91E5-BB6414EF2488",
+   "phase": "freeform",
+   "size": 4299,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "5B1E5B38-8EBD-4784-9B52-38B2AA9BFF2F",
+   "phase": "freeform",
+   "size": 14328,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "C118F50D-391D-45F4-B3D3-11BC931AA56D",
+   "phase": "freeform",
+   "size": 45097,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "709E6472-1BCD-43BD-8B6B-CD2D6D08B967",
+   "phase": "freeform",
+   "size": 184,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E998C6D8-572B-4E18-96CC-031EA3DD558C",
+   "phase": "freeform",
+   "size": 2244,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "3DD936F6-59F7-4698-8953-8657F9AC65BB",
+   "phase": "freeform",
+   "size": 184,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "5DA03A14-28E4-49CF-885B-AB589A477703",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "00103A21-16AC-4509-AB00-2FF733258336",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "773E94C8-BF6D-4540-9ACC-BA0D0D337147",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "772A1AAD-BA92-4045-8327-D921F421C47E",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A76585AA-5398-45C5-889F-D0403C6D22E1",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "773E94C8-BF6D-4540-9ACC-BA0D0D337148",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "48B11B5B-6A7E-418D-B485-5F3B8B56B631",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "D421F340-251B-40FA-ADCA-625F6DD218FB",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "6DC3AE5F-8F3E-415B-AAFD-1703050DE83C",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E3BA1793-5D2D-4A08-9DE4-D86035DEE96B",
+   "phase": "freeform",
+   "size": 184,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "F6CB78B9-A3D2-4755-B544-4AF1CBF95822",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "04D2CD69-FAF5-4052-B7D6-E6274344E5DF",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "CA5D72DD-C97C-4EB1-945A-BFE2F64849BB",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "8A081F95-5CD2-4E2B-BE09-C6C57EE095CF",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "4EB24630-F71F-4B5C-8C81-518578444C07",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "23B3F1E6-0376-4886-BC52-F71202F8A285",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E54B773C-A95B-4E18-928B-DD4C188BD785",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "FCC05C7F-0441-4283-A34F-C3CDC62C2A8D",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "396FC184-61B7-4840-AA3D-26EBDD9538A9",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A689BA06-8C3E-4411-A755-F4418A18D710",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "4A5B4FF8-E45B-4841-8FE8-29238AC56811",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "1B2A5B27-C982-4875-BD13-7E9AF0CE9040",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "69672B9F-1E99-4469-A0E9-A09B4FED79B4",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "1EE80ACC-FFAF-4FDC-9203-400C11AC780F",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "52560CB9-3E3B-4DBD-A81F-857702406832",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "B4F58AAF-B6E8-47C5-9FC7-1D6BA40FD973",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "6E4D8E31-2F6A-4624-90A3-C3FA6E4F7F30",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "54641D3D-3EC4-452B-B852-8E88C80F3195",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "95E2ED66-A806-4A88-9237-C105DF836B5F",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "0B921E06-9071-46B1-92D0-67BECEED820C",
+   "phase": "freeform",
+   "size": 3058,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "0DC9DD99-86E8-4E82-BD84-C913DD52365F",
+   "phase": "freeform",
+   "size": 3062,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "859629EE-57F7-4A92-BEB8-A681ADD1DFE8",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "FB348F8A-6C3C-4299-9634-25D6EDB4094A",
+   "phase": "freeform",
+   "size": 227,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "3701796A-5C93-4AE0-AD8A-00DB94180769",
+   "phase": "freeform",
+   "size": 222,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "8172B7CB-BDC4-4A7B-A4FC-0E7519D23619",
+   "phase": "freeform",
+   "size": 222,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "06E956F4-EE09-4192-8382-7FA8B1446A11",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "7FE0C95E-317D-448E-A1DB-92BA7266901D",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E7D54DB3-29C7-4416-82C7-EF78F7879D27",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "5EF80CEE-0E57-4725-8C05-ECBB4DFE5FBF",
+   "phase": "freeform",
+   "size": 1543,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "31AC9338-0A94-4FA2-AC94-E03018475981",
+   "phase": "freeform",
+   "size": 1514,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "79D737E0-26C0-4F62-B57C-A2A271C92077",
+   "phase": "freeform",
+   "size": 163,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "8C8D2B9A-86E5-4E92-B24C-D9F76EA64DC0",
+   "phase": "freeform",
+   "size": 1658,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E6B72C0A-EDB4-40FA-B976-661E790EF2F1",
+   "phase": "freeform",
+   "size": 1912,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "C2B7349D-FD18-4DE0-912D-2337B4A49B46",
+   "phase": "freeform",
+   "size": 163,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "198C1AED-C422-4362-95D5-AECE3090CFA0",
+   "phase": "freeform",
+   "size": 887,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "FF7CFDEB-64F2-4659-A230-843E4BC367B5",
+   "phase": "freeform",
+   "size": 996,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "9B4DFBE9-4606-40E4-A569-E7C9484890A0",
+   "phase": "freeform",
+   "size": 163,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "50E0565B-1513-4DFF-A4DE-B9A7C85EC2AF",
+   "phase": "freeform",
+   "size": 163,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "2D2B31CA-7234-4743-A24A-BF60AB5D3CF6",
+   "phase": "freeform",
+   "size": 163,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A724713C-6ADA-4A3D-819A-A80AE3FE4B19",
+   "phase": "freeform",
+   "size": 163,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "6703BDDB-7A89-43F9-83F1-DCD9EA6B8E11",
+   "phase": "freeform",
+   "size": 873,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "CD21FC08-D6BE-4121-989A-FCC0BFFB3E3D",
+   "phase": "freeform",
+   "size": 980,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "AF7E4600-930C-4640-95F2-6A89D8E94EB9",
+   "phase": "freeform",
+   "size": 163,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E9B3B7C6-7114-4D5C-92A5-E572A1307939",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "737C7A75-3EFA-4F42-876C-C4173E72A337",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "EFEBBC6D-C3B7-425A-B9CE-1BC0C8339BD5",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "0C3DA1C0-808D-4172-A1DA-564E16B69509",
+   "phase": "freeform",
+   "size": 2920,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "319BD769-1FC1-4096-9D8B-6DA1337A155B",
+   "phase": "freeform",
+   "size": 2908,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A60DACCB-46E3-40D4-B94B-BAF099AA79DA",
+   "phase": "freeform",
+   "size": 2905,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "006DC17A-DF90-401B-B5AF-B7CAE668AF56",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "7640CAB4-92A8-41B5-B957-16E951877470",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "123816D1-2A9B-48D0-A50D-32268336A15B",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "DD4BC58D-E077-48AB-9E0C-914E83F048D6",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "8F8DC7EA-6FE1-4044-A2E2-D80FCF3B74B7",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "CAFFDDAC-A902-47BE-A62C-52F50F5E9B5F",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "0F105A17-ADD0-4BB9-B80F-D7A803E45297",
+   "phase": "freeform",
+   "size": 2993,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A56F33DC-31ED-4C3E-BE64-019334D1857F",
+   "phase": "freeform",
+   "size": 2995,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "281D0067-C2D5-42FE-B118-CF7F3915AC6F",
+   "phase": "freeform",
+   "size": 2984,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "316C5752-4CB0-4E5E-98A1-CD9914C0861A",
+   "phase": "freeform",
+   "size": 2916,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A2C15BA6-BDAC-42E9-AECE-E83849821F3C",
+   "phase": "freeform",
+   "size": 2915,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "322F9EA7-38F1-4EF5-B9F4-1795B1B90D15",
+   "phase": "freeform",
+   "size": 2914,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "E437D7BB-A64F-4345-8C2D-775E78D7C043",
+   "phase": "freeform",
+   "size": 262,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "F240BBC2-2620-4DA7-B28C-E33F34428E4E",
+   "phase": "freeform",
+   "size": 264,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "AE7AECD4-F37A-4CCE-BED1-5F39FDA49778",
+   "phase": "freeform",
+   "size": 264,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "7303C17E-7CF4-4D01-9F0F-663F997C7840",
+   "phase": "freeform",
+   "size": 2280,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "1D1C6ADC-8014-4950-888B-B7EA84D911AF",
+   "phase": "freeform",
+   "size": 2992,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "3F274A58-0F47-40BA-A190-6C0D5A58E112",
+   "phase": "freeform",
+   "size": 2992,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "4D8A3993-C0C8-4C09-ADBF-F4CE2F033670",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "6649DEEC-8EC4-4D92-8459-A76C19CE2D00",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "746B962B-F24E-481E-A59F-2D1A9ABDDE1A",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "CD2231EE-5C07-4330-907D-05079B37881D",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "53E1DEDC-F358-48B0-A02B-F524BA52D406",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "1AC4A665-F4BF-4E79-B114-FDE287126EC7",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "85F5CB65-B6F9-4A91-A5C7-CCBDB3462ED2",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "F5ECDB16-53C8-4365-AF79-83ACB7B68E4E",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "5487CD9C-94BF-4843-A7BD-40E32FAD328B",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "BFA3325D-5A6C-4EAA-8363-F59CE4836AF4",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "95253111-138D-4507-95FC-93DB9C022224",
+   "phase": "freeform",
+   "size": 2808,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "F6B31450-1EEA-4BEE-B9B0-B091BC48AEF5",
+   "phase": "freeform",
+   "size": 4179,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "F6A79C4F-047F-4CAA-B24F-28D23FAD928F",
+   "phase": "freeform",
+   "size": 4265,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "1611E3B5-3993-4CE6-B8E0-053D9BF71783",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "77CD2E8D-2091-4136-BE1F-2027606060E7",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "F2BAD6F7-08BF-426C-8CA0-292E7363777F",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "39046D24-CBF5-4C86-8E57-B002F0C4A034",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "D426818E-52BC-45B3-BD10-BAD32F5429D5",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "8816B8FC-59FB-49D0-8A86-15A9B24E245C",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "670E920D-3608-4733-9F9F-6C1AF9B67CEC",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "C5047123-B24D-4A3D-AAE0-F608D49FE4DB",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A39BEBE4-3210-49FA-B0BE-917BF9B3181F",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "B6B64BEC-4CD9-4754-B1C3-A082B02A55D1",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "42DA4EC2-4B58-41FA-BBD5-84024A03B6FC",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "9D253DD6-4463-4A1A-81AF-D919001347FC",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "9D6FD3BD-C2ED-4C46-B180-409EBE276533",
+   "phase": "freeform",
+   "size": 1067,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "13D13C62-6A66-408D-96B5-7CA01AFA2445",
+   "phase": "freeform",
+   "size": 4310,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "08EFA1AB-403A-495F-A87E-CA2CC1CF69DD",
+   "phase": "freeform",
+   "size": 4245,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "67C03301-61E1-4899-8FDA-E72753483629",
+   "phase": "freeform",
+   "size": 204,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "91237955-950B-4D0C-8911-18FD3E230D28",
+   "phase": "freeform",
+   "size": 26048,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "57A4D989-B3C4-4368-8CD1-D39F4FBD0FAE",
+   "phase": "freeform",
+   "size": 23632,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "04036CE5-C6CD-470A-81B5-A4C53F57F157",
+   "phase": "freeform",
+   "size": 28128,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "57A4D989-B3C4-4368-8CD1-D39F4FBD0F11",
+   "phase": "freeform",
+   "size": 24672,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "7721929A-D56A-450D-2501-8EA51FA61974",
+   "phase": "DXE",
+   "size": 4322,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SbCmos",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "BA28936B-4051-48CF-A5CD-B63D7BFCA84A",
+   "phase": "DXE",
+   "size": 11538,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SmBusDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "B13EDD38-684C-41ED-A305-D7B7E32497DF",
+   "phase": "DXE",
+   "size": 88906,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "Smbios",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "E66B4E21-D75C-45FD-AF53-4CD5918B5FEB",
+   "phase": "DXE",
+   "size": 3106,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SbRecoveryDeviceDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "A59A0056-3341-44B5-9C9C-6D76F7673817",
+   "phase": "freeform",
+   "size": 186,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "71A37E51-F3C8-4B99-B335-A661CA8AD13A",
+   "phase": "DXE",
+   "size": 5872,
+   "ui": "AmdCpmOemInitDxe",
+   "version_string": "1.0",
+   "join_name": "AmdCpmOemInitDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "80D7491A-F7D9-479D-A8F7-1B393B02ED66",
+   "phase": "DXE",
+   "size": 6226,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "FastBootRuntime",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "7B9A0A12-42F8-4D4C-82B6-32F0CA1953F4",
+   "phase": "freeform",
+   "size": 11568,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "3237418A-478C-4700-B59F-768E2CCBC726",
+   "phase": "DXE",
+   "size": 13378,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CmosDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "9B3ADA4F-AE56-4C24-8DEA-F03B7558AE50",
+   "phase": "PEI",
+   "size": 11190,
+   "ui": null,
+   "version_string": "7.0",
+   "join_name": "PcdPeim (MdeModulePkg/Universal/PCD/PcdPeim) [census curated]",
+   "join_source": "ovmf-ring9"
+  },
+  {
+   "guid": "4551F2F5-C684-4F27-936F-C7B04A5C5FF1",
+   "phase": "DXE",
+   "size": 6658,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "SecureBootDXE",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "DAF4BF89-CE71-4917-B522-C89D32FBC59F",
+   "phase": "freeform",
+   "size": 5429,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "196CA3D8-9A5A-4735-B328-8FFC1D93D188",
+   "phase": "DXE",
+   "size": 3606,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "TcgPlatformSetupPolicy",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "3115C2AC-27E1-14A9-53CD-AC4734802AD7",
+   "phase": "DXE",
+   "size": 1794,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "AmiPspSetPcdForRecovery",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "A838CBB5-59EF-4493-89D0-133C8968905D",
+   "phase": "DXE",
+   "size": 31810,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CrbSmbios",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "16271FCA-55D9-4A33-93FC-5A3EB128DEB6",
+   "phase": "DXE",
+   "size": 5762,
+   "ui": null,
+   "version_string": "1.0",
+   "join_name": "CrbDxe",
+   "join_source": "ui-msi-b450-tomahawk-max"
+  },
+  {
+   "guid": "DAC2B117-B5FB-4964-A312-0DCC77061B9B",
+   "phase": "freeform",
+   "size": 82442,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "B1DA0ADF-4F77-4070-A88E-BFFE1C60529A",
+   "phase": "DXE",
+   "size": 664238,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "FE612B72-203C-47B1-8560-A66D946EB371",
+   "phase": "freeform",
+   "size": 22394,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "365C62BA-05EF-4B2E-A7F7-92C1781AF4F9",
+   "phase": "freeform",
+   "size": 43486,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "CC0F8A3F-3DEA-4376-9679-5426BA0A907E",
+   "phase": "freeform",
+   "size": 1182,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "9FE7DE69-0AEA-470A-B50A-139813649189",
+   "phase": "freeform",
+   "size": 3995,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "FBF95065-427F-47B3-8077-D13C60710998",
+   "phase": "freeform",
+   "size": 8272,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "9D7A05E9-F740-44C3-858B-75586A8F9C8E",
+   "phase": "freeform",
+   "size": 16068,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "10131007-9EDD-469F-A07A-6D875C1FF85F",
+   "phase": "freeform",
+   "size": 21263,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "5C617E2E-B148-41C2-A6BA-886BC6A09420",
+   "phase": "freeform",
+   "size": 133890,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "F1D5B606-ABF8-4DD1-93F3-165EFB07C8A1",
+   "phase": "freeform",
+   "size": 27111,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "9221315B-30BB-46B5-813E-1B1BF4712BD3",
+   "phase": "freeform",
+   "size": 832,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "02076249-A52B-420E-BD53-AED044349379",
+   "phase": "freeform",
+   "size": 1361,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "7250FD57-BF4E-47B5-98A5-C7AE2D1B8F5C",
+   "phase": "DXE",
+   "size": 49168,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "611F7FDD-C7C6-4CFE-8072-2155D7B25A80",
+   "phase": "freeform",
+   "size": 5719,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "A0327FE0-1FDA-4E5B-905D-B510C45A61D0",
+   "phase": "freeform",
+   "size": 529612,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "CC5840D2-D8EA-459E-BAF4-349AC710EBBE",
+   "phase": "freeform",
+   "size": 520970,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "77840A38-8AB1-4D7A-9181-03B2F5B34C0B",
+   "phase": "raw",
+   "size": 20560,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "2FAB50B8-AE15-4219-BAA0-E8CA23E57A1E",
+   "phase": "raw",
+   "size": 32336,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "4ED407CE-411E-4ADE-8A93-8A34D79F4B52",
+   "phase": "raw",
+   "size": 47696,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  },
+  {
+   "guid": "B14B012A-F8B8-4EDF-BCDD-006391A0D8CB",
+   "phase": "freeform",
+   "size": 8290,
+   "ui": null,
+   "version_string": null,
+   "join_name": null,
+   "join_source": null
+  }
+ ],
+ "reading": [
+  "the ring-12 candidate lens is REFUTED: ASUS's 384-424 VERSION sections per image carry 8 distinct strings across five specimens, seven of which are placeholder build numbers; module identity is not in the 0x14 layer",
+  "the GUID join recovers what the packaging strips: ASUS 4655 named share 0.002 -> 0.593 (DXE 0.83, SMM 0.86) from a 665-GUID map built out of the other boards' UI sections and the ring-9 OVMF map; zero real identity conflicts",
+  "VERSION strings are byte-stable across releases: 414 of 415 shared GUID-strings identical between 3604 (2022) and 4655 (2026) \u2014 the packaging layer does not churn; the PSP layer does (lens B)",
+  "the MSI double structure is not census-identical when pierced: the +16 MiB mirror's big inner FV is 0x97000 bytes longer and carries +16 files (402->418)"
+ ],
+ "honesty": [
+  "join names are identity claims (same GUID, same module), not semantic equivalence \u2014 a vendor may configure the same module differently",
+  "the two GUID-join 'conflicts' are context differences, not disagreements: gUefiShellFileGuid vs MinShell (the Shell), PcdPeim with and without its source path",
+  "VERSION strings are vendor labels; none was verified against module behavior",
+  "module totals cross-checked against the published ring-11 and ring-12 censuses, region by offset \u2014 4/4 exact match; the earlier 'main vs main' mismatch was the densest-region pick landing on the MSI mirror, fixed before publication"
+ ]
+}
