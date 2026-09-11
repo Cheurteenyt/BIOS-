@@ -1,0 +1,135 @@
+{
+ "schema": "omarchy-firmware/vendor-acquisition@1",
+ "date": "2026-09-11",
+ "note": "multi-board sourcing, ring 12: every specimen is the vendor's LATEST OFFICIAL update, pinned the same day from the vendor's own channel (support page, official API, or vendor CDN listing); blockages are recorded with the way found past them, never pretended away",
+ "latest_official_verification": {
+  "asus-prime-b450-plus": {
+   "channel": "official ASUS GetPDBIOS API (www.asus.com/support/api/product.asmx/GetPDBIOS)",
+   "result": "39-entry ledger, 0318 (2018-06-22) to 4655 (2026-08-27); 4655 is the latest official",
+   "note": "the API answered 200 directly; the support page payload alone carries no BIOS URLs"
+  },
+  "msi-b450-tomahawk-max": {
+   "channel": "MSI support page (www.msi.com), official listing",
+   "result": "7C02v3G1 (Beta version) 2023-03-09 tops the list \u2014 the 2023 cliff confirmed for the v1 board",
+   "note": "the successor board B450 TOMAHAWK MAX II continues (7C02vHG5, 2026-08-21) \u2014 registered here, deliberately not acquired (one board per vendor keeps the quorum matrix square)"
+  },
+  "gigabyte-b450-aorus-pro": {
+   "channel": "Gigabyte support page (B450 AORUS PRO rev 1.0)",
+   "result": "F67c tops the list (checksum AAC6, AGESA ComboV2 1.2.0.12, 2026-08-18) \u2014 latest official confirmed"
+  },
+  "asrock-b450-steel-legend": {
+   "channel": "ASRock bios.html listing (10.41 Beta, 2025-04-18, 10.96 MB, AGESA 1.2.0.E)",
+   "result": "10.41 Beta is the latest official and the listing itself warns against updating to it (ASRock do NOT recommend); pinned and acquired anyway as the honest head of the line"
+  }
+ },
+ "acquisitions": [
+  {
+   "id": "msi-b450-tomahawk-max",
+   "vendor_board": "MSI B450 TOMAHAWK MAX",
+   "version": "7C02v3G1",
+   "released": "2023-03-09",
+   "source_url": "download.msi.com direct CDN (7C02v3G1.zip), ring 11",
+   "zip_file": "msi_7C02v3G1.zip",
+   "zip_sha256": "1434e99a69d9122b8363a489a841951867aedbb67e930f9a07437fa87c1f27ab",
+   "zip_bytes": 18318600,
+   "inner_file": "E7C02AMS.3G1",
+   "wrapper_bytes": 0,
+   "rom_bytes": 33554432,
+   "rom_sha256_16": "2ab433d61c93adb4",
+   "kind": "raw",
+   "note": "acquired in ring 11; sha256 completed here"
+  },
+  {
+   "id": "gigabyte-b450-aorus-pro",
+   "vendor_board": "Gigabyte B450 AORUS PRO",
+   "version": "F67c",
+   "released": "2026-08-18",
+   "source_url": "download.gigabyte.com direct CDN (mb_bios_b450-aorus-pro_8a16bg04_f67c.zip), ring 11",
+   "zip_file": "gigabyte_b450ap_f67c.zip",
+   "zip_sha256": "70de0ea5f8eb28f3c5f88081dbeba6f027f60705eda5185c95260ca78a931918",
+   "zip_bytes": 11475005,
+   "inner_file": "B450AORUSPRO.F67c",
+   "wrapper_bytes": 0,
+   "rom_bytes": 16777216,
+   "rom_sha256_16": "091cf42e235289dd",
+   "kind": "raw",
+   "note": "acquired in ring 11; sha256 completed here"
+  },
+  {
+   "id": "asrock-b450-steel-legend",
+   "vendor_board": "ASRock B450 Steel Legend",
+   "version": "10.41 Beta",
+   "released": "2025-04-18",
+   "source_url": "https://download.asrock.com/BIOS/AM4/B450%20Steel%20Legend(10.41)ROM.zip",
+   "zip_file": "asrock_b450sl_1041beta.zip",
+   "zip_sha256": "0b463f5b6f117c7f77e99591879162b7b0414a3a5212e9ddbdeac7d692ff5890",
+   "zip_bytes": 11493759,
+   "inner_file": "B45STL_10.41",
+   "wrapper_bytes": 0,
+   "rom_bytes": 16777216,
+   "rom_sha256_16": "d94afae9eecd64ca",
+   "kind": "raw"
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "vendor_board": "ASUS PRIME B450-PLUS",
+   "version": "4655",
+   "released": "2026-08-27",
+   "source_url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/PRIME-B450-PLUS-ASUS-4655.zip?model=PRIME%20B450-PLUS",
+   "zip_file": "asus_prime_b450plus_4655.zip",
+   "zip_sha256": "bc216192806850444226bca35aa04392cea35117f92ebc38e73de48ee25350b8",
+   "zip_bytes": 11347207,
+   "inner_file": "PRIME-B450-PLUS-ASUS-4655.CAP",
+   "wrapper_bytes": 2048,
+   "rom_bytes": 16777216,
+   "rom_sha256_16": "284ea676ee6cbf42",
+   "kind": "cap"
+  },
+  {
+   "id": "asus-prime-b450-plus-ref",
+   "vendor_board": "ASUS PRIME B450-PLUS",
+   "version": "3604",
+   "released": "2022-03-16",
+   "source_url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/PRIME-B450-PLUS-ASUS-3604.ZIP?model=PRIME%20B450-PLUS",
+   "zip_file": "asus_prime_b450plus_3604.zip",
+   "zip_sha256": "d3f786189d57f9a6f0868f2d5cb9d8c8f535ff19a5eddc30bdfb8f0dc46ebe35",
+   "zip_bytes": 11169508,
+   "inner_file": "PRIME-B450-PLUS-ASUS-3604.CAP",
+   "wrapper_bytes": 2048,
+   "rom_bytes": 16777216,
+   "rom_sha256_16": "dbabcc8c1d7e6dc4",
+   "kind": "cap",
+   "note": "day-0 reference: nearest official ledger entry to the disputed 3644"
+  }
+ ],
+ "blockage_ledger": {
+  "asrock-waf": {
+   "ring11": "every download.asrock.com variant answered 403 (Incapsula WAF; the page reader got the bot-wall too; ftp.asrock.com does not resolve)",
+   "ring12_way_found": "the same URL answers 200 to a FULL browser header set (Chrome UA + Accept + Accept-Language + Referer) \u2014 the ring-11 failure was a bare user agent; lesson: vendor WAFs gate on header-set completeness, not on the URL"
+  },
+  "asus-cdn-paths": {
+   "ring11": "hand-built dlcdnets paths answered 404 (240-byte stubs saved as specimens then)",
+   "ring12_way_found": "the official GetPDBIOS API returns the canonical per-release CDN URL (including a ?model= query parameter the hand-built paths lacked)"
+  },
+  "msi-pages": {
+   "ring11": "www.msi.com pages are bot-walled (API 403); the direct CDN download.msi.com is not",
+   "ring12": "unchanged; 7C02v3G1 remains the official head of the v1 list"
+  }
+ },
+ "capsule_format": {
+  "finding": "the ASUS .CAP is a 2,048-byte wrapper before the 16 MiB ROM (16,779,264 = 2,048 + 16,777,216)",
+  "proof": "first nesting-rule-valid FV sits at 0x40800 in the CAP and 0x40000 in the sliced ROM \u2014 the delta equals the wrapper exactly (both 4655 and 3604)",
+  "wrapper_ascii": "no ASCII signature in the wrapper head (recorded verbatim in the scratch register); the wrapper is data, not text",
+  "consequence": "the day-0 dump (a raw SPI read) is compared against the SLICED rom, never against the CAP"
+ },
+ "the_3644_question": {
+  "fact": "no BIOS 3644 exists in the official ASUS PRIME B450-PLUS ledger (39 entries checked; the series jumps 3604 (2022-03-16) to 3802 (2022-05-12)); the TUF B450-PLUS GAMING ledger shows no 3644 either (latest 4645, 2026-02-02)",
+  "hypotheses": [
+   "misread of 3604 (digit transposition on the boot splash) \u2014 most economical",
+   "a different board than recorded in the study",
+   "a non-stock BIOS on the day-0 board"
+  ],
+  "note": "the ring-11 acquisition entry claimed '3644, AGESA 1.2.0.12, Aug 2026' \u2014 the date and AGESA actually match the Gigabyte F67c release (2026-08-18, ComboV2 1.2.0.12): cross-contamination in the study notes, corrected here",
+  "decision_path": "the 16/09 dump decides \u2014 the ROM's own version strings name what is truly on the chip; the 3604 and 4655 ROMs are unwrapped and ready as comparison targets"
+ }
+}

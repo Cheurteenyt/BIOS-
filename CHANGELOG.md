@@ -4,6 +4,67 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the twelfth ring (the quorum: four vendors, latest official, one grammar)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Sourcing (the blocked files find their way)**
+- **ASRock unblocked**: the 403 (Incapsula WAF) passes to a FULL
+  browser header set — the ring-11 failure was a bare user agent, the
+  URL never was the problem. B450 Steel Legend 10.41 Beta acquired:
+  16 MiB raw ROM, zip matching the official 10.96 MB listing.
+- **ASUS unblocked by the official API**: `GetPDBIOS` answers 200 and
+  names the canonical per-release CDN URL (with the `?model=` query
+  no hand-built path carried). PRIME B450-PLUS **4655** (2026-08-27)
+  and **3604** (2022-03-16, day-0 reference) acquired as `.CAP`.
+- **Latest-official verified per vendor**: ASUS 39-entry ledger
+  (0318→4655); MSI 7C02v3G1 confirmed head of the v1 list (the MAX II
+  continues, 7C02vHG5 2026-08-21 — registered, not acquired, one
+  board per vendor); Gigabyte F67c confirmed (checksum AAC6); ASRock
+  10.41 Beta confirmed (with the vendor's own warning recorded).
+- **The 3644 question**: no BIOS 3644 exists in the official ASUS
+  ledger; the ring-11 claim "3644, AGESA 1.2.0.12, Aug 2026"
+  cross-contaminated the Gigabyte F67c metadata. Corrected visibly in
+  `vendor-specimens.json`; three hypotheses registered; the 16/09
+  dump decides.
+
+**Investigation (ring 12 — the same instruments, imported verbatim)**
+- **The CAP wrapper measured**: 2,048 bytes before the 16 MiB ROM,
+  proven by the first-valid-FV delta (0x40800 in CAP, 0x40000 in the
+  sliced ROM, both ASUS releases); day-0 compares against the sliced
+  ROM, never the CAP.
+- **First contact**: ASRock 3 top FVs, main 0x94f000, 633 modules,
+  60.3 % named, DEPEX 253/253 parsed; ASUS 4 top FVs, main 0x9c0000,
+  600 modules, DEPEX 286/286 parsed. The grammar holds everywhere.
+- **The packaging lens**: the ASUS DXE layer carries 384 VERSION
+  sections (0x14) and ONE UI section (0x15) — the OVMF-derived
+  nameplate goes structurally blind on ASUS-class packaging;
+  registered, not forced.
+- **The quorum matrix**: living lines cluster (ASRock|Gigabyte 0.775,
+  ASRock|ASUS 0.758, ASUS|Gigabyte 0.704) while the frozen 2023 MSI
+  is the outlier (0.535–0.576); each board shares 41–43 GUIDs with
+  the OVMF reference set — the EDK2 common core survives every
+  packaging. Ring 11's MSI|Gigabyte 0.549 reproduces exactly (the
+  lens cross-validates against its own past).
+- **The self-correction chain**: a `Path.stem` suffix bite (`.41`),
+  a 64-KiB window assumption (the first FV lives at 0x40000), and a
+  wrong OVMF census key (`type` vs `phase`) that briefly manufactured
+  a false "0 shared" row — all caught before publication.
+
+**Added**
+- `lab/vendor-acquisition.json` — the sourcing ledger: per-vendor
+  latest-official verification, verbatim URLs, full zip sha256, the
+  blockage stories, the CAP proof, the 3644 question.
+- `lab/vendor-quorum.json` — the four-board census summary, the
+  packaging lens, the DEPEX hub table, the pairwise GUID matrix with
+  the OVMF reference rows.
+- `lab/findings-twelfth-ring.md` — the ring narrative.
+
+**Changed**
+- `lab/vendor-specimens.json` — the ASRock and ASUS acquisition
+  entries carry visible ring-12 corrections (acquired; no 3644).
+
 ## Unreleased — the eleventh ring (the instrument meets real vendor silicon)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

@@ -1,0 +1,299 @@
+{
+ "schema": "omarchy-firmware/vendor-quorum@1",
+ "date": "2026-09-11",
+ "note": "ring 12: the quorum \u2014 four vendors, four latest-official AMI-Aptio AM4 specimens through the same ring-11 instruments (imported, not rewritten); GUID identity is identity, not semantics",
+ "specimens": [
+  {
+   "id": "asrock-b450-steel-legend",
+   "version": "10.41 Beta",
+   "released": "2025-04-18",
+   "bytes": 16777216,
+   "sha256_16": "d94afae9eecd64ca",
+   "fvh_candidates_raw": 5,
+   "top_level_fvs": [
+    {
+     "offset": "0x94f000",
+     "length": "0x4b1000",
+     "fs": "FFS2"
+    },
+    {
+     "offset": "0xe00000",
+     "length": "0x200000",
+     "fs": "FFS2"
+    },
+    {
+     "offset": "0x37000",
+     "length": "0x20000",
+     "fs": "FFS2"
+    }
+   ],
+   "nested_fvs": 2,
+   "main_region": {
+    "offset": "0x94f000",
+    "length": "0x4b1000",
+    "fs": "FFS2",
+    "files": 9,
+    "phases": {
+     "pad": 6,
+     "freeform": 237,
+     "raw": 1,
+     "fv_image": 5,
+     "DXE": 286,
+     "SMM": 95,
+     "DXE-core": 1,
+     "SMM-core": 1,
+     "PEI": 1
+    },
+    "pierced_fv_images": 4,
+    "inner_fvs": 4,
+    "modules_total": 633,
+    "modules_named": 382,
+    "named_share": 0.603
+   },
+   "depex": {
+    "depex_sections": 253,
+    "postfix_parsed": 253,
+    "failed_to_parse": 0,
+    "opcode_histogram": {
+     "PUSH": 877,
+     "AND": 654,
+     "END": 253,
+     "TRUE": 36,
+     "OR": 6
+    },
+    "top_hubs": [
+     [
+      "13A3F0F6-264A-3EF0-F2E0-DEC512342F34",
+      245
+     ],
+     [
+      "E857CAF6-C046-45DC-BE3F-EE0765FBA887",
+      75
+     ],
+     [
+      "6441F818-6362-4E44-B570-7DBA31DD2453",
+      37
+     ],
+     [
+      "1E5668E2-8481-11D4-BCF1-0080C73C8881",
+      36
+     ],
+     [
+      "0ECAD4A0-75E9-46D7-A3A6-81FE173F2ECA",
+      33
+     ],
+     [
+      "2ADCD53F-4C94-40BB-BBA5-7DEBFF8A13AC",
+      27
+     ],
+     [
+      "2F707EBB-4A1A-11D4-9A38-0090273FC14D",
+      21
+     ],
+     [
+      "26BACCB1-6F42-11D4-BCE7-0080C73C8881",
+      21
+     ]
+    ]
+   },
+   "psp_directory_hits": 13,
+   "bios_directory_hits": 0,
+   "agesa": {
+    "claim": "Combo V2 PI 1.2.0.E",
+    "string_hits": 3,
+    "byte_verified": false,
+    "note": "literal AGESA hits present, no full version string in bytes \u2014 unverified, recorded as such"
+   }
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "4655",
+   "released": "2026-08-27",
+   "bytes": 16777216,
+   "sha256_16": "284ea676ee6cbf42",
+   "fvh_candidates_raw": 10,
+   "top_level_fvs": [
+    {
+     "offset": "0x9c0000",
+     "length": "0x540000",
+     "fs": "FFS2"
+    },
+    {
+     "offset": "0xf00000",
+     "length": "0x100000",
+     "fs": "FFS2"
+    },
+    {
+     "offset": "0x980000",
+     "length": "0x40000",
+     "fs": "FFS2"
+    },
+    {
+     "offset": "0x40000",
+     "length": "0x20000",
+     "fs": "FFS2"
+    }
+   ],
+   "nested_fvs": 1,
+   "main_region": {
+    "offset": "0x9c0000",
+    "length": "0x540000",
+    "fs": "FFS2",
+    "files": 12,
+    "phases": {
+     "pad": 5,
+     "freeform": 164,
+     "fv_image": 5,
+     "DXE": 314,
+     "SMM": 106,
+     "DXE-core": 1,
+     "SMM-core": 1,
+     "PEI": 1,
+     "raw": 3
+    },
+    "pierced_fv_images": 4,
+    "inner_fvs": 4,
+    "modules_total": 600,
+    "modules_named": 1,
+    "named_share": 0.002
+   },
+   "depex": {
+    "depex_sections": 286,
+    "postfix_parsed": 286,
+    "failed_to_parse": 0,
+    "opcode_histogram": {
+     "PUSH": 965,
+     "AND": 709,
+     "END": 286,
+     "TRUE": 36,
+     "OR": 6
+    },
+    "top_hubs": [
+     [
+      "13A3F0F6-264A-3EF0-F2E0-DEC512342F34",
+      278
+     ],
+     [
+      "E857CAF6-C046-45DC-BE3F-EE0765FBA887",
+      86
+     ],
+     [
+      "6441F818-6362-4E44-B570-7DBA31DD2453",
+      33
+     ],
+     [
+      "1E5668E2-8481-11D4-BCF1-0080C73C8881",
+      33
+     ],
+     [
+      "0ECAD4A0-75E9-46D7-A3A6-81FE173F2ECA",
+      33
+     ],
+     [
+      "2ADCD53F-4C94-40BB-BBA5-7DEBFF8A13AC",
+      27
+     ],
+     [
+      "2F707EBB-4A1A-11D4-9A38-0090273FC14D",
+      23
+     ],
+     [
+      "26BACCB1-6F42-11D4-BCE7-0080C73C8881",
+      22
+     ]
+    ]
+   },
+   "psp_directory_hits": 13,
+   "bios_directory_hits": 0,
+   "agesa": {
+    "claim": "unverified (API date only)",
+    "string_hits": 3,
+    "byte_verified": false,
+    "note": "literal AGESA hits present, no full version string in bytes \u2014 unverified, recorded as such"
+   }
+  }
+ ],
+ "ring11_boards_ref": "see vendor-specimens.json for MSI and Gigabyte (same lens, ring-11 run)",
+ "packaging_lens": {
+  "finding": "the ASUS 4655 DXE layer (545-file inner FV) carries 384 VERSION sections (0x14) and ONE USER_INTERFACE section (0x15); ASRock's equivalent layer names 60% of its modules through 0x15",
+  "consequence": "the OVMF-derived nameplate lens goes structurally blind on ASUS-class packaging \u2014 module identity there is GUID-only (like the ring-9 raw-GUID cells, now for a whole vendor)",
+  "status": "registered, not forced \u2014 no workaround is pretended; the VERSION-section strings are the candidate next lens"
+ },
+ "quorum_matrix": {
+  "lens": "module-GUID identity sets on the densest region per board (DXE+SMM+application+cores); GUID sharing is identity, not semantic equivalence",
+  "ovmf_reference_set_size": 153,
+  "pairwise": {
+   "asrock-b450-steel-legend|asus-prime-b450-plus": {
+    "a": 383,
+    "b": 422,
+    "shared": 347,
+    "jaccard": 0.758
+   },
+   "asrock-b450-steel-legend|gigabyte-b450-aorus-pro": {
+    "a": 383,
+    "b": 423,
+    "shared": 352,
+    "jaccard": 0.775
+   },
+   "asrock-b450-steel-legend|msi-b450-tomahawk-max": {
+    "a": 383,
+    "b": 353,
+    "shared": 269,
+    "jaccard": 0.576
+   },
+   "asus-prime-b450-plus|gigabyte-b450-aorus-pro": {
+    "a": 422,
+    "b": 423,
+    "shared": 349,
+    "jaccard": 0.704
+   },
+   "asus-prime-b450-plus|msi-b450-tomahawk-max": {
+    "a": 422,
+    "b": 353,
+    "shared": 270,
+    "jaccard": 0.535
+   },
+   "gigabyte-b450-aorus-pro|msi-b450-tomahawk-max": {
+    "a": 423,
+    "b": 353,
+    "shared": 275,
+    "jaccard": 0.549
+   },
+   "asrock-b450-steel-legend|ovmf-reference": {
+    "a": 383,
+    "b": 153,
+    "shared": 42,
+    "jaccard": 0.085
+   },
+   "asus-prime-b450-plus|ovmf-reference": {
+    "a": 422,
+    "b": 153,
+    "shared": 41,
+    "jaccard": 0.077
+   },
+   "gigabyte-b450-aorus-pro|ovmf-reference": {
+    "a": 423,
+    "b": 153,
+    "shared": 43,
+    "jaccard": 0.081
+   },
+   "msi-b450-tomahawk-max|ovmf-reference": {
+    "a": 353,
+    "b": 153,
+    "shared": 43,
+    "jaccard": 0.093
+   }
+  }
+ },
+ "reading": [
+  "the three living lines cluster (jaccard 0.70-0.78: ASRock-Gigabyte 0.775, ASRock-ASUS 0.758, ASUS-Gigabyte 0.704); MSI \u2014 the frozen 2023 cliff \u2014 is the outlier (0.535-0.576 against all three)",
+  "the pattern matches the AGESA span: 1.2.0.8 (2023) against 1.2.0.E / 1.2.0.12 / newer (2025-2026) \u2014 vendor cores drift together when their inputs drift together",
+  "each vendor board shares 41-43 module GUIDs with the OVMF reference set (jaccard ~0.08): the EDK2 common core survives every packaging \u2014 the same-bones claim now measured four ways"
+ ],
+ "honesty": [
+  "the lens is the densest region per board, DXE+SMM+application+cores \u2014 a definition, applied identically to all six rows",
+  "the OVMF reference set is 153 GUIDs from 2 builds \u2014 different scale, therefore the vendor-OVMF jaccard is not comparable to the vendor-vendor rows",
+  "AGESA not byte-verified on ASRock/ASUS (no full version string in bytes); MSI 1.2.0.8 remains the only byte-verified AGESA claim",
+  "the ASUS and ASRock boards were acquired today; their pipelines ran once (not rehearsed like OVMF ring 10)"
+ ]
+}

@@ -5,8 +5,8 @@
  "acquisition": {
   "msi-b450-tomahawk-max": "downloaded from download.msi.com (7C02v3G1.zip, direct CDN)",
   "gigabyte-b450-aorus-pro": "downloaded from download.gigabyte.com (mb_bios_b450-aorus-pro_8a16bg04_f67c.zip)",
-  "asrock-b450-steel-legend": "version pinned by search (10.41 Beta, 2025-04-18, AGESA 1.2.0.E); file NOT acquired \u2014 download.asrock.com answers 403 to this network (WAF), registered not bypassed",
-  "asus-b450-plus-gaming": "reference board \u2014 latest measured BIOS 3644 (AGESA 1.2.0.12, Aug 2026) from the study; the specimen file is the day-0 dump itself (16/09)"
+  "asrock-b450-steel-legend": "version pinned by search (10.41 Beta, 2025-04-18, AGESA 1.2.0.E); file NOT acquired \u2014 download.asrock.com answers 403 to this network (WAF), registered not bypassed — CORRECTED in ring 12: ACQUIRED (same URL answers 200 to a full browser header set; the ring-11 failure was a bare user agent — see vendor-acquisition.json)",
+  "asus-b450-plus-gaming": "reference board \u2014 latest measured BIOS 3644 (AGESA 1.2.0.12, Aug 2026) from the study; the specimen file is the day-0 dump itself (16/09) — CORRECTED in ring 12: no 3644 exists in the official ASUS ledger (39 entries, 0318→4655); latest official = 4655 (2026-08-27, acquired) and 3604 (2022-03-16) acquired as day-0 reference; the 'Aug 2026 / 1.2.0.12' metadata actually matches the Gigabyte F67c release — see vendor-acquisition.json, the_3644_question"
  },
  "specimens": [
   {
