@@ -1,0 +1,354 @@
+{
+ "schema": "omarchy-firmware/vendor-byte-forensics@1",
+ "date": "2026-09-11",
+ "note": "the WHAT behind ring-15's WHO: byte-level diffs of same-size changed modules (pure content edits, no size/padding confound) plus one off-by-one blob",
+ "targets": [
+  {
+   "target": "ACPI (10646 B)",
+   "guid": "16d0a23e-c09c-407d-a14a-ad058fdd0ca1",
+   "kind": "same-size",
+   "origin_3604": "0x9c0000>0x10",
+   "origin_4655": "0x9c0000>0x10",
+   "size_3604": 10622,
+   "size_4655": 10622,
+   "sha_3604": "897630e0d75ada4e",
+   "sha_4655": "c393a5720e3abcfe",
+   "bytes_changed": 6215,
+   "pct": 58.511,
+   "span_count_kept": 24,
+   "spans_first12": [
+    {
+     "span": [
+      913,
+      914
+     ],
+     "len": 1,
+     "context": "..1!..3...@...H.............H.........P....J...."
+    },
+    {
+     "span": [
+      1018,
+      1019
+     ],
+     "len": 1,
+     "context": "....s.H...........H.L$@.....H..x\\H.%.\"...H..R..."
+    },
+    {
+     "span": [
+      2372,
+      2373
+     ],
+     "len": 1,
+     "context": ".II.D..H..~.....E3.I;...........-APICtK-....t4-."
+    },
+    {
+     "span": [
+      2426,
+      2427
+     ],
+     "len": 1,
+     "context": "....t.-....t....t.=....u;.B...=.B...B.MSFT.7.B.."
+    },
+    {
+     "span": [
+      2432,
+      2433
+     ],
+     "len": 1,
+     "context": "-....t....t.=....u;.B...=.B...B.MSFT.7.B..I...v&"
+    },
+    {
+     "span": [
+      2445,
+      2446
+     ],
+     "len": 1,
+     "context": "....u;.B...=.B...B.MSFT.7.B..I...v&.B... .B..I.."
+    },
+    {
+     "span": [
+      2455,
+      2456
+     ],
+     "len": 1,
+     "context": ".=.B...B.MSFT.7.B..I...v&.B... .B..I...v..B..I.."
+    },
+    {
+     "span": [
+      2461,
+      2462
+     ],
+     "len": 1,
+     "context": ".B.MSFT.7.B..I...v&.B... .B..I...v..B..I...v..B."
+    },
+    {
+     "span": [
+      2465,
+      2532
+     ],
+     "len": 67,
+     "context": "SFT.7.B..I...v&.B... .B..I...v..B..I...v..B....D"
+    },
+    {
+     "span": [
+      2533,
+      2587
+     ],
+     "len": 54,
+     "context": "B.. ..I..L..s...B...h%..H...D..H...r.C...p%..I.."
+    },
+    {
+     "span": [
+      2588,
+      2617
+     ],
+     "len": 29,
+     "context": "..r.....H..H.X.H.h.H.p.H.x ATAUAWH.. H..H..H...v"
+    },
+    {
+     "span": [
+      2620,
+      2628
+     ],
+     "len": 8,
+     "context": "WH.. H..H..H...v.H..............A.....A........."
+    }
+   ]
+  },
+  {
+   "target": "AcpiTableDxe",
+   "guid": "9622e42c-8e38-4a08-9e8f-54f784652f6b",
+   "kind": "same-size",
+   "origin_3604": "0x9c0000>0x10",
+   "origin_4655": "0x9c0000>0x10",
+   "size_3604": 18250,
+   "size_4655": 18250,
+   "sha_3604": "cc932b853b3a84cc",
+   "sha_4655": "5331fab421aba884",
+   "bytes_changed": 9,
+   "pct": 0.049,
+   "span_count_kept": 8,
+   "spans_first12": [
+    {
+     "span": [
+      5136,
+      5137
+     ],
+     "len": 1,
+     "context": ";.t.H.T$PL............A.....I...P(H.O......H...H"
+    },
+    {
+     "span": [
+      5421,
+      5423
+     ],
+     "len": 2,
+     "context": ".H;.t.L..H............A.....I...P H.O.H.D$PH.D$P"
+    },
+    {
+     "span": [
+      5473,
+      5474
+     ],
+     "len": 1,
+     "context": "H;.t.H.T$PL...Q..............P.H.O..A..|........"
+    },
+    {
+     "span": [
+      5493,
+      5494
+     ],
+     "len": 1,
+     "context": ".........P.H.O..A..|.........P.H.O..A.H.G..@ ..."
+    },
+    {
+     "span": [
+      5647,
+      5648
+     ],
+     "len": 1,
+     "context": "H;.t.H.T$PL..................P.H.O .A..........."
+    },
+    {
+     "span": [
+      5667,
+      5668
+     ],
+     "len": 1,
+     "context": ".........P.H.O .A............P.H.O .A.H.G .@ ..."
+    },
+    {
+     "span": [
+      5821,
+      5822
+     ],
+     "len": 1,
+     "context": "H;.t.H.T$PL........4.........P.H.W(.B.. ........"
+    },
+    {
+     "span": [
+      5841,
+      5842
+     ],
+     "len": 1,
+     "context": ".........P.H.W(.B.. .........P.H.O(.A.H.G(H...@ "
+    }
+   ]
+  },
+  {
+   "target": "NVRAM anchor",
+   "guid": "cef5b9a3-476d-497f-9fdc-e98143e0422c",
+   "kind": "same-size",
+   "origin_3604": "0x40000",
+   "origin_4655": "0x40000",
+   "size_3604": 130928,
+   "size_4655": 130928,
+   "sha_3604": "8bf3f7da66242a77",
+   "sha_4655": "0e847ee8ba9fe91e",
+   "bytes_changed": 778,
+   "pct": 0.594,
+   "span_count_kept": 24,
+   "spans_first12": [
+    {
+     "span": [
+      4,
+      5
+     ],
+     "len": 1,
+     "context": "NVARR......StdDefaults.NVAR.."
+    },
+    {
+     "span": [
+      759,
+      760
+     ],
+     "len": 1,
+     "context": ".....NV_SIO0_LD1....NVAR$......SetupHWMOneof...."
+    },
+    {
+     "span": [
+      766,
+      784
+     ],
+     "len": 18,
+     "context": "_SIO0_LD1....NVAR$......SetupHWMOneof..........."
+    },
+    {
+     "span": [
+      785,
+      805
+     ],
+     "len": 20,
+     "context": ".....SetupHWMOneof............NVARj......QFan..."
+    },
+    {
+     "span": [
+      806,
+      809
+     ],
+     "len": 3,
+     "context": ".........NVARj......QFan......Fd.-.<.(.<........"
+    },
+    {
+     "span": [
+      810,
+      811
+     ],
+     "len": 1,
+     "context": ".....NVARj......QFan......Fd.-.<.(.<........Fd.-"
+    },
+    {
+     "span": [
+      812,
+      826
+     ],
+     "len": 14,
+     "context": "...NVARj......QFan......Fd.-.<.(.<........Fd.-.<"
+    },
+    {
+     "span": [
+      827,
+      840
+     ],
+     "len": 13,
+     "context": "Fan......Fd.-.<.(.<........Fd.-.<.(.<........Fd."
+    },
+    {
+     "span": [
+      841,
+      858
+     ],
+     "len": 17,
+     "context": "<.(.<........Fd.-.<.(.<........Fd.-.<.(.<......."
+    },
+    {
+     "span": [
+      859,
+      876
+     ],
+     "len": 17,
+     "context": "<.(.<........Fd.-.<.(.<........Fd.-.<.(.<......."
+    },
+    {
+     "span": [
+      877,
+      894
+     ],
+     "len": 17,
+     "context": "<.(.<........Fd.-.<.(.<........Fd.-.<.(.<...NVAR"
+    },
+    {
+     "span": [
+      895,
+      907
+     ],
+     "len": 12,
+     "context": "<.(.<........Fd.-.<.(.<...NVAR.......QFanConfig."
+    }
+   ]
+  },
+  {
+   "target": "1DF36FF9 blob",
+   "guid": "1df36ff9-c7ea-47a3-bd5b-426c250db776",
+   "kind": "off-by-one",
+   "origin_3604": "0x9c0000",
+   "origin_4655": "0x9c0000",
+   "size_3604": 80208,
+   "size_4655": 80207,
+   "sha_3604": "c926e4b78bcaee4f",
+   "sha_4655": "84a45d73d0c080ae",
+   "bytes_changed": null,
+   "pct": null,
+   "span_count_kept": 0,
+   "spans_first12": [],
+   "edit": {
+    "common_prefix": 16,
+    "common_suffix": 1,
+    "edited_window_longer": [
+     16,
+     80207
+    ],
+    "edited_window_shorter": [
+     16,
+     80206
+    ],
+    "removed_bytes": 1
+   },
+   "window_head_3604": "4039010298584eee143959429d6edc7bd79403cf180001005d00000001107004",
+   "window_head_4655": "3f39010298584eee143959429d6edc7bd79403cf180001005d00000001106004",
+   "overlap_equal_bytes": 341,
+   "overlap_equal_pct": 0.4
+  }
+ ],
+ "reading": {
+  "AcpiTableDxe_surgical": "9 bytes changed in 8 spans of 1-2 B, all in cmp/jcc code sequences \u2014 a hand-tightened patch, not a rebuild",
+  "ACPI_rework": "6,215 of 10,646 B changed (58.5 %) at constant size: mid-size spans clustered 2465-2900 (the AML/code region) plus scattered single-byte edits \u2014 a genuine rework that keeps its footprint",
+  "nvram_anchor": "778 B changed: one header-area byte at offset 4 (state/sequence) then 17-26-B spans clustered 759-977 \u2014 exactly the HWM/QFan default-value region (the register's contexts show NV_SIO0_LD1, SetupHWMOneof, QFan): ASUS retuned the fan/monitoring defaults between releases",
+  "off_by_one_truth": "1DF36FF9 is NOT a one-byte edit: after a 16-byte common prefix the overlap matches 0 % \u2014 the payload was replaced wholesale at the same GUID, the 1-B size delta is coincidence; body-hash identity saw the truth, size never could"
+ },
+ "honesty": [
+  "spans are reported in the LONGER side's coordinates for the off-by-one target; insertion/deletion is not disambiguated further",
+  "context windows are printable renderings \u2014 binary bytes show as dots; the hex windows live in the scratch register",
+  "interpretation of AML/code spans is structural (span geometry), not a disassembly \u2014 no opcode semantics claimed"
+ ]
+}

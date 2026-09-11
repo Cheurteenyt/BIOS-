@@ -4,6 +4,64 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the sixteenth ring (the levels, the waves, the nine bytes)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Byte forensics: nine bytes against six thousand.** The same-size
+changed pairs from ring 15 are the purest laboratory — no padding,
+no relocation, only content. `AcpiTableDxe` (18,274 B, both sides)
+changed by **exactly 9 bytes in 8 spans of 1-2 B**, every one inside
+compare/branch code sequences: a surgical patch of eight decisions.
+`ACPI` (16D0A23E) rewrote **58.5 % of itself at constant size** —
+mid-size spans clustered in the 2465-2900 AML/code region. The NVRAM
+anchor's 778-B diff lands exactly in the **HWM/QFan default-value
+region** (`NV_SIO0_LD1`, `SetupHWMOneof`, `QFan` in the span
+contexts): the factory fan/monitoring defaults moved between
+releases. And the ring-15 "one-byte change" (`1DF36FF9`,
+80,232 → 80,231 B) is exposed as a **wholesale payload replacement**
+— 16-byte common prefix, then 0 % overlap — the size delta pure
+coincidence; body-hash identity vindicated by its own edge case.
+
+**The AGESA lens, pierced.** Ring 11's raw scan could verify only
+MSI's `ComboAM4v2PI 1.2.0.8`. Extended to the LZMA-decompressed
+interior, the lens recovers **every specimen's level**: ASUS PRIME
+4655 = `1.2.0.12`, 3604 = `1.2.0.6b`, TUF 4645 = `1.2.0.F` (the
+three "unverified" claims NEWLY BYTE-VERIFIED); MSI, Gigabyte
+(`1.2.0.12`) and ASRock (`1.2.0.E`) all MATCH their vendor claims —
+zero vendor lies detected. The strings sit ~2.7-2.9 MiB into the
+decompressed 0x9c0000 payload, invisible from the outside. Side
+harvest: Gigabyte's SMU versions 3.4.1.1-3.4.2.4. Day-0: the dump's
+AGESA level is one regex away once its volumes are pierced — the
+third independent dating signal.
+
+**The flash-armor bisect: two waves, one security year.** The
+official ledger re-fetched (40 releases now; ring 12 recorded 39).
+Sentinels free (3604: armor 0/7 — 4655: 7/7), four official
+downloads, register written after every probe. The seven modules
+ring 15 measured as added did **not** land as one block: the core
+SMM armor (`FlashSmiSmm`, `FlashSmiDxe`, `PrepareWhiteListSmm`,
+`SbRomArmorSmm` + one freeform) is present by **4202 (2023-08-02**,
+first verified carrier — releases 3802/3810/4003 unprobed, bounded
+budget), and the set completes at **4604 (2024-04-08)**; 4402
+straddles at 5/7. One legacy SMM module was retired in stages (1/2
+at 4202, 0/2 by 4402). The core wave brackets the LogoFail
+disclosure year — an industry-consistent hardening response, measured
+on one board line. Day-0 gets a **versioned armor checklist**: five
+GUIDs expected from 4202, seven from 4604, two legacy expected gone
+by 4402.
+
+**Self-correction chain:** one target-GUID list drafted from memory
+was caught in self-review and replaced by register lookups before
+the first run; the AGESA verdict logic shipped with a
+case-sensitivity bug (mislabelled ASRock), caught on its own output,
+fixed at source, re-run — the wrong labels survive nowhere on disk.
+
+Artifacts: `lab/vendor-agesa.json` + `lab/vendor-flash-armor.json` +
+`lab/vendor-byte-forensics.json`; narrative
+`lab/findings-sixteenth-ring.md`.
+
 ## Unreleased — the fifteenth ring (what an update changes; the chain that holds)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

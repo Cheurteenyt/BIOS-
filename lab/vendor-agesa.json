@@ -1,0 +1,169 @@
+{
+ "schema": "omarchy-firmware/vendor-agesa@1",
+ "date": "2026-09-11",
+ "note": "the AGESA level per specimen, recovered from raw AND LZMA-pierced content \u2014 ring 11's raw scan extended to the compressed interior; the four 'unverified' claims left by rings 11-12 are closed here",
+ "specimens": [
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "4655",
+   "claim": "unverified (API date only)",
+   "bytes": 16777216,
+   "sha256_16": "284ea676ee6cbf42",
+   "surfaces": 5,
+   "versions_found": [
+    "1.2.0.12"
+   ],
+   "verdict": "NEWLY BYTE-VERIFIED",
+   "first_hits": [
+    {
+     "where": "pierced@0x9c0000>0xa73e50",
+     "offset": "0x2c86e5",
+     "string": "ComboAM4v2PI 1.2.0.12"
+    }
+   ]
+  },
+  {
+   "id": "asus-prime-b450-plus-ref",
+   "version": "3604",
+   "claim": "unverified (API date only)",
+   "bytes": 16777216,
+   "sha256_16": "dbabcc8c1d7e6dc4",
+   "surfaces": 5,
+   "versions_found": [
+    "1.2.0.6b"
+   ],
+   "verdict": "NEWLY BYTE-VERIFIED",
+   "first_hits": [
+    {
+     "where": "pierced@0x9c0000>0xa77068",
+     "offset": "0x29dd7d",
+     "string": "ComboAM4v2PI 1.2.0.6b"
+    }
+   ]
+  },
+  {
+   "id": "asus-tuf-b450-plus-gaming",
+   "version": "4645",
+   "claim": "unverified (API date only)",
+   "bytes": 16777216,
+   "sha256_16": "026fbecb0d8d05c8",
+   "surfaces": 5,
+   "versions_found": [
+    "1.2.0.F"
+   ],
+   "verdict": "NEWLY BYTE-VERIFIED",
+   "first_hits": [
+    {
+     "where": "pierced@0x9c0000>0xa74010",
+     "offset": "0x2c8185",
+     "string": "ComboAM4v2PI 1.2.0.F"
+    }
+   ]
+  },
+  {
+   "id": "msi-b450-tomahawk-max",
+   "version": "7C02v3G1",
+   "claim": "1.2.0.8 (raw-verified ring 11)",
+   "bytes": 33554432,
+   "sha256_16": "2ab433d61c93adb4",
+   "surfaces": 9,
+   "versions_found": [
+    "1.2.0.8"
+   ],
+   "verdict": "MATCHES CLAIM",
+   "first_hits": [
+    {
+     "where": "raw",
+     "offset": "0xe6a26d",
+     "string": "ComboAM4v2PI 1.2.0.8"
+    },
+    {
+     "where": "pierced@0x59f000>0x5f1068",
+     "offset": "0x131765",
+     "string": "ComboAM4v2PI 1.2.0.8"
+    },
+    {
+     "where": "pierced@0x1601000>0x1653088",
+     "offset": "0x187305",
+     "string": "ComboAM4v2PI 1.2.0.8"
+    }
+   ]
+  },
+  {
+   "id": "gigabyte-b450-aorus-pro",
+   "version": "F67c",
+   "claim": "ComboV2 1.2.0.12 (vendor page)",
+   "bytes": 16777216,
+   "sha256_16": "091cf42e235289dd",
+   "surfaces": 5,
+   "versions_found": [
+    "1.2.0.12",
+    "3.4.1.1",
+    "3.4.1.2",
+    "3.4.1.21",
+    "3.4.1.22",
+    "3.4.1.26",
+    "3.4.1.41",
+    "3.4.1.42",
+    "3.4.1.46",
+    "3.4.1.6",
+    "3.4.2.1",
+    "3.4.2.2",
+    "3.4.2.3",
+    "3.4.2.4"
+   ],
+   "verdict": "MATCHES CLAIM",
+   "first_hits": [
+    {
+     "where": "pierced@0x94f000>0x97b470",
+     "offset": "0x15847b",
+     "string": "3.4.2.4"
+    },
+    {
+     "where": "pierced@0x94f000>0x97b470",
+     "offset": "0x1584ab",
+     "string": "3.4.2.1"
+    },
+    {
+     "where": "pierced@0x94f000>0x97b470",
+     "offset": "0x1584db",
+     "string": "3.4.2.2"
+    },
+    {
+     "where": "pierced@0x94f000>0x97b470",
+     "offset": "0x15850b",
+     "string": "3.4.2.3"
+    }
+   ]
+  },
+  {
+   "id": "asrock-b450-steel-legend",
+   "version": "10.41 Beta",
+   "claim": "1.2.0.E (vendor page)",
+   "bytes": 16777216,
+   "sha256_16": "d94afae9eecd64ca",
+   "surfaces": 5,
+   "versions_found": [
+    "1.2.0.E"
+   ],
+   "verdict": "MATCHES CLAIM",
+   "first_hits": [
+    {
+     "where": "pierced@0x94f000>0xa43308",
+     "offset": "0x27b02d",
+     "string": "ComboAM4v2PI 1.2.0.E"
+    }
+   ]
+  }
+ ],
+ "reading": {
+  "all_six_verified": "every specimen's AGESA level is now byte-verified: ASUS 4655=1.2.0.12, 3604=1.2.0.6b, TUF 4645=1.2.0.F (NEWLY VERIFIED); MSI 1.2.0.8, Gigabyte 1.2.0.12, ASRock 1.2.0.E all MATCH their claims \u2014 zero vendor lies detected, four blanks filled",
+  "where_it_hides": "the ASUS/TUF strings sit inside the pierced 0x9c0000 FV (ComboAM4v2PI <level>), roughly 2.7-2.9 MiB into the decompressed payload \u2014 the raw scan could never see them",
+  "bonus": "Gigabyte F67c also yields SMU firmware versions 3.4.1.1-3.4.2.4 (fourteen distinct) \u2014 a side harvest of the same scan",
+  "day0_use": "the dump's AGESA level is one regex away once its volumes are pierced; it dates the image independently of version strings and NVRAM defaults"
+ },
+ "honesty": [
+  "version-like strings prove what shipped in the image; they do not prove which component the vendor page credited",
+  "the wave-1 claim 'AGESA' strings are debug/print code in some modules \u2014 the register keeps only version-pattern hits, filtered, never eyeballed from context"
+ ]
+}

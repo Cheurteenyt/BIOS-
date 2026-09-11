@@ -1,0 +1,167 @@
+{
+ "schema": "omarchy-firmware/vendor-flash-armor@1",
+ "date": "2026-09-11",
+ "note": "which official PRIME B450-PLUS release first carries the seven modules ring 15 measured as added 3604->4655 (the vendor flash-armor set); binary search over the API ledger, register written after every probe",
+ "added_watchlist": {
+  "02076249\u2026": "freeform (unnamed)",
+  "391626DB\u2026": "PrepareWhiteListSmm",
+  "4EB43107\u2026": "DXE (unnamed '1.0')",
+  "51080191\u2026": "SbRomArmorSmm",
+  "6C289241\u2026": "FlashSmiSmm",
+  "755877A6\u2026": "FlashSmiDxe",
+  "89BE47F4\u2026": "freeform (unnamed)"
+ },
+ "probes": [
+  {
+   "version": "3604",
+   "date": "2022/03/16",
+   "sentinel": true,
+   "url": "on disk (ring 12 acquisition)",
+   "rom_bytes": 16777216,
+   "rom_sha256_16": "dbabcc8c1d7e6dc4",
+   "modules": 618,
+   "added_present": [],
+   "removed_present": [
+    "SMM (unnamed)",
+    "SMM (unnamed)"
+   ],
+   "armor_complete": false
+  },
+  {
+   "version": "4202",
+   "date": "2023/08/02",
+   "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/PRIME-B450-PLUS-ASUS-4202.zip?model=PRIME B450-PLUS",
+   "ledger_sha256": "",
+   "zip_bytes": 11301889,
+   "zip_sha256": "f1b6ebe9bd1b5ecdd7293399b614b231f920c24bdfbf2a41bbc38ef109429372",
+   "vendor_hash_match": null,
+   "cap_wrapper_first_fv": "0x40800",
+   "rom_bytes": 16515072,
+   "rom_sha256_16": "5ff8f8e27c8b2d73",
+   "modules": 622,
+   "added_present": [
+    "FlashSmiDxe",
+    "FlashSmiSmm",
+    "PrepareWhiteListSmm",
+    "SbRomArmorSmm",
+    "freeform (unnamed)"
+   ],
+   "removed_present": [
+    "SMM (unnamed)"
+   ],
+   "armor_complete": false,
+   "core_armor": 4
+  },
+  {
+   "version": "4402",
+   "date": "2024/01/08",
+   "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/PRIME-B450-PLUS-ASUS-4402.zip?model=PRIME B450-PLUS",
+   "ledger_sha256": "",
+   "zip_bytes": 11311598,
+   "zip_sha256": "8962f489ed9ce28a8e54c0abc041515a4b8299e6003634b38802f12e184d70a4",
+   "vendor_hash_match": null,
+   "cap_wrapper_first_fv": "0x40800",
+   "rom_bytes": 16515072,
+   "rom_sha256_16": "916bcaca825ac3ca",
+   "modules": 621,
+   "added_present": [
+    "FlashSmiDxe",
+    "FlashSmiSmm",
+    "PrepareWhiteListSmm",
+    "SbRomArmorSmm",
+    "freeform (unnamed)"
+   ],
+   "removed_present": [],
+   "armor_complete": false
+  },
+  {
+   "version": "4604",
+   "date": "2024/04/08",
+   "url": "https://dlcdnets.asus.com/pub/ASUS/mb/bios/PRIME-B450-PLUS-ASUS-4604.zip?model=PRIME B450-PLUS",
+   "ledger_sha256": "",
+   "zip_bytes": 11321532,
+   "zip_sha256": "1cd8a65b9f3deb29a0fcb3dc4a3cc3e3a126bfb7a8b50ca8d576f08c1477ae0e",
+   "vendor_hash_match": null,
+   "cap_wrapper_first_fv": "0x40800",
+   "rom_bytes": 16515072,
+   "rom_sha256_16": "eddccf1e75f28adc",
+   "modules": 623,
+   "added_present": [
+    "DXE (unnamed '1.0')",
+    "FlashSmiDxe",
+    "FlashSmiSmm",
+    "PrepareWhiteListSmm",
+    "SbRomArmorSmm",
+    "freeform (unnamed)",
+    "freeform (unnamed)"
+   ],
+   "removed_present": [],
+   "armor_complete": true
+  },
+  {
+   "version": "4631",
+   "date": "2025/04/01",
+   "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/PRIME-B450-PLUS-ASUS-4631.zip?model=PRIME B450-PLUS",
+   "ledger_sha256": "51679301C0843CAE99CE5B22F234A2AA3643CCB2D7715F7284D02F414F068BEC",
+   "zip_bytes": 11334765,
+   "zip_sha256": "51679301c0843cae99ce5b22f234a2aa3643ccb2d7715f7284d02f414f068bec",
+   "vendor_hash_match": true,
+   "cap_wrapper_first_fv": "0x40800",
+   "rom_bytes": 16515072,
+   "rom_sha256_16": "39e778a1a6141aeb",
+   "modules": 623,
+   "added_present": [
+    "DXE (unnamed '1.0')",
+    "FlashSmiDxe",
+    "FlashSmiSmm",
+    "PrepareWhiteListSmm",
+    "SbRomArmorSmm",
+    "freeform (unnamed)",
+    "freeform (unnamed)"
+   ],
+   "removed_present": [],
+   "armor_complete": true
+  },
+  {
+   "version": "4655",
+   "date": "2026/08/27",
+   "sentinel": true,
+   "url": "on disk (ring 12 acquisition)",
+   "rom_bytes": 16777216,
+   "rom_sha256_16": "284ea676ee6cbf42",
+   "modules": 623,
+   "added_present": [
+    "DXE (unnamed '1.0')",
+    "FlashSmiDxe",
+    "FlashSmiSmm",
+    "PrepareWhiteListSmm",
+    "SbRomArmorSmm",
+    "freeform (unnamed)",
+    "freeform (unnamed)"
+   ],
+   "removed_present": [],
+   "armor_complete": true
+  }
+ ],
+ "boundary": {
+  "first_with_armor": "4604",
+  "first_date": "2024/04/08",
+  "last_without_armor": "4402",
+  "downloads": 3
+ },
+ "wave1_boundary": {
+  "first_with_core": "4202",
+  "last_without_core": "3604"
+ },
+ "reading": {
+  "two_waves": "the armor did not land as one block: the core SMM set (FlashSmiSmm, FlashSmiDxe, PrepareWhiteListSmm, SbRomArmorSmm + one freeform) is present by 4202 (2023-08-02, first verified carrier) and complete at 4604 (2024-04-08) when the DXE helper 4EB43107 and the second freeform join; 4402 (2024-01) sat in between with 5/7",
+  "swap_out_staged": "one of the two REMOVED SMM modules was still present at 4202 (1/2) and gone by 4402 (0/2) \u2014 the retirement was staged too",
+  "security_reading": "the core armor wave brackets the LogoFail disclosure window (2023); ASUS hardened the flash path on this board line inside exactly that year \u2014 consistent with an industry-wide response, not a random refresh",
+  "day0_use": "if the 16/09 dump proves older than 4202, the ABSENCE of these five GUIDs is itself a day-0 finding (flash-path hardening absent); if it proves >= 4604, the full seven are expected \u2014 their absence would be an anomaly"
+ },
+ "honesty": [
+  "wave-1 bound: first verified carrier is 4202; releases 3802/3810/4003 between 3604 and 4202 were not probed (bounded download budget) \u2014 'present by', not 'introduced at'",
+  "the two freeform armor files are unnamed (no UI section); they are tracked by GUID only",
+  "vendor sha256 published only for newer releases (4631 verified byte-exact; 4402/4604/4202 have none in the ledger \u2014 provenance rests on the official CDN URL alone)"
+ ]
+}
