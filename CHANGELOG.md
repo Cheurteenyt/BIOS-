@@ -4,6 +4,50 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the nineteenth ring (the anatomy of the vendor line)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Seven fronts on the 13 on-disk specimens, zero new acquisitions** —
+the board is untouched until 16/09, so the ring spent what the study
+already owns (~200 MiB of vendor firmware):
+
+- **PE provenance** (5,707 modules, all surfaces pierced): zero PDB
+  paths, four nonzero timestamps in the whole corpus — two fossil
+  MSI blobs of 2012/2014, mirrored across both SPI windows — and the
+  NX badge inverted: vendor arms 0/5707 where OVMF arms a handful.
+- **Geometry priced for day-0**: the ASUS 16-MiB skeleton is
+  constant (41-42 % top-level FV, 56-60 % packed, ~1.06 MiB slack);
+  the packed share creeps 55.9 → 60.3 % up the ladder; MSI's
+  32-MiB file is 34 % erased.
+- **Trust material inverted**: zero EFI_SIGNATURE_LIST in any image;
+  the factory trust material is raw Authenticode DER chains, and
+  only ASUS ships them (12 → 18 certs at 3810; leaf = TW 23638777 =
+  ASUS; timestamp chain 2021 → 2025) — **a fourth dating signal**.
+- **The PSP chronology** (9 rungs, 50 types): 42/50 blob types move
+  at 3802 — the armor release cross-confirmed as a platform event —
+  while 3810 moves 7/50 (same AGESA, near-frozen PSP layer).
+- **The armor, opened**: `SbRomArmorSmm` is one byte-identical body
+  across 4.5 years; `PrepareWhiteListSmm` carries the literal
+  `AMD rom armor` string plus an SPI flash chip database; the SMM
+  census moves 106 → 109 → 107.
+- **The CVE patch lens** (Gigabyte F65 → F67c, the
+  CVE-2026-6726/6727 carrier): **18.1 % of the GUID set survives —
+  a vendor security patch is a platform rebuild**, not a patch; the
+  fix is not isolable at FFS granularity (mirror image of the
+  ring-15 surgical 9-byte story).
+- **The vendor facade quantified** (ring-6 grammar ported, 100 %
+  valid walks): 6,360-8,646 questions per board (OVMF plain: 146),
+  CBS dominant on every board, and ~zero SUPPRESS/GRAYOUT/DISABLE
+  conditions across 46,000+ questions — vendor hiding is
+  variable-level, not question-level.
+
+Artifacts: `vendor-pe-trust.json`, `vendor-geometry.json`,
+`vendor-lifecycles.json`, `vendor-ifr-census.json`; findings:
+`findings-nineteenth-ring.md`. One acquisition (Gigabyte F65,
+canonical CDN URL with board id, the old "f65 zip" proven a 404 page).
+
 ## Unreleased — the eighteenth ring (the wave was never a reaction)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

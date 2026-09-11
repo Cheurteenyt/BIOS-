@@ -1,0 +1,488 @@
+{
+ "schema": "omarchy-firmware/vendor-ifr-census@1",
+ "date": "2026-09-12",
+ "ring": 19,
+ "title": "the vendor setup facade quantified in questions (ring-6 machinery ported to vendor silicon)",
+ "reading": {
+  "scale": "the vendor facades carry 6,360-8,646 questions across 732-1,104 pages \u2014 OVMF plain is 146/58; the vendor setup is a different species, and AMD's CBS dominates (CbsSetupDxeZP/RV/SSP per CPU family)",
+  "grammar_crosses": "100 % of form packages validate by exact consumption \u2014 the ring-6 spec-fresh grammar is vendor-grade",
+  "flat_facade": "the hidden surface is NOT in IFR conditions: SUPPRESS_IF/GRAYOUT_IF/DISABLE_IF count ~zero across 46,000+ questions (OVMF secboot hid 64/202 behind conditions) \u2014 vendor hiding is variable-level, not question-level",
+  "asus_growth": "the ASUS facade grows across the chronology: 7,975 questions at 3604 -> 8,273 at 4655; Setup alone 3,130 -> 3,252"
+ },
+ "specimens": [
+  {
+   "id": "asus-prime-b450-plus-ref",
+   "version": "3604",
+   "modules_with_forms": 15,
+   "totals": {
+    "packages": 64,
+    "valid": 64,
+    "pages": 779,
+    "questions": 7975,
+    "options": 18222
+   },
+   "top_modules": [
+    {
+     "name": "Setup",
+     "phase": "DXE",
+     "questions": 3130,
+     "pages": 241,
+     "options": 6001,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeZP",
+     "phase": "DXE",
+     "questions": 1016,
+     "pages": 159,
+     "options": 2946,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeRV",
+     "phase": "DXE",
+     "questions": 818,
+     "pages": 84,
+     "options": 2058,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeSSP",
+     "phase": "DXE",
+     "questions": 656,
+     "pages": 86,
+     "options": 2061,
+     "conds": {}
+    },
+    {
+     "name": "UefiRaid",
+     "phase": "DXE",
+     "questions": 551,
+     "pages": 34,
+     "options": 110,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeRN",
+     "phase": "DXE",
+     "questions": 450,
+     "pages": 80,
+     "options": 1923,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 406,
+     "pages": 27,
+     "options": 952,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 406,
+     "pages": 27,
+     "options": 952,
+     "conds": {}
+    }
+   ]
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "4655",
+   "modules_with_forms": 15,
+   "totals": {
+    "packages": 61,
+    "valid": 61,
+    "pages": 783,
+    "questions": 8273,
+    "options": 18337
+   },
+   "top_modules": [
+    {
+     "name": "Setup",
+     "phase": "DXE",
+     "questions": 3252,
+     "pages": 237,
+     "options": 6061,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeZP",
+     "phase": "DXE",
+     "questions": 1016,
+     "pages": 159,
+     "options": 2946,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeRV",
+     "phase": "DXE",
+     "questions": 818,
+     "pages": 84,
+     "options": 2058,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeSSP",
+     "phase": "DXE",
+     "questions": 704,
+     "pages": 100,
+     "options": 2256,
+     "conds": {}
+    },
+    {
+     "name": "UefiRaid",
+     "phase": "DXE",
+     "questions": 696,
+     "pages": 34,
+     "options": 110,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeRN",
+     "phase": "DXE",
+     "questions": 421,
+     "pages": 74,
+     "options": 1777,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 410,
+     "pages": 27,
+     "options": 954,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 410,
+     "pages": 27,
+     "options": 954,
+     "conds": {}
+    }
+   ]
+  },
+  {
+   "id": "asus-tuf-b450-plus-gaming",
+   "version": "4645",
+   "modules_with_forms": 15,
+   "totals": {
+    "packages": 63,
+    "valid": 63,
+    "pages": 800,
+    "questions": 8459,
+    "options": 18702
+   },
+   "top_modules": [
+    {
+     "name": "Setup",
+     "phase": "DXE",
+     "questions": 3438,
+     "pages": 254,
+     "options": 6426,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeZP",
+     "phase": "DXE",
+     "questions": 1016,
+     "pages": 159,
+     "options": 2946,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeRV",
+     "phase": "DXE",
+     "questions": 818,
+     "pages": 84,
+     "options": 2058,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeSSP",
+     "phase": "DXE",
+     "questions": 704,
+     "pages": 100,
+     "options": 2256,
+     "conds": {}
+    },
+    {
+     "name": "UefiRaid",
+     "phase": "DXE",
+     "questions": 696,
+     "pages": 34,
+     "options": 110,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeRN",
+     "phase": "DXE",
+     "questions": 421,
+     "pages": 74,
+     "options": 1777,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 410,
+     "pages": 27,
+     "options": 954,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 410,
+     "pages": 27,
+     "options": 954,
+     "conds": {}
+    }
+   ]
+  },
+  {
+   "id": "msi-b450-tomahawk-max",
+   "version": "7C02v3G1",
+   "modules_with_forms": 21,
+   "totals": {
+    "packages": 60,
+    "valid": 60,
+    "pages": 1104,
+    "questions": 8646,
+    "options": 21552
+   },
+   "top_modules": [
+    {
+     "name": "Setup",
+     "phase": "DXE",
+     "questions": 4222,
+     "pages": 516,
+     "options": 9879,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeZP",
+     "phase": "DXE",
+     "questions": 1178,
+     "pages": 184,
+     "options": 3604,
+     "conds": {}
+    },
+    {
+     "name": "UefiRaid",
+     "phase": "DXE",
+     "questions": 696,
+     "pages": 34,
+     "options": 110,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeSSP",
+     "phase": "DXE",
+     "questions": 629,
+     "pages": 95,
+     "options": 2040,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeRN",
+     "phase": "DXE",
+     "questions": 451,
+     "pages": 81,
+     "options": 1899,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeRV",
+     "phase": "DXE",
+     "questions": 401,
+     "pages": 54,
+     "options": 1059,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 256,
+     "pages": 27,
+     "options": 826,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 256,
+     "pages": 27,
+     "options": 826,
+     "conds": {}
+    }
+   ]
+  },
+  {
+   "id": "gigabyte-b450-aorus-pro",
+   "version": "F67c",
+   "modules_with_forms": 21,
+   "totals": {
+    "packages": 64,
+    "valid": 64,
+    "pages": 755,
+    "questions": 6388,
+    "options": 16677,
+    "SUPPRESS_IF": 1
+   },
+   "top_modules": [
+    {
+     "name": "Setup",
+     "phase": "DXE",
+     "questions": 2114,
+     "pages": 272,
+     "options": 4971,
+     "conds": {}
+    },
+    {
+     "name": "UefiRaid",
+     "phase": "DXE",
+     "questions": 696,
+     "pages": 34,
+     "options": 110,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeRV",
+     "phase": "DXE",
+     "questions": 682,
+     "pages": 80,
+     "options": 1726,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeSSP",
+     "phase": "DXE",
+     "questions": 623,
+     "pages": 85,
+     "options": 2145,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 399,
+     "pages": 44,
+     "options": 1553,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 399,
+     "pages": 44,
+     "options": 1553,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 399,
+     "pages": 44,
+     "options": 1553,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeZP",
+     "phase": "DXE",
+     "questions": 383,
+     "pages": 51,
+     "options": 1071,
+     "conds": {}
+    }
+   ]
+  },
+  {
+   "id": "asrock-b450-steel-legend",
+   "version": "10.41 Beta",
+   "modules_with_forms": 19,
+   "totals": {
+    "packages": 45,
+    "valid": 45,
+    "pages": 732,
+    "questions": 6360,
+    "options": 15177
+   },
+   "top_modules": [
+    {
+     "name": "Setup",
+     "phase": "DXE",
+     "questions": 2632,
+     "pages": 291,
+     "options": 6306,
+     "conds": {}
+    },
+    {
+     "name": "UefiRaid",
+     "phase": "DXE",
+     "questions": 696,
+     "pages": 34,
+     "options": 110,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeSSP",
+     "phase": "DXE",
+     "questions": 657,
+     "pages": 94,
+     "options": 2118,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeZP",
+     "phase": "DXE",
+     "questions": 513,
+     "pages": 71,
+     "options": 1367,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeRV",
+     "phase": "DXE",
+     "questions": 431,
+     "pages": 61,
+     "options": 1133,
+     "conds": {}
+    },
+    {
+     "name": "CbsSetupDxeRN",
+     "phase": "DXE",
+     "questions": 331,
+     "pages": 58,
+     "options": 1262,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 254,
+     "pages": 27,
+     "options": 838,
+     "conds": {}
+    },
+    {
+     "name": "AodSetupDxe",
+     "phase": "DXE",
+     "questions": 254,
+     "pages": 27,
+     "options": 838,
+     "conds": {}
+    }
+   ]
+  }
+ ],
+ "honesty": [
+  "counts are opcode-level, not UI-level: a 'question' is a question-class opcode, not a visible widget",
+  "the six specimens are one per board family; the ASUS cross-release figures reuse the same walk on the two chronology endpoints and the TUF",
+  "the one SUPPRESS_IF hit on F67c is the single conditional in the whole corpus \u2014 treated as data, not chased"
+ ]
+}

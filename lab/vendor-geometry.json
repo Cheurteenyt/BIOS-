@@ -1,0 +1,647 @@
+{
+ "schema": "omarchy-firmware/vendor-geometry@1",
+ "date": "2026-09-12",
+ "ring": 19,
+ "title": "the raw-image geometry priced for day-0",
+ "reading": {
+  "asus_chronology": "the ten ASUS 16-MiB images keep the same skeleton: ~6 MiB of top-level FV (41-42 % of the image), 56-60 % of the image reads as compressed payload, ~18-19 % erased, ~1.05-1.09 MiB top 0xFF slack \u2014 the dump will look like every one of these",
+  "msi_32mib": "the 32-MiB MSI double structure reads 63.7 % FV, 34 % erased, 3.3 MiB top slack \u2014 the second window is half empty by design (ring 17)",
+  "growth_signal": "the packed share creeps up the ASUS ladder (55.9 % at 3604 -> 60.3 % at 4604) then dips at 4655 \u2014 the only geometry-level sign of aging; the NVRAM NVAR-magic count grows 18 -> 19 at 4631"
+ },
+ "window_bytes": 65536,
+ "classes": {
+  "erased": [
+   0.0,
+   0.5
+  ],
+  "low": [
+   0.5,
+   4.0
+  ],
+  "code": [
+   4.0,
+   7.2
+  ],
+  "packed": [
+   7.2,
+   8.01
+  ]
+ },
+ "specimens": [
+  {
+   "id": "asus-prime-b450-plus-ref",
+   "version": "3604",
+   "released": "2022-03-16",
+   "bytes": 16777216,
+   "sha256_16": "dbabcc8c1d7e6dc4",
+   "avg_entropy": 5.71,
+   "windows_total": 256,
+   "windows": {
+    "erased": 51,
+    "low": 13,
+    "code": 49,
+    "packed": 143
+   },
+   "pct_packed": 55.9,
+   "pct_erased": 19.9,
+   "fv_top_count": 4,
+   "fv_top_bytes": 6946816,
+   "pct_fv_of_image": 41.4,
+   "nvar_magic_hits": 18,
+   "slack_top": [
+    {
+     "offset": "0xdeeff2",
+     "bytes": 1118222
+    },
+    {
+     "offset": "0x84008",
+     "bytes": 507896
+    },
+    {
+     "offset": "0x91a4c0",
+     "bytes": 285504
+    },
+    {
+     "offset": "0x8cd620",
+     "bytes": 240096
+    },
+    {
+     "offset": "0x220de0",
+     "bytes": 229920
+    },
+    {
+     "offset": "0xfc9320",
+     "bytes": 220360
+    }
+   ]
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "3802",
+   "released": "2022-05-12",
+   "bytes": 16515072,
+   "sha256_16": "f9bb9ac5f2552369",
+   "avg_entropy": 5.82,
+   "windows_total": 252,
+   "windows": {
+    "erased": 47,
+    "low": 15,
+    "code": 43,
+    "packed": 147
+   },
+   "pct_packed": 58.3,
+   "pct_erased": 18.7,
+   "fv_top_count": 4,
+   "fv_top_bytes": 6946816,
+   "pct_fv_of_image": 42.1,
+   "nvar_magic_hits": 18,
+   "slack_top": [
+    {
+     "offset": "0xdb131a",
+     "bytes": 1109222
+    },
+    {
+     "offset": "0x44008",
+     "bytes": 507896
+    },
+    {
+     "offset": "0x8da4c0",
+     "bytes": 285504
+    },
+    {
+     "offset": "0x88f720",
+     "bytes": 231648
+    },
+    {
+     "offset": "0x1e0de0",
+     "bytes": 229920
+    },
+    {
+     "offset": "0x5848f0",
+     "bytes": 210704
+    }
+   ]
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "3810",
+   "released": "2022-12-15",
+   "bytes": 16515072,
+   "sha256_16": "4c925f66864446e8",
+   "avg_entropy": 5.816,
+   "windows_total": 252,
+   "windows": {
+    "erased": 48,
+    "low": 14,
+    "code": 43,
+    "packed": 147
+   },
+   "pct_packed": 58.3,
+   "pct_erased": 19.0,
+   "fv_top_count": 4,
+   "fv_top_bytes": 6946816,
+   "pct_fv_of_image": 42.1,
+   "nvar_magic_hits": 18,
+   "slack_top": [
+    {
+     "offset": "0xdaf56a",
+     "bytes": 1116822
+    },
+    {
+     "offset": "0x44008",
+     "bytes": 507896
+    },
+    {
+     "offset": "0x8da4c0",
+     "bytes": 285504
+    },
+    {
+     "offset": "0x88f720",
+     "bytes": 231648
+    },
+    {
+     "offset": "0x1e0de0",
+     "bytes": 229920
+    },
+    {
+     "offset": "0x5848f0",
+     "bytes": 210704
+    }
+   ]
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "4003",
+   "released": "2023-03-21",
+   "bytes": 16515072,
+   "sha256_16": "a11dff75cbb9d953",
+   "avg_entropy": 5.824,
+   "windows_total": 252,
+   "windows": {
+    "erased": 48,
+    "low": 14,
+    "code": 42,
+    "packed": 148
+   },
+   "pct_packed": 58.7,
+   "pct_erased": 19.0,
+   "fv_top_count": 4,
+   "fv_top_bytes": 6946816,
+   "pct_fv_of_image": 42.1,
+   "nvar_magic_hits": 18,
+   "slack_top": [
+    {
+     "offset": "0xdafd22",
+     "bytes": 1114846
+    },
+    {
+     "offset": "0x44008",
+     "bytes": 507896
+    },
+    {
+     "offset": "0x8da4c0",
+     "bytes": 285504
+    },
+    {
+     "offset": "0x1e0de0",
+     "bytes": 229920
+    },
+    {
+     "offset": "0x890720",
+     "bytes": 227552
+    },
+    {
+     "offset": "0xf8c198",
+     "bytes": 208464
+    }
+   ]
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "4202",
+   "released": "2023-08-02",
+   "bytes": 16515072,
+   "sha256_16": "5ff8f8e27c8b2d73",
+   "avg_entropy": 5.839,
+   "windows_total": 252,
+   "windows": {
+    "erased": 46,
+    "low": 16,
+    "code": 40,
+    "packed": 150
+   },
+   "pct_packed": 59.5,
+   "pct_erased": 18.3,
+   "fv_top_count": 4,
+   "fv_top_bytes": 6946816,
+   "pct_fv_of_image": 42.1,
+   "nvar_magic_hits": 18,
+   "slack_top": [
+    {
+     "offset": "0xdb51da",
+     "bytes": 1093158
+    },
+    {
+     "offset": "0x44008",
+     "bytes": 507896
+    },
+    {
+     "offset": "0x8da4c0",
+     "bytes": 285504
+    },
+    {
+     "offset": "0x1e0de0",
+     "bytes": 229920
+    },
+    {
+     "offset": "0xf8c340",
+     "bytes": 208040
+    },
+    {
+     "offset": "0x585ff0",
+     "bytes": 204816
+    }
+   ]
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "4402",
+   "released": "2024-01-08",
+   "bytes": 16515072,
+   "sha256_16": "916bcaca825ac3ca",
+   "avg_entropy": 5.841,
+   "windows_total": 252,
+   "windows": {
+    "erased": 46,
+    "low": 16,
+    "code": 39,
+    "packed": 151
+   },
+   "pct_packed": 59.9,
+   "pct_erased": 18.3,
+   "fv_top_count": 4,
+   "fv_top_bytes": 6946816,
+   "pct_fv_of_image": 42.1,
+   "nvar_magic_hits": 18,
+   "slack_top": [
+    {
+     "offset": "0xdb48c2",
+     "bytes": 1095486
+    },
+    {
+     "offset": "0x44008",
+     "bytes": 507896
+    },
+    {
+     "offset": "0x8da4c0",
+     "bytes": 285504
+    },
+    {
+     "offset": "0x1e0de0",
+     "bytes": 229920
+    },
+    {
+     "offset": "0xf8c3d8",
+     "bytes": 207888
+    },
+    {
+     "offset": "0x895d20",
+     "bytes": 205536
+    }
+   ]
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "4604",
+   "released": "2024-04-08",
+   "bytes": 16515072,
+   "sha256_16": "eddccf1e75f28adc",
+   "avg_entropy": 5.847,
+   "windows_total": 252,
+   "windows": {
+    "erased": 46,
+    "low": 16,
+    "code": 38,
+    "packed": 152
+   },
+   "pct_packed": 60.3,
+   "pct_erased": 18.3,
+   "fv_top_count": 4,
+   "fv_top_bytes": 6946816,
+   "pct_fv_of_image": 42.1,
+   "nvar_magic_hits": 18,
+   "slack_top": [
+    {
+     "offset": "0xdb51d2",
+     "bytes": 1093166
+    },
+    {
+     "offset": "0x44008",
+     "bytes": 507896
+    },
+    {
+     "offset": "0x8da4c0",
+     "bytes": 285504
+    },
+    {
+     "offset": "0x1e0de0",
+     "bytes": 229920
+    },
+    {
+     "offset": "0x585f80",
+     "bytes": 204928
+    },
+    {
+     "offset": "0xf8d8a8",
+     "bytes": 202560
+    }
+   ]
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "4631",
+   "released": "2025-04-01",
+   "bytes": 16515072,
+   "sha256_16": "39e778a1a6141aeb",
+   "avg_entropy": 5.852,
+   "windows_total": 252,
+   "windows": {
+    "erased": 46,
+    "low": 15,
+    "code": 39,
+    "packed": 152
+   },
+   "pct_packed": 60.3,
+   "pct_erased": 18.3,
+   "fv_top_count": 4,
+   "fv_top_bytes": 6946816,
+   "pct_fv_of_image": 42.1,
+   "nvar_magic_hits": 19,
+   "slack_top": [
+    {
+     "offset": "0xdb5842",
+     "bytes": 1091518
+    },
+    {
+     "offset": "0x44008",
+     "bytes": 507896
+    },
+    {
+     "offset": "0x8da4c0",
+     "bytes": 285504
+    },
+    {
+     "offset": "0x1e0de0",
+     "bytes": 229920
+    },
+    {
+     "offset": "0xf8d8a0",
+     "bytes": 202568
+    },
+    {
+     "offset": "0x586f90",
+     "bytes": 200816
+    }
+   ]
+  },
+  {
+   "id": "asus-prime-b450-plus",
+   "version": "4655",
+   "released": "2026-08-27",
+   "bytes": 16777216,
+   "sha256_16": "284ea676ee6cbf42",
+   "avg_entropy": 5.791,
+   "windows_total": 256,
+   "windows": {
+    "erased": 49,
+    "low": 14,
+    "code": 41,
+    "packed": 152
+   },
+   "pct_packed": 59.4,
+   "pct_erased": 19.1,
+   "fv_top_count": 4,
+   "fv_top_bytes": 6946816,
+   "pct_fv_of_image": 41.4,
+   "nvar_magic_hits": 19,
+   "slack_top": [
+    {
+     "offset": "0xdf7a6a",
+     "bytes": 1082774
+    },
+    {
+     "offset": "0x84008",
+     "bytes": 507896
+    },
+    {
+     "offset": "0x91a4c0",
+     "bytes": 285504
+    },
+    {
+     "offset": "0x220de0",
+     "bytes": 229920
+    },
+    {
+     "offset": "0xfcdb00",
+     "bytes": 201960
+    },
+    {
+     "offset": "0x5c6f90",
+     "bytes": 200816
+    }
+   ]
+  },
+  {
+   "id": "asus-tuf-b450-plus-gaming",
+   "version": "4645",
+   "released": "2026-06-24",
+   "bytes": 16777216,
+   "sha256_16": "026fbecb0d8d05c8",
+   "avg_entropy": 5.825,
+   "windows_total": 256,
+   "windows": {
+    "erased": 48,
+    "low": 14,
+    "code": 40,
+    "packed": 154
+   },
+   "pct_packed": 60.2,
+   "pct_erased": 18.8,
+   "fv_top_count": 4,
+   "fv_top_bytes": 6946816,
+   "pct_fv_of_image": 41.4,
+   "nvar_magic_hits": 19,
+   "slack_top": [
+    {
+     "offset": "0xdf6d1a",
+     "bytes": 1086182
+    },
+    {
+     "offset": "0x84008",
+     "bytes": 507896
+    },
+    {
+     "offset": "0x91a4c0",
+     "bytes": 285504
+    },
+    {
+     "offset": "0x220de0",
+     "bytes": 229920
+    },
+    {
+     "offset": "0xfcd5c8",
+     "bytes": 203296
+    },
+    {
+     "offset": "0x5c6f90",
+     "bytes": 200816
+    }
+   ]
+  },
+  {
+   "id": "msi-b450-tomahawk-max",
+   "version": "7C02v3G1",
+   "released": "2023-03",
+   "bytes": 33554432,
+   "sha256_16": "2ab433d61c93adb4",
+   "avg_entropy": 4.783,
+   "windows_total": 512,
+   "windows": {
+    "erased": 174,
+    "low": 18,
+    "code": 83,
+    "packed": 237
+   },
+   "pct_packed": 46.3,
+   "pct_erased": 34.0,
+   "fv_top_count": 6,
+   "fv_top_bytes": 21364736,
+   "pct_fv_of_image": 63.7,
+   "nvar_magic_hits": 28,
+   "slack_top": [
+    {
+     "offset": "0xa26080",
+     "bytes": 3383168
+    },
+    {
+     "offset": "0x1a9806e",
+     "bytes": 2916242
+    },
+    {
+     "offset": "0xe81ba8",
+     "bytes": 1545304
+    },
+    {
+     "offset": "0x1ef1620",
+     "bytes": 1087968
+    },
+    {
+     "offset": "0x57000",
+     "bytes": 327680
+    },
+    {
+     "offset": "0x293440",
+     "bytes": 248768
+    }
+   ]
+  },
+  {
+   "id": "gigabyte-b450-aorus-pro",
+   "version": "F67c",
+   "released": "2026-08",
+   "bytes": 16777216,
+   "sha256_16": "091cf42e235289dd",
+   "avg_entropy": 5.852,
+   "windows_total": 256,
+   "windows": {
+    "erased": 51,
+    "low": 10,
+    "code": 44,
+    "packed": 151
+   },
+   "pct_packed": 59.0,
+   "pct_erased": 19.9,
+   "fv_top_count": 4,
+   "fv_top_bytes": 7147520,
+   "pct_fv_of_image": 42.6,
+   "nvar_magic_hits": 12,
+   "slack_top": [
+    {
+     "offset": "0xf3dd8f",
+     "bytes": 795249
+    },
+    {
+     "offset": "0xda56f4",
+     "bytes": 629004
+    },
+    {
+     "offset": "0x57000",
+     "bytes": 589824
+    },
+    {
+     "offset": "0x207de0",
+     "bytes": 229920
+    },
+    {
+     "offset": "0x5adf90",
+     "bytes": 200816
+    },
+    {
+     "offset": "0x8bef20",
+     "bytes": 196832
+    }
+   ]
+  },
+  {
+   "id": "asrock-b450-steel-legend",
+   "version": "10.41 Beta",
+   "released": "2025-09",
+   "bytes": 16777216,
+   "sha256_16": "d94afae9eecd64ca",
+   "avg_entropy": 5.85,
+   "windows_total": 256,
+   "windows": {
+    "erased": 51,
+    "low": 9,
+    "code": 46,
+    "packed": 150
+   },
+   "pct_packed": 58.6,
+   "pct_erased": 19.9,
+   "fv_top_count": 3,
+   "fv_top_bytes": 7147520,
+   "pct_fv_of_image": 42.6,
+   "nvar_magic_hits": 15,
+   "slack_top": [
+    {
+     "offset": "0xed8325",
+     "bytes": 1211611
+    },
+    {
+     "offset": "0x57000",
+     "bytes": 589824
+    },
+    {
+     "offset": "0x207de0",
+     "bytes": 229920
+    },
+    {
+     "offset": "0xdca0fb",
+     "bytes": 220933
+    },
+    {
+     "offset": "0x5aeb20",
+     "bytes": 197856
+    },
+    {
+     "offset": "0x8bef20",
+     "bytes": 196832
+    }
+   ]
+  }
+ ],
+ "honesty": [
+  "entropy classes are heuristics: 'packed' = window shannon > 7.2 bits/byte, 'code' 4.0-7.2, 'low' 0.5-4.0, 'erased' < 0.5 \u2014 windows mix categories",
+  "FV coverage counts top-level FVs only (ring-11 validation), so PSP/capsule areas are outside the 6 MiB figure"
+ ]
+}

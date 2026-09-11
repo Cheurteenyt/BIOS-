@@ -56,6 +56,18 @@ layers hide the rest:
   GRAYOUT_IF / DISABLE_IF** — the hidden surface priced per question. The
   Q1 ↔ Q5 bridge (what the UI asks ↔ what NVRAM holds) is now structural,
   and OVMF turns out bilingual (5 en-US + 5 fr-FR strings packages in UiApp).
+- RING-19 (the vendor facade quantified BEFORE the dump — see
+  `lab/findings-nineteenth-ring.md`): the ring-6 grammar ported to six
+  vendor-representative specimens, 100 % of form packages valid by exact
+  consumption; the vendor facades carry **6,360-8,646 questions across
+  732-1,104 pages** (MSI the largest at 8,646/1,104, Setup alone 4,222;
+  ASUS 7,975 → 8,273 across its own chronology), AMD's CBS dominating every
+  board (513-1,178 questions per CPU-family variant). The hidden surface
+  INVERTS: ~zero SUPPRESS/GRAYOUT/DISABLE conditions across 46,000+ vendor
+  questions (exactly one SUPPRESS_IF in the corpus) — on vendor boards the
+  hiding is VARIABLE-level (unexposed `Setup` fields, ring 14), not
+  question-level. The day-0 screenshot delta now has an expected magnitude,
+  not just a method.
 - DAY-0: real module list vs. a manual inventory of every setup screen
   (screenshots). The delta is what the vendor ships but does not show.
 - VOL-5: per-vendor NVRAM editors (`setup_var`, AMISCE, SCEWIN) — referenced
@@ -175,6 +187,18 @@ The five walls from `lab/coreboot-notes.md`, each with an owner:
   IOActive); and the PSP **shares the SPI flash storage with the
   system BIOS** (coreboot PSP doc) — any Volume-5 protect decision
   has two consumers of the same silicon.
+- RING-19 (who signs, and what ships — see `lab/vendor-pe-trust.json`):
+  the NX story completes the policy picture — vendor silicon arms
+  ZERO of 5,707 modules NX_COMPAT where OVMF arms a handful, so on
+  AMI-Aptio the PE flag is not the enforcement channel either. And
+  the factory trust material is now measured: **zero
+  EFI_SIGNATURE_LIST in any of the 13 images** — the DER chains ship
+  raw (runtime-assembled lists), and ONLY ASUS carries in-image
+  signing material (12 → 18 certs, leaf = TW 23638777 = ASUS,
+  timestamp chain 2021 → 2025, a fourth dating signal); MSI,
+  Gigabyte and ASRock ship none — their enforcement story is not
+  readable from the image alone. Day-0 adds a fifth first-hour
+  fingerprint: the 18-cert DER set for this board.
 
 ## Q5 — What does NVRAM really hold? (the hidden settings)
 

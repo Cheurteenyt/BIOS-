@@ -1,0 +1,2866 @@
+{
+ "schema": "omarchy-firmware/vendor-lifecycles@1",
+ "date": "2026-09-12",
+ "ring": 19,
+ "title": "three lifecycles on one board family: the PSP blobs, the SMM armor, and a security patch",
+ "psp_chronology": {
+  "note": "PSP/BIOS directory blob fingerprints across the nine dated PRIME rungs (ring-13 machinery, fletcher-validated)",
+  "rungs": [
+   {
+    "version": "3604",
+    "released": "2022-03-16",
+    "types": 49,
+    "distinct_blobs": 200
+   },
+   {
+    "version": "3802",
+    "released": "2022-05-12",
+    "types": 49,
+    "distinct_blobs": 211
+   },
+   {
+    "version": "3810",
+    "released": "2022-12-15",
+    "types": 49,
+    "distinct_blobs": 211
+   },
+   {
+    "version": "4003",
+    "released": "2023-03-21",
+    "types": 49,
+    "distinct_blobs": 211
+   },
+   {
+    "version": "4202",
+    "released": "2023-08-02",
+    "types": 50,
+    "distinct_blobs": 211
+   },
+   {
+    "version": "4402",
+    "released": "2024-01-08",
+    "types": 49,
+    "distinct_blobs": 208
+   },
+   {
+    "version": "4604",
+    "released": "2024-04-08",
+    "types": 49,
+    "distinct_blobs": 210
+   },
+   {
+    "version": "4631",
+    "released": "2025-04-01",
+    "types": 49,
+    "distinct_blobs": 210
+   },
+   {
+    "version": "4655",
+    "released": "2026-08-27",
+    "types": 49,
+    "distinct_blobs": 200
+   }
+  ],
+  "churn_per_transition": {
+   "3604->3802": 42,
+   "3802->3810": 7,
+   "3810->4003": 35,
+   "4003->4202": 32,
+   "4202->4402": 33,
+   "4402->4604": 28,
+   "4604->4631": 34,
+   "4631->4655": 43
+  },
+  "reading": "the 3802 event is cross-confirmed: 42/50 blob types move at 3802 \u2014 the release where the SMM armor appears \u2014 while 3810 moves 7/50 (same AGESA 1.2.0.7, a quiet maintenance release); every later transition churns 28-43/50; ABL0/ABL6/APCB/key/policy blobs move at almost every rung",
+  "types": {
+   "0x0 AMD_PUBLIC_KEY": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 25
+   },
+   "0x1 PSP_FW_BOOT_LOADER": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 43
+   },
+   "0x12 SMU_OFF_CHIP_FW_2": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 34
+   },
+   "0x13 DEBUG_UNLOCK": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 26
+   },
+   "0x2 PSP_FW_TRUSTED_OS": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4655"
+    ],
+    "distinct_contents": 28
+   },
+   "0x20 HARDWARE_IP_CONFIG": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 9
+   },
+   "0x21 WRAPPED_IKEK": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 23
+   },
+   "0x22 TOKEN_UNLOCK": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 10
+   },
+   "0x24 SEC_GASKET": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 34
+   },
+   "0x25 MP2_FW": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [],
+    "distinct_contents": 3
+   },
+   "0x28 DRIVER_ENTRIES": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 21
+   },
+   "0x2a MP5_FW": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4202",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 10
+   },
+   "0x2d S0I3_DRIVER": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4202",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 11
+   },
+   "0x30 ABL0": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 36
+   },
+   "0x31 ABL1": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "4003",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 5
+   },
+   "0x32 ABL2": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4402",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 6
+   },
+   "0x33 ABL3": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4402",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 6
+   },
+   "0x34 ABL4": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4402",
+     "4655"
+    ],
+    "distinct_contents": 5
+   },
+   "0x35 ABL5": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4402",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 7
+   },
+   "0x36 ABL6": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 12
+   },
+   "0x37 ABL7": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "4631"
+    ],
+    "distinct_contents": 2
+   },
+   "0x3c VBIOS_PRELOAD": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4655"
+    ],
+    "distinct_contents": 4
+   },
+   "0x4 PSP_NV_DATA": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [],
+    "distinct_contents": 1
+   },
+   "0x40 PSP_FW_L2_PTR": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 12
+   },
+   "0x42 FW_GEC_OR_DXIO_PHY_SRAM_FW": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 5
+   },
+   "0x43 DXIO_PHY_SRAM_FW_PUBKEY": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4655"
+    ],
+    "distinct_contents": 3
+   },
+   "0x44 FW_XHCI": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 11
+   },
+   "0x45 TOS_SECURITY_POLICY": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 31
+   },
+   "0x47 DRTM_TA": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 12
+   },
+   "0x4e PMU_PUBKEY": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4655"
+    ],
+    "distinct_contents": 3
+   },
+   "0x50 BL_PUBLIC_KEY": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 18
+   },
+   "0x51 TOS_PUBLIC_KEY": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 15
+   },
+   "0x54 PSP_NVRAM": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4402",
+     "4655"
+    ],
+    "distinct_contents": 4
+   },
+   "0x58 DMCU_ERAM": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 12
+   },
+   "0x59 DMCU_ISR": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 9
+   },
+   "0x5c SPI_ROM_CONFIG": {
+    "rungs_present": [
+     "4202"
+    ],
+    "changed_at": [
+     "4402"
+    ],
+    "distinct_contents": 1
+   },
+   "0x60 APCB": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 66
+   },
+   "0x63 APOB_NV_COPY": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4402",
+     "4655"
+    ],
+    "distinct_contents": 3
+   },
+   "0x64 PMU_CODE": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 39
+   },
+   "0x65 PMU_DATA": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 34
+   },
+   "0x66 MICROCODE_PATCH": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 55
+   },
+   "0x67 CORE_MCE_DATA": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [],
+    "distinct_contents": 1
+   },
+   "0x68 APCB_COPY": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 88
+   },
+   "0x6a UNNAMED": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [],
+    "distinct_contents": 1
+   },
+   "0x70 UNNAMED": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4655"
+    ],
+    "distinct_contents": 8
+   },
+   "0x8 SMU_OFFCHIP_FW": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 47
+   },
+   "0x9 SEC_DBG_PUBLIC_KEY": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4655"
+    ],
+    "distinct_contents": 23
+   },
+   "0xa OEM_PSP_FW_PUBLIC_KEY": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4655"
+    ],
+    "distinct_contents": 7
+   },
+   "0xc PSP_BOOT_TIME_TRUSTLETS": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [
+     "3802",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "distinct_contents": 32
+   },
+   "0xd PSP_BOOT_TIME_TRUSTLETS_KEY": {
+    "rungs_present": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "changed_at": [],
+    "distinct_contents": 1
+   }
+  }
+ },
+ "smm_anatomy": {
+  "note": "the armor modules opened: size, DEPEX, vocabulary, body identity across the rungs",
+  "smm_census_per_rung": {
+   "3604": {
+    "SMM": 105,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "3802": {
+    "SMM": 108,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "3810": {
+    "SMM": 108,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "4003": {
+    "SMM": 108,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "4202": {
+    "SMM": 107,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "4402": {
+    "SMM": 106,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "4604": {
+    "SMM": 106,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "4631": {
+    "SMM": 106,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "4655": {
+    "SMM": 106,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   }
+  },
+  "armor_identity": {
+   "freeform-02076249": {
+    "present_at": 3,
+    "distinct_bodies": 1
+   },
+   "PrepareWhiteListSmm": {
+    "present_at": 8,
+    "distinct_bodies": 3
+   },
+   "DXE-helper-4EB43107": {
+    "present_at": 3,
+    "distinct_bodies": 1
+   },
+   "SbRomArmorSmm": {
+    "present_at": 8,
+    "distinct_bodies": 1
+   },
+   "FlashSmiSmm": {
+    "present_at": 8,
+    "distinct_bodies": 2
+   },
+   "FlashSmiDxe": {
+    "present_at": 8,
+    "distinct_bodies": 3
+   },
+   "freeform-89BE47F4": {
+    "present_at": 8,
+    "distinct_bodies": 2
+   },
+   "legacy-SMM-21782819": {
+    "present_at": 5,
+    "distinct_bodies": 1
+   },
+   "legacy-SMM-827E45A4": {
+    "present_at": 4,
+    "distinct_bodies": 3
+   }
+  },
+  "reading": "SbRomArmorSmm is ONE body across 8 rungs (4.5 years, byte-identical); PrepareWhiteListSmm carries the literal string 'AMD rom armor' plus an SPI flash chip database (ADESTO/AMIC/ATMEL/MXIC...); the SMM census grows 106->109 at 3802 then settles at 107 after the legacy retirement",
+  "rungs": [
+   {
+    "version": "3604",
+    "released": "2022-03-16",
+    "smm_census": {
+     "SMM": 105,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "watchlist_present": {
+     "freeform-02076249": false,
+     "PrepareWhiteListSmm": false,
+     "DXE-helper-4EB43107": false,
+     "SbRomArmorSmm": false,
+     "FlashSmiSmm": false,
+     "FlashSmiDxe": false,
+     "freeform-89BE47F4": false,
+     "legacy-SMM-21782819": true,
+     "legacy-SMM-827E45A4": true
+    },
+    "modules": {
+     "827e45a4-c285-4e45-8bc7-cd8e58d9ee84": {
+      "label": "legacy-SMM-827E45A4",
+      "phase": "SMM",
+      "size": 11914,
+      "body_sha16": "f58076d85d7faf31",
+      "depex_pushes": 5,
+      "depex_ops": 10,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "HEAPu4",
+       "h.data"
+      ]
+     },
+     "21782819-fda0-4ade-bd36-c95f079f057d": {
+      "label": "legacy-SMM-21782819",
+      "phase": "SMM",
+      "size": 7782,
+      "body_sha16": "a91a2aac67a96ccf",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 46,
+      "ascii_sample": [
+       "B.xdata",
+       "EFI_ABORTED",
+       "EFI_ACCESS_DENIED",
+       "EFI_ALREADY_STARTED",
+       "EFI_BAD_BUFFER_SIZE",
+       "EFI_BUFFER_TOO_SMALL",
+       "EFI_COMPROMISED_DATA",
+       "EFI_CRC_ERROR",
+       "EFI_DBE_BOF",
+       "EFI_DBE_EOF"
+      ]
+     }
+    }
+   },
+   {
+    "version": "3802",
+    "released": "2022-05-12",
+    "smm_census": {
+     "SMM": 108,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "watchlist_present": {
+     "freeform-02076249": false,
+     "PrepareWhiteListSmm": true,
+     "DXE-helper-4EB43107": false,
+     "SbRomArmorSmm": true,
+     "FlashSmiSmm": true,
+     "FlashSmiDxe": true,
+     "freeform-89BE47F4": true,
+     "legacy-SMM-21782819": true,
+     "legacy-SMM-827E45A4": true
+    },
+    "modules": {
+     "755877a6-4f10-4a5c-9b2e-852123b9682c": {
+      "label": "FlashSmiDxe",
+      "phase": "DXE",
+      "size": 9810,
+      "body_sha16": "4bdca190d7b0d2e2",
+      "depex_pushes": 2,
+      "depex_ops": 4,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "391626db-3cec-4339-a3d6-9cdff4690e12": {
+      "label": "PrepareWhiteListSmm",
+      "phase": "SMM",
+      "size": 17510,
+      "body_sha16": "fd4f48d468b9699b",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 50,
+      "ascii_sample": [
+       "ADESTO AT25SF641",
+       "ADESTO AT25SL128A",
+       "ADESTO AT25SL641",
+       "AMD rom armor",
+       "AMIC 25L Series",
+       "AMIC 25L/LQ Series",
+       "ATMEL 26DF041/25DF041",
+       "ATMEL 26DF081/25DF081",
+       "ATMEL 26DF161/25DQ161",
+       "ATMEL 26DF321/25DF321"
+      ]
+     },
+     "51080191-ed06-4aa0-bfd7-f04837cf70db": {
+      "label": "SbRomArmorSmm",
+      "phase": "SMM",
+      "size": 5734,
+      "body_sha16": "f8a4dc8f8bc37dae",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "827e45a4-c285-4e45-8bc7-cd8e58d9ee84": {
+      "label": "legacy-SMM-827E45A4",
+      "phase": "SMM",
+      "size": 11914,
+      "body_sha16": "7c269599831f17d1",
+      "depex_pushes": 5,
+      "depex_ops": 10,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "HEAPu4",
+       "h.data"
+      ]
+     },
+     "6c289241-e240-483f-9e3e-872c0396b599": {
+      "label": "FlashSmiSmm",
+      "phase": "SMM",
+      "size": 5750,
+      "body_sha16": "f5cb26e2d7ee10fc",
+      "depex_pushes": 4,
+      "depex_ops": 8,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "21782819-fda0-4ade-bd36-c95f079f057d": {
+      "label": "legacy-SMM-21782819",
+      "phase": "SMM",
+      "size": 7782,
+      "body_sha16": "a91a2aac67a96ccf",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 46,
+      "ascii_sample": [
+       "B.xdata",
+       "EFI_ABORTED",
+       "EFI_ACCESS_DENIED",
+       "EFI_ALREADY_STARTED",
+       "EFI_BAD_BUFFER_SIZE",
+       "EFI_BUFFER_TOO_SMALL",
+       "EFI_COMPROMISED_DATA",
+       "EFI_CRC_ERROR",
+       "EFI_DBE_BOF",
+       "EFI_DBE_EOF"
+      ]
+     },
+     "89be47f4-80ce-4b87-abd1-d279ab6a16ae": {
+      "label": "freeform-89BE47F4",
+      "phase": "freeform",
+      "size": 11328,
+      "body_sha16": "a287406b9cfdd71c",
+      "depex_pushes": 0,
+      "depex_ops": 0,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 1,
+      "ascii_sample": [
+       "FINITIONS"
+      ]
+     }
+    }
+   },
+   {
+    "version": "3810",
+    "released": "2022-12-15",
+    "smm_census": {
+     "SMM": 108,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "watchlist_present": {
+     "freeform-02076249": false,
+     "PrepareWhiteListSmm": true,
+     "DXE-helper-4EB43107": false,
+     "SbRomArmorSmm": true,
+     "FlashSmiSmm": true,
+     "FlashSmiDxe": true,
+     "freeform-89BE47F4": true,
+     "legacy-SMM-21782819": true,
+     "legacy-SMM-827E45A4": true
+    },
+    "modules": {
+     "755877a6-4f10-4a5c-9b2e-852123b9682c": {
+      "label": "FlashSmiDxe",
+      "phase": "DXE",
+      "size": 9810,
+      "body_sha16": "4bdca190d7b0d2e2",
+      "depex_pushes": 2,
+      "depex_ops": 4,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "391626db-3cec-4339-a3d6-9cdff4690e12": {
+      "label": "PrepareWhiteListSmm",
+      "phase": "SMM",
+      "size": 17510,
+      "body_sha16": "fd4f48d468b9699b",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 50,
+      "ascii_sample": [
+       "ADESTO AT25SF641",
+       "ADESTO AT25SL128A",
+       "ADESTO AT25SL641",
+       "AMD rom armor",
+       "AMIC 25L Series",
+       "AMIC 25L/LQ Series",
+       "ATMEL 26DF041/25DF041",
+       "ATMEL 26DF081/25DF081",
+       "ATMEL 26DF161/25DQ161",
+       "ATMEL 26DF321/25DF321"
+      ]
+     },
+     "51080191-ed06-4aa0-bfd7-f04837cf70db": {
+      "label": "SbRomArmorSmm",
+      "phase": "SMM",
+      "size": 5734,
+      "body_sha16": "f8a4dc8f8bc37dae",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "827e45a4-c285-4e45-8bc7-cd8e58d9ee84": {
+      "label": "legacy-SMM-827E45A4",
+      "phase": "SMM",
+      "size": 11914,
+      "body_sha16": "7c269599831f17d1",
+      "depex_pushes": 5,
+      "depex_ops": 10,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "HEAPu4",
+       "h.data"
+      ]
+     },
+     "6c289241-e240-483f-9e3e-872c0396b599": {
+      "label": "FlashSmiSmm",
+      "phase": "SMM",
+      "size": 5750,
+      "body_sha16": "f5cb26e2d7ee10fc",
+      "depex_pushes": 4,
+      "depex_ops": 8,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "21782819-fda0-4ade-bd36-c95f079f057d": {
+      "label": "legacy-SMM-21782819",
+      "phase": "SMM",
+      "size": 7782,
+      "body_sha16": "a91a2aac67a96ccf",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 46,
+      "ascii_sample": [
+       "B.xdata",
+       "EFI_ABORTED",
+       "EFI_ACCESS_DENIED",
+       "EFI_ALREADY_STARTED",
+       "EFI_BAD_BUFFER_SIZE",
+       "EFI_BUFFER_TOO_SMALL",
+       "EFI_COMPROMISED_DATA",
+       "EFI_CRC_ERROR",
+       "EFI_DBE_BOF",
+       "EFI_DBE_EOF"
+      ]
+     },
+     "89be47f4-80ce-4b87-abd1-d279ab6a16ae": {
+      "label": "freeform-89BE47F4",
+      "phase": "freeform",
+      "size": 11328,
+      "body_sha16": "a287406b9cfdd71c",
+      "depex_pushes": 0,
+      "depex_ops": 0,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 1,
+      "ascii_sample": [
+       "FINITIONS"
+      ]
+     }
+    }
+   },
+   {
+    "version": "4003",
+    "released": "2023-03-21",
+    "smm_census": {
+     "SMM": 108,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "watchlist_present": {
+     "freeform-02076249": false,
+     "PrepareWhiteListSmm": true,
+     "DXE-helper-4EB43107": false,
+     "SbRomArmorSmm": true,
+     "FlashSmiSmm": true,
+     "FlashSmiDxe": true,
+     "freeform-89BE47F4": true,
+     "legacy-SMM-21782819": true,
+     "legacy-SMM-827E45A4": true
+    },
+    "modules": {
+     "755877a6-4f10-4a5c-9b2e-852123b9682c": {
+      "label": "FlashSmiDxe",
+      "phase": "DXE",
+      "size": 11346,
+      "body_sha16": "0c84e3ef54ad9867",
+      "depex_pushes": 2,
+      "depex_ops": 4,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "HEAPu4",
+       "h.data"
+      ]
+     },
+     "391626db-3cec-4339-a3d6-9cdff4690e12": {
+      "label": "PrepareWhiteListSmm",
+      "phase": "SMM",
+      "size": 17510,
+      "body_sha16": "783a3dcc4925dc7d",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 50,
+      "ascii_sample": [
+       "ADESTO AT25SF641",
+       "ADESTO AT25SL128A",
+       "ADESTO AT25SL641",
+       "AMD rom armor",
+       "AMIC 25L Series",
+       "AMIC 25L/LQ Series",
+       "ATMEL 26DF041/25DF041",
+       "ATMEL 26DF081/25DF081",
+       "ATMEL 26DF161/25DQ161",
+       "ATMEL 26DF321/25DF321"
+      ]
+     },
+     "51080191-ed06-4aa0-bfd7-f04837cf70db": {
+      "label": "SbRomArmorSmm",
+      "phase": "SMM",
+      "size": 5734,
+      "body_sha16": "f8a4dc8f8bc37dae",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "827e45a4-c285-4e45-8bc7-cd8e58d9ee84": {
+      "label": "legacy-SMM-827E45A4",
+      "phase": "SMM",
+      "size": 11914,
+      "body_sha16": "e765cfa8658d32bb",
+      "depex_pushes": 5,
+      "depex_ops": 10,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "HEAPu4",
+       "h.data"
+      ]
+     },
+     "6c289241-e240-483f-9e3e-872c0396b599": {
+      "label": "FlashSmiSmm",
+      "phase": "SMM",
+      "size": 5750,
+      "body_sha16": "f5cb26e2d7ee10fc",
+      "depex_pushes": 4,
+      "depex_ops": 8,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "21782819-fda0-4ade-bd36-c95f079f057d": {
+      "label": "legacy-SMM-21782819",
+      "phase": "SMM",
+      "size": 7782,
+      "body_sha16": "a91a2aac67a96ccf",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 46,
+      "ascii_sample": [
+       "B.xdata",
+       "EFI_ABORTED",
+       "EFI_ACCESS_DENIED",
+       "EFI_ALREADY_STARTED",
+       "EFI_BAD_BUFFER_SIZE",
+       "EFI_BUFFER_TOO_SMALL",
+       "EFI_COMPROMISED_DATA",
+       "EFI_CRC_ERROR",
+       "EFI_DBE_BOF",
+       "EFI_DBE_EOF"
+      ]
+     },
+     "89be47f4-80ce-4b87-abd1-d279ab6a16ae": {
+      "label": "freeform-89BE47F4",
+      "phase": "freeform",
+      "size": 11328,
+      "body_sha16": "a287406b9cfdd71c",
+      "depex_pushes": 0,
+      "depex_ops": 0,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 1,
+      "ascii_sample": [
+       "FINITIONS"
+      ]
+     }
+    }
+   },
+   {
+    "version": "4202",
+    "released": "2023-08-02",
+    "smm_census": {
+     "SMM": 107,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "watchlist_present": {
+     "freeform-02076249": false,
+     "PrepareWhiteListSmm": true,
+     "DXE-helper-4EB43107": false,
+     "SbRomArmorSmm": true,
+     "FlashSmiSmm": true,
+     "FlashSmiDxe": true,
+     "freeform-89BE47F4": true,
+     "legacy-SMM-21782819": true,
+     "legacy-SMM-827E45A4": false
+    },
+    "modules": {
+     "755877a6-4f10-4a5c-9b2e-852123b9682c": {
+      "label": "FlashSmiDxe",
+      "phase": "DXE",
+      "size": 11346,
+      "body_sha16": "0c84e3ef54ad9867",
+      "depex_pushes": 2,
+      "depex_ops": 4,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "HEAPu4",
+       "h.data"
+      ]
+     },
+     "391626db-3cec-4339-a3d6-9cdff4690e12": {
+      "label": "PrepareWhiteListSmm",
+      "phase": "SMM",
+      "size": 17510,
+      "body_sha16": "783a3dcc4925dc7d",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 50,
+      "ascii_sample": [
+       "ADESTO AT25SF641",
+       "ADESTO AT25SL128A",
+       "ADESTO AT25SL641",
+       "AMD rom armor",
+       "AMIC 25L Series",
+       "AMIC 25L/LQ Series",
+       "ATMEL 26DF041/25DF041",
+       "ATMEL 26DF081/25DF081",
+       "ATMEL 26DF161/25DQ161",
+       "ATMEL 26DF321/25DF321"
+      ]
+     },
+     "51080191-ed06-4aa0-bfd7-f04837cf70db": {
+      "label": "SbRomArmorSmm",
+      "phase": "SMM",
+      "size": 5734,
+      "body_sha16": "f8a4dc8f8bc37dae",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "6c289241-e240-483f-9e3e-872c0396b599": {
+      "label": "FlashSmiSmm",
+      "phase": "SMM",
+      "size": 5750,
+      "body_sha16": "166610a148b86c52",
+      "depex_pushes": 4,
+      "depex_ops": 8,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "WATAUH",
+       "h.data"
+      ]
+     },
+     "21782819-fda0-4ade-bd36-c95f079f057d": {
+      "label": "legacy-SMM-21782819",
+      "phase": "SMM",
+      "size": 7782,
+      "body_sha16": "a91a2aac67a96ccf",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 46,
+      "ascii_sample": [
+       "B.xdata",
+       "EFI_ABORTED",
+       "EFI_ACCESS_DENIED",
+       "EFI_ALREADY_STARTED",
+       "EFI_BAD_BUFFER_SIZE",
+       "EFI_BUFFER_TOO_SMALL",
+       "EFI_COMPROMISED_DATA",
+       "EFI_CRC_ERROR",
+       "EFI_DBE_BOF",
+       "EFI_DBE_EOF"
+      ]
+     },
+     "89be47f4-80ce-4b87-abd1-d279ab6a16ae": {
+      "label": "freeform-89BE47F4",
+      "phase": "freeform",
+      "size": 11328,
+      "body_sha16": "a287406b9cfdd71c",
+      "depex_pushes": 0,
+      "depex_ops": 0,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 1,
+      "ascii_sample": [
+       "FINITIONS"
+      ]
+     }
+    }
+   },
+   {
+    "version": "4402",
+    "released": "2024-01-08",
+    "smm_census": {
+     "SMM": 106,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "watchlist_present": {
+     "freeform-02076249": false,
+     "PrepareWhiteListSmm": true,
+     "DXE-helper-4EB43107": false,
+     "SbRomArmorSmm": true,
+     "FlashSmiSmm": true,
+     "FlashSmiDxe": true,
+     "freeform-89BE47F4": true,
+     "legacy-SMM-21782819": false,
+     "legacy-SMM-827E45A4": false
+    },
+    "modules": {
+     "755877a6-4f10-4a5c-9b2e-852123b9682c": {
+      "label": "FlashSmiDxe",
+      "phase": "DXE",
+      "size": 11346,
+      "body_sha16": "0c84e3ef54ad9867",
+      "depex_pushes": 2,
+      "depex_ops": 4,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "HEAPu4",
+       "h.data"
+      ]
+     },
+     "391626db-3cec-4339-a3d6-9cdff4690e12": {
+      "label": "PrepareWhiteListSmm",
+      "phase": "SMM",
+      "size": 17510,
+      "body_sha16": "783a3dcc4925dc7d",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 50,
+      "ascii_sample": [
+       "ADESTO AT25SF641",
+       "ADESTO AT25SL128A",
+       "ADESTO AT25SL641",
+       "AMD rom armor",
+       "AMIC 25L Series",
+       "AMIC 25L/LQ Series",
+       "ATMEL 26DF041/25DF041",
+       "ATMEL 26DF081/25DF081",
+       "ATMEL 26DF161/25DQ161",
+       "ATMEL 26DF321/25DF321"
+      ]
+     },
+     "51080191-ed06-4aa0-bfd7-f04837cf70db": {
+      "label": "SbRomArmorSmm",
+      "phase": "SMM",
+      "size": 5734,
+      "body_sha16": "f8a4dc8f8bc37dae",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "6c289241-e240-483f-9e3e-872c0396b599": {
+      "label": "FlashSmiSmm",
+      "phase": "SMM",
+      "size": 5750,
+      "body_sha16": "166610a148b86c52",
+      "depex_pushes": 4,
+      "depex_ops": 8,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "WATAUH",
+       "h.data"
+      ]
+     },
+     "89be47f4-80ce-4b87-abd1-d279ab6a16ae": {
+      "label": "freeform-89BE47F4",
+      "phase": "freeform",
+      "size": 11328,
+      "body_sha16": "a287406b9cfdd71c",
+      "depex_pushes": 0,
+      "depex_ops": 0,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 1,
+      "ascii_sample": [
+       "FINITIONS"
+      ]
+     }
+    }
+   },
+   {
+    "version": "4604",
+    "released": "2024-04-08",
+    "smm_census": {
+     "SMM": 106,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "watchlist_present": {
+     "freeform-02076249": true,
+     "PrepareWhiteListSmm": true,
+     "DXE-helper-4EB43107": true,
+     "SbRomArmorSmm": true,
+     "FlashSmiSmm": true,
+     "FlashSmiDxe": true,
+     "freeform-89BE47F4": true,
+     "legacy-SMM-21782819": false,
+     "legacy-SMM-827E45A4": false
+    },
+    "modules": {
+     "4eb43107-09ac-49f6-b9de-16778c13e446": {
+      "label": "DXE-helper-4EB43107",
+      "phase": "DXE",
+      "size": 4194,
+      "body_sha16": "d6f7155bb28dcc21",
+      "depex_pushes": 1,
+      "depex_ops": 2,
+      "utf16_strings": [
+       "AsusLicDecPubKey",
+       "AsusLicVerPubKey",
+       "AsusOnboardToolLicense"
+      ],
+      "utf16_n": 3,
+      "ascii_n": 39,
+      "ascii_sample": [
+       "Ax2tN5P9i8VltJdMBehikurxd40m2DasSCb7kz0QbyJO76SK",
+       "B.reloc",
+       "B.xdata",
+       "BfGRMUTsu8QQ9p/W",
+       "CYjMaQxuypKxC8oqGzfldOmUqNMKlD4JOuhoPFD1b04PJzYi",
+       "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiQwB",
+       "MIIEIjANBgkqhkiG9w0BAQEFAAOCBA8AMIIECgKCBAEA3Ce5",
+       "P2NrNsLvi9PxL1XP",
+       "Uaf4XGOuF2t23gmc",
+       "VWATAUAVH"
+      ]
+     },
+     "755877a6-4f10-4a5c-9b2e-852123b9682c": {
+      "label": "FlashSmiDxe",
+      "phase": "DXE",
+      "size": 11346,
+      "body_sha16": "0c84e3ef54ad9867",
+      "depex_pushes": 2,
+      "depex_ops": 4,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "HEAPu4",
+       "h.data"
+      ]
+     },
+     "391626db-3cec-4339-a3d6-9cdff4690e12": {
+      "label": "PrepareWhiteListSmm",
+      "phase": "SMM",
+      "size": 17510,
+      "body_sha16": "783a3dcc4925dc7d",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 50,
+      "ascii_sample": [
+       "ADESTO AT25SF641",
+       "ADESTO AT25SL128A",
+       "ADESTO AT25SL641",
+       "AMD rom armor",
+       "AMIC 25L Series",
+       "AMIC 25L/LQ Series",
+       "ATMEL 26DF041/25DF041",
+       "ATMEL 26DF081/25DF081",
+       "ATMEL 26DF161/25DQ161",
+       "ATMEL 26DF321/25DF321"
+      ]
+     },
+     "51080191-ed06-4aa0-bfd7-f04837cf70db": {
+      "label": "SbRomArmorSmm",
+      "phase": "SMM",
+      "size": 5734,
+      "body_sha16": "f8a4dc8f8bc37dae",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "6c289241-e240-483f-9e3e-872c0396b599": {
+      "label": "FlashSmiSmm",
+      "phase": "SMM",
+      "size": 5750,
+      "body_sha16": "166610a148b86c52",
+      "depex_pushes": 4,
+      "depex_ops": 8,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "WATAUH",
+       "h.data"
+      ]
+     },
+     "02076249-a52b-420e-bd53-aed044349379": {
+      "label": "freeform-02076249",
+      "phase": "freeform",
+      "size": 1361,
+      "body_sha16": "7a1127fbbcaf5ca6",
+      "depex_pushes": 0,
+      "depex_ops": 0,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 0,
+      "ascii_sample": []
+     },
+     "89be47f4-80ce-4b87-abd1-d279ab6a16ae": {
+      "label": "freeform-89BE47F4",
+      "phase": "freeform",
+      "size": 11328,
+      "body_sha16": "a287406b9cfdd71c",
+      "depex_pushes": 0,
+      "depex_ops": 0,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 1,
+      "ascii_sample": [
+       "FINITIONS"
+      ]
+     }
+    }
+   },
+   {
+    "version": "4631",
+    "released": "2025-04-01",
+    "smm_census": {
+     "SMM": 106,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "watchlist_present": {
+     "freeform-02076249": true,
+     "PrepareWhiteListSmm": true,
+     "DXE-helper-4EB43107": true,
+     "SbRomArmorSmm": true,
+     "FlashSmiSmm": true,
+     "FlashSmiDxe": true,
+     "freeform-89BE47F4": true,
+     "legacy-SMM-21782819": false,
+     "legacy-SMM-827E45A4": false
+    },
+    "modules": {
+     "4eb43107-09ac-49f6-b9de-16778c13e446": {
+      "label": "DXE-helper-4EB43107",
+      "phase": "DXE",
+      "size": 4194,
+      "body_sha16": "d6f7155bb28dcc21",
+      "depex_pushes": 1,
+      "depex_ops": 2,
+      "utf16_strings": [
+       "AsusLicDecPubKey",
+       "AsusLicVerPubKey",
+       "AsusOnboardToolLicense"
+      ],
+      "utf16_n": 3,
+      "ascii_n": 39,
+      "ascii_sample": [
+       "Ax2tN5P9i8VltJdMBehikurxd40m2DasSCb7kz0QbyJO76SK",
+       "B.reloc",
+       "B.xdata",
+       "BfGRMUTsu8QQ9p/W",
+       "CYjMaQxuypKxC8oqGzfldOmUqNMKlD4JOuhoPFD1b04PJzYi",
+       "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiQwB",
+       "MIIEIjANBgkqhkiG9w0BAQEFAAOCBA8AMIIECgKCBAEA3Ce5",
+       "P2NrNsLvi9PxL1XP",
+       "Uaf4XGOuF2t23gmc",
+       "VWATAUAVH"
+      ]
+     },
+     "755877a6-4f10-4a5c-9b2e-852123b9682c": {
+      "label": "FlashSmiDxe",
+      "phase": "DXE",
+      "size": 11346,
+      "body_sha16": "9350ced7c83cc8bd",
+      "depex_pushes": 2,
+      "depex_ops": 4,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "HEAPu4",
+       "h.data"
+      ]
+     },
+     "391626db-3cec-4339-a3d6-9cdff4690e12": {
+      "label": "PrepareWhiteListSmm",
+      "phase": "SMM",
+      "size": 17510,
+      "body_sha16": "f82dd342f6978d6f",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 50,
+      "ascii_sample": [
+       "ADESTO AT25SF641",
+       "ADESTO AT25SL128A",
+       "ADESTO AT25SL641",
+       "AMD rom armor",
+       "AMIC 25L Series",
+       "AMIC 25L/LQ Series",
+       "ATMEL 26DF041/25DF041",
+       "ATMEL 26DF081/25DF081",
+       "ATMEL 26DF161/25DQ161",
+       "ATMEL 26DF321/25DF321"
+      ]
+     },
+     "51080191-ed06-4aa0-bfd7-f04837cf70db": {
+      "label": "SbRomArmorSmm",
+      "phase": "SMM",
+      "size": 5734,
+      "body_sha16": "f8a4dc8f8bc37dae",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "6c289241-e240-483f-9e3e-872c0396b599": {
+      "label": "FlashSmiSmm",
+      "phase": "SMM",
+      "size": 5750,
+      "body_sha16": "166610a148b86c52",
+      "depex_pushes": 4,
+      "depex_ops": 8,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "WATAUH",
+       "h.data"
+      ]
+     },
+     "02076249-a52b-420e-bd53-aed044349379": {
+      "label": "freeform-02076249",
+      "phase": "freeform",
+      "size": 1361,
+      "body_sha16": "7a1127fbbcaf5ca6",
+      "depex_pushes": 0,
+      "depex_ops": 0,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 0,
+      "ascii_sample": []
+     },
+     "89be47f4-80ce-4b87-abd1-d279ab6a16ae": {
+      "label": "freeform-89BE47F4",
+      "phase": "freeform",
+      "size": 11362,
+      "body_sha16": "55e946cacbfa7ff4",
+      "depex_pushes": 0,
+      "depex_ops": 0,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 1,
+      "ascii_sample": [
+       "FINITIONS"
+      ]
+     }
+    }
+   },
+   {
+    "version": "4655",
+    "released": "2026-08-27",
+    "smm_census": {
+     "SMM": 106,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "watchlist_present": {
+     "freeform-02076249": true,
+     "PrepareWhiteListSmm": true,
+     "DXE-helper-4EB43107": true,
+     "SbRomArmorSmm": true,
+     "FlashSmiSmm": true,
+     "FlashSmiDxe": true,
+     "freeform-89BE47F4": true,
+     "legacy-SMM-21782819": false,
+     "legacy-SMM-827E45A4": false
+    },
+    "modules": {
+     "4eb43107-09ac-49f6-b9de-16778c13e446": {
+      "label": "DXE-helper-4EB43107",
+      "phase": "DXE",
+      "size": 4194,
+      "body_sha16": "d6f7155bb28dcc21",
+      "depex_pushes": 1,
+      "depex_ops": 2,
+      "utf16_strings": [
+       "AsusLicDecPubKey",
+       "AsusLicVerPubKey",
+       "AsusOnboardToolLicense"
+      ],
+      "utf16_n": 3,
+      "ascii_n": 39,
+      "ascii_sample": [
+       "Ax2tN5P9i8VltJdMBehikurxd40m2DasSCb7kz0QbyJO76SK",
+       "B.reloc",
+       "B.xdata",
+       "BfGRMUTsu8QQ9p/W",
+       "CYjMaQxuypKxC8oqGzfldOmUqNMKlD4JOuhoPFD1b04PJzYi",
+       "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiQwB",
+       "MIIEIjANBgkqhkiG9w0BAQEFAAOCBA8AMIIECgKCBAEA3Ce5",
+       "P2NrNsLvi9PxL1XP",
+       "Uaf4XGOuF2t23gmc",
+       "VWATAUAVH"
+      ]
+     },
+     "755877a6-4f10-4a5c-9b2e-852123b9682c": {
+      "label": "FlashSmiDxe",
+      "phase": "DXE",
+      "size": 11346,
+      "body_sha16": "9350ced7c83cc8bd",
+      "depex_pushes": 2,
+      "depex_ops": 4,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "HEAPu4",
+       "h.data"
+      ]
+     },
+     "391626db-3cec-4339-a3d6-9cdff4690e12": {
+      "label": "PrepareWhiteListSmm",
+      "phase": "SMM",
+      "size": 17510,
+      "body_sha16": "f82dd342f6978d6f",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 50,
+      "ascii_sample": [
+       "ADESTO AT25SF641",
+       "ADESTO AT25SL128A",
+       "ADESTO AT25SL641",
+       "AMD rom armor",
+       "AMIC 25L Series",
+       "AMIC 25L/LQ Series",
+       "ATMEL 26DF041/25DF041",
+       "ATMEL 26DF081/25DF081",
+       "ATMEL 26DF161/25DQ161",
+       "ATMEL 26DF321/25DF321"
+      ]
+     },
+     "51080191-ed06-4aa0-bfd7-f04837cf70db": {
+      "label": "SbRomArmorSmm",
+      "phase": "SMM",
+      "size": 5734,
+      "body_sha16": "f8a4dc8f8bc37dae",
+      "depex_pushes": 3,
+      "depex_ops": 6,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 4,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "h.data"
+      ]
+     },
+     "6c289241-e240-483f-9e3e-872c0396b599": {
+      "label": "FlashSmiSmm",
+      "phase": "SMM",
+      "size": 5750,
+      "body_sha16": "166610a148b86c52",
+      "depex_pushes": 4,
+      "depex_ops": 8,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 5,
+      "ascii_sample": [
+       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv",
+       "B.reloc",
+       "B.xdata",
+       "WATAUH",
+       "h.data"
+      ]
+     },
+     "02076249-a52b-420e-bd53-aed044349379": {
+      "label": "freeform-02076249",
+      "phase": "freeform",
+      "size": 1361,
+      "body_sha16": "7a1127fbbcaf5ca6",
+      "depex_pushes": 0,
+      "depex_ops": 0,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 0,
+      "ascii_sample": []
+     },
+     "89be47f4-80ce-4b87-abd1-d279ab6a16ae": {
+      "label": "freeform-89BE47F4",
+      "phase": "freeform",
+      "size": 11362,
+      "body_sha16": "55e946cacbfa7ff4",
+      "depex_pushes": 0,
+      "depex_ops": 0,
+      "utf16_strings": [],
+      "utf16_n": 0,
+      "ascii_n": 1,
+      "ascii_sample": [
+       "FINITIONS"
+      ]
+     }
+    }
+   }
+  ]
+ },
+ "patch_lens": {
+  "note": "Gigabyte F65 -> F67c (2026-04 -> 2026-08), the update carrying CVE-2026-6726/6727, diffed at FFS-body granularity with the ring-15 machinery",
+  "sides": {
+   "F65": {
+    "bytes": 16777216,
+    "sha256_16": "570673f40ac77796",
+    "released": "2026-04",
+    "url": "https://download.gigabyte.com/FileList/BIOS/mb_bios_b450-aorus-pro_8a16bg04_f65.zip",
+    "agesa": [
+     "AGESA Driver"
+    ],
+    "tops": [
+     "0x94f000",
+     "0xe40000",
+     "0x37000",
+     "0xe3f000"
+    ],
+    "modules_total": 511
+   },
+   "F67c": {
+    "bytes": 16777216,
+    "sha256_16": "091cf42e235289dd",
+    "released": "2026-08",
+    "url": "(ring-11 acquisition, official listing)",
+    "agesa": [
+     "AGESA Driver"
+    ],
+    "tops": [
+     "0x94f000",
+     "0xe40000",
+     "0x37000",
+     "0xe3f000"
+    ],
+    "modules_total": 511
+   }
+  },
+  "delta": {
+   "unchanged": 91,
+   "changed": 410,
+   "added": 1,
+   "removed": 1,
+   "changed_by_phase": {
+    "DXE": 280,
+    "SMM": 107,
+    "freeform": 14,
+    "fv_image": 5,
+    "PEI": 1,
+    "raw": 1,
+    "DXE-core": 1,
+    "SMM-core": 1
+   },
+   "pct_unchanged": 18.1
+  },
+  "changed_modules_named": [
+   {
+    "guid": "00160F8D-2B35-4DF2-BBE0-B272A8D631F0",
+    "name": "FirmwarePerformanceDxe",
+    "phase": "DXE",
+    "size_f65": 5098,
+    "size_f67c": 5322,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "00B8E6B5-83CE-448A-8AC6-CCBC9D5F3BE3",
+    "name": "FchTaishanSmmInit",
+    "phase": "SMM",
+    "size_f65": 32046,
+    "size_f67c": 32046,
+    "ver_f65": "1.1",
+    "ver_f67c": "1.1"
+   },
+   {
+    "guid": "0135229A-EBB5-4A21-957D-1D20057CF752",
+    "name": "TCMDXE",
+    "phase": "DXE",
+    "size_f65": 3798,
+    "size_f67c": 3830,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "023B3AA9-098F-4027-B83F-B6407DA06569",
+    "name": "AmdPspFtpmDxe",
+    "phase": "DXE",
+    "size_f65": 5682,
+    "size_f67c": 5650,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "025BBFC7-E6A9-4B8B-82AD-6815A1AEAF4A",
+    "name": "MnpDxe",
+    "phase": "DXE",
+    "size_f65": 28830,
+    "size_f67c": 28638,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "03FA15BF-A5C8-4006-81B5-B836E7A70030",
+    "name": "GnbSummitRouting",
+    "phase": "DXE",
+    "size_f65": 3722,
+    "size_f67c": 3946,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "044310AB-77FD-402A-AF1A-87D4120E7329",
+    "name": "FirmwarePerformanceSmm",
+    "phase": "SMM",
+    "size_f65": 6826,
+    "size_f67c": 6826,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "04EAAAA1-29A1-11D7-8838-00500473D4EB",
+    "name": "UsbRtSmm",
+    "phase": "SMM",
+    "size_f65": 172686,
+    "size_f67c": 172686,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "056623DC-1285-4EAF-9446-75C3B00F78C6",
+    "name": "FchMultiFchDxe",
+    "phase": "DXE",
+    "size_f65": 10458,
+    "size_f67c": 10618,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "0684C591-19E8-499D-978A-D715636F1DAB",
+    "name": "AmdRasRvDxe",
+    "phase": "DXE",
+    "size_f65": 11318,
+    "size_f67c": 11574,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "0718AD81-F26A-4850-A6EC-F268E309D707",
+    "name": "Tpm20PlatformDxe",
+    "phase": "DXE",
+    "size_f65": 68518,
+    "size_f67c": 68614,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "077A3100-1667-45FA-B98C-37651B5073EE",
+    "name": "TpmSmbiosDxe",
+    "phase": "DXE",
+    "size_f65": 6114,
+    "size_f67c": 6114,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "07D279A1-34E4-4168-993B-178B3ACC68EF",
+    "name": "AodSetupDxe",
+    "phase": "DXE",
+    "size_f65": 88718,
+    "size_f67c": 88750,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "07F6A3D8-9320-4BCB-BA8B-4FA6055D909D",
+    "name": "AmdPspP2CmboxV2Ssp",
+    "phase": "SMM",
+    "size_f65": 32510,
+    "size_f67c": 33534,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "0948381E-0B3D-43A9-8E03-F2489F2B9E2E",
+    "name": "FchSmmDispatcher",
+    "phase": "SMM",
+    "size_f65": 22210,
+    "size_f67c": 22722,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "0A845224-8675-4241-8AE9-4D94C93DEB90",
+    "name": "PauseKey",
+    "phase": "DXE",
+    "size_f65": 6702,
+    "size_f67c": 6766,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "0C375A90-4C4C-4428-8EA0-531BE8959BF7",
+    "name": "FlashDriverSmm",
+    "phase": "SMM",
+    "size_f65": 24730,
+    "size_f67c": 24730,
+    "ver_f65": "0.0",
+    "ver_f67c": "0.0"
+   },
+   {
+    "guid": "0C989D41-F4B4-4244-9D7F-E9FFB4163273",
+    "name": "FastBootOption",
+    "phase": "DXE",
+    "size_f65": 8398,
+    "size_f67c": 8398,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "0D42E9AB-5DDE-4CAC-A485-0215C252717F",
+    "name": "AmdSmmControl",
+    "phase": "DXE",
+    "size_f65": 9386,
+    "size_f67c": 9386,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "0E3F71A2-121D-477B-B685-1C6D4588CA73",
+    "name": "GbtCrbAodVM",
+    "phase": "DXE",
+    "size_f65": 2158,
+    "size_f67c": 2190,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "0F647B12-5FA2-4B5E-9D61-2AB3C51F224E",
+    "name": "BctBaseSmmSSP",
+    "phase": "SMM",
+    "size_f65": 14522,
+    "size_f67c": 14522,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "0FD41E0B-C4DF-4B4B-863D-17C0DBD6EF56",
+    "name": "SbSmi",
+    "phase": "SMM",
+    "size_f65": 4250,
+    "size_f67c": 4762,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "11726D68-F147-48DF-AB16-0489818BD570",
+    "name": "AmiHpetTimer",
+    "phase": "DXE",
+    "size_f65": 3882,
+    "size_f67c": 3882,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "13AC6DD0-73D0-11D4-B06B-00AA00BD6DE7",
+    "name": "EbcDxe",
+    "phase": "DXE",
+    "size_f65": 14358,
+    "size_f67c": 14390,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "15E4C005-52C0-444C-8C94-56FFA04C7B36",
+    "name": "SmuV12Dxe",
+    "phase": "DXE",
+    "size_f65": 42770,
+    "size_f67c": 43122,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "16271FCA-55D9-4A33-93FC-5A3EB128DEB6",
+    "name": "CrbDxe",
+    "phase": "DXE",
+    "size_f65": 3606,
+    "size_f67c": 3638,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "162793AA-0FE7-4010-9818-45F55C5CCC3E",
+    "name": "AmdCpmInitDxe",
+    "phase": "DXE",
+    "size_f65": 30690,
+    "size_f67c": 30978,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "164CE56B-5EBC-4984-B0DA-C12B4F21D2EC",
+    "name": "AmdRasRvSmm",
+    "phase": "SMM",
+    "size_f65": 20698,
+    "size_f67c": 21722,
+    "ver_f65": "1.1",
+    "ver_f67c": "1.1"
+   },
+   {
+    "guid": "164E5590-FB7A-47B9-8687-3E91DA499D97",
+    "name": "AmiAmdUefiRaid",
+    "phase": "DXE",
+    "size_f65": 3290,
+    "size_f67c": 3354,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "16D0A23E-C09C-407D-A14A-AD058FDD0CA1",
+    "name": "ACPI",
+    "phase": "DXE",
+    "size_f65": 10346,
+    "size_f67c": 10474,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "17119241-1153-970D-6509-75DCDFA41774",
+    "name": "SbSocRavenDxe",
+    "phase": "DXE",
+    "size_f65": 32310,
+    "size_f67c": 32214,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "171F43DC-C4D9-47A6-9641-65DDCDD5AA30",
+    "name": "UsbRtDxe",
+    "phase": "DXE",
+    "size_f65": 116682,
+    "size_f67c": 116522,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "17AAF4D7-0E18-4B99-87C6-94C8B5F25FB4",
+    "name": "FchShastaSmmInit",
+    "phase": "SMM",
+    "size_f65": 34626,
+    "size_f67c": 34626,
+    "ver_f65": "1.1",
+    "ver_f67c": "1.1"
+   },
+   {
+    "guid": "17AF0060-A98C-4A03-90AD-6ABED75045BD",
+    "name": "CbsBaseDxeRV",
+    "phase": "DXE",
+    "size_f65": 9922,
+    "size_f67c": 9986,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "1807040D-5934-41A2-A088-8E0F777F71AB",
+    "name": "NvramDxe",
+    "phase": "DXE",
+    "size_f65": 60010,
+    "size_f67c": 68202,
+    "ver_f65": "0.0",
+    "ver_f67c": "0.0"
+   },
+   {
+    "guid": "196CA3D8-9A5A-4735-B328-8FFC1D93D188",
+    "name": "TcgPlatformSetupPolicy",
+    "phase": "DXE",
+    "size_f65": 3786,
+    "size_f67c": 3754,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "1A1E4886-9517-440E-9FDE-3BE44CEE2136",
+    "name": "CpuDxe",
+    "phase": "DXE",
+    "size_f65": 44070,
+    "size_f67c": 43974,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "1A7E4468-2F55-4A56-903C-01265EB7622B",
+    "name": "TcpDxe",
+    "phase": "DXE",
+    "size_f65": 49918,
+    "size_f67c": 49726,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "1AE033DE-6311-4EFA-9611-2BEA50F0890E",
+    "name": "GbtCrbCbsCZN",
+    "phase": "DXE",
+    "size_f65": 23382,
+    "size_f67c": 23638,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   },
+   {
+    "guid": "1CF59BF9-E3F6-4D9D-BB94-8B857278BBC6",
+    "name": "GnbDxe",
+    "phase": "DXE",
+    "size_f65": 9962,
+    "size_f67c": 10154,
+    "ver_f65": "1.0",
+    "ver_f67c": "1.0"
+   }
+  ],
+  "added_modules": [
+   {
+    "guid": "D9F0C1CF-BEB8-444C-9786-83DBF9F0BA78",
+    "name": "GbtCrbSmbios",
+    "phase": "DXE",
+    "size": 7362
+   }
+  ],
+  "removed_modules": [
+   {
+    "guid": "95ECB758-627E-4A2E-B7B8-DC863EFE3425",
+    "name": "AmiDeviceGuardApi",
+    "phase": "DXE",
+    "size": 5422
+   }
+  ],
+  "reading": "a vendor security patch is a platform rebuild, not a patch: 81.9 % of the GUID set changes in four months (410/503 modules, 107 of them SMM) \u2014 the mirror image of the ring-15 surgical story (ASUS AcpiTableDxe, 9 bytes); the patch also rides an AGESA bump (1.2.0.B -> 1.2.0.12); isolation of the CVE fix inside this churn is impossible at FFS granularity"
+ },
+ "honesty": [
+  "body-hash identity sees REBUILDS as changes: the Gigabyte churn figure includes toolchain noise; the reading is about release PHILOSOPHY, not 410 semantic fixes",
+  "F65 was re-fetched 2026-09-12 from the official CDN at the listing's canonical URL (board id 8a16bg04) after the sandbox's old 'f65 zip' proved to be a 196-byte 404 page; zip sha256_16 9cbfd8f4bd7f3ff9",
+  "the AGESA ladder is board-family timing, not an industry clock: Gigabyte shipped 1.2.0.B (ASUS 2024-01) in April 2026",
+  "PSP type names come from psptool 3.6 tables (runtime import, GPL-3.0, PSPTool project); semantics of some types remain opaque"
+ ]
+}
