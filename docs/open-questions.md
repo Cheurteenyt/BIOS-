@@ -37,6 +37,13 @@ layers hide the rest:
 
 - NOW: `spi-map` on the synthetic image already enumerates DXE/SMM modules with
   names; the method is proven.
+- RING-6 (the facade quantified in questions, not sentences): the IFR grammar
+  re-derived spec-fresh (`{OpCode:8, Length:7, Scope:1}`, FORMS = 0x02 — see
+  `lab/findings-sixth-ring.md`) lets the probe count the setup's actual
+  questions per module: OVMF plain = **146 questions / 58 pages** across 11
+  modules; secboot = **208 / 79** (SecureBootConfigDxe alone = 62). The same
+  probe runs on the vendor dump — the ASUS setup gets its button count on
+  day-0 without a single screenshot being interpreted by hand.
 - DAY-0: real module list vs. a manual inventory of every setup screen
   (screenshots). The delta is what the vendor ships but does not show.
 - VOL-5: per-vendor NVRAM editors (`setup_var`, AMISCE, SCEWIN) — referenced
@@ -317,6 +324,12 @@ co-consumers of the chip (Q4).
 
 The protocol stays: `capture --live` → `rehearse` → `rehearse-diff --latest`,
 optionally `sudo omarchy-firmware spi-map --save-dump day0-spi.bin` + sha256.
+
+Sixth-ring instrument (same rule — offline from the dump, never live): the
+IFR question census (`ring6_ifr_probe.py` in the sandbox, artifact
+`lab/ovmf-ifr-census.json`) — pierce, FFS walk, forms packages, exact-
+consumption opcode walk; counts questions/options/pages per setup module
+(Q1), vendor vs OVMF comparable.
 
 ## Discipline
 

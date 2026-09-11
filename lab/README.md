@@ -32,10 +32,12 @@ here, on machines that exist to be broken.
 | `findings-third-ring.md` | 7 fronts: the NX policy is three bytes (hash-diff or nothing), the first instruction is a CR0 fork, the facade quantified (~423 sentences), the NVRAM priced |
 | `findings-fourth-ring.md` | 7 fronts: the gates x-ray, the PE provenance (zero timestamps, no PDB), the entropy atlas (58.9 % void), the SMM anatomy |
 | `findings-fifth-ring.md` | 3 fronts: enrollment is data (secboot == ms == snakeoil, byte-identical), the facade package layer anchored, ACPI is templates not tables |
+| `findings-sixth-ring.md` | 2 fronts: the IFR grammar re-derived spec-fresh (FORMS = 0x02, `{OpCode:8, Length:7, Scope:1}` — why ring 5 locked), the facade counted in QUESTIONS (146 plain / 208 secboot, 21/21 packages close exactly) |
 
 Every findings file carries the same honesty ledger: what is proven,
 what is flagged, what stays an open question — and ends with its
-consequences for day-0 (16/09).
+consequences for day-0 (16/09). The ring-5 opcode lock was resolved by
+ring 6 (spec-fresh grammar); its ledger self-corrects there.
 
 ### The artifacts (JSON, the evidence)
 
@@ -49,6 +51,7 @@ consequences for day-0 (16/09).
 | `ovmf-ms-delta.json` | fifth ring | secboot vs ms vs snakeoil: 144/144 modules byte-identical — trust is configuration |
 | `ovmf-ifr-grammar.json` | fifth ring | the HII package-list hunt: what validated, what stays locked (opcode layer) |
 | `ovmf-acpi-footprint.json` | fifth ring | checksum-validated ACPI/SMBIOS scan of 5 builds: templates in builders, zero finished tables |
+| `ovmf-ifr-census.json` | sixth ring | the per-module IFR census: questions / options / pages per setup module, validated by exact consumption |
 
 ### The instruments
 

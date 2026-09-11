@@ -51,7 +51,8 @@ BIOS-/
 ├── tests/                  test_suite.py (323 checks) + mcp_smoke.py + fixtures/ (TWIN-1)
 ├── docs/                   stable documents (see the README table)
 │   └── research/           the four-volume study: summaries + links to the PDF releases
-├── lab/                    the disposable machine: findings (5 rings), artifacts, doctrine
+├── lab/                    the disposable machine: findings (6 rings), artifacts, doctrine
+├── packaging/              lever D — the Arch-native PKGBUILD (see docs/packaging.md)
 ├── agents/skills/firmware/ SKILL.md — the skill the harnesses load
 ├── etc/systemd/user/       doctor + watch units (oneshot services, timers opt-in)
 └── .github/workflows/      ci.yml — full suite (py3.11/3.13) + MCP smoke on every push
@@ -72,7 +73,8 @@ nothing outside `$HOME`:
 | `etc/systemd/user/omarchy-firmware-{doctor,watch}.{service,timer}` | `~/.config/systemd/user/` | staged **inactive**; enabling a timer is an explicit human `systemctl --user enable` |
 
 Not installed on purpose: `tests/`' Python code (only its fixtures travel,
-as the twin), `docs/`, `lab/`, `.github/` — knowledge stays with the repo.
+as the twin), `docs/`, `lab/`, `packaging/`, `.github/` — knowledge stays
+with the repo.
 
 ## Deliberately not in the repository
 

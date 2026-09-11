@@ -1,0 +1,1499 @@
+{
+ "plain": {
+  "modules": {
+   "DriverHealthManagerDxe": {
+    "direct_0x35c4": {
+     "offset": 13764,
+     "size": 130,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 4,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 1,
+     "options": 0,
+     "forms": 1,
+     "end_op": 4,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x3664": {
+     "offset": 13924,
+     "size": 130,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 4,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 1,
+     "options": 0,
+     "forms": 1,
+     "end_op": 4,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "UiApp": {
+    "direct_0x16d24": {
+     "offset": 93476,
+     "size": 245,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "ACTION(0x0c)": 4,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "END(0x29)": 12,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 6,
+     "options": 0,
+     "forms": 3,
+     "end_op": 12,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x17324": {
+     "offset": 95012,
+     "size": 297,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 10,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 14,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 6
+     },
+     "questions": 0,
+     "options": 0,
+     "forms": 3,
+     "end_op": 14,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x178a4": {
+     "offset": 96420,
+     "size": 175,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUBTITLE(0x02)": 5,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 9,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 1,
+     "options": 0,
+     "forms": 1,
+     "end_op": 9,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x195e4": {
+     "offset": 103908,
+     "size": 1424,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 21,
+      "SUBTITLE(0x02)": 4,
+      "CHECKBOX(0x06)": 1,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 5,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 16,
+      "STRING(0x1c)": 4,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 37,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 34
+     },
+     "questions": 26,
+     "options": 0,
+     "forms": 21,
+     "end_op": 37,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x1ade4": {
+     "offset": 110052,
+     "size": 323,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 2,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 11
+     },
+     "questions": 0,
+     "options": 0,
+     "forms": 1,
+     "end_op": 2,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "RamDiskDxe": {
+    "direct_0x63c4": {
+     "offset": 25540,
+     "size": 245,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "ACTION(0x0c)": 4,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "END(0x29)": 12,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 6,
+     "options": 0,
+     "forms": 3,
+     "end_op": 12,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x6504": {
+     "offset": 25860,
+     "size": 323,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 2,
+      "SUBTITLE(0x02)": 6,
+      "ONE_OF(0x05)": 1,
+      "NUMERIC(0x07)": 1,
+      "ONE_OF_OPTION(0x09)": 2,
+      "ACTION(0x0c)": 3,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 2,
+      "END(0x29)": 14,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 7,
+     "options": 2,
+     "forms": 2,
+     "end_op": 14,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "VlanConfigDxe": {
+    "direct_0x3fe4": {
+     "offset": 16356,
+     "size": 265,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 2,
+      "SUBTITLE(0x02)": 3,
+      "NUMERIC(0x07)": 2,
+      "ACTION(0x0c)": 2,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 1,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 10,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 5,
+     "options": 0,
+     "forms": 2,
+     "end_op": 10,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "Ip4Dxe": {
+    "direct_0xe644": {
+     "offset": 58948,
+     "size": 312,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUBTITLE(0x02)": 1,
+      "CHECKBOX(0x06)": 2,
+      "SUPPRESS_IF(0x0a)": 2,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "EQ_ID_VAL(0x12)": 3,
+      "OR(0x16)": 1,
+      "STRING(0x1c)": 4,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 13,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 7,
+     "options": 0,
+     "forms": 1,
+     "end_op": 13,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "Ip6Dxe": {
+    "direct_0x147e4": {
+     "offset": 83940,
+     "size": 606,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "TEXT(0x03)": 7,
+      "ONE_OF(0x05)": 1,
+      "NUMERIC(0x07)": 1,
+      "ONE_OF_OPTION(0x09)": 2,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 3,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 2,
+      "EQ_ID_VAL(0x12)": 1,
+      "STRING(0x1c)": 4,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 16,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 8
+     },
+     "questions": 11,
+     "options": 2,
+     "forms": 3,
+     "end_op": 16,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "TlsAuthConfigDxe": {
+    "direct_0x6a44": {
+     "offset": 27204,
+     "size": 245,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "ACTION(0x0c)": 4,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "END(0x29)": 12,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 6,
+     "options": 0,
+     "forms": 3,
+     "end_op": 12,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x6b84": {
+     "offset": 27524,
+     "size": 458,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 5,
+      "SUBTITLE(0x02)": 11,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 7,
+      "GRAY_OUT_IF(0x19)": 1,
+      "STRING(0x1c)": 1,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 19,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 4
+     },
+     "questions": 8,
+     "options": 0,
+     "forms": 5,
+     "end_op": 19,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "HttpBootDxe": {
+    "direct_0xc724": {
+     "offset": 50980,
+     "size": 184,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "ONE_OF(0x05)": 1,
+      "ONE_OF_OPTION(0x09)": 2,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 5,
+      "DEFAULTSTORE(0x5c)": 2
+     },
+     "questions": 3,
+     "options": 2,
+     "forms": 1,
+     "end_op": 5,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "IScsiDxe": {
+    "direct_0x17964": {
+     "offset": 96612,
+     "size": 1336,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 5,
+      "SUBTITLE(0x02)": 12,
+      "ONE_OF(0x05)": 4,
+      "CHECKBOX(0x06)": 2,
+      "NUMERIC(0x07)": 3,
+      "ONE_OF_OPTION(0x09)": 10,
+      "SUPPRESS_IF(0x0a)": 10,
+      "ACTION(0x0c)": 5,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 4,
+      "EQ_ID_VAL(0x12)": 14,
+      "OR(0x16)": 4,
+      "NOT(0x17)": 4,
+      "GRAY_OUT_IF(0x19)": 1,
+      "STRING(0x1c)": 18,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 67,
+      "TRUE(0x46)": 1,
+      "DEFAULT(0x5b)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 10
+     },
+     "questions": 36,
+     "options": 10,
+     "forms": 5,
+     "end_op": 67,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "PlatformDxe": {
+    "direct_0x3124": {
+     "offset": 12580,
+     "size": 174,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "ACTION(0x0c)": 2,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 1,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 5,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 1
+     },
+     "questions": 3,
+     "options": 0,
+     "forms": 1,
+     "end_op": 5,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "Tcg2ConfigDxe": {
+    "direct_0x6924": {
+     "offset": 26916,
+     "size": 1070,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUBTITLE(0x02)": 9,
+      "TEXT(0x03)": 13,
+      "ONE_OF(0x05)": 5,
+      "CHECKBOX(0x06)": 5,
+      "NUMERIC(0x07)": 9,
+      "ONE_OF_OPTION(0x09)": 17,
+      "SUPPRESS_IF(0x0a)": 10,
+      "FORM_SET(0x0e)": 1,
+      "EQ_ID_VAL(0x12)": 8,
+      "EQ_ID_VAL_LIST(0x14)": 2,
+      "OR(0x16)": 1,
+      "NOT(0x17)": 1,
+      "DISABLE_IF(0x1e)": 1,
+      "VARSTORE_EFI(0x26)": 3,
+      "END(0x29)": 43,
+      "EQUAL(0x2f)": 1,
+      "QUESTION_REF1(0x40)": 1,
+      "UINT64(0x45)": 1,
+      "TRUE(0x46)": 1,
+      "DEFAULT(0x5b)": 6,
+      "DEFAULTSTORE(0x5c)": 2
+     },
+     "questions": 19,
+     "options": 17,
+     "forms": 1,
+     "end_op": 43,
+     "method": "direct+exact-consumption"
+    }
+   }
+  },
+  "_summary": {
+   "modules_with_forms": 11,
+   "form_packages": 18,
+   "valid_walks": 18,
+   "grammar": "{OpCode:8, Length:7, Scope:1} \u2014 spec-fresh (EDK2 UefiInternalFormRepresentation.h); list packages 4-aligned relative to list start"
+  }
+ },
+ "secboot": {
+  "modules": {
+   "SecureBootConfigDxe": {
+    "direct_0xa7704": {
+     "offset": 685828,
+     "size": 245,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "ACTION(0x0c)": 4,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "END(0x29)": 12,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 6,
+     "options": 0,
+     "forms": 3,
+     "end_op": 12,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0xa78a4": {
+     "offset": 686244,
+     "size": 2186,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 17,
+      "SUBTITLE(0x02)": 47,
+      "TEXT(0x03)": 3,
+      "ONE_OF(0x05)": 2,
+      "CHECKBOX(0x06)": 3,
+      "NUMERIC(0x07)": 6,
+      "ONE_OF_OPTION(0x09)": 6,
+      "SUPPRESS_IF(0x0a)": 3,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 32,
+      "EQ_ID_VAL(0x12)": 13,
+      "OR(0x16)": 1,
+      "NOT(0x17)": 5,
+      "GRAY_OUT_IF(0x19)": 7,
+      "DATE(0x1a)": 1,
+      "TIME(0x1b)": 1,
+      "STRING(0x1c)": 4,
+      "DISABLE_IF(0x1e)": 4,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 103,
+      "EQUAL(0x2f)": 1,
+      "QUESTION_REF1(0x40)": 1,
+      "UINT64(0x45)": 1,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 22
+     },
+     "questions": 50,
+     "options": 6,
+     "forms": 17,
+     "end_op": 103,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0xa7f18": {
+     "offset": 687896,
+     "size": 273,
+     "valid": true,
+     "ops": {
+      "op_00(0x00)": 2,
+      "FORM(0x01)": 1,
+      "SUBTITLE(0x02)": 4,
+      "TEXT(0x03)": 2,
+      "CHECKBOX(0x06)": 1,
+      "ONE_OF_OPTION(0x09)": 3,
+      "SUPPRESS_IF(0x0a)": 2,
+      "REF(0x0f)": 3,
+      "EQ_ID_VAL(0x12)": 4,
+      "NOT(0x17)": 2,
+      "DATE(0x1a)": 1,
+      "TIME(0x1b)": 1,
+      "DISABLE_IF(0x1e)": 2,
+      "END(0x29)": 15
+     },
+     "questions": 6,
+     "options": 3,
+     "forms": 1,
+     "end_op": 15,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "DriverHealthManagerDxe": {
+    "direct_0x35c4": {
+     "offset": 13764,
+     "size": 130,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 4,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 1,
+     "options": 0,
+     "forms": 1,
+     "end_op": 4,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x3664": {
+     "offset": 13924,
+     "size": 130,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 4,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 1,
+     "options": 0,
+     "forms": 1,
+     "end_op": 4,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "UiApp": {
+    "direct_0x16d64": {
+     "offset": 93540,
+     "size": 245,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "ACTION(0x0c)": 4,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "END(0x29)": 12,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 6,
+     "options": 0,
+     "forms": 3,
+     "end_op": 12,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x17364": {
+     "offset": 95076,
+     "size": 297,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 10,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 14,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 6
+     },
+     "questions": 0,
+     "options": 0,
+     "forms": 3,
+     "end_op": 14,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x178e4": {
+     "offset": 96484,
+     "size": 175,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUBTITLE(0x02)": 5,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 9,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 1,
+     "options": 0,
+     "forms": 1,
+     "end_op": 9,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x19624": {
+     "offset": 103972,
+     "size": 1424,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 21,
+      "SUBTITLE(0x02)": 4,
+      "CHECKBOX(0x06)": 1,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 5,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 16,
+      "STRING(0x1c)": 4,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 37,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 34
+     },
+     "questions": 26,
+     "options": 0,
+     "forms": 21,
+     "end_op": 37,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x1ae24": {
+     "offset": 110116,
+     "size": 323,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 2,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 11
+     },
+     "questions": 0,
+     "options": 0,
+     "forms": 1,
+     "end_op": 2,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "RamDiskDxe": {
+    "direct_0x63c4": {
+     "offset": 25540,
+     "size": 245,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "ACTION(0x0c)": 4,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "END(0x29)": 12,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 6,
+     "options": 0,
+     "forms": 3,
+     "end_op": 12,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x6504": {
+     "offset": 25860,
+     "size": 323,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 2,
+      "SUBTITLE(0x02)": 6,
+      "ONE_OF(0x05)": 1,
+      "NUMERIC(0x07)": 1,
+      "ONE_OF_OPTION(0x09)": 2,
+      "ACTION(0x0c)": 3,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 2,
+      "END(0x29)": 14,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 7,
+     "options": 2,
+     "forms": 2,
+     "end_op": 14,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "VlanConfigDxe": {
+    "direct_0x3fe4": {
+     "offset": 16356,
+     "size": 265,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 2,
+      "SUBTITLE(0x02)": 3,
+      "NUMERIC(0x07)": 2,
+      "ACTION(0x0c)": 2,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 1,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 10,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 5,
+     "options": 0,
+     "forms": 2,
+     "end_op": 10,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "Ip4Dxe": {
+    "direct_0xe444": {
+     "offset": 58436,
+     "size": 312,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUBTITLE(0x02)": 1,
+      "CHECKBOX(0x06)": 2,
+      "SUPPRESS_IF(0x0a)": 2,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "EQ_ID_VAL(0x12)": 3,
+      "OR(0x16)": 1,
+      "STRING(0x1c)": 4,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 13,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 7,
+     "options": 0,
+     "forms": 1,
+     "end_op": 13,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "Ip6Dxe": {
+    "direct_0x14624": {
+     "offset": 83492,
+     "size": 606,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "TEXT(0x03)": 7,
+      "ONE_OF(0x05)": 1,
+      "NUMERIC(0x07)": 1,
+      "ONE_OF_OPTION(0x09)": 2,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 3,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 2,
+      "EQ_ID_VAL(0x12)": 1,
+      "STRING(0x1c)": 4,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 16,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 8
+     },
+     "questions": 11,
+     "options": 2,
+     "forms": 3,
+     "end_op": 16,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "TlsAuthConfigDxe": {
+    "direct_0x6844": {
+     "offset": 26692,
+     "size": 245,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "ACTION(0x0c)": 4,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "END(0x29)": 12,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 6,
+     "options": 0,
+     "forms": 3,
+     "end_op": 12,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x6984": {
+     "offset": 27012,
+     "size": 458,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 5,
+      "SUBTITLE(0x02)": 11,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 7,
+      "GRAY_OUT_IF(0x19)": 1,
+      "STRING(0x1c)": 1,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 19,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 4
+     },
+     "questions": 8,
+     "options": 0,
+     "forms": 5,
+     "end_op": 19,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "HttpBootDxe": {
+    "direct_0xc6e4": {
+     "offset": 50916,
+     "size": 184,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "ONE_OF(0x05)": 1,
+      "ONE_OF_OPTION(0x09)": 2,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 5,
+      "DEFAULTSTORE(0x5c)": 2
+     },
+     "questions": 3,
+     "options": 2,
+     "forms": 1,
+     "end_op": 5,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "IScsiDxe": {
+    "direct_0x17664": {
+     "offset": 95844,
+     "size": 1336,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 5,
+      "SUBTITLE(0x02)": 12,
+      "ONE_OF(0x05)": 4,
+      "CHECKBOX(0x06)": 2,
+      "NUMERIC(0x07)": 3,
+      "ONE_OF_OPTION(0x09)": 10,
+      "SUPPRESS_IF(0x0a)": 10,
+      "ACTION(0x0c)": 5,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 4,
+      "EQ_ID_VAL(0x12)": 14,
+      "OR(0x16)": 4,
+      "NOT(0x17)": 4,
+      "GRAY_OUT_IF(0x19)": 1,
+      "STRING(0x1c)": 18,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 67,
+      "TRUE(0x46)": 1,
+      "DEFAULT(0x5b)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 10
+     },
+     "questions": 36,
+     "options": 10,
+     "forms": 5,
+     "end_op": 67,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "PlatformDxe": {
+    "direct_0x3124": {
+     "offset": 12580,
+     "size": 174,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "ACTION(0x0c)": 2,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 1,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 5,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 1
+     },
+     "questions": 3,
+     "options": 0,
+     "forms": 1,
+     "end_op": 5,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "Tcg2ConfigDxe": {
+    "direct_0x65e4": {
+     "offset": 26084,
+     "size": 1070,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUBTITLE(0x02)": 9,
+      "TEXT(0x03)": 13,
+      "ONE_OF(0x05)": 5,
+      "CHECKBOX(0x06)": 5,
+      "NUMERIC(0x07)": 9,
+      "ONE_OF_OPTION(0x09)": 17,
+      "SUPPRESS_IF(0x0a)": 10,
+      "FORM_SET(0x0e)": 1,
+      "EQ_ID_VAL(0x12)": 8,
+      "EQ_ID_VAL_LIST(0x14)": 2,
+      "OR(0x16)": 1,
+      "NOT(0x17)": 1,
+      "DISABLE_IF(0x1e)": 1,
+      "VARSTORE_EFI(0x26)": 3,
+      "END(0x29)": 43,
+      "EQUAL(0x2f)": 1,
+      "QUESTION_REF1(0x40)": 1,
+      "UINT64(0x45)": 1,
+      "TRUE(0x46)": 1,
+      "DEFAULT(0x5b)": 6,
+      "DEFAULTSTORE(0x5c)": 2
+     },
+     "questions": 19,
+     "options": 17,
+     "forms": 1,
+     "end_op": 43,
+     "method": "direct+exact-consumption"
+    }
+   }
+  },
+  "_summary": {
+   "modules_with_forms": 12,
+   "form_packages": 21,
+   "valid_walks": 21,
+   "grammar": "{OpCode:8, Length:7, Scope:1} \u2014 spec-fresh (EDK2 UefiInternalFormRepresentation.h); list packages 4-aligned relative to list start"
+  }
+ },
+ "snakeoil": {
+  "modules": {
+   "SecureBootConfigDxe": {
+    "direct_0xa7704": {
+     "offset": 685828,
+     "size": 245,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "ACTION(0x0c)": 4,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "END(0x29)": 12,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 6,
+     "options": 0,
+     "forms": 3,
+     "end_op": 12,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0xa78a4": {
+     "offset": 686244,
+     "size": 2186,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 17,
+      "SUBTITLE(0x02)": 47,
+      "TEXT(0x03)": 3,
+      "ONE_OF(0x05)": 2,
+      "CHECKBOX(0x06)": 3,
+      "NUMERIC(0x07)": 6,
+      "ONE_OF_OPTION(0x09)": 6,
+      "SUPPRESS_IF(0x0a)": 3,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 32,
+      "EQ_ID_VAL(0x12)": 13,
+      "OR(0x16)": 1,
+      "NOT(0x17)": 5,
+      "GRAY_OUT_IF(0x19)": 7,
+      "DATE(0x1a)": 1,
+      "TIME(0x1b)": 1,
+      "STRING(0x1c)": 4,
+      "DISABLE_IF(0x1e)": 4,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 103,
+      "EQUAL(0x2f)": 1,
+      "QUESTION_REF1(0x40)": 1,
+      "UINT64(0x45)": 1,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 22
+     },
+     "questions": 50,
+     "options": 6,
+     "forms": 17,
+     "end_op": 103,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0xa7f18": {
+     "offset": 687896,
+     "size": 273,
+     "valid": true,
+     "ops": {
+      "op_00(0x00)": 2,
+      "FORM(0x01)": 1,
+      "SUBTITLE(0x02)": 4,
+      "TEXT(0x03)": 2,
+      "CHECKBOX(0x06)": 1,
+      "ONE_OF_OPTION(0x09)": 3,
+      "SUPPRESS_IF(0x0a)": 2,
+      "REF(0x0f)": 3,
+      "EQ_ID_VAL(0x12)": 4,
+      "NOT(0x17)": 2,
+      "DATE(0x1a)": 1,
+      "TIME(0x1b)": 1,
+      "DISABLE_IF(0x1e)": 2,
+      "END(0x29)": 15
+     },
+     "questions": 6,
+     "options": 3,
+     "forms": 1,
+     "end_op": 15,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "DriverHealthManagerDxe": {
+    "direct_0x35c4": {
+     "offset": 13764,
+     "size": 130,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 4,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 1,
+     "options": 0,
+     "forms": 1,
+     "end_op": 4,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x3664": {
+     "offset": 13924,
+     "size": 130,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 4,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 1,
+     "options": 0,
+     "forms": 1,
+     "end_op": 4,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "UiApp": {
+    "direct_0x16d64": {
+     "offset": 93540,
+     "size": 245,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "ACTION(0x0c)": 4,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "END(0x29)": 12,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 6,
+     "options": 0,
+     "forms": 3,
+     "end_op": 12,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x17364": {
+     "offset": 95076,
+     "size": 297,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 10,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 14,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 6
+     },
+     "questions": 0,
+     "options": 0,
+     "forms": 3,
+     "end_op": 14,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x178e4": {
+     "offset": 96484,
+     "size": 175,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUBTITLE(0x02)": 5,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 9,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 1,
+     "options": 0,
+     "forms": 1,
+     "end_op": 9,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x19624": {
+     "offset": 103972,
+     "size": 1424,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 21,
+      "SUBTITLE(0x02)": 4,
+      "CHECKBOX(0x06)": 1,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 5,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 16,
+      "STRING(0x1c)": 4,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 37,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 34
+     },
+     "questions": 26,
+     "options": 0,
+     "forms": 21,
+     "end_op": 37,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x1ae24": {
+     "offset": 110116,
+     "size": 323,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "FORM_SET(0x0e)": 1,
+      "END(0x29)": 2,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 11
+     },
+     "questions": 0,
+     "options": 0,
+     "forms": 1,
+     "end_op": 2,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "RamDiskDxe": {
+    "direct_0x63c4": {
+     "offset": 25540,
+     "size": 245,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "ACTION(0x0c)": 4,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "END(0x29)": 12,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 6,
+     "options": 0,
+     "forms": 3,
+     "end_op": 12,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x6504": {
+     "offset": 25860,
+     "size": 323,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 2,
+      "SUBTITLE(0x02)": 6,
+      "ONE_OF(0x05)": 1,
+      "NUMERIC(0x07)": 1,
+      "ONE_OF_OPTION(0x09)": 2,
+      "ACTION(0x0c)": 3,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 2,
+      "END(0x29)": 14,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 7,
+     "options": 2,
+     "forms": 2,
+     "end_op": 14,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "VlanConfigDxe": {
+    "direct_0x3fe4": {
+     "offset": 16356,
+     "size": 265,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 2,
+      "SUBTITLE(0x02)": 3,
+      "NUMERIC(0x07)": 2,
+      "ACTION(0x0c)": 2,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 1,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 10,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 5,
+     "options": 0,
+     "forms": 2,
+     "end_op": 10,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "Ip4Dxe": {
+    "direct_0xe444": {
+     "offset": 58436,
+     "size": 312,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUBTITLE(0x02)": 1,
+      "CHECKBOX(0x06)": 2,
+      "SUPPRESS_IF(0x0a)": 2,
+      "ACTION(0x0c)": 1,
+      "FORM_SET(0x0e)": 1,
+      "EQ_ID_VAL(0x12)": 3,
+      "OR(0x16)": 1,
+      "STRING(0x1c)": 4,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 13,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 7,
+     "options": 0,
+     "forms": 1,
+     "end_op": 13,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "Ip6Dxe": {
+    "direct_0x14624": {
+     "offset": 83492,
+     "size": 606,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "TEXT(0x03)": 7,
+      "ONE_OF(0x05)": 1,
+      "NUMERIC(0x07)": 1,
+      "ONE_OF_OPTION(0x09)": 2,
+      "SUPPRESS_IF(0x0a)": 1,
+      "ACTION(0x0c)": 3,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 2,
+      "EQ_ID_VAL(0x12)": 1,
+      "STRING(0x1c)": 4,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 16,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 8
+     },
+     "questions": 11,
+     "options": 2,
+     "forms": 3,
+     "end_op": 16,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "TlsAuthConfigDxe": {
+    "direct_0x6844": {
+     "offset": 26692,
+     "size": 245,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 3,
+      "SUBTITLE(0x02)": 2,
+      "ACTION(0x0c)": 4,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "END(0x29)": 12,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 2
+     },
+     "questions": 6,
+     "options": 0,
+     "forms": 3,
+     "end_op": 12,
+     "method": "direct+exact-consumption"
+    },
+    "direct_0x6984": {
+     "offset": 27012,
+     "size": 458,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 5,
+      "SUBTITLE(0x02)": 11,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 7,
+      "GRAY_OUT_IF(0x19)": 1,
+      "STRING(0x1c)": 1,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 19,
+      "TRUE(0x46)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 4
+     },
+     "questions": 8,
+     "options": 0,
+     "forms": 5,
+     "end_op": 19,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "HttpBootDxe": {
+    "direct_0xc6e4": {
+     "offset": 50916,
+     "size": 184,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "ONE_OF(0x05)": 1,
+      "ONE_OF_OPTION(0x09)": 2,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 2,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 5,
+      "DEFAULTSTORE(0x5c)": 2
+     },
+     "questions": 3,
+     "options": 2,
+     "forms": 1,
+     "end_op": 5,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "IScsiDxe": {
+    "direct_0x17664": {
+     "offset": 95844,
+     "size": 1336,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 5,
+      "SUBTITLE(0x02)": 12,
+      "ONE_OF(0x05)": 4,
+      "CHECKBOX(0x06)": 2,
+      "NUMERIC(0x07)": 3,
+      "ONE_OF_OPTION(0x09)": 10,
+      "SUPPRESS_IF(0x0a)": 10,
+      "ACTION(0x0c)": 5,
+      "FORM_SET(0x0e)": 1,
+      "REF(0x0f)": 4,
+      "EQ_ID_VAL(0x12)": 14,
+      "OR(0x16)": 4,
+      "NOT(0x17)": 4,
+      "GRAY_OUT_IF(0x19)": 1,
+      "STRING(0x1c)": 18,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 67,
+      "TRUE(0x46)": 1,
+      "DEFAULT(0x5b)": 1,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 10
+     },
+     "questions": 36,
+     "options": 10,
+     "forms": 5,
+     "end_op": 67,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "PlatformDxe": {
+    "direct_0x3124": {
+     "offset": 12580,
+     "size": 174,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "ACTION(0x0c)": 2,
+      "FORM_SET(0x0e)": 1,
+      "STRING(0x1c)": 1,
+      "VARSTORE(0x24)": 1,
+      "END(0x29)": 5,
+      "DEFAULTSTORE(0x5c)": 2,
+      "GUID(0x5f)": 1
+     },
+     "questions": 3,
+     "options": 0,
+     "forms": 1,
+     "end_op": 5,
+     "method": "direct+exact-consumption"
+    }
+   },
+   "Tcg2ConfigDxe": {
+    "direct_0x65e4": {
+     "offset": 26084,
+     "size": 1070,
+     "valid": true,
+     "ops": {
+      "FORM(0x01)": 1,
+      "SUBTITLE(0x02)": 9,
+      "TEXT(0x03)": 13,
+      "ONE_OF(0x05)": 5,
+      "CHECKBOX(0x06)": 5,
+      "NUMERIC(0x07)": 9,
+      "ONE_OF_OPTION(0x09)": 17,
+      "SUPPRESS_IF(0x0a)": 10,
+      "FORM_SET(0x0e)": 1,
+      "EQ_ID_VAL(0x12)": 8,
+      "EQ_ID_VAL_LIST(0x14)": 2,
+      "OR(0x16)": 1,
+      "NOT(0x17)": 1,
+      "DISABLE_IF(0x1e)": 1,
+      "VARSTORE_EFI(0x26)": 3,
+      "END(0x29)": 43,
+      "EQUAL(0x2f)": 1,
+      "QUESTION_REF1(0x40)": 1,
+      "UINT64(0x45)": 1,
+      "TRUE(0x46)": 1,
+      "DEFAULT(0x5b)": 6,
+      "DEFAULTSTORE(0x5c)": 2
+     },
+     "questions": 19,
+     "options": 17,
+     "forms": 1,
+     "end_op": 43,
+     "method": "direct+exact-consumption"
+    }
+   }
+  },
+  "_summary": {
+   "modules_with_forms": 12,
+   "form_packages": 21,
+   "valid_walks": 21,
+   "grammar": "{OpCode:8, Length:7, Scope:1} \u2014 spec-fresh (EDK2 UefiInternalFormRepresentation.h); list packages 4-aligned relative to list start"
+  }
+ }
+}

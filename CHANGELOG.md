@@ -4,6 +4,45 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the sixth ring and lever D
+
+Same session as the cleanup; still docs-only. The tool surface is
+untouched: 15 tools, MCP smoke 12, 323 checks green.
+
+**Investigation (ring 6 — the IFR grammar, spec-fresh)**
+- Ring 5's locked opcode layer resolved by re-deriving the grammar from
+  the EDK2 spec headers (`UefiInternalFormRepresentation.h`, fetched
+  from tianocore/edk2 — zero memory-encoded constants): FORMS = 0x02 /
+  STRINGS = 0x04, and `EFI_IFR_OP_HEADER { OpCode:8, Length:7, Scope:1 }`
+  — the scope bit of the second byte is what broke every naive match.
+  Ring 5's ledger self-corrects: it had walked STRING packages with an
+  opcode grammar, and its "memory table refuted" was itself the error.
+- Validation upgraded to the strongest possible: a forms package counts
+  only if the opcode walk consumes its body EXACTLY. 21/21 packages
+  close exactly on all three builds (plain, secboot, snakeoil).
+- The facade now priced in QUESTIONS, not sentences: plain = 146
+  questions / 58 pages across 11 modules; secboot = 208 / 79 —
+  SecureBootConfigDxe alone is 62 questions, the biggest form carrier,
+  existing only in the secboot builds (the trust stays NVRAM data,
+  ring 5). BdsDxe carries zero forms: its 95 strings feed UiApp.
+- Artifacts: `lab/ovmf-ifr-census.json` (per-module ops/questions/
+  options/pages), `lab/findings-sixth-ring.md`; `docs/open-questions.md`
+  Q1 updated with the question-counting instrument (vendor-ready for
+  day-0); the list-header closure of IFR carriers stays flagged open.
+
+**Added (lever D — packaging)**
+- `packaging/PKGBUILD` — the Arch-native delivery shape, pinned to the
+  v0.7.1 tag digest (`2b327f9c…`), doctrine-inherited: units staged
+  inactive, no `post_install`, nothing in `/usr/share/omarchy`, nothing
+  in `$HOME`, +0 octet. The staged-tree + `/usr/bin` symlinks design
+  works with the frozen `realpath`-based lib resolution (a naive
+  `/usr/lib` layout would be broken by construction — documented in
+  `docs/packaging.md`).
+- `docs/packaging.md` — the two delivery shapes compared, the design
+  finding, build/verify commands, and the honest status: not yet built
+  on an Arch box (this sandbox is Debian); the first `makepkg` run is a
+  post-day-0 task.
+
 ## Unreleased — the omarchy-grade cleanup
 
 Docs-only hygiene pass, audited against the upstream Omarchy repository

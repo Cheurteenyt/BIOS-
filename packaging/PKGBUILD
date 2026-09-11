@@ -1,0 +1,99 @@
+# Maintainer: Cheurteenyt
+# Contributor: the omarchy-firmware project
+#
+# Lever D — the system-package shape of omarchy-firmware.
+#
+# The DAY-0 DEFAULT is user-space (install.sh): bins in ~/.local/bin, lib and
+# twin in ~/.local/share/omarchy-firmware, nothing in /usr, nothing enabled.
+# This PKGBUILD is the INTEGRATION LEVER: the same tree delivered the Arch
+# way (pacman owns the files), for the moment the project decides to ship
+# through a repository — the omarchy-pkgs pattern. Until that decision, this
+# file documents the shape and builds, but nothing auto-installs it.
+#
+# The doctrine the package inherits (non-negotiable):
+#   - no daemon: the doctor and the watch are one-shot services; the units are
+#     staged INACTIVE and the package NEVER enables them (no post_install);
+#   - no telemetry, no auto-flash, no ESP/NVRAM writes, +0 octet on SPI;
+#   - nothing is written to /usr/share/omarchy (Omarchy's own territory —
+#     this package uses /usr/share/omarchy-firmware, a distinct namespace);
+#   - nothing is written to $HOME by the package itself.
+
+pkgname=omarchy-firmware
+pkgver=0.7.1
+pkgrel=1
+pkgdesc="Read-only firmware & hardware intelligence layer for Omarchy — the agent explains, the firmware protects"
+arch=(any)
+url="https://github.com/Cheurteenyt/BIOS-"
+license=(MIT)
+depends=(python dmidecode efibootmgr)
+optdepends=("fwupd: fw.update.check / cve-watch advisory freshness"
+            "smartmontools: diag storage SMART evidence"
+            "pciutils: diag storage/gpu PCIe link evidence"
+            "nvidia-utils: diag gpu Xid/BAR1 evidence"
+            "python-mcp: the MCP server (omarchy-firmware-mcp)")
+install=
+changelog=
+source=("$pkgname-$pkgver.tar.gz::https://github.com/Cheurteenyt/BIOS-/archive/refs/tags/v$pkgver.tar.gz")
+sha256sums=('2b327f9cccab6247e2c2a48dbfcf6f4f0c68e289974d24a3eb86b995b80ed216')
+# Pinned to the v0.7.1 tag exactly like install.sh --from v0.7.1 pins it:
+# the installer floats, the payload is pinned. Bump pkgver + recompute the
+# digest at the next release (the release notes carry the same digest).
+
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  # 1) The whole tree staged under ONE namespace. The bins resolve their lib
+  #    through os.path.realpath(__file__) -> ../lib, so keeping the repo
+  #    layout intact under /usr/share/omarchy-firmware makes every bin work
+  #    unmodified (zero changes to the frozen tool surface).
+  _app=/usr/share/omarchy-firmware
+  install -d "$pkgdir$_app/bin" "$pkgdir$_app/lib/firmware_hal/data"
+  install -m0755 bin/omarchy-firmware* -t "$pkgdir$_app/bin/"
+  install -m0644 lib/firmware_hal/*.py -t "$pkgdir$_app/lib/firmware_hal/"
+  install -m0644 lib/firmware_hal/data/cve_am4.json \
+                 -t "$pkgdir$_app/lib/firmware_hal/data/"
+
+  # 2) TWIN-1 — the rehearsal machine travels with the package.
+  for d in b450-plus b450-plus-clean b550-f-old scenarios twin-sysfs; do
+    cp -R "tests/fixtures/$d" "$pkgdir$_app/twin/$d"
+  done
+
+  # 3) PATH entries as SYMLINKS into the staged tree (realpath resolution
+  #    makes them equivalent to real files for the bins).
+  for b in "$pkgdir$_app/bin/"*; do
+    ln -s "$_app/bin/$(basename "$b")" "$pkgdir/usr/bin/$(basename "$b")"
+  done
+
+  # 4) Twin discovery for a system install: the twin resolver checks
+  #    FW_TWIN_DIR first — the env drop-in declares it, session-wide,
+  #    declaratively. (No $HOME write, no activation, just a path.)
+  install -d "$pkgdir/etc/profile.d"
+  cat > "$pkgdir/etc/profile.d/omarchy-firmware.sh" <<'EOF'
+# omarchy-firmware (lever D): tell the twin resolver where the staged
+# rehearsal assets live. Harmless if the user-space layout is present:
+# FW_TWIN_DIR is only consulted when it points at a real directory.
+export FW_TWIN_DIR=/usr/share/omarchy-firmware/twin
+EOF
+
+  # 5) systemd USER units — staged INACTIVE (standard arch location for
+  #    user units). The package carries NO post_install: enabling the
+  #    doctor or the watch timer stays an explicit human gesture.
+  install -d "$pkgdir/usr/lib/systemd/user"
+  install -m0644 etc/systemd/user/omarchy-firmware-doctor.service \
+                 etc/systemd/user/omarchy-firmware-doctor.timer \
+                 etc/systemd/user/omarchy-firmware-watch.service \
+                 etc/systemd/user/omarchy-firmware-watch.timer \
+                 -t "$pkgdir/usr/lib/systemd/user/"
+
+  # 6) The agent skill — shipped for the human to wire into the harness
+  #    (harnesses read ~/.config/omarchy/agents/skills; a package never
+  #    writes $HOME — docs/packaging.md carries the one-line link command).
+  install -d "$pkgdir$_app/skill"
+  install -m0644 agents/skills/firmware/SKILL.md "$pkgdir$_app/skill/SKILL.md"
+
+  # 7) License + the documents that make the package auditable.
+  install -Dm0644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -d "$pkgdir$_app/docs"
+  install -m0644 README.md docs/security-doctrine.md docs/frugality.md \
+                 docs/spi-map.md -t "$pkgdir$_app/docs/"
+}
