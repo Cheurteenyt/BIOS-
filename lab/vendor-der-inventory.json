@@ -1,0 +1,1939 @@
+{
+ "schema": "omarchy-firmware/vendor-der-inventory@1",
+ "date": "2026-09-12",
+ "ring": 22,
+ "title": "the DER inventory \u2014 the factory trust material, parsed and collapsed",
+ "note": "front B: the raw-plane cert census is SIGHTINGS \u2014 each trust certificate ships three times (PK/KEK/db default stores). Ring 19/20's 12->18 = 4->6 distinct certs. Classes: trust-material (raw plane, gated), authenticode (PKCS#7 containers), pierced-standalone.",
+ "gates": {
+  "raw_sightings": {
+   "asus-3604": true,
+   "asus-3802": true,
+   "asus-3810": true,
+   "asus-4003": true,
+   "asus-4202": true,
+   "asus-4402": true,
+   "asus-4604": true,
+   "asus-4631": true,
+   "asus-4655": true
+  },
+  "cross_vendor_trust_zero": {
+   "msi-b450-tomahawk-max": true,
+   "gigabyte-b450-aorus-pro": true,
+   "asrock-b450-steel-legend": true
+  }
+ },
+ "per_specimen": {
+  "asus-3604": {
+   "trust_sightings": 12,
+   "trust_distinct": [
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "b3109006bc0ad983",
+    "ca8d0f4736454aec"
+   ],
+   "pierced_distinct": [
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "8bebce8daa8d4ef2",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9"
+   ],
+   "authenticode_distinct": [
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52"
+   ],
+   "pierced_standalone_distinct": [
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "8bebce8daa8d4ef2",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9"
+   ],
+   "gate_raw_sightings": true,
+   "gate_target": 12
+  },
+  "asus-3802": {
+   "trust_sightings": 12,
+   "trust_distinct": [
+    "281734d4592d1291",
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "9da69015c349c6c1"
+   ],
+   "pierced_distinct": [
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "8bebce8daa8d4ef2",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9"
+   ],
+   "authenticode_distinct": [
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52"
+   ],
+   "pierced_standalone_distinct": [
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "8bebce8daa8d4ef2",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9"
+   ],
+   "gate_raw_sightings": true,
+   "gate_target": 12
+  },
+  "asus-3810": {
+   "trust_sightings": 18,
+   "trust_distinct": [
+    "281734d4592d1291",
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "c7f4e1be32288920",
+    "e9158c6af5688cfc"
+   ],
+   "pierced_distinct": [
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "8bebce8daa8d4ef2",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9"
+   ],
+   "authenticode_distinct": [
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52"
+   ],
+   "pierced_standalone_distinct": [
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "8bebce8daa8d4ef2",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9"
+   ],
+   "gate_raw_sightings": true,
+   "gate_target": 18
+  },
+  "asus-4003": {
+   "trust_sightings": 18,
+   "trust_distinct": [
+    "281734d4592d1291",
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "c7f4e1be32288920",
+    "e9158c6af5688cfc"
+   ],
+   "pierced_distinct": [
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "8bebce8daa8d4ef2",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9"
+   ],
+   "authenticode_distinct": [
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52"
+   ],
+   "pierced_standalone_distinct": [
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "8bebce8daa8d4ef2",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9"
+   ],
+   "gate_raw_sightings": true,
+   "gate_target": 18
+  },
+  "asus-4202": {
+   "trust_sightings": 18,
+   "trust_distinct": [
+    "281734d4592d1291",
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "c7f4e1be32288920",
+    "e9158c6af5688cfc"
+   ],
+   "pierced_distinct": [
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "8bebce8daa8d4ef2",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9"
+   ],
+   "authenticode_distinct": [
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52"
+   ],
+   "pierced_standalone_distinct": [
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "8bebce8daa8d4ef2",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9"
+   ],
+   "gate_raw_sightings": true,
+   "gate_target": 18
+  },
+  "asus-4402": {
+   "trust_sightings": 18,
+   "trust_distinct": [
+    "281734d4592d1291",
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "d2f6e46ded7422cc",
+    "e9158c6af5688cfc"
+   ],
+   "pierced_distinct": [
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "8bebce8daa8d4ef2",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9"
+   ],
+   "authenticode_distinct": [
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52"
+   ],
+   "pierced_standalone_distinct": [
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "8bebce8daa8d4ef2",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9"
+   ],
+   "gate_raw_sightings": true,
+   "gate_target": 18
+  },
+  "asus-4604": {
+   "trust_sightings": 18,
+   "trust_distinct": [
+    "281734d4592d1291",
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "d2f6e46ded7422cc",
+    "e9158c6af5688cfc"
+   ],
+   "pierced_distinct": [
+    "076f1fea90ac2915",
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "2fbbe14c2874a218",
+    "3cd3f0309edae228",
+    "48e99b991f57fc52",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9",
+    "f6124e34125bee3f"
+   ],
+   "authenticode_distinct": [
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52"
+   ],
+   "pierced_standalone_distinct": [
+    "076f1fea90ac2915",
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "3cd3f0309edae228",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "ed1fe72cb9ca31c9",
+    "f6124e34125bee3f"
+   ],
+   "gate_raw_sightings": true,
+   "gate_target": 18
+  },
+  "asus-4631": {
+   "trust_sightings": 18,
+   "trust_distinct": [
+    "281734d4592d1291",
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "76769fa8f2632f1f",
+    "dd60cc7a1b77ee9a",
+    "e9158c6af5688cfc"
+   ],
+   "pierced_distinct": [
+    "076f1fea90ac2915",
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "2fbbe14c2874a218",
+    "3cd3f0309edae228",
+    "48e99b991f57fc52",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "f6124e34125bee3f"
+   ],
+   "authenticode_distinct": [
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52"
+   ],
+   "pierced_standalone_distinct": [
+    "076f1fea90ac2915",
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "3cd3f0309edae228",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e8e95f0733a55e8b",
+    "f6124e34125bee3f"
+   ],
+   "gate_raw_sightings": true,
+   "gate_target": 18
+  },
+  "asus-4655": {
+   "trust_sightings": 18,
+   "trust_distinct": [
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "4aa03fa22cd75c84",
+    "ca0b1554ecd901ea",
+    "dd60cc7a1b77ee9a",
+    "e9158c6af5688cfc"
+   ],
+   "pierced_distinct": [
+    "076f1fea90ac2915",
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "2fbbe14c2874a218",
+    "3cd3f0309edae228",
+    "48e99b991f57fc52",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "a1117f516a32cefc",
+    "a39af575fe264a3c",
+    "c52589a1533355a4",
+    "d7f66be77cef858c",
+    "e5be3e64c6e66a28",
+    "e8e95f0733a55e8b",
+    "f6124e34125bee3f"
+   ],
+   "authenticode_distinct": [
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52"
+   ],
+   "pierced_standalone_distinct": [
+    "076f1fea90ac2915",
+    "0e7d17fa9814d254",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "3cd3f0309edae228",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "a1117f516a32cefc",
+    "a39af575fe264a3c",
+    "c52589a1533355a4",
+    "d7f66be77cef858c",
+    "e5be3e64c6e66a28",
+    "e8e95f0733a55e8b",
+    "f6124e34125bee3f"
+   ],
+   "gate_raw_sightings": true,
+   "gate_target": 18
+  },
+  "tuf-4645": {
+   "trust_sightings": 18,
+   "trust_distinct": [
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "4aa03fa22cd75c84",
+    "ca0b1554ecd901ea",
+    "dd60cc7a1b77ee9a",
+    "e9158c6af5688cfc"
+   ],
+   "pierced_distinct": [
+    "076f1fea90ac2915",
+    "0e7d17fa9814d254",
+    "0ef63fa124629541",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "2fbbe14c2874a218",
+    "3cd3f0309edae228",
+    "48e99b991f57fc52",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e5be3e64c6e66a28",
+    "e8e95f0733a55e8b",
+    "f6124e34125bee3f"
+   ],
+   "authenticode_distinct": [
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52"
+   ],
+   "pierced_standalone_distinct": [
+    "076f1fea90ac2915",
+    "0e7d17fa9814d254",
+    "0ef63fa124629541",
+    "24cfd954fa85dd15",
+    "27da6a60e2305a6e",
+    "3cd3f0309edae228",
+    "76b7c0c943a59275",
+    "86ec118d1ee69670",
+    "a1117f516a32cefc",
+    "d7f66be77cef858c",
+    "e5be3e64c6e66a28",
+    "e8e95f0733a55e8b",
+    "f6124e34125bee3f"
+   ],
+   "gate_raw_sightings": null,
+   "gate_target": null
+  },
+  "msi-b450-tomahawk-max": {
+   "trust_sightings": 0,
+   "trust_distinct": [],
+   "pierced_distinct": [
+    "0374881c9b74d31f",
+    "0625fee1a80d7b89",
+    "0cfc19db681b014b",
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52",
+    "513f013c8cea7374",
+    "86ec118d1ee69670",
+    "90244cc221e00c1f",
+    "96cc147b56299c76",
+    "9acfab7e43c8d880",
+    "dbdd24413c3af29a",
+    "e8e95f0733a55e8b",
+    "f156d24f5d4e775d",
+    "ff327ea87270db5b"
+   ],
+   "authenticode_distinct": [
+    "2d4df77a4700ea5b",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52"
+   ],
+   "pierced_standalone_distinct": [
+    "0374881c9b74d31f",
+    "0625fee1a80d7b89",
+    "0cfc19db681b014b",
+    "513f013c8cea7374",
+    "86ec118d1ee69670",
+    "90244cc221e00c1f",
+    "96cc147b56299c76",
+    "9acfab7e43c8d880",
+    "dbdd24413c3af29a",
+    "e8e95f0733a55e8b",
+    "f156d24f5d4e775d",
+    "ff327ea87270db5b"
+   ],
+   "gate_raw_sightings": null,
+   "gate_target": null
+  },
+  "gigabyte-b450-aorus-pro": {
+   "trust_sightings": 0,
+   "trust_distinct": [],
+   "pierced_distinct": [
+    "076f1fea90ac2915",
+    "48e99b991f57fc52",
+    "5599331d08d2098f",
+    "81c10c85951cf76f",
+    "83d8eeb62da3370a",
+    "86ec118d1ee69670",
+    "e5be3e64c6e66a28",
+    "e8e95f0733a55e8b",
+    "eb4fe987871fd150",
+    "f6124e34125bee3f"
+   ],
+   "authenticode_distinct": [
+    "48e99b991f57fc52",
+    "5599331d08d2098f"
+   ],
+   "pierced_standalone_distinct": [
+    "076f1fea90ac2915",
+    "81c10c85951cf76f",
+    "83d8eeb62da3370a",
+    "86ec118d1ee69670",
+    "e5be3e64c6e66a28",
+    "e8e95f0733a55e8b",
+    "eb4fe987871fd150",
+    "f6124e34125bee3f"
+   ],
+   "gate_raw_sightings": null,
+   "gate_target": null
+  },
+  "asrock-b450-steel-legend": {
+   "trust_sightings": 0,
+   "trust_distinct": [],
+   "pierced_distinct": [
+    "01adaf2c334e76a6",
+    "08d8acc7fa37bcd4",
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52",
+    "86ec118d1ee69670",
+    "a1117f516a32cefc",
+    "dbdd24413c3af29a",
+    "e8e95f0733a55e8b"
+   ],
+   "authenticode_distinct": [
+    "2fbbe14c2874a218",
+    "48e99b991f57fc52"
+   ],
+   "pierced_standalone_distinct": [
+    "01adaf2c334e76a6",
+    "08d8acc7fa37bcd4",
+    "86ec118d1ee69670",
+    "a1117f516a32cefc",
+    "dbdd24413c3af29a",
+    "e8e95f0733a55e8b"
+   ],
+   "gate_raw_sightings": null,
+   "gate_target": null
+  }
+ },
+ "trust_movement_ladder": [
+  {
+   "pair": "3604->3802",
+   "same_set": false,
+   "added": [
+    {
+     "sha16": "281734d4592d1291",
+     "subject": "CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA,O=DigiCert\\, Inc.,C=US",
+     "issuer": "CN=DigiCert Trusted Root G4,OU=www.digicert.com,O=DigiCert Inc,C=US",
+     "not_before": "2022-03-23T00:00:00+00:00",
+     "key_type": "RSAPublicKey",
+     "key_bits": 4096
+    },
+    {
+     "sha16": "9da69015c349c6c1",
+     "subject": "CN=DigiCert Timestamp 2022 - 2,O=DigiCert\\, Inc.,C=US",
+     "issuer": "CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA,O=DigiCert\\, Inc.,C=US",
+     "not_before": "2022-03-29T00:00:00+00:00",
+     "key_type": "RSAPublicKey",
+     "key_bits": 4096
+    }
+   ],
+   "dropped": [
+    {
+     "sha16": "b3109006bc0ad983",
+     "subject": "CN=DigiCert Timestamp 2021,O=DigiCert\\, Inc.,C=US"
+    },
+    {
+     "sha16": "ca8d0f4736454aec",
+     "subject": "CN=DigiCert SHA2 Assured ID Timestamping CA,OU=www.digicert.com,O=DigiCert Inc,C=US"
+    }
+   ]
+  },
+  {
+   "pair": "3802->3810",
+   "same_set": false,
+   "added": [
+    {
+     "sha16": "33846b545a49c9be",
+     "subject": "CN=DigiCert Trusted Root G4,OU=www.digicert.com,O=DigiCert Inc,C=US",
+     "issuer": "CN=DigiCert Assured ID Root CA,OU=www.digicert.com,O=DigiCert Inc,C=US",
+     "not_before": "2022-08-01T00:00:00+00:00",
+     "key_type": "RSAPublicKey",
+     "key_bits": 4096
+    },
+    {
+     "sha16": "c7f4e1be32288920",
+     "subject": "CN=DigiCert Timestamp 2022 - 2,O=DigiCert,C=US",
+     "issuer": "CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA,O=DigiCert\\, Inc.,C=US",
+     "not_before": "2022-09-21T00:00:00+00:00",
+     "key_type": "RSAPublicKey",
+     "key_bits": 4096
+    },
+    {
+     "sha16": "e9158c6af5688cfc",
+     "subject": "CN=DigiCert Trusted Root G4,OU=www.digicert.com,O=DigiCert Inc,C=US",
+     "issuer": "CN=DigiCert High Assurance EV Root CA,OU=www.digicert.com,O=DigiCert Inc,C=US",
+     "not_before": "2022-01-13T00:00:00+00:00",
+     "key_type": "RSAPublicKey",
+     "key_bits": 4096
+    }
+   ],
+   "dropped": [
+    {
+     "sha16": "9da69015c349c6c1",
+     "subject": "CN=DigiCert Timestamp 2022 - 2,O=DigiCert\\, Inc.,C=US"
+    }
+   ]
+  },
+  {
+   "pair": "3810->4003",
+   "same_set": true,
+   "added": [],
+   "dropped": []
+  },
+  {
+   "pair": "4003->4202",
+   "same_set": true,
+   "added": [],
+   "dropped": []
+  },
+  {
+   "pair": "4202->4402",
+   "same_set": false,
+   "added": [
+    {
+     "sha16": "d2f6e46ded7422cc",
+     "subject": "CN=DigiCert Timestamp 2023,O=DigiCert\\, Inc.,C=US",
+     "issuer": "CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA,O=DigiCert\\, Inc.,C=US",
+     "not_before": "2023-07-14T00:00:00+00:00",
+     "key_type": "RSAPublicKey",
+     "key_bits": 4096
+    }
+   ],
+   "dropped": [
+    {
+     "sha16": "c7f4e1be32288920",
+     "subject": "CN=DigiCert Timestamp 2022 - 2,O=DigiCert,C=US"
+    }
+   ]
+  },
+  {
+   "pair": "4402->4604",
+   "same_set": true,
+   "added": [],
+   "dropped": []
+  },
+  {
+   "pair": "4604->4631",
+   "same_set": false,
+   "added": [
+    {
+     "sha16": "76769fa8f2632f1f",
+     "subject": "CN=DigiCert Timestamp 2024,O=DigiCert,C=US",
+     "issuer": "CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA,O=DigiCert\\, Inc.,C=US",
+     "not_before": "2024-09-26T00:00:00+00:00",
+     "key_type": "RSAPublicKey",
+     "key_bits": 4096
+    },
+    {
+     "sha16": "dd60cc7a1b77ee9a",
+     "subject": "CN=ASUSTeK COMPUTER INC.,O=ASUSTeK COMPUTER INC.,L=Beitou District,ST=Taipei City,C=TW,2.5.4.5=23638777,2.5.4.15=Private Organization,1.3.6.1.4.1.311.60.2.1.3=TW",
+     "issuer": "CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1,O=DigiCert\\, Inc.,C=US",
+     "not_before": "2024-05-27T00:00:00+00:00",
+     "key_type": "RSAPublicKey",
+     "key_bits": 4096
+    }
+   ],
+   "dropped": [
+    {
+     "sha16": "69a5f4a923962bbf",
+     "subject": "CN=ASUSTeK COMPUTER INC.,O=ASUSTeK COMPUTER INC.,L=Beitou District,ST=Taipei City,C=TW,2.5.4.5=23638777,1.3.6.1.4.1.311.60.2.1.3=TW,2.5.4.15=Private Organization"
+    },
+    {
+     "sha16": "d2f6e46ded7422cc",
+     "subject": "CN=DigiCert Timestamp 2023,O=DigiCert\\, Inc.,C=US"
+    }
+   ]
+  },
+  {
+   "pair": "4631->4655",
+   "same_set": false,
+   "added": [
+    {
+     "sha16": "4aa03fa22cd75c84",
+     "subject": "CN=DigiCert SHA256 RSA4096 Timestamp Responder 2025 1,O=DigiCert\\, Inc.,C=US",
+     "issuer": "CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1,O=DigiCert\\, Inc.,C=US",
+     "not_before": "2025-06-04T00:00:00+00:00",
+     "key_type": "RSAPublicKey",
+     "key_bits": 4096
+    },
+    {
+     "sha16": "ca0b1554ecd901ea",
+     "subject": "CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1,O=DigiCert\\, Inc.,C=US",
+     "issuer": "CN=DigiCert Trusted Root G4,OU=www.digicert.com,O=DigiCert Inc,C=US",
+     "not_before": "2025-05-07T00:00:00+00:00",
+     "key_type": "RSAPublicKey",
+     "key_bits": 4096
+    }
+   ],
+   "dropped": [
+    {
+     "sha16": "281734d4592d1291",
+     "subject": "CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA,O=DigiCert\\, Inc.,C=US"
+    },
+    {
+     "sha16": "76769fa8f2632f1f",
+     "subject": "CN=DigiCert Timestamp 2024,O=DigiCert,C=US"
+    }
+   ]
+  }
+ ],
+ "prime_vs_tuf": {
+  "shared": 6,
+  "of_prime": 6,
+  "of_tuf": 6,
+  "prime_only": [],
+  "tuf_only": []
+ },
+ "inventory": {
+  "b3109006bc0ad983": {
+   "sha16": "b3109006bc0ad983",
+   "bytes": 1282,
+   "subject": "CN=DigiCert Timestamp 2021,O=DigiCert\\, Inc.,C=US",
+   "issuer": "CN=DigiCert SHA2 Assured ID Timestamping CA,OU=www.digicert.com,O=DigiCert Inc,C=US",
+   "not_before": "2021-01-01T00:00:00+00:00",
+   "not_after": "2031-01-06T00:00:00+00:00",
+   "serial": 17624174242159194906345698804472279261,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    14522346,
+    14550698,
+    14594410
+   ],
+   "specimens": [
+    "asus-3604"
+   ]
+  },
+  "ca8d0f4736454aec": {
+   "sha16": "ca8d0f4736454aec",
+   "bytes": 1333,
+   "subject": "CN=DigiCert SHA2 Assured ID Timestamping CA,OU=www.digicert.com,O=DigiCert Inc,C=US",
+   "issuer": "CN=DigiCert Assured ID Root CA,OU=www.digicert.com,O=DigiCert Inc,C=US",
+   "not_before": "2016-01-07T12:00:00+00:00",
+   "not_after": "2031-01-07T12:00:00+00:00",
+   "serial": 14129007222345747367286704854105834005,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    14523628,
+    14551980,
+    14595692
+   ],
+   "specimens": [
+    "asus-3604"
+   ]
+  },
+  "46011ede1c147eb2": {
+   "sha16": "46011ede1c147eb2",
+   "bytes": 1716,
+   "subject": "CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1,O=DigiCert\\, Inc.,C=US",
+   "issuer": "CN=DigiCert Trusted Root G4,OU=www.digicert.com,O=DigiCert Inc,C=US",
+   "not_before": "2021-04-29T00:00:00+00:00",
+   "not_after": "2036-04-28T23:59:59+00:00",
+   "serial": 11533403529598586876501374841704918745,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha384WithRSAEncryption",
+   "sightings": [
+    14524961,
+    14553313,
+    14597025
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645"
+   ]
+  },
+  "69a5f4a923962bbf": {
+   "sha16": "69a5f4a923962bbf",
+   "bytes": 2027,
+   "subject": "CN=ASUSTeK COMPUTER INC.,O=ASUSTeK COMPUTER INC.,L=Beitou District,ST=Taipei City,C=TW,2.5.4.5=23638777,1.3.6.1.4.1.311.60.2.1.3=TW,2.5.4.15=Private Organization",
+   "issuer": "CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1,O=DigiCert\\, Inc.,C=US",
+   "not_before": "2021-06-10T00:00:00+00:00",
+   "not_after": "2024-06-13T23:59:59+00:00",
+   "serial": 1836891773554077684477741729017359425,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    14526677,
+    14555029,
+    14598741
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604"
+   ]
+  },
+  "2d4df77a4700ea5b": {
+   "sha16": "2d4df77a4700ea5b",
+   "bytes": 1304,
+   "subject": "CN=Microsoft Windows UEFI Driver Publisher,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Corporation UEFI CA 2011,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2020-12-15T21:25:55+00:00",
+   "not_after": "2021-12-02T21:25:55+00:00",
+   "serial": 1137338005460730692959856621004351316401586240,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    15652854,
+    15838498
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "msi-b450-tomahawk-max"
+   ]
+  },
+  "48e99b991f57fc52": {
+   "sha16": "48e99b991f57fc52",
+   "bytes": 1556,
+   "subject": "CN=Microsoft Corporation UEFI CA 2011,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Corporation Third Party Marketplace Root,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2011-06-27T21:22:45+00:00",
+   "not_after": "2026-06-27T21:32:45+00:00",
+   "serial": 458232382112382700224516,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    15654158,
+    15839802,
+    3131,
+    111523
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645",
+    "msi-b450-tomahawk-max",
+    "gigabyte-b450-aorus-pro",
+    "asrock-b450-steel-legend"
+   ]
+  },
+  "8bebce8daa8d4ef2": {
+   "sha16": "8bebce8daa8d4ef2",
+   "bytes": 1277,
+   "subject": "CN=Microsoft Time-Stamp Service,OU=Thales TSS ESN:86DF-4BBC-9335,OU=Microsoft Ireland Operations Limited,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Time-Stamp PCA 2010,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2020-10-15T17:28:25+00:00",
+   "not_after": "2022-01-12T17:28:25+00:00",
+   "serial": 1137338006780406398628359895531763910051889470,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    15656822,
+    15842466
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402"
+   ]
+  },
+  "86ec118d1ee69670": {
+   "sha16": "86ec118d1ee69670",
+   "bytes": 1653,
+   "subject": "CN=Microsoft Time-Stamp PCA 2010,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Root Certificate Authority 2010,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2010-07-01T21:36:55+00:00",
+   "not_after": "2025-07-01T21:46:55+00:00",
+   "serial": 458244876786598886244354,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    15658099,
+    15843743,
+    114161
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645",
+    "msi-b450-tomahawk-max",
+    "gigabyte-b450-aorus-pro",
+    "asrock-b450-steel-legend"
+   ]
+  },
+  "0e7d17fa9814d254": {
+   "sha16": "0e7d17fa9814d254",
+   "bytes": 842,
+   "subject": "CN=ASUSTeK MotherBoard PK Certificate",
+   "issuer": "CN=ASUSTeK MotherBoard PK Certificate",
+   "not_before": "2011-12-26T23:34:50+00:00",
+   "not_after": "2031-12-26T23:34:49+00:00",
+   "serial": 110667967930225765894262110472865649800,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    86
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645"
+   ]
+  },
+  "d7f66be77cef858c": {
+   "sha16": "d7f66be77cef858c",
+   "bytes": 845,
+   "subject": "CN=ASUSTeK MotherBoard KEK Certificate",
+   "issuer": "CN=ASUSTeK MotherBoard KEK Certificate",
+   "not_before": "2011-12-26T23:34:59+00:00",
+   "not_after": "2031-12-26T23:34:58+00:00",
+   "serial": 65289376082646627075165738733502186097,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    1340,
+    86,
+    86
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645"
+   ]
+  },
+  "a1117f516a32cefc": {
+   "sha16": "a1117f516a32cefc",
+   "bytes": 1516,
+   "subject": "CN=Microsoft Corporation KEK CA 2011,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Corporation Third Party Marketplace Root,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2011-06-24T20:41:29+00:00",
+   "not_after": "2026-06-24T20:51:29+00:00",
+   "serial": 458269114596843440832515,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    2229
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645",
+    "asrock-b450-steel-legend"
+   ]
+  },
+  "ed1fe72cb9ca31c9": {
+   "sha16": "ed1fe72cb9ca31c9",
+   "bytes": 1080,
+   "subject": "CN=Canonical Ltd. Master Certificate Authority,O=Canonical Ltd.,L=Douglas,ST=Isle of Man,C=GB",
+   "issuer": "CN=Canonical Ltd. Master Certificate Authority,O=Canonical Ltd.,L=Douglas,ST=Isle of Man,C=GB",
+   "not_before": "2012-04-12T11:12:51+00:00",
+   "not_after": "2042-04-11T11:12:51+00:00",
+   "serial": 13348991040521802343,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    3789,
+    6274
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604"
+   ]
+  },
+  "76b7c0c943a59275": {
+   "sha16": "76b7c0c943a59275",
+   "bytes": 854,
+   "subject": "CN=ASUSTeK MotherBoard SW Key Certificate",
+   "issuer": "CN=ASUSTeK MotherBoard SW Key Certificate",
+   "not_before": "2011-12-26T23:35:05+00:00",
+   "not_after": "2031-12-26T23:35:04+00:00",
+   "serial": -49826709276244151509651334522141514334,
+   "negative_serial": true,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    1344
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645"
+   ]
+  },
+  "24cfd954fa85dd15": {
+   "sha16": "24cfd954fa85dd15",
+   "bytes": 845,
+   "subject": "CN=ASUSTeK Notebook SW Key Certificate",
+   "issuer": "CN=ASUSTeK Notebook SW Key Certificate",
+   "not_before": "2011-12-27T00:18:53+00:00",
+   "not_after": "2031-12-27T00:18:52+00:00",
+   "serial": -94512745151889740996889429654940630927,
+   "negative_serial": true,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    2242
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645"
+   ]
+  },
+  "e8e95f0733a55e8b": {
+   "sha16": "e8e95f0733a55e8b",
+   "bytes": 1499,
+   "subject": "CN=Microsoft Windows Production PCA 2011,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Root Certificate Authority 2010,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2011-10-19T18:41:42+00:00",
+   "not_after": "2026-10-19T18:51:42+00:00",
+   "serial": 458207203049816025202696,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    4731
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645",
+    "msi-b450-tomahawk-max",
+    "gigabyte-b450-aorus-pro",
+    "asrock-b450-steel-legend"
+   ]
+  },
+  "2fbbe14c2874a218": {
+   "sha16": "2fbbe14c2874a218",
+   "bytes": 1321,
+   "subject": "CN=Microsoft Windows UEFI Driver Publisher,OU=MOPR,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Corporation UEFI CA 2011,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2016-11-17T22:05:37+00:00",
+   "not_after": "2018-02-17T22:05:37+00:00",
+   "serial": 1137338005281104851497182458154224830145101854,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    110202
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645",
+    "msi-b450-tomahawk-max",
+    "asrock-b450-steel-legend"
+   ]
+  },
+  "27da6a60e2305a6e": {
+   "sha16": "27da6a60e2305a6e",
+   "bytes": 1246,
+   "subject": "CN=Microsoft Time-Stamp Service,OU=nCipher DSE ESN:7D2E-3782-B0F7,OU=MOPR,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Time-Stamp PCA 2010,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2016-09-07T17:56:49+00:00",
+   "not_after": "2018-09-07T17:56:49+00:00",
+   "serial": 1137338005967766594069328071360617029667127458,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    115814
+   ],
+   "specimens": [
+    "asus-3604",
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645"
+   ]
+  },
+  "281734d4592d1291": {
+   "sha16": "281734d4592d1291",
+   "bytes": 1714,
+   "subject": "CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA,O=DigiCert\\, Inc.,C=US",
+   "issuer": "CN=DigiCert Trusted Root G4,OU=www.digicert.com,O=DigiCert Inc,C=US",
+   "not_before": "2022-03-23T00:00:00+00:00",
+   "not_after": "2037-03-22T23:59:59+00:00",
+   "serial": 9586110043380832440035821245782711899,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    14528106,
+    14557538,
+    14602330
+   ],
+   "specimens": [
+    "asus-3802",
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631"
+   ]
+  },
+  "9da69015c349c6c1": {
+   "sha16": "9da69015c349c6c1",
+   "bytes": 1738,
+   "subject": "CN=DigiCert Timestamp 2022 - 2,O=DigiCert\\, Inc.,C=US",
+   "issuer": "CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA,O=DigiCert\\, Inc.,C=US",
+   "not_before": "2022-03-29T00:00:00+00:00",
+   "not_after": "2033-03-14T23:59:59+00:00",
+   "serial": 13927251897073529254730216701512030109,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    14531536,
+    14560968,
+    14605760
+   ],
+   "specimens": [
+    "asus-3802"
+   ]
+  },
+  "33846b545a49c9be": {
+   "sha16": "33846b545a49c9be",
+   "bytes": 1425,
+   "subject": "CN=DigiCert Trusted Root G4,OU=www.digicert.com,O=DigiCert Inc,C=US",
+   "issuer": "CN=DigiCert Assured ID Root CA,OU=www.digicert.com,O=DigiCert Inc,C=US",
+   "not_before": "2022-08-01T00:00:00+00:00",
+   "not_after": "2031-11-09T23:59:59+00:00",
+   "serial": 19414496059604725969669510860671817818,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha384WithRSAEncryption",
+   "sightings": [
+    14511818,
+    14544146,
+    14591834
+   ],
+   "specimens": [
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645"
+   ]
+  },
+  "e9158c6af5688cfc": {
+   "sha16": "e9158c6af5688cfc",
+   "bytes": 1476,
+   "subject": "CN=DigiCert Trusted Root G4,OU=www.digicert.com,O=DigiCert Inc,C=US",
+   "issuer": "CN=DigiCert High Assurance EV Root CA,OU=www.digicert.com,O=DigiCert Inc,C=US",
+   "not_before": "2022-01-13T00:00:00+00:00",
+   "not_after": "2031-11-09T23:59:59+00:00",
+   "serial": 21027418832470288962299581843631674929,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    14513243,
+    14545571,
+    14593259
+   ],
+   "specimens": [
+    "asus-3810",
+    "asus-4003",
+    "asus-4202",
+    "asus-4402",
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645"
+   ]
+  },
+  "c7f4e1be32288920": {
+   "sha16": "c7f4e1be32288920",
+   "bytes": 1732,
+   "subject": "CN=DigiCert Timestamp 2022 - 2,O=DigiCert,C=US",
+   "issuer": "CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA,O=DigiCert\\, Inc.,C=US",
+   "not_before": "2022-09-21T00:00:00+00:00",
+   "not_after": "2033-11-21T23:59:59+00:00",
+   "serial": 16352681515936560713148055516499426650,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    14518149,
+    14550477,
+    14598165
+   ],
+   "specimens": [
+    "asus-3810",
+    "asus-4003",
+    "asus-4202"
+   ]
+  },
+  "d2f6e46ded7422cc": {
+   "sha16": "d2f6e46ded7422cc",
+   "bytes": 1734,
+   "subject": "CN=DigiCert Timestamp 2023,O=DigiCert\\, Inc.,C=US",
+   "issuer": "CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA,O=DigiCert\\, Inc.,C=US",
+   "not_before": "2023-07-14T00:00:00+00:00",
+   "not_after": "2034-10-13T23:59:59+00:00",
+   "serial": 7002784885422699301467740558332354838,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    14539485,
+    14571813,
+    14619501
+   ],
+   "specimens": [
+    "asus-4402",
+    "asus-4604"
+   ]
+  },
+  "3cd3f0309edae228": {
+   "sha16": "3cd3f0309edae228",
+   "bytes": 1462,
+   "subject": "CN=Microsoft Corporation KEK 2K CA 2023,O=Microsoft Corporation,C=US",
+   "issuer": "CN=Microsoft RSA Devices Root CA 2021,O=Microsoft Corporation,C=US",
+   "not_before": "2023-03-02T20:21:35+00:00",
+   "not_after": "2038-03-02T20:31:35+00:00",
+   "serial": 1137338005224122868805156461113123767112957971,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    4913
+   ],
+   "specimens": [
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645"
+   ]
+  },
+  "f6124e34125bee3f": {
+   "sha16": "f6124e34125bee3f",
+   "bytes": 1448,
+   "subject": "CN=Microsoft UEFI CA 2023,O=Microsoft Corporation,C=US",
+   "issuer": "CN=Microsoft RSA Devices Root CA 2021,O=Microsoft Corporation,C=US",
+   "not_before": "2023-06-13T19:21:47+00:00",
+   "not_after": "2038-06-13T19:31:47+00:00",
+   "serial": 1137338005240402710682289874204510001760829462,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    7398
+   ],
+   "specimens": [
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645",
+    "gigabyte-b450-aorus-pro"
+   ]
+  },
+  "076f1fea90ac2915": {
+   "sha16": "076f1fea90ac2915",
+   "bytes": 1454,
+   "subject": "CN=Windows UEFI CA 2023,O=Microsoft Corporation,C=US",
+   "issuer": "CN=Microsoft Root Certificate Authority 2010,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2023-06-13T18:58:29+00:00",
+   "not_after": "2035-06-13T19:08:29+00:00",
+   "serial": 1137338005262830966003041513284644495440216090,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    8890
+   ],
+   "specimens": [
+    "asus-4604",
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645",
+    "gigabyte-b450-aorus-pro"
+   ]
+  },
+  "76769fa8f2632f1f": {
+   "sha16": "76769fa8f2632f1f",
+   "bytes": 1728,
+   "subject": "CN=DigiCert Timestamp 2024,O=DigiCert,C=US",
+   "issuer": "CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA,O=DigiCert\\, Inc.,C=US",
+   "not_before": "2024-09-26T00:00:00+00:00",
+   "not_after": "2035-11-25T23:59:59+00:00",
+   "serial": 15527051335772373346646244889366573828,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    14543597,
+    14575877,
+    14623517
+   ],
+   "specimens": [
+    "asus-4631"
+   ]
+  },
+  "dd60cc7a1b77ee9a": {
+   "sha16": "dd60cc7a1b77ee9a",
+   "bytes": 1984,
+   "subject": "CN=ASUSTeK COMPUTER INC.,O=ASUSTeK COMPUTER INC.,L=Beitou District,ST=Taipei City,C=TW,2.5.4.5=23638777,2.5.4.15=Private Organization,1.3.6.1.4.1.311.60.2.1.3=TW",
+   "issuer": "CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1,O=DigiCert\\, Inc.,C=US",
+   "not_before": "2024-05-27T00:00:00+00:00",
+   "not_after": "2027-05-30T23:59:59+00:00",
+   "serial": 6433390936673593805442322504397564155,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    14545325,
+    14577605,
+    14625245
+   ],
+   "specimens": [
+    "asus-4631",
+    "asus-4655",
+    "tuf-4645"
+   ]
+  },
+  "ca0b1554ecd901ea": {
+   "sha16": "ca0b1554ecd901ea",
+   "bytes": 1720,
+   "subject": "CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1,O=DigiCert\\, Inc.,C=US",
+   "issuer": "CN=DigiCert Trusted Root G4,OU=www.digicert.com,O=DigiCert Inc,C=US",
+   "not_before": "2025-05-07T00:00:00+00:00",
+   "not_after": "2038-01-14T23:59:59+00:00",
+   "serial": 18316726489210163671024321415498844550,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    14550459,
+    14582795,
+    14630491
+   ],
+   "specimens": [
+    "asus-4655",
+    "tuf-4645"
+   ]
+  },
+  "4aa03fa22cd75c84": {
+   "sha16": "4aa03fa22cd75c84",
+   "bytes": 1777,
+   "subject": "CN=DigiCert SHA256 RSA4096 Timestamp Responder 2025 1,O=DigiCert\\, Inc.,C=US",
+   "issuer": "CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1,O=DigiCert\\, Inc.,C=US",
+   "not_before": "2025-06-04T00:00:00+00:00",
+   "not_after": "2036-09-03T23:59:59+00:00",
+   "serial": 13961743376495762226214566101052126312,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    14552179,
+    14584515,
+    14632211
+   ],
+   "specimens": [
+    "asus-4655",
+    "tuf-4645"
+   ]
+  },
+  "a39af575fe264a3c": {
+   "sha16": "a39af575fe264a3c",
+   "bytes": 1283,
+   "subject": "CN=ASUSTeK MotherBoard UEFI TOOL Certificate,OU=328d3a6e4422a14d applied,OU=Motherboard Business Unit Software Solution Center,O=ASUSTeK COMPUTER INC.",
+   "issuer": "CN=ASUSTeK MotherBoard UEFI TOOL Certificate,OU=328d3a6e4422a14d applied,OU=Motherboard Business Unit Software Solution Center,O=ASUSTeK COMPUTER INC.",
+   "not_before": "2026-03-25T10:45:57+00:00",
+   "not_after": "2046-03-21T10:45:57+00:00",
+   "serial": 557131279570000297506843203630435712820895515635,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    1344
+   ],
+   "specimens": [
+    "asus-4655"
+   ]
+  },
+  "c52589a1533355a4": {
+   "sha16": "c52589a1533355a4",
+   "bytes": 1276,
+   "subject": "CN=ASUSTeK MotherBoard UEFI DB Certificate,OU=328d3a6e4422a14d applied,OU=Motherboard Business Unit Software Solution Center,O=ASUSTeK COMPUTER INC.",
+   "issuer": "CN=ASUSTeK MotherBoard UEFI DB Certificate,OU=328d3a6e4422a14d applied,OU=Motherboard Business Unit Software Solution Center,O=ASUSTeK COMPUTER INC.",
+   "not_before": "2026-03-25T10:45:50+00:00",
+   "not_after": "2046-03-21T10:45:50+00:00",
+   "serial": 438681672988298184070161375833289352538660402307,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    2671
+   ],
+   "specimens": [
+    "asus-4655"
+   ]
+  },
+  "e5be3e64c6e66a28": {
+   "sha16": "e5be3e64c6e66a28",
+   "bytes": 1459,
+   "subject": "CN=Microsoft Option ROM UEFI CA 2023,O=Microsoft Corporation,C=US",
+   "issuer": "CN=Microsoft RSA Devices Root CA 2021,O=Microsoft Corporation,C=US",
+   "not_before": "2023-10-26T19:02:20+00:00",
+   "not_after": "2038-10-26T19:12:20+00:00",
+   "serial": 1137338005248133881133260730601790185656025111,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    8023
+   ],
+   "specimens": [
+    "asus-4655",
+    "tuf-4645",
+    "gigabyte-b450-aorus-pro"
+   ]
+  },
+  "0ef63fa124629541": {
+   "sha16": "0ef63fa124629541",
+   "bytes": 1284,
+   "subject": "CN=Microsoft Windows UEFI Key Exchange Key,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Corporation KEK CA 2011,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2024-08-22T19:30:28+00:00",
+   "not_after": "2025-08-20T19:30:28+00:00",
+   "serial": 1137338005381629432671926511198494043244855345,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    86
+   ],
+   "specimens": [
+    "tuf-4645"
+   ]
+  },
+  "dbdd24413c3af29a": {
+   "sha16": "dbdd24413c3af29a",
+   "bytes": 1246,
+   "subject": "CN=Microsoft Time-Stamp Service,OU=nCipher DSE ESN:C0F4-3086-DEF8,OU=MOPR,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Time-Stamp PCA 2010,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2016-09-07T17:56:49+00:00",
+   "not_after": "2018-09-07T17:56:49+00:00",
+   "serial": 1137338005976256130689596214337794142600429731,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    6619189,
+    7197325
+   ],
+   "specimens": [
+    "msi-b450-tomahawk-max",
+    "asrock-b450-steel-legend"
+   ]
+  },
+  "0625fee1a80d7b89": {
+   "sha16": "0625fee1a80d7b89",
+   "bytes": 1010,
+   "subject": "CN=Symantec Time Stamping Services CA - G2,O=Symantec Corporation,C=US",
+   "issuer": "CN=Thawte Timestamping CA,OU=Thawte Certification,O=Thawte,L=Durbanville,ST=Western Cape,C=ZA",
+   "not_before": "2012-12-21T00:00:00+00:00",
+   "not_after": "2020-12-30T23:59:59+00:00",
+   "serial": 168250781398245547403531165097821404219,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha1WithRSAEncryption",
+   "sightings": [
+    9482973,
+    10203109
+   ],
+   "specimens": [
+    "msi-b450-tomahawk-max"
+   ]
+  },
+  "0374881c9b74d31f": {
+   "sha16": "0374881c9b74d31f",
+   "bytes": 1191,
+   "subject": "CN=Symantec Time Stamping Services Signer - G4,O=Symantec Corporation,C=US",
+   "issuer": "CN=Symantec Time Stamping Services CA - G2,O=Symantec Corporation,C=US",
+   "not_before": "2012-10-18T00:00:00+00:00",
+   "not_after": "2020-12-29T23:59:59+00:00",
+   "serial": 19688950797630895426199952712430983760,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha1WithRSAEncryption",
+   "sightings": [
+    9483983,
+    10204119
+   ],
+   "specimens": [
+    "msi-b450-tomahawk-max"
+   ]
+  },
+  "9acfab7e43c8d880": {
+   "sha16": "9acfab7e43c8d880",
+   "bytes": 1239,
+   "subject": "CN=VeriSign Class 3 Public Primary Certification Authority - G5,OU=(c) 2006 VeriSign\\, Inc. - For authorized use only,OU=VeriSign Trust Network,O=VeriSign\\, Inc.,C=US",
+   "issuer": "CN=VeriSign Class 3 Public Primary Certification Authority - G5,OU=(c) 2006 VeriSign\\, Inc. - For authorized use only,OU=VeriSign Trust Network,O=VeriSign\\, Inc.,C=US",
+   "not_before": "2006-11-08T00:00:00+00:00",
+   "not_after": "2036-07-16T23:59:59+00:00",
+   "serial": 33037644167568058970164719475676101450,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha1WithRSAEncryption",
+   "sightings": [
+    9485174,
+    10205310
+   ],
+   "specimens": [
+    "msi-b450-tomahawk-max"
+   ]
+  },
+  "96cc147b56299c76": {
+   "sha16": "96cc147b56299c76",
+   "bytes": 1404,
+   "subject": "CN=Arphic Technology Co.\\, Ltd.,OU=Digital ID Class 3 - Microsoft Software Validation v2,O=Arphic Technology Co.\\, Ltd.,L=Taipei,ST=Taipei,C=TW",
+   "issuer": "CN=VeriSign Class 3 Code Signing 2010 CA,OU=Terms of use at https://www.verisign.com/rpa (c)10,OU=VeriSign Trust Network,O=VeriSign\\, Inc.,C=US",
+   "not_before": "2014-01-23T00:00:00+00:00",
+   "not_after": "2017-02-21T23:59:59+00:00",
+   "serial": 134333671554529193530115119282244095271,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha1WithRSAEncryption",
+   "sightings": [
+    9486413,
+    10206549
+   ],
+   "specimens": [
+    "msi-b450-tomahawk-max"
+   ]
+  },
+  "0cfc19db681b014b": {
+   "sha16": "0cfc19db681b014b",
+   "bytes": 1550,
+   "subject": "CN=VeriSign Class 3 Code Signing 2010 CA,OU=Terms of use at https://www.verisign.com/rpa (c)10,OU=VeriSign Trust Network,O=VeriSign\\, Inc.,C=US",
+   "issuer": "CN=VeriSign Class 3 Public Primary Certification Authority - G5,OU=(c) 2006 VeriSign\\, Inc. - For authorized use only,OU=VeriSign Trust Network,O=VeriSign\\, Inc.,C=US",
+   "not_before": "2010-02-08T00:00:00+00:00",
+   "not_after": "2020-02-07T23:59:59+00:00",
+   "serial": 109001353806506068745144901449045193671,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha1WithRSAEncryption",
+   "sightings": [
+    9487817,
+    10207953
+   ],
+   "specimens": [
+    "msi-b450-tomahawk-max"
+   ]
+  },
+  "513f013c8cea7374": {
+   "sha16": "513f013c8cea7374",
+   "bytes": 1277,
+   "subject": "CN=Microsoft Time-Stamp Service,OU=Thales TSS ESN:D082-4BFD-EEBA,OU=Microsoft Ireland Operations Limited,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Time-Stamp PCA 2010,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2020-10-15T17:28:27+00:00",
+   "not_after": "2022-01-12T17:28:27+00:00",
+   "serial": 1137338006795348581026037196371107855162409281,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    12578094,
+    13194366
+   ],
+   "specimens": [
+    "msi-b450-tomahawk-max"
+   ]
+  },
+  "ff327ea87270db5b": {
+   "sha16": "ff327ea87270db5b",
+   "bytes": 596,
+   "subject": "CN=MSI SHIP PK",
+   "issuer": "CN=Root Agency",
+   "not_before": "2012-06-09T07:25:18+00:00",
+   "not_after": "2022-06-09T07:25:17+00:00",
+   "serial": -48684456717680620760363671388057176578,
+   "negative_serial": true,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    86,
+    86
+   ],
+   "specimens": [
+    "msi-b450-tomahawk-max"
+   ]
+  },
+  "90244cc221e00c1f": {
+   "sha16": "90244cc221e00c1f",
+   "bytes": 1060,
+   "subject": "CN=Canonical Ltd. Secure Boot Signing,OU=Secure Boot,O=Canonical Ltd.,ST=Isle of Man,C=GB",
+   "issuer": "CN=Canonical Ltd. Master Certificate Authority,O=Canonical Ltd.,L=Douglas,ST=Isle of Man,C=GB",
+   "not_before": "2012-04-12T11:39:08+00:00",
+   "not_after": "2042-04-11T11:39:08+00:00",
+   "serial": 1,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    1147
+   ],
+   "specimens": [
+    "msi-b450-tomahawk-max"
+   ]
+  },
+  "f156d24f5d4e775d": {
+   "sha16": "f156d24f5d4e775d",
+   "bytes": 768,
+   "subject": "CN=Debian Secure Boot Signer",
+   "issuer": "CN=Debian Secure Boot CA",
+   "not_before": "2016-08-16T18:22:50+00:00",
+   "not_after": "2026-08-16T18:22:50+00:00",
+   "serial": 2806418927,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    2251
+   ],
+   "specimens": [
+    "msi-b450-tomahawk-max"
+   ]
+  },
+  "5599331d08d2098f": {
+   "sha16": "5599331d08d2098f",
+   "bytes": 1320,
+   "subject": "CN=Microsoft Windows UEFI Driver Publisher,OU=MOPR,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Corporation UEFI CA 2011,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2014-10-01T18:02:10+00:00",
+   "not_after": "2016-01-01T18:02:10+00:00",
+   "serial": 1137338005211476345984351920894887560461942800,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    7084346
+   ],
+   "specimens": [
+    "gigabyte-b450-aorus-pro"
+   ]
+  },
+  "81c10c85951cf76f": {
+   "sha16": "81c10c85951cf76f",
+   "bytes": 1238,
+   "subject": "CN=Microsoft Time-Stamp Service,OU=nCipher DSE ESN:BBEC-30CA-2DBE,OU=MOPR,O=Microsoft Corporation,L=Redmond,ST=WA,C=US",
+   "issuer": "CN=Microsoft Time-Stamp PCA 2010,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2014-05-23T17:20:09+00:00",
+   "not_after": "2015-08-23T17:20:09+00:00",
+   "serial": 1137338005542538715861377545700322982726991952,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    7089993
+   ],
+   "specimens": [
+    "gigabyte-b450-aorus-pro"
+   ]
+  },
+  "83d8eeb62da3370a": {
+   "sha16": "83d8eeb62da3370a",
+   "bytes": 1037,
+   "subject": "CN=GIGABYTE",
+   "issuer": "CN=GIGABYTE",
+   "not_before": "2022-09-30T01:55:16+00:00",
+   "not_after": "2027-09-30T01:55:15+00:00",
+   "serial": 70179638220092504327494025652759633272,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    7725
+   ],
+   "specimens": [
+    "gigabyte-b450-aorus-pro"
+   ]
+  },
+  "eb4fe987871fd150": {
+   "sha16": "eb4fe987871fd150",
+   "bytes": 1022,
+   "subject": "CN=GIGABYTE",
+   "issuer": "CN=GIGABYTE",
+   "not_before": "2023-09-05T06:42:23+00:00",
+   "not_after": "2053-09-05T06:42:22+00:00",
+   "serial": -158788793681056651444694773472865439140,
+   "negative_serial": true,
+   "key_type": "RSAPublicKey",
+   "key_bits": 4096,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    8806
+   ],
+   "specimens": [
+    "gigabyte-b450-aorus-pro"
+   ]
+  },
+  "01adaf2c334e76a6": {
+   "sha16": "01adaf2c334e76a6",
+   "bytes": 818,
+   "subject": "CN=DO NOT TRUST - AMI Test PK",
+   "issuer": "CN=DO NOT TRUST - AMI Test PK",
+   "not_before": "2017-11-08T23:32:53+00:00",
+   "not_after": "2021-11-08T23:32:52+00:00",
+   "serial": 114292504384873184217234472808258943732,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    86
+   ],
+   "specimens": [
+    "asrock-b450-steel-legend"
+   ]
+  },
+  "08d8acc7fa37bcd4": {
+   "sha16": "08d8acc7fa37bcd4",
+   "bytes": 1308,
+   "subject": "CN=Microsoft Windows UEFI Key Exchange Key,OU=MOPR,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "issuer": "CN=Microsoft Corporation KEK CA 2011,O=Microsoft Corporation,L=Redmond,ST=Washington,C=US",
+   "not_before": "2016-01-06T18:34:15+00:00",
+   "not_after": "2017-04-06T18:34:15+00:00",
+   "serial": 1137338005225901575328388483296956466103058451,
+   "negative_serial": false,
+   "key_type": "RSAPublicKey",
+   "key_bits": 2048,
+   "sig_alg": "sha256WithRSAEncryption",
+   "sightings": [
+    86
+   ],
+   "specimens": [
+    "asrock-b450-steel-legend"
+   ]
+  }
+ }
+}

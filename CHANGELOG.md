@@ -4,6 +4,50 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the twenty-second ring (the eighth clock, the collapsed census, and the frozen whitelist)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Three fronts on the re-restored corpus** — the sandbox reset wiped the
+binaries a third time; all 13 specimens re-pulled from the official CDN
+URLs, every zip gated on its register anchor (13/13), every ROM gated on
+ring 21's corrected sha256 (12/12 + TUF on its vendor-certified anchor);
+zero new acquisitions:
+
+- **The SSDT clock** (`vendor-ssdt-clock.json`): every checksum-admitted
+  DSDT/SSDT body hashed across the corpus with container classification.
+  The gate reproduces ring 21's main-DSDT atlas 9/9 and reconciles its
+  RAW-SEC census exactly (4 DSDT + 23 SSDT); the wider net adds 8
+  EMBEDDED ALIB bodies. The SSDT set is the EIGHTH clock with frontiers
+  disjoint from the DSDT's: one AOD table (rev 15→153) swaps at the
+  armor release 3802, the CPM family rewrites wholesale (15 bodies) at
+  the AGESA 1.2.0.8 release 4003. 74 ALIB bodies corpus-wide, 6
+  byte-identical across all 13 boards — AMD's common AML layer refines
+  ring 21's no-shared-body claim. Gigabyte's AML is the most divergent
+  (6/35 shared with the ASUS union).
+- **The DER inventory** (`vendor-der-inventory.json`): the raw-plane
+  12/18 "certs" are SIGHTINGS — store copies (×3). The factory trust
+  material is **4 → 6 distinct certificates** (gated 9/9, cross-vendor
+  zero 3/3), two arrivals at 3810 (the DigiCert root cross-cert + a
+  re-issued timestamp), and then the count freezes while the bodies
+  rotate: the timestamp chain re-issues at five frontiers (2021 → 2025)
+  and the ASUS leaf renews at 4631 (2024-05-27 → 2027-05-30). PRIME
+  4655 and TUF 4645 ship identical 6-cert sets. Negative serial numbers
+  on vendor-generated certs (ASUS SW Keys, MSI SHIP PK, GIGABYTE) — an
+  RFC 5280 violation registered across three vendors.
+- **The armor's chip database** (`vendor-armor-chipdb.json`): the
+  `AMD rom armor` banner anchors a 46-family SPI chip whitelist —
+  byte-identical across all five vendors and frozen from 3802 through
+  4655. 3604 carries the 41-family predecessor: the whitelist belongs
+  to the AMI flash driver, predates the armor, and grew +5 (Cypress
+  25FS-S, Fudan FM25W, MXIC 77L, XMC 25RH, XMC 25RU) at the armor
+  release — then never again. Knowledge-only; name-granularity census.
+
+Day-0 report gains the SSDT/ALIB atlas rows, the collapsed trust row
+(18 sightings / 6 distinct, leaf validity as a dating signal), and the
+46-family chip-table hash as an armor check.
+
 ## Unreleased — the twenty-first ring (the sixth clock, the hidden map, and the inverse boundary)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

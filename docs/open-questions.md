@@ -216,6 +216,21 @@ The five walls from `lab/coreboot-notes.md`, each with an owner:
   Gigabyte and ASRock ship none — their enforcement story is not
   readable from the image alone. Day-0 adds a fifth first-hour
   fingerprint: the 18-cert DER set for this board.
+- RING-22 (the collapsed census and the frozen whitelist — see
+  `lab/vendor-der-inventory.json`, `lab/vendor-armor-chipdb.json`):
+  two refinements land on the wall map. First, the ASUS trust
+  material collapses: the "12 → 18 certs" are SIGHTINGS (each cert
+  shipped 3× across the store copies); the factory chain is 4 → 6
+  DISTINCT certificates whose COUNT freezes at 3810 while the BODIES
+  rotate — the DigiCert timestamp chain re-issues at five ladder
+  frontiers (2021 → 2025) and the ASUS signing leaf renews at 4631 —
+  so the wall's signature chain is MAINTAINED, not static, and the
+  rotation itself is the sharper dating signal. PRIME 4655 and TUF
+  4645 carry identical sets. Second, the flash armor's SPI chip
+  whitelist (46 families, the `AMD rom armor` table) is byte-identical
+  across all five vendors and FROZEN since 3802 — the armor's chip
+  knowledge is AMI-generic infrastructure that stopped learning in
+  2022 (knowledge-only: the zero-write doctrine is untouched).
 
 ## Q5 — What does NVRAM really hold? (the hidden settings)
 
@@ -372,6 +387,17 @@ enrichment. **Noted as a post-freeze lever; no tool added during the freeze.**
   fully retired) and 4604→4631; the compiler string (INTL 2014-09-25)
   never moves, so the body hash is the honest movement signal. No
   table body is byte-identical across all twelve boards.
+- RING-22 (the SSDT clock — see `lab/vendor-ssdt-clock.json`): the AML
+  atlas widens past the DSDT and the last sentence above is REFINED by
+  measurement — no VENDOR-COMPILED body is shared, but AMD's own AML
+  layer is: 74 distinct `ALIB` bodies (OEMID `AMD`, creator `MSFT`)
+  corpus-wide, **6 of them byte-identical across all 13 boards**, shipped
+  EMBEDDED (not as raw sections) where ring 21's model could not see
+  them. And the SSDT SET is an EIGHTH dating clock with frontiers
+  disjoint from the DSDT's: one `AOD` table (rev 15→153) swaps at the
+  armor release 3802; the CPM family rewrites wholesale (15 bodies) at
+  the AGESA 1.2.0.8 release 4003; the quiet pair 3802|3810 stays quiet
+  under both AML clocks — the sixth independent agreement.
 
 ---
 
