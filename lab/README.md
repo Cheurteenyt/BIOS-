@@ -34,13 +34,16 @@ here, on machines that exist to be broken.
 | `findings-fifth-ring.md` | 3 fronts: enrollment is data (secboot == ms == snakeoil, byte-identical), the facade package layer anchored, ACPI is templates not tables |
 | `findings-sixth-ring.md` | 2 fronts: the IFR grammar re-derived spec-fresh (FORMS = 0x02, `{OpCode:8, Length:7, Scope:1}` — why ring 5 locked), the facade counted in QUESTIONS (146 plain / 208 secboot, 21/21 packages close exactly) |
 | `findings-seventh-ring.md` | 4 fronts: the S2 lock was a category error (length-prefixed blobs, no package list ever ships — HiiAddPackages builds it at runtime), the SIBT layer decoded, the facade rendered in words (en-US + fr-FR), the facade's memory (varstores named, offsets, defaults, 48/146 questions behind a condition) |
+| `findings-eighth-ring.md` | 3 fronts: the dispatch graph (DEPEX as a DAG — zero BEFORE/AFTER, hubs by fan-in, apriori declared order, gate delta empty where modules are shared), the string closure (SCSU = zero real blocks, SKIP2 lives only in fr-FR, the last ids are the null marker + collisions), and pkg3 dissolved (a spurious exact-consumption anchor nested inside the real package — the flat 208 was 202 + 6 double-counted patterns) |
 
 Every findings file carries the same honesty ledger: what is proven,
 what is flagged, what stays an open question — and ends with its
 consequences for day-0 (16/09). The ring-5 opcode lock was resolved by
 ring 6 (spec-fresh grammar); ring 6's list-header lock was resolved by
-ring 7 (a category error — the list never ships); each ledger
-self-corrects where the answer lands.
+ring 7 (a category error — the list never ships); ring 7's last
+registration (pkg3) was dissolved by ring 8 (a decoy anchor nested
+inside the real package — the flat count double-counted 6 patterns);
+each ledger self-corrects where the answer lands.
 
 ### The artifacts (JSON, the evidence)
 
@@ -56,6 +59,9 @@ self-corrects where the answer lands.
 | `ovmf-acpi-footprint.json` | fifth ring | checksum-validated ACPI/SMBIOS scan of 5 builds: templates in builders, zero finished tables |
 | `ovmf-ifr-census.json` | sixth ring | the per-module IFR census: questions / options / pages per setup module, validated by exact consumption |
 | `ovmf-ifr-facade.json` | seventh ring | the facade rendered: formsets / forms / questions with resolved text (en-US + fr-FR), options with values, varstores with names and sizes, defaults, per-question conditions |
+| `ovmf-depex-dag.json` | eighth ring | the dispatch graph: postfix-evaluated DEPEX classes, hub fan-in (PcdProtocol 62, DevicePathUtilities 54…), the apriori declared order per FV, the cross-build gate delta (changed-while-present = {}) |
+| `ovmf-scsu-strings.json` | eighth ring | the SIBT block census (SCSU = 0 real blocks; SKIP2 only in fr-FR; header-faithful closes 110/110), the UTS#6 decoder + 5/5 self-tests, the observed string-header bytes, the id-resolution closure (id 0 = null marker, cross-module matches = collisions) |
+| `ovmf-pkg3-head.json` | eighth ring | the pkg3 autopsy: anchor and shift grids, hexdumps, the nested-span proof, the covering STRING record, the real formset guid byte-equal to the tianocore source, the 208 = 202 + 6 accounting |
 
 ### The instruments
 

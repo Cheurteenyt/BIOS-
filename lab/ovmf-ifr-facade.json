@@ -118,7 +118,8 @@
    "size": 273,
    "head": "two records with opcode 0x00 (undefined in the current EDK2 UefiInternalFormRepresentation.h): {0x00,len=4,payload=24 24} then {0x00,len=41} followed by three free-floating ONE_OF_OPTIONs and two ENDs",
    "content": "otherwise real IFR: DISABLE_IF/EQ_ID_VAL/TEXT pairs, a CHECKBOX, a DATE and a TIME question (varstore id 1 = SECUREBOOT_CONFIGURATION), SUBTITLEs, REFs, and a scoped FORM (id 0x15, title 0x0d) whose scope does not close inside the package",
-   "accounting": "6 question-class opcode occurrences counted by the flat histogram (ring 6: secboot total 208) are NOT structurally attached by the facade walk (202) — the difference is exactly these 6, fully located, no interpretation forced"
+   "accounting": "6 question-class opcode occurrences counted by the flat histogram (ring 6: secboot total 208) are NOT structurally attached by the facade walk (202) — the difference is exactly these 6, fully located, no interpretation forced",
+   "ring8_resolution": "DISSOLVED by ring 8 front C: pkg3 is a spurious exact-consumption anchor nested inside the real 2186-byte package; the op-00 'head' bytes are payload of a STRING question record; the 208-vs-202 delta was a double count; see lab/ovmf-pkg3-head.json"
   }
  },
  "plain": {

@@ -1,0 +1,948 @@
+{
+ "_meta": {
+  "ring": 8,
+  "front": "A",
+  "date": "2026-09-11",
+  "title": "the dispatch graph — DEPEX as a DAG",
+  "instruments": "ring8_depex_dag.py; ring4_lib pierce/FFS/DEPEX machinery reused; ring-2 DEPEX opcode table (byte-validated); apriori name GUID FC510EE7-…",
+  "method": "postfix evaluation of every DXE/PEI/SMM DEPEX; hub ranking by PUSH fan-in; BEFORE/AFTER hard-ordering edges resolved to module names; apriori dispatch-priority lists parsed per FV; cross-build gate delta",
+  "read_only": true,
+  "zero_bytes_written": true
+ },
+ "_builds": {
+  "plain": {
+   "depex_sections": {
+    "PEI_DEPEX": 14,
+    "DXE_DEPEX": 78
+   },
+   "dxe_without_depex": 37,
+   "true_only_spine": 3,
+   "false_never": [],
+   "class_histogram": {
+    "TRUE": 3,
+    "single-gate": 9,
+    "AND-chain(3)": 14,
+    "AND-chain(2)": 23,
+    "complex(OR/NOT)": 17,
+    "AND-chain(4)": 3,
+    "AND-chain(6)": 5,
+    "AND-chain(5)": 3,
+    "AND-chain(13)": 13,
+    "AND-chain(14)": 1,
+    "AND-chain(7)": 1
+   },
+   "top_pushed_hubs": [
+    {
+     "guid": "13A3F0F6-264A-3EF0-F2E0-DEC512342F34",
+     "protocol": "PcdProtocol (PI spec)",
+     "fan_in": 56,
+     "is_file_guid": false
+    },
+    {
+     "guid": "0379BE4E-D706-437D-B037-EDB82FB772A4",
+     "protocol": "DevicePathUtilities",
+     "fan_in": 50,
+     "is_file_guid": false
+    },
+    {
+     "guid": "1E5668E2-8481-11D4-BCF1-0080C73C8881",
+     "protocol": "VariableArch",
+     "fan_in": 28,
+     "is_file_guid": false
+    },
+    {
+     "guid": "6441F818-6362-4E44-B570-7DBA31DD2453",
+     "protocol": "VariableWriteArch",
+     "fan_in": 28,
+     "is_file_guid": false
+    },
+    {
+     "guid": "26BACCB1-6F42-11D4-BCE7-0080C73C8881",
+     "protocol": "CpuIo",
+     "fan_in": 22,
+     "is_file_guid": false
+    },
+    {
+     "guid": "26BACCB3-6F42-11D4-BCE7-0080C73C8881",
+     "protocol": "MetronomeArch",
+     "fan_in": 21,
+     "is_file_guid": false
+    },
+    {
+     "guid": "27CFAC87-46CC-11D4-9A38-0090273FC14D",
+     "protocol": "ResetArch",
+     "fan_in": 21,
+     "is_file_guid": false
+    },
+    {
+     "guid": "B7DFB4E1-052F-449F-87BE-9818FC91B733",
+     "protocol": "HiiDatabase",
+     "fan_in": 21,
+     "is_file_guid": false
+    },
+    {
+     "guid": "3152BCA5-EADE-433D-862E-C01CDC291F44",
+     "protocol": "HiiString",
+     "fan_in": 21,
+     "is_file_guid": false
+    },
+    {
+     "guid": "665E3FF6-46CC-11D4-9A38-0090273FC14D",
+     "protocol": "BdsArch",
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "26BACCB2-6F42-11D4-BCE7-0080C73C8881",
+     "protocol": "CpuArch",
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "1DA97072-BDDC-4B30-99F1-72A0B56FFF2A",
+     "protocol": null,
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "27CFAC88-46CC-11D4-9A38-0090273FC14D",
+     "protocol": "RealTimeClockArch",
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "A46423E3-4617-49F1-B9FF-D1BFA9115839",
+     "protocol": null,
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "665E3FF5-46CC-11D4-9A38-0090273FC14D",
+     "protocol": null,
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "4E939DE9-D948-4B0F-88ED-E6E1CE517C1E",
+     "protocol": null,
+     "fan_in": 17,
+     "is_file_guid": false
+    },
+    {
+     "guid": "F8775D50-8ABD-4ADF-92AC-853E51F6C8DC",
+     "protocol": null,
+     "fan_in": 17,
+     "is_file_guid": false
+    },
+    {
+     "guid": "EF9FC172-A1B2-4693-B327-6D32FC416042",
+     "protocol": null,
+     "fan_in": 17,
+     "is_file_guid": false
+    },
+    {
+     "guid": "587E72D7-CC50-4F79-8209-CA291FC1A10F",
+     "protocol": null,
+     "fan_in": 15,
+     "is_file_guid": false
+    },
+    {
+     "guid": "0FD96974-23AA-4CDC-B9CB-98D17750322A",
+     "protocol": null,
+     "fan_in": 13,
+     "is_file_guid": false
+    },
+    {
+     "guid": "01F34D25-4DE2-23AD-3FF3-36353FF323F1",
+     "protocol": null,
+     "fan_in": 11,
+     "is_file_guid": false
+    },
+    {
+     "guid": "7408D748-FC8C-4EE6-9288-C4BEC092A410",
+     "protocol": null,
+     "fan_in": 3,
+     "is_file_guid": false
+    },
+    {
+     "guid": "7F4158D3-074D-456D-8CB2-01F9C8F79DAA",
+     "protocol": null,
+     "fan_in": 3,
+     "is_file_guid": false
+    },
+    {
+     "guid": "B9D4C360-BCFB-4F9B-9298-53C136982258",
+     "protocol": null,
+     "fan_in": 3,
+     "is_file_guid": false
+    }
+   ],
+   "ordering_edges": [],
+   "ordering_chain_longest": [],
+   "apriori": {
+    "PEIFV/pei": [
+     {
+      "guid": "9B3ADA4F-AE56-4C24-8DEA-F03B7558AE50",
+      "name": "?"
+     }
+    ],
+    "DXEFV/dxe": [
+     {
+      "guid": "9B680FCE-AD6B-4F3A-B60B-F59899003443",
+      "name": "DevicePathDxe"
+     },
+     {
+      "guid": "80CF7257-87AB-47F9-A3FE-D50B76D89541",
+      "name": "PcdDxe"
+     },
+     {
+      "guid": "2EC9DA37-EE35-4DE9-86C5-6D9A81DC38A7",
+      "name": "AmdSevDxe"
+     },
+     {
+      "guid": "E750224E-7BCE-40AF-B5BB-47E3611EB5C2",
+      "name": "TdxDxe"
+     },
+     {
+      "guid": "733CBAC2-B23F-4B92-BC8E-FB01CE5907B7",
+      "name": "FvbServicesRuntimeDxe"
+     }
+    ]
+   },
+   "freeform_files": 2,
+   "pei_depex_holders": 14,
+   "smm_depex_holders": 0,
+   "module_classes": {
+    "9B3ADA4F": "TRUE",
+    "A3610442": "TRUE",
+    "9D225237": "single-gate",
+    "FCB3A3D6": "single-gate",
+    "222C386D": "single-gate",
+    "86D70125": "AND-chain(3)",
+    "89E549B0": "single-gate",
+    "EDADEB9D": "AND-chain(2)",
+    "280251C4": "AND-chain(2)",
+    "F12F698A": "AND-chain(2)",
+    "8AD3148F": "AND-chain(2)",
+    "2BE1E4A6": "AND-chain(3)",
+    "A0C98B77": "AND-chain(3)",
+    "47727552": "AND-chain(2)",
+    "ReportStatusCodeRouterRuntimeDxe": "AND-chain(2)",
+    "StatusCodeHandlerRuntimeDxe": "AND-chain(3)",
+    "PcdDxe": "single-gate",
+    "RuntimeDxe": "AND-chain(2)",
+    "SecurityStubDxe": "AND-chain(2)",
+    "EbcDxe": "single-gate",
+    "CpuIo2Dxe": "single-gate",
+    "CpuDxe": "AND-chain(3)",
+    "LocalApicTimerDxe": "AND-chain(3)",
+    "IncompatiblePciDeviceSupportDxe": "single-gate",
+    "PciHotPlugInitDxe": "AND-chain(2)",
+    "PciHostBridgeDxe": "complex(OR/NOT)",
+    "ResetSystemRuntimeDxe": "AND-chain(2)",
+    "Metronome": "AND-chain(2)",
+    "PcRtc": "AND-chain(4)",
+    "WatchdogTimer": "AND-chain(3)",
+    "MonotonicCounterRuntimeDxe": "AND-chain(3)",
+    "CapsuleRuntimeDxe": "AND-chain(3)",
+    "DriverHealthManagerDxe": "AND-chain(6)",
+    "BdsDxe": "complex(OR/NOT)",
+    "QemuKernelLoaderFsDxe": "complex(OR/NOT)",
+    "DevicePathDxe": "TRUE",
+    "RamDiskDxe": "AND-chain(6)",
+    "HiiDatabase": "AND-chain(2)",
+    "SetupBrowser": "AND-chain(5)",
+    "DisplayEngine": "AND-chain(6)",
+    "SmbiosDxe": "complex(OR/NOT)",
+    "SmbiosPlatformDxe": "complex(OR/NOT)",
+    "AcpiTableDxe": "AND-chain(2)",
+    "QemuFwCfgAcpiPlatform": "complex(OR/NOT)",
+    "S3SaveStateDxe": "AND-chain(2)",
+    "BootScriptExecutorDxe": "AND-chain(3)",
+    "LogoDxe": "AND-chain(3)",
+    "TdxDxe": "AND-chain(2)",
+    "DpcDxe": "single-gate",
+    "SnpDxe": "AND-chain(13)",
+    "VlanConfigDxe": "AND-chain(13)",
+    "MnpDxe": "AND-chain(13)",
+    "ArpDxe": "AND-chain(13)",
+    "Dhcp4Dxe": "AND-chain(13)",
+    "Ip4Dxe": "complex(OR/NOT)",
+    "Udp4Dxe": "AND-chain(13)",
+    "Mtftp4Dxe": "AND-chain(13)",
+    "Dhcp6Dxe": "AND-chain(13)",
+    "Ip6Dxe": "complex(OR/NOT)",
+    "Udp6Dxe": "AND-chain(13)",
+    "Mtftp6Dxe": "AND-chain(13)",
+    "TcpDxe": "AND-chain(14)",
+    "UefiPxeBcDxe": "complex(OR/NOT)",
+    "TlsAuthConfigDxe": "complex(OR/NOT)",
+    "DnsDxe": "AND-chain(13)",
+    "HttpDxe": "AND-chain(13)",
+    "HttpUtilitiesDxe": "AND-chain(3)",
+    "HttpBootDxe": "AND-chain(13)",
+    "IScsiDxe": "complex(OR/NOT)",
+    "VirtioNetDxe": "complex(OR/NOT)",
+    "UsbMassStorageDxe": "complex(OR/NOT)",
+    "QemuRamfbDxe": "complex(OR/NOT)",
+    "PlatformDxe": "AND-chain(7)",
+    "AmdSevDxe": "AND-chain(2)",
+    "IoMmuDxe": "AND-chain(2)",
+    "VirtHstiDxe": "AND-chain(2)",
+    "FvbServicesRuntimeDxe": "AND-chain(2)",
+    "EmuVariableFvbRuntimeDxe": "AND-chain(2)",
+    "FaultTolerantWriteDxe": "AND-chain(4)",
+    "VariableRuntimeDxe": "AND-chain(2)",
+    "TdTcg2Dxe": "AND-chain(4)",
+    "TcgDxe": "AND-chain(2)",
+    "Tcg2Dxe": "complex(OR/NOT)",
+    "Tcg2PlatformDxe": "AND-chain(3)",
+    "Tcg2ConfigDxe": "complex(OR/NOT)",
+    "tftpDynamicCommand": "AND-chain(6)",
+    "httpDynamicCommand": "AND-chain(6)",
+    "VariablePolicyDynamicCommand": "AND-chain(5)",
+    "LinuxInitrdDynamicShellCommand": "AND-chain(5)",
+    "TcgMor": "complex(OR/NOT)",
+    "RngDxe": "AND-chain(2)"
+   }
+  },
+  "secboot": {
+   "depex_sections": {
+    "PEI_DEPEX": 17,
+    "DXE_DEPEX": 76,
+    "SMM_DEPEX": 8
+   },
+   "dxe_without_depex": 37,
+   "true_only_spine": 3,
+   "false_never": [],
+   "class_histogram": {
+    "TRUE": 3,
+    "single-gate": 10,
+    "AND-chain(3)": 16,
+    "AND-chain(2)": 24,
+    "complex(OR/NOT)": 19,
+    "AND-chain(4)": 7,
+    "AND-chain(8)": 1,
+    "AND-chain(6)": 5,
+    "AND-chain(5)": 1,
+    "AND-chain(13)": 13,
+    "AND-chain(14)": 1,
+    "AND-chain(7)": 1
+   },
+   "top_pushed_hubs": [
+    {
+     "guid": "13A3F0F6-264A-3EF0-F2E0-DEC512342F34",
+     "protocol": "PcdProtocol (PI spec)",
+     "fan_in": 62,
+     "is_file_guid": false
+    },
+    {
+     "guid": "0379BE4E-D706-437D-B037-EDB82FB772A4",
+     "protocol": "DevicePathUtilities",
+     "fan_in": 54,
+     "is_file_guid": false
+    },
+    {
+     "guid": "1E5668E2-8481-11D4-BCF1-0080C73C8881",
+     "protocol": "VariableArch",
+     "fan_in": 29,
+     "is_file_guid": false
+    },
+    {
+     "guid": "6441F818-6362-4E44-B570-7DBA31DD2453",
+     "protocol": "VariableWriteArch",
+     "fan_in": 29,
+     "is_file_guid": false
+    },
+    {
+     "guid": "26BACCB1-6F42-11D4-BCE7-0080C73C8881",
+     "protocol": "CpuIo",
+     "fan_in": 22,
+     "is_file_guid": false
+    },
+    {
+     "guid": "26BACCB3-6F42-11D4-BCE7-0080C73C8881",
+     "protocol": "MetronomeArch",
+     "fan_in": 21,
+     "is_file_guid": false
+    },
+    {
+     "guid": "27CFAC87-46CC-11D4-9A38-0090273FC14D",
+     "protocol": "ResetArch",
+     "fan_in": 21,
+     "is_file_guid": false
+    },
+    {
+     "guid": "B7DFB4E1-052F-449F-87BE-9818FC91B733",
+     "protocol": "HiiDatabase",
+     "fan_in": 21,
+     "is_file_guid": false
+    },
+    {
+     "guid": "665E3FF6-46CC-11D4-9A38-0090273FC14D",
+     "protocol": "BdsArch",
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "26BACCB2-6F42-11D4-BCE7-0080C73C8881",
+     "protocol": "CpuArch",
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "1DA97072-BDDC-4B30-99F1-72A0B56FFF2A",
+     "protocol": null,
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "27CFAC88-46CC-11D4-9A38-0090273FC14D",
+     "protocol": "RealTimeClockArch",
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "A46423E3-4617-49F1-B9FF-D1BFA9115839",
+     "protocol": null,
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "665E3FF5-46CC-11D4-9A38-0090273FC14D",
+     "protocol": null,
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "3152BCA5-EADE-433D-862E-C01CDC291F44",
+     "protocol": "HiiString",
+     "fan_in": 19,
+     "is_file_guid": false
+    },
+    {
+     "guid": "4E939DE9-D948-4B0F-88ED-E6E1CE517C1E",
+     "protocol": null,
+     "fan_in": 18,
+     "is_file_guid": false
+    },
+    {
+     "guid": "F8775D50-8ABD-4ADF-92AC-853E51F6C8DC",
+     "protocol": null,
+     "fan_in": 18,
+     "is_file_guid": false
+    },
+    {
+     "guid": "01F34D25-4DE2-23AD-3FF3-36353FF323F1",
+     "protocol": null,
+     "fan_in": 14,
+     "is_file_guid": false
+    },
+    {
+     "guid": "EF9FC172-A1B2-4693-B327-6D32FC416042",
+     "protocol": null,
+     "fan_in": 14,
+     "is_file_guid": false
+    },
+    {
+     "guid": "587E72D7-CC50-4F79-8209-CA291FC1A10F",
+     "protocol": null,
+     "fan_in": 12,
+     "is_file_guid": false
+    },
+    {
+     "guid": "0FD96974-23AA-4CDC-B9CB-98D17750322A",
+     "protocol": null,
+     "fan_in": 10,
+     "is_file_guid": false
+    },
+    {
+     "guid": "F4CCBFB7-F6E0-47FD-9DD4-10A8F150C191",
+     "protocol": null,
+     "fan_in": 8,
+     "is_file_guid": false
+    },
+    {
+     "guid": "C2702B74-800C-4131-8746-8FB5B89CE4AC",
+     "protocol": null,
+     "fan_in": 7,
+     "is_file_guid": false
+    },
+    {
+     "guid": "B9D4C360-BCFB-4F9B-9298-53C136982258",
+     "protocol": null,
+     "fan_in": 4,
+     "is_file_guid": false
+    }
+   ],
+   "ordering_edges": [],
+   "ordering_chain_longest": [],
+   "apriori": {
+    "PEIFV/pei": [
+     {
+      "guid": "9B3ADA4F-AE56-4C24-8DEA-F03B7558AE50",
+      "name": "?"
+     }
+    ],
+    "DXEFV/dxe": [
+     {
+      "guid": "9B680FCE-AD6B-4F3A-B60B-F59899003443",
+      "name": "DevicePathDxe"
+     },
+     {
+      "guid": "80CF7257-87AB-47F9-A3FE-D50B76D89541",
+      "name": "PcdDxe"
+     },
+     {
+      "guid": "2EC9DA37-EE35-4DE9-86C5-6D9A81DC38A7",
+      "name": "AmdSevDxe"
+     },
+     {
+      "guid": "E750224E-7BCE-40AF-B5BB-47E3611EB5C2",
+      "name": "TdxDxe"
+     }
+    ]
+   },
+   "freeform_files": 2,
+   "pei_depex_holders": 17,
+   "smm_depex_holders": 8,
+   "module_classes": {
+    "9B3ADA4F": "TRUE",
+    "A3610442": "TRUE",
+    "9D225237": "single-gate",
+    "FCB3A3D6": "single-gate",
+    "222C386D": "single-gate",
+    "86D70125": "AND-chain(3)",
+    "89E549B0": "single-gate",
+    "AAC33064": "single-gate",
+    "34C8C28F": "AND-chain(2)",
+    "6C0E75B4": "AND-chain(2)",
+    "EDADEB9D": "AND-chain(2)",
+    "280251C4": "AND-chain(2)",
+    "F12F698A": "AND-chain(2)",
+    "8AD3148F": "AND-chain(2)",
+    "2BE1E4A6": "AND-chain(3)",
+    "A0C98B77": "AND-chain(3)",
+    "47727552": "AND-chain(2)",
+    "ReportStatusCodeRouterRuntimeDxe": "AND-chain(2)",
+    "StatusCodeHandlerRuntimeDxe": "AND-chain(3)",
+    "PcdDxe": "single-gate",
+    "RuntimeDxe": "AND-chain(2)",
+    "SecurityStubDxe": "AND-chain(2)",
+    "EbcDxe": "single-gate",
+    "CpuIo2Dxe": "single-gate",
+    "CpuDxe": "AND-chain(3)",
+    "LocalApicTimerDxe": "AND-chain(3)",
+    "IncompatiblePciDeviceSupportDxe": "single-gate",
+    "PciHotPlugInitDxe": "AND-chain(2)",
+    "PciHostBridgeDxe": "complex(OR/NOT)",
+    "ResetSystemRuntimeDxe": "AND-chain(2)",
+    "Metronome": "AND-chain(2)",
+    "PcRtc": "AND-chain(4)",
+    "SecureBootConfigDxe": "AND-chain(8)",
+    "WatchdogTimer": "AND-chain(3)",
+    "MonotonicCounterRuntimeDxe": "AND-chain(3)",
+    "CapsuleRuntimeDxe": "AND-chain(3)",
+    "DriverHealthManagerDxe": "AND-chain(6)",
+    "BdsDxe": "complex(OR/NOT)",
+    "QemuKernelLoaderFsDxe": "complex(OR/NOT)",
+    "DevicePathDxe": "TRUE",
+    "RamDiskDxe": "AND-chain(6)",
+    "HiiDatabase": "AND-chain(2)",
+    "SetupBrowser": "AND-chain(5)",
+    "DisplayEngine": "AND-chain(6)",
+    "SmbiosDxe": "complex(OR/NOT)",
+    "SmbiosPlatformDxe": "complex(OR/NOT)",
+    "AcpiTableDxe": "AND-chain(2)",
+    "QemuFwCfgAcpiPlatform": "complex(OR/NOT)",
+    "S3SaveStateDxe": "AND-chain(2)",
+    "BootScriptExecutorDxe": "AND-chain(3)",
+    "LogoDxe": "AND-chain(3)",
+    "TdxDxe": "AND-chain(2)",
+    "DpcDxe": "single-gate",
+    "SnpDxe": "AND-chain(13)",
+    "VlanConfigDxe": "AND-chain(13)",
+    "MnpDxe": "AND-chain(13)",
+    "ArpDxe": "AND-chain(13)",
+    "Dhcp4Dxe": "AND-chain(13)",
+    "Ip4Dxe": "complex(OR/NOT)",
+    "Udp4Dxe": "AND-chain(13)",
+    "Mtftp4Dxe": "AND-chain(13)",
+    "Dhcp6Dxe": "AND-chain(13)",
+    "Ip6Dxe": "complex(OR/NOT)",
+    "Udp6Dxe": "AND-chain(13)",
+    "Mtftp6Dxe": "AND-chain(13)",
+    "TcpDxe": "AND-chain(14)",
+    "UefiPxeBcDxe": "complex(OR/NOT)",
+    "TlsAuthConfigDxe": "complex(OR/NOT)",
+    "DnsDxe": "AND-chain(13)",
+    "HttpDxe": "AND-chain(13)",
+    "HttpUtilitiesDxe": "AND-chain(3)",
+    "HttpBootDxe": "AND-chain(13)",
+    "IScsiDxe": "complex(OR/NOT)",
+    "VirtioNetDxe": "complex(OR/NOT)",
+    "UsbMassStorageDxe": "complex(OR/NOT)",
+    "QemuRamfbDxe": "complex(OR/NOT)",
+    "PlatformDxe": "AND-chain(7)",
+    "AmdSevDxe": "AND-chain(2)",
+    "IoMmuDxe": "AND-chain(2)",
+    "VirtHstiDxe": "AND-chain(2)",
+    "SmmAccess2Dxe": "AND-chain(2)",
+    "SmmControl2Dxe": "complex(OR/NOT)",
+    "CpuS3DataDxe": "AND-chain(3)",
+    "PiSmmIpl": "AND-chain(4)",
+    "CpuHotplugSmm": "AND-chain(6)",
+    "CpuIo2Smm": "AND-chain(2)",
+    "SmmLockBox": "AND-chain(4)",
+    "PiSmmCpuDxeSmm": "AND-chain(4)",
+    "FvbServicesSmm": "AND-chain(4)",
+    "SmmFaultTolerantWriteDxe": "AND-chain(6)",
+    "VariableSmm": "AND-chain(4)",
+    "VariableSmmRuntimeDxe": "AND-chain(3)",
+    "TdTcg2Dxe": "AND-chain(4)",
+    "TcgDxe": "AND-chain(2)",
+    "Tcg2Dxe": "complex(OR/NOT)",
+    "Tcg2PlatformDxe": "AND-chain(3)",
+    "Tcg2ConfigDxe": "complex(OR/NOT)",
+    "TcgMor": "complex(OR/NOT)",
+    "TcgMorLockSmm": "complex(OR/NOT)",
+    "RngDxe": "AND-chain(2)"
+   }
+  },
+  "strictnx": {
+   "depex_sections": {
+    "PEI_DEPEX": 17,
+    "DXE_DEPEX": 76,
+    "SMM_DEPEX": 8
+   },
+   "dxe_without_depex": 37,
+   "true_only_spine": 3,
+   "false_never": [],
+   "class_histogram": {
+    "TRUE": 3,
+    "single-gate": 10,
+    "AND-chain(3)": 16,
+    "AND-chain(2)": 24,
+    "complex(OR/NOT)": 19,
+    "AND-chain(4)": 7,
+    "AND-chain(8)": 1,
+    "AND-chain(6)": 5,
+    "AND-chain(5)": 1,
+    "AND-chain(13)": 13,
+    "AND-chain(14)": 1,
+    "AND-chain(7)": 1
+   },
+   "top_pushed_hubs": [
+    {
+     "guid": "13A3F0F6-264A-3EF0-F2E0-DEC512342F34",
+     "protocol": "PcdProtocol (PI spec)",
+     "fan_in": 62,
+     "is_file_guid": false
+    },
+    {
+     "guid": "0379BE4E-D706-437D-B037-EDB82FB772A4",
+     "protocol": "DevicePathUtilities",
+     "fan_in": 54,
+     "is_file_guid": false
+    },
+    {
+     "guid": "1E5668E2-8481-11D4-BCF1-0080C73C8881",
+     "protocol": "VariableArch",
+     "fan_in": 29,
+     "is_file_guid": false
+    },
+    {
+     "guid": "6441F818-6362-4E44-B570-7DBA31DD2453",
+     "protocol": "VariableWriteArch",
+     "fan_in": 29,
+     "is_file_guid": false
+    },
+    {
+     "guid": "26BACCB1-6F42-11D4-BCE7-0080C73C8881",
+     "protocol": "CpuIo",
+     "fan_in": 22,
+     "is_file_guid": false
+    },
+    {
+     "guid": "26BACCB3-6F42-11D4-BCE7-0080C73C8881",
+     "protocol": "MetronomeArch",
+     "fan_in": 21,
+     "is_file_guid": false
+    },
+    {
+     "guid": "27CFAC87-46CC-11D4-9A38-0090273FC14D",
+     "protocol": "ResetArch",
+     "fan_in": 21,
+     "is_file_guid": false
+    },
+    {
+     "guid": "B7DFB4E1-052F-449F-87BE-9818FC91B733",
+     "protocol": "HiiDatabase",
+     "fan_in": 21,
+     "is_file_guid": false
+    },
+    {
+     "guid": "665E3FF6-46CC-11D4-9A38-0090273FC14D",
+     "protocol": "BdsArch",
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "26BACCB2-6F42-11D4-BCE7-0080C73C8881",
+     "protocol": "CpuArch",
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "1DA97072-BDDC-4B30-99F1-72A0B56FFF2A",
+     "protocol": null,
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "27CFAC88-46CC-11D4-9A38-0090273FC14D",
+     "protocol": "RealTimeClockArch",
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "A46423E3-4617-49F1-B9FF-D1BFA9115839",
+     "protocol": null,
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "665E3FF5-46CC-11D4-9A38-0090273FC14D",
+     "protocol": null,
+     "fan_in": 20,
+     "is_file_guid": false
+    },
+    {
+     "guid": "3152BCA5-EADE-433D-862E-C01CDC291F44",
+     "protocol": "HiiString",
+     "fan_in": 19,
+     "is_file_guid": false
+    },
+    {
+     "guid": "4E939DE9-D948-4B0F-88ED-E6E1CE517C1E",
+     "protocol": null,
+     "fan_in": 18,
+     "is_file_guid": false
+    },
+    {
+     "guid": "F8775D50-8ABD-4ADF-92AC-853E51F6C8DC",
+     "protocol": null,
+     "fan_in": 18,
+     "is_file_guid": false
+    },
+    {
+     "guid": "01F34D25-4DE2-23AD-3FF3-36353FF323F1",
+     "protocol": null,
+     "fan_in": 14,
+     "is_file_guid": false
+    },
+    {
+     "guid": "EF9FC172-A1B2-4693-B327-6D32FC416042",
+     "protocol": null,
+     "fan_in": 14,
+     "is_file_guid": false
+    },
+    {
+     "guid": "587E72D7-CC50-4F79-8209-CA291FC1A10F",
+     "protocol": null,
+     "fan_in": 12,
+     "is_file_guid": false
+    },
+    {
+     "guid": "0FD96974-23AA-4CDC-B9CB-98D17750322A",
+     "protocol": null,
+     "fan_in": 10,
+     "is_file_guid": false
+    },
+    {
+     "guid": "F4CCBFB7-F6E0-47FD-9DD4-10A8F150C191",
+     "protocol": null,
+     "fan_in": 8,
+     "is_file_guid": false
+    },
+    {
+     "guid": "C2702B74-800C-4131-8746-8FB5B89CE4AC",
+     "protocol": null,
+     "fan_in": 7,
+     "is_file_guid": false
+    },
+    {
+     "guid": "B9D4C360-BCFB-4F9B-9298-53C136982258",
+     "protocol": null,
+     "fan_in": 4,
+     "is_file_guid": false
+    }
+   ],
+   "ordering_edges": [],
+   "ordering_chain_longest": [],
+   "apriori": {
+    "PEIFV/pei": [
+     {
+      "guid": "9B3ADA4F-AE56-4C24-8DEA-F03B7558AE50",
+      "name": "?"
+     }
+    ],
+    "DXEFV/dxe": [
+     {
+      "guid": "9B680FCE-AD6B-4F3A-B60B-F59899003443",
+      "name": "DevicePathDxe"
+     },
+     {
+      "guid": "80CF7257-87AB-47F9-A3FE-D50B76D89541",
+      "name": "PcdDxe"
+     },
+     {
+      "guid": "2EC9DA37-EE35-4DE9-86C5-6D9A81DC38A7",
+      "name": "AmdSevDxe"
+     },
+     {
+      "guid": "E750224E-7BCE-40AF-B5BB-47E3611EB5C2",
+      "name": "TdxDxe"
+     }
+    ]
+   },
+   "freeform_files": 2,
+   "pei_depex_holders": 17,
+   "smm_depex_holders": 8,
+   "module_classes": {
+    "9B3ADA4F": "TRUE",
+    "A3610442": "TRUE",
+    "9D225237": "single-gate",
+    "FCB3A3D6": "single-gate",
+    "222C386D": "single-gate",
+    "86D70125": "AND-chain(3)",
+    "89E549B0": "single-gate",
+    "AAC33064": "single-gate",
+    "34C8C28F": "AND-chain(2)",
+    "6C0E75B4": "AND-chain(2)",
+    "EDADEB9D": "AND-chain(2)",
+    "280251C4": "AND-chain(2)",
+    "F12F698A": "AND-chain(2)",
+    "8AD3148F": "AND-chain(2)",
+    "2BE1E4A6": "AND-chain(3)",
+    "A0C98B77": "AND-chain(3)",
+    "47727552": "AND-chain(2)",
+    "ReportStatusCodeRouterRuntimeDxe": "AND-chain(2)",
+    "StatusCodeHandlerRuntimeDxe": "AND-chain(3)",
+    "PcdDxe": "single-gate",
+    "RuntimeDxe": "AND-chain(2)",
+    "SecurityStubDxe": "AND-chain(2)",
+    "EbcDxe": "single-gate",
+    "CpuIo2Dxe": "single-gate",
+    "CpuDxe": "AND-chain(3)",
+    "LocalApicTimerDxe": "AND-chain(3)",
+    "IncompatiblePciDeviceSupportDxe": "single-gate",
+    "PciHotPlugInitDxe": "AND-chain(2)",
+    "PciHostBridgeDxe": "complex(OR/NOT)",
+    "ResetSystemRuntimeDxe": "AND-chain(2)",
+    "Metronome": "AND-chain(2)",
+    "PcRtc": "AND-chain(4)",
+    "SecureBootConfigDxe": "AND-chain(8)",
+    "WatchdogTimer": "AND-chain(3)",
+    "MonotonicCounterRuntimeDxe": "AND-chain(3)",
+    "CapsuleRuntimeDxe": "AND-chain(3)",
+    "DriverHealthManagerDxe": "AND-chain(6)",
+    "BdsDxe": "complex(OR/NOT)",
+    "QemuKernelLoaderFsDxe": "complex(OR/NOT)",
+    "DevicePathDxe": "TRUE",
+    "RamDiskDxe": "AND-chain(6)",
+    "HiiDatabase": "AND-chain(2)",
+    "SetupBrowser": "AND-chain(5)",
+    "DisplayEngine": "AND-chain(6)",
+    "SmbiosDxe": "complex(OR/NOT)",
+    "SmbiosPlatformDxe": "complex(OR/NOT)",
+    "AcpiTableDxe": "AND-chain(2)",
+    "QemuFwCfgAcpiPlatform": "complex(OR/NOT)",
+    "S3SaveStateDxe": "AND-chain(2)",
+    "BootScriptExecutorDxe": "AND-chain(3)",
+    "LogoDxe": "AND-chain(3)",
+    "TdxDxe": "AND-chain(2)",
+    "DpcDxe": "single-gate",
+    "SnpDxe": "AND-chain(13)",
+    "VlanConfigDxe": "AND-chain(13)",
+    "MnpDxe": "AND-chain(13)",
+    "ArpDxe": "AND-chain(13)",
+    "Dhcp4Dxe": "AND-chain(13)",
+    "Ip4Dxe": "complex(OR/NOT)",
+    "Udp4Dxe": "AND-chain(13)",
+    "Mtftp4Dxe": "AND-chain(13)",
+    "Dhcp6Dxe": "AND-chain(13)",
+    "Ip6Dxe": "complex(OR/NOT)",
+    "Udp6Dxe": "AND-chain(13)",
+    "Mtftp6Dxe": "AND-chain(13)",
+    "TcpDxe": "AND-chain(14)",
+    "UefiPxeBcDxe": "complex(OR/NOT)",
+    "TlsAuthConfigDxe": "complex(OR/NOT)",
+    "DnsDxe": "AND-chain(13)",
+    "HttpDxe": "AND-chain(13)",
+    "HttpUtilitiesDxe": "AND-chain(3)",
+    "HttpBootDxe": "AND-chain(13)",
+    "IScsiDxe": "complex(OR/NOT)",
+    "VirtioNetDxe": "complex(OR/NOT)",
+    "UsbMassStorageDxe": "complex(OR/NOT)",
+    "QemuRamfbDxe": "complex(OR/NOT)",
+    "PlatformDxe": "AND-chain(7)",
+    "AmdSevDxe": "AND-chain(2)",
+    "IoMmuDxe": "AND-chain(2)",
+    "VirtHstiDxe": "AND-chain(2)",
+    "SmmAccess2Dxe": "AND-chain(2)",
+    "SmmControl2Dxe": "complex(OR/NOT)",
+    "CpuS3DataDxe": "AND-chain(3)",
+    "PiSmmIpl": "AND-chain(4)",
+    "CpuHotplugSmm": "AND-chain(6)",
+    "CpuIo2Smm": "AND-chain(2)",
+    "SmmLockBox": "AND-chain(4)",
+    "PiSmmCpuDxeSmm": "AND-chain(4)",
+    "FvbServicesSmm": "AND-chain(4)",
+    "SmmFaultTolerantWriteDxe": "AND-chain(6)",
+    "VariableSmm": "AND-chain(4)",
+    "VariableSmmRuntimeDxe": "AND-chain(3)",
+    "TdTcg2Dxe": "AND-chain(4)",
+    "TcgDxe": "AND-chain(2)",
+    "Tcg2Dxe": "complex(OR/NOT)",
+    "Tcg2PlatformDxe": "AND-chain(3)",
+    "Tcg2ConfigDxe": "complex(OR/NOT)",
+    "TcgMor": "complex(OR/NOT)",
+    "TcgMorLockSmm": "complex(OR/NOT)",
+    "RngDxe": "AND-chain(2)"
+   }
+  },
+  "_gate_delta_plain_secboot": {
+   "changed_while_present": {},
+   "added_on_secboot": [
+    "34C8C28F",
+    "6C0E75B4",
+    "AAC33064",
+    "CpuHotplugSmm",
+    "CpuIo2Smm",
+    "CpuS3DataDxe",
+    "FvbServicesSmm",
+    "PiSmmCpuDxeSmm",
+    "PiSmmIpl",
+    "SecureBootConfigDxe",
+    "SmmAccess2Dxe",
+    "SmmControl2Dxe",
+    "SmmFaultTolerantWriteDxe",
+    "SmmLockBox",
+    "TcgMorLockSmm",
+    "VariableSmm",
+    "VariableSmmRuntimeDxe"
+   ],
+   "removed_on_secboot": [
+    "EmuVariableFvbRuntimeDxe",
+    "FaultTolerantWriteDxe",
+    "FvbServicesRuntimeDxe",
+    "LinuxInitrdDynamicShellCommand",
+    "VariablePolicyDynamicCommand",
+    "VariableRuntimeDxe",
+    "httpDynamicCommand",
+    "tftpDynamicCommand"
+   ]
+  }
+ }
+}

@@ -1,0 +1,1679 @@
+{
+ "_meta": {
+  "ring": 8,
+  "front": "B",
+  "date": "2026-09-11",
+  "title": "the SCSU layer and the last unresolved strings",
+  "instruments": "ring8_scsu_strings.py; UTS#6 decoder implemented here (windows seeded from each package's LanguageWindow); ring6/ring7 machinery reused verbatim (pierce, modules, direct_forms, find_strings_packages, dissect_forms)",
+  "method": "T1 block census over every strings package; T2 SCSU decode on every 0x10-0x13 block + synthetic self-tests; T3 needed-id closure per forms package against all of the module's strings packages, then the whole build",
+  "read_only": true,
+  "zero_bytes_written": true
+ },
+ "_scsu_selftest": [
+  "ascii=PASS",
+  "squ_euro=PASS",
+  "scu_roundtrip=PASS",
+  "sc2_greek=PASS",
+  "sq3_quote=PASS"
+ ],
+ "_builds": {
+  "plain": {
+   "strings_packages": 44,
+   "note_pkgs_count": "every SIBT-closing type-0x04 package in every PE (ring 7's 25/28 counted packages inside forms-carrying modules only)",
+   "block_type_totals": {
+    "0x00": 44,
+    "0x14": 2566,
+    "0x21": 2
+   },
+   "scsu_blocks": 0,
+   "skip_blocks": 2,
+   "null_id0_references": 1,
+   "language_window_offset_votes": {
+    "offset_None": 44
+   },
+   "header_probe": {
+    "module": "DriverHealthManagerDxe",
+    "offset": 14212,
+    "first_56_bytes": "99010004340000003400000000000000000000000000000000000000000000000000000000000000000000000100656e2d5553001445006e",
+    "window_words_at_12": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "window_words_at_13": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "scsu_samples": [],
+   "closure": {
+    "resolved_same_module_other_pkg": 0,
+    "resolved_cross_module": 4,
+    "still_unresolved": 0
+   },
+   "unresolved": [
+    {
+     "module": "DriverHealthManagerDxe",
+     "id": 4,
+     "where": "cross-module",
+     "text": "Press F12 "
+    },
+    {
+     "module": "DriverHealthManagerDxe",
+     "id": 4,
+     "where": "cross-module",
+     "text": "Press F12 "
+    },
+    {
+     "module": "Ip4Dxe",
+     "id": 4,
+     "where": "cross-module",
+     "text": "Press F12 "
+    },
+    {
+     "module": "HttpBootDxe",
+     "id": 11,
+     "where": "cross-module",
+     "text": "WARNING: Changing the PCR bank(s) of the boot measurements m"
+    }
+   ],
+   "package_rows": [
+    {
+     "module": "DriverHealthManagerDxe",
+     "offset": 14212,
+     "size": 409,
+     "language": "en-US",
+     "ids": 10,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 10,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DriverHealthManagerDxe",
+     "offset": 14621,
+     "size": 411,
+     "language": "fr-FR",
+     "ids": 9,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 9,
+      "0x21": 1,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "BdsDxe",
+     "offset": 82500,
+     "size": 2690,
+     "language": "en-US",
+     "ids": 21,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 21,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 91396,
+     "size": 1034,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 92430,
+     "size": 1036,
+     "language": "fr-FR",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 93796,
+     "size": 615,
+     "language": "en-US",
+     "ids": 14,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 14,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 94411,
+     "size": 589,
+     "language": "fr-FR",
+     "ids": 13,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 13,
+      "0x21": 1,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 95332,
+     "size": 576,
+     "language": "en-US",
+     "ids": 7,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 7,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 95908,
+     "size": 496,
+     "language": "fr-FR",
+     "ids": 7,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 7,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 96804,
+     "size": 3548,
+     "language": "en-US",
+     "ids": 99,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 99,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 100352,
+     "size": 3550,
+     "language": "fr-FR",
+     "ids": 99,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 99,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 108964,
+     "size": 436,
+     "language": "en-US",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 109400,
+     "size": 444,
+     "language": "fr-FR",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "RamDiskDxe",
+     "offset": 23460,
+     "size": 1034,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "RamDiskDxe",
+     "offset": 24494,
+     "size": 1036,
+     "language": "fr-FR",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "RamDiskDxe",
+     "offset": 26212,
+     "size": 1337,
+     "language": "en-US",
+     "ids": 24,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 24,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DisplayEngine",
+     "offset": 51268,
+     "size": 832,
+     "language": "en-US",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DisplayEngine",
+     "offset": 52100,
+     "size": 934,
+     "language": "fr-FR",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DisplayEngine",
+     "offset": 53188,
+     "size": 2696,
+     "language": "en-US",
+     "ids": 57,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 57,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DisplayEngine",
+     "offset": 55884,
+     "size": 2874,
+     "language": "fr-FR",
+     "ids": 57,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 57,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "VlanConfigDxe",
+     "offset": 16644,
+     "size": 992,
+     "language": "en-US",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Ip4Dxe",
+     "offset": 59268,
+     "size": 1125,
+     "language": "en-US",
+     "ids": 18,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 18,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Ip6Dxe",
+     "offset": 84580,
+     "size": 3972,
+     "language": "en-US",
+     "ids": 45,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 45,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "TlsAuthConfigDxe",
+     "offset": 25124,
+     "size": 1034,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "TlsAuthConfigDxe",
+     "offset": 26158,
+     "size": 1036,
+     "language": "fr-FR",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "TlsAuthConfigDxe",
+     "offset": 28004,
+     "size": 1054,
+     "language": "en-US",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "HttpBootDxe",
+     "offset": 51172,
+     "size": 514,
+     "language": "en-US",
+     "ids": 11,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 11,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "IScsiDxe",
+     "offset": 97956,
+     "size": 4449,
+     "language": "en-US",
+     "ids": 68,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 68,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "PlatformDxe",
+     "offset": 12772,
+     "size": 995,
+     "language": "en-US",
+     "ids": 10,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 10,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Tcg2ConfigDxe",
+     "offset": 28004,
+     "size": 5277,
+     "language": "en-US",
+     "ids": 84,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 84,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "tftpDynamicCommand",
+     "offset": 23108,
+     "size": 6852,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "httpDynamicCommand",
+     "offset": 29508,
+     "size": 8652,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "VariablePolicyDynamicCommand",
+     "offset": 18692,
+     "size": 5101,
+     "language": "en-US",
+     "ids": 36,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 36,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "LinuxInitrdDynamicShellCommand",
+     "offset": 17860,
+     "size": 2683,
+     "language": "en-US",
+     "ids": 8,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 8,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Shell",
+     "offset": 470948,
+     "size": 17913,
+     "language": "en-US",
+     "ids": 332,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 332,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Shell",
+     "offset": 489700,
+     "size": 80349,
+     "language": "en-US",
+     "ids": 150,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 150,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Shell",
+     "offset": 570084,
+     "size": 34399,
+     "language": "en-US",
+     "ids": 24,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 24,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Shell",
+     "offset": 604516,
+     "size": 33701,
+     "language": "en-US",
+     "ids": 40,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 40,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Shell",
+     "offset": 638244,
+     "size": 51948,
+     "language": "en-US",
+     "ids": 97,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 97,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Shell",
+     "offset": 690212,
+     "size": 123660,
+     "language": "en-US",
+     "ids": 823,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 823,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Shell",
+     "offset": 813892,
+     "size": 9887,
+     "language": "en-US",
+     "ids": 52,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 52,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Shell",
+     "offset": 823812,
+     "size": 10621,
+     "language": "en-US",
+     "ids": 54,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 54,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Shell",
+     "offset": 834980,
+     "size": 1459,
+     "language": "en-US",
+     "ids": 20,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 20,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Shell",
+     "offset": 836484,
+     "size": 12336,
+     "language": "en-US",
+     "ids": 27,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 27,
+      "0x00": 1
+     }
+    }
+   ]
+  },
+  "secboot": {
+   "strings_packages": 33,
+   "note_pkgs_count": "every SIBT-closing type-0x04 package in every PE (ring 7's 25/28 counted packages inside forms-carrying modules only)",
+   "block_type_totals": {
+    "0x00": 33,
+    "0x14": 992,
+    "0x21": 2
+   },
+   "scsu_blocks": 0,
+   "skip_blocks": 2,
+   "null_id0_references": 2,
+   "language_window_offset_votes": {
+    "offset_None": 33
+   },
+   "header_probe": {
+    "module": "SecureBootConfigDxe",
+    "offset": 683748,
+    "first_56_bytes": "0a040004340000003400000000000000000000000000000000000000000000000000000000000000000000000100656e2d5553001445006e",
+    "window_words_at_12": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "window_words_at_13": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "scsu_samples": [],
+   "closure": {
+    "resolved_same_module_other_pkg": 0,
+    "resolved_cross_module": 4,
+    "still_unresolved": 0
+   },
+   "unresolved": [
+    {
+     "module": "DriverHealthManagerDxe",
+     "id": 4,
+     "where": "cross-module",
+     "text": "***NEW FILE***"
+    },
+    {
+     "module": "DriverHealthManagerDxe",
+     "id": 4,
+     "where": "cross-module",
+     "text": "***NEW FILE***"
+    },
+    {
+     "module": "Ip4Dxe",
+     "id": 4,
+     "where": "cross-module",
+     "text": "***NEW FILE***"
+    },
+    {
+     "module": "HttpBootDxe",
+     "id": 11,
+     "where": "cross-module",
+     "text": "Discard Create and Exit"
+    }
+   ],
+   "package_rows": [
+    {
+     "module": "SecureBootConfigDxe",
+     "offset": 683748,
+     "size": 1034,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "SecureBootConfigDxe",
+     "offset": 684782,
+     "size": 1036,
+     "language": "fr-FR",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "SecureBootConfigDxe",
+     "offset": 688452,
+     "size": 4632,
+     "language": "en-US",
+     "ids": 89,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 89,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DriverHealthManagerDxe",
+     "offset": 14212,
+     "size": 409,
+     "language": "en-US",
+     "ids": 10,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 10,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DriverHealthManagerDxe",
+     "offset": 14621,
+     "size": 411,
+     "language": "fr-FR",
+     "ids": 9,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 9,
+      "0x21": 1,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "BdsDxe",
+     "offset": 78276,
+     "size": 2690,
+     "language": "en-US",
+     "ids": 21,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 21,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 91460,
+     "size": 1034,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 92494,
+     "size": 1036,
+     "language": "fr-FR",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 93860,
+     "size": 615,
+     "language": "en-US",
+     "ids": 14,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 14,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 94475,
+     "size": 589,
+     "language": "fr-FR",
+     "ids": 13,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 13,
+      "0x21": 1,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 95396,
+     "size": 576,
+     "language": "en-US",
+     "ids": 7,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 7,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 95972,
+     "size": 496,
+     "language": "fr-FR",
+     "ids": 7,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 7,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 96868,
+     "size": 3548,
+     "language": "en-US",
+     "ids": 99,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 99,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 100416,
+     "size": 3550,
+     "language": "fr-FR",
+     "ids": 99,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 99,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 109028,
+     "size": 436,
+     "language": "en-US",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 109464,
+     "size": 444,
+     "language": "fr-FR",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "RamDiskDxe",
+     "offset": 23460,
+     "size": 1034,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "RamDiskDxe",
+     "offset": 24494,
+     "size": 1036,
+     "language": "fr-FR",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "RamDiskDxe",
+     "offset": 26212,
+     "size": 1337,
+     "language": "en-US",
+     "ids": 24,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 24,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DisplayEngine",
+     "offset": 51204,
+     "size": 832,
+     "language": "en-US",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DisplayEngine",
+     "offset": 52036,
+     "size": 934,
+     "language": "fr-FR",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DisplayEngine",
+     "offset": 53124,
+     "size": 2696,
+     "language": "en-US",
+     "ids": 57,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 57,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DisplayEngine",
+     "offset": 55820,
+     "size": 2874,
+     "language": "fr-FR",
+     "ids": 57,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 57,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "VlanConfigDxe",
+     "offset": 16644,
+     "size": 992,
+     "language": "en-US",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Ip4Dxe",
+     "offset": 58756,
+     "size": 1125,
+     "language": "en-US",
+     "ids": 18,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 18,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Ip6Dxe",
+     "offset": 84132,
+     "size": 3972,
+     "language": "en-US",
+     "ids": 45,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 45,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "TlsAuthConfigDxe",
+     "offset": 24612,
+     "size": 1034,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "TlsAuthConfigDxe",
+     "offset": 25646,
+     "size": 1036,
+     "language": "fr-FR",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "TlsAuthConfigDxe",
+     "offset": 27492,
+     "size": 1054,
+     "language": "en-US",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "HttpBootDxe",
+     "offset": 51108,
+     "size": 514,
+     "language": "en-US",
+     "ids": 11,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 11,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "IScsiDxe",
+     "offset": 97188,
+     "size": 4449,
+     "language": "en-US",
+     "ids": 68,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 68,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "PlatformDxe",
+     "offset": 12772,
+     "size": 995,
+     "language": "en-US",
+     "ids": 10,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 10,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Tcg2ConfigDxe",
+     "offset": 27172,
+     "size": 5277,
+     "language": "en-US",
+     "ids": 84,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 84,
+      "0x00": 1
+     }
+    }
+   ]
+  },
+  "snakeoil": {
+   "strings_packages": 33,
+   "note_pkgs_count": "every SIBT-closing type-0x04 package in every PE (ring 7's 25/28 counted packages inside forms-carrying modules only)",
+   "block_type_totals": {
+    "0x00": 33,
+    "0x14": 992,
+    "0x21": 2
+   },
+   "scsu_blocks": 0,
+   "skip_blocks": 2,
+   "null_id0_references": 2,
+   "language_window_offset_votes": {
+    "offset_None": 33
+   },
+   "header_probe": {
+    "module": "SecureBootConfigDxe",
+    "offset": 683748,
+    "first_56_bytes": "0a040004340000003400000000000000000000000000000000000000000000000000000000000000000000000100656e2d5553001445006e",
+    "window_words_at_12": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "window_words_at_13": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "scsu_samples": [],
+   "closure": {
+    "resolved_same_module_other_pkg": 0,
+    "resolved_cross_module": 4,
+    "still_unresolved": 0
+   },
+   "unresolved": [
+    {
+     "module": "DriverHealthManagerDxe",
+     "id": 4,
+     "where": "cross-module",
+     "text": "***NEW FILE***"
+    },
+    {
+     "module": "DriverHealthManagerDxe",
+     "id": 4,
+     "where": "cross-module",
+     "text": "***NEW FILE***"
+    },
+    {
+     "module": "Ip4Dxe",
+     "id": 4,
+     "where": "cross-module",
+     "text": "***NEW FILE***"
+    },
+    {
+     "module": "HttpBootDxe",
+     "id": 11,
+     "where": "cross-module",
+     "text": "Discard Create and Exit"
+    }
+   ],
+   "package_rows": [
+    {
+     "module": "SecureBootConfigDxe",
+     "offset": 683748,
+     "size": 1034,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "SecureBootConfigDxe",
+     "offset": 684782,
+     "size": 1036,
+     "language": "fr-FR",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "SecureBootConfigDxe",
+     "offset": 688452,
+     "size": 4632,
+     "language": "en-US",
+     "ids": 89,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 89,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DriverHealthManagerDxe",
+     "offset": 14212,
+     "size": 409,
+     "language": "en-US",
+     "ids": 10,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 10,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DriverHealthManagerDxe",
+     "offset": 14621,
+     "size": 411,
+     "language": "fr-FR",
+     "ids": 9,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 9,
+      "0x21": 1,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "BdsDxe",
+     "offset": 78276,
+     "size": 2690,
+     "language": "en-US",
+     "ids": 21,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 21,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 91460,
+     "size": 1034,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 92494,
+     "size": 1036,
+     "language": "fr-FR",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 93860,
+     "size": 615,
+     "language": "en-US",
+     "ids": 14,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 14,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 94475,
+     "size": 589,
+     "language": "fr-FR",
+     "ids": 13,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 13,
+      "0x21": 1,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 95396,
+     "size": 576,
+     "language": "en-US",
+     "ids": 7,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 7,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 95972,
+     "size": 496,
+     "language": "fr-FR",
+     "ids": 7,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 7,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 96868,
+     "size": 3548,
+     "language": "en-US",
+     "ids": 99,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 99,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 100416,
+     "size": 3550,
+     "language": "fr-FR",
+     "ids": 99,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 99,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 109028,
+     "size": 436,
+     "language": "en-US",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "UiApp",
+     "offset": 109464,
+     "size": 444,
+     "language": "fr-FR",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "RamDiskDxe",
+     "offset": 23460,
+     "size": 1034,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "RamDiskDxe",
+     "offset": 24494,
+     "size": 1036,
+     "language": "fr-FR",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "RamDiskDxe",
+     "offset": 26212,
+     "size": 1337,
+     "language": "en-US",
+     "ids": 24,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 24,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DisplayEngine",
+     "offset": 51204,
+     "size": 832,
+     "language": "en-US",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DisplayEngine",
+     "offset": 52036,
+     "size": 934,
+     "language": "fr-FR",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DisplayEngine",
+     "offset": 53124,
+     "size": 2696,
+     "language": "en-US",
+     "ids": 57,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 57,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "DisplayEngine",
+     "offset": 55820,
+     "size": 2874,
+     "language": "fr-FR",
+     "ids": 57,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 57,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "VlanConfigDxe",
+     "offset": 16644,
+     "size": 992,
+     "language": "en-US",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Ip4Dxe",
+     "offset": 58756,
+     "size": 1125,
+     "language": "en-US",
+     "ids": 18,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 18,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Ip6Dxe",
+     "offset": 84132,
+     "size": 3972,
+     "language": "en-US",
+     "ids": 45,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 45,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "TlsAuthConfigDxe",
+     "offset": 24612,
+     "size": 1034,
+     "language": "en-US",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "TlsAuthConfigDxe",
+     "offset": 25646,
+     "size": 1036,
+     "language": "fr-FR",
+     "ids": 17,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 17,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "TlsAuthConfigDxe",
+     "offset": 27492,
+     "size": 1054,
+     "language": "en-US",
+     "ids": 19,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 19,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "HttpBootDxe",
+     "offset": 51108,
+     "size": 514,
+     "language": "en-US",
+     "ids": 11,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 11,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "IScsiDxe",
+     "offset": 97188,
+     "size": 4449,
+     "language": "en-US",
+     "ids": 68,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 68,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "PlatformDxe",
+     "offset": 12772,
+     "size": 995,
+     "language": "en-US",
+     "ids": 10,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 10,
+      "0x00": 1
+     }
+    },
+    {
+     "module": "Tcg2ConfigDxe",
+     "offset": 27172,
+     "size": 5277,
+     "language": "en-US",
+     "ids": 84,
+     "residual": 0,
+     "closed": true,
+     "blocks": {
+      "0x14": 84,
+      "0x00": 1
+     }
+    }
+   ]
+  }
+ }
+}

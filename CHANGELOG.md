@@ -4,6 +4,48 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the eighth ring (the dispatch graph, the string closure, and the package that never was)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Investigation (ring 8 — three fronts, three artifacts)**
+- **The dispatch graph** (`ovmf-depex-dag.json`): every DEPEX evaluated
+  as the postfix program it is — 92/101 sections across builds, zero
+  BEFORE/AFTER constraints, zero FALSE (no compiled-out driver), spine
+  of 37 depex-less drivers + 3 TRUE-only; hubs by fan-in (PcdProtocol
+  62, DevicePathUtilities 54, VariableArch/WriteArch 29); both apriori
+  declared-order lists parsed (PEI 1 entry, DXE 5→4 with the
+  FvbServicesRuntimeDxe drop on secboot); the cross-build gate delta
+  shows `changed_while_present = {}` — secboot swaps whole modules,
+  it never re-gates a shared driver; strictnx byte-equal on the layer.
+- **The string closure** (`ovmf-scsu-strings.json`): 110/110 strings
+  packages close under the header-faithful walk; SCSU blocks (0x10–0x13)
+  **never occur** in the corpus (the UTS#6 decoder is implemented and
+  5/5 on synthetic self-tests anyway); SKIP2 exists — exactly two per
+  build, both fr-FR, both closing cleanly under the u16 reading (the
+  ring-7 width swap never met real data); compiled string packages ship
+  LanguageWindow all-zeros and no CharSet byte; ring 7's unresolved ids
+  fully accounted: one **id 0 per build is the spec's NULL marker** and
+  the rest are cross-module numeric collisions ("Press F12 " vs
+  "***NEW FILE***" for the same id across builds).
+- **pkg3 dissolved** (`ovmf-pkg3-head.json`): the 273-byte "second
+  forms package" of SecureBootConfigDxe is a **spurious
+  exact-consumption anchor nested inside the real 2186-byte package**
+  — its "op-00 head" is the payload of a STRING question record
+  (op 0x1C, len 16) re-chained as records. The real package walks with
+  289 records, zero undefined opcodes, scope balance exactly 0, and its
+  formset guid is **byte-equal to `SECUREBOOT_CONFIG_FORM_SET_GUID`
+  from tianocore master** (source↔bytes cross-validation; form 0x15 =
+  `SECUREBOOT_ENROLL_SIGNATURE_TO_DBT`). The accounting closes: flat
+  208 = structural 202 + 6 double-counted patterns. The facade's
+  structural walk was the true number all along.
+
+**Doctrine gained for day-0**: exact consumption needs the nesting rule
+(a candidate inside another candidate's span is a decoy); string
+accounting can promise total resolution (resolved / null marker /
+recorded collision); the dispatch web is a one-pass read.
+
 ## Unreleased — the seventh ring (the facade speaks and remembers)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

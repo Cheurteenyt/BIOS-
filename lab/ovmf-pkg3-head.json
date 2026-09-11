@@ -1,0 +1,581 @@
+{
+ "_meta": {
+  "ring": 8,
+  "front": "C",
+  "date": "2026-09-11",
+  "title": "the op-00 head of pkg3",
+  "instruments": "ring8_pkg3_head.py; ring6 pierce/modules/direct_forms/walk_ifr reused; ground truth fetched from tianocore master this run (SecureBootConfig.vfr, SecureBootConfigNvData.h)",
+  "read_only": true,
+  "zero_bytes_written": true
+ },
+ "secboot": {
+  "module": "SecureBootConfigDxe",
+  "pkg3_offset": 687896,
+  "pkg3_size": 273,
+  "packages_in_module": [
+   {
+    "offset": 685828,
+    "size": 245,
+    "questions": 6
+   },
+   {
+    "offset": 686244,
+    "size": 2186,
+    "questions": 50
+   },
+   {
+    "offset": 687896,
+    "size": 273,
+    "questions": 6
+   }
+  ],
+  "hexdump": [
+   {
+    "offset": 687848,
+    "hex": "000d005f1535170b0fa0879341b26653",
+    "ascii": "..._.5......A.fS"
+   },
+   {
+    "offset": 687864,
+    "hex": "8c38af48ce00ffff0287040000000029",
+    "ascii": ".8.H...........)"
+   },
+   {
+    "offset": 687880,
+    "hex": "02198212060e0003001c90160017000c",
+    "ascii": "................"
+   },
+   {
+    "offset": 687896,
+    "hex": "110100020004242400290229021e8212",
+    "ascii": "......$$.).)...."
+   },
+   {
+    "offset": 687912,
+    "hex": "860e00010017022902059119001a0005",
+    "ascii": ".......)........"
+   },
+   {
+    "offset": 687928,
+    "hex": "0001005100001001040009071b001000",
+    "ascii": "...Q............"
+   },
+   {
+    "offset": 687944,
+    "hex": "0109071c0000000209071d0000000309",
+    "ascii": "................"
+   },
+   {
+    "offset": 687960,
+    "hex": "071e00000004290229021e8212860e00",
+    "ascii": "......).)......."
+   },
+   {
+    "offset": 687976,
+    "hex": "020017022902030819001f0020002902",
+    "ascii": "....)....... .)."
+   },
+   {
+    "offset": 687992,
+    "hex": "1e8212860e0003001702290203081900",
+    "ascii": "..........)....."
+   },
+   {
+    "offset": 688008,
+    "hex": "2100220029020a82120605000400068e",
+    "ascii": "!.\".)..........."
+   },
+   {
+    "offset": 688024,
+    "hex": "27002800060001005000040029020a82",
+    "ascii": "'.(.....P...)..."
+   },
+   {
+    "offset": 688040,
+    "hex": "1206060001001a8e2500260008000100",
+    "ascii": "........%.&....."
+   },
+   {
+    "offset": 688056,
+    "hex": "5200000029021b8e230024000a000100",
+    "ascii": "R...)...#.$....."
+   },
+   {
+    "offset": 688072,
+    "hex": "56000000290229022902028704000000",
+    "ascii": "V...).).)......."
+   },
+   {
+    "offset": 688088,
+    "hex": "0029020287040000000029020f0f2900",
+    "ascii": ".)........)...)."
+   },
+   {
+    "offset": 688104,
+    "hex": "29000a100000ffff0402000f0f2a002a",
+    "ascii": ")............*.*"
+   },
+   {
+    "offset": 688120,
+    "hex": "000b100000ffff040200290201861500",
+    "ascii": "..........)....."
+   },
+   {
+    "offset": 688136,
+    "hex": "0d000287040000000029020f0f180018",
+    "ascii": ".........)......"
+   },
+   {
+    "offset": 688152,
+    "hex": "0015000000ffff041500028704000000",
+    "ascii": "................"
+   },
+   {
+    "offset": 688168,
+    "hex": "0029025f1535170b0fa0879341b26653",
+    "ascii": ".)._.5......A.fS"
+   },
+   {
+    "offset": 688184,
+    "hex": "8c38af48ce0015005f1535170b0fa087",
+    "ascii": ".8.H...._.5....."
+   }
+  ],
+  "head_records": [
+   {
+    "at": 0,
+    "op": 0,
+    "op_name": null,
+    "len": 4,
+    "scope": false,
+    "payload": "2424"
+   },
+   {
+    "at": 4,
+    "op": 0,
+    "op_name": null,
+    "len": 41,
+    "scope": false,
+    "payload": "0229021e8212860e00010017022902059119001a00050001005100001001040009071b00100001"
+   },
+   {
+    "at": 45,
+    "op": 9,
+    "op_name": "ONE_OF_OPTION",
+    "len": 7,
+    "scope": false,
+    "payload": "1c00000002"
+   },
+   {
+    "at": 52,
+    "op": 9,
+    "op_name": "ONE_OF_OPTION",
+    "len": 7,
+    "scope": false,
+    "payload": "1d00000003"
+   },
+   {
+    "at": 59,
+    "op": 9,
+    "op_name": "ONE_OF_OPTION",
+    "len": 7,
+    "scope": false,
+    "payload": "1e00000004"
+   },
+   {
+    "at": 66,
+    "op": 41,
+    "op_name": "END",
+    "len": 2,
+    "scope": false,
+    "payload": ""
+   },
+   {
+    "at": 68,
+    "op": 41,
+    "op_name": "END",
+    "len": 2,
+    "scope": false,
+    "payload": ""
+   },
+   {
+    "at": 70,
+    "op": 30,
+    "op_name": "DISABLE_IF",
+    "len": 2,
+    "scope": true,
+    "payload": ""
+   },
+   {
+    "at": 72,
+    "op": 18,
+    "op_name": "EQ_ID_VAL",
+    "len": 6,
+    "scope": true,
+    "payload": "0e000200"
+   },
+   {
+    "at": 78,
+    "op": 23,
+    "op_name": "NOT",
+    "len": 2,
+    "scope": false,
+    "payload": ""
+   }
+  ],
+  "alternative_anchor_grid": [
+   {
+    "delta": 0,
+    "size": 273,
+    "valid": true,
+    "undefined_ops": 2,
+    "distinct_ops": 14
+   }
+  ],
+  "body_shift_grid": [
+   {
+    "delta": -4,
+    "valid": false,
+    "undefined_ops": 0,
+    "distinct_ops": 0,
+    "residual": 273
+   },
+   {
+    "delta": -3,
+    "valid": false,
+    "undefined_ops": 0,
+    "distinct_ops": 0,
+    "residual": 272
+   },
+   {
+    "delta": -2,
+    "valid": true,
+    "undefined_ops": 3,
+    "distinct_ops": 14,
+    "residual": 0
+   },
+   {
+    "delta": -1,
+    "valid": false,
+    "undefined_ops": 0,
+    "distinct_ops": 0,
+    "residual": 270
+   },
+   {
+    "delta": 0,
+    "valid": true,
+    "undefined_ops": 2,
+    "distinct_ops": 14,
+    "residual": 0
+   },
+   {
+    "delta": 1,
+    "valid": false,
+    "undefined_ops": 1,
+    "distinct_ops": 3,
+    "residual": 195
+   },
+   {
+    "delta": 2,
+    "valid": true,
+    "undefined_ops": 0,
+    "distinct_ops": 14,
+    "residual": 0
+   },
+   {
+    "delta": 3,
+    "valid": false,
+    "undefined_ops": 0,
+    "distinct_ops": 0,
+    "residual": 266
+   },
+   {
+    "delta": 4,
+    "valid": true,
+    "undefined_ops": 1,
+    "distinct_ops": 14,
+    "residual": 0
+   },
+   {
+    "delta": 5,
+    "valid": true,
+    "undefined_ops": 0,
+    "distinct_ops": 14,
+    "residual": 0
+   },
+   {
+    "delta": 6,
+    "valid": false,
+    "undefined_ops": 0,
+    "distinct_ops": 1,
+    "residual": 222
+   },
+   {
+    "delta": 7,
+    "valid": true,
+    "undefined_ops": 0,
+    "distinct_ops": 14,
+    "residual": 0
+   },
+   {
+    "delta": 8,
+    "valid": true,
+    "undefined_ops": 0,
+    "distinct_ops": 13,
+    "residual": 0
+   }
+  ],
+  "interpretations": {
+   "body_len": 269,
+   "head_bytes": "0004242400290229021e8212860e00010017022902059119001a00050001005100001001040009071b0010000109071c",
+   "head_records": [
+    {
+     "at": 0,
+     "op": 0,
+     "op_name": null,
+     "len": 4,
+     "scope": false,
+     "payload": "2424"
+    },
+    {
+     "at": 4,
+     "op": 0,
+     "op_name": null,
+     "len": 41,
+     "scope": false,
+     "payload": "0229021e8212860e00010017022902059119001a00050001005100001001040009071b00100001"
+    },
+    {
+     "at": 45,
+     "op": 9,
+     "op_name": "ONE_OF_OPTION",
+     "len": 7,
+     "scope": false,
+     "payload": "1c00000002"
+    },
+    {
+     "at": 52,
+     "op": 9,
+     "op_name": "ONE_OF_OPTION",
+     "len": 7,
+     "scope": false,
+     "payload": "1d00000003"
+    },
+    {
+     "at": 59,
+     "op": 9,
+     "op_name": "ONE_OF_OPTION",
+     "len": 7,
+     "scope": false,
+     "payload": "1e00000004"
+    },
+    {
+     "at": 66,
+     "op": 41,
+     "op_name": "END",
+     "len": 2,
+     "scope": false,
+     "payload": ""
+    }
+   ],
+   "shifted_varstore_at_2": {
+    "guid": "0229021e8212860e0001001702290205",
+    "varstore_id": 6545,
+    "size": 6656,
+    "name": ""
+   }
+  },
+  "vfr_ground_truth": {
+   "formset_guid": "5daf50a5-ea81-4de2-8f9b-cabda9cf5c14",
+   "form_id_defines": {
+    "SECUREBOOT_CONFIGURATION_VARSTORE_ID": 1,
+    "SECUREBOOT_CONFIGURATION_FORM_ID": 1,
+    "FORMID_SECURE_BOOT_OPTION_FORM": 2,
+    "FORMID_SECURE_BOOT_PK_OPTION_FORM": 3,
+    "FORMID_SECURE_BOOT_KEK_OPTION_FORM": 4,
+    "FORMID_SECURE_BOOT_DB_OPTION_FORM": 5,
+    "FORMID_SECURE_BOOT_DBX_OPTION_FORM": 6,
+    "FORMID_ENROLL_PK_FORM": 7,
+    "SECUREBOOT_ADD_PK_FILE_FORM_ID": 8,
+    "FORMID_ENROLL_KEK_FORM": 9,
+    "FORMID_DELETE_KEK_FORM": 10,
+    "SECUREBOOT_ENROLL_SIGNATURE_TO_DB": 11,
+    "SECUREBOOT_DELETE_SIGNATURE_FROM_DB": 12,
+    "SECUREBOOT_ENROLL_SIGNATURE_TO_DBX": 13,
+    "FORMID_SECURE_BOOT_DBT_OPTION_FORM": 20,
+    "SECUREBOOT_ENROLL_SIGNATURE_TO_DBT": 21,
+    "SECUREBOOT_DELETE_SIGNATURE_FROM_DBT": 22,
+    "SECUREBOOT_DELETE_SIGNATURE_LIST_FORM": 23,
+    "SECUREBOOT_DELETE_SIGNATURE_DATA_FORM": 24,
+    "SECURE_BOOT_MODE_CUSTOM": 1,
+    "SECURE_BOOT_MODE_STANDARD": 0,
+    "KEY_SECURE_BOOT_ENABLE": 4096,
+    "KEY_SECURE_BOOT_MODE": 4097,
+    "KEY_VALUE_SAVE_AND_EXIT_DB": 4098,
+    "KEY_VALUE_NO_SAVE_AND_EXIT_DB": 4099,
+    "KEY_VALUE_SAVE_AND_EXIT_PK": 4100,
+    "KEY_VALUE_NO_SAVE_AND_EXIT_PK": 4101,
+    "KEY_VALUE_SAVE_AND_EXIT_KEK": 4104,
+    "KEY_VALUE_NO_SAVE_AND_EXIT_KEK": 4105,
+    "KEY_VALUE_SAVE_AND_EXIT_DBX": 4106,
+    "KEY_VALUE_NO_SAVE_AND_EXIT_DBX": 4107,
+    "KEY_HIDE_SECURE_BOOT": 4108,
+    "KEY_VALUE_SAVE_AND_EXIT_DBT": 4109,
+    "KEY_VALUE_NO_SAVE_AND_EXIT_DBT": 4110,
+    "KEY_VALUE_FROM_DBX_TO_LIST_FORM": 4111,
+    "KEY_SECURE_BOOT_RESET_TO_DEFAULT": 4112,
+    "KEY_SECURE_BOOT_OPTION": 4352,
+    "KEY_SECURE_BOOT_PK_OPTION": 4353,
+    "KEY_SECURE_BOOT_KEK_OPTION": 4354,
+    "KEY_SECURE_BOOT_DB_OPTION": 4355,
+    "KEY_SECURE_BOOT_DBX_OPTION": 4356,
+    "KEY_SECURE_BOOT_DELETE_PK": 4357,
+    "KEY_ENROLL_PK": 4358,
+    "KEY_ENROLL_KEK": 4359,
+    "KEY_DELETE_KEK": 4360,
+    "KEY_SECURE_BOOT_KEK_GUID": 4362,
+    "KEY_SECURE_BOOT_SIGNATURE_GUID_DB": 4363,
+    "KEY_SECURE_BOOT_SIGNATURE_GUID_DBX": 4364,
+    "KEY_SECURE_BOOT_DBT_OPTION": 4365,
+    "KEY_SECURE_BOOT_SIGNATURE_GUID_DBT": 4366,
+    "KEY_SECURE_BOOT_DELETE_ALL_LIST": 4367,
+    "KEY_SECURE_BOOT_DELETE_ALL_DATA": 4368,
+    "KEY_SECURE_BOOT_DELETE_CHECK_DATA": 4369,
+    "LABEL_KEK_DELETE": 4608,
+    "LABEL_DB_DELETE": 4609,
+    "LABEL_SIGNATURE_LIST_START": 4610,
+    "LABEL_DBT_DELETE": 4611,
+    "LABEL_SIGNATURE_DATA_START": 4612,
+    "LABEL_DELETE_ALL_LIST_BUTTON": 4864,
+    "LABEL_END": 65535,
+    "SECURE_BOOT_MAX_ATTEMPTS_NUM": 255,
+    "CONFIG_OPTION_OFFSET": 8192,
+    "OPTION_CONFIG_QUESTION_ID": 8192,
+    "OPTION_CONFIG_RANGE": 4096,
+    "OPTION_DEL_KEK_QUESTION_ID": 8192,
+    "OPTION_DEL_DB_QUESTION_ID": 12288,
+    "OPTION_SIGNATURE_DATA_QUESTION_ID": 24576,
+    "OPTION_DEL_DBT_QUESTION_ID": 20480,
+    "SECURE_BOOT_GUID_SIZE": 36,
+    "SECURE_BOOT_GUID_STORAGE_SIZE": 37,
+    "UNKNOWN_FILE_TYPE": 0,
+    "X509_CERT_FILE_TYPE": 1,
+    "PE_IMAGE_FILE_TYPE": 2,
+    "AUTHENTICATION_2_FILE_TYPE": 3
+   },
+   "form_id_0x15_is": [
+    "SECUREBOOT_ENROLL_SIGNATURE_TO_DBT"
+   ],
+   "varstore": "SECUREBOOT_CONFIGURATION (EFI varstore, id 0x0001)",
+   "formsets_declared": 1
+  },
+  "nesting": {
+   "spans": [
+    [
+     685828,
+     686073,
+     245
+    ],
+    [
+     686244,
+     688430,
+     2186
+    ],
+    [
+     687896,
+     688169,
+     273
+    ]
+   ],
+   "nested_pairs": [
+    {
+     "inner": [
+      687896,
+      688169,
+      273
+     ],
+     "outer": [
+      686244,
+      688430,
+      2186
+     ]
+    }
+   ]
+  },
+  "real_package": {
+   "offset": 686244,
+   "size": 2186,
+   "chain_closes": true,
+   "records": 289,
+   "scope_opens": 103,
+   "end_opcodes": 103,
+   "scope_balance": 0,
+   "undefined_ops": 0,
+   "formsets": [
+    {
+     "pkg_offset": 686244,
+     "size": 2186,
+     "guid": "5daf50a5-ea81-4de2-8f9b-cabda9cf5c14",
+     "title_id": 2,
+     "forms": [
+      1,
+      2,
+      3,
+      7,
+      4,
+      9,
+      10,
+      5,
+      6,
+      20,
+      12,
+      23,
+      24,
+      22,
+      11,
+      13,
+      21
+     ]
+    }
+   ]
+  },
+  "covering_record": [
+   {
+    "at": 687889,
+    "op": 28,
+    "op_name": "STRING",
+    "len": 16,
+    "payload_head": "160017000c11010002000424240029022902"
+   }
+  ],
+  "small_packages": [
+   {
+    "offset": 685828,
+    "size": 245,
+    "walk": {
+     "valid": true,
+     "residual": 0,
+     "undefined_ops": 0
+    }
+   }
+  ],
+  "small_package_formsets": [
+   {
+    "pkg_offset": 685828,
+    "size": 245,
+    "guid": "fe561596-e6bf-41a6-8376-c72b719874d0",
+    "title_id": 3,
+    "forms": [
+     4096,
+     8192,
+     12288
+    ]
+   }
+  ]
+ },
+ "verdict": {
+  "pkg3_is_real_package": false,
+  "pkg3_status": "spurious exact-consumption anchor nested inside the real 2186-byte package; its 'head' bytes are PAYLOAD of the real chain (see covering_record), not opcodes",
+  "double_count_explained": "ring 6's flat 208 = structural 202 + 6 question-class byte patterns that the nested decoy chain re-counted"
+ }
+}
