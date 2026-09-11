@@ -76,6 +76,15 @@ layers hide the rest:
   MSI 1,428/567, Gigabyte 628/247, ASRock 677/260). The IFR-side Setup
   sizes match ring 14's NVRAM side exactly — the Q1↔Q5 bridge closes from
   both ends, and day-0's Setup row has an expected magnitude to land on.
+- RING-21 (the hidden map — see `lab/vendor-hidden-map.json`): the pricing
+  becomes a MAP — the never-asked `Setup` offsets as merged
+  [offset, length) ranges, per vendor. The ASUS layout is FROZEN across
+  4.5 years: 3604 and 4655 carry the same 456-B store, the same 142
+  never-asked bytes, the same 27 ranges at the same offsets. The hidden
+  surface is fragmented, not one tail block (MSI: 567 B in 166 ranges).
+  Knowledge-only: the map prices what a setup_var-style editor COULD
+  address; the zero-write doctrine is untouched. Day-0 now has an
+  offset-level expectation, not just a magnitude.
 - DAY-0: real module list vs. a manual inventory of every setup screen
   (screenshots). The delta is what the vendor ships but does not show.
 - VOL-5: per-vendor NVRAM editors (`setup_var`, AMISCE, SCEWIN) — referenced
@@ -348,6 +357,21 @@ enrichment. **Noted as a post-freeze lever; no tool added during the freeze.**
   tables are things the firmware BUILDS; a hit in a vendor image must
   be classified table-shipped (raw section) vs generator-string
   (inside a PE) by position.
+- RING-21 (the ACPI lens — see `lab/vendor-acpi.json`): the
+  classification is now measured on BOTH sides, and the vendor side is
+  the INVERSE of OVMF's. Admission is by checksum (an ACPI table sums
+  to zero over its declared length) — a real table validates where a
+  generator string cannot. The vendor ships the AML only: 4 distinct
+  DSDT variants + 18-23 SSDTs per board, checksum-valid raw sections
+  inside the compressed FV, and BUILDS every static table — ZERO
+  FACP/APIC/MCFG/HPET/IVRS bytes in any of twelve images (a whole-image
+  scan found one `FACP` occurrence on 4655: garbage inside compressed
+  data). And a seventh dating signal fell out: the DSDT clock — three
+  main-body generations across the ASUS ladder, moving at 4202→4402
+  (where the DSDT SHRANK 2,141 B, the same release the legacy SMM
+  fully retired) and 4604→4631; the compiler string (INTL 2014-09-25)
+  never moves, so the body hash is the honest movement signal. No
+  table body is byte-identical across all twelve boards.
 
 ---
 
@@ -392,6 +416,16 @@ to anchor), SIBT string decode, scope-tracked IFR dissection; renders the
 vendor facade in words with varstore names, offsets, defaults and
 per-question conditions (Q1, Q5), vendor vs OVMF comparable in the same
 terms.
+
+Twenty-first-ring instruments (same rule — offline from the dump, never
+live): the microcode clock (`vendor-microcode.json` — psptool 0x66 scan,
+raw directory read, seconds: newest patch date year-buckets the build,
+the 19-patch set corroborates the rung), the DSDT clock
+(`vendor-acpi.json` — checksum-admitted DSDT body hash against the
+three-generation atlas), the hidden map (`vendor-hidden-map.json` —
+never-asked Setup ranges at offset level), and the ACPI shipped-vs-built
+census (expect DSDT+SSDT shipped, zero FACP bytes — any FACP byte in the
+dump would be a corpus first).
 
 ## Discipline
 

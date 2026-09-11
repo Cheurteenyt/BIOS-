@@ -1,0 +1,2188 @@
+{
+ "schema": "omarchy-firmware/vendor-microcode@1",
+ "date": "2026-09-12",
+ "ring": 21,
+ "title": "the microcode clock — the CPU's own patch set as the sixth dating signal",
+ "note": "front A of ring 21: seven rungs restored from the ring-16/18 register (zip sha256-gated; the register's rom_sha256_16 values proved dead metadata and are superseded in the armor register — corrections never erase), psptool BIOS-directory 0x66 lens, armor gates re-verified per rung before any microcode number was read",
+ "provenance": {
+  "restored_rungs": "see scratch-vendor/ring21-restore-ledger.json + ring21-extract ledger in the armor register correction",
+  "psptool": "BIOS directory entry type 0x66 MICROCODE_PATCH; date BCD 0xDDMMYYYY, patch_level u32 (psptool microcode_file.py, source on disk)"
+ },
+ "validation_gates": [
+  {
+   "gate": "3604 armor census == ring-16/18 register (GUID multiset)",
+   "want": {},
+   "legacy_want": 2,
+   "got": {},
+   "legacy_got": 2,
+   "pass": true
+  },
+  {
+   "gate": "3802 armor census == ring-16/18 register (GUID multiset)",
+   "want": {
+    "FlashSmiDxe": 1,
+    "FlashSmiSmm": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "freeform (unnamed)": 1
+   },
+   "legacy_want": 2,
+   "got": {
+    "freeform (unnamed)": 1,
+    "FlashSmiDxe": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "FlashSmiSmm": 1
+   },
+   "legacy_got": 2,
+   "pass": true
+  },
+  {
+   "gate": "3810 armor census == ring-16/18 register (GUID multiset)",
+   "want": {
+    "FlashSmiDxe": 1,
+    "FlashSmiSmm": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "freeform (unnamed)": 1
+   },
+   "legacy_want": 2,
+   "got": {
+    "freeform (unnamed)": 1,
+    "FlashSmiDxe": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "FlashSmiSmm": 1
+   },
+   "legacy_got": 2,
+   "pass": true
+  },
+  {
+   "gate": "4003 armor census == ring-16/18 register (GUID multiset)",
+   "want": {
+    "FlashSmiDxe": 1,
+    "FlashSmiSmm": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "freeform (unnamed)": 1
+   },
+   "legacy_want": 2,
+   "got": {
+    "freeform (unnamed)": 1,
+    "FlashSmiDxe": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "FlashSmiSmm": 1
+   },
+   "legacy_got": 2,
+   "pass": true
+  },
+  {
+   "gate": "4202 armor census == ring-16/18 register (GUID multiset)",
+   "want": {
+    "FlashSmiDxe": 1,
+    "FlashSmiSmm": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "freeform (unnamed)": 1
+   },
+   "legacy_want": 1,
+   "got": {
+    "freeform (unnamed)": 1,
+    "FlashSmiDxe": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "FlashSmiSmm": 1
+   },
+   "legacy_got": 1,
+   "pass": true
+  },
+  {
+   "gate": "4402 armor census == ring-16/18 register (GUID multiset)",
+   "want": {
+    "FlashSmiDxe": 1,
+    "FlashSmiSmm": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "freeform (unnamed)": 1
+   },
+   "legacy_want": 0,
+   "got": {
+    "freeform (unnamed)": 1,
+    "FlashSmiDxe": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "FlashSmiSmm": 1
+   },
+   "legacy_got": 0,
+   "pass": true
+  },
+  {
+   "gate": "4604 armor census == ring-16/18 register (GUID multiset)",
+   "want": {
+    "DXE (unnamed '1.0')": 1,
+    "FlashSmiDxe": 1,
+    "FlashSmiSmm": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "freeform (unnamed)": 2
+   },
+   "legacy_want": 0,
+   "got": {
+    "freeform (unnamed)": 2,
+    "DXE (unnamed '1.0')": 1,
+    "FlashSmiDxe": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "FlashSmiSmm": 1
+   },
+   "legacy_got": 0,
+   "pass": true
+  },
+  {
+   "gate": "4631 armor census == ring-16/18 register (GUID multiset)",
+   "want": {
+    "DXE (unnamed '1.0')": 1,
+    "FlashSmiDxe": 1,
+    "FlashSmiSmm": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "freeform (unnamed)": 2
+   },
+   "legacy_want": 0,
+   "got": {
+    "freeform (unnamed)": 2,
+    "DXE (unnamed '1.0')": 1,
+    "FlashSmiDxe": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "FlashSmiSmm": 1
+   },
+   "legacy_got": 0,
+   "pass": true
+  },
+  {
+   "gate": "4655 armor census == ring-16/18 register (GUID multiset)",
+   "want": {
+    "DXE (unnamed '1.0')": 1,
+    "FlashSmiDxe": 1,
+    "FlashSmiSmm": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "freeform (unnamed)": 2
+   },
+   "legacy_want": 0,
+   "got": {
+    "freeform (unnamed)": 2,
+    "DXE (unnamed '1.0')": 1,
+    "FlashSmiDxe": 1,
+    "PrepareWhiteListSmm": 1,
+    "SbRomArmorSmm": 1,
+    "FlashSmiSmm": 1
+   },
+   "legacy_got": 0,
+   "pass": true
+  }
+ ],
+ "specimens": {
+  "3604": {
+   "id": "asus-prime-b450-plus-ref",
+   "patches": [
+    {
+     "date_bcd": "0x10062016",
+     "date": "10/06/2016",
+     "patch_level": "0x800002A",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11202016",
+     "date": "11/20/2016",
+     "patch_level": "0x8100004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01312017",
+     "date": "01/31/2017",
+     "patch_level": "0x800100C",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06052018",
+     "date": "06/05/2018",
+     "patch_level": "0x8108002",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11062018",
+     "date": "11/06/2018",
+     "patch_level": "0x8101102",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12062018",
+     "date": "12/06/2018",
+     "patch_level": "0x8700004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x02042019",
+     "date": "02/04/2019",
+     "patch_level": "0x8001138",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x800820D",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x8001250",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8200103",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8108109",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04302019",
+     "date": "04/30/2019",
+     "patch_level": "0x8101016",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12082020",
+     "date": "12/08/2020",
+     "patch_level": "0xA50000C",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06192020",
+     "date": "06/19/2020",
+     "patch_level": "0x8600106",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01212020",
+     "date": "01/21/2020",
+     "patch_level": "0xA200025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01252020",
+     "date": "01/25/2020",
+     "patch_level": "0x8701021",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01272020",
+     "date": "01/27/2020",
+     "patch_level": "0x860000E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04082021",
+     "date": "04/08/2021",
+     "patch_level": "0xA201016",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x07192021",
+     "date": "07/19/2021",
+     "patch_level": "0xA201205",
+     "size": 5568,
+     "occ": 1
+    }
+   ],
+   "patch_count": 19,
+   "newest_patch_date": "07/19/2021",
+   "family_prefixes": {
+    "0x80xxxxx": 5,
+    "0x81xxxxx": 5,
+    "0x87xxxxx": 2,
+    "0x82xxxxx": 1,
+    "0xA5xxxxx": 1,
+    "0x86xxxxx": 2,
+    "0xA2xxxxx": 3
+   }
+  },
+  "3802": {
+   "id": "asus-prime-b450-plus-3802",
+   "patches": [
+    {
+     "date_bcd": "0x10062016",
+     "date": "10/06/2016",
+     "patch_level": "0x800002A",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11202016",
+     "date": "11/20/2016",
+     "patch_level": "0x8100004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01312017",
+     "date": "01/31/2017",
+     "patch_level": "0x800100C",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06052018",
+     "date": "06/05/2018",
+     "patch_level": "0x8108002",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11062018",
+     "date": "11/06/2018",
+     "patch_level": "0x8101102",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12062018",
+     "date": "12/06/2018",
+     "patch_level": "0x8700004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x02042019",
+     "date": "02/04/2019",
+     "patch_level": "0x8001138",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x800820D",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x8001250",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8200103",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8108109",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04302019",
+     "date": "04/30/2019",
+     "patch_level": "0x8101016",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06192020",
+     "date": "06/19/2020",
+     "patch_level": "0x8600106",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01212020",
+     "date": "01/21/2020",
+     "patch_level": "0xA200025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01252020",
+     "date": "01/25/2020",
+     "patch_level": "0x8701021",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01272020",
+     "date": "01/27/2020",
+     "patch_level": "0x860000E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04082021",
+     "date": "04/08/2021",
+     "patch_level": "0xA201016",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA20120A",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA50000D",
+     "size": 5568,
+     "occ": 1
+    }
+   ],
+   "patch_count": 19,
+   "newest_patch_date": "10/14/2021",
+   "family_prefixes": {
+    "0x80xxxxx": 5,
+    "0x81xxxxx": 5,
+    "0x87xxxxx": 2,
+    "0x82xxxxx": 1,
+    "0x86xxxxx": 2,
+    "0xA2xxxxx": 3,
+    "0xA5xxxxx": 1
+   }
+  },
+  "3810": {
+   "id": "asus-prime-b450-plus-3810",
+   "patches": [
+    {
+     "date_bcd": "0x10062016",
+     "date": "10/06/2016",
+     "patch_level": "0x800002A",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11202016",
+     "date": "11/20/2016",
+     "patch_level": "0x8100004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01312017",
+     "date": "01/31/2017",
+     "patch_level": "0x800100C",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06052018",
+     "date": "06/05/2018",
+     "patch_level": "0x8108002",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11062018",
+     "date": "11/06/2018",
+     "patch_level": "0x8101102",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12062018",
+     "date": "12/06/2018",
+     "patch_level": "0x8700004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x02042019",
+     "date": "02/04/2019",
+     "patch_level": "0x8001138",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x800820D",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x8001250",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8200103",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8108109",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04302019",
+     "date": "04/30/2019",
+     "patch_level": "0x8101016",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06192020",
+     "date": "06/19/2020",
+     "patch_level": "0x8600106",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01212020",
+     "date": "01/21/2020",
+     "patch_level": "0xA200025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01252020",
+     "date": "01/25/2020",
+     "patch_level": "0x8701021",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01272020",
+     "date": "01/27/2020",
+     "patch_level": "0x860000E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04082021",
+     "date": "04/08/2021",
+     "patch_level": "0xA201016",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA20120A",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA50000D",
+     "size": 5568,
+     "occ": 1
+    }
+   ],
+   "patch_count": 19,
+   "newest_patch_date": "10/14/2021",
+   "family_prefixes": {
+    "0x80xxxxx": 5,
+    "0x81xxxxx": 5,
+    "0x87xxxxx": 2,
+    "0x82xxxxx": 1,
+    "0x86xxxxx": 2,
+    "0xA2xxxxx": 3,
+    "0xA5xxxxx": 1
+   }
+  },
+  "4003": {
+   "id": "asus-prime-b450-plus-4003",
+   "patches": [
+    {
+     "date_bcd": "0x10062016",
+     "date": "10/06/2016",
+     "patch_level": "0x800002A",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11202016",
+     "date": "11/20/2016",
+     "patch_level": "0x8100004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01312017",
+     "date": "01/31/2017",
+     "patch_level": "0x800100C",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06052018",
+     "date": "06/05/2018",
+     "patch_level": "0x8108002",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11062018",
+     "date": "11/06/2018",
+     "patch_level": "0x8101102",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12062018",
+     "date": "12/06/2018",
+     "patch_level": "0x8700004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x02042019",
+     "date": "02/04/2019",
+     "patch_level": "0x8001138",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x800820D",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x8001250",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8200103",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8108109",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04302019",
+     "date": "04/30/2019",
+     "patch_level": "0x8101016",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01212020",
+     "date": "01/21/2020",
+     "patch_level": "0xA200025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01272020",
+     "date": "01/27/2020",
+     "patch_level": "0x860000E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA201025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA20120A",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA50000D",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x03282022",
+     "date": "03/28/2022",
+     "patch_level": "0x8600109",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x03282022",
+     "date": "03/28/2022",
+     "patch_level": "0x8701030",
+     "size": 3200,
+     "occ": 1
+    }
+   ],
+   "patch_count": 19,
+   "newest_patch_date": "03/28/2022",
+   "family_prefixes": {
+    "0x80xxxxx": 5,
+    "0x81xxxxx": 5,
+    "0x87xxxxx": 2,
+    "0x82xxxxx": 1,
+    "0xA2xxxxx": 3,
+    "0x86xxxxx": 2,
+    "0xA5xxxxx": 1
+   }
+  },
+  "4202": {
+   "id": "asus-prime-b450-plus-4202",
+   "patches": [
+    {
+     "date_bcd": "0x10062016",
+     "date": "10/06/2016",
+     "patch_level": "0x800002A",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11202016",
+     "date": "11/20/2016",
+     "patch_level": "0x8100004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01312017",
+     "date": "01/31/2017",
+     "patch_level": "0x800100C",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06052018",
+     "date": "06/05/2018",
+     "patch_level": "0x8108002",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11062018",
+     "date": "11/06/2018",
+     "patch_level": "0x8101102",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12062018",
+     "date": "12/06/2018",
+     "patch_level": "0x8700004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x02042019",
+     "date": "02/04/2019",
+     "patch_level": "0x8001138",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x800820D",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x8001250",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8200103",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8108109",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04302019",
+     "date": "04/30/2019",
+     "patch_level": "0x8101016",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01212020",
+     "date": "01/21/2020",
+     "patch_level": "0xA200025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01272020",
+     "date": "01/27/2020",
+     "patch_level": "0x860000E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA201025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA20120A",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA50000D",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x03282022",
+     "date": "03/28/2022",
+     "patch_level": "0x8600109",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x03282022",
+     "date": "03/28/2022",
+     "patch_level": "0x8701030",
+     "size": 3200,
+     "occ": 1
+    }
+   ],
+   "patch_count": 19,
+   "newest_patch_date": "03/28/2022",
+   "family_prefixes": {
+    "0x80xxxxx": 5,
+    "0x81xxxxx": 5,
+    "0x87xxxxx": 2,
+    "0x82xxxxx": 1,
+    "0xA2xxxxx": 3,
+    "0x86xxxxx": 2,
+    "0xA5xxxxx": 1
+   }
+  },
+  "4402": {
+   "id": "asus-prime-b450-plus-4402",
+   "patches": [
+    {
+     "date_bcd": "0x10062016",
+     "date": "10/06/2016",
+     "patch_level": "0x800002A",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11202016",
+     "date": "11/20/2016",
+     "patch_level": "0x8100004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01312017",
+     "date": "01/31/2017",
+     "patch_level": "0x800100C",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06052018",
+     "date": "06/05/2018",
+     "patch_level": "0x8108002",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11062018",
+     "date": "11/06/2018",
+     "patch_level": "0x8101102",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12062018",
+     "date": "12/06/2018",
+     "patch_level": "0x8700004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x02042019",
+     "date": "02/04/2019",
+     "patch_level": "0x8001138",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x800820D",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x8001250",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8200103",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8108109",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04302019",
+     "date": "04/30/2019",
+     "patch_level": "0x8101016",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01212020",
+     "date": "01/21/2020",
+     "patch_level": "0xA200025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01272020",
+     "date": "01/27/2020",
+     "patch_level": "0x860000E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x03282022",
+     "date": "03/28/2022",
+     "patch_level": "0x8600109",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x03282022",
+     "date": "03/28/2022",
+     "patch_level": "0x8701030",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x07072023",
+     "date": "07/07/2023",
+     "patch_level": "0xA20102B",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x07072023",
+     "date": "07/07/2023",
+     "patch_level": "0xA20120E",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x07072023",
+     "date": "07/07/2023",
+     "patch_level": "0xA50000F",
+     "size": 5568,
+     "occ": 1
+    }
+   ],
+   "patch_count": 19,
+   "newest_patch_date": "07/07/2023",
+   "family_prefixes": {
+    "0x80xxxxx": 5,
+    "0x81xxxxx": 5,
+    "0x87xxxxx": 2,
+    "0x82xxxxx": 1,
+    "0xA2xxxxx": 3,
+    "0x86xxxxx": 2,
+    "0xA5xxxxx": 1
+   }
+  },
+  "4604": {
+   "id": "asus-prime-b450-plus-4604",
+   "patches": [
+    {
+     "date_bcd": "0x10062016",
+     "date": "10/06/2016",
+     "patch_level": "0x800002A",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11202016",
+     "date": "11/20/2016",
+     "patch_level": "0x8100004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01312017",
+     "date": "01/31/2017",
+     "patch_level": "0x800100C",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06052018",
+     "date": "06/05/2018",
+     "patch_level": "0x8108002",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11062018",
+     "date": "11/06/2018",
+     "patch_level": "0x8101102",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12062018",
+     "date": "12/06/2018",
+     "patch_level": "0x8700004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x02042019",
+     "date": "02/04/2019",
+     "patch_level": "0x8001138",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x800820D",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x8001250",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8200103",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8108109",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04302019",
+     "date": "04/30/2019",
+     "patch_level": "0x8101016",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01212020",
+     "date": "01/21/2020",
+     "patch_level": "0xA200025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01272020",
+     "date": "01/27/2020",
+     "patch_level": "0x860000E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10062023",
+     "date": "10/06/2023",
+     "patch_level": "0x8701033",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x07072023",
+     "date": "07/07/2023",
+     "patch_level": "0xA20102B",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x07072023",
+     "date": "07/07/2023",
+     "patch_level": "0xA20120E",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x07072023",
+     "date": "07/07/2023",
+     "patch_level": "0xA50000F",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10072023",
+     "date": "10/07/2023",
+     "patch_level": "0x860010C",
+     "size": 3200,
+     "occ": 1
+    }
+   ],
+   "patch_count": 19,
+   "newest_patch_date": "10/07/2023",
+   "family_prefixes": {
+    "0x80xxxxx": 5,
+    "0x81xxxxx": 5,
+    "0x87xxxxx": 2,
+    "0x82xxxxx": 1,
+    "0xA2xxxxx": 3,
+    "0x86xxxxx": 2,
+    "0xA5xxxxx": 1
+   }
+  },
+  "4631": {
+   "id": "asus-prime-b450-plus-4631",
+   "patches": [
+    {
+     "date_bcd": "0x10062016",
+     "date": "10/06/2016",
+     "patch_level": "0x800002A",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11202016",
+     "date": "11/20/2016",
+     "patch_level": "0x8100004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01312017",
+     "date": "01/31/2017",
+     "patch_level": "0x800100C",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06052018",
+     "date": "06/05/2018",
+     "patch_level": "0x8108002",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11062018",
+     "date": "11/06/2018",
+     "patch_level": "0x8101102",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12062018",
+     "date": "12/06/2018",
+     "patch_level": "0x8700004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x8001250",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01212020",
+     "date": "01/21/2020",
+     "patch_level": "0xA200025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01272020",
+     "date": "01/27/2020",
+     "patch_level": "0x860000E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12052024",
+     "date": "12/05/2024",
+     "patch_level": "0xA201213",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x05092024",
+     "date": "05/09/2024",
+     "patch_level": "0x8200104",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11112024",
+     "date": "11/11/2024",
+     "patch_level": "0xA201030",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11112024",
+     "date": "11/11/2024",
+     "patch_level": "0xA500014",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11122024",
+     "date": "11/12/2024",
+     "patch_level": "0x810810E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x08152024",
+     "date": "08/15/2024",
+     "patch_level": "0x800820E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x07162024",
+     "date": "07/16/2024",
+     "patch_level": "0x810101B",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11182024",
+     "date": "11/18/2024",
+     "patch_level": "0x860010F",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11182024",
+     "date": "11/18/2024",
+     "patch_level": "0x8701035",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x08222024",
+     "date": "08/22/2024",
+     "patch_level": "0x8001139",
+     "size": 3200,
+     "occ": 1
+    }
+   ],
+   "patch_count": 19,
+   "newest_patch_date": "08/22/2024",
+   "family_prefixes": {
+    "0x80xxxxx": 5,
+    "0x81xxxxx": 5,
+    "0x87xxxxx": 2,
+    "0xA2xxxxx": 3,
+    "0x86xxxxx": 2,
+    "0x82xxxxx": 1,
+    "0xA5xxxxx": 1
+   }
+  },
+  "4655": {
+   "id": "asus-prime-b450-plus",
+   "patches": [
+    {
+     "date_bcd": "0x10062016",
+     "date": "10/06/2016",
+     "patch_level": "0x800002A",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11202016",
+     "date": "11/20/2016",
+     "patch_level": "0x8100004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01312017",
+     "date": "01/31/2017",
+     "patch_level": "0x800100C",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06052018",
+     "date": "06/05/2018",
+     "patch_level": "0x8108002",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11062018",
+     "date": "11/06/2018",
+     "patch_level": "0x8101102",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12062018",
+     "date": "12/06/2018",
+     "patch_level": "0x8700004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x8001250",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01212020",
+     "date": "01/21/2020",
+     "patch_level": "0xA200025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01272020",
+     "date": "01/27/2020",
+     "patch_level": "0x860000E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12052024",
+     "date": "12/05/2024",
+     "patch_level": "0xA201213",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x05092024",
+     "date": "05/09/2024",
+     "patch_level": "0x8200104",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11112024",
+     "date": "11/11/2024",
+     "patch_level": "0xA201030",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11112024",
+     "date": "11/11/2024",
+     "patch_level": "0xA500014",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11122024",
+     "date": "11/12/2024",
+     "patch_level": "0x810810E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x08152024",
+     "date": "08/15/2024",
+     "patch_level": "0x800820E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x07162024",
+     "date": "07/16/2024",
+     "patch_level": "0x810101B",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11182024",
+     "date": "11/18/2024",
+     "patch_level": "0x860010F",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11182024",
+     "date": "11/18/2024",
+     "patch_level": "0x8701035",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x08222024",
+     "date": "08/22/2024",
+     "patch_level": "0x8001139",
+     "size": 3200,
+     "occ": 1
+    }
+   ],
+   "patch_count": 19,
+   "newest_patch_date": "08/22/2024",
+   "family_prefixes": {
+    "0x80xxxxx": 5,
+    "0x81xxxxx": 5,
+    "0x87xxxxx": 2,
+    "0xA2xxxxx": 3,
+    "0x86xxxxx": 2,
+    "0x82xxxxx": 1,
+    "0xA5xxxxx": 1
+   }
+  },
+  "7C02v3G1": {
+   "id": "msi-b450-tomahawk-max",
+   "patches": [
+    {
+     "date_bcd": "0x10062016",
+     "date": "10/06/2016",
+     "patch_level": "0x800002A",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11202016",
+     "date": "11/20/2016",
+     "patch_level": "0x8100004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01312017",
+     "date": "01/31/2017",
+     "patch_level": "0x800100C",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06052018",
+     "date": "06/05/2018",
+     "patch_level": "0x8108002",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11062018",
+     "date": "11/06/2018",
+     "patch_level": "0x8101102",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12062018",
+     "date": "12/06/2018",
+     "patch_level": "0x8700004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x02042019",
+     "date": "02/04/2019",
+     "patch_level": "0x8001138",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x800820D",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x8001250",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8108109",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04172019",
+     "date": "04/17/2019",
+     "patch_level": "0x8200103",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04302019",
+     "date": "04/30/2019",
+     "patch_level": "0x8101016",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01212020",
+     "date": "01/21/2020",
+     "patch_level": "0xA200025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01272020",
+     "date": "01/27/2020",
+     "patch_level": "0x860000E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA201025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA50000D",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x10142021",
+     "date": "10/14/2021",
+     "patch_level": "0xA20120A",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x03282022",
+     "date": "03/28/2022",
+     "patch_level": "0x8600109",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x03282022",
+     "date": "03/28/2022",
+     "patch_level": "0x8701030",
+     "size": 3200,
+     "occ": 1
+    }
+   ],
+   "patch_count": 19,
+   "newest_patch_date": "03/28/2022",
+   "family_prefixes": {
+    "0x80xxxxx": 5,
+    "0x81xxxxx": 5,
+    "0x87xxxxx": 2,
+    "0x82xxxxx": 1,
+    "0xA2xxxxx": 3,
+    "0x86xxxxx": 2,
+    "0xA5xxxxx": 1
+   }
+  },
+  "F67c": {
+   "id": "gigabyte-b450-aorus-pro",
+   "patches": [
+    {
+     "date_bcd": "0x10062016",
+     "date": "10/06/2016",
+     "patch_level": "0x800002A",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11202016",
+     "date": "11/20/2016",
+     "patch_level": "0x8100004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01312017",
+     "date": "01/31/2017",
+     "patch_level": "0x800100C",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06052018",
+     "date": "06/05/2018",
+     "patch_level": "0x8108002",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11062018",
+     "date": "11/06/2018",
+     "patch_level": "0x8101102",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12062018",
+     "date": "12/06/2018",
+     "patch_level": "0x8700004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x8001250",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01212020",
+     "date": "01/21/2020",
+     "patch_level": "0xA200025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01272020",
+     "date": "01/27/2020",
+     "patch_level": "0x860000E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12052024",
+     "date": "12/05/2024",
+     "patch_level": "0xA201213",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x05092024",
+     "date": "05/09/2024",
+     "patch_level": "0x8200104",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11112024",
+     "date": "11/11/2024",
+     "patch_level": "0xA201030",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11112024",
+     "date": "11/11/2024",
+     "patch_level": "0xA500014",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11122024",
+     "date": "11/12/2024",
+     "patch_level": "0x810810E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x08152024",
+     "date": "08/15/2024",
+     "patch_level": "0x800820E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x07162024",
+     "date": "07/16/2024",
+     "patch_level": "0x810101B",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11182024",
+     "date": "11/18/2024",
+     "patch_level": "0x8701035",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11182024",
+     "date": "11/18/2024",
+     "patch_level": "0x860010F",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x08222024",
+     "date": "08/22/2024",
+     "patch_level": "0x8001139",
+     "size": 3200,
+     "occ": 1
+    }
+   ],
+   "patch_count": 19,
+   "newest_patch_date": "08/22/2024",
+   "family_prefixes": {
+    "0x80xxxxx": 5,
+    "0x81xxxxx": 5,
+    "0x87xxxxx": 2,
+    "0xA2xxxxx": 3,
+    "0x86xxxxx": 2,
+    "0x82xxxxx": 1,
+    "0xA5xxxxx": 1
+   }
+  },
+  "10.41 Beta": {
+   "id": "asrock-b450-steel-legend",
+   "patches": [
+    {
+     "date_bcd": "0x10062016",
+     "date": "10/06/2016",
+     "patch_level": "0x800002A",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11202016",
+     "date": "11/20/2016",
+     "patch_level": "0x8100004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01312017",
+     "date": "01/31/2017",
+     "patch_level": "0x800100C",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x06052018",
+     "date": "06/05/2018",
+     "patch_level": "0x8108002",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11062018",
+     "date": "11/06/2018",
+     "patch_level": "0x8101102",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12062018",
+     "date": "12/06/2018",
+     "patch_level": "0x8700004",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x04162019",
+     "date": "04/16/2019",
+     "patch_level": "0x8001250",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01212020",
+     "date": "01/21/2020",
+     "patch_level": "0xA200025",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x01272020",
+     "date": "01/27/2020",
+     "patch_level": "0x860000E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x12052024",
+     "date": "12/05/2024",
+     "patch_level": "0xA201213",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x05092024",
+     "date": "05/09/2024",
+     "patch_level": "0x8200104",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11112024",
+     "date": "11/11/2024",
+     "patch_level": "0xA201030",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11112024",
+     "date": "11/11/2024",
+     "patch_level": "0xA500014",
+     "size": 5568,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11122024",
+     "date": "11/12/2024",
+     "patch_level": "0x810810E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x08152024",
+     "date": "08/15/2024",
+     "patch_level": "0x800820E",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x07162024",
+     "date": "07/16/2024",
+     "patch_level": "0x810101B",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11182024",
+     "date": "11/18/2024",
+     "patch_level": "0x8701035",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x11182024",
+     "date": "11/18/2024",
+     "patch_level": "0x860010F",
+     "size": 3200,
+     "occ": 1
+    },
+    {
+     "date_bcd": "0x08222024",
+     "date": "08/22/2024",
+     "patch_level": "0x8001139",
+     "size": 3200,
+     "occ": 1
+    }
+   ],
+   "patch_count": 19,
+   "newest_patch_date": "08/22/2024",
+   "family_prefixes": {
+    "0x80xxxxx": 5,
+    "0x81xxxxx": 5,
+    "0x87xxxxx": 2,
+    "0xA2xxxxx": 3,
+    "0x86xxxxx": 2,
+    "0x82xxxxx": 1,
+    "0xA5xxxxx": 1
+   }
+  }
+ },
+ "asus_ladder_diffs": [
+  {
+   "pair": "3604->3802",
+   "arrived": [
+    "10/14/2021/0xA20120A",
+    "10/14/2021/0xA50000D"
+   ],
+   "departed": [
+    "07/19/2021/0xA201205",
+    "12/08/2020/0xA50000C"
+   ],
+   "shared": 17
+  },
+  {
+   "pair": "3802->3810",
+   "arrived": [],
+   "departed": [],
+   "shared": 19
+  },
+  {
+   "pair": "3810->4003",
+   "arrived": [
+    "03/28/2022/0x8600109",
+    "03/28/2022/0x8701030",
+    "10/14/2021/0xA201025"
+   ],
+   "departed": [
+    "01/25/2020/0x8701021",
+    "04/08/2021/0xA201016",
+    "06/19/2020/0x8600106"
+   ],
+   "shared": 16
+  },
+  {
+   "pair": "4003->4202",
+   "arrived": [],
+   "departed": [],
+   "shared": 19
+  },
+  {
+   "pair": "4202->4402",
+   "arrived": [
+    "07/07/2023/0xA20102B",
+    "07/07/2023/0xA20120E",
+    "07/07/2023/0xA50000F"
+   ],
+   "departed": [
+    "10/14/2021/0xA201025",
+    "10/14/2021/0xA20120A",
+    "10/14/2021/0xA50000D"
+   ],
+   "shared": 16
+  },
+  {
+   "pair": "4402->4604",
+   "arrived": [
+    "10/06/2023/0x8701033",
+    "10/07/2023/0x860010C"
+   ],
+   "departed": [
+    "03/28/2022/0x8600109",
+    "03/28/2022/0x8701030"
+   ],
+   "shared": 17
+  },
+  {
+   "pair": "4604->4631",
+   "arrived": [
+    "05/09/2024/0x8200104",
+    "07/16/2024/0x810101B",
+    "08/15/2024/0x800820E",
+    "08/22/2024/0x8001139",
+    "11/11/2024/0xA201030",
+    "11/11/2024/0xA500014",
+    "11/12/2024/0x810810E",
+    "11/18/2024/0x860010F",
+    "11/18/2024/0x8701035",
+    "12/05/2024/0xA201213"
+   ],
+   "departed": [
+    "02/04/2019/0x8001138",
+    "04/16/2019/0x800820D",
+    "04/17/2019/0x8108109",
+    "04/17/2019/0x8200103",
+    "04/30/2019/0x8101016",
+    "07/07/2023/0xA20102B",
+    "07/07/2023/0xA20120E",
+    "07/07/2023/0xA50000F",
+    "10/06/2023/0x8701033",
+    "10/07/2023/0x860010C"
+   ],
+   "shared": 9
+  },
+  {
+   "pair": "4631->4655",
+   "arrived": [],
+   "departed": [],
+   "shared": 19
+  }
+ ],
+ "ring20_fusion": {
+  "pair_discrimination_with_microcode": [
+   {
+    "pair": "3604|3802",
+    "separated_by": [
+     "microcode",
+     "agesa",
+     "armor",
+     "psp_state",
+     "geometry"
+    ],
+    "new_with_microcode": [
+     "microcode"
+    ]
+   },
+   {
+    "pair": "3802|3810",
+    "separated_by": [
+     "certs"
+    ],
+    "new_with_microcode": []
+   },
+   {
+    "pair": "3810|4003",
+    "separated_by": [
+     "microcode",
+     "agesa",
+     "geometry"
+    ],
+    "new_with_microcode": [
+     "microcode"
+    ]
+   },
+   {
+    "pair": "4003|4202",
+    "separated_by": [
+     "agesa",
+     "geometry"
+    ],
+    "new_with_microcode": []
+   },
+   {
+    "pair": "4202|4402",
+    "separated_by": [
+     "microcode",
+     "agesa",
+     "psp_state",
+     "geometry"
+    ],
+    "new_with_microcode": [
+     "microcode"
+    ]
+   },
+   {
+    "pair": "4402|4604",
+    "separated_by": [
+     "microcode",
+     "agesa",
+     "armor",
+     "psp_state",
+     "geometry"
+    ],
+    "new_with_microcode": [
+     "microcode"
+    ]
+   },
+   {
+    "pair": "4604|4631",
+    "separated_by": [
+     "microcode",
+     "agesa"
+    ],
+    "new_with_microcode": [
+     "microcode"
+    ]
+   },
+   {
+    "pair": "4631|4655",
+    "separated_by": [
+     "agesa",
+     "psp_state",
+     "geometry"
+    ],
+    "new_with_microcode": []
+   }
+  ],
+  "the_3802_3810_pair": {
+   "separated_by_microcode": false,
+   "detail": {
+    "identical_sets": true
+   }
+  },
+  "resolving_clock_pairs_incl_microcode": [
+   [
+    "agesa",
+    "cert_count"
+   ]
+  ]
+ },
+ "reading": {
+  "the_sixth_clock": "microcode moves between 5 of 8 adjacent rungs; newest-patch date is monotone on the ladder: 3604:07/19/2021 -> 3802:10/14/2021 -> 3810:10/14/2021 -> 4003:03/28/2022 -> 4202:03/28/2022 -> 4402:07/07/2023 -> 4604:10/07/2023 -> 4631:08/22/2024 -> 4655:08/22/2024",
+  "the_3802_3810_pair": "NOT separated by microcode — the quiet pair survives all state clocks except certs",
+  "day0_value": "microcode scan is raw-directory (psptool, seconds); the newest patch date year-buckets the build and the set pins the rung alongside (cert_count, AGESA)"
+ },
+ "honesty": [
+  "the lens sees BIOS-directory-registered microcode only; patches embedded inside compressed FV payloads without a 0x66 entry would be invisible (none expected on AGESA v9 — microcode is platform material)",
+  "family attribution is the measured patch_level high-byte clustering only; no CPUID cross-reference was performed — the cluster labels are data, not decoded generations",
+  "occurrences dedupe per (date, patch_level, size); MSI's two SPI windows count once per distinct patch",
+  "the restored rungs' identity rests on zip sha256 anchors from the ring-16/18 register; their recorded rom hashes are dead metadata (superseded, kept in the register)",
+  "armor gates re-verified against the register per rung — the restored binaries behave exactly like the ring-18 specimens before any microcode reading"
+ ]
+}

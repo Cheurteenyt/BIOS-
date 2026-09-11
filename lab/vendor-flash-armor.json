@@ -1,16 +1,16 @@
 {
  "schema": "omarchy-firmware/vendor-flash-armor@1",
  "date": "2026-09-11",
- "extended": "ring 18 (2026-09-11): the three unprobed releases 3802/3810/4003 measured \u2014 the wave-1 boundary is now exact at official-release granularity and the ring-16 security reading is corrected by direct measurement",
+ "extended": "ring 18 (2026-09-11): the three unprobed releases 3802/3810/4003 measured — the wave-1 boundary is now exact at official-release granularity and the ring-16 security reading is corrected by direct measurement",
  "note": "which official PRIME B450-PLUS release first carries the seven modules ring 15 measured as added 3604->4655 (the vendor flash-armor set); the full 40-release ledger interrogated with 7 downloads + 2 free sentinels, register written after every probe",
  "added_watchlist": {
-  "02076249\u2026": "freeform (unnamed)",
-  "391626DB\u2026": "PrepareWhiteListSmm",
-  "4EB43107\u2026": "DXE (unnamed '1.0')",
-  "51080191\u2026": "SbRomArmorSmm",
-  "6C289241\u2026": "FlashSmiSmm",
-  "755877A6\u2026": "FlashSmiDxe",
-  "89BE47F4\u2026": "freeform (unnamed)"
+  "02076249…": "freeform (unnamed)",
+  "391626DB…": "PrepareWhiteListSmm",
+  "4EB43107…": "DXE (unnamed '1.0')",
+  "51080191…": "SbRomArmorSmm",
+  "6C289241…": "FlashSmiSmm",
+  "755877A6…": "FlashSmiDxe",
+  "89BE47F4…": "freeform (unnamed)"
  },
  "probes": [
   {
@@ -241,15 +241,93 @@
  },
  "downloads_total": 7,
  "reading": {
-  "two_waves_exact": "the core SMM armor (FlashSmiSmm, FlashSmiDxe, PrepareWhiteListSmm, SbRomArmorSmm + one freeform) first measures 5/7 at 3802 (2022-05-12) \u2014 the release IMMEDIATELY following 3604 (2022-03-16, 0/7) in the ledger, so the introduction is bounded to a single release gap; the set completes at 4604 (2024-04-08) when the DXE helper 4EB43107 and the second freeform join; 3810-4402 all sit at 5/7",
-  "ring16_reading_corrected": "ring 16 read the armor as bracketing the LogoFail year because its bisect skipped 3802/3810/4003 \u2014 with those measured, the core wave PREDATES the LogoFail disclosure (2023) by about fourteen months and cannot be a reaction to it; what DOES land inside the disclosure window is the legacy-SMM RETIREMENT: both legacy modules still present at 4003 (2023-03-21), one gone by 4202 (2023-08-02), both gone by 4402 (2024-01-08)",
-  "sampling_bias_lesson": "a binary search answers only the question asked ('by when present'), never 'when introduced' \u2014 the ring-16 'present by 4202' was true and misleading at once; the ring-18 fix is three more probes, not a new theory",
-  "day0_use": "checklist against the dump: 5/7 armor GUIDs expected if >= 3802 (2022-05), 7/7 if >= 4604 (2024-04); legacy pair 2/2 if <= 4003, 1/2 at 4202, 0/2 from 4402 \u2014 0/7 overall would date the build pre-3802 and is itself a finding; read with the AGESA timeline (vendor-agesa.json) for a second independent bound"
+  "two_waves_exact": "the core SMM armor (FlashSmiSmm, FlashSmiDxe, PrepareWhiteListSmm, SbRomArmorSmm + one freeform) first measures 5/7 at 3802 (2022-05-12) — the release IMMEDIATELY following 3604 (2022-03-16, 0/7) in the ledger, so the introduction is bounded to a single release gap; the set completes at 4604 (2024-04-08) when the DXE helper 4EB43107 and the second freeform join; 3810-4402 all sit at 5/7",
+  "ring16_reading_corrected": "ring 16 read the armor as bracketing the LogoFail year because its bisect skipped 3802/3810/4003 — with those measured, the core wave PREDATES the LogoFail disclosure (2023) by about fourteen months and cannot be a reaction to it; what DOES land inside the disclosure window is the legacy-SMM RETIREMENT: both legacy modules still present at 4003 (2023-03-21), one gone by 4202 (2023-08-02), both gone by 4402 (2024-01-08)",
+  "sampling_bias_lesson": "a binary search answers only the question asked ('by when present'), never 'when introduced' — the ring-16 'present by 4202' was true and misleading at once; the ring-18 fix is three more probes, not a new theory",
+  "day0_use": "checklist against the dump: 5/7 armor GUIDs expected if >= 3802 (2022-05), 7/7 if >= 4604 (2024-04); legacy pair 2/2 if <= 4003, 1/2 at 4202, 0/2 from 4402 — 0/7 overall would date the build pre-3802 and is itself a finding; read with the AGESA timeline (vendor-agesa.json) for a second independent bound"
  },
  "honesty": [
-  "the wave-1 introduction is exact at OFFICIAL-release granularity: 3802 is the next ledger release after 3604, so no in-between build exists to probe \u2014 an OEM/factory image between the two remains formally possible",
+  "the wave-1 introduction is exact at OFFICIAL-release granularity: 3802 is the next ledger release after 3604, so no in-between build exists to probe — an OEM/factory image between the two remains formally possible",
   "the two freeform armor files are unnamed (no UI section); they are tracked by GUID only",
-  "vendor sha256 published only for newer releases (4631+ verified byte-exact; 3802/3810/4003/4202/4402/4604 have none in the ledger \u2014 provenance rests on the official CDN URL + zip sha256 recorded at download time)",
-  "the LogoFail correlation is now stated at year granularity only (2023) \u2014 no day-precise disclosure date exists in the project's on-disk sources"
- ]
+  "vendor sha256 published only for newer releases (4631+ verified byte-exact; 3802/3810/4003/4202/4402/4604 have none in the ledger — provenance rests on the official CDN URL + zip sha256 recorded at download time)",
+  "the LogoFail correlation is now stated at year granularity only (2023) — no day-precise disclosure date exists in the project's on-disk sources"
+ ],
+ "ring21_rom_hash_correction": {
+  "date": "2026-09-12",
+  "ring": 21,
+  "note": "ring-21 extraction of the seven restored rungs: every zip matches this register's zip_sha256 anchor byte-exact, but the seven rom_sha256_16 values recorded by the ring-16/18 probes are unreproducible from any byte range of those verified files (8 wrapper/offset variants tested, 0/7 hits) — dead metadata from the session whose probe scripts the sandbox reset erased. Values superseded below, never erased; zip anchors were and remain sound.",
+  "method": "zip sha256 gate -> CAP extraction -> rom = raw[2048:] -> full sha256 computed 2026-09-12",
+  "corrections": [
+   {
+    "version": "3802",
+    "zip_sha256_anchor": "425343ddc5c8011f3a9c94652671c4e79ed4b466197118004e1216c82935bb81",
+    "zip_anchor_verified": true,
+    "registered_rom_sha256_16_kept": "f9bb9ac5f2552369",
+    "corrected_rom_sha256": "4ff704de056ee2f572b254fb39b012f1e7108c39a786931109e63a920f47a1a3",
+    "corrected_rom_sha256_16": "4ff704de056ee2f5",
+    "rom_bytes": 16777216,
+    "rom_file": "asus-prime-b450-plus-3802.rom"
+   },
+   {
+    "version": "3810",
+    "zip_sha256_anchor": "3ed44e73c833edf4410f4c060e13fccfc0b37a8e58436251859f509434d1f716",
+    "zip_anchor_verified": true,
+    "registered_rom_sha256_16_kept": "4c925f66864446e8",
+    "corrected_rom_sha256": "c3cc23f06b7f67964492f87de3f628341c749816cb68deadad0480203146f995",
+    "corrected_rom_sha256_16": "c3cc23f06b7f6796",
+    "rom_bytes": 16777216,
+    "rom_file": "asus-prime-b450-plus-3810.rom"
+   },
+   {
+    "version": "4003",
+    "zip_sha256_anchor": "f19e568cbb73df464961eb525e2b51685f482a6a6187f17565eea8e454e1e178",
+    "zip_anchor_verified": true,
+    "registered_rom_sha256_16_kept": "a11dff75cbb9d953",
+    "corrected_rom_sha256": "99560208f9df0ff9890ed9bf08a44adb99eda8e739e520301b09fb3c06125d86",
+    "corrected_rom_sha256_16": "99560208f9df0ff9",
+    "rom_bytes": 16777216,
+    "rom_file": "asus-prime-b450-plus-4003.rom"
+   },
+   {
+    "version": "4202",
+    "zip_sha256_anchor": "f1b6ebe9bd1b5ecdd7293399b614b231f920c24bdfbf2a41bbc38ef109429372",
+    "zip_anchor_verified": true,
+    "registered_rom_sha256_16_kept": "5ff8f8e27c8b2d73",
+    "corrected_rom_sha256": "11ea4bc5f2486a20fa94cf19af313391217fffe3a0c7b21e75f746a133fd3e75",
+    "corrected_rom_sha256_16": "11ea4bc5f2486a20",
+    "rom_bytes": 16777216,
+    "rom_file": "asus-prime-b450-plus-4202.rom"
+   },
+   {
+    "version": "4402",
+    "zip_sha256_anchor": "8962f489ed9ce28a8e54c0abc041515a4b8299e6003634b38802f12e184d70a4",
+    "zip_anchor_verified": true,
+    "registered_rom_sha256_16_kept": "916bcaca825ac3ca",
+    "corrected_rom_sha256": "932fb6248923325989b55b131269d24abf27fe7f99be360a717c9d6397427a7c",
+    "corrected_rom_sha256_16": "932fb62489233259",
+    "rom_bytes": 16777216,
+    "rom_file": "asus-prime-b450-plus-4402.rom"
+   },
+   {
+    "version": "4604",
+    "zip_sha256_anchor": "1cd8a65b9f3deb29a0fcb3dc4a3cc3e3a126bfb7a8b50ca8d576f08c1477ae0e",
+    "zip_anchor_verified": true,
+    "registered_rom_sha256_16_kept": "eddccf1e75f28adc",
+    "corrected_rom_sha256": "30ac09e07f539973d2c5a2cdc4fd74cd34fe19c89f70cc85d973b9bc8ecf0905",
+    "corrected_rom_sha256_16": "30ac09e07f539973",
+    "rom_bytes": 16777216,
+    "rom_file": "asus-prime-b450-plus-4604.rom"
+   },
+   {
+    "version": "4631",
+    "zip_sha256_anchor": "51679301c0843cae99ce5b22f234a2aa3643ccb2d7715f7284d02f414f068bec",
+    "zip_anchor_verified": true,
+    "registered_rom_sha256_16_kept": "39e778a1a6141aeb",
+    "corrected_rom_sha256": "29ca1e0f9c42da1dfd60a7313aca5394113510a3535f0c6aaf719dd811f098a2",
+    "corrected_rom_sha256_16": "29ca1e0f9c42da1d",
+    "rom_bytes": 16777216,
+    "rom_file": "asus-prime-b450-plus-4631.rom"
+   }
+  ]
+ }
 }

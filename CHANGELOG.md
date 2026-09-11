@@ -4,6 +4,52 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the twenty-first ring (the sixth clock, the hidden map, and the inverse boundary)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Three fronts on the restored nine-rung ladder** — the seven rungs the
+ring-18 probes deleted were re-acquired zip-sha256-gated from the same
+CDN URLs; the restoration itself caught a register defect: the ring-16/18
+`rom_sha256_16` entries are dead metadata (0/7 reproducible from the
+byte-verified zips across 8 wrapper variants; the probe source was erased
+by the sandbox reset). Superseded in `vendor-flash-armor.json` — kept,
+never erased — and the restored binaries reproduce the ring-18 armor
+census exactly (9/9 gates) before any reading:
+
+- **The microcode clock** (`vendor-microcode.json`): the CPU's own patch
+  set as the sixth dating signal, via psptool's `0x66` lens. Exactly 19
+  patches per specimen — the carrier constant — and a monotone
+  newest-patch date across the ladder (2021-07 → 2024-08) moving at 5/8
+  rungs. The quiet pair 3802|3810 is NOT separated (identical sets —
+  certs remain the only splitter); `(cert_count, AGESA)` stays THE
+  minimal resolving pair. Cross-vendor coherence: MSI 2023-03 freezes at
+  the 2022-03 microcode era; Gigabyte 2026 and ASRock 2025 both at
+  2024-08-22 — AMD stopped refreshing the AM4 set at the 4631
+  generation. My own probe's date bug (string-max over DD/MM/YYYY) was
+  caught on the second run and registered.
+- **The hidden map** (`vendor-hidden-map.json`): ring-20's unasked-bytes
+  machinery inverted into merged [offset, length) ranges. Gates
+  reproduce ring 19's totals 5/5. The never-asked `Setup` offsets: ASUS
+  456 B / 142 B / 27 ranges — IDENTICAL at 3604 and 4655: the Setup
+  layout frozen across 4.5 years. MSI hides the most (567 B in 166
+  fragmented ranges). Knowledge-only; the zero-write doctrine untouched.
+- **The ACPI lens** (`vendor-acpi.json`): checksum-admitted tables.
+  The vendor ships the AML only — 4 distinct DSDT variants + 18-23
+  SSDTs per board — and BUILDS every static table: zero FACP/APIC/
+  MCFG/HPET/IVRS bytes in any image (the first gate imported the OVMF
+  expectation, was refuted at byte level by the debug probe, rewritten).
+  The Q8 boundary is the inverse of OVMF's. The DSDT clock: three body
+  generations moving at 4202→4402 — where the DSDT SHRANK 2,141 B, the
+  same release the legacy SMM fully retired — and 4604→4631; the
+  compiler (INTL 2014-09-25) never moves. No table body is
+  byte-identical across all twelve boards.
+- Day-0 checklist gains two raw-read clocks (microcode, DSDT) before the
+  pierce, an offset-level `Setup` row, and an ACPI row (DSDT+SSDT
+  shipped, zero FACP bytes expected — finding any would be a corpus
+  first).
+
 ## Unreleased — the twentieth ring (the clocks, the quorum, the unasked bytes, and the rebuild)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

@@ -569,5 +569,140 @@
   "geometry classes are 64-KiB window heuristics; the packed share is a share, not a measurement of payload identity",
   "the resolving-pair computation treats the clocks as categorical; two rungs with equal clock values are 'unseparated' even if a finer lens could split them",
   "the TUF 4645 specimen (another board) is deliberately out of the fused table — same-vendor cross-board dating needs its own ring"
- ]
+ ],
+ "ring21_microcode_extension": {
+  "date": "2026-09-12",
+  "ring": 21,
+  "source": "lab/vendor-microcode.json",
+  "clock_microcode": {
+   "3604": {
+    "newest_patch_date": "07/19/2021",
+    "patch_count": 19
+   },
+   "3802": {
+    "newest_patch_date": "10/14/2021",
+    "patch_count": 19
+   },
+   "3810": {
+    "newest_patch_date": "10/14/2021",
+    "patch_count": 19
+   },
+   "4003": {
+    "newest_patch_date": "03/28/2022",
+    "patch_count": 19
+   },
+   "4202": {
+    "newest_patch_date": "03/28/2022",
+    "patch_count": 19
+   },
+   "4402": {
+    "newest_patch_date": "07/07/2023",
+    "patch_count": 19
+   },
+   "4604": {
+    "newest_patch_date": "10/07/2023",
+    "patch_count": 19
+   },
+   "4631": {
+    "newest_patch_date": "08/22/2024",
+    "patch_count": 19
+   },
+   "4655": {
+    "newest_patch_date": "08/22/2024",
+    "patch_count": 19
+   }
+  },
+  "pair_discrimination_updated": [
+   {
+    "pair": "3604|3802",
+    "separated_by": [
+     "microcode",
+     "agesa",
+     "armor",
+     "psp_state",
+     "geometry"
+    ],
+    "new_with_microcode": [
+     "microcode"
+    ]
+   },
+   {
+    "pair": "3802|3810",
+    "separated_by": [
+     "certs"
+    ],
+    "new_with_microcode": []
+   },
+   {
+    "pair": "3810|4003",
+    "separated_by": [
+     "microcode",
+     "agesa",
+     "geometry"
+    ],
+    "new_with_microcode": [
+     "microcode"
+    ]
+   },
+   {
+    "pair": "4003|4202",
+    "separated_by": [
+     "agesa",
+     "geometry"
+    ],
+    "new_with_microcode": []
+   },
+   {
+    "pair": "4202|4402",
+    "separated_by": [
+     "microcode",
+     "agesa",
+     "psp_state",
+     "geometry"
+    ],
+    "new_with_microcode": [
+     "microcode"
+    ]
+   },
+   {
+    "pair": "4402|4604",
+    "separated_by": [
+     "microcode",
+     "agesa",
+     "armor",
+     "psp_state",
+     "geometry"
+    ],
+    "new_with_microcode": [
+     "microcode"
+    ]
+   },
+   {
+    "pair": "4604|4631",
+    "separated_by": [
+     "microcode",
+     "agesa"
+    ],
+    "new_with_microcode": [
+     "microcode"
+    ]
+   },
+   {
+    "pair": "4631|4655",
+    "separated_by": [
+     "agesa",
+     "psp_state",
+     "geometry"
+    ],
+    "new_with_microcode": []
+   }
+  ],
+  "resolving_pairs_updated": [
+   [
+    "agesa",
+    "cert_count"
+   ]
+  ],
+  "note": "extension, not rewrite — the five original clocks and their tables above are untouched"
+ }
 }

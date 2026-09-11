@@ -1,0 +1,2040 @@
+{
+ "schema": "omarchy-firmware/vendor-hidden-map@1",
+ "date": "2026-09-12",
+ "ring": 21,
+ "title": "the hidden map — the Setup offsets no question ever asks about, per vendor",
+ "note": "front B of ring 21: ring-20 front C machinery imported verbatim (grammar, dissection, gates); the only new code inverts covered byte-sets into merged [offset, length) ranges. KNOWLEDGE-ONLY: the map prices what a setup_var-style editor COULD address; the zero-write doctrine is untouched",
+ "validation_gates": [
+  {
+   "gate": "asus-prime-b450-plus-ref question total == ring-19 register",
+   "want": 7975,
+   "got": 7975,
+   "pass": true
+  },
+  {
+   "gate": "asus-prime-b450-plus question total == ring-19 register",
+   "want": 8273,
+   "got": 8273,
+   "pass": true
+  },
+  {
+   "gate": "msi-b450-tomahawk-max question total == ring-19 register",
+   "want": 8646,
+   "got": 8646,
+   "pass": true
+  },
+  {
+   "gate": "gigabyte-b450-aorus-pro question total == ring-19 register",
+   "want": 6388,
+   "got": 6388,
+   "pass": true
+  },
+  {
+   "gate": "asrock-b450-steel-legend question total == ring-19 register",
+   "want": 6360,
+   "got": 6360,
+   "pass": true
+  }
+ ],
+ "maps": {
+  "asus-prime-b450-plus-ref": {
+   "version": "3604",
+   "setup_carriers": [
+    {
+     "carrier": "899407D7…/formset#0",
+     "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+     "size": 456,
+     "covered_bytes": 314,
+     "uncovered_bytes": 142,
+     "uncovered_ranges": 27,
+     "largest_uncovered": [
+      49,
+      28
+     ],
+     "ranges": [
+      [
+       11,
+       1
+      ],
+      [
+       13,
+       1
+      ],
+      [
+       18,
+       1
+      ],
+      [
+       20,
+       1
+      ],
+      [
+       27,
+       2
+      ],
+      [
+       39,
+       1
+      ],
+      [
+       42,
+       1
+      ],
+      [
+       49,
+       28
+      ],
+      [
+       86,
+       1
+      ],
+      [
+       92,
+       3
+      ],
+      [
+       98,
+       1
+      ],
+      [
+       101,
+       1
+      ],
+      [
+       118,
+       1
+      ],
+      [
+       121,
+       4
+      ],
+      [
+       185,
+       1
+      ],
+      [
+       213,
+       1
+      ],
+      [
+       231,
+       4
+      ],
+      [
+       241,
+       5
+      ],
+      [
+       250,
+       6
+      ],
+      [
+       264,
+       21
+      ],
+      [
+       311,
+       3
+      ],
+      [
+       318,
+       26
+      ],
+      [
+       349,
+       2
+      ],
+      [
+       375,
+       1
+      ],
+      [
+       412,
+       1
+      ],
+      [
+       416,
+       23
+      ],
+      [
+       444,
+       1
+      ]
+     ]
+    },
+    {
+     "carrier": "70E1A818…/formset#0",
+     "guid": "80e1202e-2697-4264-9cc9-80762c3e5863",
+     "size": 7,
+     "covered_bytes": 1,
+     "uncovered_bytes": 6,
+     "uncovered_ranges": 2,
+     "largest_uncovered": [
+      2,
+      5
+     ],
+     "ranges": [
+      [
+       0,
+       1
+      ],
+      [
+       2,
+       5
+      ]
+     ]
+    }
+   ],
+   "other_varstores_top": [
+    {
+     "name": "MyRCVirtDisks",
+     "size": 5587,
+     "questions": 105
+    },
+    {
+     "name": "VARSTORE_OCMR_SETTINGS_NAME",
+     "size": 4991,
+     "questions": 301
+    },
+    {
+     "name": "MyRCPhysDisks",
+     "size": 2879,
+     "questions": 269
+    },
+    {
+     "name": "AmdSetup",
+     "size": 1553,
+     "questions": 483
+    },
+    {
+     "name": "AmdSetup",
+     "size": 1471,
+     "questions": 313
+    },
+    {
+     "name": "AmdSetup",
+     "size": 1448,
+     "questions": 312
+    }
+   ]
+  },
+  "asus-prime-b450-plus": {
+   "version": "4655",
+   "setup_carriers": [
+    {
+     "carrier": "899407D7…/formset#0",
+     "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+     "size": 456,
+     "covered_bytes": 314,
+     "uncovered_bytes": 142,
+     "uncovered_ranges": 27,
+     "largest_uncovered": [
+      49,
+      28
+     ],
+     "ranges": [
+      [
+       11,
+       1
+      ],
+      [
+       13,
+       1
+      ],
+      [
+       18,
+       1
+      ],
+      [
+       20,
+       1
+      ],
+      [
+       27,
+       2
+      ],
+      [
+       39,
+       1
+      ],
+      [
+       42,
+       1
+      ],
+      [
+       49,
+       28
+      ],
+      [
+       84,
+       1
+      ],
+      [
+       92,
+       3
+      ],
+      [
+       98,
+       1
+      ],
+      [
+       101,
+       1
+      ],
+      [
+       118,
+       1
+      ],
+      [
+       121,
+       4
+      ],
+      [
+       185,
+       1
+      ],
+      [
+       213,
+       1
+      ],
+      [
+       231,
+       4
+      ],
+      [
+       241,
+       5
+      ],
+      [
+       250,
+       6
+      ],
+      [
+       264,
+       21
+      ],
+      [
+       311,
+       3
+      ],
+      [
+       318,
+       26
+      ],
+      [
+       349,
+       2
+      ],
+      [
+       375,
+       1
+      ],
+      [
+       412,
+       1
+      ],
+      [
+       416,
+       23
+      ],
+      [
+       444,
+       1
+      ]
+     ]
+    },
+    {
+     "carrier": "70E1A818…/formset#0",
+     "guid": "80e1202e-2697-4264-9cc9-80762c3e5863",
+     "size": 7,
+     "covered_bytes": 1,
+     "uncovered_bytes": 6,
+     "uncovered_ranges": 2,
+     "largest_uncovered": [
+      2,
+      5
+     ],
+     "ranges": [
+      [
+       0,
+       1
+      ],
+      [
+       2,
+       5
+      ]
+     ]
+    }
+   ],
+   "other_varstores_top": [
+    {
+     "name": "MyRCVirtDisks",
+     "size": 5635,
+     "questions": 137
+    },
+    {
+     "name": "VARSTORE_OCMR_SETTINGS_NAME",
+     "size": 4991,
+     "questions": 301
+    },
+    {
+     "name": "MyRCPhysDisks",
+     "size": 3055,
+     "questions": 365
+    },
+    {
+     "name": "AmdSetup",
+     "size": 1553,
+     "questions": 484
+    },
+    {
+     "name": "AmdSetup",
+     "size": 1471,
+     "questions": 313
+    },
+    {
+     "name": "AmdSetup",
+     "size": 1448,
+     "questions": 314
+    }
+   ]
+  },
+  "msi-b450-tomahawk-max": {
+   "version": "7C02v3G1",
+   "setup_carriers": [
+    {
+     "carrier": "899407D7…/formset#0",
+     "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+     "size": 1428,
+     "covered_bytes": 861,
+     "uncovered_bytes": 567,
+     "uncovered_ranges": 166,
+     "largest_uncovered": [
+      904,
+      135
+     ],
+     "ranges": [
+      [
+       11,
+       1
+      ],
+      [
+       13,
+       1
+      ],
+      [
+       18,
+       1
+      ],
+      [
+       20,
+       1
+      ],
+      [
+       26,
+       1
+      ],
+      [
+       28,
+       1
+      ],
+      [
+       39,
+       1
+      ],
+      [
+       42,
+       1
+      ],
+      [
+       49,
+       3
+      ],
+      [
+       55,
+       1
+      ],
+      [
+       58,
+       1
+      ],
+      [
+       74,
+       1
+      ],
+      [
+       77,
+       4
+      ],
+      [
+       141,
+       1
+      ],
+      [
+       169,
+       1
+      ],
+      [
+       197,
+       6
+      ],
+      [
+       206,
+       28
+      ],
+      [
+       260,
+       3
+      ],
+      [
+       289,
+       2
+      ],
+      [
+       292,
+       7
+      ],
+      [
+       301,
+       1
+      ],
+      [
+       307,
+       5
+      ],
+      [
+       313,
+       2
+      ],
+      [
+       317,
+       1
+      ],
+      [
+       319,
+       1
+      ],
+      [
+       322,
+       3
+      ],
+      [
+       333,
+       1
+      ],
+      [
+       344,
+       27
+      ],
+      [
+       404,
+       1
+      ],
+      [
+       408,
+       23
+      ],
+      [
+       434,
+       1
+      ],
+      [
+       457,
+       18
+      ],
+      [
+       489,
+       18
+      ],
+      [
+       533,
+       41
+      ],
+      [
+       632,
+       12
+      ],
+      [
+       674,
+       6
+      ],
+      [
+       694,
+       1
+      ],
+      [
+       696,
+       1
+      ],
+      [
+       698,
+       1
+      ],
+      [
+       700,
+       1
+      ],
+      [
+       702,
+       1
+      ],
+      [
+       704,
+       1
+      ],
+      [
+       706,
+       1
+      ],
+      [
+       708,
+       1
+      ],
+      [
+       710,
+       1
+      ],
+      [
+       712,
+       1
+      ],
+      [
+       714,
+       1
+      ],
+      [
+       716,
+       1
+      ],
+      [
+       718,
+       1
+      ],
+      [
+       720,
+       1
+      ],
+      [
+       722,
+       22
+      ],
+      [
+       746,
+       2
+      ],
+      [
+       752,
+       2
+      ],
+      [
+       763,
+       1
+      ],
+      [
+       765,
+       1
+      ],
+      [
+       767,
+       1
+      ],
+      [
+       769,
+       1
+      ],
+      [
+       776,
+       2
+      ],
+      [
+       787,
+       1
+      ],
+      [
+       789,
+       1
+      ],
+      [
+       791,
+       1
+      ],
+      [
+       793,
+       1
+      ],
+      [
+       800,
+       2
+      ],
+      [
+       804,
+       1
+      ],
+      [
+       814,
+       1
+      ],
+      [
+       816,
+       1
+      ],
+      [
+       818,
+       1
+      ],
+      [
+       820,
+       1
+      ],
+      [
+       827,
+       2
+      ],
+      [
+       831,
+       1
+      ],
+      [
+       841,
+       1
+      ],
+      [
+       843,
+       1
+      ],
+      [
+       845,
+       1
+      ],
+      [
+       847,
+       1
+      ],
+      [
+       854,
+       2
+      ],
+      [
+       858,
+       1
+      ],
+      [
+       868,
+       1
+      ],
+      [
+       870,
+       1
+      ],
+      [
+       872,
+       1
+      ],
+      [
+       874,
+       1
+      ],
+      [
+       881,
+       2
+      ],
+      [
+       885,
+       1
+      ],
+      [
+       895,
+       1
+      ],
+      [
+       897,
+       1
+      ],
+      [
+       899,
+       1
+      ],
+      [
+       901,
+       1
+      ],
+      [
+       904,
+       135
+      ],
+      [
+       1040,
+       3
+      ],
+      [
+       1058,
+       1
+      ],
+      [
+       1060,
+       1
+      ],
+      [
+       1062,
+       1
+      ],
+      [
+       1064,
+       1
+      ],
+      [
+       1066,
+       1
+      ],
+      [
+       1068,
+       1
+      ],
+      [
+       1070,
+       1
+      ],
+      [
+       1076,
+       1
+      ],
+      [
+       1078,
+       1
+      ],
+      [
+       1080,
+       1
+      ],
+      [
+       1082,
+       1
+      ],
+      [
+       1085,
+       1
+      ],
+      [
+       1087,
+       1
+      ],
+      [
+       1090,
+       1
+      ],
+      [
+       1092,
+       1
+      ],
+      [
+       1105,
+       1
+      ],
+      [
+       1107,
+       1
+      ],
+      [
+       1109,
+       1
+      ],
+      [
+       1112,
+       1
+      ],
+      [
+       1115,
+       1
+      ],
+      [
+       1117,
+       1
+      ],
+      [
+       1120,
+       1
+      ],
+      [
+       1123,
+       1
+      ],
+      [
+       1125,
+       1
+      ],
+      [
+       1147,
+       1
+      ],
+      [
+       1149,
+       1
+      ],
+      [
+       1151,
+       1
+      ],
+      [
+       1153,
+       1
+      ],
+      [
+       1155,
+       1
+      ],
+      [
+       1189,
+       3
+      ],
+      [
+       1196,
+       3
+      ],
+      [
+       1200,
+       3
+      ],
+      [
+       1204,
+       3
+      ],
+      [
+       1208,
+       3
+      ],
+      [
+       1213,
+       3
+      ],
+      [
+       1217,
+       3
+      ],
+      [
+       1221,
+       1
+      ],
+      [
+       1225,
+       1
+      ],
+      [
+       1227,
+       1
+      ],
+      [
+       1230,
+       1
+      ],
+      [
+       1232,
+       3
+      ],
+      [
+       1237,
+       1
+      ],
+      [
+       1239,
+       1
+      ],
+      [
+       1242,
+       1
+      ],
+      [
+       1245,
+       1
+      ],
+      [
+       1247,
+       1
+      ],
+      [
+       1249,
+       1
+      ],
+      [
+       1271,
+       1
+      ],
+      [
+       1273,
+       1
+      ],
+      [
+       1275,
+       1
+      ],
+      [
+       1277,
+       1
+      ],
+      [
+       1279,
+       1
+      ],
+      [
+       1318,
+       1
+      ],
+      [
+       1320,
+       1
+      ],
+      [
+       1325,
+       3
+      ],
+      [
+       1329,
+       3
+      ],
+      [
+       1333,
+       3
+      ],
+      [
+       1337,
+       3
+      ],
+      [
+       1343,
+       3
+      ],
+      [
+       1347,
+       3
+      ],
+      [
+       1351,
+       3
+      ],
+      [
+       1355,
+       3
+      ],
+      [
+       1359,
+       3
+      ],
+      [
+       1368,
+       3
+      ],
+      [
+       1372,
+       3
+      ],
+      [
+       1376,
+       3
+      ],
+      [
+       1380,
+       4
+      ],
+      [
+       1386,
+       1
+      ],
+      [
+       1388,
+       1
+      ],
+      [
+       1394,
+       1
+      ],
+      [
+       1398,
+       2
+      ],
+      [
+       1402,
+       2
+      ],
+      [
+       1407,
+       2
+      ],
+      [
+       1410,
+       1
+      ],
+      [
+       1412,
+       1
+      ],
+      [
+       1414,
+       1
+      ],
+      [
+       1421,
+       1
+      ],
+      [
+       1427,
+       1
+      ]
+     ]
+    }
+   ],
+   "other_varstores_top": [
+    {
+     "name": "MyRCVirtDisks",
+     "size": 5635,
+     "questions": 137
+    },
+    {
+     "name": "MyRCPhysDisks",
+     "size": 3055,
+     "questions": 365
+    },
+    {
+     "name": "RtkNvData",
+     "size": 2012,
+     "questions": 28
+    },
+    {
+     "name": "IP6_CONFIG_IFR_NVDATA",
+     "size": 1592,
+     "questions": 6
+    },
+    {
+     "name": "AmdSetup",
+     "size": 1553,
+     "questions": 484
+    },
+    {
+     "name": "AmdSetup",
+     "size": 1471,
+     "questions": 313
+    }
+   ]
+  },
+  "gigabyte-b450-aorus-pro": {
+   "version": "F67c",
+   "setup_carriers": [
+    {
+     "carrier": "899407D7…/formset#0",
+     "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+     "size": 628,
+     "covered_bytes": 381,
+     "uncovered_bytes": 247,
+     "uncovered_ranges": 110,
+     "largest_uncovered": [
+      235,
+      28
+     ],
+     "ranges": [
+      [
+       6,
+       2
+      ],
+      [
+       12,
+       2
+      ],
+      [
+       17,
+       1
+      ],
+      [
+       19,
+       1
+      ],
+      [
+       24,
+       1
+      ],
+      [
+       26,
+       1
+      ],
+      [
+       28,
+       4
+      ],
+      [
+       33,
+       14
+      ],
+      [
+       48,
+       1
+      ],
+      [
+       51,
+       5
+      ],
+      [
+       76,
+       5
+      ],
+      [
+       84,
+       1
+      ],
+      [
+       87,
+       1
+      ],
+      [
+       103,
+       1
+      ],
+      [
+       106,
+       4
+      ],
+      [
+       170,
+       1
+      ],
+      [
+       198,
+       1
+      ],
+      [
+       226,
+       5
+      ],
+      [
+       235,
+       28
+      ],
+      [
+       289,
+       3
+      ],
+      [
+       295,
+       1
+      ],
+      [
+       297,
+       1
+      ],
+      [
+       299,
+       1
+      ],
+      [
+       301,
+       1
+      ],
+      [
+       303,
+       1
+      ],
+      [
+       305,
+       3
+      ],
+      [
+       309,
+       4
+      ],
+      [
+       314,
+       3
+      ],
+      [
+       318,
+       3
+      ],
+      [
+       322,
+       5
+      ],
+      [
+       329,
+       1
+      ],
+      [
+       347,
+       1
+      ],
+      [
+       349,
+       1
+      ],
+      [
+       352,
+       3
+      ],
+      [
+       361,
+       1
+      ],
+      [
+       363,
+       1
+      ],
+      [
+       365,
+       1
+      ],
+      [
+       374,
+       1
+      ],
+      [
+       376,
+       1
+      ],
+      [
+       378,
+       1
+      ],
+      [
+       380,
+       1
+      ],
+      [
+       382,
+       1
+      ],
+      [
+       384,
+       1
+      ],
+      [
+       386,
+       1
+      ],
+      [
+       388,
+       1
+      ],
+      [
+       390,
+       1
+      ],
+      [
+       392,
+       1
+      ],
+      [
+       394,
+       1
+      ],
+      [
+       396,
+       1
+      ],
+      [
+       398,
+       1
+      ],
+      [
+       400,
+       1
+      ],
+      [
+       402,
+       1
+      ],
+      [
+       404,
+       1
+      ],
+      [
+       406,
+       1
+      ],
+      [
+       408,
+       1
+      ],
+      [
+       410,
+       1
+      ],
+      [
+       412,
+       1
+      ],
+      [
+       414,
+       1
+      ],
+      [
+       416,
+       1
+      ],
+      [
+       418,
+       1
+      ],
+      [
+       420,
+       1
+      ],
+      [
+       422,
+       1
+      ],
+      [
+       424,
+       1
+      ],
+      [
+       426,
+       1
+      ],
+      [
+       428,
+       1
+      ],
+      [
+       430,
+       1
+      ],
+      [
+       432,
+       1
+      ],
+      [
+       434,
+       1
+      ],
+      [
+       436,
+       1
+      ],
+      [
+       438,
+       1
+      ],
+      [
+       440,
+       1
+      ],
+      [
+       442,
+       1
+      ],
+      [
+       444,
+       1
+      ],
+      [
+       446,
+       1
+      ],
+      [
+       448,
+       1
+      ],
+      [
+       450,
+       1
+      ],
+      [
+       452,
+       1
+      ],
+      [
+       454,
+       1
+      ],
+      [
+       456,
+       1
+      ],
+      [
+       458,
+       1
+      ],
+      [
+       460,
+       1
+      ],
+      [
+       462,
+       1
+      ],
+      [
+       464,
+       1
+      ],
+      [
+       466,
+       1
+      ],
+      [
+       468,
+       1
+      ],
+      [
+       470,
+       1
+      ],
+      [
+       472,
+       1
+      ],
+      [
+       474,
+       1
+      ],
+      [
+       476,
+       1
+      ],
+      [
+       478,
+       1
+      ],
+      [
+       480,
+       1
+      ],
+      [
+       482,
+       1
+      ],
+      [
+       484,
+       1
+      ],
+      [
+       486,
+       1
+      ],
+      [
+       488,
+       1
+      ],
+      [
+       490,
+       1
+      ],
+      [
+       492,
+       5
+      ],
+      [
+       498,
+       3
+      ],
+      [
+       502,
+       7
+      ],
+      [
+       510,
+       3
+      ],
+      [
+       514,
+       2
+      ],
+      [
+       520,
+       5
+      ],
+      [
+       526,
+       6
+      ],
+      [
+       534,
+       1
+      ],
+      [
+       538,
+       3
+      ],
+      [
+       542,
+       2
+      ],
+      [
+       547,
+       3
+      ],
+      [
+       561,
+       27
+      ],
+      [
+       601,
+       4
+      ],
+      [
+       607,
+       3
+      ]
+     ]
+    },
+    {
+     "carrier": "70E1A818…/formset#0",
+     "guid": "80e1202e-2697-4264-9cc9-80762c3e5863",
+     "size": 7,
+     "covered_bytes": 5,
+     "uncovered_bytes": 2,
+     "uncovered_ranges": 2,
+     "largest_uncovered": [
+      2,
+      1
+     ],
+     "ranges": [
+      [
+       2,
+       1
+      ],
+      [
+       5,
+       1
+      ]
+     ]
+    }
+   ],
+   "other_varstores_top": [
+    {
+     "name": "MyRCVirtDisks",
+     "size": 5635,
+     "questions": 137
+    },
+    {
+     "name": "MyRCPhysDisks",
+     "size": 3055,
+     "questions": 365
+    },
+    {
+     "name": "IP6_CONFIG_IFR_NVDATA",
+     "size": 1592,
+     "questions": 6
+    },
+    {
+     "name": "AmdSetup",
+     "size": 1553,
+     "questions": 458
+    },
+    {
+     "name": "AmdSetup",
+     "size": 1471,
+     "questions": 277
+    },
+    {
+     "name": "AmdSetup",
+     "size": 1448,
+     "questions": 284
+    }
+   ]
+  },
+  "asrock-b450-steel-legend": {
+   "version": "10.41 Beta",
+   "setup_carriers": [
+    {
+     "carrier": "899407D7…/formset#0",
+     "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+     "size": 677,
+     "covered_bytes": 417,
+     "uncovered_bytes": 260,
+     "uncovered_ranges": 71,
+     "largest_uncovered": [
+      206,
+      28
+     ],
+     "ranges": [
+      [
+       11,
+       1
+      ],
+      [
+       13,
+       1
+      ],
+      [
+       18,
+       1
+      ],
+      [
+       20,
+       1
+      ],
+      [
+       28,
+       1
+      ],
+      [
+       39,
+       1
+      ],
+      [
+       42,
+       1
+      ],
+      [
+       49,
+       3
+      ],
+      [
+       55,
+       1
+      ],
+      [
+       58,
+       1
+      ],
+      [
+       74,
+       1
+      ],
+      [
+       77,
+       4
+      ],
+      [
+       141,
+       1
+      ],
+      [
+       169,
+       1
+      ],
+      [
+       197,
+       5
+      ],
+      [
+       206,
+       28
+      ],
+      [
+       260,
+       3
+      ],
+      [
+       276,
+       3
+      ],
+      [
+       290,
+       3
+      ],
+      [
+       304,
+       3
+      ],
+      [
+       318,
+       3
+      ],
+      [
+       332,
+       17
+      ],
+      [
+       356,
+       27
+      ],
+      [
+       396,
+       1
+      ],
+      [
+       398,
+       1
+      ],
+      [
+       400,
+       1
+      ],
+      [
+       402,
+       1
+      ],
+      [
+       404,
+       1
+      ],
+      [
+       406,
+       1
+      ],
+      [
+       409,
+       3
+      ],
+      [
+       413,
+       1
+      ],
+      [
+       415,
+       9
+      ],
+      [
+       426,
+       3
+      ],
+      [
+       430,
+       1
+      ],
+      [
+       432,
+       9
+      ],
+      [
+       443,
+       5
+      ],
+      [
+       449,
+       5
+      ],
+      [
+       455,
+       5
+      ],
+      [
+       461,
+       5
+      ],
+      [
+       467,
+       5
+      ],
+      [
+       473,
+       11
+      ],
+      [
+       485,
+       13
+      ],
+      [
+       503,
+       1
+      ],
+      [
+       514,
+       1
+      ],
+      [
+       520,
+       1
+      ],
+      [
+       522,
+       1
+      ],
+      [
+       524,
+       3
+      ],
+      [
+       546,
+       1
+      ],
+      [
+       552,
+       1
+      ],
+      [
+       557,
+       1
+      ],
+      [
+       570,
+       1
+      ],
+      [
+       572,
+       1
+      ],
+      [
+       574,
+       1
+      ],
+      [
+       594,
+       1
+      ],
+      [
+       599,
+       1
+      ],
+      [
+       602,
+       11
+      ],
+      [
+       614,
+       13
+      ],
+      [
+       628,
+       3
+      ],
+      [
+       632,
+       3
+      ],
+      [
+       636,
+       3
+      ],
+      [
+       640,
+       3
+      ],
+      [
+       644,
+       3
+      ],
+      [
+       649,
+       1
+      ],
+      [
+       651,
+       1
+      ],
+      [
+       653,
+       1
+      ],
+      [
+       655,
+       1
+      ],
+      [
+       657,
+       1
+      ],
+      [
+       659,
+       3
+      ],
+      [
+       663,
+       3
+      ],
+      [
+       671,
+       1
+      ],
+      [
+       673,
+       2
+      ]
+     ]
+    },
+    {
+     "carrier": "70E1A818…/formset#0",
+     "guid": "80e1202e-2697-4264-9cc9-80762c3e5863",
+     "size": 7,
+     "covered_bytes": 5,
+     "uncovered_bytes": 2,
+     "uncovered_ranges": 2,
+     "largest_uncovered": [
+      2,
+      1
+     ],
+     "ranges": [
+      [
+       2,
+       1
+      ],
+      [
+       5,
+       1
+      ]
+     ]
+    }
+   ],
+   "other_varstores_top": [
+    {
+     "name": "MyIfrNVData",
+     "size": 9312,
+     "questions": 131
+    },
+    {
+     "name": "MyRCVirtDisks",
+     "size": 5635,
+     "questions": 137
+    },
+    {
+     "name": "MyRCPhysDisks",
+     "size": 3055,
+     "questions": 365
+    },
+    {
+     "name": "RtkNvData",
+     "size": 2012,
+     "questions": 32
+    },
+    {
+     "name": "IP6_CONFIG_IFR_NVDATA",
+     "size": 1592,
+     "questions": 6
+    },
+    {
+     "name": "AmdSetup",
+     "size": 1553,
+     "questions": 443
+    }
+   ]
+  }
+ },
+ "reading": {
+  "per_vendor_setup": [
+   {
+    "id": "msi-b450-tomahawk-max",
+    "version": "7C02v3G1",
+    "size": 1428,
+    "uncovered_bytes": 567,
+    "uncovered_pct": 39.71,
+    "ranges": 166
+   },
+   {
+    "id": "gigabyte-b450-aorus-pro",
+    "version": "F67c",
+    "size": 628,
+    "uncovered_bytes": 247,
+    "uncovered_pct": 39.33,
+    "ranges": 110
+   },
+   {
+    "id": "asrock-b450-steel-legend",
+    "version": "10.41 Beta",
+    "size": 677,
+    "uncovered_bytes": 260,
+    "uncovered_pct": 38.4,
+    "ranges": 71
+   },
+   {
+    "id": "asus-prime-b450-plus-ref",
+    "version": "3604",
+    "size": 456,
+    "uncovered_bytes": 142,
+    "uncovered_pct": 31.14,
+    "ranges": 27
+   },
+   {
+    "id": "asus-prime-b450-plus",
+    "version": "4655",
+    "size": 456,
+    "uncovered_bytes": 142,
+    "uncovered_pct": 31.14,
+    "ranges": 27
+   }
+  ],
+  "the_map_in_one_line": "the Setup blobs carry msi 567/1428 B (39.71%), gigabyte 247/628 B (39.33%), asrock 260/677 B (38.4%), asus 142/456 B (31.14%), asus 142/456 B (31.14%) never referenced by any of the facade's questions",
+  "fragmentation": "hidden bytes are not one tail block: they fragment into dozens of inter-question gaps plus large policy blocks — see per-carrier range lists"
+ },
+ "honesty": [
+  "question width keeps the ring-20 approximations (ONE_OF widest option, STRING 2 B, NUMERIC 1 B — an undercount, so the uncovered ranges are UPPER bounds on hiding; a wider NUMERIC would only shrink them)",
+  "questions beyond a varstore's declared size are excluded from coverage (ring-20 rule) — if the vendor's runtime blob is larger than the IFR-declared size, the tail is NOT counted as hidden here",
+  "ranges are per Setup carrier (module GUID + formset); the classic setup_var target 'Setup' usually appears once per board, twice when the platform ships two windows",
+  "the map is IFR-side truth: it says which bytes no question references. Whether a hidden byte is (a) vendor policy the UI withheld, (b) padding, or (c) written by protocol at runtime is NOT decidable from the image alone"
+ ]
+}
