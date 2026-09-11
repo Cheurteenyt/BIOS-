@@ -1,0 +1,136 @@
+{
+ "schema": "omarchy-firmware/dhm-closure@1",
+ "date": "2026-09-11",
+ "title": "the ring-8 DriverHealthManagerDxe curiosity closed: intentional formset routing, not coincidence",
+ "question": "ring 8's string accounting left cross-module hits flagged 'intentional runtime reference vs coincidence \u2014 the bytes alone cannot decide'",
+ "method": "byte census of the two DHM formset GUIDs across every module of the OVMF builds, context forensics around each hit, edk2 source citation from the on-disk tree",
+ "builds": {
+  "plain": {
+   "modules_scanned": 135,
+   "carriers": [
+    {
+     "build": "plain",
+     "guid": "EBF8ED7C-0DD1-4787-84F1-F48D537DCACF",
+     "name": "DriverHealthManagerDxe",
+     "type": "0x7",
+     "size": 16026,
+     "hits": {
+      "DRIVER_HEALTH_MANAGER_FORMSET_GUID": 2,
+      "DRIVER_HEALTH_CONFIGURE_FORMSET_GUID": 3
+     }
+    },
+    {
+     "build": "plain",
+     "guid": "6D33944A-EC75-4855-A54D-809C75241F6C",
+     "name": "BdsDxe",
+     "type": "0x7",
+     "size": 86650,
+     "hits": {
+      "DRIVER_HEALTH_CONFIGURE_FORMSET_GUID": 1
+     }
+    },
+    {
+     "build": "plain",
+     "guid": "462CAA21-7614-4503-836E-8AB6F4662331",
+     "name": "(unnamed)",
+     "type": "0x9",
+     "size": 114414,
+     "hits": {
+      "DRIVER_HEALTH_CONFIGURE_FORMSET_GUID": 1
+     }
+    }
+   ]
+  },
+  "secboot": {
+   "modules_scanned": 144,
+   "carriers": [
+    {
+     "build": "secboot",
+     "guid": "EBF8ED7C-0DD1-4787-84F1-F48D537DCACF",
+     "name": "DriverHealthManagerDxe",
+     "type": "0x7",
+     "size": 16026,
+     "hits": {
+      "DRIVER_HEALTH_MANAGER_FORMSET_GUID": 2,
+      "DRIVER_HEALTH_CONFIGURE_FORMSET_GUID": 3
+     }
+    },
+    {
+     "build": "secboot",
+     "guid": "6D33944A-EC75-4855-A54D-809C75241F6C",
+     "name": "BdsDxe",
+     "type": "0x7",
+     "size": 82362,
+     "hits": {
+      "DRIVER_HEALTH_CONFIGURE_FORMSET_GUID": 1
+     }
+    },
+    {
+     "build": "secboot",
+     "guid": "462CAA21-7614-4503-836E-8AB6F4662331",
+     "name": "(unnamed)",
+     "type": "0x9",
+     "size": 114478,
+     "hits": {
+      "DRIVER_HEALTH_CONFIGURE_FORMSET_GUID": 1
+     }
+    }
+   ]
+  },
+  "snakeoil": {
+   "error": "KeyError: 'snakeoil'"
+  },
+  "strictnx": {
+   "modules_scanned": 144,
+   "carriers": [
+    {
+     "build": "strictnx",
+     "guid": "EBF8ED7C-0DD1-4787-84F1-F48D537DCACF",
+     "name": "DriverHealthManagerDxe",
+     "type": "0x7",
+     "size": 16026,
+     "hits": {
+      "DRIVER_HEALTH_MANAGER_FORMSET_GUID": 2,
+      "DRIVER_HEALTH_CONFIGURE_FORMSET_GUID": 3
+     }
+    },
+    {
+     "build": "strictnx",
+     "guid": "6D33944A-EC75-4855-A54D-809C75241F6C",
+     "name": "BdsDxe",
+     "type": "0x7",
+     "size": 82362,
+     "hits": {
+      "DRIVER_HEALTH_CONFIGURE_FORMSET_GUID": 1
+     }
+    },
+    {
+     "build": "strictnx",
+     "guid": "462CAA21-7614-4503-836E-8AB6F4662331",
+     "name": "(unnamed)",
+     "type": "0x9",
+     "size": 114478,
+     "hits": {
+      "DRIVER_HEALTH_CONFIGURE_FORMSET_GUID": 1
+     }
+    }
+   ]
+  }
+ },
+ "carriers_per_build": {
+  "DriverHealthManagerDxe": "MANAGER_FORMSET x2 + CONFIGURE_FORMSET x3 (self)",
+  "BdsDxe": "CONFIGURE_FORMSET x1",
+  "UiApp (462CAA21, resolved from UiApp.inf on disk)": "CONFIGURE_FORMSET x1"
+ },
+ "context_forensics": "in BdsDxe and UiApp the GUID sits in code-adjacent rodata right after x86 NOP padding (66 2e 0f 1f 84 \u2026) \u2014 the signature of a compiled GUID constant referenced by code, not an HII string-table collision; in UiApp it sits adjacent to UiApp's own formset GUID block",
+ "cross_build": "identical carrier set in plain, secboot and strictnx (3/3 builds measured; the snakeoil register key is absent from ring4_lib's build table \u2014 recorded, not worked around)",
+ "source_citation": {
+  "tree": "/home/z/my-project/scratch-edk2/edk2-master",
+  "GUID_defined_only_in": [
+   "MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerVfr.h"
+  ],
+  "UiApp_FILE_GUID": "MdeModulePkg/Application/UiApp/UiApp.inf",
+  "limit": "the on-disk tree is the ring-9 fetched master, not the exact Debian build tree of the OVMF specimens; the include-chain that puts the constant into BdsDxe/UiApp is not resolvable here \u2014 the byte verdict stands on context + cross-build stability"
+ },
+ "verdict": "intentional runtime formset routing (BdsDxe and UiApp reference DriverHealthManagerDxe's configure formset by GUID); ring 8's 'bytes alone cannot decide' is upgraded: bytes + section context + cross-build stability decide"
+}

@@ -4,6 +4,60 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the seventeenth ring (the mirror was never a mirror)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**The MSI double structure, root-caused.** Rings 13-14 registered the
+anomaly and refused to guess; ring 17 measured it whole. The 32-MiB
+MSI file is **two complete 16-MiB SPI windows** — every structure
+pairs at +0x1000000 exactly (small FVs, main DXE FVs, data/boot FVs,
+NVRAM anchors, PSP chains), the half-delta voted by the paired small
+FVs, never assumed. The two windows carry **different builds of the
+same release** (380 shared GUIDs: 261 byte-identical, 119 changed —
+84 at constant size, 35 resized; 69 lower-only and 85 upper-only
+GUIDs), same `ComboAM4v2PI 1.2.0.8` in both, **split by CPU family**:
+lower = Zen/Zen+ (Summit/Raven/Pinnacle — `AmdCcxZenRvDxe`,
+`FchTaishanDxe`, `CbsSetupDxeRV/ZP`), upper = Zen2/Zen3
+(Matisse/Renoir/Cezanne — `AmdCcxZen3Dxe`, `SmuV12Dxe`,
+`CbsSetupDxeSSP/RN`). The `2PSP` bytes open into **AMD's documented
+combo architecture**: the cookie is the dword 0x50535032 (`PSP2`),
+the structure fetched from coreboot's `combo_directory.h` (AMD doc
+#55758) — 32-byte header + {id_sel, id, u64 addr} entries. Three
+tables validate fletcher32: PSP2 x2 + BHD2 x1, routing **5 x `$PSP`
+and 2 x `$BHD` directories per chip ID** and re-assembling ring 13's
+18 valid directories without a remainder. Every inherited mystery
+dissolves: the "+16 files / +0x97000 B mirror" is larger family
+coverage, not a clone; the "ten directories validating only in the
+upper half" are the upper families' own; the "NVRAM not a clone"
+(Setup 1,428 vs 1,972 B) is each window shipping its own setup
+database — the shared prefix differs in 121 bytes (8.5 %, 28 spans)
+and the extra 544-B tail is dense IFR default data, not padding.
+The 84 shared same-size pairs span 42,441 changed bytes in 3,081
+spans (`HardwareMonitorDiagram` 2 B/1 span; `Tpm20PlatformDxe`
+183 B/94 spans) — the same species ring 16 measured. The combo lens
+joins day-0 as an optional seventh lens (our ASUS dump is a 16-MiB
+part; MSI is the only 32-MiB specimen).
+
+**The ring-8 curiosity closes.** DriverHealthManagerDxe's cross-module
+hits were flagged "the bytes alone cannot decide"; bytes + context +
+cross-build stability now decide: the configure formset GUID is
+carried by BdsDxe (x1) and UiApp (x1, 462CAA21 resolved from
+`UiApp.inf` on disk) in **code-adjacent rodata right after x86 NOP
+padding** — compiled constants, stable across plain/secboot/strictnx,
+not HII string collisions. Verdict: intentional runtime formset
+routing. The honest limit stands: the on-disk edk2 tree is not the
+Debian build tree of the specimens.
+
+**The day-0 report is pre-filled.** `docs/day0-report-2026-09-16.md`
+ships the empty tables and fill-in procedures: acquisition record,
+the three-path identity triangulation (AGESA strings, PSP
+fingerprints, NVRAM factory fingerprint), the 3644 decision tree,
+the ring-15 delta vocabulary with the ring-16 versioned armor
+checklist, the chain run table (six lenses, ~8 s), and the optional
+combo lens — nothing predicted, everything measured on the day.
+
 ## Unreleased — the sixteenth ring (the levels, the waves, the nine bytes)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
