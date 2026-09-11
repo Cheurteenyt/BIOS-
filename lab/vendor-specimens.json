@@ -1,0 +1,384 @@
+{
+ "schema": "omarchy-firmware/vendor-specimens@1",
+ "date": "2026-09-11",
+ "note": "the instrument's first contact with real vendor silicon: two AMI-Aptio AM4 specimens, the two ends of the update-cliff spectrum; the OVMF grammar (LZMA pierce, FFS walk, DEPEX postfix evaluation) applies verbatim \u2014 coordinates differ, the grammar does not",
+ "acquisition": {
+  "msi-b450-tomahawk-max": "downloaded from download.msi.com (7C02v3G1.zip, direct CDN)",
+  "gigabyte-b450-aorus-pro": "downloaded from download.gigabyte.com (mb_bios_b450-aorus-pro_8a16bg04_f67c.zip)",
+  "asrock-b450-steel-legend": "version pinned by search (10.41 Beta, 2025-04-18, AGESA 1.2.0.E); file NOT acquired \u2014 download.asrock.com answers 403 to this network (WAF), registered not bypassed",
+  "asus-b450-plus-gaming": "reference board \u2014 latest measured BIOS 3644 (AGESA 1.2.0.12, Aug 2026) from the study; the specimen file is the day-0 dump itself (16/09)"
+ },
+ "specimens": [
+  {
+   "id": "msi-b450-tomahawk-max",
+   "vendor": "MSI",
+   "board": "B450 TOMAHAWK MAX",
+   "version": "7C02v3G1",
+   "released": "2023-03-09",
+   "agesa_claim": "ComboAm4v2PI 1.2.0.8",
+   "file": "E7C02AMS.3G1",
+   "bytes": 33554432,
+   "sha256_16": "2ab433d61c93adb4",
+   "flash_map": {
+    "fvh_candidates_raw": 18,
+    "rejected_by_nesting_rule": 8,
+    "top_level_fvs": [
+     {
+      "offset": 5894144,
+      "length": 8130560,
+      "fs": "FFS2",
+      "files": 7
+     },
+     {
+      "offset": 23072768,
+      "length": 7729152,
+      "fs": "FFS2",
+      "files": 7
+     },
+     {
+      "offset": 14155776,
+      "length": 2621440,
+      "fs": "FFS2",
+      "files": 4
+     },
+     {
+      "offset": 30932992,
+      "length": 2621440,
+      "fs": "FFS2",
+      "files": 4
+     },
+     {
+      "offset": 225280,
+      "length": 131072,
+      "fs": "FFS2",
+      "files": 2
+     },
+     {
+      "offset": 17002496,
+      "length": 131072,
+      "fs": "FFS2",
+      "files": 2
+     }
+    ],
+    "nested_fvs": [
+     {
+      "offset": 14163968,
+      "length": 2613248,
+      "inside": "0xd80000"
+     },
+     {
+      "offset": 30941184,
+      "length": 2613248,
+      "inside": "0x1d80000"
+     },
+     {
+      "offset": 5894400,
+      "length": 4096,
+      "inside": "0x59f000"
+     },
+     {
+      "offset": 23073024,
+      "length": 4096,
+      "inside": "0x1601000"
+     }
+    ]
+   },
+   "pierced_census": {
+    "fv_image_files": 5,
+    "pierced": 4,
+    "inner_fvs": [
+     {
+      "files": 7
+     },
+     {
+      "files": 20
+     },
+     {
+      "files": 17
+     },
+     {
+      "files": 402
+     }
+    ],
+    "modules_total": 453,
+    "modules_by_phase": {
+     "pad": 5,
+     "freeform": 90,
+     "fv_image": 5,
+     "DXE": 264,
+     "SMM": 86,
+     "DXE-core": 1,
+     "SMM-core": 1,
+     "application": 1
+    },
+    "named_modules": 351,
+    "named_share": 0.775
+   },
+   "version_verification": {
+    "agesa_regex": [
+     "ComboAM4v2PI 1.2.0.8"
+    ],
+    "agesa_rawbytes": [
+     "1.2.0.8"
+    ],
+    "version_strings": [
+     "  AGESA set CfgAddrMap #%X, 0x%2X ~ 0x%2X DstFabricID: 0x%X",
+     "  AGESA set IO pair #%X, 0x%X000 ~ 0x%XFFF DstFabricID: 0x%X",
+     "  AGESA set MMIO pair #%X, 0x%X0000 ~ 0x%XFFFF DstFabricID: 0x%X",
+     "%pAGESA!V9",
+     "AGESA_TP:[%x]",
+     "AMD AGESA Driver"
+    ],
+    "msi_agesa_byte_verified": true,
+    "gigabyte_agesa": "not present as an ASCII string in the image (only the board-version string 8A16BG04F67c) \u2014 the claim rests on the vendor page, registered as such"
+   },
+   "dispatch_layer": {
+    "depex_sections": 228,
+    "postfix_parsed": 228,
+    "failed": 0,
+    "opcodes": {
+     "PUSH": 827,
+     "AND": 608,
+     "END": 228,
+     "TRUE": 11,
+     "OR": 2
+    },
+    "top_hubs": [
+     [
+      "13A3F0F6-264A-3EF0-F2E0-DEC512342F34",
+      202
+     ],
+     [
+      "6441F818-6362-4E44-B570-7DBA31DD2453",
+      50
+     ],
+     [
+      "1E5668E2-8481-11D4-BCF1-0080C73C8881",
+      48
+     ],
+     [
+      "E857CAF6-C046-45DC-BE3F-EE0765FBA887",
+      41
+     ],
+     [
+      "26BACCB1-6F42-11D4-BCE7-0080C73C8881",
+      29
+     ],
+     [
+      "EF9FC172-A1B2-4693-B327-6D32FC416042",
+      18
+     ],
+     [
+      "2F707EBB-4A1A-11D4-9A38-0090273FC14D",
+      17
+     ],
+     [
+      "27CFAC87-46CC-11D4-9A38-0090273FC14D",
+      17
+     ]
+    ],
+    "hub_names": {
+     "13A3F0F6-264A-3EF0-F2E0-DEC512342F34": "PcdProtocol (PI spec) \u2014 named via the OVMF nameplate",
+     "6441F818-6362-4E44-B570-7DBA31DD2453": "in the OVMF DAG (DevicePathUtilities family)"
+    },
+    "ami_only_hubs": "left GUID-only (not in the OVMF nameplate; no .dec name claimed)"
+   },
+   "strings": {
+    "agesa_string_hits": 70,
+    "agesa_versions_found": [],
+    "psp_directory_hits": 26,
+    "psp_offsets": [
+     "0xa8000",
+     "0x178000",
+     "0xdef78e",
+     "0xdf2382"
+    ],
+    "bios_directory_hits": 0,
+    "bios_offsets": [],
+    "dbxDefault": 0,
+    "secureboot_string": 5
+   }
+  },
+  {
+   "id": "gigabyte-b450-aorus-pro",
+   "vendor": "Gigabyte",
+   "board": "B450 AORUS PRO (rev 1.0)",
+   "version": "F67c",
+   "released": "2026-08-18",
+   "agesa_claim": "ComboV2 1.2.0.12",
+   "file": "B450AORUSPRO.F67c",
+   "bytes": 16777216,
+   "sha256_16": "091cf42e235289dd",
+   "flash_map": {
+    "fvh_candidates_raw": 6,
+    "rejected_by_nesting_rule": 0,
+    "top_level_fvs": [
+     {
+      "offset": 9760768,
+      "length": 5177344,
+      "fs": "FFS2",
+      "files": 9
+     },
+     {
+      "offset": 14942208,
+      "length": 1835008,
+      "fs": "FFS2",
+      "files": 9
+     },
+     {
+      "offset": 225280,
+      "length": 131072,
+      "fs": "FFS2",
+      "files": 2
+     },
+     {
+      "offset": 14938112,
+      "length": 4096,
+      "fs": "FFS2",
+      "files": 2
+     }
+    ],
+    "nested_fvs": [
+     {
+      "offset": 9765056,
+      "length": 131072,
+      "inside": "0x94f000"
+     },
+     {
+      "offset": 9896208,
+      "length": 4096,
+      "inside": "0x94f000"
+     }
+    ]
+   },
+   "pierced_census": {
+    "fv_image_files": 5,
+    "pierced": 4,
+    "inner_fvs": [
+     {
+      "files": 7
+     },
+     {
+      "files": 21
+     },
+     {
+      "files": 17
+     },
+     {
+      "files": 444
+     }
+    ],
+    "modules_total": 498,
+    "modules_by_phase": {
+     "pad": 6,
+     "freeform": 62,
+     "raw": 1,
+     "fv_image": 5,
+     "DXE": 309,
+     "SMM": 112,
+     "DXE-core": 1,
+     "SMM-core": 1,
+     "PEI": 1
+    },
+    "named_modules": 422,
+    "named_share": 0.847
+   },
+   "version_verification": {
+    "agesa_regex": [],
+    "agesa_rawbytes": [],
+    "version_strings": [
+     "8A16BG04F67c",
+     "AMD AGESA Driver"
+    ],
+    "msi_agesa_byte_verified": false,
+    "gigabyte_agesa": "not present as an ASCII string in the image (only the board-version string 8A16BG04F67c) \u2014 the claim rests on the vendor page, registered as such"
+   },
+   "dispatch_layer": {
+    "depex_sections": 278,
+    "postfix_parsed": 278,
+    "failed": 0,
+    "opcodes": {
+     "PUSH": 982,
+     "AND": 728,
+     "END": 278,
+     "TRUE": 30,
+     "OR": 6
+    },
+    "top_hubs": [
+     [
+      "13A3F0F6-264A-3EF0-F2E0-DEC512342F34",
+      270
+     ],
+     [
+      "E857CAF6-C046-45DC-BE3F-EE0765FBA887",
+      84
+     ],
+     [
+      "6441F818-6362-4E44-B570-7DBA31DD2453",
+      46
+     ],
+     [
+      "1E5668E2-8481-11D4-BCF1-0080C73C8881",
+      43
+     ],
+     [
+      "0ECAD4A0-75E9-46D7-A3A6-81FE173F2ECA",
+      33
+     ],
+     [
+      "2ADCD53F-4C94-40BB-BBA5-7DEBFF8A13AC",
+      27
+     ],
+     [
+      "2F707EBB-4A1A-11D4-9A38-0090273FC14D",
+      25
+     ],
+     [
+      "0DE50221-FAAA-45BA-90B9-7BCC26EC60CF",
+      25
+     ]
+    ],
+    "hub_names": {
+     "13A3F0F6-264A-3EF0-F2E0-DEC512342F34": "PcdProtocol (PI spec) \u2014 named via the OVMF nameplate",
+     "6441F818-6362-4E44-B570-7DBA31DD2453": "in the OVMF DAG (DevicePathUtilities family)"
+    },
+    "ami_only_hubs": "left GUID-only (not in the OVMF nameplate; no .dec name claimed)"
+   },
+   "strings": {
+    "agesa_string_hits": 3,
+    "agesa_versions_found": [],
+    "psp_directory_hits": 13,
+    "psp_offsets": [
+     "0x110000",
+     "0x260000",
+     "0x3df000",
+     "0x60f000"
+    ],
+    "bios_directory_hits": 0,
+    "bios_offsets": [],
+    "dbxDefault": 0,
+    "secureboot_string": 1
+   }
+  }
+ ],
+ "cross_vendor": {
+  "claim": "vendor-bios-heritage.md: four AMI-Aptio firmwares with the same bones \u2014 measured here at GUID level",
+  "shared_module_guids": 275,
+  "jaccard": 0.549,
+  "only_msi": 78,
+  "only_gigabyte": 148,
+  "reading": "55 % shared identity on the DXE/SMM layer: the platform bones are common (the AMI core), the differences are vendor boards and option ROMs"
+ },
+ "honesty": [
+  "the nesting rule's first run rejected 24/24 valid FVs: the FS-GUID registry lookup was case-sensitive while spi_map._guid returns uppercase \u2014 the rule worked, the registry had the bug; both the bug and the catch are registered",
+  "the FTYPE table was written from memory first and was wrong from 0x0A on; corrected by copying ovmf_census.py's proven table verbatim \u2014 the discipline caught it before the numbers were read",
+  "$BSP (AMD BIOS directory) has zero hits on both specimens; $PSP hits exist (26 MSI / 13 GB) but were not parsed this ring \u2014 the PSP lens stays an open front",
+  "GB's NVRAM region (0xe40000, 6 freeform files) is walked at file level only; the EVSA store walk is day-0 inventory work",
+  "named-share is UI-section coverage, not semantic coverage: 77.5 % MSI / 84.7 % GB \u2014 the unnamed tail is mostly AMI internal freeform blobs"
+ ],
+ "consequences_day0": [
+  "the vendor dump arrives to an instrument with two vendor precedents: flash map by validated nesting, pierce by the LZMA pattern, census by phase, dispatch by postfix grammar",
+  "the empty-string dbx tripwire and the trust-store lens are the first checks on the dump's NVRAM region",
+  "the swap comparison is now three-way in principle: OVMF builds vs MSI vs Gigabyte \u2014 the vendor report gains a cross-vendor page"
+ ]
+}

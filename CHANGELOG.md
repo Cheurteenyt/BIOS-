@@ -4,6 +4,44 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the eleventh ring (the instrument meets real vendor silicon)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Investigation (ring 11 — other motherboards, latest updates, same
+method)**
+- **Acquisition** (`vendor-specimens.json`): one board per AMI-Aptio
+  AM4 vendor pinned to its latest BIOS — MSI B450 TOMAHAWK MAX
+  7C02v3G1 (2023-03-09, the frozen cliff) and Gigabyte B450 AORUS PRO
+  F67c (2026-08-18, the living line, fixing CVE-2026-6726/6727)
+  downloaded from the vendor CDNs; ASRock 10.41 Beta version-pinned
+  but file 403-blocked (WAF, registered); ASUS stays the day-0 dump.
+- **The nesting rule bites its own registry**: first contact rejected
+  24/24 valid FVs — a case-sensitive FS-GUID lookup against an
+  uppercase-returning mapper. The rule worked; the registry had the
+  bug. Fixed, and the from-memory FTYPE table caught by cross-check
+  before any number was read.
+- **The OVMF grammar crosses to vendor silicon**: the main FVs open
+  with fv_image files carrying the EDK2 LZMA GUID; FORMAT_ALONE
+  pierce yields 453 modules (MSI: 264 DXE, 86 SMM) and 498
+  (Gigabyte: 309 DXE, 112 SMM), 77.5 %/84.7 % UI-named. MSI's AGESA
+  `ComboAm4v2PI 1.2.0.8` byte-verified in-image; Gigabyte's claim
+  rests on the vendor page (registered as such).
+- **The same bones, measured**: 275 module GUIDs shared of 453/498
+  (jaccard 0.549) — the heritage doc's claim becomes a number.
+- **The dispatch layer reads 100 %**: 228/228 + 278/278 DEPEX
+  sections postfix-parsed, zero failures; PcdProtocol hub fan-in 202
+  and 270 against OVMF's 56; AMI-only hubs left GUID-only.
+
+**Added**
+- `lab/vendor-specimens.json` — the first vendor-silicon register
+  (flash maps, pierced census, cross-vendor intersection, dispatch
+  lens, acquisition honesty).
+- `lab/findings-eleventh-ring.md` — the ring narrative.
+- `docs/day0-protocol.md` — now linked from the README hub (ring-10
+  catch-up).
+
 ## Unreleased — the tenth ring (the general rehearsal: the pipeline proves itself before the machine)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
