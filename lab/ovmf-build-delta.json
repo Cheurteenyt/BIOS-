@@ -1,0 +1,269 @@
+{
+ "schema": "ovmf-build-delta/1",
+ "note": "inner FVs only (pierced PEIFV+DXEFV); outer SecMain/ResetVector excluded \u2014 whole-image hashes are Front T2's",
+ "added_in_secboot": [
+  {
+   "guid": "1206F7CA-A475-4624-A83E-E6FC9BB38E49",
+   "name": "SmmControl2Dxe",
+   "type": 7,
+   "size": 20638
+  },
+  {
+   "guid": "229B7EFD-DA02-46B9-93F4-E20C009F94E9",
+   "name": "CpuS3DataDxe",
+   "type": 7,
+   "size": 3206
+  },
+  {
+   "guid": "23A089B3-EED5-4AC5-B2AB-43E3298C2343",
+   "name": "VariableSmm",
+   "type": 10,
+   "size": 868498
+  },
+  {
+   "guid": "2E7DB7A7-608E-4041-B45F-00359E0766C6",
+   "name": "FvbServicesSmm",
+   "type": 10,
+   "size": 20634
+  },
+  {
+   "guid": "2FA2A6DA-11D5-4DC3-999A-749648B03C56",
+   "name": "PiSmmIpl",
+   "type": 7,
+   "size": 24718
+  },
+  {
+   "guid": "33FB3535-F15E-4C17-B303-5EB94595ECB6",
+   "name": "SmmLockBox",
+   "type": 10,
+   "size": 20626
+  },
+  {
+   "guid": "34C8C28F-B61C-45A2-8F2E-89E46BECC63B",
+   "name": "34C8C28F-B61C-45A2-8F2E-89E46BECC63B",
+   "type": 6,
+   "size": 5506
+  },
+  {
+   "guid": "470CB248-E8AC-473C-BB4F-81069A1FE6FD",
+   "name": "SmmFaultTolerantWriteDxe",
+   "type": 10,
+   "size": 24786
+  },
+  {
+   "guid": "6C0E75B4-B0B9-44D1-8210-3377D7B4E066",
+   "name": "6C0E75B4-B0B9-44D1-8210-3377D7B4E066",
+   "type": 6,
+   "size": 3974
+  },
+  {
+   "guid": "84EEA114-C6BE-4445-8F90-51D97863E363",
+   "name": "CpuHotplugSmm",
+   "type": 10,
+   "size": 16570
+  },
+  {
+   "guid": "9F7DCADE-11EA-448A-A46F-76E003657DD1",
+   "name": "VariableSmmRuntimeDxe",
+   "type": 7,
+   "size": 24726
+  },
+  {
+   "guid": "A3FF0EF5-0C28-42F5-B544-8C7DE1E80014",
+   "name": "PiSmmCpuDxeSmm",
+   "type": 10,
+   "size": 82074
+  },
+  {
+   "guid": "A47EE2D8-F60E-42FD-8E58-7BD65EE4C29B",
+   "name": "CpuIo2Smm",
+   "type": 10,
+   "size": 16490
+  },
+  {
+   "guid": "AAC33064-9ED0-4B89-A5AD-3EA767960B22",
+   "name": "AAC33064-9ED0-4B89-A5AD-3EA767960B22",
+   "type": 6,
+   "size": 2134
+  },
+  {
+   "guid": "AC95AD3D-4366-44BF-9A62-E4B29D7A2206",
+   "name": "SmmAccess2Dxe",
+   "type": 7,
+   "size": 2674
+  },
+  {
+   "guid": "E2EA6F47-E678-47FA-8C1B-02A03E825C6E",
+   "name": "TcgMorLockSmm",
+   "type": 10,
+   "size": 12474
+  },
+  {
+   "guid": "E94F54CD-81EB-47ED-AEC3-856F5DC157A9",
+   "name": "PiSmmCore",
+   "type": 13,
+   "size": 41026
+  },
+  {
+   "guid": "F0E6A44F-7195-41C3-AC64-54F202CD0A21",
+   "name": "SecureBootConfigDxe",
+   "type": 7,
+   "size": 716382
+  }
+ ],
+ "removed_in_secboot": [
+  {
+   "guid": "17D0EF2A-5933-4007-8950-5749169D3DC5",
+   "name": "VariablePolicyDynamicCommand",
+   "type": 7,
+   "size": 24074
+  },
+  {
+   "guid": "19618BCE-55AE-09C6-37E9-4CE04084C7A1",
+   "name": "httpDynamicCommand",
+   "type": 7,
+   "size": 38534
+  },
+  {
+   "guid": "22DC2B60-FE40-42AC-B01F-3AB1FAD9AAD8",
+   "name": "EmuVariableFvbRuntimeDxe",
+   "type": 7,
+   "size": 16522
+  },
+  {
+   "guid": "2F30DA26-F51B-4B6F-85C4-31873C281BCA",
+   "name": "LinuxInitrdDynamicShellCommand",
+   "type": 7,
+   "size": 20878
+  },
+  {
+   "guid": "733CBAC2-B23F-4B92-BC8E-FB01CE5907B7",
+   "name": "FvbServicesRuntimeDxe",
+   "type": 7,
+   "size": 20610
+  },
+  {
+   "guid": "7C04A583-9E3E-4F1C-AD65-E05268D0B4D1",
+   "name": "7C04A583-9E3E-4F1C-AD65-E05268D0B4D1",
+   "type": 9,
+   "size": 894422
+  },
+  {
+   "guid": "A487A478-51EF-48AA-8794-7BEE2A0562F1",
+   "name": "tftpDynamicCommand",
+   "type": 7,
+   "size": 30278
+  },
+  {
+   "guid": "CBD2E4D5-7068-4FF5-B462-9822B4AD8D60",
+   "name": "VariableRuntimeDxe",
+   "type": 7,
+   "size": 41086
+  },
+  {
+   "guid": "FE5CEA76-4F72-49E8-986F-2CD899DFFE5D",
+   "name": "FaultTolerantWriteDxe",
+   "type": 7,
+   "size": 10918
+  }
+ ],
+ "in_both": 126,
+ "identical_bodies": [
+  {
+   "guid": "1B45CC0A-156A-428A-AF62-49864DA0E6E6",
+   "name": "1B45CC0A-156A-428A-AF62-49864DA0E6E6"
+  },
+  {
+   "guid": "52C05B14-0B98-496C-BC3B-04B50211D680",
+   "name": "52C05B14-0B98-496C-BC3B-04B50211D680"
+  },
+  {
+   "guid": "9B3ADA4F-AE56-4C24-8DEA-F03B7558AE50",
+   "name": "9B3ADA4F-AE56-4C24-8DEA-F03B7558AE50"
+  },
+  {
+   "guid": "9D225237-FA01-464C-A949-BAABC02D31D0",
+   "name": "9D225237-FA01-464C-A949-BAABC02D31D0"
+  },
+  {
+   "guid": "A3610442-E69F-4DF3-82CA-2360C4031A23",
+   "name": "A3610442-E69F-4DF3-82CA-2360C4031A23"
+  },
+  {
+   "guid": "FCB3A3D6-6274-411C-A548-BD0E717D533A",
+   "name": "FCB3A3D6-6274-411C-A548-BD0E717D533A"
+  }
+ ],
+ "size_deltas_top10": [
+  {
+   "guid": "F80697E9-7FD6-4665-8646-88E33EF71DFC",
+   "name": "SecurityStubDxe",
+   "plain": 13942,
+   "secboot": 825334,
+   "delta": 811392
+  },
+  {
+   "guid": "6D33944A-EC75-4855-A54D-809C75241F6C",
+   "name": "BdsDxe",
+   "plain": 86650,
+   "secboot": 82362,
+   "delta": -4288
+  },
+  {
+   "guid": "A19B1FE7-C1BC-49F8-875F-54A5D542443F",
+   "name": "CpuIo2Dxe",
+   "plain": 4506,
+   "secboot": 2522,
+   "delta": -1984
+  },
+  {
+   "guid": "128FB770-5E79-4176-9E51-9BB268A17DD1",
+   "name": "PciHostBridgeDxe",
+   "plain": 19110,
+   "secboot": 17574,
+   "delta": -1536
+  },
+  {
+   "guid": "FA20568B-548B-4B2B-81EF-1BA08D4A3CEC",
+   "name": "BootScriptExecutorDxe",
+   "plain": 70742,
+   "secboot": 69206,
+   "delta": -1536
+  },
+  {
+   "guid": "11A6EDF6-A9BE-426D-A6CC-B22FE51D9224",
+   "name": "PciHotPlugInitDxe",
+   "plain": 9146,
+   "secboot": 7674,
+   "delta": -1472
+  },
+  {
+   "guid": "FDFF263D-5F68-4591-87BA-B768F445A9AF",
+   "name": "Tcg2Dxe",
+   "plain": 46546,
+   "secboot": 45074,
+   "delta": -1472
+  },
+  {
+   "guid": "C4D1F932-821F-4744-BF06-6D30F7730F8D",
+   "name": "Ps2KeyboardDxe",
+   "plain": 13134,
+   "secboot": 12110,
+   "delta": -1024
+  },
+  {
+   "guid": "A5683620-7998-4BB2-A377-1C1E31E1E215",
+   "name": "TcgDxe",
+   "plain": 13158,
+   "secboot": 12198,
+   "delta": -960
+  },
+  {
+   "guid": "1A1E4886-9517-440E-9FDE-3BE44CEE2136",
+   "name": "CpuDxe",
+   "plain": 91834,
+   "secboot": 90938,
+   "delta": -896
+  }
+ ]
+}
