@@ -1,0 +1,1531 @@
+{
+ "schema": "omarchy-firmware/ovmf-ifr-grammar@1",
+ "date": "2026-09-11",
+ "note": "self-calibrated walk: package lists anchored by u32@16==len; opcode layout validated by exact termination across every form package",
+ "builds": {
+  "plain": {
+   "build": "OVMF_CODE_4M.fd",
+   "totals": {
+    "package_lists": 15,
+    "list_bytes": 41874,
+    "packages": 21,
+    "formwalk_validated": 0,
+    "formwalk_failed": 4,
+    "instructions": 0
+   },
+   "package_type_histogram": {
+    "0x6": 1,
+    "0xdf": 5,
+    "0x0": 11,
+    "0x4": 4
+   },
+   "layout_validation": {
+    "LO": 0,
+    "OP": 0
+   },
+   "top_opcodes": [],
+   "carriers": [
+    {
+     "guid": "F74D20EE-37E7-48FC-97F7-9B1047749C69",
+     "name": "LogoDxe",
+     "lists": [
+      {
+       "pos": 1584,
+       "plen": 12009,
+       "composition": [
+        [
+         "0x6",
+         11981
+        ],
+        [
+         "0xdf",
+         0
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "19618BCE-55AE-09C6-37E9-4CE04084C7A1",
+     "name": "httpDynamicCommand",
+     "lists": [
+      {
+       "pos": 29488,
+       "plen": 8676,
+       "composition": [
+        [
+         "0x4",
+         8648
+        ],
+        [
+         "0xdf",
+         0
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "A487A478-51EF-48AA-8794-7BEE2A0562F1",
+     "name": "tftpDynamicCommand",
+     "lists": [
+      {
+       "pos": 23088,
+       "plen": 6876,
+       "composition": [
+        [
+         "0x4",
+         6848
+        ],
+        [
+         "0xdf",
+         0
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+     "name": "TlsDxe",
+     "lists": [
+      {
+       "pos": 773680,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 773692,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 773704,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 773716,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 775632,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 788120,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 806060,
+       "plen": 42,
+       "composition": [
+        [
+         "0x0",
+         18
+        ]
+       ]
+      },
+      {
+       "pos": 806208,
+       "plen": 62,
+       "composition": [
+        [
+         "0x0",
+         38
+        ]
+       ]
+      },
+      {
+       "pos": 900696,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 901208,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "17D0EF2A-5933-4007-8950-5749169D3DC5",
+     "name": "VariablePolicyDynamicCommand",
+     "lists": [
+      {
+       "pos": 18672,
+       "plen": 5125,
+       "composition": [
+        [
+         "0x4",
+         5097
+        ],
+        [
+         "0xdf",
+         0
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "2F30DA26-F51B-4B6F-85C4-31873C281BCA",
+     "name": "LinuxInitrdDynamicShellCommand",
+     "lists": [
+      {
+       "pos": 17840,
+       "plen": 2707,
+       "composition": [
+        [
+         "0x4",
+         2679
+        ],
+        [
+         "0xdf",
+         0
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    }
+   ]
+  },
+  "secboot": {
+   "build": "OVMF_CODE_4M.secboot.fd",
+   "totals": {
+    "package_lists": 35,
+    "list_bytes": 37621,
+    "packages": 40,
+    "formwalk_validated": 0,
+    "formwalk_failed": 0,
+    "instructions": 0
+   },
+   "package_type_histogram": {
+    "0x0": 38,
+    "0x6": 1,
+    "0xdf": 1
+   },
+   "layout_validation": {
+    "LO": 0,
+    "OP": 0
+   },
+   "top_opcodes": [],
+   "carriers": [
+    {
+     "guid": "F74D20EE-37E7-48FC-97F7-9B1047749C69",
+     "name": "LogoDxe",
+     "lists": [
+      {
+       "pos": 1520,
+       "plen": 12009,
+       "composition": [
+        [
+         "0x6",
+         11981
+        ],
+        [
+         "0xdf",
+         0
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+     "name": "TlsDxe",
+     "lists": [
+      {
+       "pos": 773040,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 773052,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 773064,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 773076,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 774992,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 787480,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 805420,
+       "plen": 42,
+       "composition": [
+        [
+         "0x0",
+         18
+        ]
+       ]
+      },
+      {
+       "pos": 805568,
+       "plen": 62,
+       "composition": [
+        [
+         "0x0",
+         38
+        ]
+       ]
+      },
+      {
+       "pos": 900056,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 900568,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "F80697E9-7FD6-4665-8646-88E33EF71DFC",
+     "name": "SecurityStubDxe",
+     "lists": [
+      {
+       "pos": 624528,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 624540,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 624552,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 624564,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 626416,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 638904,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 736952,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 737464,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "F0E6A44F-7195-41C3-AC64-54F202CD0A21",
+     "name": "SecureBootConfigDxe",
+     "lists": [
+      {
+       "pos": 536464,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 536476,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 536488,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 536500,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 538352,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 550840,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 645144,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 645656,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "23A089B3-EED5-4AC5-B2AB-43E3298C2343",
+     "name": "VariableSmm",
+     "lists": [
+      {
+       "pos": 648528,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 648540,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 648552,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 648564,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 650416,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 662904,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 760856,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 761368,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    }
+   ]
+  },
+  "ms": {
+   "build": "OVMF_CODE_4M.ms.fd",
+   "totals": {
+    "package_lists": 35,
+    "list_bytes": 37621,
+    "packages": 40,
+    "formwalk_validated": 0,
+    "formwalk_failed": 0,
+    "instructions": 0
+   },
+   "package_type_histogram": {
+    "0x0": 38,
+    "0x6": 1,
+    "0xdf": 1
+   },
+   "layout_validation": {
+    "LO": 0,
+    "OP": 0
+   },
+   "top_opcodes": [],
+   "carriers": [
+    {
+     "guid": "F74D20EE-37E7-48FC-97F7-9B1047749C69",
+     "name": "LogoDxe",
+     "lists": [
+      {
+       "pos": 1520,
+       "plen": 12009,
+       "composition": [
+        [
+         "0x6",
+         11981
+        ],
+        [
+         "0xdf",
+         0
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+     "name": "TlsDxe",
+     "lists": [
+      {
+       "pos": 773040,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 773052,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 773064,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 773076,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 774992,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 787480,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 805420,
+       "plen": 42,
+       "composition": [
+        [
+         "0x0",
+         18
+        ]
+       ]
+      },
+      {
+       "pos": 805568,
+       "plen": 62,
+       "composition": [
+        [
+         "0x0",
+         38
+        ]
+       ]
+      },
+      {
+       "pos": 900056,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 900568,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "F80697E9-7FD6-4665-8646-88E33EF71DFC",
+     "name": "SecurityStubDxe",
+     "lists": [
+      {
+       "pos": 624528,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 624540,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 624552,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 624564,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 626416,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 638904,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 736952,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 737464,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "F0E6A44F-7195-41C3-AC64-54F202CD0A21",
+     "name": "SecureBootConfigDxe",
+     "lists": [
+      {
+       "pos": 536464,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 536476,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 536488,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 536500,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 538352,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 550840,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 645144,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 645656,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "23A089B3-EED5-4AC5-B2AB-43E3298C2343",
+     "name": "VariableSmm",
+     "lists": [
+      {
+       "pos": 648528,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 648540,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 648552,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 648564,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 650416,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 662904,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 760856,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 761368,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    }
+   ]
+  },
+  "snakeoil": {
+   "build": "OVMF_CODE_4M.snakeoil.fd",
+   "totals": {
+    "package_lists": 35,
+    "list_bytes": 37621,
+    "packages": 40,
+    "formwalk_validated": 0,
+    "formwalk_failed": 0,
+    "instructions": 0
+   },
+   "package_type_histogram": {
+    "0x0": 38,
+    "0x6": 1,
+    "0xdf": 1
+   },
+   "layout_validation": {
+    "LO": 0,
+    "OP": 0
+   },
+   "top_opcodes": [],
+   "carriers": [
+    {
+     "guid": "F74D20EE-37E7-48FC-97F7-9B1047749C69",
+     "name": "LogoDxe",
+     "lists": [
+      {
+       "pos": 1520,
+       "plen": 12009,
+       "composition": [
+        [
+         "0x6",
+         11981
+        ],
+        [
+         "0xdf",
+         0
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+     "name": "TlsDxe",
+     "lists": [
+      {
+       "pos": 773040,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 773052,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 773064,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 773076,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 774992,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 787480,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 805420,
+       "plen": 42,
+       "composition": [
+        [
+         "0x0",
+         18
+        ]
+       ]
+      },
+      {
+       "pos": 805568,
+       "plen": 62,
+       "composition": [
+        [
+         "0x0",
+         38
+        ]
+       ]
+      },
+      {
+       "pos": 900056,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 900568,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "F80697E9-7FD6-4665-8646-88E33EF71DFC",
+     "name": "SecurityStubDxe",
+     "lists": [
+      {
+       "pos": 624528,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 624540,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 624552,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 624564,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 626416,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 638904,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 736952,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 737464,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "F0E6A44F-7195-41C3-AC64-54F202CD0A21",
+     "name": "SecureBootConfigDxe",
+     "lists": [
+      {
+       "pos": 536464,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 536476,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 536488,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 536500,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 538352,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 550840,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 645144,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 645656,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    },
+    {
+     "guid": "23A089B3-EED5-4AC5-B2AB-43E3298C2343",
+     "name": "VariableSmm",
+     "lists": [
+      {
+       "pos": 648528,
+       "plen": 1116,
+       "composition": [
+        [
+         "0x0",
+         1092
+        ]
+       ]
+      },
+      {
+       "pos": 648540,
+       "plen": 1117,
+       "composition": [
+        [
+         "0x0",
+         1093
+        ]
+       ]
+      },
+      {
+       "pos": 648552,
+       "plen": 1118,
+       "composition": [
+        [
+         "0x0",
+         1094
+        ]
+       ]
+      },
+      {
+       "pos": 648564,
+       "plen": 1119,
+       "composition": [
+        [
+         "0x0",
+         1095
+        ]
+       ]
+      },
+      {
+       "pos": 650416,
+       "plen": 940,
+       "composition": [
+        [
+         "0x0",
+         916
+        ]
+       ]
+      },
+      {
+       "pos": 662904,
+       "plen": 903,
+       "composition": [
+        [
+         "0x0",
+         668
+        ],
+        [
+         "0x0",
+         207
+        ]
+       ]
+      },
+      {
+       "pos": 760856,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      },
+      {
+       "pos": 761368,
+       "plen": 32,
+       "composition": [
+        [
+         "0x0",
+         8
+        ]
+       ]
+      }
+     ],
+     "instructions": 0
+    }
+   ]
+  }
+ }
+}

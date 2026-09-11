@@ -1,0 +1,302 @@
+{
+ "schema": "omarchy-firmware/ovmf-acpi-footprint@1",
+ "date": "2026-09-11",
+ "note": "RSD PTR validated by its own 20-byte checksum; ACPI table sigs by length-field plausibility",
+ "builds": {
+  "plain": {
+   "raw_len": 3653632,
+   "pierced_len": 16122000,
+   "rsd_ptr_raw": [],
+   "rsd_ptr_pierced": [
+    {
+     "off": 2263245,
+     "checksum20_ok": false
+    }
+   ],
+   "acpi_smbios_raw": {},
+   "acpi_smbios_pierced": {
+    "FACP": [],
+    "DSDT": [
+     {
+      "off": 2259668,
+      "plausible": 9733135
+     }
+    ],
+    "SSDT": [
+     {
+      "off": 1871944,
+      "plausible": 124
+     }
+    ],
+    "APIC": [
+     {
+      "off": 2447413,
+      "plausible": 12682511
+     }
+    ],
+    "BGRT": [
+     {
+      "off": 2367860,
+      "plausible": 56
+     }
+    ],
+    "BOOT": [],
+    "UEFI": [
+     {
+      "off": 2139644,
+      "plausible": 2035456
+     },
+     {
+      "off": 4219139,
+      "plausible": 7564845
+     },
+     {
+      "off": 4228105,
+      "plausible": 7564845
+     }
+    ],
+    "_SM_": [
+     {
+      "off": 2247364,
+      "plausible": 7936
+     }
+    ],
+    "_DMI_": []
+   },
+   "raw_hits_total": 0,
+   "pierced_hits_total": 8
+  },
+  "secboot": {
+   "raw_len": 3653632,
+   "pierced_len": 16122000,
+   "rsd_ptr_raw": [],
+   "rsd_ptr_pierced": [
+    {
+     "off": 3772688,
+     "checksum20_ok": false
+    }
+   ],
+   "acpi_smbios_raw": {},
+   "acpi_smbios_pierced": {
+    "FACP": [],
+    "DSDT": [
+     {
+      "off": 3769140,
+      "plausible": 9733135
+     }
+    ],
+    "SSDT": [
+     {
+      "off": 3385448,
+      "plausible": 124
+     }
+    ],
+    "APIC": [],
+    "BGRT": [
+     {
+      "off": 3874772,
+      "plausible": 56
+     }
+    ],
+    "BOOT": [],
+    "UEFI": [
+     {
+      "off": 3651516,
+      "plausible": 2035456
+     },
+     {
+      "off": 5720995,
+      "plausible": 7564845
+     },
+     {
+      "off": 5729961,
+      "plausible": 7564845
+     }
+    ],
+    "_SM_": [
+     {
+      "off": 3757348,
+      "plausible": 7936
+     }
+    ],
+    "_DMI_": []
+   },
+   "raw_hits_total": 0,
+   "pierced_hits_total": 7
+  },
+  "strictnx": {
+   "raw_len": 3653632,
+   "pierced_len": 16122000,
+   "rsd_ptr_raw": [],
+   "rsd_ptr_pierced": [
+    {
+     "off": 3772688,
+     "checksum20_ok": false
+    }
+   ],
+   "acpi_smbios_raw": {},
+   "acpi_smbios_pierced": {
+    "FACP": [],
+    "DSDT": [
+     {
+      "off": 3769140,
+      "plausible": 9733135
+     }
+    ],
+    "SSDT": [
+     {
+      "off": 3385448,
+      "plausible": 124
+     }
+    ],
+    "APIC": [],
+    "BGRT": [
+     {
+      "off": 3874772,
+      "plausible": 56
+     }
+    ],
+    "BOOT": [],
+    "UEFI": [
+     {
+      "off": 3651516,
+      "plausible": 2035456
+     },
+     {
+      "off": 5720995,
+      "plausible": 7564845
+     },
+     {
+      "off": 5729961,
+      "plausible": 7564845
+     }
+    ],
+    "_SM_": [
+     {
+      "off": 3757348,
+      "plausible": 7936
+     }
+    ],
+    "_DMI_": []
+   },
+   "raw_hits_total": 0,
+   "pierced_hits_total": 7
+  },
+  "ms": {
+   "raw_len": 3653632,
+   "pierced_len": 16122000,
+   "rsd_ptr_raw": [],
+   "rsd_ptr_pierced": [
+    {
+     "off": 3772688,
+     "checksum20_ok": false
+    }
+   ],
+   "acpi_smbios_raw": {},
+   "acpi_smbios_pierced": {
+    "FACP": [],
+    "DSDT": [
+     {
+      "off": 3769140,
+      "plausible": 9733135
+     }
+    ],
+    "SSDT": [
+     {
+      "off": 3385448,
+      "plausible": 124
+     }
+    ],
+    "APIC": [],
+    "BGRT": [
+     {
+      "off": 3874772,
+      "plausible": 56
+     }
+    ],
+    "BOOT": [],
+    "UEFI": [
+     {
+      "off": 3651516,
+      "plausible": 2035456
+     },
+     {
+      "off": 5720995,
+      "plausible": 7564845
+     },
+     {
+      "off": 5729961,
+      "plausible": 7564845
+     }
+    ],
+    "_SM_": [
+     {
+      "off": 3757348,
+      "plausible": 7936
+     }
+    ],
+    "_DMI_": []
+   },
+   "raw_hits_total": 0,
+   "pierced_hits_total": 7
+  },
+  "snakeoil": {
+   "raw_len": 3653632,
+   "pierced_len": 16122000,
+   "rsd_ptr_raw": [],
+   "rsd_ptr_pierced": [
+    {
+     "off": 3772688,
+     "checksum20_ok": false
+    }
+   ],
+   "acpi_smbios_raw": {},
+   "acpi_smbios_pierced": {
+    "FACP": [],
+    "DSDT": [
+     {
+      "off": 3769140,
+      "plausible": 9733135
+     }
+    ],
+    "SSDT": [
+     {
+      "off": 3385448,
+      "plausible": 124
+     }
+    ],
+    "APIC": [],
+    "BGRT": [
+     {
+      "off": 3874772,
+      "plausible": 56
+     }
+    ],
+    "BOOT": [],
+    "UEFI": [
+     {
+      "off": 3651516,
+      "plausible": 2035456
+     },
+     {
+      "off": 5720995,
+      "plausible": 7564845
+     },
+     {
+      "off": 5729961,
+      "plausible": 7564845
+     }
+    ],
+    "_SM_": [
+     {
+      "off": 3757348,
+      "plausible": 7936
+     }
+    ],
+    "_DMI_": []
+   },
+   "raw_hits_total": 0,
+   "pierced_hits_total": 7
+  }
+ }
+}
