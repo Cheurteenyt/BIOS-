@@ -1,0 +1,573 @@
+{
+ "schema": "omarchy-firmware/vendor-clocks@1",
+ "date": "2026-09-12",
+ "ring": 20,
+ "title": "five clocks, one board family — the dating signals fused and their resolving power priced",
+ "note": "front A of ring 20: zero downloads, zero bytes probed — the fusion reads the ring 13-19 artifacts only; every value carries its source artifact",
+ "sources": {
+  "agesa": "vendor-agesa.json (ring 18 timeline)",
+  "certs": "vendor-pe-trust.json (ring 19 front 3)",
+  "armor": "vendor-flash-armor.json (rings 16+18)",
+  "psp": "vendor-lifecycles.json (ring 19 front 4)",
+  "geometry": "vendor-geometry.json (ring 19 front 2)"
+ },
+ "board_scope": "ASUS PRIME B450-PLUS, the nine dated official rungs 3604..4655",
+ "fused_table": [
+  {
+   "version": "3604",
+   "released": "2022/03/16",
+   "clock_agesa": {
+    "agesa": "1.2.0.6b",
+    "verdict": "NEWLY BYTE-VERIFIED",
+    "needs": "pierce+decompress+strings"
+   },
+   "clock_certs": {
+    "der_certs": 12,
+    "timestamp_chain": "DigiCert Timestamp 2021",
+    "needs": "raw scan, no pierce"
+   },
+   "clock_armor": {
+    "core_armor": 0,
+    "armor_score": null,
+    "legacy_present": 2,
+    "needs": "full FFS census (pierce)"
+   },
+   "clock_psp": {
+    "types": 49,
+    "distinct_blobs": 200,
+    "churn_in": null,
+    "needs": "PSP directory walk + fletcher32"
+   },
+   "clock_geometry": {
+    "pct_packed": 55.9,
+    "pct_erased": 19.9,
+    "pct_fv_of_image": 41.4,
+    "nvar_magic_hits": 18,
+    "needs": "raw read only, no pierce"
+   }
+  },
+  {
+   "version": "3802",
+   "released": "2022/05/12",
+   "clock_agesa": {
+    "agesa": "1.2.0.7",
+    "verdict": "MEASURED",
+    "needs": "pierce+decompress+strings"
+   },
+   "clock_certs": {
+    "der_certs": 12,
+    "timestamp_chain": "DigiCert Timestamp 2022 - 2",
+    "needs": "raw scan, no pierce"
+   },
+   "clock_armor": {
+    "core_armor": 4,
+    "armor_score": 5,
+    "legacy_present": 2,
+    "needs": "full FFS census (pierce)"
+   },
+   "clock_psp": {
+    "types": 49,
+    "distinct_blobs": 211,
+    "churn_in": 42,
+    "needs": "PSP directory walk + fletcher32"
+   },
+   "clock_geometry": {
+    "pct_packed": 58.3,
+    "pct_erased": 18.7,
+    "pct_fv_of_image": 42.1,
+    "nvar_magic_hits": 18,
+    "needs": "raw read only, no pierce"
+   }
+  },
+  {
+   "version": "3810",
+   "released": "2022/12/15",
+   "clock_agesa": {
+    "agesa": "1.2.0.7",
+    "verdict": "MEASURED",
+    "needs": "pierce+decompress+strings"
+   },
+   "clock_certs": {
+    "der_certs": 18,
+    "timestamp_chain": "DigiCert Timestamp 2022 - 2",
+    "needs": "raw scan, no pierce"
+   },
+   "clock_armor": {
+    "core_armor": 4,
+    "armor_score": 5,
+    "legacy_present": 2,
+    "needs": "full FFS census (pierce)"
+   },
+   "clock_psp": {
+    "types": 49,
+    "distinct_blobs": 211,
+    "churn_in": 7,
+    "needs": "PSP directory walk + fletcher32"
+   },
+   "clock_geometry": {
+    "pct_packed": 58.3,
+    "pct_erased": 19.0,
+    "pct_fv_of_image": 42.1,
+    "nvar_magic_hits": 18,
+    "needs": "raw read only, no pierce"
+   }
+  },
+  {
+   "version": "4003",
+   "released": "2023/03/21",
+   "clock_agesa": {
+    "agesa": "1.2.0.8",
+    "verdict": "MEASURED",
+    "needs": "pierce+decompress+strings"
+   },
+   "clock_certs": {
+    "der_certs": 18,
+    "timestamp_chain": "DigiCert Timestamp 2022 - 2",
+    "needs": "raw scan, no pierce"
+   },
+   "clock_armor": {
+    "core_armor": 4,
+    "armor_score": 5,
+    "legacy_present": 2,
+    "needs": "full FFS census (pierce)"
+   },
+   "clock_psp": {
+    "types": 49,
+    "distinct_blobs": 211,
+    "churn_in": 35,
+    "needs": "PSP directory walk + fletcher32"
+   },
+   "clock_geometry": {
+    "pct_packed": 58.7,
+    "pct_erased": 19.0,
+    "pct_fv_of_image": 42.1,
+    "nvar_magic_hits": 18,
+    "needs": "raw read only, no pierce"
+   }
+  },
+  {
+   "version": "4202",
+   "released": "2023/08/02",
+   "clock_agesa": {
+    "agesa": "1.2.0.A",
+    "verdict": "MEASURED",
+    "needs": "pierce+decompress+strings"
+   },
+   "clock_certs": {
+    "der_certs": 18,
+    "timestamp_chain": "DigiCert Timestamp 2022 - 2",
+    "needs": "raw scan, no pierce"
+   },
+   "clock_armor": {
+    "core_armor": 4,
+    "armor_score": 5,
+    "legacy_present": 1,
+    "needs": "full FFS census (pierce)"
+   },
+   "clock_psp": {
+    "types": 50,
+    "distinct_blobs": 211,
+    "churn_in": 32,
+    "needs": "PSP directory walk + fletcher32"
+   },
+   "clock_geometry": {
+    "pct_packed": 59.5,
+    "pct_erased": 18.3,
+    "pct_fv_of_image": 42.1,
+    "nvar_magic_hits": 18,
+    "needs": "raw read only, no pierce"
+   }
+  },
+  {
+   "version": "4402",
+   "released": "2024/01/08",
+   "clock_agesa": {
+    "agesa": "1.2.0.B",
+    "verdict": "MEASURED",
+    "needs": "pierce+decompress+strings"
+   },
+   "clock_certs": {
+    "der_certs": 18,
+    "timestamp_chain": "DigiCert Timestamp 2023",
+    "needs": "raw scan, no pierce"
+   },
+   "clock_armor": {
+    "core_armor": 4,
+    "armor_score": 5,
+    "legacy_present": 0,
+    "needs": "full FFS census (pierce)"
+   },
+   "clock_psp": {
+    "types": 49,
+    "distinct_blobs": 208,
+    "churn_in": 33,
+    "needs": "PSP directory walk + fletcher32"
+   },
+   "clock_geometry": {
+    "pct_packed": 59.9,
+    "pct_erased": 18.3,
+    "pct_fv_of_image": 42.1,
+    "nvar_magic_hits": 18,
+    "needs": "raw read only, no pierce"
+   }
+  },
+  {
+   "version": "4604",
+   "released": "2024/04/08",
+   "clock_agesa": {
+    "agesa": "1.2.0.Ca",
+    "verdict": "MEASURED",
+    "needs": "pierce+decompress+strings"
+   },
+   "clock_certs": {
+    "der_certs": 18,
+    "timestamp_chain": "DigiCert Timestamp 2023",
+    "needs": "raw scan, no pierce"
+   },
+   "clock_armor": {
+    "core_armor": 4,
+    "armor_score": 7,
+    "legacy_present": 0,
+    "needs": "full FFS census (pierce)"
+   },
+   "clock_psp": {
+    "types": 49,
+    "distinct_blobs": 210,
+    "churn_in": 28,
+    "needs": "PSP directory walk + fletcher32"
+   },
+   "clock_geometry": {
+    "pct_packed": 60.3,
+    "pct_erased": 18.3,
+    "pct_fv_of_image": 42.1,
+    "nvar_magic_hits": 18,
+    "needs": "raw read only, no pierce"
+   }
+  },
+  {
+   "version": "4631",
+   "released": "2025/04/01",
+   "clock_agesa": {
+    "agesa": "1.2.0.E",
+    "verdict": "MEASURED",
+    "needs": "pierce+decompress+strings"
+   },
+   "clock_certs": {
+    "der_certs": 18,
+    "timestamp_chain": "DigiCert Timestamp 2024",
+    "needs": "raw scan, no pierce"
+   },
+   "clock_armor": {
+    "core_armor": 4,
+    "armor_score": 7,
+    "legacy_present": 0,
+    "needs": "full FFS census (pierce)"
+   },
+   "clock_psp": {
+    "types": 49,
+    "distinct_blobs": 210,
+    "churn_in": 34,
+    "needs": "PSP directory walk + fletcher32"
+   },
+   "clock_geometry": {
+    "pct_packed": 60.3,
+    "pct_erased": 18.3,
+    "pct_fv_of_image": 42.1,
+    "nvar_magic_hits": 19,
+    "needs": "raw read only, no pierce"
+   }
+  },
+  {
+   "version": "4655",
+   "released": "2026/08/27",
+   "clock_agesa": {
+    "agesa": "1.2.0.12",
+    "verdict": "NEWLY BYTE-VERIFIED",
+    "needs": "pierce+decompress+strings"
+   },
+   "clock_certs": {
+    "der_certs": 18,
+    "timestamp_chain": "DigiCert SHA256 RSA4096 Timestamp Responder 2025 1",
+    "needs": "raw scan, no pierce"
+   },
+   "clock_armor": {
+    "core_armor": 4,
+    "armor_score": 7,
+    "legacy_present": 0,
+    "needs": "full FFS census (pierce)"
+   },
+   "clock_psp": {
+    "types": 49,
+    "distinct_blobs": 200,
+    "churn_in": 43,
+    "needs": "PSP directory walk + fletcher32"
+   },
+   "clock_geometry": {
+    "pct_packed": 59.4,
+    "pct_erased": 19.1,
+    "pct_fv_of_image": 41.4,
+    "nvar_magic_hits": 19,
+    "needs": "raw read only, no pierce"
+   }
+  }
+ ],
+ "pair_discrimination": [
+  {
+   "pair": "3604|3802",
+   "separated_by": {
+    "agesa": [
+     "1.2.0.6b",
+     "1.2.0.7"
+    ],
+    "armor": [
+     null,
+     5
+    ],
+    "psp_state": [
+     200,
+     211
+    ],
+    "geometry": [
+     55.9,
+     58.3
+    ]
+   },
+   "unseparable_state_clocks": [
+    "certs"
+   ]
+  },
+  {
+   "pair": "3802|3810",
+   "separated_by": {
+    "certs": [
+     12,
+     18
+    ]
+   },
+   "unseparable_state_clocks": [
+    "agesa",
+    "armor",
+    "psp_state"
+   ]
+  },
+  {
+   "pair": "3810|4003",
+   "separated_by": {
+    "agesa": [
+     "1.2.0.7",
+     "1.2.0.8"
+    ],
+    "geometry": [
+     58.3,
+     58.7
+    ]
+   },
+   "unseparable_state_clocks": [
+    "certs",
+    "armor",
+    "psp_state"
+   ]
+  },
+  {
+   "pair": "4003|4202",
+   "separated_by": {
+    "agesa": [
+     "1.2.0.8",
+     "1.2.0.A"
+    ],
+    "geometry": [
+     58.7,
+     59.5
+    ]
+   },
+   "unseparable_state_clocks": [
+    "certs",
+    "armor",
+    "psp_state"
+   ]
+  },
+  {
+   "pair": "4202|4402",
+   "separated_by": {
+    "agesa": [
+     "1.2.0.A",
+     "1.2.0.B"
+    ],
+    "psp_state": [
+     211,
+     208
+    ],
+    "geometry": [
+     59.5,
+     59.9
+    ]
+   },
+   "unseparable_state_clocks": [
+    "certs",
+    "armor"
+   ]
+  },
+  {
+   "pair": "4402|4604",
+   "separated_by": {
+    "agesa": [
+     "1.2.0.B",
+     "1.2.0.Ca"
+    ],
+    "armor": [
+     5,
+     7
+    ],
+    "psp_state": [
+     208,
+     210
+    ],
+    "geometry": [
+     59.9,
+     60.3
+    ]
+   },
+   "unseparable_state_clocks": [
+    "certs"
+   ]
+  },
+  {
+   "pair": "4604|4631",
+   "separated_by": {
+    "agesa": [
+     "1.2.0.Ca",
+     "1.2.0.E"
+    ]
+   },
+   "unseparable_state_clocks": [
+    "certs",
+    "armor",
+    "psp_state"
+   ]
+  },
+  {
+   "pair": "4631|4655",
+   "separated_by": {
+    "agesa": [
+     "1.2.0.E",
+     "1.2.0.12"
+    ],
+    "psp_state": [
+     210,
+     200
+    ],
+    "geometry": [
+     60.3,
+     59.4
+    ]
+   },
+   "unseparable_state_clocks": [
+    "certs",
+    "armor"
+   ]
+  }
+ ],
+ "resolving_clock_pairs": [
+  [
+   "agesa",
+   "certs"
+  ],
+  [
+   "agesa",
+   "cert_count"
+  ],
+  [
+   "agesa",
+   "geometry"
+  ],
+  [
+   "certs",
+   "geometry"
+  ]
+ ],
+ "reading": {
+  "five_clocks": "AGESA (software build), DER cert set (signing calendar), SMM armor (security waves), PSP blobs (platform stack), geometry (image shape) — five independent clocks measured on the same nine releases",
+  "the_3802_3810_pair": {
+   "separated_by": [
+    "certs"
+   ],
+   "detail": {
+    "certs": [
+     12,
+     18
+    ]
+   },
+   "reading": "the quiet-release pair (shared AGESA 1.2.0.7, shared 5/7 armor, shared 211 PSP blobs) is separated ONLY by the certificate set: 12 DERs at 3802, 18 at 3810 — the cert clock is not a fifth signal, it is the missing coordinate"
+  },
+  "minimal_resolving_pairs": [
+   [
+    "agesa",
+    "certs"
+   ],
+   [
+    "agesa",
+    "cert_count"
+   ],
+   [
+    "agesa",
+    "geometry"
+   ],
+   [
+    "certs",
+    "geometry"
+   ]
+  ],
+  "clock_fire_dates": {
+   "agesa": "9 values over 9 rungs (1.2.0.6b..1.2.0.12), monotone",
+   "certs": "doubling 12->18 at 3810 (2022-12); timestamp chain 2021..2025",
+   "armor": "wave-1 fires at 3802 (5/7), wave-2 completes at 4604 (7/7); legacy retires 4003..4402",
+   "psp": "platform event at 3802 (42/50 types move); quiet at 3802->3810 (7/50)",
+   "geometry": "packed share creeps 55.9->60.3 up to 4604, dips at 4655"
+  },
+  "day0_rule": "on the dumped image: geometry first (seconds, anomaly flag), certs second (the missing coordinate, no pierce), AGESA third (pins the rung), armor and PSP confirm — no single clock is decisive alone; (cert_count, AGESA) alone resolves all nine rungs"
+ },
+ "day0_decision_tree": [
+  {
+   "step": 1,
+   "clock": "geometry",
+   "cost": "seconds, raw dump read, no pierce",
+   "question": "does pct_packed/pct_erased/fv_top_bytes sit in the 9-rung atlas?",
+   "power": "coarse bucket + anomaly flag (anything outside the skeleton is an alert before parsing)"
+  },
+  {
+   "step": 2,
+   "clock": "certs",
+   "cost": "raw scan of the container areas, no pierce",
+   "question": "12 or 18 DERs, which timestamp year?",
+   "power": "separates 3802 from 3810 (the ONLY state clock that does); year-buckets the build"
+  },
+  {
+   "step": 3,
+   "clock": "agesa",
+   "cost": "pierce + decompress + strings",
+   "question": "which 1.2.0.x?",
+   "power": "pins the rung except the 3802/3810 pair (shared 1.2.0.7)"
+  },
+  {
+   "step": 4,
+   "clock": "armor",
+   "cost": "full FFS census (pierce)",
+   "question": "0/7, 5/7 or 7/7 armor + legacy 2/1/0",
+   "power": "wave bucket; confirms the cert+AGESA answer"
+  },
+  {
+   "step": 5,
+   "clock": "psp",
+   "cost": "PSP directory walk + fletcher32",
+   "question": "types + distinct_blobs + churn vs neighbours",
+   "power": "transition position; platform-event confirmation"
+  }
+ ],
+ "honesty": [
+  "the fusion inherits every honesty line of its five sources; nothing here was re-measured",
+  "the cert clock's state value is the DER COUNT + timestamp year, both read from subjects, no cryptographic verification (ring 19 line)",
+  "geometry classes are 64-KiB window heuristics; the packed share is a share, not a measurement of payload identity",
+  "the resolving-pair computation treats the clocks as categorical; two rungs with equal clock values are 'unseparated' even if a finer lens could split them",
+  "the TUF 4645 specimen (another board) is deliberately out of the fused table — same-vendor cross-board dating needs its own ring"
+ ]
+}

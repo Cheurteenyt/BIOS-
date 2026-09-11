@@ -1,0 +1,552 @@
+{
+ "schema": "omarchy-firmware/vendor-unasked@1",
+ "date": "2026-09-12",
+ "ring": 20,
+ "title": "the surface the facade never asks about — varstore byte coverage per vendor",
+ "note": "front C of ring 20: the ring-6 grammar + ring-7 dissection imported verbatim; question totals gated on the ring-19 register before any coverage number was read; coverage = union of question (offset,width) intervals per varstore",
+ "validation_gates": [
+  {
+   "gate": "asus-prime-b450-plus-ref question total == ring-19 register",
+   "want": 7975,
+   "got_hist": 7975,
+   "got_attached": 4742,
+   "pass": true
+  },
+  {
+   "gate": "asus-prime-b450-plus question total == ring-19 register",
+   "want": 8273,
+   "got_hist": 8273,
+   "got_attached": 4904,
+   "pass": true
+  },
+  {
+   "gate": "msi-b450-tomahawk-max question total == ring-19 register",
+   "want": 8646,
+   "got_hist": 8646,
+   "got_attached": 4574,
+   "pass": true
+  },
+  {
+   "gate": "gigabyte-b450-aorus-pro question total == ring-19 register",
+   "want": 6388,
+   "got_hist": 6388,
+   "got_attached": 4052,
+   "pass": true
+  },
+  {
+   "gate": "asrock-b450-steel-legend question total == ring-19 register",
+   "want": 6360,
+   "got_hist": 6360,
+   "got_attached": 4094,
+   "pass": true
+  }
+ ],
+ "coverage": {
+  "asus-prime-b450-plus-ref": {
+   "varstore_count": 71,
+   "varstore_bytes_total": 26027,
+   "varstore_bytes_covered": 4194,
+   "uncovered_share_pct": 83.89,
+   "setup_row": {
+    "name": "Setup",
+    "kind": "standard",
+    "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+    "size": 456,
+    "covered": 314,
+    "uncovered": 142,
+    "questions": 368,
+    "offsets_beyond_size": 0
+   },
+   "zero_question_varstores": 10,
+   "top_varstores": [
+    {
+     "name": "MyRCVirtDisks",
+     "kind": "standard",
+     "guid": "aa5d54a2-59c8-458b-80d8-e41944ad1d99",
+     "size": 5587,
+     "covered": 125,
+     "uncovered": 5462,
+     "questions": 105,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "VARSTORE_OCMR_SETTINGS_NAME",
+     "kind": "standard",
+     "guid": "c05fba7d-7a92-49e0-bcee-233b14dca803",
+     "size": 4991,
+     "covered": 395,
+     "uncovered": 4596,
+     "questions": 301,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "MyRCPhysDisks",
+     "kind": "standard",
+     "guid": "aa5d54a2-59c8-458b-80d8-e41944ad1d99",
+     "size": 2879,
+     "covered": 154,
+     "uncovered": 2725,
+     "questions": 269,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1553,
+     "covered": 490,
+     "uncovered": 1063,
+     "questions": 483,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1471,
+     "covered": 316,
+     "uncovered": 1155,
+     "questions": 313,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1448,
+     "covered": 319,
+     "uncovered": 1129,
+     "questions": 312,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1447,
+     "covered": 288,
+     "uncovered": 1159,
+     "questions": 279,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AOD_SETUP",
+     "kind": "standard",
+     "guid": "5ed15dc0-edef-4161-9151-6014c4cc630c",
+     "size": 1020,
+     "covered": 1,
+     "uncovered": 1019,
+     "questions": 1,
+     "offsets_beyond_size": 0
+    }
+   ]
+  },
+  "asus-prime-b450-plus": {
+   "varstore_count": 72,
+   "varstore_bytes_total": 26285,
+   "varstore_bytes_covered": 4356,
+   "uncovered_share_pct": 83.43,
+   "setup_row": {
+    "name": "Setup",
+    "kind": "standard",
+    "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+    "size": 456,
+    "covered": 314,
+    "uncovered": 142,
+    "questions": 368,
+    "offsets_beyond_size": 0
+   },
+   "zero_question_varstores": 10,
+   "top_varstores": [
+    {
+     "name": "MyRCVirtDisks",
+     "kind": "standard",
+     "guid": "aa5d54a2-59c8-458b-80d8-e41944ad1d99",
+     "size": 5635,
+     "covered": 157,
+     "uncovered": 5478,
+     "questions": 137,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "VARSTORE_OCMR_SETTINGS_NAME",
+     "kind": "standard",
+     "guid": "c05fba7d-7a92-49e0-bcee-233b14dca803",
+     "size": 4991,
+     "covered": 395,
+     "uncovered": 4596,
+     "questions": 301,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "MyRCPhysDisks",
+     "kind": "standard",
+     "guid": "aa5d54a2-59c8-458b-80d8-e41944ad1d99",
+     "size": 3055,
+     "covered": 250,
+     "uncovered": 2805,
+     "questions": 365,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1553,
+     "covered": 491,
+     "uncovered": 1062,
+     "questions": 484,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1471,
+     "covered": 316,
+     "uncovered": 1155,
+     "questions": 313,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1448,
+     "covered": 321,
+     "uncovered": 1127,
+     "questions": 314,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1447,
+     "covered": 288,
+     "uncovered": 1159,
+     "questions": 279,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AOD_SETUP",
+     "kind": "standard",
+     "guid": "5ed15dc0-edef-4161-9151-6014c4cc630c",
+     "size": 1020,
+     "covered": 1,
+     "uncovered": 1019,
+     "questions": 1,
+     "offsets_beyond_size": 0
+    }
+   ]
+  },
+  "msi-b450-tomahawk-max": {
+   "varstore_count": 88,
+   "varstore_bytes_total": 26303,
+   "varstore_bytes_covered": 3880,
+   "uncovered_share_pct": 85.25,
+   "setup_row": {
+    "name": "Setup",
+    "kind": "standard",
+    "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+    "size": 1428,
+    "covered": 861,
+    "uncovered": 567,
+    "questions": 900,
+    "offsets_beyond_size": 0
+   },
+   "zero_question_varstores": 28,
+   "top_varstores": [
+    {
+     "name": "MyRCVirtDisks",
+     "kind": "standard",
+     "guid": "aa5d54a2-59c8-458b-80d8-e41944ad1d99",
+     "size": 5635,
+     "covered": 157,
+     "uncovered": 5478,
+     "questions": 137,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "MyRCPhysDisks",
+     "kind": "standard",
+     "guid": "aa5d54a2-59c8-458b-80d8-e41944ad1d99",
+     "size": 3055,
+     "covered": 250,
+     "uncovered": 2805,
+     "questions": 365,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "RtkNvData",
+     "kind": "standard",
+     "guid": "cee81408-4764-4314-ab17-5d61691bda1f",
+     "size": 2012,
+     "covered": 46,
+     "uncovered": 1966,
+     "questions": 28,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "IP6_CONFIG_IFR_NVDATA",
+     "kind": "standard",
+     "guid": "02eea107-98db-400e-9830-460a1542d799",
+     "size": 1592,
+     "covered": 13,
+     "uncovered": 1579,
+     "questions": 6,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1553,
+     "covered": 491,
+     "uncovered": 1062,
+     "questions": 484,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1471,
+     "covered": 316,
+     "uncovered": 1155,
+     "questions": 313,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1448,
+     "covered": 320,
+     "uncovered": 1128,
+     "questions": 313,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1447,
+     "covered": 289,
+     "uncovered": 1158,
+     "questions": 280,
+     "offsets_beyond_size": 0
+    }
+   ]
+  },
+  "gigabyte-b450-aorus-pro": {
+   "varstore_count": 81,
+   "varstore_bytes_total": 25307,
+   "varstore_bytes_covered": 3255,
+   "uncovered_share_pct": 87.14,
+   "setup_row": {
+    "name": "Setup",
+    "kind": "standard",
+    "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+    "size": 628,
+    "covered": 381,
+    "uncovered": 247,
+    "questions": 465,
+    "offsets_beyond_size": 0
+   },
+   "zero_question_varstores": 25,
+   "top_varstores": [
+    {
+     "name": "MyRCVirtDisks",
+     "kind": "standard",
+     "guid": "aa5d54a2-59c8-458b-80d8-e41944ad1d99",
+     "size": 5635,
+     "covered": 157,
+     "uncovered": 5478,
+     "questions": 137,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "MyRCPhysDisks",
+     "kind": "standard",
+     "guid": "aa5d54a2-59c8-458b-80d8-e41944ad1d99",
+     "size": 3055,
+     "covered": 250,
+     "uncovered": 2805,
+     "questions": 365,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "IP6_CONFIG_IFR_NVDATA",
+     "kind": "standard",
+     "guid": "02eea107-98db-400e-9830-460a1542d799",
+     "size": 1592,
+     "covered": 13,
+     "uncovered": 1579,
+     "questions": 6,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1553,
+     "covered": 451,
+     "uncovered": 1102,
+     "questions": 458,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1471,
+     "covered": 276,
+     "uncovered": 1195,
+     "questions": 277,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1448,
+     "covered": 280,
+     "uncovered": 1168,
+     "questions": 284,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1447,
+     "covered": 249,
+     "uncovered": 1198,
+     "questions": 243,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "UndiNVData",
+     "kind": "standard",
+     "guid": "a31abb16-c627-475b-988e-7ee0776740f3",
+     "size": 1434,
+     "covered": 51,
+     "uncovered": 1383,
+     "questions": 41,
+     "offsets_beyond_size": 0
+    }
+   ]
+  },
+  "asrock-b450-steel-legend": {
+   "varstore_count": 77,
+   "varstore_bytes_total": 36077,
+   "varstore_bytes_covered": 3452,
+   "uncovered_share_pct": 90.43,
+   "setup_row": {
+    "name": "Setup",
+    "kind": "standard",
+    "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+    "size": 677,
+    "covered": 417,
+    "uncovered": 260,
+    "questions": 481,
+    "offsets_beyond_size": 0
+   },
+   "zero_question_varstores": 16,
+   "top_varstores": [
+    {
+     "name": "MyIfrNVData",
+     "kind": "standard",
+     "guid": "61fa5536-fe13-4b37-b1d0-0e7cdbd517f2",
+     "size": 9312,
+     "covered": 136,
+     "uncovered": 9176,
+     "questions": 131,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "MyRCVirtDisks",
+     "kind": "standard",
+     "guid": "aa5d54a2-59c8-458b-80d8-e41944ad1d99",
+     "size": 5635,
+     "covered": 157,
+     "uncovered": 5478,
+     "questions": 137,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "MyRCPhysDisks",
+     "kind": "standard",
+     "guid": "aa5d54a2-59c8-458b-80d8-e41944ad1d99",
+     "size": 3055,
+     "covered": 250,
+     "uncovered": 2805,
+     "questions": 365,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "RtkNvData",
+     "kind": "standard",
+     "guid": "cee81408-4764-4314-ab17-5d61691bda1f",
+     "size": 2012,
+     "covered": 51,
+     "uncovered": 1961,
+     "questions": 32,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "IP6_CONFIG_IFR_NVDATA",
+     "kind": "standard",
+     "guid": "02eea107-98db-400e-9830-460a1542d799",
+     "size": 1592,
+     "covered": 13,
+     "uncovered": 1579,
+     "questions": 6,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1553,
+     "covered": 450,
+     "uncovered": 1103,
+     "questions": 443,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1471,
+     "covered": 275,
+     "uncovered": 1196,
+     "questions": 272,
+     "offsets_beyond_size": 0
+    },
+    {
+     "name": "AmdSetup",
+     "kind": "standard",
+     "guid": "3a997502-647a-4c82-998e-52ef9486a247",
+     "size": 1448,
+     "covered": 280,
+     "uncovered": 1168,
+     "questions": 273,
+     "offsets_beyond_size": 0
+    }
+   ]
+  }
+ },
+ "reading": {
+  "q1_completed": "the hidden surface is now measured in BYTES per vendor: the facade asks about N% of the varstore bytes it declares; the rest is policy the UI never surfaces (the variable-level hiding ring 19 predicted)",
+  "the_setup_blob": "the per-vendor Setup varstore row prices the classic setup_var target: size, covered bytes, uncovered bytes, question count"
+ },
+ "honesty": [
+  "question width is 1 byte by default; ONE_OF takes its widest option type, STRING/PASSWORD count 2 bytes (one utf-16 char — dynamic lengths unknown), NUMERIC width needs the raw flags byte the dissection did not retain (recorded as 1 — an undercount, i.e. uncovered shares are UPPER bounds on hiding)",
+  "coverage unions intervals per varstore; overlapping questions collapse (the union is the honest measure)",
+  "name_value varstores carry no size (offset-keyed) — excluded from byte totals, counted in varstore_count",
+  "HII anchor scans over PE + RAW sections only; forms packages living elsewhere would be missed (the exact-consumption rule keeps what is found honest)",
+  "the gate reproduces ring 19's totals under the same grammar — a grammar divergence would fail loudly, not silently re-base"
+ ]
+}

@@ -68,6 +68,14 @@ layers hide the rest:
   hiding is VARIABLE-level (unexposed `Setup` fields, ring 14), not
   question-level. The day-0 screenshot delta now has an expected magnitude,
   not just a method.
+- RING-20 (the unasked bytes — see `lab/vendor-unasked.json`): the hidden
+  surface is now priced in BYTES per vendor. Gates reproduce ring 19's
+  question totals exactly on five specimens, then coverage lands: 84-90 %
+  of varstore bytes are never referenced by any question, and the `Setup`
+  blob itself carries 142-567 never-asked bytes per board (ASUS 456/142,
+  MSI 1,428/567, Gigabyte 628/247, ASRock 677/260). The IFR-side Setup
+  sizes match ring 14's NVRAM side exactly — the Q1↔Q5 bridge closes from
+  both ends, and day-0's Setup row has an expected magnitude to land on.
 - DAY-0: real module list vs. a manual inventory of every setup screen
   (screenshots). The delta is what the vendor ships but does not show.
 - VOL-5: per-vendor NVRAM editors (`setup_var`, AMISCE, SCEWIN) — referenced
@@ -295,6 +303,16 @@ the image; behavior is not.
   commands (an unsigned-code surface removed, not just relocated);
   and the authenticated variable FORMAT is the default everywhere —
   Secure Boot moves the service, not the format.
+- RING-20 (the SMM quorum — see `lab/vendor-smm-quorum.json`): ring -2 read
+  across four vendors at identity level. The four named armor modules ship
+  under the SAME GUIDs on MSI/Gigabyte/ASRock — the flash armor is
+  AMI-generic, not an ASUS customization; `SbRomArmorSmm` has three bodies
+  (MSI and ASRock byte-identical). An 83-GUID spine sits in all five
+  specimens; OVMF's SMM reference set overlaps each vendor by exactly 4
+  GUIDs. MSI's frozen 2023-03 cliff still carries the legacy SMM ASUS
+  retired at 4202 — the retirement calendar holds across vendors. Day-0
+  expectation: the dumped board's armor GUIDs are the corpus-wide ones, not
+  ASUS-only ones.
 - DAY-0: the real SMM module names, read-only.
 - VOL-5: deeper analysis only on sacrificial hardware.
 

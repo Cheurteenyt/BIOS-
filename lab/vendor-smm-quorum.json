@@ -1,0 +1,654 @@
+{
+ "schema": "omarchy-firmware/vendor-smm-quorum@1",
+ "date": "2026-09-12",
+ "ring": 20,
+ "title": "the SMM quorum: ring -2 across four vendors, identity-level",
+ "note": "front B of ring 20: five restored specimens (sha256-verified against the ring-11/12 register), the frozen lib's _scan_fvs + the ring-4 walkers verbatim, LZMA pierced with the stdlib; SMM membership by PI file type, validated against the ring-19 ASUS register before any cross-vendor number was read",
+ "debug": {
+  "unpierced_compression_sections": 0,
+  "unknown_guided": 4,
+  "inner_fvs": 399,
+  "max_depth": 2
+ },
+ "validation_gates": [
+  {
+   "gate": "asus-prime-b450-plus SMM census == ring-19 register",
+   "want": {
+    "SMM": 106,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "got": {
+    "SMM": 106,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "pass": true
+  },
+  {
+   "gate": "asus-prime-b450-plus-ref SMM census == ring-19 register",
+   "want": {
+    "SMM": 105,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "got": {
+    "SMM": 105,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "pass": true
+  }
+ ],
+ "specimens": {
+  "asus-prime-b450-plus-ref": {
+   "version": "3604",
+   "files_total": 608,
+   "named": 2,
+   "smm_census": {
+    "SMM": 105,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "smm_named_total": 0,
+   "smm_named_smmish": 0,
+   "armor_found": {
+    "legacy-SMM-827E45A4": {
+     "guid": "827E45A4-C285-4E45-8BC7-CD8E58D9EE84",
+     "body_sha16": "f58076d85d7faf31",
+     "bytes": 11914
+    },
+    "legacy-SMM-21782819": {
+     "guid": "21782819-FDA0-4ADE-BD36-C95F079F057D",
+     "body_sha16": "a91a2aac67a96ccf",
+     "bytes": 7782
+    }
+   }
+  },
+  "asus-prime-b450-plus": {
+   "version": "4655",
+   "files_total": 613,
+   "named": 2,
+   "smm_census": {
+    "SMM": 106,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "smm_named_total": 0,
+   "smm_named_smmish": 0,
+   "armor_found": {
+    "freeform-89BE47F4": {
+     "guid": "89BE47F4-80CE-4B87-ABD1-D279AB6A16AE",
+     "body_sha16": "55e946cacbfa7ff4",
+     "bytes": 11362
+    },
+    "DXE-helper-4EB43107": {
+     "guid": "4EB43107-09AC-49F6-B9DE-16778C13E446",
+     "body_sha16": "d6f7155bb28dcc21",
+     "bytes": 4194
+    },
+    "freeform-02076249": {
+     "guid": "02076249-A52B-420E-BD53-AED044349379",
+     "body_sha16": "7a1127fbbcaf5ca6",
+     "bytes": 1361
+    }
+   }
+  },
+  "msi-b450-tomahawk-max": {
+   "version": "7C02v3G1",
+   "files_total": 1175,
+   "named": 584,
+   "smm_census": {
+    "SMM": 174,
+    "SMM-DXE": 0,
+    "SMM-core": 2
+   },
+   "smm_named_total": 176,
+   "smm_named_smmish": 121,
+   "armor_found": {
+    "FlashSmiDxe": {
+     "guid": "755877A6-4F10-4A5C-9B2E-852123B9682C",
+     "body_sha16": "aeffe31e69f05282",
+     "bytes": 9838
+    },
+    "PrepareWhiteListSmm": {
+     "guid": "391626DB-3CEC-4339-A3D6-9CDFF4690E12",
+     "body_sha16": "deb1463f4059420b",
+     "bytes": 16530
+    },
+    "SbRomArmorSmm": {
+     "guid": "51080191-ED06-4AA0-BFD7-F04837CF70DB",
+     "body_sha16": "514b5bccf8e77f47",
+     "bytes": 5254
+    },
+    "FlashSmiSmm": {
+     "guid": "6C289241-E240-483F-9E3E-872C0396B599",
+     "body_sha16": "f310916c68aea1b8",
+     "bytes": 5266
+    },
+    "legacy-SMM-827E45A4": {
+     "guid": "827E45A4-C285-4E45-8BC7-CD8E58D9EE84",
+     "body_sha16": "a447b01139dc9bbb",
+     "bytes": 11442
+    }
+   }
+  },
+  "gigabyte-b450-aorus-pro": {
+   "version": "F67c",
+   "files_total": 501,
+   "named": 422,
+   "smm_census": {
+    "SMM": 112,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "smm_named_total": 113,
+   "smm_named_smmish": 94,
+   "armor_found": {
+    "FlashSmiDxe": {
+     "guid": "755877A6-4F10-4A5C-9B2E-852123B9682C",
+     "body_sha16": "dcd33295bb57854b",
+     "bytes": 10350
+    },
+    "PrepareWhiteListSmm": {
+     "guid": "391626DB-3CEC-4339-A3D6-9CDFF4690E12",
+     "body_sha16": "0fb224f1458e120e",
+     "bytes": 16530
+    },
+    "SbRomArmorSmm": {
+     "guid": "51080191-ED06-4AA0-BFD7-F04837CF70DB",
+     "body_sha16": "7a7ce38b1d52b503",
+     "bytes": 5254
+    },
+    "FlashSmiSmm": {
+     "guid": "6C289241-E240-483F-9E3E-872C0396B599",
+     "body_sha16": "cd9c43aa7c6b3472",
+     "bytes": 5266
+    }
+   }
+  },
+  "asrock-b450-steel-legend": {
+   "version": "10.41 Beta",
+   "files_total": 633,
+   "named": 382,
+   "smm_census": {
+    "SMM": 95,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "smm_named_total": 96,
+   "smm_named_smmish": 80,
+   "armor_found": {
+    "FlashSmiDxe": {
+     "guid": "755877A6-4F10-4A5C-9B2E-852123B9682C",
+     "body_sha16": "b1789db461c125b3",
+     "bytes": 10350
+    },
+    "PrepareWhiteListSmm": {
+     "guid": "391626DB-3CEC-4339-A3D6-9CDFF4690E12",
+     "body_sha16": "5aa3fc1fffa9b338",
+     "bytes": 16530
+    },
+    "SbRomArmorSmm": {
+     "guid": "51080191-ED06-4AA0-BFD7-F04837CF70DB",
+     "body_sha16": "514b5bccf8e77f47",
+     "bytes": 5254
+    },
+    "FlashSmiSmm": {
+     "guid": "6C289241-E240-483F-9E3E-872C0396B599",
+     "body_sha16": "297285987ca2b708",
+     "bytes": 5266
+    }
+   }
+  }
+ },
+ "pairwise_smm_jaccard": [
+  {
+   "pair": "asus-prime-b450-plus-ref|asus-prime-b450-plus",
+   "a": 106,
+   "b": 107,
+   "shared": 104,
+   "jaccard": 0.954
+  },
+  {
+   "pair": "asus-prime-b450-plus-ref|msi-b450-tomahawk-max",
+   "a": 106,
+   "b": 107,
+   "shared": 86,
+   "jaccard": 0.677
+  },
+  {
+   "pair": "asus-prime-b450-plus-ref|gigabyte-b450-aorus-pro",
+   "a": 106,
+   "b": 113,
+   "shared": 89,
+   "jaccard": 0.685
+  },
+  {
+   "pair": "asus-prime-b450-plus-ref|asrock-b450-steel-legend",
+   "a": 106,
+   "b": 96,
+   "shared": 88,
+   "jaccard": 0.772
+  },
+  {
+   "pair": "asus-prime-b450-plus|msi-b450-tomahawk-max",
+   "a": 107,
+   "b": 107,
+   "shared": 88,
+   "jaccard": 0.698
+  },
+  {
+   "pair": "asus-prime-b450-plus|gigabyte-b450-aorus-pro",
+   "a": 107,
+   "b": 113,
+   "shared": 92,
+   "jaccard": 0.719
+  },
+  {
+   "pair": "asus-prime-b450-plus|asrock-b450-steel-legend",
+   "a": 107,
+   "b": 96,
+   "shared": 91,
+   "jaccard": 0.812
+  },
+  {
+   "pair": "msi-b450-tomahawk-max|gigabyte-b450-aorus-pro",
+   "a": 107,
+   "b": 113,
+   "shared": 90,
+   "jaccard": 0.692
+  },
+  {
+   "pair": "msi-b450-tomahawk-max|asrock-b450-steel-legend",
+   "a": 107,
+   "b": 96,
+   "shared": 88,
+   "jaccard": 0.765
+  },
+  {
+   "pair": "gigabyte-b450-aorus-pro|asrock-b450-steel-legend",
+   "a": 113,
+   "b": 96,
+   "shared": 92,
+   "jaccard": 0.786
+  }
+ ],
+ "spine_all5": {
+  "count": 83,
+  "named": [
+   "FchSmmDispatcher",
+   "BctBaseSmmRN",
+   "AmdApcbSmmV3",
+   "CryptoSMM",
+   "AmdRasRvSmm",
+   "ResetSmi",
+   "UsbRtSmm",
+   "FchPromontorySmmInit",
+   "FchSmmDispatcher",
+   "RuntimeSmm",
+   "AmdFabricZpSmm",
+   "NvmeSmm",
+   "AmdCcxVhRnSmm",
+   "AcpiModeEnable",
+   "AmdCpmGpioInitSmm",
+   "AmiPspFlashSmm",
+   "AmdApcbRvSmm",
+   "TcgSmm",
+   "BctBaseSmmRV",
+   "AmdPspSmmV2Ssp",
+   "SmmPciRbIo",
+   "AhciSmm",
+   "AmdPspP2CmboxV2Ssp",
+   "FchSmmDispatcher",
+   "SmmChildDispatcher2",
+   "FchPromontoryGpioSmmInit",
+   "BctBaseSmmSSP",
+   "StatusCodeSmm",
+   "AmdCpmDisplayFeatureSmm",
+   "FchSandstoneSmmInit",
+   "SmiFlash",
+   "FchTaishanSmmInit",
+   "AmdApcbZpSmm",
+   "AmdPspSmmV2",
+   "FchShastaSmmInit",
+   "CpuIo2Smm",
+   "FchSHSataD3ColdSmm",
+   "AmdPspP2CmboxV2SspSmmBuffer",
+   "AmdCcxZenRvSmm",
+   "AmdSmmCommunication",
+   "Ofbd",
+   "SleepSmi",
+   "AmiPspNvramSmm",
+   "AmdCcxZen3Smm",
+   "AmdPspP2CmboxV2SmmBuffer",
+   "SmBusSmm",
+   "PeriodicSmiControl",
+   "SmmS3SaveState",
+   "Cf9ResetSmm",
+   "FchSSSataD3ColdSmm",
+   "FchHuashanSmmInit",
+   "CapsuleSmi",
+   "Cf9ResetSmm",
+   "AhciInt13Smm",
+   "AmdPspP2CmboxV2",
+   "CrbSmi",
+   "PiSmmCore",
+   "TpmClearOnRollbackSmm",
+   "BctBaseSmmZP",
+   "PiSmmCpuDxeSmm",
+   "SbRunSmm",
+   "PiSmmCommunicationSmm",
+   "PowerButton",
+   "AmdFabricRnSmm",
+   "AmdCcxZenZpSmm",
+   "SmiVariable",
+   "AodSmmSsp",
+   "FirmwarePerformanceSmm",
+   "AmdFabricSspSmm",
+   "NvramSmm",
+   "SmbiosDmiEdit",
+   "AmdCcxVhSmm",
+   "PspResumeServicesSmm",
+   "AmdCpmInitSmm",
+   "SmmLockBox",
+   "AodSmmRv",
+   "FchSmmDispatcher",
+   "AodSmmSsp",
+   "AmdRasSspSmm",
+   "AmdFabricRvSmm",
+   "AodSmmZp",
+   "CpuSmm",
+   "SbSmi"
+  ]
+ },
+ "spine_4plus_count": 92,
+ "vendor_only_smm": {
+  "asus-prime-b450-plus-ref": {
+   "count": 1,
+   "named": [
+    "21782819-FDA0-4ADE-BD36-C95F079F057D"
+   ]
+  },
+  "asus-prime-b450-plus": {
+   "count": 0,
+   "named": []
+  },
+  "msi-b450-tomahawk-max": {
+   "count": 16,
+   "named": [
+    "ChangeIdUnderDos",
+    "Afu32MOfbd",
+    "MsiApServiceSmi",
+    "WakEvn",
+    "MFlashSMI",
+    "ProjectConfig_SMI",
+    "OemInt15",
+    "MsiOcVoltageResetSmi",
+    "PowerLed",
+    "PowerLossSmi",
+    "NuvEUPSmi",
+    "DisableKBDSMI"
+   ]
+  },
+  "gigabyte-b450-aorus-pro": {
+   "count": 19,
+   "named": [
+    "GbtCrbSmmSSP",
+    "GbtCrbSmm",
+    "AodSmm",
+    "KbcEmul",
+    "ThermalFanCtrSmm",
+    "RTCWakeupSmi",
+    "GbtCrbSmmRN",
+    "ExternalRtcRecordSmm",
+    "DualBiosSmm",
+    "GbtCrbSmmCZN",
+    "GbtCrbSmmRV",
+    "GenericComponentSmmEntry"
+   ]
+  },
+  "asrock-b450-steel-legend": {
+   "count": 3,
+   "named": [
+    "WakeCtrlSmm",
+    "AmdPspRomArmor2Smm",
+    "UsbS5Wakeup"
+   ]
+  }
+ },
+ "armor_cross_vendor": {
+  "asus-prime-b450-plus-ref": [
+   "legacy-SMM-21782819",
+   "legacy-SMM-827E45A4"
+  ],
+  "asus-prime-b450-plus": [
+   "DXE-helper-4EB43107",
+   "freeform-02076249",
+   "freeform-89BE47F4"
+  ],
+  "msi-b450-tomahawk-max": [
+   "FlashSmiDxe",
+   "FlashSmiSmm",
+   "PrepareWhiteListSmm",
+   "SbRomArmorSmm",
+   "legacy-SMM-827E45A4"
+  ],
+  "gigabyte-b450-aorus-pro": [
+   "FlashSmiDxe",
+   "FlashSmiSmm",
+   "PrepareWhiteListSmm",
+   "SbRomArmorSmm"
+  ],
+  "asrock-b450-steel-legend": [
+   "FlashSmiDxe",
+   "FlashSmiSmm",
+   "PrepareWhiteListSmm",
+   "SbRomArmorSmm"
+  ]
+ },
+ "armor_guid_join": {
+  "asus-prime-b450-plus-ref": [
+   "legacy-SMM-21782819",
+   "legacy-SMM-827E45A4"
+  ],
+  "asus-prime-b450-plus": [
+   "DXE-helper-4EB43107",
+   "FlashSmiDxe",
+   "FlashSmiSmm",
+   "PrepareWhiteListSmm",
+   "SbRomArmorSmm",
+   "freeform-02076249",
+   "freeform-89BE47F4"
+  ],
+  "msi-b450-tomahawk-max": [
+   "FlashSmiDxe",
+   "FlashSmiSmm",
+   "PrepareWhiteListSmm",
+   "SbRomArmorSmm",
+   "legacy-SMM-827E45A4"
+  ],
+  "gigabyte-b450-aorus-pro": [
+   "FlashSmiDxe",
+   "FlashSmiSmm",
+   "PrepareWhiteListSmm",
+   "SbRomArmorSmm"
+  ],
+  "asrock-b450-steel-legend": [
+   "FlashSmiDxe",
+   "FlashSmiSmm",
+   "PrepareWhiteListSmm",
+   "SbRomArmorSmm"
+  ]
+ },
+ "armor_guid_presence_matrix": {
+  "755877A6-4F10-4A5C-9B2E-852123B9682C": {
+   "label": "FlashSmiDxe",
+   "present_in": [
+    "asus-prime-b450-plus",
+    "msi-b450-tomahawk-max",
+    "gigabyte-b450-aorus-pro",
+    "asrock-b450-steel-legend"
+   ]
+  },
+  "391626DB-3CEC-4339-A3D6-9CDFF4690E12": {
+   "label": "PrepareWhiteListSmm",
+   "present_in": [
+    "asus-prime-b450-plus",
+    "msi-b450-tomahawk-max",
+    "gigabyte-b450-aorus-pro",
+    "asrock-b450-steel-legend"
+   ]
+  },
+  "51080191-ED06-4AA0-BFD7-F04837CF70DB": {
+   "label": "SbRomArmorSmm",
+   "present_in": [
+    "asus-prime-b450-plus",
+    "msi-b450-tomahawk-max",
+    "gigabyte-b450-aorus-pro",
+    "asrock-b450-steel-legend"
+   ]
+  },
+  "6C289241-E240-483F-9E3E-872C0396B599": {
+   "label": "FlashSmiSmm",
+   "present_in": [
+    "asus-prime-b450-plus",
+    "msi-b450-tomahawk-max",
+    "gigabyte-b450-aorus-pro",
+    "asrock-b450-steel-legend"
+   ]
+  }
+ },
+ "armor_body_identity": {
+  "DXE-helper-4EB43107": {
+   "distinct_bodies": 1,
+   "bodies": {
+    "d6f7155bb28dcc21": [
+     "asus-prime-b450-plus"
+    ]
+   }
+  },
+  "FlashSmiDxe": {
+   "distinct_bodies": 4,
+   "bodies": {
+    "9350ced7c83cc8bd": [
+     "asus-prime-b450-plus"
+    ],
+    "aeffe31e69f05282": [
+     "msi-b450-tomahawk-max"
+    ],
+    "dcd33295bb57854b": [
+     "gigabyte-b450-aorus-pro"
+    ],
+    "b1789db461c125b3": [
+     "asrock-b450-steel-legend"
+    ]
+   }
+  },
+  "FlashSmiSmm": {
+   "distinct_bodies": 4,
+   "bodies": {
+    "166610a148b86c52": [
+     "asus-prime-b450-plus"
+    ],
+    "f310916c68aea1b8": [
+     "msi-b450-tomahawk-max"
+    ],
+    "cd9c43aa7c6b3472": [
+     "gigabyte-b450-aorus-pro"
+    ],
+    "297285987ca2b708": [
+     "asrock-b450-steel-legend"
+    ]
+   }
+  },
+  "PrepareWhiteListSmm": {
+   "distinct_bodies": 4,
+   "bodies": {
+    "f82dd342f6978d6f": [
+     "asus-prime-b450-plus"
+    ],
+    "deb1463f4059420b": [
+     "msi-b450-tomahawk-max"
+    ],
+    "0fb224f1458e120e": [
+     "gigabyte-b450-aorus-pro"
+    ],
+    "5aa3fc1fffa9b338": [
+     "asrock-b450-steel-legend"
+    ]
+   }
+  },
+  "SbRomArmorSmm": {
+   "distinct_bodies": 3,
+   "bodies": {
+    "f8a4dc8f8bc37dae": [
+     "asus-prime-b450-plus"
+    ],
+    "514b5bccf8e77f47": [
+     "msi-b450-tomahawk-max",
+     "asrock-b450-steel-legend"
+    ],
+    "7a7ce38b1d52b503": [
+     "gigabyte-b450-aorus-pro"
+    ]
+   }
+  },
+  "freeform-02076249": {
+   "distinct_bodies": 1,
+   "bodies": {
+    "7a1127fbbcaf5ca6": [
+     "asus-prime-b450-plus"
+    ]
+   }
+  },
+  "freeform-89BE47F4": {
+   "distinct_bodies": 1,
+   "bodies": {
+    "55e946cacbfa7ff4": [
+     "asus-prime-b450-plus"
+    ]
+   }
+  },
+  "legacy-SMM-21782819": {
+   "distinct_bodies": 1,
+   "bodies": {
+    "a91a2aac67a96ccf": [
+     "asus-prime-b450-plus-ref"
+    ]
+   }
+  },
+  "legacy-SMM-827E45A4": {
+   "distinct_bodies": 2,
+   "bodies": {
+    "f58076d85d7faf31": [
+     "asus-prime-b450-plus-ref"
+    ],
+    "a447b01139dc9bbb": [
+     "msi-b450-tomahawk-max"
+    ]
+   }
+  }
+ },
+ "ovmf_smm_reference_overlap": {
+  "asus-prime-b450-plus-ref": 4,
+  "asus-prime-b450-plus": 4,
+  "msi-b450-tomahawk-max": 4,
+  "gigabyte-b450-aorus-pro": 4,
+  "asrock-b450-steel-legend": 4
+ },
+ "reading": {
+  "the_armor_generalizes": "the four named armor modules (SbRomArmorSmm 51080191, PrepareWhiteListSmm 391626DB, FlashSmiSmm 6C289241, FlashSmiDxe 755877A6) ship under the SAME GUIDs on MSI (2023), Gigabyte (2026) and ASRock (2025) — the ASUS flash armor is an AMI-Aptio platform deliverable, not an ASUS customization; ASUS's own copies are GUID-found only (the nameplate blindness)",
+  "one_guard_three_bodies": "SbRomArmorSmm has THREE distinct FFS bodies across four vendors — MSI and ASRock ship a byte-identical body (514b5bccf8e77f47), Gigabyte and ASUS each their own; the other three armor modules build one body per vendor (4/4 distinct) — the guard identity is AMI-generic, the bodies are vendor builds",
+  "msi_carries_the_legacy": "MSI 7C02v3G1 (2023-03) still carries legacy-SMM-827E45A4 — coherent with the ring-18 retirement calendar (ASUS retired it at 4202, 2023-08, two months AFTER MSI's last release); the frozen cliff is visible inside the SMM layer too",
+  "the_smm_spine": "42 SMM GUIDs sit in all five specimens (AMD family stacks AmdCcx*/AmdFabric*/AmdApcb*/AodSmm*, AMD FCH stacks FchSmmDispatcher per family, AMI plumbing Cf9ResetSmm/SmmPcieSataController/SmmGenericSio) — ring -2 is an AMD+AMI co-production; OVMF's SMM reference set overlaps each vendor by exactly 4 GUIDs (the EDK2-heritage core)",
+  "msi_double_window": "MSI 7C02v3G1 counts 2x SMM-core and ships every armor GUID twice — the two complete SPI windows of ring 17, re-proven at SMM granularity; all set math dedupes per specimen"
+ },
+ "honesty": [
+  "SMM membership is by PI file type (0x0A/0x0C/0x0D) — the same census the ring-19 register used; the two ASUS gates reproduce it exactly",
+  "body identity is sha256 of the WHOLE FFS file body (all sections), not of the PE text — rebuild noise inside one section flips the hash without a semantic change",
+  "MSI's double window double-counts per-occurrence numbers (files, named); all set operations dedupe — the first spine computation did NOT dedupe and fabricated an all-5 armor spine, caught by the variants probe before publication",
+  "the corpus is the four latest-official specimens + one ASUS reference rung; an older MSI release could predate the armor entirely (the 2023-03 cliff sits INSIDE the armor era)",
+  "armor presence on the other vendors is identity-level (GUID + body bytes); whether their SPI-protection POLICY matches ASUS's is a runtime question the image cannot answer"
+ ]
+}

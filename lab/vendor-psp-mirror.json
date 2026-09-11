@@ -1,0 +1,965 @@
+{
+ "schema": "omarchy-firmware/vendor-psp-mirror@1",
+ "date": "2026-09-12",
+ "ring": 20,
+ "title": "the MSI mirror at the PSP layer — the upper window's first parse, and the parallel-build proof",
+ "note": "front D of ring 20, v3: both windows parsed standalone (lower 8 dirs, upper 10 — the upper's PSP layer read for the first time in the study); table STRUCTURE mirrors at +0x1000000 (same counts/sizes, relocated addresses) but blob BODIES are window-specific: the mirror is a parallel build, not a copy; blobs paired by (magic, type, subprogram)",
+ "directories": {
+  "lower_standalone": 8,
+  "upper_standalone": 10,
+  "full_rom": 18
+ },
+ "dir_inventory": {
+  "lower": [
+   "$PSP@0xa8000(16)",
+   "$BHD@0x158000(13)",
+   "$PSP@0x178000(23)",
+   "$BHD@0x278000(15)",
+   "$PL2@0x2d0000(23)",
+   "$BL2@0x400000(19)",
+   "$PL2@0x420000(31)",
+   "$BL2@0x56f000(22)"
+  ],
+  "upper": [
+   "$PSP@0x10d1000(30)",
+   "$BHD@0x12d1000(22)",
+   "$PSP@0x1301000(4)",
+   "$PL2@0x1302000(28)",
+   "$BHD@0x1461000(1)",
+   "$BL2@0x1462000(12)",
+   "$PSP@0x1481000(4)",
+   "$PL2@0x1482000(27)",
+   "$BHD@0x15e1000(1)",
+   "$BL2@0x15e2000(11)"
+  ]
+ },
+ "table_mirror_check": {
+  "all_identical": false,
+  "pairs": [
+   {
+    "magic": "$PSP",
+    "lower_off": 856064,
+    "upper_off": 17633280,
+    "bytes": 496,
+    "table_identical": false,
+    "lower_sha16": "59b5b003bf08d448",
+    "upper_sha16": "b4c63d9709eddfc4"
+   },
+   {
+    "magic": "$BHD",
+    "lower_off": 2953216,
+    "upper_off": 19730432,
+    "bytes": 544,
+    "table_identical": false,
+    "lower_sha16": "5874d3240e8abc31",
+    "upper_sha16": "f563521e0942a371"
+   },
+   {
+    "magic": "$PSP",
+    "lower_off": 3149824,
+    "upper_off": 19927040,
+    "bytes": 80,
+    "table_identical": false,
+    "lower_sha16": "6a8a868287b7cde0",
+    "upper_sha16": "c4f27298da20c183"
+   },
+   {
+    "magic": "$PL2",
+    "lower_off": 3153920,
+    "upper_off": 19931136,
+    "bytes": 464,
+    "table_identical": false,
+    "lower_sha16": "99e5a51a9399bbac",
+    "upper_sha16": "a65853b3d06b2d47"
+   },
+   {
+    "magic": "$BHD",
+    "lower_off": 4591616,
+    "upper_off": 21368832,
+    "bytes": 40,
+    "table_identical": false,
+    "lower_sha16": "909d790525d9b2ef",
+    "upper_sha16": "285ee7a7b62c35fa"
+   },
+   {
+    "magic": "$BL2",
+    "lower_off": 4595712,
+    "upper_off": 21372928,
+    "bytes": 304,
+    "table_identical": false,
+    "lower_sha16": "a172991b96b7a1ba",
+    "upper_sha16": "e45c4c526bc3ef6a"
+   },
+   {
+    "magic": "$PSP",
+    "lower_off": 4722688,
+    "upper_off": 21499904,
+    "bytes": 80,
+    "table_identical": false,
+    "lower_sha16": "72cfd794ab5f6b50",
+    "upper_sha16": "a31f9ef02200fbf1"
+   },
+   {
+    "magic": "$PL2",
+    "lower_off": 4726784,
+    "upper_off": 21504000,
+    "bytes": 448,
+    "table_identical": false,
+    "lower_sha16": "c210de234a756d44",
+    "upper_sha16": "fdf0b1bdd9a28109"
+   },
+   {
+    "magic": "$BHD",
+    "lower_off": 6164480,
+    "upper_off": 22941696,
+    "bytes": 40,
+    "table_identical": false,
+    "lower_sha16": "3a7d38858f47cf22",
+    "upper_sha16": "0aad3adcf19a61ef"
+   },
+   {
+    "magic": "$BL2",
+    "lower_off": 6168576,
+    "upper_off": 22945792,
+    "bytes": 280,
+    "table_identical": false,
+    "lower_sha16": "8463ca7a4871eb4a",
+    "upper_sha16": "038504650e8d1c66"
+   }
+  ]
+ },
+ "blob_classification_counts": {
+  "identical": 4,
+  "changed": 72,
+  "only_lower": 33,
+  "only_upper": 0
+ },
+ "bytes": {
+  "identical": 303104,
+  "changed": 7904099,
+  "identical_share_pct": 3.69
+ },
+ "identical_blobs": [
+  {
+   "magic": "$BL2",
+   "type": 99,
+   "subprogram": 0,
+   "size": 163840,
+   "sha16": "5639b95c2f8d2a2d"
+  },
+  {
+   "magic": "$PL2",
+   "type": 4,
+   "subprogram": 0,
+   "size": 131072,
+   "sha16": "b5a41c3758763bbe"
+  },
+  {
+   "magic": "$PL2",
+   "type": 34,
+   "subprogram": 0,
+   "size": 4096,
+   "sha16": "f47a8ec3e9aff231"
+  },
+  {
+   "magic": "$PSP",
+   "type": 34,
+   "subprogram": 0,
+   "size": 4096,
+   "sha16": "f47a8ec3e9aff231"
+  }
+ ],
+ "changed_blobs": [
+  {
+   "magic": "$BHD",
+   "type": 96,
+   "subprogram": 0,
+   "size": 8192,
+   "lower_sha16": "46ddac9ab1d49ff8",
+   "upper_sha16": "9462a1b6312c2af2"
+  },
+  {
+   "magic": "$BHD",
+   "type": 96,
+   "subprogram": 1,
+   "size": 4096,
+   "lower_sha16": "b096af326580c1f1",
+   "upper_sha16": "f21f1a82c90a4904"
+  },
+  {
+   "magic": "$BHD",
+   "type": 98,
+   "subprogram": 0,
+   "size": 2613248,
+   "lower_sha16": "9ad3ea63f2d348bb",
+   "upper_sha16": "dd501bfbe829d8e2"
+  },
+  {
+   "magic": "$BHD",
+   "type": 99,
+   "subprogram": 0,
+   "size": 163840,
+   "lower_sha16": "c91a953299cf3c03",
+   "upper_sha16": "5639b95c2f8d2a2d"
+  },
+  {
+   "magic": "$BHD",
+   "type": 100,
+   "subprogram": 0,
+   "size": 15424,
+   "lower_sha16": "08518d379e36f735",
+   "upper_sha16": "59041912b51d8a94"
+  },
+  {
+   "magic": "$BHD",
+   "type": 100,
+   "subprogram": 1,
+   "size": 18480,
+   "lower_sha16": "bb837b6198d6f671",
+   "upper_sha16": "7e636edfc9992776"
+  },
+  {
+   "magic": "$BHD",
+   "type": 101,
+   "subprogram": 0,
+   "size": 816,
+   "lower_sha16": "66d077ade06860da",
+   "upper_sha16": "33e2b1298115ca9f"
+  },
+  {
+   "magic": "$BHD",
+   "type": 101,
+   "subprogram": 1,
+   "size": 880,
+   "lower_sha16": "614892a8f04af388",
+   "upper_sha16": "b7b13321399b2b68"
+  },
+  {
+   "magic": "$BHD",
+   "type": 102,
+   "subprogram": 0,
+   "size": 5568,
+   "lower_sha16": "830dd0597fd85f51",
+   "upper_sha16": "7113f94c4d1c2fb8"
+  },
+  {
+   "magic": "$BHD",
+   "type": 104,
+   "subprogram": 0,
+   "size": 8192,
+   "lower_sha16": "46ddac9ab1d49ff8",
+   "upper_sha16": "b56c1eae0bf52fa4"
+  },
+  {
+   "magic": "$BHD",
+   "type": 104,
+   "subprogram": 1,
+   "size": 16384,
+   "lower_sha16": "e9fab045dfb96640",
+   "upper_sha16": "ee12768b811f1d3a"
+  },
+  {
+   "magic": "$BHD",
+   "type": 112,
+   "subprogram": 0,
+   "size": 1024,
+   "lower_sha16": "c0980cea933da403",
+   "upper_sha16": "62702635aa13b2bf"
+  },
+  {
+   "magic": "$BL2",
+   "type": 96,
+   "subprogram": 0,
+   "size": 8192,
+   "lower_sha16": "46ddac9ab1d49ff8",
+   "upper_sha16": "0e6488fe80d2955b"
+  },
+  {
+   "magic": "$BL2",
+   "type": 98,
+   "subprogram": 0,
+   "size": 2613248,
+   "lower_sha16": "9ad3ea63f2d348bb",
+   "upper_sha16": "dd501bfbe829d8e2"
+  },
+  {
+   "magic": "$BL2",
+   "type": 100,
+   "subprogram": 0,
+   "size": 15424,
+   "lower_sha16": "08518d379e36f735",
+   "upper_sha16": "c1916c8f2ecc2202"
+  },
+  {
+   "magic": "$BL2",
+   "type": 101,
+   "subprogram": 0,
+   "size": 816,
+   "lower_sha16": "66d077ade06860da",
+   "upper_sha16": "430b0b7e1ddb9add"
+  },
+  {
+   "magic": "$BL2",
+   "type": 102,
+   "subprogram": 0,
+   "size": 3200,
+   "lower_sha16": "689883cd220ddd59",
+   "upper_sha16": "52901004b26f88be"
+  },
+  {
+   "magic": "$BL2",
+   "type": 104,
+   "subprogram": 0,
+   "size": 8192,
+   "lower_sha16": "46ddac9ab1d49ff8",
+   "upper_sha16": "f29aca2f3db7784e"
+  },
+  {
+   "magic": "$PL2",
+   "type": 0,
+   "subprogram": 0,
+   "size": 576,
+   "lower_sha16": "752b195fe49c18e0",
+   "upper_sha16": "99123c2fb495d52b"
+  },
+  {
+   "magic": "$PL2",
+   "type": 1,
+   "subprogram": 0,
+   "size": 50560,
+   "lower_sha16": "bc2baffd6892d913",
+   "upper_sha16": "3c4fd2a07294f798"
+  },
+  {
+   "magic": "$PL2",
+   "type": 2,
+   "subprogram": 0,
+   "size": 270924,
+   "lower_sha16": "38b4ef28d52219fb",
+   "upper_sha16": "82966e1e580eeee3"
+  },
+  {
+   "magic": "$PL2",
+   "type": 8,
+   "subprogram": 0,
+   "size": 120928,
+   "lower_sha16": "acfb4abd7d47c94b",
+   "upper_sha16": "42df88c7947e56f6"
+  },
+  {
+   "magic": "$PL2",
+   "type": 9,
+   "subprogram": 0,
+   "size": 832,
+   "lower_sha16": "17383dca94997925",
+   "upper_sha16": "440809659468e1af"
+  },
+  {
+   "magic": "$PL2",
+   "type": 12,
+   "subprogram": 0,
+   "size": 143795,
+   "lower_sha16": "3290773c22e51e6c",
+   "upper_sha16": "936282809a5960b0"
+  },
+  {
+   "magic": "$PL2",
+   "type": 18,
+   "subprogram": 0,
+   "size": 11552,
+   "lower_sha16": "ea7f827e49369349",
+   "upper_sha16": "c496b0082dca0471"
+  },
+  {
+   "magic": "$PL2",
+   "type": 19,
+   "subprogram": 0,
+   "size": 6432,
+   "lower_sha16": "17cffd02fc5162ca",
+   "upper_sha16": "ca590f53c09265c7"
+  },
+  {
+   "magic": "$PL2",
+   "type": 32,
+   "subprogram": 0,
+   "size": 1636,
+   "lower_sha16": "c88fb642f9370ce5",
+   "upper_sha16": "98a034dfd642bab1"
+  },
+  {
+   "magic": "$PL2",
+   "type": 33,
+   "subprogram": 0,
+   "size": 16,
+   "lower_sha16": "0b1429e143abef50",
+   "upper_sha16": "f146f72103545689"
+  },
+  {
+   "magic": "$PL2",
+   "type": 36,
+   "subprogram": 0,
+   "size": 3072,
+   "lower_sha16": "cc4cd5c16ef9e8a0",
+   "upper_sha16": "c1c77e5036223687"
+  },
+  {
+   "magic": "$PL2",
+   "type": 36,
+   "subprogram": 128,
+   "size": 10928,
+   "lower_sha16": "ba138efaf28b49a0",
+   "upper_sha16": "269b5b2cdc23733f"
+  },
+  {
+   "magic": "$PL2",
+   "type": 40,
+   "subprogram": 0,
+   "size": 120720,
+   "lower_sha16": "9adad4a5c1c45d1e",
+   "upper_sha16": "7698c7832e8e9216"
+  },
+  {
+   "magic": "$PL2",
+   "type": 45,
+   "subprogram": 0,
+   "size": 12544,
+   "lower_sha16": "6dc2158dbd8cb947",
+   "upper_sha16": "fdef3699dcafc9d3"
+  },
+  {
+   "magic": "$PL2",
+   "type": 48,
+   "subprogram": 0,
+   "size": 3504,
+   "lower_sha16": "76ca45872ef8f171",
+   "upper_sha16": "7979cf0f85a4ffb5"
+  },
+  {
+   "magic": "$PL2",
+   "type": 60,
+   "subprogram": 0,
+   "size": 24832,
+   "lower_sha16": "abb6a9f7c4f4fe6c",
+   "upper_sha16": "7b6019f71a00e5da"
+  },
+  {
+   "magic": "$PL2",
+   "type": 68,
+   "subprogram": 0,
+   "size": 26128,
+   "lower_sha16": "0772a47f557d8254",
+   "upper_sha16": "429b13ea0146a75b"
+  },
+  {
+   "magic": "$PL2",
+   "type": 69,
+   "subprogram": 0,
+   "size": 7024,
+   "lower_sha16": "ceb3f4e7c5d0c694",
+   "upper_sha16": "327be1ce92762801"
+  },
+  {
+   "magic": "$PL2",
+   "type": 69,
+   "subprogram": 128,
+   "size": 6464,
+   "lower_sha16": "83ed7a90ea36e489",
+   "upper_sha16": "8e9bcdb66657d644"
+  },
+  {
+   "magic": "$PL2",
+   "type": 71,
+   "subprogram": 0,
+   "size": 16640,
+   "lower_sha16": "0c3652520188aad1",
+   "upper_sha16": "6b123c509172a574"
+  },
+  {
+   "magic": "$PL2",
+   "type": 80,
+   "subprogram": 0,
+   "size": 6400,
+   "lower_sha16": "ee01084ca6298bb6",
+   "upper_sha16": "4db1b8e557c5654b"
+  },
+  {
+   "magic": "$PL2",
+   "type": 81,
+   "subprogram": 0,
+   "size": 4208,
+   "lower_sha16": "dc978a21d1e20bf5",
+   "upper_sha16": "1e886cf1498751cb"
+  },
+  {
+   "magic": "$PL2",
+   "type": 88,
+   "subprogram": 0,
+   "size": 23408,
+   "lower_sha16": "c972b179ce4e2051",
+   "upper_sha16": "9e8edc4dac4b3336"
+  },
+  {
+   "magic": "$PL2",
+   "type": 89,
+   "subprogram": 0,
+   "size": 544,
+   "lower_sha16": "ad9655f5819163e6",
+   "upper_sha16": "ba42a0c9b169bf02"
+  },
+  {
+   "magic": "$PL2",
+   "type": 92,
+   "subprogram": 0,
+   "size": 2848,
+   "lower_sha16": "d298791d8d422d56",
+   "upper_sha16": "af6c85eb53599d36"
+  },
+  {
+   "magic": "$PSP",
+   "type": 0,
+   "subprogram": 0,
+   "size": 576,
+   "lower_sha16": "8efddcaaf84990cf",
+   "upper_sha16": "fa3259fae10bcbae"
+  },
+  {
+   "magic": "$PSP",
+   "type": 1,
+   "subprogram": 0,
+   "size": 131072,
+   "lower_sha16": "25b634d56619376d",
+   "upper_sha16": "4af4db73967fb84c"
+  },
+  {
+   "magic": "$PSP",
+   "type": 2,
+   "subprogram": 0,
+   "size": 66256,
+   "lower_sha16": "c384b8a114cc200d",
+   "upper_sha16": "5616eafa6e050e66"
+  },
+  {
+   "magic": "$PSP",
+   "type": 4,
+   "subprogram": 0,
+   "size": 131072,
+   "lower_sha16": "a5296ce284a18801",
+   "upper_sha16": "b5a41c3758763bbe"
+  },
+  {
+   "magic": "$PSP",
+   "type": 8,
+   "subprogram": 0,
+   "size": 120928,
+   "lower_sha16": "acfb4abd7d47c94b",
+   "upper_sha16": "c4376da2b32249ea"
+  },
+  {
+   "magic": "$PSP",
+   "type": 8,
+   "subprogram": 1,
+   "size": 103520,
+   "lower_sha16": "fa18d34a45ce5979",
+   "upper_sha16": "286e1af4c161a6d1"
+  },
+  {
+   "magic": "$PSP",
+   "type": 9,
+   "subprogram": 0,
+   "size": 1600,
+   "lower_sha16": "72ddc58a28ed4def",
+   "upper_sha16": "c0992eaa221c545e"
+  },
+  {
+   "magic": "$PSP",
+   "type": 10,
+   "subprogram": 0,
+   "size": 832,
+   "lower_sha16": "18209a247b0f1a49",
+   "upper_sha16": "aec282d11d41ac66"
+  },
+  {
+   "magic": "$PSP",
+   "type": 12,
+   "subprogram": 0,
+   "size": 131328,
+   "lower_sha16": "25c23c4a453b54ec",
+   "upper_sha16": "ae20a8e982fd3839"
+  },
+  {
+   "magic": "$PSP",
+   "type": 18,
+   "subprogram": 0,
+   "size": 17520,
+   "lower_sha16": "2abb84a3eae0b795",
+   "upper_sha16": "0b1441b19151d5c8"
+  },
+  {
+   "magic": "$PSP",
+   "type": 18,
+   "subprogram": 1,
+   "size": 27648,
+   "lower_sha16": "63b8b5562d185b70",
+   "upper_sha16": "a56c9874c7112b4c"
+  },
+  {
+   "magic": "$PSP",
+   "type": 19,
+   "subprogram": 0,
+   "size": 9280,
+   "lower_sha16": "15f56fcb59d892f7",
+   "upper_sha16": "c03c8777d73f11af"
+  },
+  {
+   "magic": "$PSP",
+   "type": 33,
+   "subprogram": 0,
+   "size": 16,
+   "lower_sha16": "0b1429e143abef50",
+   "upper_sha16": "d9269d7005aa3e0e"
+  },
+  {
+   "magic": "$PSP",
+   "type": 36,
+   "subprogram": 0,
+   "size": 3072,
+   "lower_sha16": "cc4cd5c16ef9e8a0",
+   "upper_sha16": "2ea960d35dd204d8"
+  },
+  {
+   "magic": "$PSP",
+   "type": 36,
+   "subprogram": 1,
+   "size": 6208,
+   "lower_sha16": "6d539cffb6c271b3",
+   "upper_sha16": "e9e3d99221249b7b"
+  },
+  {
+   "magic": "$PSP",
+   "type": 40,
+   "subprogram": 0,
+   "size": 108432,
+   "lower_sha16": "02e92913e4f5acfd",
+   "upper_sha16": "438217a2120a460a"
+  },
+  {
+   "magic": "$PSP",
+   "type": 42,
+   "subprogram": 0,
+   "size": 53376,
+   "lower_sha16": "1c3434fd80aa545a",
+   "upper_sha16": "9258eab19fe7a30a"
+  },
+  {
+   "magic": "$PSP",
+   "type": 42,
+   "subprogram": 1,
+   "size": 58912,
+   "lower_sha16": "5143e2eb1c711d4b",
+   "upper_sha16": "1e9c99b3f9b21320"
+  },
+  {
+   "magic": "$PSP",
+   "type": 45,
+   "subprogram": 0,
+   "size": 12544,
+   "lower_sha16": "7e862d650e7240ec",
+   "upper_sha16": "123eaa527c48de65"
+  },
+  {
+   "magic": "$PSP",
+   "type": 48,
+   "subprogram": 0,
+   "size": 3504,
+   "lower_sha16": "76ca45872ef8f171",
+   "upper_sha16": "93f8ccdc7cb41eac"
+  },
+  {
+   "magic": "$PSP",
+   "type": 48,
+   "subprogram": 1,
+   "size": 508800,
+   "lower_sha16": "cbe5c44de20c473b",
+   "upper_sha16": "6001ec69793d74cb"
+  },
+  {
+   "magic": "$PSP",
+   "type": 64,
+   "subprogram": 0,
+   "size": 1024,
+   "lower_sha16": "5551fcca7a03d90f",
+   "upper_sha16": "fa1a9c110e4875db"
+  },
+  {
+   "magic": "$PSP",
+   "type": 66,
+   "subprogram": 0,
+   "size": 4336,
+   "lower_sha16": "c3e4cb60ab90d757",
+   "upper_sha16": "04a86884ae9a44a3"
+  },
+  {
+   "magic": "$PSP",
+   "type": 67,
+   "subprogram": 0,
+   "size": 1600,
+   "lower_sha16": "fc2381381619b476",
+   "upper_sha16": "108321d942c6eff5"
+  },
+  {
+   "magic": "$PSP",
+   "type": 68,
+   "subprogram": 0,
+   "size": 8704,
+   "lower_sha16": "44a4b892c825bf82",
+   "upper_sha16": "6ddcab96977e9a17"
+  },
+  {
+   "magic": "$PSP",
+   "type": 69,
+   "subprogram": 0,
+   "size": 3296,
+   "lower_sha16": "d217c60af114edae",
+   "upper_sha16": "30f98e33470a23d3"
+  },
+  {
+   "magic": "$PSP",
+   "type": 78,
+   "subprogram": 0,
+   "size": 1600,
+   "lower_sha16": "1fb30d172a4b55d7",
+   "upper_sha16": "f4269648d27a0c2b"
+  },
+  {
+   "magic": "$PSP",
+   "type": 80,
+   "subprogram": 0,
+   "size": 3792,
+   "lower_sha16": "ff5458dbf7f18e1c",
+   "upper_sha16": "95da5d31ede6f9f4"
+  },
+  {
+   "magic": "$PSP",
+   "type": 81,
+   "subprogram": 0,
+   "size": 1520,
+   "lower_sha16": "501ca7abc1c24c95",
+   "upper_sha16": "9e1b793350a27000"
+  }
+ ],
+ "only_lower_types": [
+  {
+   "magic": "$BL2",
+   "type": 100,
+   "subprogram": 1,
+   "size": 18480
+  },
+  {
+   "magic": "$BL2",
+   "type": 101,
+   "subprogram": 1,
+   "size": 880
+  },
+  {
+   "magic": "$BL2",
+   "type": 103,
+   "subprogram": 0,
+   "size": 4096
+  },
+  {
+   "magic": "$BL2",
+   "type": 106,
+   "subprogram": 0,
+   "size": 1380
+  },
+  {
+   "magic": "$PL2",
+   "type": 8,
+   "subprogram": 1,
+   "size": 103520
+  },
+  {
+   "magic": "$PL2",
+   "type": 8,
+   "subprogram": 2,
+   "size": 143936
+  },
+  {
+   "magic": "$PL2",
+   "type": 10,
+   "subprogram": 0,
+   "size": 832
+  },
+  {
+   "magic": "$PL2",
+   "type": 13,
+   "subprogram": 0,
+   "size": 832
+  },
+  {
+   "magic": "$PL2",
+   "type": 18,
+   "subprogram": 1,
+   "size": 9408
+  },
+  {
+   "magic": "$PL2",
+   "type": 18,
+   "subprogram": 2,
+   "size": 28160
+  },
+  {
+   "magic": "$PL2",
+   "type": 36,
+   "subprogram": 1,
+   "size": 6208
+  },
+  {
+   "magic": "$PL2",
+   "type": 36,
+   "subprogram": 2,
+   "size": 6240
+  },
+  {
+   "magic": "$PL2",
+   "type": 37,
+   "subprogram": 0,
+   "size": 8945
+  },
+  {
+   "magic": "$PL2",
+   "type": 37,
+   "subprogram": 1,
+   "size": 15288
+  },
+  {
+   "magic": "$PL2",
+   "type": 37,
+   "subprogram": 2,
+   "size": 9208
+  },
+  {
+   "magic": "$PL2",
+   "type": 49,
+   "subprogram": 0,
+   "size": 52320
+  },
+  {
+   "magic": "$PL2",
+   "type": 50,
+   "subprogram": 0,
+   "size": 41440
+  },
+  {
+   "magic": "$PL2",
+   "type": 51,
+   "subprogram": 0,
+   "size": 45568
+  },
+  {
+   "magic": "$PL2",
+   "type": 52,
+   "subprogram": 0,
+   "size": 40128
+  },
+  {
+   "magic": "$PL2",
+   "type": 53,
+   "subprogram": 0,
+   "size": 54720
+  },
+  {
+   "magic": "$PL2",
+   "type": 54,
+   "subprogram": 0,
+   "size": 45024
+  },
+  {
+   "magic": "$PL2",
+   "type": 55,
+   "subprogram": 0,
+   "size": 55952
+  },
+  {
+   "magic": "$PSP",
+   "type": 3,
+   "subprogram": 0,
+   "size": 46464
+  },
+  {
+   "magic": "$PSP",
+   "type": 8,
+   "subprogram": 2,
+   "size": 143936
+  },
+  {
+   "magic": "$PSP",
+   "type": 18,
+   "subprogram": 2,
+   "size": 28160
+  },
+  {
+   "magic": "$PSP",
+   "type": 36,
+   "subprogram": 2,
+   "size": 6240
+  },
+  {
+   "magic": "$PSP",
+   "type": 49,
+   "subprogram": 0,
+   "size": 52320
+  },
+  {
+   "magic": "$PSP",
+   "type": 50,
+   "subprogram": 0,
+   "size": 41440
+  },
+  {
+   "magic": "$PSP",
+   "type": 51,
+   "subprogram": 0,
+   "size": 45568
+  },
+  {
+   "magic": "$PSP",
+   "type": 52,
+   "subprogram": 0,
+   "size": 40128
+  },
+  {
+   "magic": "$PSP",
+   "type": 53,
+   "subprogram": 0,
+   "size": 54720
+  },
+  {
+   "magic": "$PSP",
+   "type": 54,
+   "subprogram": 0,
+   "size": 45024
+  },
+  {
+   "magic": "$PSP",
+   "type": 55,
+   "subprogram": 0,
+   "size": 55952
+  }
+ ],
+ "only_upper_types": [],
+ "reading": {
+  "the_mirror_is_a_rebuild": "the family-B table STRUCTURE mirrors exactly (10 tables, same offsets+counts+entry sizes) but the blob BODIES are window-specific: 72/76 paired keys changed at identical sizes, 4 identical — the lower window's second table set is not a copy of the upper's, it is a parallel build of the same release (ring 17's 'two different builds', now proven at the PSP layer)",
+  "table_mirrors_relocated": "0/10 tables byte-identical — expected: the lower copies relocate the entry addresses into their own window; the fidelity question lives at the blob level, and there the answer is: rebuilt, not copied",
+  "deeper_than_ffs": "ring 17's FFS pairing measured 261/380 shared GUIDs byte-identical across the windows; the PSP layer measures 3.69% byte-stability — the PSP layer is the most window-specific layer of the image, extending ring 13's cross-release churn lesson WITHIN one release",
+  "combo_completed": "both windows carry both chip families' routing: the lower window holds the family-A primaries (8 tables) plus family-B's tables (10), the upper holds family-B (10); the 33 lower-only blob types are family-A binaries with no upper-window counterpart (and 0 upper-only)",
+  "stable_core": "the 4 identical paired blobs include the 4,096-B type-0x22 policy table — the window-invariant plumbing the PSP keeps byte-stable even across builds"
+ },
+ "honesty": [
+  "the family attribution (lower=Zen/Zen+, upper=Zen2/Zen3) is ring 17's, inherited — this probe adds the blob-type pairing, not the family naming",
+  "pairing is per (magic, type, subprogram) first occurrence per window; sizes are recorded for audit",
+  "entries resolving outside the 32-MiB ROM are skipped (counted missing, never read)",
+  "'changed' means blob BYTES differ at equal (or recorded) size — the rebuild reading is structural, no per-blob semantic diff was run",
+  "psptool's fletcher validation gates every table; the upper parse required slicing the window (psptool's 32-MiB FET walk misses it — the two FET warnings are the visible trace)"
+ ]
+}

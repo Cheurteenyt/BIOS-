@@ -4,7 +4,47 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
-## Unreleased — the nineteenth ring (the anatomy of the vendor line)
+## Unreleased — the twentieth ring (the clocks, the quorum, the unasked bytes, and the rebuild)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Four fronts after the corpus was restored** — the sandbox reset had
+wiped the specimen binaries, so five files were re-pulled from the
+vendors' own CDNs and verified byte-exact (zip + ROM sha256) against
+the ring-11/12 register before any probe ran; nothing outside the
+register was downloaded:
+
+- **The five clocks fused** (`vendor-clocks.json`): AGESA, DER cert
+  set, SMM armor, PSP state and geometry side by side on the nine
+  dated rungs. The 3802|3810 quiet pair — shared AGESA 1.2.0.7, shared
+  5/7 armor, shared 211 PSP blobs — is separated by exactly ONE state
+  clock: the cert set, 12 → 18 DERs at 3810. `(cert_count, AGESA)`
+  pins all nine rungs; the day-0 decision tree is cost-ordered
+  (geometry → certs → AGESA → armor → PSP).
+- **The SMM quorum** (`vendor-smm-quorum.json`): the four named armor
+  modules ship under the SAME GUIDs on MSI, Gigabyte and ASRock — the
+  flash armor is AMI-generic, not an ASUS customization (ASUS's own
+  copies are GUID-found: the nameplate blindness). `SbRomArmorSmm`
+  carries three bodies across vendors, MSI and ASRock byte-identical.
+  MSI still carries the legacy SMM ASUS retired at 4202. An 83-GUID
+  spine sits in all five; a per-occurrence counting bug that
+  fabricated a false all-5 armor spine was caught by the variants
+  probe before publication.
+- **The unasked bytes** (`vendor-unasked.json`): gates reproduce
+  ring 19's question totals EXACTLY on all five specimens, then the
+  coverage lands — 84-90 % of varstore bytes are never referenced by
+  any question, and the `Setup` blob carries 142-567 never-asked
+  bytes per board. The IFR-side Setup sizes match ring 14's NVRAM
+  side exactly — the Q1↔Q5 bridge closes from both ends.
+- **The PSP mirror** (`vendor-psp-mirror.json`): the upper 16-MiB
+  window's PSP layer parsed for the first time (10 tables vs the
+  lower's 8 standalone). Table structure mirrors at +0x1000000 (same
+  magics/counts/sizes, addresses relocated) but blob bodies are
+  window-specific: 72/76 paired keys changed at identical sizes,
+  3.7 % byte-stability — the mirror is a parallel build, not a copy.
+
+## 0.7.x — the nineteenth ring (the anatomy of the vendor line)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
 323 checks green.
