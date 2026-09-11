@@ -373,7 +373,7 @@
   "the nesting rule's first run rejected 24/24 valid FVs: the FS-GUID registry lookup was case-sensitive while spi_map._guid returns uppercase \u2014 the rule worked, the registry had the bug; both the bug and the catch are registered",
   "the FTYPE table was written from memory first and was wrong from 0x0A on; corrected by copying ovmf_census.py's proven table verbatim \u2014 the discipline caught it before the numbers were read",
   "$BSP (AMD BIOS directory) has zero hits on both specimens; $PSP hits exist (26 MSI / 13 GB) but were not parsed this ring \u2014 the PSP lens stays an open front",
-  "GB's NVRAM region (0xe40000, 6 freeform files) is walked at file level only; the EVSA store walk is day-0 inventory work",
+  "GB's NVRAM region (0xe40000, 6 freeform files) is walked at file level only; the EVSA store walk is day-0 inventory work [CORRECTED ring 14: EVSA=0 on all six specimens \u2014 the actual format is AMI NVAR, FFS-anchored, parsed in vendor-nvram.json; the premise was wrong, the walk is done]",
   "named-share is UI-section coverage, not semantic coverage: 77.5 % MSI / 84.7 % GB \u2014 the unnamed tail is mostly AMI internal freeform blobs"
  ],
  "consequences_day0": [

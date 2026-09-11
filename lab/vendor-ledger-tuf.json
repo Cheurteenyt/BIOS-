@@ -1,0 +1,144 @@
+{
+ "schema": "omarchy-firmware/ring14-ledger-tuf@1",
+ "date": "2026-09-11",
+ "title": "the 3644 question: three ledgers, one bogus zip, one vendor-hash-verified acquisition",
+ "question_3644": {
+  "origin": "the founder's brief: the physical board reports BIOS 3644 (ASUS B450-PLUS class)",
+  "hypotheses_ring12": [
+   "H1 contaminated acquisition metadata (the ring-11 '3644' entry borrowed Gigabyte F67c's fields)",
+   "H2 board-model variant: 3644 lives in another ASUS product's ledger",
+   "H3 published-but-unlisted or region-split release"
+  ],
+  "evidence_this_ring": [
+   "H1 PROVEN for the acquisition: the ring-11 asus_b450plus_3644.zip is a 240-byte HTML error page (no EOCD signature; sha256 22fd6e575be583a4)",
+   "H2 tested on the two TUF variants: 3644 in NEITHER ledger",
+   "H3 open \u2014 the 16/09 dump decides by fingerprints (version strings, PSP blob hashes, NVRAM defaults)"
+  ]
+ },
+ "ledgers_checked": {
+  "prime_b450_plus": {
+   "source": "GetPDBIOS API, ring 12",
+   "releases": 39,
+   "span": "0318 -> 4655",
+   "has_3644": false
+  },
+  "tuf_b450_plus_gaming": {
+   "releases": 33,
+   "oldest": [
+    "0221",
+    "2018/06/22"
+   ],
+   "latest": [
+    "4645",
+    "2026/02/02"
+   ],
+   "versions": [
+    "0221",
+    "0402",
+    "0409",
+    "0601",
+    "0604",
+    "0809",
+    "1002",
+    "1201",
+    "1607",
+    "1804",
+    "1816",
+    "1820",
+    "1821",
+    "1823",
+    "2006",
+    "2008",
+    "2202",
+    "2409",
+    "2602",
+    "2803",
+    "2807",
+    "3002",
+    "3202",
+    "3205",
+    "3211",
+    "3604",
+    "3802",
+    "4003",
+    "4202",
+    "4401",
+    "4604",
+    "4622",
+    "4645"
+   ],
+   "has_3644": false,
+   "source": "GetPDBIOS API, ring 14, fetched 2026-09-11"
+  },
+  "tuf_b450m_plus_gaming": {
+   "releases": 33,
+   "oldest": [
+    "0220",
+    "2018/06/15"
+   ],
+   "latest": [
+    "4645",
+    "2026/02/02"
+   ],
+   "versions": [
+    "0220",
+    "0403",
+    "0409",
+    "0601",
+    "0604",
+    "0809",
+    "1002",
+    "1003",
+    "1201",
+    "1607",
+    "1804",
+    "1814",
+    "1820",
+    "1821",
+    "1823",
+    "2006",
+    "2202",
+    "2409",
+    "2602",
+    "2803",
+    "2807",
+    "3002",
+    "3202",
+    "3205",
+    "3211",
+    "3604",
+    "3802",
+    "4002",
+    "4202",
+    "4401",
+    "4604",
+    "4622",
+    "4645"
+   ],
+   "has_3644": false,
+   "source": "GetPDBIOS API, ring 14, fetched 2026-09-11"
+  }
+ },
+ "verdict": "3644 is absent from all three official ASUS AM4 B450-PLUS-class ledgers; no evidence it was ever published under any of the three product names",
+ "bogus_zip": {
+  "path": "scratch-vendor/asus_b450plus_3644.zip",
+  "size": 240,
+  "sha256_16": "22fd6e575be583a4",
+  "head": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta",
+  "verdict": "HTML error page saved as .zip during the ring-11 acquisition; never a firmware"
+ },
+ "tuf_4645_acquisition": {
+  "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-B450-PLUS-GAMING-ASUS-4645.zip?model=TUF B450-PLUS GAMING",
+  "size": 11416516,
+  "sha256_expected": "AFA618091D23515EF5CC77C9329EC648D7559DAA76C3F2D00E2C63E4A7BB1978",
+  "sha256_measured": "AFA618091D23515EF5CC77C9329EC648D7559DAA76C3F2D00E2C63E4A7BB1978",
+  "hash_source": "the vendor API's own per-release sha256 field \u2014 the first specimen in this project whose integrity is certified by the vendor itself",
+  "unwrap": {
+   "cap_bytes": 16779264,
+   "rom_bytes": 16777216,
+   "wrapper": 2048,
+   "first_fvh": "0x40800 in CAP = 0x40000 in ROM \u2014 the ring-12 wrapper proof reproduces on a third ASUS release"
+  },
+  "note": "registered specimen for day-0 comparison; TUF 3604 (2022-03-16, same date as PRIME 3604) is a candidate next acquisition for the same-AGESA cross-board diff"
+ }
+}

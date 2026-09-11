@@ -4,6 +4,65 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the fourteenth ring (the NVRAM opens; the register renames itself)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**The premise corrected before the lens was built.** The ring 11–13
+register said *"EVSA store walk is day-0 inventory work."* The scan
+refutes it: EVSA = 0 raw hits and $VSS = 0 stores on all six specimens
+— the NVRAM of these AMI-Aptio AM4 boards is **AMI NVAR** (entries
+literally begin with the ASCII `NVAR`). The lens is named for what the
+flash holds; `vendor-specimens.json`'s EVSA line carries a visible
+correction. The same correction made after the dump would have cost
+the first hours of 16/09.
+
+**The grammar imported, never remembered.** The authority is on disk
+(UEFITool new_engine: `ami_nvar.ksy` grammar, `nvram.h` constants,
+`nvramparser.cpp` semantics — fetched 2026-09-11, every rule cites its
+source). The ring-11 FTYPE lesson now applies at whole-grammar scale.
+The anatomy: one FFS raw file (`CEF5B9A3…`) per board → linear walk →
+**one outer `StdDefaults` variable whose DATA is itself a nested NVAR
+store** (the defaults); GUID area at the store tail, indexed backwards.
+One inversion (my first GUID-area direction) was caught by a
+spec-anchored self-test — `PlatformLang`/`Timeout` must resolve to
+`gEfiGlobalVariableGuid` — and fixed before any number was published.
+Final state: 14 walks, zero errors, zero broken links, clean
+terminators, free space uniformly 0xFF.
+
+**The factory grammar across four vendors.** Nine variable names shared
+by all six boards (AMITSESetup, NetworkStackVar, PCI_COMMON,
+PlatformLang, SecureBootSetup, Setup, Timeout, UsbSupport, XhciDID)
+with per-vendor tails (MSI FixedBoot, GB GcSensorVarName, ASRock
+NetConfigData, ASUS QFan/QFanConfig, VARSTORE_OCMR_SETTINGS_N …). The
+Setup default blob is per-board (628–1,428 B) — on day-0 the ring 6–7
+IFR grammar reads it as a varstore and the Q1↔NVRAM bridge lands on
+real silicon. The MSI double structure extends to NVRAM: same 12
+names, different defaults (Setup 1,428 B vs 1,972 B, different sha) —
+the mirror is a different factory configuration, not a copy.
+
+**The 3644 question narrows on three measurements.** (1) The ring-11
+"3644" zip is a **240-byte HTML error page** — never a firmware; H1
+(contaminated acquisition metadata) proven for the acquisition. (2)
+**Three official ledgers checked** — PRIME B450-PLUS (39 releases),
+TUF B450-PLUS GAMING (33), TUF B450M-PLUS GAMING (33): **3644 in
+none**; the model-variant hypothesis is tested and empty. (3) TUF 4645
+acquired with the project's **first vendor-certified sha256** (the
+ASUS API publishes a per-release hash; the zip matches byte-exactly);
+the 2,048-byte CAP wrapper proof reproduces on a third release. H3
+(unpublished/board identity outside the three products) stays open —
+the dump decides by version strings, PSP fingerprints and NVRAM
+defaults, all parseable on the acquired 3604/4655/4645 trees.
+
+**The ritual retires a ring-13 caveat.** The NVRAM lens ran twice from
+birth (registers byte-identical); the ring-13 PSP lens re-ran
+byte-identical to its saved register. The vendor lens class is
+reproducible; "one run per lens" is retired from the honesty ledger.
+
+Artifacts: `lab/vendor-nvram.json` + `lab/vendor-ledger-tuf.json`;
+narrative `lab/findings-fourteenth-ring.md`.
+
 ## Unreleased — the thirteenth ring (the two lenses: VERSION-strings refuted, names joined, PSP opened)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
