@@ -1,0 +1,815 @@
+{
+ "_meta": {
+  "ring": 23,
+  "front": "B",
+  "date": "2026-09-12",
+  "title": "the PSP blob authorship census — corpus-wide",
+  "grammar_source": "lab/vendor-psp.json layout_registered (ring 15, transcribed from psptool 3.6 at runtime) — cookies, entry layouts, fletcher32",
+  "scope": "13 specimens, raw ROM only; blob key = (dir_magic, type, size, body-hash16)",
+  "class_scope": "AGESA-aware classes restricted to the nine byte-verified ASUS rungs (vendor-agesa.json); MSI/Gigabyte/ASRock carry no byte-verified AGESA on disk and join the universal/private classes only",
+  "zero_downloads": true
+ },
+ "per_specimen": {
+  "asus-3604": {
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 2,
+    "$BHD": 5,
+    "$BL2": 2
+   },
+   "blobs": 223,
+   "skipped_entries": 10
+  },
+  "asus-3802": {
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 2,
+    "$BHD": 5,
+    "$BL2": 2
+   },
+   "blobs": 223,
+   "skipped_entries": 10
+  },
+  "asus-3810": {
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 2,
+    "$BHD": 5,
+    "$BL2": 2
+   },
+   "blobs": 223,
+   "skipped_entries": 10
+  },
+  "asus-4003": {
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 2,
+    "$BHD": 5,
+    "$BL2": 2
+   },
+   "blobs": 223,
+   "skipped_entries": 10
+  },
+  "asus-4202": {
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 2,
+    "$BHD": 5,
+    "$BL2": 2
+   },
+   "blobs": 224,
+   "skipped_entries": 10
+  },
+  "asus-4402": {
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 2,
+    "$BHD": 5,
+    "$BL2": 2
+   },
+   "blobs": 223,
+   "skipped_entries": 10
+  },
+  "asus-4604": {
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 2,
+    "$BHD": 5,
+    "$BL2": 2
+   },
+   "blobs": 223,
+   "skipped_entries": 10
+  },
+  "asus-4631": {
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 2,
+    "$BHD": 5,
+    "$BL2": 2
+   },
+   "blobs": 223,
+   "skipped_entries": 10
+  },
+  "asus-4655": {
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 2,
+    "$BHD": 5,
+    "$BL2": 2
+   },
+   "blobs": 223,
+   "skipped_entries": 10
+  },
+  "tuf-4645": {
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 2,
+    "$BHD": 5,
+    "$BL2": 2
+   },
+   "blobs": 223,
+   "skipped_entries": 10
+  },
+  "msi-b450-tomahawk-max": {
+   "dirs_found": 18,
+   "dirs_valid": 18,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 4,
+    "$BHD": 5,
+    "$BL2": 4
+   },
+   "blobs": 290,
+   "skipped_entries": 5
+  },
+  "gigabyte-b450-aorus-pro": {
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 2,
+    "$BHD": 5,
+    "$BL2": 2
+   },
+   "blobs": 225,
+   "skipped_entries": 10
+  },
+  "asrock-b450-steel-legend": {
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "by_magic": {
+    "$PSP": 5,
+    "$PL2": 2,
+    "$BHD": 5,
+    "$BL2": 2
+   },
+   "blobs": 231,
+   "skipped_entries": 10
+  }
+ },
+ "class_counts": {
+  "multi-vendor-partial": 213,
+  "singleton": 355,
+  "universal": 3,
+  "asus-agesa-k": 103,
+  "vendor-private": 335
+ },
+ "class_composition": {
+  "multi-vendor-partial": [
+   {
+    "specimens": [
+     "asrock-b450-steel-legend",
+     "asus-3604",
+     "asus-3802",
+     "asus-3810",
+     "asus-4003",
+     "asus-4202",
+     "asus-4402",
+     "asus-4604",
+     "asus-4631",
+     "asus-4655",
+     "gigabyte-b450-aorus-pro",
+     "tuf-4645"
+    ],
+    "n_keys": 105,
+    "examples": [
+     "$PSP|0x00|576|8efddcaaf84990cf",
+     "$PSP|0x04|131072|b5a41c3758763bbe",
+     "$PSP|0x08|120928|acfb4abd7d47c94b",
+     "$PSP|0x08|103520|fa18d34a45ce5979"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-4655",
+     "gigabyte-b450-aorus-pro"
+    ],
+    "n_keys": 26,
+    "examples": [
+     "$PSP|0x01|98304|80901dae80667b0a",
+     "$PSP|0x02|66256|d91debb22fd29b73",
+     "$PSP|0x08|133184|db1839aa183e49c2",
+     "$PSP|0x0c|131328|90aab5f862fd1905"
+    ]
+   },
+   {
+    "specimens": [
+     "asrock-b450-steel-legend",
+     "asus-4631",
+     "asus-4655",
+     "gigabyte-b450-aorus-pro",
+     "tuf-4645"
+    ],
+    "n_keys": 20,
+    "examples": [
+     "$PSP|0x30|3520|2f9fcf98127ee452",
+     "$PSP|0x31|54800|7072bcd36601923a",
+     "$PSP|0x32|37520|be8653cfb57ad377",
+     "$PSP|0x33|49776|3a06ec0ef1043ea2"
+    ]
+   },
+   {
+    "specimens": [
+     "asrock-b450-steel-legend",
+     "asus-4604",
+     "asus-4631"
+    ],
+    "n_keys": 16,
+    "examples": [
+     "$PSP|0x01|98304|2e90d126af7a6e75",
+     "$PSP|0x02|66256|ca8ae4c0feef0b62",
+     "$PSP|0x13|9280|beed653acee77730",
+     "$PSP|0x28|108432|6c8cc35b875fd951"
+    ]
+   },
+   {
+    "specimens": [
+     "asrock-b450-steel-legend",
+     "asus-4202",
+     "asus-4402",
+     "asus-4604",
+     "asus-4631",
+     "asus-4655",
+     "gigabyte-b450-aorus-pro",
+     "tuf-4645"
+    ],
+    "n_keys": 11,
+    "examples": [
+     "$PSP|0x08|112960|b8059916684191ec",
+     "$PSP|0x12|1056|a6600962452a7afd",
+     "$PSP|0x2a|53376|5234c3d8e970285d",
+     "$PL2|0x24|11952|6959c258c8388295"
+    ]
+   },
+   {
+    "specimens": [
+     "asrock-b450-steel-legend",
+     "asus-4402",
+     "asus-4604",
+     "asus-4631",
+     "asus-4655",
+     "gigabyte-b450-aorus-pro",
+     "tuf-4645"
+    ],
+    "n_keys": 8,
+    "examples": [
+     "$PSP|0x01|50560|d30e2cbe4de3de54",
+     "$PSP|0x02|270924|b0516d2a8c5caa78",
+     "$PSP|0x0c|143955|1c8f224ff663e511",
+     "$PSP|0x13|6432|bee25c9996c805c3"
+    ]
+   },
+   {
+    "specimens": [
+     "asrock-b450-steel-legend",
+     "asus-4402",
+     "asus-4604",
+     "asus-4631"
+    ],
+    "n_keys": 7,
+    "examples": [
+     "$PSP|0x01|62400|4c04311c915645fd",
+     "$PSP|0x02|66320|bd2a6709336506c5",
+     "$PSP|0x0c|85264|f440faba90a60896",
+     "$PSP|0x13|6640|1d4f5024991ee16f"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-4655",
+     "gigabyte-b450-aorus-pro",
+     "tuf-4645"
+    ],
+    "n_keys": 5,
+    "examples": [
+     "$PSP|0x01|62400|b8e2f3411b411631",
+     "$PSP|0x02|66320|a7358f8c808282c8",
+     "$PSP|0x0c|86032|5fb1ed58ffd063d2",
+     "$PSP|0x13|6640|858fb80554d2bfa6"
+    ]
+   },
+   {
+    "specimens": [
+     "asrock-b450-steel-legend",
+     "asus-4631",
+     "tuf-4645"
+    ],
+    "n_keys": 4,
+    "examples": [
+     "$PSP|0x30|545168|65ea7b7dc8568b86",
+     "$PL2|0x30|460496|7da4b3d9169a330b",
+     "$PL2|0x08|135376|14e388a6fc9294f6",
+     "$PL2|0x12|72704|f043f793d170ff34"
+    ]
+   },
+   {
+    "specimens": [
+     "asrock-b450-steel-legend",
+     "asus-4202",
+     "asus-4402",
+     "asus-4604",
+     "asus-4631",
+     "tuf-4645"
+    ],
+    "n_keys": 3,
+    "examples": [
+     "$PSP|0x08|133120|8cbad78e7b615e3b",
+     "$PSP|0x12|1056|19892c040b3b9314",
+     "$PSP|0x2a|58912|80fb6da57a01eaa3"
+    ]
+   }
+  ],
+  "singleton": [
+   {
+    "specimens": [
+     "asus-3604"
+    ],
+    "n_keys": 62,
+    "examples": [
+     "$PSP|0x01|50560|0d7557df7bf6c8ca",
+     "$PSP|0x02|270924|f738628cfa9f3afc",
+     "$PSP|0x0c|143795|598e7f48494c9736",
+     "$PSP|0x13|6432|77c95d6dd72bdd3a"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-4003"
+    ],
+    "n_keys": 50,
+    "examples": [
+     "$PSP|0x01|98304|4af4db73967fb84c",
+     "$PSP|0x02|66256|5616eafa6e050e66",
+     "$PSP|0x08|133184|286e1af4c161a6d1",
+     "$PSP|0x0c|131328|ae20a8e982fd3839"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-4202"
+    ],
+    "n_keys": 43,
+    "examples": [
+     "$PSP|0x01|98304|b331cde296cc5026",
+     "$PSP|0x02|66256|800074c8e727b605",
+     "$PSP|0x0c|131328|df03b9b7cfd9f6cd",
+     "$PSP|0x13|9280|a06818903168585d"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-4402"
+    ],
+    "n_keys": 42,
+    "examples": [
+     "$PSP|0x08|144016|0fac881a50c7025b",
+     "$PSP|0x12|28032|aa1aa7a4521d833a",
+     "$PSP|0x01|98304|abdb14b47fd24a23",
+     "$PSP|0x02|66256|e620372ffc009770"
+    ]
+   },
+   {
+    "specimens": [
+     "tuf-4645"
+    ],
+    "n_keys": 40,
+    "examples": [
+     "$PSP|0x01|98304|785a81f248a2f643",
+     "$PSP|0x02|66256|87ba8b1e84ea2e8b",
+     "$PSP|0x0c|131328|294895d21963ca9e",
+     "$PSP|0x13|9280|688e4a4e330400f8"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-4604"
+    ],
+    "n_keys": 27,
+    "examples": [
+     "$PSP|0x30|542592|98ed17d1dca2e280",
+     "$PSP|0x40|1024|00a3090702b679fb",
+     "$PSP|0x40|1024|123206aef68247cc",
+     "$BHD|0x60|8192|7704b61ed044df46"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-4655"
+    ],
+    "n_keys": 24,
+    "examples": [
+     "$PSP|0x40|1024|f626409219430190",
+     "$PSP|0x40|1024|2a70bad902651073",
+     "$BHD|0x60|8192|57d809cb0fe3fd39",
+     "$BHD|0x68|8192|57d809cb0fe3fd39"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-4631"
+    ],
+    "n_keys": 23,
+    "examples": [
+     "$PSP|0x40|1024|85d1d65b1541aafd",
+     "$BHD|0x60|8192|bdb27825699959d5",
+     "$BHD|0x68|8192|bdb27825699959d5",
+     "$BHD|0x60|8192|f5fda128d7d105ac"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-3802"
+    ],
+    "n_keys": 22,
+    "examples": [
+     "$BHD|0x60|8192|25adba2b6d65f919",
+     "$BHD|0x68|8192|25adba2b6d65f919",
+     "$BHD|0x60|8192|caeae1dcd08a469b",
+     "$BHD|0x60|8192|0630809733ba8af7"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-3810"
+    ],
+    "n_keys": 22,
+    "examples": [
+     "$BHD|0x60|8192|6f19bee7da8b4106",
+     "$BHD|0x68|8192|6f19bee7da8b4106",
+     "$BHD|0x60|8192|e25508e387b387d7",
+     "$BHD|0x60|8192|8fbb96a6a80985a3"
+    ]
+   }
+  ],
+  "universal": [
+   {
+    "specimens": [
+     "asrock-b450-steel-legend",
+     "asus-3604",
+     "asus-3802",
+     "asus-3810",
+     "asus-4003",
+     "asus-4202",
+     "asus-4402",
+     "asus-4604",
+     "asus-4631",
+     "asus-4655",
+     "gigabyte-b450-aorus-pro",
+     "msi-b450-tomahawk-max",
+     "tuf-4645"
+    ],
+    "n_keys": 3,
+    "examples": [
+     "$PSP|0x22|4096|f47a8ec3e9aff231",
+     "$PL2|0x22|4096|f47a8ec3e9aff231",
+     "$BL2|0x63|163840|5639b95c2f8d2a2d"
+    ]
+   }
+  ],
+  "asus-agesa-k": [
+   {
+    "specimens": [
+     "asus-3802",
+     "asus-3810"
+    ],
+    "n_keys": 35,
+    "examples": [
+     "$PSP|0x01|50560|f89b9da8498ffe8d",
+     "$PSP|0x02|270924|aca457e7160107f3",
+     "$PSP|0x0c|143795|193e4ab5e3ba6dc8",
+     "$PSP|0x13|6432|95340d2b2ffb86f4"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-3604",
+     "asus-3802",
+     "asus-3810",
+     "asus-4003",
+     "asus-4202",
+     "asus-4402",
+     "asus-4604"
+    ],
+    "n_keys": 13,
+    "examples": [
+     "$PSP|0x30|3520|d9481d5d5f88fccc",
+     "$PSP|0x31|54800|324c218a5226062e",
+     "$PSP|0x32|37520|bd9d5f2385ba3fc6",
+     "$PSP|0x33|48352|bb7046976f35c432"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-4003",
+     "asus-4202"
+    ],
+    "n_keys": 12,
+    "examples": [
+     "$PSP|0x01|50560|bc2baffd6892d913",
+     "$PSP|0x02|270924|13b42fa882cfd02e",
+     "$PSP|0x0c|143795|3290773c22e51e6c",
+     "$PSP|0x13|6432|17cffd02fc5162ca"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-3604",
+     "asus-3802",
+     "asus-3810",
+     "asus-4003"
+    ],
+    "n_keys": 11,
+    "examples": [
+     "$PSP|0x08|112928|c4376da2b32249ea",
+     "$PSP|0x12|1056|0b1441b19151d5c8",
+     "$PSP|0x2a|53376|9258eab19fe7a30a",
+     "$PL2|0x08|135088|42df88c7947e56f6"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-3604",
+     "asus-3802",
+     "asus-3810"
+    ],
+    "n_keys": 9,
+    "examples": [
+     "$PSP|0x45|3072|4ef29ca7361963bd",
+     "$PSP|0x50|3456|bc35e707c75c8669",
+     "$PL2|0x24|12032|21f121e508bcf954",
+     "$PL2|0x24|10928|4f35c96de5db9922"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-3604",
+     "asus-3802",
+     "asus-3810",
+     "asus-4003",
+     "asus-4202"
+    ],
+    "n_keys": 4,
+    "examples": [
+     "$PSP|0x24|6240|c144f2c7903e6379",
+     "$PSP|0x24|6208|6d539cffb6c271b3",
+     "$PSP|0x08|142352|e7c76bb78695922e",
+     "$PSP|0x12|27648|63b8b5562d185b70"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-4202",
+     "asus-4402",
+     "asus-4604"
+    ],
+    "n_keys": 4,
+    "examples": [
+     "$PSP|0x30|510112|36b56f0c085e8747",
+     "$PL2|0x08|135280|913ee5df8073c73f",
+     "$PL2|0x12|72496|e726173a877ed558",
+     "$PL2|0x30|419760|ef547f1cd9ffffb1"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-4402",
+     "asus-4604"
+    ],
+    "n_keys": 3,
+    "examples": [
+     "$BHD|0x66|5568|29c1e5239a564071",
+     "$BHD|0x66|5568|9dd86ac1add6c65c",
+     "$BL2|0x66|5568|7f364848ba3d97a7"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-3802",
+     "asus-3810",
+     "asus-4003"
+    ],
+    "n_keys": 2,
+    "examples": [
+     "$PSP|0x30|508800|6001ec69793d74cb",
+     "$PL2|0x30|418176|43eff99b2893eea9"
+    ]
+   },
+   {
+    "specimens": [
+     "asus-3802",
+     "asus-3810",
+     "asus-4003",
+     "asus-4202"
+    ],
+    "n_keys": 2,
+    "examples": [
+     "$BHD|0x66|5568|7113f94c4d1c2fb8",
+     "$BL2|0x66|5568|92e32533d1115ce2"
+    ]
+   }
+  ],
+  "vendor-private": [
+   {
+    "specimens": [
+     "msi-b450-tomahawk-max"
+    ],
+    "n_keys": 279,
+    "examples": [
+     "$PSP|0x00|576|a240facb7a0d5897",
+     "$PSP|0x01|131072|679f0691b233c58a",
+     "$PSP|0x03|46464|a07fa905af3a9687",
+     "$PSP|0x08|120928|bda65ef23b55d2d1"
+    ]
+   },
+   {
+    "specimens": [
+     "asrock-b450-steel-legend"
+    ],
+    "n_keys": 30,
+    "examples": [
+     "$PSP|0x0c|131328|6c946bcefbca4391",
+     "$PSP|0x5c|2848|19a249d9194a99f5",
+     "$PSP|0x40|1024|feeff635f04e775d",
+     "$PSP|0x40|1024|6170d4cbbe82bb2c"
+    ]
+   },
+   {
+    "specimens": [
+     "gigabyte-b450-aorus-pro"
+    ],
+    "n_keys": 26,
+    "examples": [
+     "$PSP|0x40|1024|920a048811e910c4",
+     "$PSP|0x40|1024|b49e959f94ae4115",
+     "$BHD|0x60|8192|8f348ba7e9cef54d",
+     "$BHD|0x68|8192|8f348ba7e9cef54d"
+    ]
+   }
+  ]
+ },
+ "class_examples": {
+  "multi-vendor-partial": [
+   "$PSP|0x00|576|8efddcaaf84990cf",
+   "$PSP|0x04|131072|b5a41c3758763bbe",
+   "$PSP|0x08|120928|acfb4abd7d47c94b",
+   "$PSP|0x08|103520|fa18d34a45ce5979",
+   "$PSP|0x12|9408|a6ca90d73f2bd672",
+   "$PSP|0x09|832|17383dca94997925",
+   "$PSP|0x0a|832|18209a247b0f1a49",
+   "$PSP|0x0d|832|94675973154370f7",
+   "$PSP|0x12|11552|ea7f827e49369349",
+   "$PSP|0x21|16|0b1429e143abef50",
+   "$PSP|0x24|3072|cc4cd5c16ef9e8a0",
+   "$PSP|0x30|3504|76ca45872ef8f171"
+  ],
+  "singleton": [
+   "$PSP|0x01|50560|0d7557df7bf6c8ca",
+   "$PSP|0x02|270924|f738628cfa9f3afc",
+   "$PSP|0x0c|143795|598e7f48494c9736",
+   "$PSP|0x13|6432|77c95d6dd72bdd3a",
+   "$PSP|0x01|58304|5a0b41cdbc6b4342",
+   "$PSP|0x02|62224|2e7982a59474fb37",
+   "$PSP|0x0c|79104|5bcf18456e02ef8f",
+   "$PSP|0x13|6480|df2f0fe310e34bd8",
+   "$PSP|0x28|120720|dda64f09f41108d1",
+   "$PSP|0x08|143744|c7d48d031e75c676",
+   "$PSP|0x12|28144|deaa0f87666e17b5",
+   "$PSP|0x01|98304|a65b644e50a77251"
+  ],
+  "universal": [
+   "$PSP|0x22|4096|f47a8ec3e9aff231",
+   "$PL2|0x22|4096|f47a8ec3e9aff231",
+   "$BL2|0x63|163840|5639b95c2f8d2a2d"
+  ],
+  "asus-agesa-k": [
+   "$PSP|0x24|6240|c144f2c7903e6379",
+   "$PSP|0x24|6208|6d539cffb6c271b3",
+   "$PSP|0x30|3520|d9481d5d5f88fccc",
+   "$PSP|0x31|54800|324c218a5226062e",
+   "$PSP|0x32|37520|bd9d5f2385ba3fc6",
+   "$PSP|0x33|48352|bb7046976f35c432",
+   "$PSP|0x34|56736|3d00c9468a69e1c8",
+   "$PSP|0x35|55200|aea7fc5dc1dab57c",
+   "$PSP|0x36|41056|e0f0e1e6409102b9",
+   "$PSP|0x37|55952|7551ae490a20ab70",
+   "$PSP|0x08|142352|e7c76bb78695922e",
+   "$PSP|0x12|27648|63b8b5562d185b70"
+  ],
+  "vendor-private": [
+   "$PSP|0x00|576|a240facb7a0d5897",
+   "$PSP|0x01|131072|679f0691b233c58a",
+   "$PSP|0x03|46464|a07fa905af3a9687",
+   "$PSP|0x08|120928|bda65ef23b55d2d1",
+   "$PSP|0x08|103520|e85d103cf13c5fb3",
+   "$PSP|0x0a|832|4b6ec7f4d0283183",
+   "$PSP|0x21|16|3648237e172f141d",
+   "$PSP|0x30|3504|3bf1b49fce34dc08",
+   "$PSP|0x31|52320|af72b7b436cd31eb",
+   "$PSP|0x32|41440|ea519b4898f03328",
+   "$PSP|0x33|45568|029ebb239eca32fc",
+   "$PSP|0x34|40128|1c38994db8da6ad3"
+  ]
+ },
+ "gates": {
+  "msi_dirs_18": {
+   "valid": 18,
+   "expect": 18,
+   "pass": true
+  },
+  "quiet_pair_211": {
+   "scopes": {
+    "unique_body_keys_psp_only": 133,
+    "unique_entry_keys_psp_only": 112,
+    "multiset_entries_psp_only": 145,
+    "multiset_entries_all_dirs": 201,
+    "unique_body_keys_all_dirs": 186
+   },
+   "registered": 211,
+   "verdict": "NOT reproduced under any of the five admissible scopes — the ring 18 probe died in a sandbox reset and its counting scope is unreconstructible; the QUALITATIVE register holds (223 entries per rung, 201 identical with multiplicity, 22 differing bodies at identical (dir,type,size) structure) — the exact figure is dead metadata, superseded in place, never erased",
+   "pass": false,
+   "all_dirs_entries_per_rung": 223
+  },
+  "msi_upper_mirror": {
+   "lower_dirs": 8,
+   "upper_dirs": 10,
+   "ring20_register": "10 tables in the upper window mirror the lower's extras at +0x1000000",
+   "upper_detail": [
+    {
+     "magic": "$PSP",
+     "off": "0x10d1000",
+     "count": 30
+    },
+    {
+     "magic": "$PSP",
+     "off": "0x1301000",
+     "count": 4
+    },
+    {
+     "magic": "$PSP",
+     "off": "0x1481000",
+     "count": 4
+    },
+    {
+     "magic": "$PL2",
+     "off": "0x1302000",
+     "count": 28
+    },
+    {
+     "magic": "$PL2",
+     "off": "0x1482000",
+     "count": 27
+    },
+    {
+     "magic": "$BHD",
+     "off": "0x12d1000",
+     "count": 22
+    },
+    {
+     "magic": "$BHD",
+     "off": "0x1461000",
+     "count": 1
+    },
+    {
+     "magic": "$BHD",
+     "off": "0x15e1000",
+     "count": 1
+    },
+    {
+     "magic": "$BL2",
+     "off": "0x1462000",
+     "count": 12
+    },
+    {
+     "magic": "$BL2",
+     "off": "0x15e2000",
+     "count": 11
+    }
+   ]
+  }
+ },
+ "honesty": [
+  "pointer-ish L2/tertiary entries are hashed only when their own bounds admit; address modes 2/3 are skipped and counted",
+  "the 211-blob register counted the PSP layer only; the all-directory figure is registered alongside",
+  "fletcher32 validation admits directories independently of psptool — the ring 15 crosscheck (18/18 MSI) is the bridge to that instrument"
+ ]
+}

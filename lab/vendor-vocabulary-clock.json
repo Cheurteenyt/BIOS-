@@ -1,0 +1,260 @@
+{
+ "_meta": {
+  "ring": 23,
+  "front": "C",
+  "date": "2026-09-12",
+  "title": "the vocabulary clock — the setup ladder in words",
+  "instruments": "ring23_corpus_walk (FV/FFS + ring22 planes) -> ring7 find_strings_packages -> ring8 SIBT census (UCS2+SCSU decode); per-module string sets diffed along the nine rungs",
+  "scope": "9 ASUS rungs; strings kept len>=2; examples filtered len>=4 with at least one letter",
+  "zero_downloads": true
+ },
+ "per_rung": {
+  "asus-3604": {
+   "modules_with_packages": 27,
+   "packages": 29,
+   "string_ids": 10446,
+   "distinct_strings": 4944
+  },
+  "asus-3802": {
+   "modules_with_packages": 27,
+   "packages": 29,
+   "string_ids": 10468,
+   "distinct_strings": 4951
+  },
+  "asus-3810": {
+   "modules_with_packages": 27,
+   "packages": 29,
+   "string_ids": 10517,
+   "distinct_strings": 4983
+  },
+  "asus-4003": {
+   "modules_with_packages": 27,
+   "packages": 29,
+   "string_ids": 10517,
+   "distinct_strings": 4983
+  },
+  "asus-4202": {
+   "modules_with_packages": 27,
+   "packages": 29,
+   "string_ids": 10517,
+   "distinct_strings": 4983
+  },
+  "asus-4402": {
+   "modules_with_packages": 27,
+   "packages": 29,
+   "string_ids": 10518,
+   "distinct_strings": 4984
+  },
+  "asus-4604": {
+   "modules_with_packages": 27,
+   "packages": 29,
+   "string_ids": 10518,
+   "distinct_strings": 4984
+  },
+  "asus-4631": {
+   "modules_with_packages": 27,
+   "packages": 29,
+   "string_ids": 10522,
+   "distinct_strings": 4986
+  },
+  "asus-4655": {
+   "modules_with_packages": 26,
+   "packages": 28,
+   "string_ids": 10522,
+   "distinct_strings": 4984
+  }
+ },
+ "frontiers": [
+  {
+   "transition": "asus-3604->asus-3802",
+   "new_words": 7,
+   "dropped_words": 0,
+   "new_examples": [
+    "AUTO: Default Settings. Manual: manually configure LCLK frequency",
+    "Control RPMC usage.\r\nEnable : Enable RMPC function\r\nDisable : Disable RMPC function\r\nAuto : Keep default behavior\r\n\r\nThis option is for test purpose only,\r\nNOT FOR PRODUCTION!!!",
+    "Maximum Frequency",
+    "Maximum LCLK Frequency. Set minimum and maximun to the same value for fixed frequency operation.Range:150MHz ~ 2500MHz",
+    "Minimum LCLK Frequency. Set minimum and maximun to the same value for fixed frequency operation.Range:150MHz ~ 2500MHz",
+    "Minimun Frequency",
+    "PSP RPMC Switch"
+   ],
+   "dropped_examples": []
+  },
+  {
+   "transition": "asus-3802->asus-3810",
+   "new_words": 32,
+   "dropped_words": 0,
+   "new_examples": [
+    "Physical Disk 16: XX: SATA, Size, Ready                               ",
+    "Physical Disk 17: XX: SATA, Size, Ready                               ",
+    "Physical Disk 18: XX: SATA, Size, Ready                               ",
+    "Physical Disk 19: XX: SATA, Size, Ready                               ",
+    "Physical Disk 20: XX: SATA, Size, Ready                               ",
+    "Physical Disk 21: XX: SATA, Size, Ready                               ",
+    "Physical Disk 22: XX: SATA, Size, Ready                               ",
+    "Physical Disk 23: XX: SATA, Size, Ready                               ",
+    "Physical Disk 24: XX: SATA, Size, Ready                               ",
+    "Physical Disk 25: XX: SATA, Size, Ready                               ",
+    "Physical Disk 26: XX: SATA, Size, Ready                               ",
+    "Physical Disk 27: XX: SATA, Size, Ready                               ",
+    "Physical Disk 28: XX: SATA, Size, Ready                               ",
+    "Physical Disk 29: XX: SATA, Size, Ready                               ",
+    "Physical Disk 30: XX: SATA, Size, Ready                               ",
+    "Physical Disk 31: XX: SATA, Size, Ready                               ",
+    "VIRT 16  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 17  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 18  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 19  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 20  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 21  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 22  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 23  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 24  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 25  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 26  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 27  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 28  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 29  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 30  0123456789012345678901234567890123456789012345678901234567890",
+    "VIRT 31  0123456789012345678901234567890123456789012345678901234567890"
+   ],
+   "dropped_examples": []
+  },
+  {
+   "transition": "asus-3810->asus-4003",
+   "new_words": 0,
+   "dropped_words": 0,
+   "new_examples": [],
+   "dropped_examples": []
+  },
+  {
+   "transition": "asus-4003->asus-4202",
+   "new_words": 0,
+   "dropped_words": 0,
+   "new_examples": [],
+   "dropped_examples": []
+  },
+  {
+   "transition": "asus-4202->asus-4402",
+   "new_words": 3,
+   "dropped_words": 2,
+   "new_examples": [
+    "X8/X4/X4 Mode",
+    "[Auto Mode] Run PCIe X16 mode\r\n[X8/X8 Mode] Split up PCIEX16_1, which runs at X16, into X8/X8.\r\n[X8X4X4 Mode] Split up PCIEX16_1, which runs at X16, into X8/X4/X4.\r\n[PCIe RAID Mode] Up to four SSDs installed onto the Hyper M.2 X16 series card can be detected.",
+    "[Auto Mode] Run PCIe X16 mode\r\n[X8X4X4 Mode] Split up PCIEX16_1, which runs at X16, into X8/X4/X4.\r\n[PCIe RAID Mode] Up to four SSDs installed onto the Hyper M.2 X16 series card can be detected."
+   ],
+   "dropped_examples": [
+    "[Auto Mode] Run PCIe X16 mode\r\n[PCIe RAID Mode] Up to four SSDs installed onto the Hyper M.2 X16 series card can be detected.\r\nNote: Use [PCIe RAID Mode] when installing the Hyper M.2 x16 card or other M.2 adapter cards.\r\nInstalling other devices when using PCIE RAID mode may cause your PC to fail to boot.",
+    "[Auto Mode] Run PCIe X16 mode\r\n[X8/X8 Mode] Split up PCIEX16_1, which runs at X16, into X8/X8.\r\n[PCIe RAID Mode] Up to four SSDs installed onto the Hyper M.2 X16 series card can be detected.\r\nNote: Use [X8/X8 Mode] when you have a compatible riser card or similar devices. DO NOT install a graphics card when this mode is enabled to avoid unexpected technical issues.\r\nUse [PCIe RAID Mode] when installing the Hyper M.2 x16 card or other M.2 adapter cards.\r\nInstalling other devices when using PCIE RAID mode may cause your PC to fail to boot."
+   ]
+  },
+  {
+   "transition": "asus-4402->asus-4604",
+   "new_words": 0,
+   "dropped_words": 0,
+   "new_examples": [],
+   "dropped_examples": []
+  },
+  {
+   "transition": "asus-4604->asus-4631",
+   "new_words": 2,
+   "dropped_words": 0,
+   "new_examples": [
+    "PCI Express Native Power Management",
+    "Stability Boost"
+   ],
+   "dropped_examples": []
+  },
+  {
+   "transition": "asus-4631->asus-4655",
+   "new_words": 6,
+   "dropped_words": 8,
+   "new_examples": [
+    "    CPU Fan Lower Temperature",
+    "    CPU Fan Upper Temperature",
+    "CPU Fan Q-Fan Control",
+    "Discard Changes and Reset",
+    "Press “Enter” to rename AMD APU M.2 ports.",
+    "Press “Enter” to rename AMD PT M.2 ports."
+   ],
+   "dropped_examples": [
+    "    CPU Lower Temperature",
+    "    CPU Upper Temperature",
+    "CPU Q-Fan Control",
+    "Discard Changes & Reset",
+    "GEN1",
+    "GEN2",
+    "Press <Enter> to rename AMD APU M.2 ports.",
+    "Press <Enter> to rename AMD PT M.2 ports."
+   ]
+  }
+ ],
+ "churn_cross_read": [
+  {
+   "transition": "asus-3604->asus-3802",
+   "body_moved": 201,
+   "words_changed_and_body_moved": 5,
+   "words_changed_body_stable": 0,
+   "body_moved_words_stable": 196
+  },
+  {
+   "transition": "asus-3802->asus-3810",
+   "body_moved": 45,
+   "words_changed_and_body_moved": 1,
+   "words_changed_body_stable": 0,
+   "body_moved_words_stable": 44
+  },
+  {
+   "transition": "asus-3810->asus-4003",
+   "body_moved": 224,
+   "words_changed_and_body_moved": 0,
+   "words_changed_body_stable": 0,
+   "body_moved_words_stable": 224
+  },
+  {
+   "transition": "asus-4003->asus-4202",
+   "body_moved": 85,
+   "words_changed_and_body_moved": 0,
+   "words_changed_body_stable": 0,
+   "body_moved_words_stable": 85
+  },
+  {
+   "transition": "asus-4202->asus-4402",
+   "body_moved": 166,
+   "words_changed_and_body_moved": 1,
+   "words_changed_body_stable": 0,
+   "body_moved_words_stable": 165
+  },
+  {
+   "transition": "asus-4402->asus-4604",
+   "body_moved": 57,
+   "words_changed_and_body_moved": 0,
+   "words_changed_body_stable": 0,
+   "body_moved_words_stable": 57
+  },
+  {
+   "transition": "asus-4604->asus-4631",
+   "body_moved": 238,
+   "words_changed_and_body_moved": 2,
+   "words_changed_body_stable": 0,
+   "body_moved_words_stable": 236
+  },
+  {
+   "transition": "asus-4631->asus-4655",
+   "body_moved": 197,
+   "words_changed_and_body_moved": 1,
+   "words_changed_body_stable": 0,
+   "body_moved_words_stable": 196
+  }
+ ],
+ "quiet_pair_symmetric_diff": 32,
+ "gates": {
+  "closure": "find_strings_packages admits only cleanly-closing packages (ok + len>=2); ring 8 re-read must also close with residual 0 or the package is dropped from the vocabulary — both gates enforced per package",
+  "magnitudes": "ring 19 registered 7,975 (3604) -> 8,273 (4655) questions on this board; the string-id counts here are the STRING layer, expected larger and not equal by definition"
+ },
+ "honesty": [
+  "SCSU texts decode via ring 8's UTS#6 implementation; placeholder-free by construction (rings 7-8 closed that ledger)",
+  "strings shared across MANY modules are counted once per module and once globally — both layers are registered",
+  "DUP (0x20) resolutions follow ring 8 (dup of already-decoded id); unresolved dups keep their placeholder"
+ ]
+}

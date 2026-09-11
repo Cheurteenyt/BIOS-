@@ -4,6 +4,66 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the twenty-third ring (the churn atlas, the blob authorship, and the speaking ladder)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Three never-asked fronts on the owned corpus** — thirteen specimens,
+zero downloads, zero bytes written outside the artifacts:
+
+- **The churn atlas** (`vendor-churn-atlas.json`): every FFS module
+  body hashed along the nine dated ASUS rungs (the frozen `spi_map`
+  FV/FFS grammar over ring 22's planes) — the first time the body
+  layer itself got a time axis. The armor's birth certificate becomes
+  module-exact: wave-1 is exactly FIVE files born at 3802
+  (`FlashSmiDxe`, `FlashSmiSmm`, `PrepareWhiteListSmm`,
+  `SbRomArmorSmm`, freeform `89BE47F4`, joined by GUID to the ring-20
+  quorum matrix), wave-2 exactly TWO at 4604 (`02076249`,
+  `4EB43107`); the legacy SMM retirement is exactly two `smm_driver`
+  deaths (`827E45A4` at 4202, `21782819` at 4402); the quiet pair
+  3802|3810 is the ladder's quietest frontier at this granularity too
+  (zero births/deaths, 45 moved bodies vs 85-238 for every neighbor);
+  TUF 4645 vs PRIME 4655 share all 613 GUIDs with 473 identical
+  bodies and zero uniques on either side.
+- **The PSP blob authorship** (`vendor-psp-authorship.json`): the
+  ring-15 directory grammar re-implemented with an independent
+  fletcher32 validator (gates: MSI 18/18 directories — reproducing the
+  psptool crosscheck — and the 10-table upper window — reproducing
+  ring 20's mirror), then every blob body of 2,900+ entries classified
+  by vendor span across all 13 specimens. Only **3 bodies are
+  universal** (one 4,096-B body shipped twice via `$PSP|0x22` and
+  `$PL2|0x22`, one 163,840-B `$BL2|0x63` body): the PSP layer is
+  vendor-built, unlike AMD's ALIB AML layer above it. The largest
+  sharing pattern — 105 keys — covers every specimen EXCEPT MSI, the
+  PSP-layer outlier exactly as at GUID, microcode and quorum level.
+  The registered "211 shared PSP blobs" for the quiet pair is declared
+  DEAD METADATA (unreproducible under five explicit scopes:
+  133/112/145/201/186; the ring-18 probe died in a sandbox reset and
+  its counting scope died with it) — superseded in place, never
+  erased; the qualitative register holds (223 entries, 201 identical
+  with multiplicity).
+- **The vocabulary clock** (`vendor-vocabulary-clock.json`): the HII
+  string layer decoded per module along the nine rungs (ring 7
+  package discovery + ring 8 UCS2/SCSU decode, both closure-gated) —
+  27 modules, 29 packages, ~5K distinct strings per rung, the STRING
+  layer behind ring 19's question counts. Diffed at every frontier:
+  the security waves are WORDLESS (zero new words at 4003, 4202,
+  4604 — the vendor does not advertise security work); the ONE
+  security-flavored option the facade ever gained is `PSP RPMC
+  Switch`, born exactly at the armor release 3802, its help text
+  stamped by the vendor "for test purpose only, NOT FOR
+  PRODUCTION!!!"; the +32 at 3810 are storage-slot templates; the
+  body clock and the word clock are disjoint instruments (224 bodies
+  moved at 3810→4003, zero words). Day-0 gains a word-level
+  checklist row (`vendor-vocabulary-clock.json` → day0-report).
+
+`docs/open-questions.md` gains RING-23 rows on Q1 (the vocabulary
+clock) and Q4 (the armor roster); `docs/day0-report-2026-09-16.md`
+gains the module-roster + word-clock row; lab README indexes the ring
+(and back-fills the ring-22 findings row missed by the previous
+commit); root README counts twenty-three rings.
+
 ## Unreleased — the twenty-second ring (the eighth clock, the collapsed census, and the frozen whitelist)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

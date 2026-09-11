@@ -85,6 +85,18 @@ layers hide the rest:
   Knowledge-only: the map prices what a setup_var-style editor COULD
   address; the zero-write doctrine is untouched. Day-0 now has an
   offset-level expectation, not just a magnitude.
+- RING-23 (the vocabulary clock — see `lab/vendor-vocabulary-clock.json`):
+  the string layer behind the questions is decoded along the nine ASUS
+  rungs (ring 7 package discovery + ring 8 UCS2/SCSU decode, 27 modules
+  / 29 packages / ~5K distinct strings per rung). The facade's WORDS
+  move at their own frontiers, disjoint from the body-churn clock:
+  the security waves (legacy-SMM retirement 4202, wave-2 4604, the big
+  AGESA rebuilds) land ZERO new words — the vendor does not advertise
+  security work. The ONE security-flavored option ever exposed is
+  `PSP RPMC Switch`, born exactly at the armor release 3802, help text
+  stamped by the vendor "for test purpose only, NOT FOR PRODUCTION!!".
+  Day-0 gains word-level expectations (RPMC present, `Stability Boost`
+  on 4631+-lineage builds).
 - DAY-0: real module list vs. a manual inventory of every setup screen
   (screenshots). The delta is what the vendor ships but does not show.
 - VOL-5: per-vendor NVRAM editors (`setup_var`, AMISCE, SCEWIN) — referenced
@@ -231,6 +243,17 @@ The five walls from `lab/coreboot-notes.md`, each with an owner:
   across all five vendors and FROZEN since 3802 — the armor's chip
   knowledge is AMI-generic infrastructure that stopped learning in
   2022 (knowledge-only: the zero-write doctrine is untouched).
+- RING-23 (the churn atlas — see `lab/vendor-churn-atlas.json`): the
+  armor walls get a MODULE ROSTER instead of a score. Every FFS body
+  hashed along the nine rungs: the wave-1 armor is exactly five files
+  born at 3802 (`FlashSmiDxe`, `FlashSmiSmm`, `PrepareWhiteListSmm`,
+  `SbRomArmorSmm`, freeform `89BE47F4`), wave-2 adds exactly two at
+  4604 (`02076249`, `4EB43107`) — ring 18's 5/7→7/7 decomposed at GUID
+  granularity; the legacy SMM retirement is exactly two deaths
+  (`827E45A4` at 4202, `21782819` at 4402). The quiet pair 3802|3810
+  is the ladder's quietest frontier at FFS granularity too (45 moved
+  bodies, zero births/deaths). Day-0's first-hour read: ~613 FFS
+  files, the quintet present, the legacy pair absent on ≥4402 builds.
 
 ## Q5 — What does NVRAM really hold? (the hidden settings)
 
