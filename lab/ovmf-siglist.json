@@ -1,0 +1,307 @@
+{
+ "conventions": {
+  "sha256_empty_string": {
+   "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "found_in": [
+    "ms/dbx",
+    "snakeoil/dbx"
+   ],
+   "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+ },
+ "date": "2026-09-11",
+ "note": "ring 9 front B: PK/KEK/db/dbx unpacked record-by-record with named owners (front-A nameplate) and per-entry SHA-256 fingerprints. The empty-string hash convention verified. Synthetic scale rehearsal for vendor-sized dbx. Read-only.",
+ "scale_rehearsal": {
+  "entries_per_second": 426158,
+  "exact": true,
+  "parse_seconds": 0.0023,
+  "parsed_entries": 1000,
+  "synthetic_entries": 1000
+ },
+ "schema": "ovmf-siglist/1",
+ "stores": {
+  "ms": {
+   "databases": {
+    "KEK": {
+     "data_bytes": 2565,
+     "detail": [
+      {
+       "detail": [
+        {
+         "owner": "a0baa8a3-041d-48a8-bc87-c36d121b5e3d",
+         "owner_name": "EnrollDefaultKeys \u2014 the keyring signature OWNER is the enroller's own FILE_GUID [OvmfPkg/EnrollDefaultKeys/EnrollDefaultKeys.inf] [edk2 master]",
+         "sha256_fingerprint": "5fb05ed84c5170d542ed6a7b7487dd57b8faedb02f7e107b0409e1d22cac4169",
+         "size": 961,
+         "subject": "Debian / Debian UEFI Secure Boot (PK/KEK key) / debian-devel@lists.debian.org / Debian / Debian UEFI Secure Boot (PK/KEK key) / debian-devel@lists.debian.org"
+        }
+       ],
+       "entries": 1,
+       "list_size": 1005,
+       "sig_size": 977,
+       "type": "X509 DER certificate",
+       "type_guid": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072"
+      },
+      {
+       "detail": [
+        {
+         "owner": "77fa9abd-0359-4d32-bd60-28f4e78f784b",
+         "owner_name": "gMicrosoftVendorGuid [guid/OvmfPkg]",
+         "sha256_fingerprint": "a1117f516a32cefcba3f2d1ace10a87972fd6bbe8fe0d0b996e09e65d802a503",
+         "size": 1516,
+         "subject": "US / Washington / Redmond / Microsoft Corporation / Microsoft Corporation Third Party Marketplace Root / US"
+        }
+       ],
+       "entries": 1,
+       "list_size": 1560,
+       "sig_size": 1532,
+       "type": "X509 DER certificate",
+       "type_guid": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072"
+      }
+     ],
+     "owners": [
+      "EnrollDefaultKeys \u2014 the keyring signature OWNER is the enroller's own FILE_GUID [OvmfPkg/EnrollDefaultKeys/EnrollDefaultKeys.inf] [edk2 master]",
+      "gMicrosoftVendorGuid [guid/OvmfPkg]"
+     ],
+     "present": true,
+     "signature_lists": 2,
+     "total_entries": 2,
+     "types": [
+      "X509 DER certificate"
+     ]
+    },
+    "PK": {
+     "data_bytes": 1005,
+     "detail": [
+      {
+       "detail": [
+        {
+         "owner": "8be4df61-93ca-11d2-aa0d-00e098032b8c",
+         "owner_name": "gEfiGlobalVariableGuid [guid/MdePkg]",
+         "sha256_fingerprint": "5fb05ed84c5170d542ed6a7b7487dd57b8faedb02f7e107b0409e1d22cac4169",
+         "size": 961,
+         "subject": "Debian / Debian UEFI Secure Boot (PK/KEK key) / debian-devel@lists.debian.org / Debian / Debian UEFI Secure Boot (PK/KEK key) / debian-devel@lists.debian.org"
+        }
+       ],
+       "entries": 1,
+       "list_size": 1005,
+       "sig_size": 977,
+       "type": "X509 DER certificate",
+       "type_guid": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072"
+      }
+     ],
+     "owners": [
+      "gEfiGlobalVariableGuid [guid/MdePkg]"
+     ],
+     "present": true,
+     "signature_lists": 1,
+     "total_entries": 1,
+     "types": [
+      "X509 DER certificate"
+     ]
+    },
+    "db": {
+     "data_bytes": 3143,
+     "detail": [
+      {
+       "detail": [
+        {
+         "owner": "77fa9abd-0359-4d32-bd60-28f4e78f784b",
+         "owner_name": "gMicrosoftVendorGuid [guid/OvmfPkg]",
+         "sha256_fingerprint": "e8e95f0733a55e8bad7be0a1413ee23c51fcea64b3c8fa6a786935fddcc71961",
+         "size": 1499,
+         "subject": "US / Washington / Redmond / Microsoft Corporation / Microsoft Root Certificate Authority 2010 / US"
+        }
+       ],
+       "entries": 1,
+       "list_size": 1543,
+       "sig_size": 1515,
+       "type": "X509 DER certificate",
+       "type_guid": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072"
+      },
+      {
+       "detail": [
+        {
+         "owner": "77fa9abd-0359-4d32-bd60-28f4e78f784b",
+         "owner_name": "gMicrosoftVendorGuid [guid/OvmfPkg]",
+         "sha256_fingerprint": "48e99b991f57fc52f76149599bff0a58c47154229b9f8d603ac40d3500248507",
+         "size": 1556,
+         "subject": "US / Washington / Redmond / Microsoft Corporation / Microsoft Corporation Third Party Marketplace Root / US"
+        }
+       ],
+       "entries": 1,
+       "list_size": 1600,
+       "sig_size": 1572,
+       "type": "X509 DER certificate",
+       "type_guid": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072"
+      }
+     ],
+     "owners": [
+      "gMicrosoftVendorGuid [guid/OvmfPkg]"
+     ],
+     "present": true,
+     "signature_lists": 2,
+     "total_entries": 2,
+     "types": [
+      "X509 DER certificate"
+     ]
+    },
+    "dbx": {
+     "data_bytes": 76,
+     "detail": [
+      {
+       "detail": [
+        {
+         "digest_hex": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+         "owner": "a0baa8a3-041d-48a8-bc87-c36d121b5e3d",
+         "owner_name": "EnrollDefaultKeys \u2014 the keyring signature OWNER is the enroller's own FILE_GUID [OvmfPkg/EnrollDefaultKeys/EnrollDefaultKeys.inf] [edk2 master]",
+         "sha256_fingerprint": "5df6e0e2761359d30a8275058e299fcc0381534545f55cf43e41983f5d4c9456",
+         "size": 32
+        }
+       ],
+       "entries": 1,
+       "list_size": 76,
+       "sig_size": 48,
+       "type": "SHA-256 hash",
+       "type_guid": "c1c41626-504c-4092-aca9-41f936934328"
+      }
+     ],
+     "owners": [
+      "EnrollDefaultKeys \u2014 the keyring signature OWNER is the enroller's own FILE_GUID [OvmfPkg/EnrollDefaultKeys/EnrollDefaultKeys.inf] [edk2 master]"
+     ],
+     "present": true,
+     "signature_lists": 1,
+     "total_entries": 1,
+     "types": [
+      "SHA-256 hash"
+     ]
+    }
+   },
+   "file": "OVMF_VARS_4M.ms.fd"
+  },
+  "snakeoil": {
+   "databases": {
+    "KEK": {
+     "data_bytes": 1031,
+     "detail": [
+      {
+       "detail": [
+        {
+         "owner": "a0baa8a3-041d-48a8-bc87-c36d121b5e3d",
+         "owner_name": "EnrollDefaultKeys \u2014 the keyring signature OWNER is the enroller's own FILE_GUID [OvmfPkg/EnrollDefaultKeys/EnrollDefaultKeys.inf] [edk2 master]",
+         "sha256_fingerprint": "5e2a886d7d56dc918f16806366d4c2e1c0de23a6f1026ba5df14f0370f0e19a0",
+         "size": 987,
+         "subject": "US / Colorado / Fort Collins / SnakeOil / SnakeOil Test Key for EFI Secure Boot / US"
+        }
+       ],
+       "entries": 1,
+       "list_size": 1031,
+       "sig_size": 1003,
+       "type": "X509 DER certificate",
+       "type_guid": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072"
+      }
+     ],
+     "owners": [
+      "EnrollDefaultKeys \u2014 the keyring signature OWNER is the enroller's own FILE_GUID [OvmfPkg/EnrollDefaultKeys/EnrollDefaultKeys.inf] [edk2 master]"
+     ],
+     "present": true,
+     "signature_lists": 1,
+     "total_entries": 1,
+     "types": [
+      "X509 DER certificate"
+     ]
+    },
+    "PK": {
+     "data_bytes": 1031,
+     "detail": [
+      {
+       "detail": [
+        {
+         "owner": "8be4df61-93ca-11d2-aa0d-00e098032b8c",
+         "owner_name": "gEfiGlobalVariableGuid [guid/MdePkg]",
+         "sha256_fingerprint": "5e2a886d7d56dc918f16806366d4c2e1c0de23a6f1026ba5df14f0370f0e19a0",
+         "size": 987,
+         "subject": "US / Colorado / Fort Collins / SnakeOil / SnakeOil Test Key for EFI Secure Boot / US"
+        }
+       ],
+       "entries": 1,
+       "list_size": 1031,
+       "sig_size": 1003,
+       "type": "X509 DER certificate",
+       "type_guid": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072"
+      }
+     ],
+     "owners": [
+      "gEfiGlobalVariableGuid [guid/MdePkg]"
+     ],
+     "present": true,
+     "signature_lists": 1,
+     "total_entries": 1,
+     "types": [
+      "X509 DER certificate"
+     ]
+    },
+    "db": {
+     "data_bytes": 1031,
+     "detail": [
+      {
+       "detail": [
+        {
+         "owner": "a0baa8a3-041d-48a8-bc87-c36d121b5e3d",
+         "owner_name": "EnrollDefaultKeys \u2014 the keyring signature OWNER is the enroller's own FILE_GUID [OvmfPkg/EnrollDefaultKeys/EnrollDefaultKeys.inf] [edk2 master]",
+         "sha256_fingerprint": "5e2a886d7d56dc918f16806366d4c2e1c0de23a6f1026ba5df14f0370f0e19a0",
+         "size": 987,
+         "subject": "US / Colorado / Fort Collins / SnakeOil / SnakeOil Test Key for EFI Secure Boot / US"
+        }
+       ],
+       "entries": 1,
+       "list_size": 1031,
+       "sig_size": 1003,
+       "type": "X509 DER certificate",
+       "type_guid": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072"
+      }
+     ],
+     "owners": [
+      "EnrollDefaultKeys \u2014 the keyring signature OWNER is the enroller's own FILE_GUID [OvmfPkg/EnrollDefaultKeys/EnrollDefaultKeys.inf] [edk2 master]"
+     ],
+     "present": true,
+     "signature_lists": 1,
+     "total_entries": 1,
+     "types": [
+      "X509 DER certificate"
+     ]
+    },
+    "dbx": {
+     "data_bytes": 76,
+     "detail": [
+      {
+       "detail": [
+        {
+         "digest_hex": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+         "owner": "a0baa8a3-041d-48a8-bc87-c36d121b5e3d",
+         "owner_name": "EnrollDefaultKeys \u2014 the keyring signature OWNER is the enroller's own FILE_GUID [OvmfPkg/EnrollDefaultKeys/EnrollDefaultKeys.inf] [edk2 master]",
+         "sha256_fingerprint": "5df6e0e2761359d30a8275058e299fcc0381534545f55cf43e41983f5d4c9456",
+         "size": 32
+        }
+       ],
+       "entries": 1,
+       "list_size": 76,
+       "sig_size": 48,
+       "type": "SHA-256 hash",
+       "type_guid": "c1c41626-504c-4092-aca9-41f936934328"
+      }
+     ],
+     "owners": [
+      "EnrollDefaultKeys \u2014 the keyring signature OWNER is the enroller's own FILE_GUID [OvmfPkg/EnrollDefaultKeys/EnrollDefaultKeys.inf] [edk2 master]"
+     ],
+     "present": true,
+     "signature_lists": 1,
+     "total_entries": 1,
+     "types": [
+      "SHA-256 hash"
+     ]
+    }
+   },
+   "file": "OVMF_VARS_4M.snakeoil.fd"
+  }
+ }
+}

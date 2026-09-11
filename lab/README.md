@@ -35,6 +35,7 @@ here, on machines that exist to be broken.
 | `findings-sixth-ring.md` | 2 fronts: the IFR grammar re-derived spec-fresh (FORMS = 0x02, `{OpCode:8, Length:7, Scope:1}` — why ring 5 locked), the facade counted in QUESTIONS (146 plain / 208 secboot, 21/21 packages close exactly) |
 | `findings-seventh-ring.md` | 4 fronts: the S2 lock was a category error (length-prefixed blobs, no package list ever ships — HiiAddPackages builds it at runtime), the SIBT layer decoded, the facade rendered in words (en-US + fr-FR), the facade's memory (varstores named, offsets, defaults, 48/146 questions behind a condition) |
 | `findings-eighth-ring.md` | 3 fronts: the dispatch graph (DEPEX as a DAG — zero BEFORE/AFTER, hubs by fan-in, apriori declared order, gate delta empty where modules are shared), the string closure (SCSU = zero real blocks, SKIP2 lives only in fr-FR, the last ids are the null marker + collisions), and pkg3 dissolved (a spurious exact-consumption anchor nested inside the real package — the flat 208 was 202 + 6 double-counted patterns) |
+| `findings-ninth-ring.md` | 3 fronts + the owed render check: the GUID nameplate (618/618 occurrences across 13 artifacts named, 209 distinct GUIDs, zero raw cells left — the 245-B formset was the File Explorer formset, the keyring owner is EnrollDefaultKeys' own FILE_GUID), the signature-list lens (PK/KEK/db/dbx record-by-record, the dbx = sha256("") byte-exact in both enrolled stores, 1000-entry synthetic dbx parsed in 2.3 ms), and the weight map (DXEFV 31→41.5% used, secboot grows +87 KB inside the outer slack, the swap = +18 SMM modules − Shell and its dynamic commands, net +810 KB) |
 
 Every findings file carries the same honesty ledger: what is proven,
 what is flagged, what stays an open question — and ends with its
@@ -62,6 +63,9 @@ each ledger self-corrects where the answer lands.
 | `ovmf-depex-dag.json` | eighth ring | the dispatch graph: postfix-evaluated DEPEX classes, hub fan-in (PcdProtocol 62, DevicePathUtilities 54…), the apriori declared order per FV, the cross-build gate delta (changed-while-present = {}) |
 | `ovmf-scsu-strings.json` | eighth ring | the SIBT block census (SCSU = 0 real blocks; SKIP2 only in fr-FR; header-faithful closes 110/110), the UTS#6 decoder + 5/5 self-tests, the observed string-header bytes, the id-resolution closure (id 0 = null marker, cross-module matches = collisions) |
 | `ovmf-pkg3-head.json` | eighth ring | the pkg3 autopsy: anchor and shift grids, hexdumps, the nested-span proof, the covering STRING record, the real formset guid byte-equal to the tianocore source, the 208 = 202 + 6 accounting |
+| `ovmf-guid-names.json` | ninth ring | the nameplate: every GUID in the 13 artifacts resolved (618/618, 209 distinct) against 11 .dec inventories + census + kill-list + the edk2 master tree; the closes that retire ring-8 "?"s (PcdPeim apriori entry, File Explorer formset, EnrollDefaultKeys-as-owner) |
+| `ovmf-siglist.json` | ninth ring | the trust store unpacked: PK/KEK/db/dbx record-by-record with named owners and X.509 fingerprints, the sha256("") dbx placeholder verified by value in both enrolled stores, the synthetic 1000-entry scale rehearsal (2.3 ms, exact) |
+| `ovmf-weight-map.json` | ninth ring | the frugality ledger in bytes: per-FV accounting (header/data/padding/tail) on 3 builds, named top consumers (TlsDxe ≈ 1 MB, Shell 894 KB), the by-name swap delta (+18 SMM modules − 9 incl. the Shell, net +810 KB), the FvbServicesSmm false-FV dismissal |
 
 ### The instruments
 

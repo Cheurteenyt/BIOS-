@@ -4,6 +4,45 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the ninth ring (the nameplate, the trust store unpacked, and the weight of the firmware)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Investigation (ring 9 — three fronts, three artifacts, one owed
+item closed)**
+- **The GUID nameplate** (`ovmf-guid-names.json`): 618/618 GUID
+  occurrences across all 13 lab artifacts resolved — 209 distinct
+  GUIDs, zero raw cells left — against 11 EDK2 `.dec` inventories,
+  the census, the kill-list and the edk2 master tree. Ring 8's
+  registered unknowns retire: the PEI apriori's single entry is
+  **PcdPeim**, the 245-B second formset of SecureBootConfigDxe is
+  **EFI_FILE_EXPLORE_FORMSET_GUID** (FileExplorerLib rides along),
+  and the keyring's ubiquitous signature owner is
+  **EnrollDefaultKeys' own FILE_GUID** — the enroller fingerprints
+  itself.
+- **The signature-list lens** (`ovmf-siglist.json`): PK/KEK/db/dbx
+  unpacked record-by-record on both enrolled stores with named
+  owners and per-entry X.509 fingerprints; the dbx is **sha256("")
+  byte-exact in both** (the canonical revoke-nothing placeholder,
+  recognized by value); a synthetic 1000-entry vendor-sized dbx
+  parses exactly in 2.3 ms (≈426k entries/s).
+- **The weight map** (`ovmf-weight-map.json`): per-FV byte
+  accounting on plain/secboot/strictnx — DXEFV ships 31.15→41.5%
+  full, FVMAIN_COMPACT grows +87 KB inside the outer slack (outer
+  geometry frozen), SECFV is 22.74% used (SecMain + ResetVector +
+  164 KB pad); top consumers named (TlsDxe ≈ 1 MB, UEFI Shell
+  894 KB, VariableSmm 868 KB); the by-name swap delta: +18 modules
+  (the whole SMM stack) − 9 (the non-SMM variable stack and the
+  Shell with http/tftp/VariablePolicy), net +810 KB. Two scan
+  disciplines bought cheap: `_FVH` candidates are guilty until
+  validated (zero vector, filesystem GUID), and outer/pierced
+  offsets never compare — the strictnx decoy inside FvbServicesSmm
+  dies on the ring-8 nesting rule, verbatim.
+- **The owed GitHub render check closes green**: served README 200
+  (9 sections, 37 links rendered), `study-en`/`study-fr` releases
+  4 + 4 assets all 200/uploaded, offline checker ALL LINKS RESOLVE.
+
 ## Unreleased — the eighth ring (the dispatch graph, the string closure, and the package that never was)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

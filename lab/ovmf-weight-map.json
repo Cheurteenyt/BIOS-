@@ -1,0 +1,3780 @@
+{
+ "builds": {
+  "plain": {
+   "fvs": [
+    {
+     "file_bytes": 1569657,
+     "file_rows": [
+      {
+       "body_bytes": 1569633,
+       "file_bytes": 1569657,
+       "guid": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+       "name": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+       "type": "FIRMWARE_VOLUME_IMAGE"
+      }
+     ],
+     "files": 1,
+     "free_after_last_file": 1870863,
+     "header_bytes": 72,
+     "length": 3440640,
+     "offset": 0,
+     "padding_and_tail": 1870911,
+     "utilization_pct": 45.62,
+     "volume": "outer"
+    },
+    {
+     "file_bytes": 48438,
+     "file_rows": [
+      {
+       "body_bytes": 45542,
+       "file_bytes": 45566,
+       "guid": "DF1CCEF6-F301-4A63-9661-FC6030DCC880",
+       "name": "DF1CCEF6-F301-4A63-9661-FC6030DCC880",
+       "type": "SECURITY_CORE"
+      },
+      {
+       "body_bytes": 2848,
+       "file_bytes": 2872,
+       "guid": "1BA0062E-C779-4582-8566-336AE8F78F09",
+       "name": "1BA0062E-C779-4582-8566-336AE8F78F09",
+       "type": "RAW"
+      }
+     ],
+     "files": 2,
+     "free_after_last_file": 0,
+     "header_bytes": 72,
+     "length": 212992,
+     "offset": 3440640,
+     "padding_and_tail": 164482,
+     "utilization_pct": 22.74,
+     "volume": "outer"
+    },
+    {
+     "file_bytes": 253354,
+     "file_rows": [
+      {
+       "body_bytes": 55338,
+       "file_bytes": 55362,
+       "guid": "222C386D-5ABC-4FB4-B124-FBB82488ACF4",
+       "name": "PlatformPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 50086,
+       "file_bytes": 50110,
+       "guid": "EDADEB9D-DDBA-48BD-9D22-C1C169C8C5C6",
+       "name": "DxeIpl (MdeModulePkg/Core/DxeIplPeim)",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 31074,
+       "file_bytes": 31098,
+       "guid": "A0C98B77-CBA5-4BB8-993B-4AF6CE33ECE4",
+       "name": "Tcg2Pei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 30182,
+       "file_bytes": 30206,
+       "guid": "280251C4-1D09-4035-9062-839ACB5F18C1",
+       "name": "CpuMpPei via DEFINE UP_CPU_PEI_GUID",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 28578,
+       "file_bytes": 28602,
+       "guid": "52C05B14-0B98-496C-BC3B-04B50211D680",
+       "name": "PeiCore (MdeModulePkg/Core/Pei)",
+       "type": "PEI_CORE"
+      },
+      {
+       "body_bytes": 8866,
+       "file_bytes": 8890,
+       "guid": "2BE1E4A6-6505-43B3-9FFC-A3C8330E0432",
+       "name": "TcgPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 8290,
+       "file_bytes": 8314,
+       "guid": "9B3ADA4F-AE56-4C24-8DEA-F03B7558AE50",
+       "name": "PcdPeim (MdeModulePkg/Universal/PCD/PcdPeim)",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 8162,
+       "file_bytes": 8186,
+       "guid": "86D70125-BAA3-4296-A62F-602BEBBB9081",
+       "name": "DxeIpl",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 7022,
+       "file_bytes": 7046,
+       "guid": "89E549B0-7CFE-449D-9BA3-10D8B2312D71",
+       "name": "S3Resume2Pei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 6386,
+       "file_bytes": 6410,
+       "guid": "47727552-A54B-4A84-8CC1-BFF23E239636",
+       "name": "Tcg2PlatformPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 6310,
+       "file_bytes": 6334,
+       "guid": "FCB3A3D6-6274-411C-A548-BD0E717D533A",
+       "name": "TdTcg2Pei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 4974,
+       "file_bytes": 4998,
+       "guid": "8AD3148F-945F-46B4-8ACD-71469EA73945",
+       "name": "Tcg2ConfigPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 3966,
+       "file_bytes": 3990,
+       "guid": "F12F698A-E506-4A1B-B32E-6920E55DA1C4",
+       "name": "TpmMmioSevDecryptPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 2246,
+       "file_bytes": 2270,
+       "guid": "A3610442-E69F-4DF3-82CA-2360C4031A23",
+       "name": "ReportStatusCodeRouterPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 1470,
+       "file_bytes": 1494,
+       "guid": "9D225237-FA01-464C-A949-BAABC02D31D0",
+       "name": "StatusCodeHandlerPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 20,
+       "file_bytes": 44,
+       "guid": "1B45CC0A-156A-428A-AF62-49864DA0E6E6",
+       "name": "gPeiAprioriFileNameGuid",
+       "type": "FREEFORM"
+      }
+     ],
+     "files": 16,
+     "free_after_last_file": 663182,
+     "header_bytes": 72,
+     "length": 917504,
+     "offset": 128,
+     "padding_and_tail": 664078,
+     "utilization_pct": 27.61,
+     "volume": "inner(pierced)"
+    },
+    {
+     "file_bytes": 4735974,
+     "file_rows": [
+      {
+       "body_bytes": 1006822,
+       "file_bytes": 1006846,
+       "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+       "name": "TlsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 894398,
+       "file_bytes": 894422,
+       "guid": "7C04A583-9E3E-4F1C-AD65-E05268D0B4D1",
+       "name": "gUefiShellFileGuid",
+       "type": "APPLICATION"
+      },
+      {
+       "body_bytes": 139366,
+       "file_bytes": 139390,
+       "guid": "D6A2CB7F-6A18-4E2F-B43B-9920A733700A",
+       "name": "DxeCore (MdeModulePkg/Core/Dxe)",
+       "type": "DXE_CORE"
+      },
+      {
+       "body_bytes": 114390,
+       "file_bytes": 114414,
+       "guid": "462CAA21-7614-4503-836E-8AB6F4662331",
+       "name": "gUiAppFileGuid",
+       "type": "APPLICATION"
+      },
+      {
+       "body_bytes": 104370,
+       "file_bytes": 104394,
+       "guid": "86CDDF93-4872-4597-8AF9-A35AE4D3725F",
+       "name": "IScsiDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 91810,
+       "file_bytes": 91834,
+       "guid": "1A1E4886-9517-440E-9FDE-3BE44CEE2136",
+       "name": "CpuDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 89710,
+       "file_bytes": 89734,
+       "guid": "5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C",
+       "name": "Ip6Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 87382,
+       "file_bytes": 87406,
+       "guid": "348C4D62-BFBD-4882-9ECE-C80BB1C4783B",
+       "name": "HiiDatabase",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 86626,
+       "file_bytes": 86650,
+       "guid": "6D33944A-EC75-4855-A54D-809C75241F6C",
+       "name": "BdsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 70718,
+       "file_bytes": 70742,
+       "guid": "FA20568B-548B-4B2B-81EF-1BA08D4A3CEC",
+       "name": "BootScriptExecutorDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 70306,
+       "file_bytes": 70330,
+       "guid": "6490F1C5-EBCC-4665-8892-0075B9BB49B7",
+       "name": "CpuDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 69714,
+       "file_bytes": 69738,
+       "guid": "EBF342FE-B1D3-4EF8-957C-8048606FF671",
+       "name": "SetupBrowser",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 62126,
+       "file_bytes": 62150,
+       "guid": "9FB1A1F3-3B71-4324-B39A-745CBB015FFF",
+       "name": "Ip4Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 60606,
+       "file_bytes": 60630,
+       "guid": "E660EA85-058E-4B55-A54B-F02F83A24707",
+       "name": "DisplayEngine",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 57862,
+       "file_bytes": 57886,
+       "guid": "B95E9FDA-26DE-48D2-8807-1F9107AC5E3A",
+       "name": "UefiPxeBcDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 53138,
+       "file_bytes": 53162,
+       "guid": "ECEBCB00-D9C8-11E4-AF3D-8CDCD426C973",
+       "name": "HttpBootDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 46522,
+       "file_bytes": 46546,
+       "guid": "FDFF263D-5F68-4591-87BA-B768F445A9AF",
+       "name": "Tcg2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 45286,
+       "file_bytes": 45310,
+       "guid": "1A7E4468-2F55-4A56-903C-01265EB7622B",
+       "name": "TcpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 41834,
+       "file_bytes": 41858,
+       "guid": "93B80004-9FB3-11D4-9A3A-0090273FC14D",
+       "name": "PciBusDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 41062,
+       "file_bytes": 41086,
+       "guid": "CBD2E4D5-7068-4FF5-B462-9822B4AD8D60",
+       "name": "VariableRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 38510,
+       "file_bytes": 38534,
+       "guid": "19618BCE-55AE-09C6-37E9-4CE04084C7A1",
+       "name": "httpDynamicCommand",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 37818,
+       "file_bytes": 37842,
+       "guid": "9B680FCE-AD6B-4F3A-B60B-F59899003443",
+       "name": "DevicePathDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 37654,
+       "file_bytes": 37678,
+       "guid": "B219E140-DFFC-11E3-B956-0022681E6906",
+       "name": "DnsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 35862,
+       "file_bytes": 35886,
+       "guid": "2366C20F-E15A-11E3-8BF1-E4115B28BC50",
+       "name": "HttpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 34306,
+       "file_bytes": 34330,
+       "guid": "4D9CBEF0-15A0-4D0C-83DB-5213E710C23F",
+       "name": "Tcg2ConfigDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 30666,
+       "file_bytes": 30690,
+       "guid": "7CA1024F-EB17-11E5-9DBA-28D2447C4829",
+       "name": "TlsAuthConfigDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 30442,
+       "file_bytes": 30466,
+       "guid": "0A66E322-3740-4CCE-AD62-BD172CECCA35",
+       "name": "ScsiDisk",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 30254,
+       "file_bytes": 30278,
+       "guid": "A487A478-51EF-48AA-8794-7BEE2A0562F1",
+       "name": "tftpDynamicCommand",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 29588,
+       "file_bytes": 29612,
+       "guid": "28A03FF4-12B3-4305-A417-BB1A4F94081E",
+       "name": "RamDiskDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 29530,
+       "file_bytes": 29554,
+       "guid": "95E3669D-34BE-4775-A651-7EA41B69D89E",
+       "name": "Dhcp6Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 28966,
+       "file_bytes": 28990,
+       "guid": "B7F50E91-A759-412C-ADE4-DCD03E7F7C28",
+       "name": "XhciDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 28698,
+       "file_bytes": 28722,
+       "guid": "94734718-0BBC-47FB-96A5-EE7A5AE6A2AD",
+       "name": "Dhcp4Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 28058,
+       "file_bytes": 28082,
+       "guid": "99F03B99-98D8-49DD-A8D3-3219D0FFE41E",
+       "name": "Mtftp6Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 27262,
+       "file_bytes": 27286,
+       "guid": "5E523CB4-D397-4986-87BD-A6DD8B22F455",
+       "name": "AtaAtapiPassThruDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 26546,
+       "file_bytes": 26570,
+       "guid": "5BE3BDF4-53CF-46A3-A6A9-73C34A6E5EE3",
+       "name": "NvmExpressDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 26330,
+       "file_bytes": 26354,
+       "guid": "DC3641B8-2FA8-4ED3-BC1F-F9962A03454B",
+       "name": "Mtftp4Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 25430,
+       "file_bytes": 25454,
+       "guid": "025BBFC7-E6A9-4B8B-82AD-6815A1AEAF4A",
+       "name": "MnpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24726,
+       "file_bytes": 24750,
+       "guid": "6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B",
+       "name": "Udp4Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24670,
+       "file_bytes": 24694,
+       "guid": "961578FE-B6B7-44C3-AF35-6BC705CD2B1F",
+       "name": "Fat",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24662,
+       "file_bytes": 24686,
+       "guid": "D912C7BC-F098-4367-92BA-E911083C7B0E",
+       "name": "Udp6Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24050,
+       "file_bytes": 24074,
+       "guid": "17D0EF2A-5933-4007-8950-5749169D3DC5",
+       "name": "VariablePolicyDynamicCommand",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 23726,
+       "file_bytes": 23750,
+       "guid": "7BD9DDF7-8B83-488E-AEC9-24C78610289C",
+       "name": "VirtioFsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 20854,
+       "file_bytes": 20878,
+       "guid": "2F30DA26-F51B-4B6F-85C4-31873C281BCA",
+       "name": "LinuxInitrdDynamicShellCommand",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 20586,
+       "file_bytes": 20610,
+       "guid": "733CBAC2-B23F-4B92-BC8E-FB01CE5907B7",
+       "name": "FvbServicesRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 20406,
+       "file_bytes": 20430,
+       "guid": "F062221E-C607-44C2-B0B4-C3886331D351",
+       "name": "TdTcg2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 19958,
+       "file_bytes": 19982,
+       "guid": "408EDCEC-CF6D-477C-A5A8-B4844E3DE281",
+       "name": "ConSplitterDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 19094,
+       "file_bytes": 19118,
+       "guid": "A2F436EA-A127-4EF8-957C-8048606FF670",
+       "name": "SnpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 19094,
+       "file_bytes": 19118,
+       "guid": "E4F61863-FE2C-4B56-A8F4-08519BC439DF",
+       "name": "VlanConfigDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 19086,
+       "file_bytes": 19110,
+       "guid": "128FB770-5E79-4176-9E51-9BB268A17DD1",
+       "name": "PciHostBridgeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 18222,
+       "file_bytes": 18246,
+       "guid": "9E863906-A40F-4875-977F-5B93FF237FC6",
+       "name": "TerminalDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17818,
+       "file_bytes": 17842,
+       "guid": "9622E42C-8E38-4A08-9E8F-54F784652F6B",
+       "name": "AcpiTableDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17642,
+       "file_bytes": 17666,
+       "guid": "240612B7-A063-11D4-9A3A-0090273FC14D",
+       "name": "UsbBusDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17446,
+       "file_bytes": 17470,
+       "guid": "BDFE430E-8F2A-4DB0-9991-6F856594777E",
+       "name": "EhciDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17398,
+       "file_bytes": 17422,
+       "guid": "E2775B47-D453-4EE3-ADA7-391A1B05AC17",
+       "name": "PciSioSerialDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16514,
+       "file_bytes": 16538,
+       "guid": "D93CE3D8-A7EB-4730-8C8E-CC466A9ECC3C",
+       "name": "ReportStatusCodeRouterRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16498,
+       "file_bytes": 16522,
+       "guid": "22DC2B60-FE40-42AC-B01F-3AB1FAD9AAD8",
+       "name": "EmuVariableFvbRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16494,
+       "file_bytes": 16518,
+       "guid": "378D7B65-8DA9-4773-B6E4-A47826A833E1",
+       "name": "PcRtc",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16490,
+       "file_bytes": 16514,
+       "guid": "4B28E4C7-FF36-4E10-93CF-A82159E777C5",
+       "name": "ResetSystemRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16470,
+       "file_bytes": 16494,
+       "guid": "B601F8C4-43B7-4784-95B1-F4226CB40CEE",
+       "name": "RuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16002,
+       "file_bytes": 16026,
+       "guid": "EBF8ED7C-0DD1-4787-84F1-F48D537DCACF",
+       "name": "DriverHealthManagerDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 15998,
+       "file_bytes": 16022,
+       "guid": "13AC6DD0-73D0-11D4-B06B-00AA00BD6DE7",
+       "name": "EbcDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 15102,
+       "file_bytes": 15126,
+       "guid": "CCCB0C28-4B24-11D5-9A5A-0090273FC14D",
+       "name": "GraphicsConsoleDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14886,
+       "file_bytes": 14910,
+       "guid": "2FB92EFA-2EE0-4BAE-9EB6-7464125E1EF7",
+       "name": "UhciDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14706,
+       "file_bytes": 14730,
+       "guid": "D6099B94-CD97-4CC5-8714-7F6312701A8A",
+       "name": "VirtioGpuDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14694,
+       "file_bytes": 14718,
+       "guid": "D9DCC5DF-4007-435E-9098-8970935504B2",
+       "name": "PlatformDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14442,
+       "file_bytes": 14466,
+       "guid": "2D2E62CF-9ECF-43B7-8219-94E7FC713DFE",
+       "name": "UsbKbDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14118,
+       "file_bytes": 14142,
+       "guid": "905F13B0-8F91-4B0A-BD76-E1E78F9422E4",
+       "name": "UdfDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13918,
+       "file_bytes": 13942,
+       "guid": "F80697E9-7FD6-4665-8646-88E33EF71DFC",
+       "name": "SecurityStubDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13874,
+       "file_bytes": 13898,
+       "guid": "A92CDB4B-82F1-4E0B-A516-8A655D371524",
+       "name": "VirtioNetDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13794,
+       "file_bytes": 13818,
+       "guid": "F74D20EE-37E7-48FC-97F7-9B1047749C69",
+       "name": "LogoDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13754,
+       "file_bytes": 13778,
+       "guid": "9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E",
+       "name": "UsbMassStorageDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13618,
+       "file_bytes": 13642,
+       "guid": "1FA1F39E-FEFF-4AAE-BD7B-38A070A3B609",
+       "name": "PartitionDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13546,
+       "file_bytes": 13570,
+       "guid": "19DF145A-B1D4-453F-8507-38816676D7F6",
+       "name": "AtaBusDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13134,
+       "file_bytes": 13158,
+       "guid": "A5683620-7998-4BB2-A377-1C1E31E1E215",
+       "name": "TcgDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13110,
+       "file_bytes": 13134,
+       "guid": "C4D1F932-821F-4744-BF06-6D30F7730F8D",
+       "name": "Ps2KeyboardDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12446,
+       "file_bytes": 12470,
+       "guid": "BDCE85BB-FBAA-4F4E-9264-501A2C249581",
+       "name": "S3SaveStateDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12426,
+       "file_bytes": 12450,
+       "guid": "6C2004EF-4E0E-4BE4-B14C-340EB4AA5891",
+       "name": "StatusCodeHandlerRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12426,
+       "file_bytes": 12450,
+       "guid": "AD608272-D07F-4964-801E-7BD3B7888652",
+       "name": "MonotonicCounterRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12406,
+       "file_bytes": 12430,
+       "guid": "23CACE14-EBA4-49F6-9681-C697FF0B649E",
+       "name": "VirtioSerialDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12406,
+       "file_bytes": 12430,
+       "guid": "42857F0A-13F2-4B21-8A23-53D3F714B840",
+       "name": "CapsuleRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12274,
+       "file_bytes": 12298,
+       "guid": "E3752948-B9A1-4770-90C4-DF41C38986BE",
+       "name": "QemuVideoDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12182,
+       "file_bytes": 12206,
+       "guid": "529D3F93-E8E9-4E73-B1E1-BDF6A9D50113",
+       "name": "ArpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 11538,
+       "file_bytes": 11562,
+       "guid": "8657015B-EA43-440D-949A-AF3BE365C0FC",
+       "name": "IoMmuDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 11490,
+       "file_bytes": 11514,
+       "guid": "806040CA-DAD9-4978-A3B4-2D2AB0C8A48F",
+       "name": "QemuKernelLoaderFsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 11490,
+       "file_bytes": 11514,
+       "guid": "17985E6F-E778-4D94-AEFA-C5DD2B77E186",
+       "name": "QemuFwCfgAcpiPlatform",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 10894,
+       "file_bytes": 10918,
+       "guid": "FE5CEA76-4F72-49E8-986F-2CD899DFFE5D",
+       "name": "FaultTolerantWriteDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 10346,
+       "file_bytes": 10370,
+       "guid": "80CF7257-87AB-47F9-A3FE-D50B76D89541",
+       "name": "PcdDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 9466,
+       "file_bytes": 9490,
+       "guid": "F9D88642-0737-49BC-81B5-6889CD57D9EA",
+       "name": "SmbiosDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 9206,
+       "file_bytes": 9230,
+       "guid": "63E3BDCF-2AC7-4AC0-9B92-03A7541422FF",
+       "name": "Hash2DxeCrypto",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 9122,
+       "file_bytes": 9146,
+       "guid": "11A6EDF6-A9BE-426D-A6CC-B22FE51D9224",
+       "name": "PciHotPlugInitDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 8874,
+       "file_bytes": 8898,
+       "guid": "0170F60C-1D40-4651-956D-F0BD9879D527",
+       "name": "Virtio10",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 8186,
+       "file_bytes": 8210,
+       "guid": "F141B1E5-9C7C-44CC-AFAA-E87D7689B113",
+       "name": "VirtioKeyboardDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7526,
+       "file_bytes": 7550,
+       "guid": "0167CCC4-D0F7-4F21-A3EF-9E64B7CDCE8B",
+       "name": "ScsiBus",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7506,
+       "file_bytes": 7530,
+       "guid": "2EC9DA37-EE35-4DE9-86C5-6D9A81DC38A7",
+       "name": "AmdSevDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7490,
+       "file_bytes": 7514,
+       "guid": "DCE1B094-7DC6-45D0-9FDD-D7FC3CC3E4EF",
+       "name": "QemuRamfbDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7218,
+       "file_bytes": 7242,
+       "guid": "FAB5D4F4-83C0-4AAF-8480-442D11DF6CEA",
+       "name": "VirtioScsiDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7210,
+       "file_bytes": 7234,
+       "guid": "6B38F7B4-AD98-40E9-9093-ACA2B5A253C4",
+       "name": "DiskIoDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7118,
+       "file_bytes": 7142,
+       "guid": "E750224E-7BCE-40AF-B5BB-47E3611EB5C2",
+       "name": "TdxDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 6710,
+       "file_bytes": 6734,
+       "guid": "51CCF399-4FDF-4E55-A45B-E123F84D456A",
+       "name": "ConPlatformDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 6422,
+       "file_bytes": 6446,
+       "guid": "60740CF3-D428-4500-80E6-04A5798241ED",
+       "name": "VirtHstiDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 5774,
+       "file_bytes": 5798,
+       "guid": "B981A835-6EE8-4F4C-AE0B-210AA0BFBF01",
+       "name": "RngDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 5618,
+       "file_bytes": 5642,
+       "guid": "11D92DFB-3CA9-4F93-BA2E-4780ED3E03B5",
+       "name": "VirtioBlkDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4842,
+       "file_bytes": 4866,
+       "guid": "864E1CA8-85EB-4D63-9DCC-6E0FC90FFD55",
+       "name": "SioBusDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4662,
+       "file_bytes": 4686,
+       "guid": "820C59BB-274C-43B2-83EA-DAC673035A59",
+       "name": "SataController",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4594,
+       "file_bytes": 4618,
+       "guid": "58E26F0D-CBAC-4BBA-B70F-18221415665A",
+       "name": "VirtioRngDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4550,
+       "file_bytes": 4574,
+       "guid": "4110465D-5FF3-4F4B-B580-24ED0D06747A",
+       "name": "SmbiosPlatformDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4482,
+       "file_bytes": 4506,
+       "guid": "A19B1FE7-C1BC-49F8-875F-54A5D542443F",
+       "name": "CpuIo2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4150,
+       "file_bytes": 4174,
+       "guid": "52FE8196-F9DE-4D07-B22F-51F77A0E7C41",
+       "name": "LocalApicTimerDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4094,
+       "file_bytes": 4118,
+       "guid": "83DD3B39-7CAF-4FAC-A542-E050B767E3A7",
+       "name": "VirtioPciDeviceDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3958,
+       "file_bytes": 3982,
+       "guid": "22EA234F-E72A-11E4-91F9-28D2447C4829",
+       "name": "HttpUtilitiesDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3826,
+       "file_bytes": 3850,
+       "guid": "5CAB08D5-AD8F-4D8B-B828-D17A8D9FE977",
+       "name": "Tcg2PlatformDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3282,
+       "file_bytes": 3306,
+       "guid": "B8E62775-BB0A-43F0-A843-5BE8B14F8CCD",
+       "name": "BootGraphicsResourceTableDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3246,
+       "file_bytes": 3270,
+       "guid": "CD3BAFB6-50FB-4FE8-8E4E-AB74D2C1A600",
+       "name": "EnglishDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 2642,
+       "file_bytes": 2666,
+       "guid": "C8339973-A563-4561-B858-D8476F9DEFC4",
+       "name": "Metronome",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 2366,
+       "file_bytes": 2390,
+       "guid": "A210F973-229D-4F4D-AA37-9895E6C9EABA",
+       "name": "DpcDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 2326,
+       "file_bytes": 2350,
+       "guid": "AD416CE3-A483-45B1-94C2-4B4E4D575562",
+       "name": "TcgMor",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 1838,
+       "file_bytes": 1862,
+       "guid": "F6697AC4-A776-4EE1-B643-1FEFF2B615BB",
+       "name": "IncompatiblePciDeviceSupportDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 1838,
+       "file_bytes": 1862,
+       "guid": "F099D67F-71AE-4C36-B2A3-DCEB0EB2B7D8",
+       "name": "WatchdogTimer",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 84,
+       "file_bytes": 108,
+       "guid": "FC510EE7-FFDC-11D4-BD41-0080C73C8881",
+       "name": "gAprioriGuid",
+       "type": "FREEFORM"
+      }
+     ],
+     "files": 119,
+     "free_after_last_file": 10467806,
+     "header_bytes": 72,
+     "length": 15204352,
+     "offset": 917648,
+     "padding_and_tail": 10468306,
+     "utilization_pct": 31.15,
+     "volume": "inner(pierced)"
+    }
+   ],
+   "image_bytes": 3653632,
+   "nested_fv_candidates": []
+  },
+  "secboot": {
+   "fvs": [
+    {
+     "file_bytes": 1657220,
+     "file_rows": [
+      {
+       "body_bytes": 1657196,
+       "file_bytes": 1657220,
+       "guid": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+       "name": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+       "type": "FIRMWARE_VOLUME_IMAGE"
+      }
+     ],
+     "files": 1,
+     "free_after_last_file": 1783300,
+     "header_bytes": 72,
+     "length": 3440640,
+     "offset": 0,
+     "padding_and_tail": 1783348,
+     "utilization_pct": 48.17,
+     "volume": "outer"
+    },
+    {
+     "file_bytes": 48438,
+     "file_rows": [
+      {
+       "body_bytes": 45542,
+       "file_bytes": 45566,
+       "guid": "DF1CCEF6-F301-4A63-9661-FC6030DCC880",
+       "name": "DF1CCEF6-F301-4A63-9661-FC6030DCC880",
+       "type": "SECURITY_CORE"
+      },
+      {
+       "body_bytes": 2848,
+       "file_bytes": 2872,
+       "guid": "1BA0062E-C779-4582-8566-336AE8F78F09",
+       "name": "1BA0062E-C779-4582-8566-336AE8F78F09",
+       "type": "RAW"
+      }
+     ],
+     "files": 2,
+     "free_after_last_file": 0,
+     "header_bytes": 72,
+     "length": 212992,
+     "offset": 3440640,
+     "padding_and_tail": 164482,
+     "utilization_pct": 22.74,
+     "volume": "outer"
+    },
+    {
+     "file_bytes": 266376,
+     "file_rows": [
+      {
+       "body_bytes": 56042,
+       "file_bytes": 56066,
+       "guid": "222C386D-5ABC-4FB4-B124-FBB82488ACF4",
+       "name": "PlatformPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 50086,
+       "file_bytes": 50110,
+       "guid": "EDADEB9D-DDBA-48BD-9D22-C1C169C8C5C6",
+       "name": "DxeIpl (MdeModulePkg/Core/DxeIplPeim)",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 31074,
+       "file_bytes": 31098,
+       "guid": "A0C98B77-CBA5-4BB8-993B-4AF6CE33ECE4",
+       "name": "Tcg2Pei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 30182,
+       "file_bytes": 30206,
+       "guid": "280251C4-1D09-4035-9062-839ACB5F18C1",
+       "name": "CpuMpPei via DEFINE UP_CPU_PEI_GUID",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 28578,
+       "file_bytes": 28602,
+       "guid": "52C05B14-0B98-496C-BC3B-04B50211D680",
+       "name": "PeiCore (MdeModulePkg/Core/Pei)",
+       "type": "PEI_CORE"
+      },
+      {
+       "body_bytes": 8866,
+       "file_bytes": 8890,
+       "guid": "2BE1E4A6-6505-43B3-9FFC-A3C8330E0432",
+       "name": "TcgPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 8290,
+       "file_bytes": 8314,
+       "guid": "9B3ADA4F-AE56-4C24-8DEA-F03B7558AE50",
+       "name": "PcdPeim (MdeModulePkg/Universal/PCD/PcdPeim)",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 8162,
+       "file_bytes": 8186,
+       "guid": "86D70125-BAA3-4296-A62F-602BEBBB9081",
+       "name": "DxeIpl",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 7726,
+       "file_bytes": 7750,
+       "guid": "89E549B0-7CFE-449D-9BA3-10D8B2312D71",
+       "name": "S3Resume2Pei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 6386,
+       "file_bytes": 6410,
+       "guid": "47727552-A54B-4A84-8CC1-BFF23E239636",
+       "name": "Tcg2PlatformPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 6310,
+       "file_bytes": 6334,
+       "guid": "FCB3A3D6-6274-411C-A548-BD0E717D533A",
+       "name": "TdTcg2Pei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 5482,
+       "file_bytes": 5506,
+       "guid": "34C8C28F-B61C-45A2-8F2E-89E46BECC63B",
+       "name": "VariablePei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 4974,
+       "file_bytes": 4998,
+       "guid": "8AD3148F-945F-46B4-8ACD-71469EA73945",
+       "name": "Tcg2ConfigPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 3966,
+       "file_bytes": 3990,
+       "guid": "F12F698A-E506-4A1B-B32E-6920E55DA1C4",
+       "name": "TpmMmioSevDecryptPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 3950,
+       "file_bytes": 3974,
+       "guid": "6C0E75B4-B0B9-44D1-8210-3377D7B4E066",
+       "name": "SmmAccessPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 2246,
+       "file_bytes": 2270,
+       "guid": "A3610442-E69F-4DF3-82CA-2360C4031A23",
+       "name": "ReportStatusCodeRouterPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 2110,
+       "file_bytes": 2134,
+       "guid": "AAC33064-9ED0-4B89-A5AD-3EA767960B22",
+       "name": "FaultTolerantWritePei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 1470,
+       "file_bytes": 1494,
+       "guid": "9D225237-FA01-464C-A949-BAABC02D31D0",
+       "name": "StatusCodeHandlerPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 20,
+       "file_bytes": 44,
+       "guid": "1B45CC0A-156A-428A-AF62-49864DA0E6E6",
+       "name": "gPeiAprioriFileNameGuid",
+       "type": "FREEFORM"
+      }
+     ],
+     "files": 19,
+     "free_after_last_file": 649870,
+     "header_bytes": 72,
+     "length": 917504,
+     "offset": 128,
+     "padding_and_tail": 651056,
+     "utilization_pct": 29.03,
+     "volume": "inner(pierced)"
+    },
+    {
+     "file_bytes": 6310238,
+     "file_rows": [
+      {
+       "body_bytes": 1006182,
+       "file_bytes": 1006206,
+       "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+       "name": "TlsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 868474,
+       "file_bytes": 868498,
+       "guid": "23A089B3-EED5-4AC5-B2AB-43E3298C2343",
+       "name": "VariableSmm",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 825310,
+       "file_bytes": 825334,
+       "guid": "F80697E9-7FD6-4665-8646-88E33EF71DFC",
+       "name": "SecurityStubDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 716358,
+       "file_bytes": 716382,
+       "guid": "F0E6A44F-7195-41C3-AC64-54F202CD0A21",
+       "name": "SecureBootConfigDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 138470,
+       "file_bytes": 138494,
+       "guid": "D6A2CB7F-6A18-4E2F-B43B-9920A733700A",
+       "name": "DxeCore (MdeModulePkg/Core/Dxe)",
+       "type": "DXE_CORE"
+      },
+      {
+       "body_bytes": 114454,
+       "file_bytes": 114478,
+       "guid": "462CAA21-7614-4503-836E-8AB6F4662331",
+       "name": "gUiAppFileGuid",
+       "type": "APPLICATION"
+      },
+      {
+       "body_bytes": 103666,
+       "file_bytes": 103690,
+       "guid": "86CDDF93-4872-4597-8AF9-A35AE4D3725F",
+       "name": "IScsiDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 90914,
+       "file_bytes": 90938,
+       "guid": "1A1E4886-9517-440E-9FDE-3BE44CEE2136",
+       "name": "CpuDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 89262,
+       "file_bytes": 89286,
+       "guid": "5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C",
+       "name": "Ip6Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 87318,
+       "file_bytes": 87342,
+       "guid": "348C4D62-BFBD-4882-9ECE-C80BB1C4783B",
+       "name": "HiiDatabase",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 82338,
+       "file_bytes": 82362,
+       "guid": "6D33944A-EC75-4855-A54D-809C75241F6C",
+       "name": "BdsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 82050,
+       "file_bytes": 82074,
+       "guid": "A3FF0EF5-0C28-42F5-B544-8C7DE1E80014",
+       "name": "PiSmmCpuDxeSmm",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 69714,
+       "file_bytes": 69738,
+       "guid": "EBF342FE-B1D3-4EF8-957C-8048606FF671",
+       "name": "SetupBrowser",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 69602,
+       "file_bytes": 69626,
+       "guid": "6490F1C5-EBCC-4665-8892-0075B9BB49B7",
+       "name": "CpuDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 69182,
+       "file_bytes": 69206,
+       "guid": "FA20568B-548B-4B2B-81EF-1BA08D4A3CEC",
+       "name": "BootScriptExecutorDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 61614,
+       "file_bytes": 61638,
+       "guid": "9FB1A1F3-3B71-4324-B39A-745CBB015FFF",
+       "name": "Ip4Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 60542,
+       "file_bytes": 60566,
+       "guid": "E660EA85-058E-4B55-A54B-F02F83A24707",
+       "name": "DisplayEngine",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 57414,
+       "file_bytes": 57438,
+       "guid": "B95E9FDA-26DE-48D2-8807-1F9107AC5E3A",
+       "name": "UefiPxeBcDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 53074,
+       "file_bytes": 53098,
+       "guid": "ECEBCB00-D9C8-11E4-AF3D-8CDCD426C973",
+       "name": "HttpBootDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 45222,
+       "file_bytes": 45246,
+       "guid": "1A7E4468-2F55-4A56-903C-01265EB7622B",
+       "name": "TcpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 45050,
+       "file_bytes": 45074,
+       "guid": "FDFF263D-5F68-4591-87BA-B768F445A9AF",
+       "name": "Tcg2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 41834,
+       "file_bytes": 41858,
+       "guid": "93B80004-9FB3-11D4-9A3A-0090273FC14D",
+       "name": "PciBusDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 41002,
+       "file_bytes": 41026,
+       "guid": "E94F54CD-81EB-47ED-AEC3-856F5DC157A9",
+       "name": "PiSmmCore",
+       "type": "SMM_CORE"
+      },
+      {
+       "body_bytes": 37754,
+       "file_bytes": 37778,
+       "guid": "9B680FCE-AD6B-4F3A-B60B-F59899003443",
+       "name": "DevicePathDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 37654,
+       "file_bytes": 37678,
+       "guid": "B219E140-DFFC-11E3-B956-0022681E6906",
+       "name": "DnsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 35862,
+       "file_bytes": 35886,
+       "guid": "2366C20F-E15A-11E3-8BF1-E4115B28BC50",
+       "name": "HttpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 33474,
+       "file_bytes": 33498,
+       "guid": "4D9CBEF0-15A0-4D0C-83DB-5213E710C23F",
+       "name": "Tcg2ConfigDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 30442,
+       "file_bytes": 30466,
+       "guid": "0A66E322-3740-4CCE-AD62-BD172CECCA35",
+       "name": "ScsiDisk",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 30090,
+       "file_bytes": 30114,
+       "guid": "7CA1024F-EB17-11E5-9DBA-28D2447C4829",
+       "name": "TlsAuthConfigDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 29588,
+       "file_bytes": 29612,
+       "guid": "28A03FF4-12B3-4305-A417-BB1A4F94081E",
+       "name": "RamDiskDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 29530,
+       "file_bytes": 29554,
+       "guid": "95E3669D-34BE-4775-A651-7EA41B69D89E",
+       "name": "Dhcp6Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 28698,
+       "file_bytes": 28722,
+       "guid": "94734718-0BBC-47FB-96A5-EE7A5AE6A2AD",
+       "name": "Dhcp4Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 28326,
+       "file_bytes": 28350,
+       "guid": "B7F50E91-A759-412C-ADE4-DCD03E7F7C28",
+       "name": "XhciDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 27994,
+       "file_bytes": 28018,
+       "guid": "99F03B99-98D8-49DD-A8D3-3219D0FFE41E",
+       "name": "Mtftp6Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 26558,
+       "file_bytes": 26582,
+       "guid": "5E523CB4-D397-4986-87BD-A6DD8B22F455",
+       "name": "AtaAtapiPassThruDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 26546,
+       "file_bytes": 26570,
+       "guid": "5BE3BDF4-53CF-46A3-A6A9-73C34A6E5EE3",
+       "name": "NvmExpressDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 26266,
+       "file_bytes": 26290,
+       "guid": "DC3641B8-2FA8-4ED3-BC1F-F9962A03454B",
+       "name": "Mtftp4Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 25302,
+       "file_bytes": 25326,
+       "guid": "025BBFC7-E6A9-4B8B-82AD-6815A1AEAF4A",
+       "name": "MnpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24762,
+       "file_bytes": 24786,
+       "guid": "470CB248-E8AC-473C-BB4F-81069A1FE6FD",
+       "name": "SmmFaultTolerantWriteDxe",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 24726,
+       "file_bytes": 24750,
+       "guid": "6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B",
+       "name": "Udp4Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24702,
+       "file_bytes": 24726,
+       "guid": "9F7DCADE-11EA-448A-A46F-76E003657DD1",
+       "name": "VariableSmmRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24694,
+       "file_bytes": 24718,
+       "guid": "2FA2A6DA-11D5-4DC3-999A-749648B03C56",
+       "name": "PiSmmIpl",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24670,
+       "file_bytes": 24694,
+       "guid": "961578FE-B6B7-44C3-AF35-6BC705CD2B1F",
+       "name": "Fat",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24598,
+       "file_bytes": 24622,
+       "guid": "D912C7BC-F098-4367-92BA-E911083C7B0E",
+       "name": "Udp6Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 23726,
+       "file_bytes": 23750,
+       "guid": "7BD9DDF7-8B83-488E-AEC9-24C78610289C",
+       "name": "VirtioFsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 20614,
+       "file_bytes": 20638,
+       "guid": "1206F7CA-A475-4624-A83E-E6FC9BB38E49",
+       "name": "SmmControl2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 20610,
+       "file_bytes": 20634,
+       "guid": "2E7DB7A7-608E-4041-B45F-00359E0766C6",
+       "name": "FvbServicesSmm",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 20602,
+       "file_bytes": 20626,
+       "guid": "33FB3535-F15E-4C17-B303-5EB94595ECB6",
+       "name": "SmmLockBox",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 19894,
+       "file_bytes": 19918,
+       "guid": "408EDCEC-CF6D-477C-A5A8-B4844E3DE281",
+       "name": "ConSplitterDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 19830,
+       "file_bytes": 19854,
+       "guid": "F062221E-C607-44C2-B0B4-C3886331D351",
+       "name": "TdTcg2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 19094,
+       "file_bytes": 19118,
+       "guid": "E4F61863-FE2C-4B56-A8F4-08519BC439DF",
+       "name": "VlanConfigDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 18966,
+       "file_bytes": 18990,
+       "guid": "A2F436EA-A127-4EF8-957C-8048606FF670",
+       "name": "SnpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 18222,
+       "file_bytes": 18246,
+       "guid": "9E863906-A40F-4875-977F-5B93FF237FC6",
+       "name": "TerminalDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17818,
+       "file_bytes": 17842,
+       "guid": "9622E42C-8E38-4A08-9E8F-54F784652F6B",
+       "name": "AcpiTableDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17578,
+       "file_bytes": 17602,
+       "guid": "240612B7-A063-11D4-9A3A-0090273FC14D",
+       "name": "UsbBusDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17550,
+       "file_bytes": 17574,
+       "guid": "128FB770-5E79-4176-9E51-9BB268A17DD1",
+       "name": "PciHostBridgeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17382,
+       "file_bytes": 17406,
+       "guid": "BDFE430E-8F2A-4DB0-9991-6F856594777E",
+       "name": "EhciDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17078,
+       "file_bytes": 17102,
+       "guid": "E2775B47-D453-4EE3-ADA7-391A1B05AC17",
+       "name": "PciSioSerialDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16546,
+       "file_bytes": 16570,
+       "guid": "84EEA114-C6BE-4445-8F90-51D97863E363",
+       "name": "CpuHotplugSmm",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 16514,
+       "file_bytes": 16538,
+       "guid": "D93CE3D8-A7EB-4730-8C8E-CC466A9ECC3C",
+       "name": "ReportStatusCodeRouterRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16494,
+       "file_bytes": 16518,
+       "guid": "378D7B65-8DA9-4773-B6E4-A47826A833E1",
+       "name": "PcRtc",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16490,
+       "file_bytes": 16514,
+       "guid": "4B28E4C7-FF36-4E10-93CF-A82159E777C5",
+       "name": "ResetSystemRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16470,
+       "file_bytes": 16494,
+       "guid": "B601F8C4-43B7-4784-95B1-F4226CB40CEE",
+       "name": "RuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16466,
+       "file_bytes": 16490,
+       "guid": "A47EE2D8-F60E-42FD-8E58-7BD65EE4C29B",
+       "name": "CpuIo2Smm",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 16002,
+       "file_bytes": 16026,
+       "guid": "EBF8ED7C-0DD1-4787-84F1-F48D537DCACF",
+       "name": "DriverHealthManagerDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 15934,
+       "file_bytes": 15958,
+       "guid": "13AC6DD0-73D0-11D4-B06B-00AA00BD6DE7",
+       "name": "EbcDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14974,
+       "file_bytes": 14998,
+       "guid": "CCCB0C28-4B24-11D5-9A5A-0090273FC14D",
+       "name": "GraphicsConsoleDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14886,
+       "file_bytes": 14910,
+       "guid": "2FB92EFA-2EE0-4BAE-9EB6-7464125E1EF7",
+       "name": "UhciDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14694,
+       "file_bytes": 14718,
+       "guid": "D9DCC5DF-4007-435E-9098-8970935504B2",
+       "name": "PlatformDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14642,
+       "file_bytes": 14666,
+       "guid": "D6099B94-CD97-4CC5-8714-7F6312701A8A",
+       "name": "VirtioGpuDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14378,
+       "file_bytes": 14402,
+       "guid": "2D2E62CF-9ECF-43B7-8219-94E7FC713DFE",
+       "name": "UsbKbDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14118,
+       "file_bytes": 14142,
+       "guid": "905F13B0-8F91-4B0A-BD76-E1E78F9422E4",
+       "name": "UdfDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13730,
+       "file_bytes": 13754,
+       "guid": "F74D20EE-37E7-48FC-97F7-9B1047749C69",
+       "name": "LogoDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13554,
+       "file_bytes": 13578,
+       "guid": "1FA1F39E-FEFF-4AAE-BD7B-38A070A3B609",
+       "name": "PartitionDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13490,
+       "file_bytes": 13514,
+       "guid": "A92CDB4B-82F1-4E0B-A516-8A655D371524",
+       "name": "VirtioNetDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13242,
+       "file_bytes": 13266,
+       "guid": "9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E",
+       "name": "UsbMassStorageDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12842,
+       "file_bytes": 12866,
+       "guid": "19DF145A-B1D4-453F-8507-38816676D7F6",
+       "name": "AtaBusDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12450,
+       "file_bytes": 12474,
+       "guid": "E2EA6F47-E678-47FA-8C1B-02A03E825C6E",
+       "name": "TcgMorLockSmm",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 12426,
+       "file_bytes": 12450,
+       "guid": "6C2004EF-4E0E-4BE4-B14C-340EB4AA5891",
+       "name": "StatusCodeHandlerRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12426,
+       "file_bytes": 12450,
+       "guid": "AD608272-D07F-4964-801E-7BD3B7888652",
+       "name": "MonotonicCounterRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12406,
+       "file_bytes": 12430,
+       "guid": "23CACE14-EBA4-49F6-9681-C697FF0B649E",
+       "name": "VirtioSerialDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12406,
+       "file_bytes": 12430,
+       "guid": "42857F0A-13F2-4B21-8A23-53D3F714B840",
+       "name": "CapsuleRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12174,
+       "file_bytes": 12198,
+       "guid": "A5683620-7998-4BB2-A377-1C1E31E1E215",
+       "name": "TcgDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12118,
+       "file_bytes": 12142,
+       "guid": "529D3F93-E8E9-4E73-B1E1-BDF6A9D50113",
+       "name": "ArpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12086,
+       "file_bytes": 12110,
+       "guid": "C4D1F932-821F-4744-BF06-6D30F7730F8D",
+       "name": "Ps2KeyboardDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12062,
+       "file_bytes": 12086,
+       "guid": "BDCE85BB-FBAA-4F4E-9264-501A2C249581",
+       "name": "S3SaveStateDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 11634,
+       "file_bytes": 11658,
+       "guid": "E3752948-B9A1-4770-90C4-DF41C38986BE",
+       "name": "QemuVideoDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 11282,
+       "file_bytes": 11306,
+       "guid": "8657015B-EA43-440D-949A-AF3BE365C0FC",
+       "name": "IoMmuDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 11042,
+       "file_bytes": 11066,
+       "guid": "806040CA-DAD9-4978-A3B4-2D2AB0C8A48F",
+       "name": "QemuKernelLoaderFsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 10850,
+       "file_bytes": 10874,
+       "guid": "17985E6F-E778-4D94-AEFA-C5DD2B77E186",
+       "name": "QemuFwCfgAcpiPlatform",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 10362,
+       "file_bytes": 10386,
+       "guid": "80CF7257-87AB-47F9-A3FE-D50B76D89541",
+       "name": "PcdDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 8954,
+       "file_bytes": 8978,
+       "guid": "F9D88642-0737-49BC-81B5-6889CD57D9EA",
+       "name": "SmbiosDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 8874,
+       "file_bytes": 8898,
+       "guid": "0170F60C-1D40-4651-956D-F0BD9879D527",
+       "name": "Virtio10",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 8566,
+       "file_bytes": 8590,
+       "guid": "63E3BDCF-2AC7-4AC0-9B92-03A7541422FF",
+       "name": "Hash2DxeCrypto",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 8122,
+       "file_bytes": 8146,
+       "guid": "F141B1E5-9C7C-44CC-AFAA-E87D7689B113",
+       "name": "VirtioKeyboardDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7650,
+       "file_bytes": 7674,
+       "guid": "11A6EDF6-A9BE-426D-A6CC-B22FE51D9224",
+       "name": "PciHotPlugInitDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7398,
+       "file_bytes": 7422,
+       "guid": "0167CCC4-D0F7-4F21-A3EF-9E64B7CDCE8B",
+       "name": "ScsiBus",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7210,
+       "file_bytes": 7234,
+       "guid": "6B38F7B4-AD98-40E9-9093-ACA2B5A253C4",
+       "name": "DiskIoDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7186,
+       "file_bytes": 7210,
+       "guid": "2EC9DA37-EE35-4DE9-86C5-6D9A81DC38A7",
+       "name": "AmdSevDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7154,
+       "file_bytes": 7178,
+       "guid": "FAB5D4F4-83C0-4AAF-8480-442D11DF6CEA",
+       "name": "VirtioScsiDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 6850,
+       "file_bytes": 6874,
+       "guid": "DCE1B094-7DC6-45D0-9FDD-D7FC3CC3E4EF",
+       "name": "QemuRamfbDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 6798,
+       "file_bytes": 6822,
+       "guid": "E750224E-7BCE-40AF-B5BB-47E3611EB5C2",
+       "name": "TdxDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 6710,
+       "file_bytes": 6734,
+       "guid": "51CCF399-4FDF-4E55-A45B-E123F84D456A",
+       "name": "ConPlatformDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 5718,
+       "file_bytes": 5742,
+       "guid": "60740CF3-D428-4500-80E6-04A5798241ED",
+       "name": "VirtHstiDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 5618,
+       "file_bytes": 5642,
+       "guid": "11D92DFB-3CA9-4F93-BA2E-4780ED3E03B5",
+       "name": "VirtioBlkDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 5198,
+       "file_bytes": 5222,
+       "guid": "B981A835-6EE8-4F4C-AE0B-210AA0BFBF01",
+       "name": "RngDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4842,
+       "file_bytes": 4866,
+       "guid": "864E1CA8-85EB-4D63-9DCC-6E0FC90FFD55",
+       "name": "SioBusDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4662,
+       "file_bytes": 4686,
+       "guid": "820C59BB-274C-43B2-83EA-DAC673035A59",
+       "name": "SataController",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4530,
+       "file_bytes": 4554,
+       "guid": "58E26F0D-CBAC-4BBA-B70F-18221415665A",
+       "name": "VirtioRngDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4094,
+       "file_bytes": 4118,
+       "guid": "83DD3B39-7CAF-4FAC-A542-E050B767E3A7",
+       "name": "VirtioPciDeviceDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4038,
+       "file_bytes": 4062,
+       "guid": "4110465D-5FF3-4F4B-B580-24ED0D06747A",
+       "name": "SmbiosPlatformDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3958,
+       "file_bytes": 3982,
+       "guid": "22EA234F-E72A-11E4-91F9-28D2447C4829",
+       "name": "HttpUtilitiesDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3510,
+       "file_bytes": 3534,
+       "guid": "52FE8196-F9DE-4D07-B22F-51F77A0E7C41",
+       "name": "LocalApicTimerDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3282,
+       "file_bytes": 3306,
+       "guid": "B8E62775-BB0A-43F0-A843-5BE8B14F8CCD",
+       "name": "BootGraphicsResourceTableDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3246,
+       "file_bytes": 3270,
+       "guid": "CD3BAFB6-50FB-4FE8-8E4E-AB74D2C1A600",
+       "name": "EnglishDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3186,
+       "file_bytes": 3210,
+       "guid": "5CAB08D5-AD8F-4D8B-B828-D17A8D9FE977",
+       "name": "Tcg2PlatformDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3182,
+       "file_bytes": 3206,
+       "guid": "229B7EFD-DA02-46B9-93F4-E20C009F94E9",
+       "name": "CpuS3DataDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 2650,
+       "file_bytes": 2674,
+       "guid": "AC95AD3D-4366-44BF-9A62-E4B29D7A2206",
+       "name": "SmmAccess2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 2498,
+       "file_bytes": 2522,
+       "guid": "A19B1FE7-C1BC-49F8-875F-54A5D542443F",
+       "name": "CpuIo2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 2366,
+       "file_bytes": 2390,
+       "guid": "A210F973-229D-4F4D-AA37-9895E6C9EABA",
+       "name": "DpcDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 2326,
+       "file_bytes": 2350,
+       "guid": "AD416CE3-A483-45B1-94C2-4B4E4D575562",
+       "name": "TcgMor",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 1938,
+       "file_bytes": 1962,
+       "guid": "C8339973-A563-4561-B858-D8476F9DEFC4",
+       "name": "Metronome",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 1774,
+       "file_bytes": 1798,
+       "guid": "F099D67F-71AE-4C36-B2A3-DCEB0EB2B7D8",
+       "name": "WatchdogTimer",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 1646,
+       "file_bytes": 1670,
+       "guid": "F6697AC4-A776-4EE1-B643-1FEFF2B615BB",
+       "name": "IncompatiblePciDeviceSupportDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 68,
+       "file_bytes": 92,
+       "guid": "FC510EE7-FFDC-11D4-BD41-0080C73C8881",
+       "name": "gAprioriGuid",
+       "type": "FREEFORM"
+      }
+     ],
+     "files": 125,
+     "free_after_last_file": 8893502,
+     "header_bytes": 72,
+     "length": 15204352,
+     "offset": 917648,
+     "padding_and_tail": 8894042,
+     "utilization_pct": 41.5,
+     "volume": "inner(pierced)"
+    }
+   ],
+   "image_bytes": 3653632,
+   "nested_fv_candidates": []
+  },
+  "strictnx": {
+   "fvs": [
+    {
+     "file_bytes": 1657235,
+     "file_rows": [
+      {
+       "body_bytes": 1657211,
+       "file_bytes": 1657235,
+       "guid": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+       "name": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+       "type": "FIRMWARE_VOLUME_IMAGE"
+      }
+     ],
+     "files": 1,
+     "free_after_last_file": 1783285,
+     "header_bytes": 72,
+     "length": 3440640,
+     "offset": 0,
+     "padding_and_tail": 1783333,
+     "utilization_pct": 48.17,
+     "volume": "outer"
+    },
+    {
+     "file_bytes": 48438,
+     "file_rows": [
+      {
+       "body_bytes": 45542,
+       "file_bytes": 45566,
+       "guid": "DF1CCEF6-F301-4A63-9661-FC6030DCC880",
+       "name": "DF1CCEF6-F301-4A63-9661-FC6030DCC880",
+       "type": "SECURITY_CORE"
+      },
+      {
+       "body_bytes": 2848,
+       "file_bytes": 2872,
+       "guid": "1BA0062E-C779-4582-8566-336AE8F78F09",
+       "name": "1BA0062E-C779-4582-8566-336AE8F78F09",
+       "type": "RAW"
+      }
+     ],
+     "files": 2,
+     "free_after_last_file": 0,
+     "header_bytes": 72,
+     "length": 212992,
+     "offset": 3440640,
+     "padding_and_tail": 164482,
+     "utilization_pct": 22.74,
+     "volume": "outer"
+    },
+    {
+     "file_bytes": 266376,
+     "file_rows": [
+      {
+       "body_bytes": 56042,
+       "file_bytes": 56066,
+       "guid": "222C386D-5ABC-4FB4-B124-FBB82488ACF4",
+       "name": "PlatformPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 50086,
+       "file_bytes": 50110,
+       "guid": "EDADEB9D-DDBA-48BD-9D22-C1C169C8C5C6",
+       "name": "DxeIpl (MdeModulePkg/Core/DxeIplPeim)",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 31074,
+       "file_bytes": 31098,
+       "guid": "A0C98B77-CBA5-4BB8-993B-4AF6CE33ECE4",
+       "name": "Tcg2Pei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 30182,
+       "file_bytes": 30206,
+       "guid": "280251C4-1D09-4035-9062-839ACB5F18C1",
+       "name": "CpuMpPei via DEFINE UP_CPU_PEI_GUID",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 28578,
+       "file_bytes": 28602,
+       "guid": "52C05B14-0B98-496C-BC3B-04B50211D680",
+       "name": "PeiCore (MdeModulePkg/Core/Pei)",
+       "type": "PEI_CORE"
+      },
+      {
+       "body_bytes": 8866,
+       "file_bytes": 8890,
+       "guid": "2BE1E4A6-6505-43B3-9FFC-A3C8330E0432",
+       "name": "TcgPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 8290,
+       "file_bytes": 8314,
+       "guid": "9B3ADA4F-AE56-4C24-8DEA-F03B7558AE50",
+       "name": "PcdPeim (MdeModulePkg/Universal/PCD/PcdPeim)",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 8162,
+       "file_bytes": 8186,
+       "guid": "86D70125-BAA3-4296-A62F-602BEBBB9081",
+       "name": "DxeIpl",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 7726,
+       "file_bytes": 7750,
+       "guid": "89E549B0-7CFE-449D-9BA3-10D8B2312D71",
+       "name": "S3Resume2Pei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 6386,
+       "file_bytes": 6410,
+       "guid": "47727552-A54B-4A84-8CC1-BFF23E239636",
+       "name": "Tcg2PlatformPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 6310,
+       "file_bytes": 6334,
+       "guid": "FCB3A3D6-6274-411C-A548-BD0E717D533A",
+       "name": "TdTcg2Pei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 5482,
+       "file_bytes": 5506,
+       "guid": "34C8C28F-B61C-45A2-8F2E-89E46BECC63B",
+       "name": "VariablePei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 4974,
+       "file_bytes": 4998,
+       "guid": "8AD3148F-945F-46B4-8ACD-71469EA73945",
+       "name": "Tcg2ConfigPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 3966,
+       "file_bytes": 3990,
+       "guid": "F12F698A-E506-4A1B-B32E-6920E55DA1C4",
+       "name": "TpmMmioSevDecryptPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 3950,
+       "file_bytes": 3974,
+       "guid": "6C0E75B4-B0B9-44D1-8210-3377D7B4E066",
+       "name": "SmmAccessPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 2246,
+       "file_bytes": 2270,
+       "guid": "A3610442-E69F-4DF3-82CA-2360C4031A23",
+       "name": "ReportStatusCodeRouterPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 2110,
+       "file_bytes": 2134,
+       "guid": "AAC33064-9ED0-4B89-A5AD-3EA767960B22",
+       "name": "FaultTolerantWritePei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 1470,
+       "file_bytes": 1494,
+       "guid": "9D225237-FA01-464C-A949-BAABC02D31D0",
+       "name": "StatusCodeHandlerPei",
+       "type": "PEIM"
+      },
+      {
+       "body_bytes": 20,
+       "file_bytes": 44,
+       "guid": "1B45CC0A-156A-428A-AF62-49864DA0E6E6",
+       "name": "gPeiAprioriFileNameGuid",
+       "type": "FREEFORM"
+      }
+     ],
+     "files": 19,
+     "free_after_last_file": 649870,
+     "header_bytes": 72,
+     "length": 917504,
+     "offset": 128,
+     "padding_and_tail": 651056,
+     "utilization_pct": 29.03,
+     "volume": "inner(pierced)"
+    },
+    {
+     "file_bytes": 6310238,
+     "file_rows": [
+      {
+       "body_bytes": 1006182,
+       "file_bytes": 1006206,
+       "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+       "name": "TlsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 868474,
+       "file_bytes": 868498,
+       "guid": "23A089B3-EED5-4AC5-B2AB-43E3298C2343",
+       "name": "VariableSmm",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 825310,
+       "file_bytes": 825334,
+       "guid": "F80697E9-7FD6-4665-8646-88E33EF71DFC",
+       "name": "SecurityStubDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 716358,
+       "file_bytes": 716382,
+       "guid": "F0E6A44F-7195-41C3-AC64-54F202CD0A21",
+       "name": "SecureBootConfigDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 138470,
+       "file_bytes": 138494,
+       "guid": "D6A2CB7F-6A18-4E2F-B43B-9920A733700A",
+       "name": "DxeCore (MdeModulePkg/Core/Dxe)",
+       "type": "DXE_CORE"
+      },
+      {
+       "body_bytes": 114454,
+       "file_bytes": 114478,
+       "guid": "462CAA21-7614-4503-836E-8AB6F4662331",
+       "name": "gUiAppFileGuid",
+       "type": "APPLICATION"
+      },
+      {
+       "body_bytes": 103666,
+       "file_bytes": 103690,
+       "guid": "86CDDF93-4872-4597-8AF9-A35AE4D3725F",
+       "name": "IScsiDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 90914,
+       "file_bytes": 90938,
+       "guid": "1A1E4886-9517-440E-9FDE-3BE44CEE2136",
+       "name": "CpuDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 89262,
+       "file_bytes": 89286,
+       "guid": "5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C",
+       "name": "Ip6Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 87318,
+       "file_bytes": 87342,
+       "guid": "348C4D62-BFBD-4882-9ECE-C80BB1C4783B",
+       "name": "HiiDatabase",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 82338,
+       "file_bytes": 82362,
+       "guid": "6D33944A-EC75-4855-A54D-809C75241F6C",
+       "name": "BdsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 82050,
+       "file_bytes": 82074,
+       "guid": "A3FF0EF5-0C28-42F5-B544-8C7DE1E80014",
+       "name": "PiSmmCpuDxeSmm",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 69714,
+       "file_bytes": 69738,
+       "guid": "EBF342FE-B1D3-4EF8-957C-8048606FF671",
+       "name": "SetupBrowser",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 69602,
+       "file_bytes": 69626,
+       "guid": "6490F1C5-EBCC-4665-8892-0075B9BB49B7",
+       "name": "CpuDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 69182,
+       "file_bytes": 69206,
+       "guid": "FA20568B-548B-4B2B-81EF-1BA08D4A3CEC",
+       "name": "BootScriptExecutorDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 61614,
+       "file_bytes": 61638,
+       "guid": "9FB1A1F3-3B71-4324-B39A-745CBB015FFF",
+       "name": "Ip4Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 60542,
+       "file_bytes": 60566,
+       "guid": "E660EA85-058E-4B55-A54B-F02F83A24707",
+       "name": "DisplayEngine",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 57414,
+       "file_bytes": 57438,
+       "guid": "B95E9FDA-26DE-48D2-8807-1F9107AC5E3A",
+       "name": "UefiPxeBcDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 53074,
+       "file_bytes": 53098,
+       "guid": "ECEBCB00-D9C8-11E4-AF3D-8CDCD426C973",
+       "name": "HttpBootDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 45222,
+       "file_bytes": 45246,
+       "guid": "1A7E4468-2F55-4A56-903C-01265EB7622B",
+       "name": "TcpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 45050,
+       "file_bytes": 45074,
+       "guid": "FDFF263D-5F68-4591-87BA-B768F445A9AF",
+       "name": "Tcg2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 41834,
+       "file_bytes": 41858,
+       "guid": "93B80004-9FB3-11D4-9A3A-0090273FC14D",
+       "name": "PciBusDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 41002,
+       "file_bytes": 41026,
+       "guid": "E94F54CD-81EB-47ED-AEC3-856F5DC157A9",
+       "name": "PiSmmCore",
+       "type": "SMM_CORE"
+      },
+      {
+       "body_bytes": 37754,
+       "file_bytes": 37778,
+       "guid": "9B680FCE-AD6B-4F3A-B60B-F59899003443",
+       "name": "DevicePathDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 37654,
+       "file_bytes": 37678,
+       "guid": "B219E140-DFFC-11E3-B956-0022681E6906",
+       "name": "DnsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 35862,
+       "file_bytes": 35886,
+       "guid": "2366C20F-E15A-11E3-8BF1-E4115B28BC50",
+       "name": "HttpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 33474,
+       "file_bytes": 33498,
+       "guid": "4D9CBEF0-15A0-4D0C-83DB-5213E710C23F",
+       "name": "Tcg2ConfigDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 30442,
+       "file_bytes": 30466,
+       "guid": "0A66E322-3740-4CCE-AD62-BD172CECCA35",
+       "name": "ScsiDisk",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 30090,
+       "file_bytes": 30114,
+       "guid": "7CA1024F-EB17-11E5-9DBA-28D2447C4829",
+       "name": "TlsAuthConfigDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 29588,
+       "file_bytes": 29612,
+       "guid": "28A03FF4-12B3-4305-A417-BB1A4F94081E",
+       "name": "RamDiskDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 29530,
+       "file_bytes": 29554,
+       "guid": "95E3669D-34BE-4775-A651-7EA41B69D89E",
+       "name": "Dhcp6Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 28698,
+       "file_bytes": 28722,
+       "guid": "94734718-0BBC-47FB-96A5-EE7A5AE6A2AD",
+       "name": "Dhcp4Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 28326,
+       "file_bytes": 28350,
+       "guid": "B7F50E91-A759-412C-ADE4-DCD03E7F7C28",
+       "name": "XhciDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 27994,
+       "file_bytes": 28018,
+       "guid": "99F03B99-98D8-49DD-A8D3-3219D0FFE41E",
+       "name": "Mtftp6Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 26558,
+       "file_bytes": 26582,
+       "guid": "5E523CB4-D397-4986-87BD-A6DD8B22F455",
+       "name": "AtaAtapiPassThruDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 26546,
+       "file_bytes": 26570,
+       "guid": "5BE3BDF4-53CF-46A3-A6A9-73C34A6E5EE3",
+       "name": "NvmExpressDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 26266,
+       "file_bytes": 26290,
+       "guid": "DC3641B8-2FA8-4ED3-BC1F-F9962A03454B",
+       "name": "Mtftp4Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 25302,
+       "file_bytes": 25326,
+       "guid": "025BBFC7-E6A9-4B8B-82AD-6815A1AEAF4A",
+       "name": "MnpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24762,
+       "file_bytes": 24786,
+       "guid": "470CB248-E8AC-473C-BB4F-81069A1FE6FD",
+       "name": "SmmFaultTolerantWriteDxe",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 24726,
+       "file_bytes": 24750,
+       "guid": "6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B",
+       "name": "Udp4Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24702,
+       "file_bytes": 24726,
+       "guid": "9F7DCADE-11EA-448A-A46F-76E003657DD1",
+       "name": "VariableSmmRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24694,
+       "file_bytes": 24718,
+       "guid": "2FA2A6DA-11D5-4DC3-999A-749648B03C56",
+       "name": "PiSmmIpl",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24670,
+       "file_bytes": 24694,
+       "guid": "961578FE-B6B7-44C3-AF35-6BC705CD2B1F",
+       "name": "Fat",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 24598,
+       "file_bytes": 24622,
+       "guid": "D912C7BC-F098-4367-92BA-E911083C7B0E",
+       "name": "Udp6Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 23726,
+       "file_bytes": 23750,
+       "guid": "7BD9DDF7-8B83-488E-AEC9-24C78610289C",
+       "name": "VirtioFsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 20614,
+       "file_bytes": 20638,
+       "guid": "1206F7CA-A475-4624-A83E-E6FC9BB38E49",
+       "name": "SmmControl2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 20610,
+       "file_bytes": 20634,
+       "guid": "2E7DB7A7-608E-4041-B45F-00359E0766C6",
+       "name": "FvbServicesSmm",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 20602,
+       "file_bytes": 20626,
+       "guid": "33FB3535-F15E-4C17-B303-5EB94595ECB6",
+       "name": "SmmLockBox",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 19894,
+       "file_bytes": 19918,
+       "guid": "408EDCEC-CF6D-477C-A5A8-B4844E3DE281",
+       "name": "ConSplitterDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 19830,
+       "file_bytes": 19854,
+       "guid": "F062221E-C607-44C2-B0B4-C3886331D351",
+       "name": "TdTcg2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 19094,
+       "file_bytes": 19118,
+       "guid": "E4F61863-FE2C-4B56-A8F4-08519BC439DF",
+       "name": "VlanConfigDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 18966,
+       "file_bytes": 18990,
+       "guid": "A2F436EA-A127-4EF8-957C-8048606FF670",
+       "name": "SnpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 18222,
+       "file_bytes": 18246,
+       "guid": "9E863906-A40F-4875-977F-5B93FF237FC6",
+       "name": "TerminalDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17818,
+       "file_bytes": 17842,
+       "guid": "9622E42C-8E38-4A08-9E8F-54F784652F6B",
+       "name": "AcpiTableDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17578,
+       "file_bytes": 17602,
+       "guid": "240612B7-A063-11D4-9A3A-0090273FC14D",
+       "name": "UsbBusDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17550,
+       "file_bytes": 17574,
+       "guid": "128FB770-5E79-4176-9E51-9BB268A17DD1",
+       "name": "PciHostBridgeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17382,
+       "file_bytes": 17406,
+       "guid": "BDFE430E-8F2A-4DB0-9991-6F856594777E",
+       "name": "EhciDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 17078,
+       "file_bytes": 17102,
+       "guid": "E2775B47-D453-4EE3-ADA7-391A1B05AC17",
+       "name": "PciSioSerialDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16546,
+       "file_bytes": 16570,
+       "guid": "84EEA114-C6BE-4445-8F90-51D97863E363",
+       "name": "CpuHotplugSmm",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 16514,
+       "file_bytes": 16538,
+       "guid": "D93CE3D8-A7EB-4730-8C8E-CC466A9ECC3C",
+       "name": "ReportStatusCodeRouterRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16494,
+       "file_bytes": 16518,
+       "guid": "378D7B65-8DA9-4773-B6E4-A47826A833E1",
+       "name": "PcRtc",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16490,
+       "file_bytes": 16514,
+       "guid": "4B28E4C7-FF36-4E10-93CF-A82159E777C5",
+       "name": "ResetSystemRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16470,
+       "file_bytes": 16494,
+       "guid": "B601F8C4-43B7-4784-95B1-F4226CB40CEE",
+       "name": "RuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 16466,
+       "file_bytes": 16490,
+       "guid": "A47EE2D8-F60E-42FD-8E58-7BD65EE4C29B",
+       "name": "CpuIo2Smm",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 16002,
+       "file_bytes": 16026,
+       "guid": "EBF8ED7C-0DD1-4787-84F1-F48D537DCACF",
+       "name": "DriverHealthManagerDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 15934,
+       "file_bytes": 15958,
+       "guid": "13AC6DD0-73D0-11D4-B06B-00AA00BD6DE7",
+       "name": "EbcDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14974,
+       "file_bytes": 14998,
+       "guid": "CCCB0C28-4B24-11D5-9A5A-0090273FC14D",
+       "name": "GraphicsConsoleDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14886,
+       "file_bytes": 14910,
+       "guid": "2FB92EFA-2EE0-4BAE-9EB6-7464125E1EF7",
+       "name": "UhciDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14694,
+       "file_bytes": 14718,
+       "guid": "D9DCC5DF-4007-435E-9098-8970935504B2",
+       "name": "PlatformDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14642,
+       "file_bytes": 14666,
+       "guid": "D6099B94-CD97-4CC5-8714-7F6312701A8A",
+       "name": "VirtioGpuDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14378,
+       "file_bytes": 14402,
+       "guid": "2D2E62CF-9ECF-43B7-8219-94E7FC713DFE",
+       "name": "UsbKbDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 14118,
+       "file_bytes": 14142,
+       "guid": "905F13B0-8F91-4B0A-BD76-E1E78F9422E4",
+       "name": "UdfDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13730,
+       "file_bytes": 13754,
+       "guid": "F74D20EE-37E7-48FC-97F7-9B1047749C69",
+       "name": "LogoDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13554,
+       "file_bytes": 13578,
+       "guid": "1FA1F39E-FEFF-4AAE-BD7B-38A070A3B609",
+       "name": "PartitionDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13490,
+       "file_bytes": 13514,
+       "guid": "A92CDB4B-82F1-4E0B-A516-8A655D371524",
+       "name": "VirtioNetDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 13242,
+       "file_bytes": 13266,
+       "guid": "9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E",
+       "name": "UsbMassStorageDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12842,
+       "file_bytes": 12866,
+       "guid": "19DF145A-B1D4-453F-8507-38816676D7F6",
+       "name": "AtaBusDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12450,
+       "file_bytes": 12474,
+       "guid": "E2EA6F47-E678-47FA-8C1B-02A03E825C6E",
+       "name": "TcgMorLockSmm",
+       "type": "SMM"
+      },
+      {
+       "body_bytes": 12426,
+       "file_bytes": 12450,
+       "guid": "6C2004EF-4E0E-4BE4-B14C-340EB4AA5891",
+       "name": "StatusCodeHandlerRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12426,
+       "file_bytes": 12450,
+       "guid": "AD608272-D07F-4964-801E-7BD3B7888652",
+       "name": "MonotonicCounterRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12406,
+       "file_bytes": 12430,
+       "guid": "23CACE14-EBA4-49F6-9681-C697FF0B649E",
+       "name": "VirtioSerialDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12406,
+       "file_bytes": 12430,
+       "guid": "42857F0A-13F2-4B21-8A23-53D3F714B840",
+       "name": "CapsuleRuntimeDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12174,
+       "file_bytes": 12198,
+       "guid": "A5683620-7998-4BB2-A377-1C1E31E1E215",
+       "name": "TcgDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12118,
+       "file_bytes": 12142,
+       "guid": "529D3F93-E8E9-4E73-B1E1-BDF6A9D50113",
+       "name": "ArpDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12086,
+       "file_bytes": 12110,
+       "guid": "C4D1F932-821F-4744-BF06-6D30F7730F8D",
+       "name": "Ps2KeyboardDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 12062,
+       "file_bytes": 12086,
+       "guid": "BDCE85BB-FBAA-4F4E-9264-501A2C249581",
+       "name": "S3SaveStateDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 11634,
+       "file_bytes": 11658,
+       "guid": "E3752948-B9A1-4770-90C4-DF41C38986BE",
+       "name": "QemuVideoDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 11282,
+       "file_bytes": 11306,
+       "guid": "8657015B-EA43-440D-949A-AF3BE365C0FC",
+       "name": "IoMmuDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 11042,
+       "file_bytes": 11066,
+       "guid": "806040CA-DAD9-4978-A3B4-2D2AB0C8A48F",
+       "name": "QemuKernelLoaderFsDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 10850,
+       "file_bytes": 10874,
+       "guid": "17985E6F-E778-4D94-AEFA-C5DD2B77E186",
+       "name": "QemuFwCfgAcpiPlatform",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 10362,
+       "file_bytes": 10386,
+       "guid": "80CF7257-87AB-47F9-A3FE-D50B76D89541",
+       "name": "PcdDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 8954,
+       "file_bytes": 8978,
+       "guid": "F9D88642-0737-49BC-81B5-6889CD57D9EA",
+       "name": "SmbiosDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 8874,
+       "file_bytes": 8898,
+       "guid": "0170F60C-1D40-4651-956D-F0BD9879D527",
+       "name": "Virtio10",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 8566,
+       "file_bytes": 8590,
+       "guid": "63E3BDCF-2AC7-4AC0-9B92-03A7541422FF",
+       "name": "Hash2DxeCrypto",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 8122,
+       "file_bytes": 8146,
+       "guid": "F141B1E5-9C7C-44CC-AFAA-E87D7689B113",
+       "name": "VirtioKeyboardDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7650,
+       "file_bytes": 7674,
+       "guid": "11A6EDF6-A9BE-426D-A6CC-B22FE51D9224",
+       "name": "PciHotPlugInitDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7398,
+       "file_bytes": 7422,
+       "guid": "0167CCC4-D0F7-4F21-A3EF-9E64B7CDCE8B",
+       "name": "ScsiBus",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7210,
+       "file_bytes": 7234,
+       "guid": "6B38F7B4-AD98-40E9-9093-ACA2B5A253C4",
+       "name": "DiskIoDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7186,
+       "file_bytes": 7210,
+       "guid": "2EC9DA37-EE35-4DE9-86C5-6D9A81DC38A7",
+       "name": "AmdSevDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 7154,
+       "file_bytes": 7178,
+       "guid": "FAB5D4F4-83C0-4AAF-8480-442D11DF6CEA",
+       "name": "VirtioScsiDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 6850,
+       "file_bytes": 6874,
+       "guid": "DCE1B094-7DC6-45D0-9FDD-D7FC3CC3E4EF",
+       "name": "QemuRamfbDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 6798,
+       "file_bytes": 6822,
+       "guid": "E750224E-7BCE-40AF-B5BB-47E3611EB5C2",
+       "name": "TdxDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 6710,
+       "file_bytes": 6734,
+       "guid": "51CCF399-4FDF-4E55-A45B-E123F84D456A",
+       "name": "ConPlatformDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 5718,
+       "file_bytes": 5742,
+       "guid": "60740CF3-D428-4500-80E6-04A5798241ED",
+       "name": "VirtHstiDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 5618,
+       "file_bytes": 5642,
+       "guid": "11D92DFB-3CA9-4F93-BA2E-4780ED3E03B5",
+       "name": "VirtioBlkDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 5198,
+       "file_bytes": 5222,
+       "guid": "B981A835-6EE8-4F4C-AE0B-210AA0BFBF01",
+       "name": "RngDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4842,
+       "file_bytes": 4866,
+       "guid": "864E1CA8-85EB-4D63-9DCC-6E0FC90FFD55",
+       "name": "SioBusDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4662,
+       "file_bytes": 4686,
+       "guid": "820C59BB-274C-43B2-83EA-DAC673035A59",
+       "name": "SataController",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4530,
+       "file_bytes": 4554,
+       "guid": "58E26F0D-CBAC-4BBA-B70F-18221415665A",
+       "name": "VirtioRngDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4094,
+       "file_bytes": 4118,
+       "guid": "83DD3B39-7CAF-4FAC-A542-E050B767E3A7",
+       "name": "VirtioPciDeviceDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 4038,
+       "file_bytes": 4062,
+       "guid": "4110465D-5FF3-4F4B-B580-24ED0D06747A",
+       "name": "SmbiosPlatformDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3958,
+       "file_bytes": 3982,
+       "guid": "22EA234F-E72A-11E4-91F9-28D2447C4829",
+       "name": "HttpUtilitiesDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3510,
+       "file_bytes": 3534,
+       "guid": "52FE8196-F9DE-4D07-B22F-51F77A0E7C41",
+       "name": "LocalApicTimerDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3282,
+       "file_bytes": 3306,
+       "guid": "B8E62775-BB0A-43F0-A843-5BE8B14F8CCD",
+       "name": "BootGraphicsResourceTableDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3246,
+       "file_bytes": 3270,
+       "guid": "CD3BAFB6-50FB-4FE8-8E4E-AB74D2C1A600",
+       "name": "EnglishDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3186,
+       "file_bytes": 3210,
+       "guid": "5CAB08D5-AD8F-4D8B-B828-D17A8D9FE977",
+       "name": "Tcg2PlatformDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 3182,
+       "file_bytes": 3206,
+       "guid": "229B7EFD-DA02-46B9-93F4-E20C009F94E9",
+       "name": "CpuS3DataDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 2650,
+       "file_bytes": 2674,
+       "guid": "AC95AD3D-4366-44BF-9A62-E4B29D7A2206",
+       "name": "SmmAccess2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 2498,
+       "file_bytes": 2522,
+       "guid": "A19B1FE7-C1BC-49F8-875F-54A5D542443F",
+       "name": "CpuIo2Dxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 2366,
+       "file_bytes": 2390,
+       "guid": "A210F973-229D-4F4D-AA37-9895E6C9EABA",
+       "name": "DpcDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 2326,
+       "file_bytes": 2350,
+       "guid": "AD416CE3-A483-45B1-94C2-4B4E4D575562",
+       "name": "TcgMor",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 1938,
+       "file_bytes": 1962,
+       "guid": "C8339973-A563-4561-B858-D8476F9DEFC4",
+       "name": "Metronome",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 1774,
+       "file_bytes": 1798,
+       "guid": "F099D67F-71AE-4C36-B2A3-DCEB0EB2B7D8",
+       "name": "WatchdogTimer",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 1646,
+       "file_bytes": 1670,
+       "guid": "F6697AC4-A776-4EE1-B643-1FEFF2B615BB",
+       "name": "IncompatiblePciDeviceSupportDxe",
+       "type": "DRIVER"
+      },
+      {
+       "body_bytes": 68,
+       "file_bytes": 92,
+       "guid": "FC510EE7-FFDC-11D4-BD41-0080C73C8881",
+       "name": "gAprioriGuid",
+       "type": "FREEFORM"
+      }
+     ],
+     "files": 125,
+     "free_after_last_file": 8893502,
+     "header_bytes": 72,
+     "length": 15204352,
+     "offset": 917648,
+     "padding_and_tail": 8894042,
+     "utilization_pct": 41.5,
+     "volume": "inner(pierced)"
+    }
+   ],
+   "image_bytes": 3653632,
+   "nested_fv_candidates": [
+    {
+     "claimed_length": 540672,
+     "offset": "0x5e0e58",
+     "space": "pierced payload"
+    }
+   ]
+  }
+ },
+ "date": "2026-09-11",
+ "note": "ring 9 front C: the frugality ledger in bytes \u2014 per-FV accounting (header, file data, alignment padding, free), named top consumers, and the secboot-vs-plain swap delta. Read-only.",
+ "schema": "ovmf-weight-map/1",
+ "summary": {
+  "plain": {
+   "fv_utilization": {
+    "inner(pierced)@0x80": 27.61,
+    "inner(pierced)@0xe0090": 31.15,
+    "outer@0x0": 45.62,
+    "outer@0x348000": 22.74
+   },
+   "top_consumers": [
+    {
+     "body_bytes": 1569633,
+     "file_bytes": 1569657,
+     "guid": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+     "name": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+     "type": "FIRMWARE_VOLUME_IMAGE"
+    },
+    {
+     "body_bytes": 1006822,
+     "file_bytes": 1006846,
+     "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+     "name": "TlsDxe",
+     "type": "DRIVER"
+    },
+    {
+     "body_bytes": 894398,
+     "file_bytes": 894422,
+     "guid": "7C04A583-9E3E-4F1C-AD65-E05268D0B4D1",
+     "name": "gUefiShellFileGuid",
+     "type": "APPLICATION"
+    },
+    {
+     "body_bytes": 139366,
+     "file_bytes": 139390,
+     "guid": "D6A2CB7F-6A18-4E2F-B43B-9920A733700A",
+     "name": "DxeCore (MdeModulePkg/Core/Dxe)",
+     "type": "DXE_CORE"
+    },
+    {
+     "body_bytes": 114390,
+     "file_bytes": 114414,
+     "guid": "462CAA21-7614-4503-836E-8AB6F4662331",
+     "name": "gUiAppFileGuid",
+     "type": "APPLICATION"
+    },
+    {
+     "body_bytes": 104370,
+     "file_bytes": 104394,
+     "guid": "86CDDF93-4872-4597-8AF9-A35AE4D3725F",
+     "name": "IScsiDxe",
+     "type": "DRIVER"
+    },
+    {
+     "body_bytes": 55338,
+     "file_bytes": 55362,
+     "guid": "222C386D-5ABC-4FB4-B124-FBB82488ACF4",
+     "name": "PlatformPei",
+     "type": "PEIM"
+    },
+    {
+     "body_bytes": 50086,
+     "file_bytes": 50110,
+     "guid": "EDADEB9D-DDBA-48BD-9D22-C1C169C8C5C6",
+     "name": "DxeIpl (MdeModulePkg/Core/DxeIplPeim)",
+     "type": "PEIM"
+    },
+    {
+     "body_bytes": 45542,
+     "file_bytes": 45566,
+     "guid": "DF1CCEF6-F301-4A63-9661-FC6030DCC880",
+     "name": "DF1CCEF6-F301-4A63-9661-FC6030DCC880",
+     "type": "SECURITY_CORE"
+    },
+    {
+     "body_bytes": 31074,
+     "file_bytes": 31098,
+     "guid": "A0C98B77-CBA5-4BB8-993B-4AF6CE33ECE4",
+     "name": "Tcg2Pei",
+     "type": "PEIM"
+    }
+   ]
+  },
+  "secboot": {
+   "fv_utilization": {
+    "inner(pierced)@0x80": 29.03,
+    "inner(pierced)@0xe0090": 41.5,
+    "outer@0x0": 48.17,
+    "outer@0x348000": 22.74
+   },
+   "top_consumers": [
+    {
+     "body_bytes": 1657196,
+     "file_bytes": 1657220,
+     "guid": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+     "name": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+     "type": "FIRMWARE_VOLUME_IMAGE"
+    },
+    {
+     "body_bytes": 1006182,
+     "file_bytes": 1006206,
+     "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+     "name": "TlsDxe",
+     "type": "DRIVER"
+    },
+    {
+     "body_bytes": 868474,
+     "file_bytes": 868498,
+     "guid": "23A089B3-EED5-4AC5-B2AB-43E3298C2343",
+     "name": "VariableSmm",
+     "type": "SMM"
+    },
+    {
+     "body_bytes": 825310,
+     "file_bytes": 825334,
+     "guid": "F80697E9-7FD6-4665-8646-88E33EF71DFC",
+     "name": "SecurityStubDxe",
+     "type": "DRIVER"
+    },
+    {
+     "body_bytes": 716358,
+     "file_bytes": 716382,
+     "guid": "F0E6A44F-7195-41C3-AC64-54F202CD0A21",
+     "name": "SecureBootConfigDxe",
+     "type": "DRIVER"
+    },
+    {
+     "body_bytes": 138470,
+     "file_bytes": 138494,
+     "guid": "D6A2CB7F-6A18-4E2F-B43B-9920A733700A",
+     "name": "DxeCore (MdeModulePkg/Core/Dxe)",
+     "type": "DXE_CORE"
+    },
+    {
+     "body_bytes": 56042,
+     "file_bytes": 56066,
+     "guid": "222C386D-5ABC-4FB4-B124-FBB82488ACF4",
+     "name": "PlatformPei",
+     "type": "PEIM"
+    },
+    {
+     "body_bytes": 50086,
+     "file_bytes": 50110,
+     "guid": "EDADEB9D-DDBA-48BD-9D22-C1C169C8C5C6",
+     "name": "DxeIpl (MdeModulePkg/Core/DxeIplPeim)",
+     "type": "PEIM"
+    },
+    {
+     "body_bytes": 45542,
+     "file_bytes": 45566,
+     "guid": "DF1CCEF6-F301-4A63-9661-FC6030DCC880",
+     "name": "DF1CCEF6-F301-4A63-9661-FC6030DCC880",
+     "type": "SECURITY_CORE"
+    },
+    {
+     "body_bytes": 31074,
+     "file_bytes": 31098,
+     "guid": "A0C98B77-CBA5-4BB8-993B-4AF6CE33ECE4",
+     "name": "Tcg2Pei",
+     "type": "PEIM"
+    }
+   ]
+  },
+  "strictnx": {
+   "fv_utilization": {
+    "inner(pierced)@0x80": 29.03,
+    "inner(pierced)@0xe0090": 41.5,
+    "outer@0x0": 48.17,
+    "outer@0x348000": 22.74
+   },
+   "top_consumers": [
+    {
+     "body_bytes": 1657211,
+     "file_bytes": 1657235,
+     "guid": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+     "name": "9E21FD93-9C72-4C15-8C4B-E77F1DB2D792",
+     "type": "FIRMWARE_VOLUME_IMAGE"
+    },
+    {
+     "body_bytes": 1006182,
+     "file_bytes": 1006206,
+     "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+     "name": "TlsDxe",
+     "type": "DRIVER"
+    },
+    {
+     "body_bytes": 868474,
+     "file_bytes": 868498,
+     "guid": "23A089B3-EED5-4AC5-B2AB-43E3298C2343",
+     "name": "VariableSmm",
+     "type": "SMM"
+    },
+    {
+     "body_bytes": 825310,
+     "file_bytes": 825334,
+     "guid": "F80697E9-7FD6-4665-8646-88E33EF71DFC",
+     "name": "SecurityStubDxe",
+     "type": "DRIVER"
+    },
+    {
+     "body_bytes": 716358,
+     "file_bytes": 716382,
+     "guid": "F0E6A44F-7195-41C3-AC64-54F202CD0A21",
+     "name": "SecureBootConfigDxe",
+     "type": "DRIVER"
+    },
+    {
+     "body_bytes": 138470,
+     "file_bytes": 138494,
+     "guid": "D6A2CB7F-6A18-4E2F-B43B-9920A733700A",
+     "name": "DxeCore (MdeModulePkg/Core/Dxe)",
+     "type": "DXE_CORE"
+    },
+    {
+     "body_bytes": 56042,
+     "file_bytes": 56066,
+     "guid": "222C386D-5ABC-4FB4-B124-FBB82488ACF4",
+     "name": "PlatformPei",
+     "type": "PEIM"
+    },
+    {
+     "body_bytes": 50086,
+     "file_bytes": 50110,
+     "guid": "EDADEB9D-DDBA-48BD-9D22-C1C169C8C5C6",
+     "name": "DxeIpl (MdeModulePkg/Core/DxeIplPeim)",
+     "type": "PEIM"
+    },
+    {
+     "body_bytes": 45542,
+     "file_bytes": 45566,
+     "guid": "DF1CCEF6-F301-4A63-9661-FC6030DCC880",
+     "name": "DF1CCEF6-F301-4A63-9661-FC6030DCC880",
+     "type": "SECURITY_CORE"
+    },
+    {
+     "body_bytes": 31074,
+     "file_bytes": 31098,
+     "guid": "A0C98B77-CBA5-4BB8-993B-4AF6CE33ECE4",
+     "name": "Tcg2Pei",
+     "type": "PEIM"
+    }
+   ]
+  }
+ },
+ "swap_delta": {
+  "added_bytes": 1907136,
+  "added_in_secboot": {
+   "CpuHotplugSmm": 16570,
+   "CpuIo2Smm": 16490,
+   "CpuS3DataDxe": 3206,
+   "FaultTolerantWritePei": 2134,
+   "FvbServicesSmm": 20634,
+   "PiSmmCore": 41026,
+   "PiSmmCpuDxeSmm": 82074,
+   "PiSmmIpl": 24718,
+   "SecureBootConfigDxe": 716382,
+   "SmmAccess2Dxe": 2674,
+   "SmmAccessPei": 3974,
+   "SmmControl2Dxe": 20638,
+   "SmmFaultTolerantWriteDxe": 24786,
+   "SmmLockBox": 20626,
+   "TcgMorLockSmm": 12474,
+   "VariablePei": 5506,
+   "VariableSmm": 868498,
+   "VariableSmmRuntimeDxe": 24726
+  },
+  "method": "by module name; unnamed guid rows excluded",
+  "net_bytes": 809814,
+  "removed_bytes": 1097322,
+  "removed_in_secboot": {
+   "EmuVariableFvbRuntimeDxe": 16522,
+   "FaultTolerantWriteDxe": 10918,
+   "FvbServicesRuntimeDxe": 20610,
+   "LinuxInitrdDynamicShellCommand": 20878,
+   "VariablePolicyDynamicCommand": 24074,
+   "VariableRuntimeDxe": 41086,
+   "gUefiShellFileGuid": 894422,
+   "httpDynamicCommand": 38534,
+   "tftpDynamicCommand": 30278
+  },
+  "resized": {
+   "AmdSevDxe": {
+    "plain": 7530,
+    "secboot": 7210
+   },
+   "ArpDxe": {
+    "plain": 12206,
+    "secboot": 12142
+   },
+   "AtaAtapiPassThruDxe": {
+    "plain": 27286,
+    "secboot": 26582
+   },
+   "AtaBusDxe": {
+    "plain": 13570,
+    "secboot": 12866
+   },
+   "BdsDxe": {
+    "plain": 86650,
+    "secboot": 82362
+   },
+   "BootScriptExecutorDxe": {
+    "plain": 70742,
+    "secboot": 69206
+   },
+   "ConSplitterDxe": {
+    "plain": 19982,
+    "secboot": 19918
+   },
+   "CpuDxe": {
+    "plain": 91834,
+    "secboot": 90938
+   },
+   "CpuIo2Dxe": {
+    "plain": 4506,
+    "secboot": 2522
+   },
+   "DevicePathDxe": {
+    "plain": 37842,
+    "secboot": 37778
+   },
+   "DisplayEngine": {
+    "plain": 60630,
+    "secboot": 60566
+   },
+   "DxeCore (MdeModulePkg/Core/Dxe)": {
+    "plain": 139390,
+    "secboot": 138494
+   },
+   "EbcDxe": {
+    "plain": 16022,
+    "secboot": 15958
+   },
+   "EhciDxe": {
+    "plain": 17470,
+    "secboot": 17406
+   },
+   "GraphicsConsoleDxe": {
+    "plain": 15126,
+    "secboot": 14998
+   },
+   "Hash2DxeCrypto": {
+    "plain": 9230,
+    "secboot": 8590
+   },
+   "HiiDatabase": {
+    "plain": 87406,
+    "secboot": 87342
+   },
+   "HttpBootDxe": {
+    "plain": 53162,
+    "secboot": 53098
+   },
+   "IScsiDxe": {
+    "plain": 104394,
+    "secboot": 103690
+   },
+   "IncompatiblePciDeviceSupportDxe": {
+    "plain": 1862,
+    "secboot": 1670
+   },
+   "IoMmuDxe": {
+    "plain": 11562,
+    "secboot": 11306
+   },
+   "Ip4Dxe": {
+    "plain": 62150,
+    "secboot": 61638
+   },
+   "Ip6Dxe": {
+    "plain": 89734,
+    "secboot": 89286
+   },
+   "LocalApicTimerDxe": {
+    "plain": 4174,
+    "secboot": 3534
+   },
+   "LogoDxe": {
+    "plain": 13818,
+    "secboot": 13754
+   },
+   "Metronome": {
+    "plain": 2666,
+    "secboot": 1962
+   },
+   "MnpDxe": {
+    "plain": 25454,
+    "secboot": 25326
+   },
+   "Mtftp4Dxe": {
+    "plain": 26354,
+    "secboot": 26290
+   },
+   "Mtftp6Dxe": {
+    "plain": 28082,
+    "secboot": 28018
+   },
+   "PartitionDxe": {
+    "plain": 13642,
+    "secboot": 13578
+   },
+   "PcdDxe": {
+    "plain": 10370,
+    "secboot": 10386
+   },
+   "PciHostBridgeDxe": {
+    "plain": 19110,
+    "secboot": 17574
+   },
+   "PciHotPlugInitDxe": {
+    "plain": 9146,
+    "secboot": 7674
+   },
+   "PciSioSerialDxe": {
+    "plain": 17422,
+    "secboot": 17102
+   },
+   "PlatformPei": {
+    "plain": 55362,
+    "secboot": 56066
+   },
+   "Ps2KeyboardDxe": {
+    "plain": 13134,
+    "secboot": 12110
+   },
+   "QemuFwCfgAcpiPlatform": {
+    "plain": 11514,
+    "secboot": 10874
+   },
+   "QemuKernelLoaderFsDxe": {
+    "plain": 11514,
+    "secboot": 11066
+   },
+   "QemuRamfbDxe": {
+    "plain": 7514,
+    "secboot": 6874
+   },
+   "QemuVideoDxe": {
+    "plain": 12298,
+    "secboot": 11658
+   },
+   "RngDxe": {
+    "plain": 5798,
+    "secboot": 5222
+   },
+   "S3Resume2Pei": {
+    "plain": 7046,
+    "secboot": 7750
+   },
+   "S3SaveStateDxe": {
+    "plain": 12470,
+    "secboot": 12086
+   },
+   "ScsiBus": {
+    "plain": 7550,
+    "secboot": 7422
+   },
+   "SecurityStubDxe": {
+    "plain": 13942,
+    "secboot": 825334
+   },
+   "SmbiosDxe": {
+    "plain": 9490,
+    "secboot": 8978
+   },
+   "SmbiosPlatformDxe": {
+    "plain": 4574,
+    "secboot": 4062
+   },
+   "SnpDxe": {
+    "plain": 19118,
+    "secboot": 18990
+   },
+   "Tcg2ConfigDxe": {
+    "plain": 34330,
+    "secboot": 33498
+   },
+   "Tcg2Dxe": {
+    "plain": 46546,
+    "secboot": 45074
+   },
+   "Tcg2PlatformDxe": {
+    "plain": 3850,
+    "secboot": 3210
+   },
+   "TcgDxe": {
+    "plain": 13158,
+    "secboot": 12198
+   },
+   "TcpDxe": {
+    "plain": 45310,
+    "secboot": 45246
+   },
+   "TdTcg2Dxe": {
+    "plain": 20430,
+    "secboot": 19854
+   },
+   "TdxDxe": {
+    "plain": 7142,
+    "secboot": 6822
+   },
+   "TlsAuthConfigDxe": {
+    "plain": 30690,
+    "secboot": 30114
+   },
+   "TlsDxe": {
+    "plain": 1006846,
+    "secboot": 1006206
+   },
+   "Udp6Dxe": {
+    "plain": 24686,
+    "secboot": 24622
+   },
+   "UefiPxeBcDxe": {
+    "plain": 57886,
+    "secboot": 57438
+   },
+   "UsbBusDxe": {
+    "plain": 17666,
+    "secboot": 17602
+   },
+   "UsbKbDxe": {
+    "plain": 14466,
+    "secboot": 14402
+   },
+   "UsbMassStorageDxe": {
+    "plain": 13778,
+    "secboot": 13266
+   },
+   "VirtHstiDxe": {
+    "plain": 6446,
+    "secboot": 5742
+   },
+   "VirtioGpuDxe": {
+    "plain": 14730,
+    "secboot": 14666
+   },
+   "VirtioKeyboardDxe": {
+    "plain": 8210,
+    "secboot": 8146
+   },
+   "VirtioNetDxe": {
+    "plain": 13898,
+    "secboot": 13514
+   },
+   "VirtioRngDxe": {
+    "plain": 4618,
+    "secboot": 4554
+   },
+   "VirtioScsiDxe": {
+    "plain": 7242,
+    "secboot": 7178
+   },
+   "WatchdogTimer": {
+    "plain": 1862,
+    "secboot": 1798
+   },
+   "XhciDxe": {
+    "plain": 28990,
+    "secboot": 28350
+   },
+   "gAprioriGuid": {
+    "plain": 108,
+    "secboot": 92
+   },
+   "gUiAppFileGuid": {
+    "plain": 114414,
+    "secboot": 114478
+   }
+  }
+ }
+}
