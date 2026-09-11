@@ -66,13 +66,10 @@ firmware side without leaving a dated, replayable trace.
 > **The agent proposes, the HAL disposes, the human decides.**
 > **What the BIOS cannot name, the agent names — at zero extra cost.**
 
-Reads are free and unlimited (T0, journaled). The only two writes this
-package can ever do are T1: **reversible, dry-run by default, backed up
-before applied, rolled back on demand** — and mechanically incapable of
-capping cooling (a fan curve that does not end at full speed is refused
-before any write). T2 staging is a human CLI gesture (dry-run plan by
-default, the agent can prepare it but never apply it); firmware rollback
-is refused by design. Flashing (T3) has no call path.
+Reads are free and unlimited (T0, journaled). The only two writes this package
+can ever do are T1 — reversible, dry-run by default, backed up before applied,
+mechanically incapable of capping cooling. T2 staging is a human CLI gesture;
+flashing (T3) has no call path. The full contract: [docs/security-doctrine.md](docs/security-doctrine.md).
 
 ## Quick start
 
@@ -110,9 +107,7 @@ fixture sets (issues + clean), a sysfs tree for deterministic T1 dry-runs,
 a 323-check test suite, and an MCP conformance smoke:
 
 ```bash
-omarchy-firmware twin                       # the profile + resolved assets
-omarchy-firmware rehearse --backend twin    # 28 probes, one verdict
-omarchy-firmware diag scenarios             # the list
+omarchy-firmware diag scenarios             # the scenario list
 omarchy-firmware diag quick --scenario no-paste --json
 omarchy-firmware selftest                   # full demo on the twin
 python3 tests/test_suite.py                 # 323 checks, zero dependency
@@ -137,18 +132,13 @@ claude mcp add omarchy-firmware -- ~/.local/bin/omarchy-firmware-mcp
 
 ## Frugality is a hard constraint, measured
 
-The firmware must never become heavier than the stock BIOS. It isn't:
-
-| Budget item | Cost |
-|---|---|
-| One-shot diagnostic (passive) | ~0.3 s CPU, no resident process |
-| RAM between runs | 0 (the doctor is a one-shot) |
-| Optional systemd timer (15 min) | ~0.03 % duty cycle |
-| SPI flash added | **+0 bytes** |
-| LLM | never resident — called only when L2 says "attention" or "critical" |
-
-No daemon, no embedded model, no framework. Stdlib-only for the CLI;
-`mcp` is an optional dependency.
+The firmware intelligence must never become heavier than the stock BIOS it
+answers: a one-shot diagnostic is ~0.3 s CPU, RAM between runs is 0 (no
+daemon — the doctor is a one-shot a timer *may* wake), the optional 15-min
+timer costs ~0.03 % duty cycle, the LLM is never resident, and SPI flash
+added is **+0 bytes**. Stdlib-only for the CLI; `mcp` is an optional
+dependency. The full budget and its L1/L2/L3 reasoning:
+[docs/frugality.md](docs/frugality.md).
 
 ## Architecture in one glance
 
@@ -167,7 +157,9 @@ dmidecode · efibootmgr · fwupd · smartctl · lspci · nvidia-smi · hwmon · 
 ```
 
 One function = one CLI command = one MCP tool. The agent is never a privileged
-path: a human types the same thing, a shell script too.
+path: a human types the same thing, a shell script too. Layers, fixtures and
+the one-implementation-three-consumers contract: [docs/architecture.md](docs/architecture.md)
+· how the repo maps to disk and to the installed system: [docs/file-layout.md](docs/file-layout.md).
 
 ## The tier contract
 
@@ -200,7 +192,9 @@ human path; `fw.flash.write` does not even exist.
 | [docs/diagnostics-catalog.md](docs/diagnostics-catalog.md) | the named hardware findings and their measurable evidence |
 | [docs/vendor-bios-heritage.md](docs/vendor-bios-heritage.md) | what ASUS/MSI/Gigabyte/ASRock actually shipped, what we keep, what we answer — the vendor-facing coherence audit |
 | [docs/frugality.md](docs/frugality.md) | the resource budget, L1/L2/L3, why the timer is optional |
-| [docs/research/](docs/research/) | the four original study volumes (FR, PDF) + English summaries |
+| [docs/file-layout.md](docs/file-layout.md) | how the repo is organized and where everything lands once installed |
+| [lab/README.md](lab/README.md) | the disposable machine: the five investigation rings, their JSON evidence, the doctrine |
+| [docs/research/](docs/research/) | the four-volume study *Beyond the BIOS*: per-volume summaries + the FR/EN editions (PDF release assets) |
 
 CI runs the full contract suite (Python 3.11/3.13) and the MCP conformance
 smoke on every push — see [.github/workflows/ci.yml](.github/workflows/ci.yml).
@@ -213,20 +207,20 @@ smoke on every push — see [.github/workflows/ci.yml](.github/workflows/ci.yml)
 | P2 | + `fw.diag.thermal`: signature engine, probe, baseline, timer | 8 scenarios named one by one, measured frugality ✓ |
 | P3 | + storage/GPU/RAM/settings T0 diagnostics + the T1 HAL (`cpu.epp.set`, `fans.curve.set`) | 177 checks, MCP 11-tool conformance, verified rollback, mechanical curve guards ✓ |
 | P4 | + the supervised loop: `fw.cve.watch` (KB freshness, drift, fwupd advisories), the human-gated T2 staging (`update stage`, `update rollback`), the loop report, the weekly watch timer | code complete: 246 checks, 12 scenarios, MCP 12-tool conformance · the 5-day criterion itself is measured on the real machine — see [docs/first-run.md](docs/first-run.md) |
-| **P5 — this repo** | + the digital twin and the dress rehearsal: TWIN-1 promoted from test fixtures to an installable machine profile, `rehearse` (28 behavioural probes, one verdict, a diffable report), `rehearse-diff --latest` (the day-0 debrief: surprises named and classified), `capture --live` (the read-only day-0 photograph of THIS machine — twin assets ignored, every section provenance-tagged and cost-measured in ms), `spi-map` (0.7.0 — the explicit, read-only cartography of the flash chip itself: firmware volumes, DXE/SMM modules, variable stores, ME/PSP region, boot manifests; 0 bytes written, never by default, outside the MCP surface), the installed-layout fix (lib + twin staged by install.sh), the distribution hardened: tagged release, checksum-verified installer, exact SDK pin + weekly drift canary, pinned runners, the write-path audit (15 lies/crashes/arbitrary-writes closed), `lab/` — the disposable machine (QEMU/OVMF now, the sacrificial coreboot board as study Volume 5) | 323 checks, rehearsal green on TWIN-1 on py3.12/3.13, installed-binary rehearsal green outside the repo, `install.sh --from release` roundtrip verified (download + SHA256SUMS + install + rehearsal from the installed tree) · day-0 behaviour proven before the machine — see [docs/digital-twin.md](docs/digital-twin.md) |
+| **P5 — this repo** | + the digital twin and the dress rehearsal: TWIN-1 as an installable machine profile, `rehearse` (28 behavioural probes, one verdict), `rehearse-diff --latest` (the day-0 debrief), `capture --live` (the read-only day-0 photograph), `spi-map` (0.7.0 — the cartography of the flash chip, 0 bytes written, outside the MCP surface), the installed-layout fix, the hardened distribution (checksum-verified installer, SDK pin + drift canary, pinned runners, the write-path audit), `lab/` (QEMU/OVMF now, the sacrificial coreboot board as study Volume 5), 0.7.1 ("the honest labels") | 323 checks, rehearsal green on TWIN-1 on py3.12/3.13, installed-binary rehearsal green outside the repo, `install.sh --from release` roundtrip verified · day-0 behaviour proven before the machine — see [docs/digital-twin.md](docs/digital-twin.md); the full ledger: [CHANGELOG.md](CHANGELOG.md) |
 
 ## Provenance
 
 Everything here descends from a four-volume study auditing the Omarchy repo,
 the AM4 vendor BIOS landscape, and the question "what can an agent do that
-the vendor BIOS cannot?" — see [docs/research/](docs/research/). The
-**English edition** of the full series (79 pages, updated September 2026 so
-the blueprint chapters report their shipped state) lives in-repo at
-[docs/research/pdf/](docs/research/pdf/) (`vol1`–`vol4`, `*-en.pdf` files):
+the vendor BIOS cannot?" — see [docs/research/](docs/research/). The full
+series (79 pages) is archived as **release assets**, not in-repo binaries:
+the **English edition** (canonical, updated September 2026 so the blueprint
+chapters report their shipped state) on the
+[study-en release](https://github.com/Cheurteenyt/BIOS-/releases/tag/study-en),
+the **French originals** (the primary voice, archived unchanged) on the
+[study-fr release](https://github.com/Cheurteenyt/BIOS-/releases/tag/study-fr):
 *Beyond the BIOS* (22 p.) · *The Agent and the Firmware* (24 p.) · *What the
-BIOS Cannot See* (15 p.) · *Misconfigured or Faulty* (18 p.); the French
-originals are archived beside them, and the same English PDFs are attached
-to the [study-en release](https://github.com/Cheurteenyt/BIOS-/releases/tag/study-en).
-The reference
+BIOS Cannot See* (15 p.) · *Misconfigured or Faulty* (18 p.). The reference
 test platform is a Ryzen 9 5950X + RTX 3070 on ASUS B450/B550; the board is
 **never** hardcoded — it is read from SMBIOS at run time.

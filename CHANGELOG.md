@@ -4,6 +4,37 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the omarchy-grade cleanup
+
+Docs-only hygiene pass, audited against the upstream Omarchy repository
+(`omacom/omarchy`). The tool surface is untouched: 15 tools, MCP smoke
+12, 323 checks green.
+
+**Changed**
+- The four-volume study no longer ships as in-repo PDFs (9.3 MB, 84 % of
+  the working tree weight): the English edition stays on the `study-en`
+  release (bit-identical), the French originals are archived on the new
+  [`study-fr` release](https://github.com/Cheurteenyt/BIOS-/releases/tag/study-fr).
+  `*.pdf` is gitignored; `docs/research/README.md` and the README
+  provenance link to the releases. The repo is text + code, the same
+  choice Omarchy makes.
+- README tightened toward the Omarchy hub pattern: the frugality table
+  and the tier-contract details relocated to their documents, the
+  quick-start deduplicated, the P5 ledger condensed (the full detail
+  lives here, in the CHANGELOG).
+- `lab/README.md` rebuilt as the full index of the investigation: the
+  five rings + the first OVMF reading, the eight JSON artifacts, and the
+  instrument policy (probe scripts are sandbox tools, deliberately
+  untracked).
+- `findings-2026-09-11.md` renamed to `findings-first-ring.md` — the ring
+  nomenclature is now uniform (first → fifth).
+
+**Added**
+- `docs/file-layout.md` — how the repo is organized and where everything
+  lands once installed (the pattern Omarchy itself uses).
+- `CLAUDE.md` — one-line pointer to `AGENTS.md`, no duplication.
+- Tags `v0.7.0` and `v0.7.1` pushed at their historical commits.
+
 ## 0.7.1 — the honest labels
 
 A real-firmware correction. The deep-dive investigation on actual OVMF

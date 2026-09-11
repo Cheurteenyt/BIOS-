@@ -1,6 +1,6 @@
 # The Fifth Ring — three new fronts, zero bytes written (2026-09-11)
 
-> Companion to `findings-2026-09-11.md` (first ring), `findings-second-ring.md`
+> Companion to `findings-first-ring.md` (first ring), `findings-second-ring.md`
 > (second), `findings-third-ring.md` (third) and `findings-fourth-ring.md`
 > (fourth). The fourth ring mapped the gates, the provenance, the texture,
 > the supervisor and the keep-set. The fifth ring answers three questions

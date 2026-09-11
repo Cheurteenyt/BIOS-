@@ -4,24 +4,25 @@ Everything in this repository descends from a four-volume research study
 auditing the Omarchy repository, the AM4 vendor BIOS landscape, and the
 founding question "what can an agent do that the vendor BIOS cannot?".
 
-The study exists in **two editions, both archived here in full**:
+The study exists in **two editions, both archived in full as release assets** —
+the repository itself carries no PDF binaries (the same choice Omarchy makes:
+the repo is text + code, heavy artifacts live on Releases):
 
-- **English (canonical)** — `*-en.pdf`. The edition this repository is written
-  in; updated September 2026 so the blueprint chapters report their shipped
-  state (phases P1–P5 delivered, 281 checks, release `v0.6.0`, the drift
-  canary, the bit-verified installer, the day-0 rehearsal of 16/09).
-- **French (original voice)** — the primary sources, archived unchanged as
-  they were written. Any nuance conflict is settled by the French text.
+- **English (canonical)** — the [`study-en` release](https://github.com/Cheurteenyt/BIOS-/releases/tag/study-en).
+  The edition this repository is written in; updated September 2026 so the
+  blueprint chapters report their shipped state (phases P1–P5 delivered,
+  281 checks, release `v0.6.0`, the drift canary, the bit-verified installer,
+  the day-0 rehearsal of 16/09).
+- **French (original voice)** — the [`study-fr` release](https://github.com/Cheurteenyt/BIOS-/releases/tag/study-fr).
+  The primary sources, archived unchanged as they were written. Any nuance
+  conflict is settled by the French text.
 
-| Volume | English (canonical) | p. | French (archive) | p. |
+| Volume | English (canonical, on `study-en`) | p. | French (archive, on `study-fr`) | p. |
 |---|---|---|---|---|
-| 1. Beyond the BIOS | [pdf/vol1-beyond-the-bios-en.pdf](pdf/vol1-beyond-the-bios-en.pdf) | 22 | [pdf/vol1-beyond-the-bios.pdf](pdf/vol1-beyond-the-bios.pdf) | 22 |
-| 2. The agent and the firmware | [pdf/vol2-the-agent-and-the-firmware-en.pdf](pdf/vol2-the-agent-and-the-firmware-en.pdf) | 24 | [pdf/vol2-the-agent-and-the-firmware.pdf](pdf/vol2-the-agent-and-the-firmware.pdf) | 24 |
-| 3. What the BIOS cannot see | [pdf/vol3-what-the-bios-cannot-see-en.pdf](pdf/vol3-what-the-bios-cannot-see-en.pdf) | 15 | [pdf/vol3-what-the-bios-cannot-see.pdf](pdf/vol3-what-the-bios-cannot-see.pdf) | 16 |
-| 4. Misconfigured or defective? | [pdf/vol4-misconfigured-or-defective-en.pdf](pdf/vol4-misconfigured-or-defective-en.pdf) | 18 | [pdf/vol4-misconfigured-or-defective.pdf](pdf/vol4-misconfigured-or-defective.pdf) | 18 |
-
-The same four PDFs are attached, bit-identical, to the
-[study-en release](https://github.com/Cheurteenyt/BIOS-/releases/tag/study-en).
+| 1. Beyond the BIOS | `vol1-beyond-the-bios-en.pdf` | 22 | `vol1-beyond-the-bios.pdf` | 22 |
+| 2. The agent and the firmware | `vol2-the-agent-and-the-firmware-en.pdf` | 24 | `vol2-the-agent-and-the-firmware.pdf` | 24 |
+| 3. What the BIOS cannot see | `vol3-what-the-bios-cannot-see-en.pdf` | 15 | `vol3-what-the-bios-cannot-see.pdf` | 16 |
+| 4. Misconfigured or defective? | `vol4-misconfigured-or-defective-en.pdf` | 18 | `vol4-misconfigured-or-defective.pdf` | 18 |
 
 ## Volume 1 — Beyond the BIOS (firmware study, Omarchy x AM4)
 

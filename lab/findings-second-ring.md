@@ -1,6 +1,6 @@
 # The Second Ring — seven new fronts, zero bytes written (2026-09-11)
 
-> Companion to `findings-2026-09-11.md` (the first ring: species census, ROM
+> Companion to `findings-first-ring.md` (the first ring: species census, ROM
 > chains, trust chain, PSP lens). This campaign drilled **into** the objects
 > the first ring had only catalogued: the variable store byte by byte, the
 > boot option grammar, the dependency web, the security GUID carriers, and

@@ -1,6 +1,6 @@
 # The Third Ring — seven new fronts, zero bytes written (2026-09-11)
 
-> Companion to `findings-2026-09-11.md` (first ring) and
+> Companion to `findings-first-ring.md` (first ring) and
 > `findings-second-ring.md` (second ring). The first ring catalogued the
 > species; the second drilled into the objects; the third ring resolved the
 > **policy**, the **execution chain**, the **vocabulary**, the **budget** —

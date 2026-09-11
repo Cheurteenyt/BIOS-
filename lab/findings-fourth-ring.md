@@ -1,6 +1,6 @@
 # The Fourth Ring — seven new fronts, zero bytes written (2026-09-11)
 
-> Companion to `findings-2026-09-11.md` (first ring), `findings-second-ring.md`
+> Companion to `findings-first-ring.md` (first ring), `findings-second-ring.md`
 > (second ring) and `findings-third-ring.md` (third ring). The first ring
 > catalogued the species, the second drilled into the objects, the third
 > resolved the policy and closed the execution chain. The fourth ring maps
