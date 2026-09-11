@@ -1,7 +1,8 @@
 {
  "schema": "omarchy-firmware/vendor-flash-armor@1",
  "date": "2026-09-11",
- "note": "which official PRIME B450-PLUS release first carries the seven modules ring 15 measured as added 3604->4655 (the vendor flash-armor set); binary search over the API ledger, register written after every probe",
+ "extended": "ring 18 (2026-09-11): the three unprobed releases 3802/3810/4003 measured \u2014 the wave-1 boundary is now exact at official-release granularity and the ring-16 security reading is corrected by direct measurement",
+ "note": "which official PRIME B450-PLUS release first carries the seven modules ring 15 measured as added 3604->4655 (the vendor flash-armor set); the full 40-release ledger interrogated with 7 downloads + 2 free sentinels, register written after every probe",
  "added_watchlist": {
   "02076249\u2026": "freeform (unnamed)",
   "391626DB\u2026": "PrepareWhiteListSmm",
@@ -25,7 +26,86 @@
     "SMM (unnamed)",
     "SMM (unnamed)"
    ],
-   "armor_complete": false
+   "armor_complete": false,
+   "core_armor": 0
+  },
+  {
+   "version": "3802",
+   "date": "2022/05/12",
+   "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/PRIME-B450-PLUS-ASUS-3802.zip?model=PRIME B450-PLUS",
+   "ledger_sha256": "",
+   "zip_bytes": 11286343,
+   "zip_sha256": "425343ddc5c8011f3a9c94652671c4e79ed4b466197118004e1216c82935bb81",
+   "vendor_hash_match": null,
+   "cap_wrapper_first_fv": "0x40800",
+   "rom_bytes": 16515072,
+   "rom_sha256_16": "f9bb9ac5f2552369",
+   "modules": 623,
+   "added_present": [
+    "FlashSmiDxe",
+    "FlashSmiSmm",
+    "PrepareWhiteListSmm",
+    "SbRomArmorSmm",
+    "freeform (unnamed)"
+   ],
+   "removed_present": [
+    "SMM (unnamed)",
+    "SMM (unnamed)"
+   ],
+   "armor_complete": false,
+   "core_armor": 4
+  },
+  {
+   "version": "3810",
+   "date": "2022/12/15",
+   "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/PRIME-B450-PLUS-ASUS-3810.zip?model=PRIME B450-PLUS",
+   "ledger_sha256": "",
+   "zip_bytes": 11272579,
+   "zip_sha256": "3ed44e73c833edf4410f4c060e13fccfc0b37a8e58436251859f509434d1f716",
+   "vendor_hash_match": null,
+   "cap_wrapper_first_fv": "0x40800",
+   "rom_bytes": 16515072,
+   "rom_sha256_16": "4c925f66864446e8",
+   "modules": 623,
+   "added_present": [
+    "FlashSmiDxe",
+    "FlashSmiSmm",
+    "PrepareWhiteListSmm",
+    "SbRomArmorSmm",
+    "freeform (unnamed)"
+   ],
+   "removed_present": [
+    "SMM (unnamed)",
+    "SMM (unnamed)"
+   ],
+   "armor_complete": false,
+   "core_armor": 4
+  },
+  {
+   "version": "4003",
+   "date": "2023/03/21",
+   "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/PRIME-B450-PLUS-ASUS-4003.zip?model=PRIME B450-PLUS",
+   "ledger_sha256": "",
+   "zip_bytes": 11287426,
+   "zip_sha256": "f19e568cbb73df464961eb525e2b51685f482a6a6187f17565eea8e454e1e178",
+   "vendor_hash_match": null,
+   "cap_wrapper_first_fv": "0x40800",
+   "rom_bytes": 16515072,
+   "rom_sha256_16": "a11dff75cbb9d953",
+   "modules": 623,
+   "added_present": [
+    "FlashSmiDxe",
+    "FlashSmiSmm",
+    "PrepareWhiteListSmm",
+    "SbRomArmorSmm",
+    "freeform (unnamed)"
+   ],
+   "removed_present": [
+    "SMM (unnamed)",
+    "SMM (unnamed)"
+   ],
+   "armor_complete": false,
+   "core_armor": 4
   },
   {
    "version": "4202",
@@ -72,7 +152,8 @@
     "freeform (unnamed)"
    ],
    "removed_present": [],
-   "armor_complete": false
+   "armor_complete": false,
+   "core_armor": 4
   },
   {
    "version": "4604",
@@ -96,7 +177,8 @@
     "freeform (unnamed)"
    ],
    "removed_present": [],
-   "armor_complete": true
+   "armor_complete": true,
+   "core_armor": 4
   },
   {
    "version": "4631",
@@ -120,7 +202,8 @@
     "freeform (unnamed)"
    ],
    "removed_present": [],
-   "armor_complete": true
+   "armor_complete": true,
+   "core_armor": 4
   },
   {
    "version": "4655",
@@ -140,28 +223,33 @@
     "freeform (unnamed)"
    ],
    "removed_present": [],
-   "armor_complete": true
+   "armor_complete": true,
+   "core_armor": 4
   }
  ],
  "boundary": {
-  "first_with_armor": "4604",
-  "first_date": "2024/04/08",
-  "last_without_armor": "4402",
-  "downloads": 3
+  "first_complete": "4604",
+  "first_complete_date": "2024/04/08",
+  "last_incomplete": "4402",
+  "last_incomplete_date": "2024/01/08"
  },
  "wave1_boundary": {
-  "first_with_core": "4202",
-  "last_without_core": "3604"
+  "first_with_core": "3802",
+  "first_core_date": "2022/05/12",
+  "last_without_core": "3604",
+  "last_without_date": "2022/03/16"
  },
+ "downloads_total": 7,
  "reading": {
-  "two_waves": "the armor did not land as one block: the core SMM set (FlashSmiSmm, FlashSmiDxe, PrepareWhiteListSmm, SbRomArmorSmm + one freeform) is present by 4202 (2023-08-02, first verified carrier) and complete at 4604 (2024-04-08) when the DXE helper 4EB43107 and the second freeform join; 4402 (2024-01) sat in between with 5/7",
-  "swap_out_staged": "one of the two REMOVED SMM modules was still present at 4202 (1/2) and gone by 4402 (0/2) \u2014 the retirement was staged too",
-  "security_reading": "the core armor wave brackets the LogoFail disclosure window (2023); ASUS hardened the flash path on this board line inside exactly that year \u2014 consistent with an industry-wide response, not a random refresh",
-  "day0_use": "if the 16/09 dump proves older than 4202, the ABSENCE of these five GUIDs is itself a day-0 finding (flash-path hardening absent); if it proves >= 4604, the full seven are expected \u2014 their absence would be an anomaly"
+  "two_waves_exact": "the core SMM armor (FlashSmiSmm, FlashSmiDxe, PrepareWhiteListSmm, SbRomArmorSmm + one freeform) first measures 5/7 at 3802 (2022-05-12) \u2014 the release IMMEDIATELY following 3604 (2022-03-16, 0/7) in the ledger, so the introduction is bounded to a single release gap; the set completes at 4604 (2024-04-08) when the DXE helper 4EB43107 and the second freeform join; 3810-4402 all sit at 5/7",
+  "ring16_reading_corrected": "ring 16 read the armor as bracketing the LogoFail year because its bisect skipped 3802/3810/4003 \u2014 with those measured, the core wave PREDATES the LogoFail disclosure (2023) by about fourteen months and cannot be a reaction to it; what DOES land inside the disclosure window is the legacy-SMM RETIREMENT: both legacy modules still present at 4003 (2023-03-21), one gone by 4202 (2023-08-02), both gone by 4402 (2024-01-08)",
+  "sampling_bias_lesson": "a binary search answers only the question asked ('by when present'), never 'when introduced' \u2014 the ring-16 'present by 4202' was true and misleading at once; the ring-18 fix is three more probes, not a new theory",
+  "day0_use": "checklist against the dump: 5/7 armor GUIDs expected if >= 3802 (2022-05), 7/7 if >= 4604 (2024-04); legacy pair 2/2 if <= 4003, 1/2 at 4202, 0/2 from 4402 \u2014 0/7 overall would date the build pre-3802 and is itself a finding; read with the AGESA timeline (vendor-agesa.json) for a second independent bound"
  },
  "honesty": [
-  "wave-1 bound: first verified carrier is 4202; releases 3802/3810/4003 between 3604 and 4202 were not probed (bounded download budget) \u2014 'present by', not 'introduced at'",
+  "the wave-1 introduction is exact at OFFICIAL-release granularity: 3802 is the next ledger release after 3604, so no in-between build exists to probe \u2014 an OEM/factory image between the two remains formally possible",
   "the two freeform armor files are unnamed (no UI section); they are tracked by GUID only",
-  "vendor sha256 published only for newer releases (4631 verified byte-exact; 4402/4604/4202 have none in the ledger \u2014 provenance rests on the official CDN URL alone)"
+  "vendor sha256 published only for newer releases (4631+ verified byte-exact; 3802/3810/4003/4202/4402/4604 have none in the ledger \u2014 provenance rests on the official CDN URL + zip sha256 recorded at download time)",
+  "the LogoFail correlation is now stated at year granularity only (2023) \u2014 no day-precise disclosure date exists in the project's on-disk sources"
  ]
 }

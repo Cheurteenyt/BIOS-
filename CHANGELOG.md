@@ -4,6 +4,46 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the eighteenth ring (the wave was never a reaction)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**The three withheld downloads are spent; the armor chronology is
+exact.** Ring 16 bounded the flash-armor waves with a binary search
+and honestly registered the unprobed middle (3802/3810/4003). Ring
+18 probed them with the same machinery, register written after every
+probe: all three measure 5/7 armor present (the four core SMM
+modules + one freeform), 623 modules, legacy SMM pair 2/2. The core
+SMM armor therefore first appears at **3802 (2022-05-12) — the
+release IMMEDIATELY following 3604 in the official ledger** — and
+the wave-1 boundary is exact at release granularity; the complete
+set stays 7/7 first at 4604 (2024-04-08). The whole 40-release
+ledger has been interrogated with seven downloads + two sentinels.
+
+**The ring-16 security reading is corrected by measurement.** "The
+armor brackets the LogoFail year" was true of the bisect's samples
+and false of the timeline: with 3802 dated 2022-05-12, the core
+armor **predates the LogoFail disclosure by ~14 months** and cannot
+be a reaction to it. What lands inside the disclosure window is the
+**legacy-SMM retirement** (2/2 at 4003 = 2023-03-21 → 1/2 at 4202 =
+2023-08-02 → 0/2 by 4402 = 2024-01-08). The method lesson is
+registered next to the correction: a binary search answers the
+question it was asked — "present by 4202" was true and misleading at
+once; the fix was three more probes, not a new theory. The day-0
+checklist sharpens accordingly: 5/7 armor GUIDs expected from 3802,
+7/7 from 4604, legacy pair 2/2 if the build is ≤ 4003.
+
+**The AGESA lens becomes a nine-point dated chronology.** The
+ring-16 pierced scan, extended to every bisect ROM already on disk
+(zero new downloads), walks the board's levels monotonically:
+3604=1.2.0.6b, 3802=1.2.0.7, 3810=1.2.0.7, 4003=1.2.0.8, 4202=1.2.0.A,
+4402=1.2.0.B, 4604=1.2.0.Ca, 4631=1.2.0.E, 4655=1.2.0.12. A dump
+trapped between two rungs is dated between their releases without
+reading any version string; the ladder's limit is registered (3802
+and 3810 share 1.2.0.7 — the rung pairs with PSP and NVRAM lenses,
+never alone).
+
 ## Unreleased — the seventeenth ring (the mirror was never a mirror)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

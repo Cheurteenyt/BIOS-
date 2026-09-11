@@ -1,6 +1,7 @@
 {
  "schema": "omarchy-firmware/vendor-agesa@1",
  "date": "2026-09-11",
+ "extended": "ring 18 (2026-09-11): the pierced AGESA lens extended to every PRIME B450-PLUS bisect specimen \u2014 a nine-point dated chronology from 3604 to 4655",
  "note": "the AGESA level per specimen, recovered from raw AND LZMA-pierced content \u2014 ring 11's raw scan extended to the compressed interior; the four 'unverified' claims left by rings 11-12 are closed here",
  "specimens": [
   {
@@ -156,14 +157,123 @@
    ]
   }
  ],
+ "timeline": [
+  {
+   "version": "3604",
+   "date": "2022/03/16",
+   "source": "ring-16 register (rescan skipped)",
+   "agesa": "1.2.0.6b",
+   "verdict": "NEWLY BYTE-VERIFIED"
+  },
+  {
+   "version": "3802",
+   "date": "2022/05/12",
+   "source": "measured (ring 18)",
+   "bytes": 16515072,
+   "sha256_16": "f9bb9ac5f2552369",
+   "surfaces": 5,
+   "versions_found": [
+    "1.2.0.7"
+   ],
+   "agesa": "1.2.0.7",
+   "verdict": "MEASURED"
+  },
+  {
+   "version": "3810",
+   "date": "2022/12/15",
+   "source": "measured (ring 18)",
+   "bytes": 16515072,
+   "sha256_16": "4c925f66864446e8",
+   "surfaces": 5,
+   "versions_found": [
+    "1.2.0.7"
+   ],
+   "agesa": "1.2.0.7",
+   "verdict": "MEASURED"
+  },
+  {
+   "version": "4003",
+   "date": "2023/03/21",
+   "source": "measured (ring 18)",
+   "bytes": 16515072,
+   "sha256_16": "a11dff75cbb9d953",
+   "surfaces": 5,
+   "versions_found": [
+    "1.2.0.8"
+   ],
+   "agesa": "1.2.0.8",
+   "verdict": "MEASURED"
+  },
+  {
+   "version": "4202",
+   "date": "2023/08/02",
+   "source": "measured (ring 18)",
+   "bytes": 16515072,
+   "sha256_16": "5ff8f8e27c8b2d73",
+   "surfaces": 5,
+   "versions_found": [
+    "1.2.0.A"
+   ],
+   "agesa": "1.2.0.A",
+   "verdict": "MEASURED"
+  },
+  {
+   "version": "4402",
+   "date": "2024/01/08",
+   "source": "measured (ring 18)",
+   "bytes": 16515072,
+   "sha256_16": "916bcaca825ac3ca",
+   "surfaces": 5,
+   "versions_found": [
+    "1.2.0.B"
+   ],
+   "agesa": "1.2.0.B",
+   "verdict": "MEASURED"
+  },
+  {
+   "version": "4604",
+   "date": "2024/04/08",
+   "source": "measured (ring 18)",
+   "bytes": 16515072,
+   "sha256_16": "eddccf1e75f28adc",
+   "surfaces": 5,
+   "versions_found": [
+    "1.2.0.Ca"
+   ],
+   "agesa": "1.2.0.Ca",
+   "verdict": "MEASURED"
+  },
+  {
+   "version": "4631",
+   "date": "2025/04/01",
+   "source": "measured (ring 18)",
+   "bytes": 16515072,
+   "sha256_16": "39e778a1a6141aeb",
+   "surfaces": 5,
+   "versions_found": [
+    "1.2.0.E"
+   ],
+   "agesa": "1.2.0.E",
+   "verdict": "MEASURED"
+  },
+  {
+   "version": "4655",
+   "date": "2026/08/27",
+   "source": "ring-16 register (rescan skipped)",
+   "agesa": "1.2.0.12",
+   "verdict": "NEWLY BYTE-VERIFIED"
+  }
+ ],
  "reading": {
   "all_six_verified": "every specimen's AGESA level is now byte-verified: ASUS 4655=1.2.0.12, 3604=1.2.0.6b, TUF 4645=1.2.0.F (NEWLY VERIFIED); MSI 1.2.0.8, Gigabyte 1.2.0.12, ASRock 1.2.0.E all MATCH their claims \u2014 zero vendor lies detected, four blanks filled",
+  "nine_point_ladder": "on PRIME B450-PLUS the levels walk monotonically: 3604=1.2.0.6b, 3802=1.2.0.7, 3810=1.2.0.7, 4003=1.2.0.8, 4202=1.2.0.A, 4402=1.2.0.B, 4604=1.2.0.Ca, 4631=1.2.0.E, 4655=1.2.0.12 \u2014 a dump trapped between two rungs is dated between their releases without any version string",
+  "ladder_limits": "AGESA alone does not separate 3802 from 3810 (both 1.2.0.7) \u2014 the rung pairs with the PSP and NVRAM lenses for identity, never alone",
   "where_it_hides": "the ASUS/TUF strings sit inside the pierced 0x9c0000 FV (ComboAM4v2PI <level>), roughly 2.7-2.9 MiB into the decompressed payload \u2014 the raw scan could never see them",
-  "bonus": "Gigabyte F67c also yields SMU firmware versions 3.4.1.1-3.4.2.4 (fourteen distinct) \u2014 a side harvest of the same scan",
-  "day0_use": "the dump's AGESA level is one regex away once its volumes are pierced; it dates the image independently of version strings and NVRAM defaults"
+  "day0_use": "the dump's AGESA level is one regex away once its volumes are pierced; it dates the image independently of version strings and NVRAM defaults, and the nine rungs give the bound in release terms"
  },
  "honesty": [
   "version-like strings prove what shipped in the image; they do not prove which component the vendor page credited",
-  "the wave-1 claim 'AGESA' strings are debug/print code in some modules \u2014 the register keeps only version-pattern hits, filtered, never eyeballed from context"
+  "the wave-1 claim 'AGESA' strings are debug/print code in some modules \u2014 the register keeps only version-pattern hits, filtered, never eyeballed from context",
+  "the timeline's 3604/4655 points cite the ring-16 register (rescan skipped, same instrument); the seven others were measured fresh in ring 18"
  ]
 }
