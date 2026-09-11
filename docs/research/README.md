@@ -19,11 +19,11 @@ the repo is text + code, heavy artifacts live on Releases):
 
 | Volume | English (canonical, on `study-en`) | p. | French (archive, on `study-fr`) | p. |
 |---|---|---|---|---|
-| 1. Beyond the BIOS | `vol1-beyond-the-bios-en.pdf` | 22 | `vol1-beyond-the-bios.pdf` | 22 |
-| 2. The agent and the firmware | `vol2-the-agent-and-the-firmware-en.pdf` | 24 | `vol2-the-agent-and-the-firmware.pdf` | 24 |
-| 3. What the BIOS cannot see | `vol3-what-the-bios-cannot-see-en.pdf` | 15 | `vol3-what-the-bios-cannot-see.pdf` | 16 |
-| 4. Misconfigured or defective? | `vol4-misconfigured-or-defective-en.pdf` | 18 | `vol4-misconfigured-or-defective.pdf` | 18 |
-| 5. The sacrificial board | *(EN edition pending)* | — | `vol5-la-carte-sacrificielle.pdf` | 17 |
+| 1. Beyond the BIOS | `beyond-the-bios_vol1_a-firmware-study-for-omarchy_EN.pdf` | 22 | `vol1-beyond-the-bios.pdf` | 22 |
+| 2. The agent and the firmware | `beyond-the-bios-vol2_the-agent-and-the-firmware_EN.pdf` | 24 | `vol2-the-agent-and-the-firmware.pdf` | 24 |
+| 3. What the BIOS cannot see | `beyond-the-bios-vol3_what-the-bios-cannot-see_EN.pdf` | 15 | `vol3-what-the-bios-cannot-see.pdf` | 16 |
+| 4. Misconfigured or defective? | `beyond-the-bios-vol4_misconfigured-or-faulty_EN.pdf` | 18 | `vol4-misconfigured-or-defective.pdf` | 18 |
+| 5. The sacrificial board | `beyond-the-bios-vol5_the-sacrificial-board_EN.pdf` | 17 | `vol5-la-carte-sacrificielle.pdf` | 17 |
 
 ## Volume 1 — Beyond the BIOS (firmware study, Omarchy x AM4)
 
@@ -99,6 +99,7 @@ B450-PLUS = a SoC port **and** a board port — developer-grade, unplanned.
 What the study buys instead is the **practical sacrificial bench**: a second
 used B450 (~30-70 €) plus a CH341A programmer, with four drills (identical
 dump, bit-exact vendor flash, recovery, vendor-update rehearsal) that absorb
-the brick risk while the main machine keeps its +0-octet doctrine — and a
+the brick risk while the main machine keeps its +0-byte doctrine — and a
 day-0 tie-in table (nothing blocking for 16/09, the bench is optional
-rehearsal). French edition; EN pending.
+rehearsal). English edition on the `study-en` release (17 p.); French
+original archived on `study-fr`.
