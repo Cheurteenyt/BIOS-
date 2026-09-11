@@ -1,0 +1,237 @@
+{
+ "schema": "omarchy-firmware/ovmf-rehearsal@1",
+ "date": "2026-09-11",
+ "claim_under_test": "the vendor dump arrives into a pipeline that names every GUID, unpacks every signature list, and prices every volume \u2014 no new code is needed on the vendor image, only new inventories",
+ "comparison": "canonical-content identity: JSON re-serialized with sorted keys; registered noise zeroed before hashing (ovmf-siglist.json: ['scale_rehearsal.entries_per_second'])",
+ "specimens": [
+  {
+   "file": "OVMF_CODE_4M.fd",
+   "bytes": 3653632,
+   "sha256_16": "624e06de18b4fa53"
+  },
+  {
+   "file": "OVMF_CODE_4M.ms.fd",
+   "bytes": 3653632,
+   "sha256_16": "1a46295574430cfb"
+  },
+  {
+   "file": "OVMF_CODE_4M.secboot.fd",
+   "bytes": 3653632,
+   "sha256_16": "1a46295574430cfb"
+  },
+  {
+   "file": "OVMF_CODE_4M.secboot.strictnx.fd",
+   "bytes": 3653632,
+   "sha256_16": "9ee9f2382e0c6aa9"
+  },
+  {
+   "file": "OVMF_CODE_4M.snakeoil.fd",
+   "bytes": 3653632,
+   "sha256_16": "1a46295574430cfb"
+  },
+  {
+   "file": "OVMF_VARS_4M.fd",
+   "bytes": 540672,
+   "sha256_16": "5d2ac383371b4083"
+  },
+  {
+   "file": "OVMF_VARS_4M.ms.fd",
+   "bytes": 540672,
+   "sha256_16": "0d12f9839018a68f"
+  },
+  {
+   "file": "OVMF_VARS_4M.snakeoil.fd",
+   "bytes": 540672,
+   "sha256_16": "e875a265aabb3fa9"
+  }
+ ],
+ "chain": {
+  "stages_total": 14,
+  "stages_pass": 14,
+  "stages_fail": 0,
+  "artifacts_total": 16,
+  "artifacts_end_identical": 16,
+  "artifacts_end_changed": 0,
+  "artifacts_restored": 0,
+  "total_wall_s": 25.35
+ },
+ "stages": [
+  {
+   "stage": "census",
+   "script": "ovmf_census.py",
+   "exit": 0,
+   "wall_s": 0.3,
+   "artifacts": {
+    "ovmf-census.json": "identical"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "keyring",
+   "script": "nvram_anatomy.py",
+   "exit": 0,
+   "wall_s": 0.05,
+   "artifacts": {
+    "ovmf-keyring.json": "identical"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "build-delta",
+   "script": "gate_xray_probe.py",
+   "exit": 0,
+   "wall_s": 0.33,
+   "artifacts": {
+    "ovmf-build-delta.json": "identical"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "pe-provenance",
+   "script": "pe_provenance_probe.py",
+   "exit": 0,
+   "wall_s": 0.38,
+   "artifacts": {
+    "ovmf-pe-provenance.json": "identical"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "ring5",
+   "script": "ring5_probe.py",
+   "exit": 0,
+   "wall_s": 10.53,
+   "artifacts": {
+    "ovmf-ms-delta.json": "identical",
+    "ovmf-acpi-footprint.json": "identical",
+    "ovmf-ifr-grammar.json": "identical"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "ifr-census",
+   "script": "ring6_ifr_probe.py",
+   "exit": 0,
+   "wall_s": 5.27,
+   "artifacts": {
+    "ovmf-ifr-census.json": "identical"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "facade",
+   "script": "ring7_facade_probe.py",
+   "exit": 0,
+   "wall_s": 2.06,
+   "artifacts": {
+    "ovmf-ifr-facade.json": "changed"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "facade-final",
+   "script": "ring7_artifact_final.py",
+   "exit": 0,
+   "wall_s": 0.05,
+   "artifacts": {
+    "ovmf-ifr-facade.json": "changed"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "depex-dag",
+   "script": "ring8_depex_dag.py",
+   "exit": 0,
+   "wall_s": 0.37,
+   "artifacts": {
+    "ovmf-depex-dag.json": "identical"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "scsu",
+   "script": "ring8_scsu_strings.py",
+   "exit": 0,
+   "wall_s": 5.29,
+   "artifacts": {
+    "ovmf-scsu-strings.json": "identical"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "pkg3",
+   "script": "ring8_pkg3_head.py",
+   "exit": 0,
+   "wall_s": 0.23,
+   "artifacts": {
+    "ovmf-pkg3-head.json": "identical",
+    "ovmf-ifr-facade.json": "identical"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "guid-names",
+   "script": "ring9_guid_names.py",
+   "exit": 0,
+   "wall_s": 0.07,
+   "artifacts": {
+    "ovmf-guid-names.json": "identical"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "siglist",
+   "script": "ring9_siglist.py",
+   "exit": 0,
+   "wall_s": 0.05,
+   "artifacts": {
+    "ovmf-siglist.json": "identical"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  },
+  {
+   "stage": "weight-map",
+   "script": "ring9_weight_map.py",
+   "exit": 0,
+   "wall_s": 0.35,
+   "artifacts": {
+    "ovmf-weight-map.json": "identical"
+   },
+   "verdict": "PASS",
+   "stderr_tail": []
+  }
+ ],
+ "end_state": {
+  "ovmf-acpi-footprint.json": "identical",
+  "ovmf-build-delta.json": "identical",
+  "ovmf-census.json": "identical",
+  "ovmf-depex-dag.json": "identical",
+  "ovmf-guid-names.json": "identical",
+  "ovmf-ifr-census.json": "identical",
+  "ovmf-ifr-facade.json": "identical",
+  "ovmf-ifr-grammar.json": "identical",
+  "ovmf-keyring.json": "identical",
+  "ovmf-kill-list.json": "identical",
+  "ovmf-ms-delta.json": "identical",
+  "ovmf-pe-provenance.json": "identical",
+  "ovmf-pkg3-head.json": "identical",
+  "ovmf-scsu-strings.json": "identical",
+  "ovmf-siglist.json": "identical",
+  "ovmf-weight-map.json": "identical"
+ },
+ "verdict": "REPRODUCIBLE",
+ "note": "every lab artifact backed up pre-chain and restored byte-for-byte post-chain; per-stage artifact states are mid-chain churn records (the facade stage rewrites what later stages re-finalize); chain identity is judged at chain end; this file is the only lab file the rehearsal writes"
+}

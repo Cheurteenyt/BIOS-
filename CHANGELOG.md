@@ -4,6 +4,54 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the tenth ring (the general rehearsal: the pipeline proves itself before the machine)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Investigation (ring 10 — the 14-stage lab pipeline chained end to
+end for the first time)**
+- **The general rehearsal** (`ovmf-rehearsal.json`): all fourteen
+  producer probes run in one timed pass over the four OVMF specimens,
+  with backup/restore safety. Run 1: 14/14 stages exit 0 in 25.4 s —
+  and three artifacts come back byte-changed, verdict PARTIAL. The
+  nondeterminism is classified into three species by a structural
+  differ: **ordering instability** (ms-delta's `changed` list
+  iterated a Python set — fixed at source, the intersection is
+  sorted), **artifact/producer drift** (the scsu artifact predated
+  two `_meta` registrations its producer emits — the regenerated
+  superset is adopted), and **measurement noise** (siglist's
+  wall-clock `entries_per_second`, 0.8 % across runs — registered
+  and canonically zeroed, not pretended stable). Run 2: **verdict
+  REPRODUCIBLE** — 16/16 artifacts end content-identical, zero
+  restored. Ring 9's claim "only new inventories on the vendor
+  image" is now a measured fact on this specimen set.
+- **The facade churn is data**: stages 7–8 rewrite the facade
+  artifact and stage 11 re-finalizes it — mid-chain states are
+  recorded, chain identity is judged at chain end, and the artifact
+  converges byte-exact.
+- **The day-0 protocol becomes a repo document**
+  (`docs/day0-protocol.md`): the lab half of the "replay day, not a
+  discovery day" doctrine — the stage order, the five tripwires
+  (empty-string dbx, nesting rule, unknown-opcode policy,
+  zero-raw-GUID target, category errors), the vendor-report
+  skeleton, and the honesty line (reproducibility proven on OVMF,
+  not on vendor silicon).
+
+**Added**
+- `docs/day0-protocol.md` — reading a vendor image: the lab pipeline,
+  the tripwires, the report skeleton.
+- `lab/ovmf-rehearsal.json` — the rehearsal record (stages, timings,
+  end-state identity, verdict).
+- `lab/findings-tenth-ring.md` — the ring narrative.
+
+**Changed**
+- `lab/ovmf-scsu-strings.json` — refreshed to its producer's final
+  state (adds `decoder_seeding_rule`, `header_layout_observed` to
+  `_meta`).
+- `lab/ovmf-ms-delta.json` — `changed` lists now sort-stable (the
+  instrument's set-iteration defect fixed in the sandbox probe).
+
 ## Unreleased — the ninth ring (the nameplate, the trust store unpacked, and the weight of the firmware)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

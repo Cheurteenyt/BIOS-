@@ -7,7 +7,9 @@
   "instruments": "ring8_scsu_strings.py; UTS#6 decoder implemented here (windows seeded from each package's LanguageWindow); ring6/ring7 machinery reused verbatim (pierce, modules, direct_forms, find_strings_packages, dissect_forms)",
   "method": "T1 block census over every strings package; T2 SCSU decode on every 0x10-0x13 block + synthetic self-tests; T3 needed-id closure per forms package against all of the module's strings packages, then the whole build",
   "read_only": true,
-  "zero_bytes_written": true
+  "zero_bytes_written": true,
+  "decoder_seeding_rule": "windows = package LanguageWindow if any word non-zero, else UTS#6 defaults — the corpus ships the window ALL-ZEROS (header_probe), so the fallback is the byte-driven condition; no real SCSU block exists to exercise it further",
+  "header_layout_observed": "compiled STRING package header = {u32 len:type, u32 HdrSize, u32 StringInfoOffset, LanguageWindow[16] (zeroed), LanguageName u16, CHAR8 tag} = 0x34 to SIBT; no CharSet / PrintableLanguageName byte before the tag in the emitted form"
  },
  "_scsu_selftest": [
   "ascii=PASS",
