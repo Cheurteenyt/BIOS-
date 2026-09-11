@@ -4,6 +4,50 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the fifteenth ring (what an update changes; the chain that holds)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**The release-delta lens.** The two official PRIME B450-PLUS releases
+— 3604 (2022-03-16) and 4655 (2026-08-27), both pinned from the ASUS
+API ledger in ring 12 — diffed at FFS-body sha256 granularity, outer
+and pierced-inner volumes alike. The GUID set joins at 616 files:
+**285 unchanged / 322 changed / 7 added / 2 removed — 46.3 % of the
+board byte-identical across 4.5 years.** A BIOS update is a targeted
+transplant into a mostly frozen body, not a rewrite. The churn is
+exactly where a vendor must rebuild per AGESA generation
+(`AmdApcb*`, `AmdCcx*` — `AmdCcxZen3Dxe` grows 71,958 → 85,942 B,
+the Zen 3 story measured in bytes — `AmdCpm*`, and their SMM
+shadows): 201 DXE, 65 SMM. The headline is in the **seven added
+modules**: `PrepareWhiteListSmm`, `SbRomArmorSmm`, `FlashSmiSmm`,
+`FlashSmiDxe` — ASUS flash-attack hardening shipped into the same
+window the industry needed it. And one cross-check earned mid-lens:
+the ring-14 NVRAM anchor (`CEF5B9A3…`) changes content at identical
+size (130,952 B) — factory defaults moved; the delta lens re-derived
+ring 14's finding from the other direction, unprompted.
+
+**The second generale.** The six vendor lenses chained in protocol
+order — unwrap → census → versions → PSP → NVAR → depex — two full
+runs, every register byte-compared, judged the ring-10 way. Run 1:
+COMPLETE-NOT-IDENTICAL — the ritual caught the *same species* ring
+10 caught (set-iteration key order leaking into
+`mirror_census_delta.phases_delta`; the fix is the same one
+`sorted()` at the source). Run 2: **REPRODUCIBLE — 6 stages × 2
+runs, all registers byte-identical, ~8 s per chain.** The day-0
+protocol now has its vendor table, fixed by rehearsal.
+
+**Identity at body-hash honesty.** 269 of 322 changed modules carry
+a name — lent by the 532-GUID quorum join (the packaging lens holds:
+ASUS's own voice is one UI section wide); 53 are recorded as GUIDs,
+never invented names. Two releases measured of 39; the method
+extends, the other 37 were not downloaded. AGESA level strings were
+not recovered (a future lens or the dump's).
+
+Artifacts: `lab/vendor-release-delta.json` +
+`lab/vendor-day0-chain.json`; narrative
+`lab/findings-fifteenth-ring.md`.
+
 ## Unreleased — the fourteenth ring (the NVRAM opens; the register renames itself)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

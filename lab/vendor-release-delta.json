@@ -1,0 +1,2565 @@
+{
+ "schema": "omarchy-firmware/vendor-release-delta@1",
+ "date": "2026-09-11",
+ "note": "the release-delta lens: same board, two official releases 4.5 years apart, diffed at FFS-body granularity (sha256_16 of file body). What does a BIOS update actually change?",
+ "identity_rule": "hash of the FFS file BODY (all sections concatenated as walked) \u2014 the header carries size/state bits that churn without content change",
+ "name_join": {
+  "size": 532,
+  "sources": [
+   "ring12-quorum scratch (ASRock 382 named, ASUS 4655 UI)",
+   "ring11-census scratch (MSI, Gigabyte)",
+   "lab/ovmf-guid-names.json (ring 9)"
+  ],
+  "lesson": "the ring-13 packaging lens holds: ASUS ships 384 VERSION sections and ONE UI section, so the two ROMs alone cannot name their modules \u2014 the quorum boards lend their voices"
+ },
+ "sides": {
+  "3604": {
+   "bytes": 16777216,
+   "sha256_16": "dbabcc8c1d7e6dc4",
+   "tops": [
+    "0x9c0000",
+    "0xf00000",
+    "0x980000",
+    "0x40000"
+   ],
+   "modules_total": 618,
+   "agesa": [
+    "AGESA Driver"
+   ]
+  },
+  "4655": {
+   "bytes": 16777216,
+   "sha256_16": "284ea676ee6cbf42",
+   "tops": [
+    "0x9c0000",
+    "0xf00000",
+    "0x980000",
+    "0x40000"
+   ],
+   "modules_total": 623,
+   "agesa": [
+    "AGESA Driver"
+   ]
+  }
+ },
+ "delta": {
+  "unchanged": 285,
+  "changed": 322,
+  "added": 7,
+  "removed": 2,
+  "pct_unchanged": 46.3,
+  "changed_by_phase": {
+   "DXE": 201,
+   "SMM": 65,
+   "freeform": 42,
+   "fv_image": 5,
+   "raw": 4,
+   "PEI": 2,
+   "DXE-core": 1,
+   "SMM-core": 1,
+   "pad": 1
+  },
+  "added_by_phase": {
+   "SMM": 3,
+   "freeform": 2,
+   "DXE": 2
+  },
+  "removed_by_phase": {
+   "SMM": 2
+  },
+  "named_changed": 269,
+  "changed_named": [
+   {
+    "guid": "00160F8D-2B35-4DF2-BBE0-B272A8D631F0",
+    "name": "FirmwarePerformanceDxe",
+    "phase": "DXE",
+    "size_3604": 4914,
+    "size_4655": 4914,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "023B3AA9-098F-4027-B83F-B6407DA06569",
+    "name": "AmdPspFtpmDxe",
+    "phase": "DXE",
+    "size_3604": 3634,
+    "size_4655": 3634,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "025BBFC7-E6A9-4B8B-82AD-6815A1AEAF4A",
+    "name": "MnpDxe",
+    "phase": "DXE",
+    "size_3604": 30026,
+    "size_4655": 30154,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "03E51535-D1B9-4745-9BC6-9DA7F6468438",
+    "name": "1.0",
+    "phase": "SMM",
+    "size_3604": 12990,
+    "size_4655": 14014,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "04EAAAA1-29A1-11D7-8838-00500473D4EB",
+    "name": "UsbRtSmm",
+    "phase": "SMM",
+    "size_3604": 144502,
+    "size_4655": 130678,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "056623DC-1285-4EAF-9446-75C3B00F78C6",
+    "name": "FchMultiFchDxe",
+    "phase": "DXE",
+    "size_3604": 11990,
+    "size_4655": 11990,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "0684C591-19E8-499D-978A-D715636F1DAB",
+    "name": "AmdRasRvDxe",
+    "phase": "DXE",
+    "size_3604": 9018,
+    "size_4655": 9018,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "0718AD81-F26A-4850-A6EC-F268E309D707",
+    "name": "Tpm20PlatformDxe",
+    "phase": "DXE",
+    "size_3604": 78110,
+    "size_4655": 78366,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "077A3100-1667-45FA-B98C-37651B5073EE",
+    "name": "TpmSmbiosDxe",
+    "phase": "DXE",
+    "size_3604": 6722,
+    "size_4655": 6722,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "07D279A1-34E4-4168-993B-178B3ACC68EF",
+    "name": "AodSetupDxe",
+    "phase": "DXE",
+    "size_3604": 103474,
+    "size_4655": 104594,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "07F6A3D8-9320-4BCB-BA8B-4FA6055D909D",
+    "name": "AmdPspP2CmboxV2Ssp",
+    "phase": "SMM",
+    "size_3604": 24786,
+    "size_4655": 25298,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "0948381E-0B3D-43A9-8E03-F2489F2B9E2E",
+    "name": "FchSmmDispatcher",
+    "phase": "SMM",
+    "size_3604": 21678,
+    "size_4655": 21678,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "0C375A90-4C4C-4428-8EA0-531BE8959BF7",
+    "name": "FlashDriverSmm",
+    "phase": "SMM",
+    "size_3604": 25718,
+    "size_4655": 27766,
+    "ver_3604": "0.0",
+    "ver_4655": "0.0"
+   },
+   {
+    "guid": "0D42E9AB-5DDE-4CAC-A485-0215C252717F",
+    "name": "AmdSmmControl",
+    "phase": "DXE",
+    "size_3604": 7818,
+    "size_4655": 8842,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "0F647B12-5FA2-4B5E-9D61-2AB3C51F224E",
+    "name": "BctBaseSmmSSP",
+    "phase": "SMM",
+    "size_3604": 13466,
+    "size_4655": 13978,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "11726D68-F147-48DF-AB16-0489818BD570",
+    "name": "AmiHpetTimer",
+    "phase": "DXE",
+    "size_3604": 3818,
+    "size_4655": 3882,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "1202A8F2-99C7-4521-AED5-148C9D6B39C9",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 8642,
+    "size_4655": 9538,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "15E4C005-52C0-444C-8C94-56FFA04C7B36",
+    "name": "SmuV12Dxe",
+    "phase": "DXE",
+    "size_3604": 27610,
+    "size_4655": 27482,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "16271FCA-55D9-4A33-93FC-5A3EB128DEB6",
+    "name": "CrbDxe",
+    "phase": "DXE",
+    "size_3604": 5762,
+    "size_4655": 5762,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "162793AA-0FE7-4010-9818-45F55C5CCC3E",
+    "name": "AmdCpmInitDxe",
+    "phase": "DXE",
+    "size_3604": 31714,
+    "size_4655": 31842,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "164CE56B-5EBC-4984-B0DA-C12B4F21D2EC",
+    "name": "AmdRasRvSmm",
+    "phase": "SMM",
+    "size_3604": 21182,
+    "size_4655": 21182,
+    "ver_3604": "1.1",
+    "ver_4655": "1.1"
+   },
+   {
+    "guid": "164E5590-FB7A-47B9-8687-3E91DA499D97",
+    "name": "AmiAmdUefiRaid",
+    "phase": "DXE",
+    "size_3604": 7190,
+    "size_4655": 7190,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "16D0A23E-C09C-407D-A14A-AD058FDD0CA1",
+    "name": "ACPI",
+    "phase": "DXE",
+    "size_3604": 10646,
+    "size_4655": 10646,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "171F43DC-C4D9-47A6-9641-65DDCDD5AA30",
+    "name": "UsbRtDxe",
+    "phase": "DXE",
+    "size_3604": 130930,
+    "size_4655": 118130,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "174CF46D-B167-4E6A-B1CD-D41E24EFA0F9",
+    "name": "1.0",
+    "phase": "SMM",
+    "size_3604": 6794,
+    "size_4655": 7834,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "177B2C74-9674-45F4-AAEB-43F5506AE0FE",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 29570,
+    "size_4655": 29570,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "17AAF4D7-0E18-4B99-87C6-94C8B5F25FB4",
+    "name": "FchShastaSmmInit",
+    "phase": "SMM",
+    "size_3604": 31002,
+    "size_4655": 31002,
+    "ver_3604": "1.1",
+    "ver_4655": "1.1"
+   },
+   {
+    "guid": "17AF0060-A98C-4A03-90AD-6ABED75045BD",
+    "name": "CbsBaseDxeRV",
+    "phase": "DXE",
+    "size_3604": 9666,
+    "size_4655": 9666,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "1807040D-5934-41A2-A088-8E0F777F71AB",
+    "name": "NvramDxe",
+    "phase": "DXE",
+    "size_3604": 56914,
+    "size_4655": 58962,
+    "ver_3604": "0.0",
+    "ver_4655": "0.0"
+   },
+   {
+    "guid": "196CA3D8-9A5A-4735-B328-8FFC1D93D188",
+    "name": "TcgPlatformSetupPolicy",
+    "phase": "DXE",
+    "size_3604": 3638,
+    "size_4655": 3606,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "1A1E4886-9517-440E-9FDE-3BE44CEE2136",
+    "name": "CpuDxe",
+    "phase": "DXE",
+    "size_3604": 45586,
+    "size_4655": 45618,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "1A7E4468-2F55-4A56-903C-01265EB7622B",
+    "name": "TcpDxe",
+    "phase": "DXE",
+    "size_3604": 51626,
+    "size_4655": 51914,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "1CF59BF9-E3F6-4D9D-BB94-8B857278BBC6",
+    "name": "GnbDxe",
+    "phase": "DXE",
+    "size_3604": 16982,
+    "size_4655": 16982,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "1DACE8EE-CD97-491E-8A0C-305D6437323C",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 20794,
+    "size_4655": 20794,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "1DFB7BFA-BF8E-4D11-9766-2FB0D0442310",
+    "name": "AmiAgesaDxe",
+    "phase": "DXE",
+    "size_3604": 2514,
+    "size_4655": 2514,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "2237C798-93E7-4119-B10C-CF75CD22BFE0",
+    "name": "AmdApcbZpDxe",
+    "phase": "DXE",
+    "size_3604": 26646,
+    "size_4655": 26326,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "22EA234F-E72A-11E4-91F9-28D2447C4829",
+    "name": "HttpUtilitiesDxe",
+    "phase": "DXE",
+    "size_3604": 4450,
+    "size_4655": 4610,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "2486829B-D3F3-47EC-827A-FC104907FC5C",
+    "name": "SmmGenericSio",
+    "phase": "SMM",
+    "size_3604": 13942,
+    "size_4655": 14454,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "25075106-F537-4BD4-AFA5-CFF0E6F3B2A6",
+    "name": "AmdFabricRvDxe",
+    "phase": "DXE",
+    "size_3604": 27702,
+    "size_4655": 27702,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "2785ED8A-795F-43A1-AE2D-6BFFECCBA646",
+    "name": "AcpiUpdateCpuInfo",
+    "phase": "DXE",
+    "size_3604": 4850,
+    "size_4655": 4850,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "27F51949-1577-4CF6-B2E2-AE9392A4EBB7",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 12406,
+    "size_4655": 12438,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "28374747-76FF-41B3-9740-381EFAEF13BC",
+    "name": "PspPlatformDriver",
+    "phase": "DXE",
+    "size_3604": 15922,
+    "size_4655": 15666,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "28AB63A9-5FB0-4C93-9C44-0DD8A1E9101D",
+    "name": "AmdNbioAlibRVDxe",
+    "phase": "DXE",
+    "size_3604": 27670,
+    "size_4655": 27670,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "29D40F30-E8BF-4803-88A6-4247A29A5318",
+    "name": "AmdVersionDxe",
+    "phase": "DXE",
+    "size_3604": 1282,
+    "size_4655": 1282,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "2AD511C7-1B60-4002-841D-2998DDC138EE",
+    "name": "CryptoSMM",
+    "phase": "SMM",
+    "size_3604": 65126,
+    "size_4655": 65126,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "2D59F041-53A4-40D0-A6CD-844DC0DFEF17",
+    "name": "SmmS3SaveState",
+    "phase": "SMM",
+    "size_3604": 15974,
+    "size_4655": 15974,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "2FA2A6DA-11D5-4DC3-999A-749648B03C56",
+    "name": "PiSmmIpl",
+    "phase": "DXE",
+    "size_3604": 15462,
+    "size_4655": 15462,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "2FE607A1-B7D3-41D6-BE4A-DA60BD1CAAAC",
+    "name": "FchSmmDispatcher",
+    "phase": "SMM",
+    "size_3604": 21146,
+    "size_4655": 21146,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "30AF1245-A58E-4EF7-8C75-B725939B3B9F",
+    "name": "AmdCpmInitSmm",
+    "phase": "SMM",
+    "size_3604": 29286,
+    "size_4655": 31334,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "30AF4110-A58E-4EF7-8C75-B725939B3B9F",
+    "name": "AmdCpmDisplayFeatureSmm",
+    "phase": "SMM",
+    "size_3604": 13450,
+    "size_4655": 13962,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "3115C2AC-27E1-14A9-53CD-AC4734802AD7",
+    "name": "AmiPspSetPcdForRecovery",
+    "phase": "DXE",
+    "size_3604": 1794,
+    "size_4655": 1794,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "316B1230-0500-4592-8C09-EABA0FB6B078",
+    "name": "SmmPcieSataController",
+    "phase": "SMM",
+    "size_3604": 7782,
+    "size_4655": 7782,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "316B1230-0500-4592-8C09-EABA0FB6B07F",
+    "name": "SmmHddSecurity",
+    "phase": "SMM",
+    "size_3604": 12426,
+    "size_4655": 12426,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "31D244BB-0453-443B-877D-30A86734C101",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 18966,
+    "size_4655": 18966,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "3370A4BD-8C23-4565-A2A2-065FEEDE6080",
+    "name": "SecSMIFlash",
+    "phase": "SMM",
+    "size_3604": 22226,
+    "size_4655": 22738,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "338E6713-0295-4C05-A0BB-D945A4595F11",
+    "name": "CbsBaseDxeSSP",
+    "phase": "DXE",
+    "size_3604": 9250,
+    "size_4655": 9314,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "347B85F0-E917-4E74-85BA-F494071EEE52",
+    "name": "FchSHSataD3ColdSmm",
+    "phase": "SMM",
+    "size_3604": 10926,
+    "size_4655": 10926,
+    "ver_3604": "1.1",
+    "ver_4655": "1.1"
+   },
+   {
+    "guid": "348C4D62-BFBD-4882-9ECE-C80BB1C4783B",
+    "name": "HiiDatabase",
+    "phase": "DXE",
+    "size_3604": 105410,
+    "size_4655": 105506,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "350E108F-D97A-403C-80C3-07F3AB091AF0",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 59830,
+    "size_4655": 74358,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "351D2427-262C-4A0B-874C-23703B4AA88D",
+    "name": "AmdNbioBaseZPDxe",
+    "phase": "DXE",
+    "size_3604": 6550,
+    "size_4655": 6550,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "369DE372-AB36-4CE1-8E45-8806B76DD70F",
+    "name": "PspResource",
+    "phase": "DXE",
+    "size_3604": 10822,
+    "size_4655": 10854,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "37A01080-2346-4A54-9900-D22B7B687C22",
+    "name": "SmmPciRbIo",
+    "phase": "SMM",
+    "size_3604": 15534,
+    "size_4655": 15534,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "39045756-FCA3-49BD-8DAE-C7BAE8389AFF",
+    "name": "Tcg2Dxe",
+    "phase": "DXE",
+    "size_3604": 81658,
+    "size_4655": 81658,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "399A229D-F654-4CEF-9ED3-6FC3C992E311",
+    "name": "PciDxeInit",
+    "phase": "DXE",
+    "size_3604": 13730,
+    "size_4655": 13794,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "399A229D-F654-4CEF-9ED3-6FC3C992E39C",
+    "name": "PciDxeInit",
+    "phase": "DXE",
+    "size_3604": 13794,
+    "size_4655": 13858,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "3A2A83F2-98AC-4A8B-BBBC-DDDCC655A0D6",
+    "name": "FchShastaDxe",
+    "phase": "DXE",
+    "size_3604": 34314,
+    "size_4655": 34314,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "3ACEB0C0-3C72-11E4-9A56-74D435052646",
+    "name": "TlsDxe",
+    "phase": "DXE",
+    "size_3604": 1637258,
+    "size_4655": 1549706,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "3C1DE39F-D207-408A-AACC-731CFB7F1DD7",
+    "name": "PciBus",
+    "phase": "DXE",
+    "size_3604": 80074,
+    "size_4655": 80714,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "3C9A095D-C3CB-4302-96E1-7105A7C46A69",
+    "name": "AmdCcxZenRvDxe",
+    "phase": "DXE",
+    "size_3604": 69846,
+    "size_4655": 84982,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "3E7788CA-2BFC-4FCE-8122-5176CA492D9F",
+    "name": "CbsSetupDxeRV",
+    "phase": "DXE",
+    "size_3604": 133106,
+    "size_4655": 133586,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "40B086C3-95B5-444F-A895-CBF484A19A0F",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 7142,
+    "size_4655": 7142,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "41B13735-0E0A-4F67-96D1-B15DA28205FA",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 8258,
+    "size_4655": 9282,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "41EF54AD-E2CA-4433-FD27-D9CACA621EAE",
+    "name": "AmdNbioIOMMUDxe",
+    "phase": "DXE",
+    "size_3604": 29546,
+    "size_4655": 29002,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "43E7ABDD-E352-4CFB-A230-4CDC1D350E5C",
+    "name": "GraphicsConsole",
+    "phase": "DXE",
+    "size_3604": 22122,
+    "size_4655": 22122,
+    "ver_3604": "0.1",
+    "ver_4655": "0.1"
+   },
+   {
+    "guid": "447A1B58-8F3E-4658-ABAA-9E7B2280B90A",
+    "name": "NvramSmm",
+    "phase": "SMM",
+    "size_3604": 56510,
+    "size_4655": 57534,
+    "ver_3604": "0.0",
+    "ver_4655": "0.0"
+   },
+   {
+    "guid": "4551F2F5-C684-4F27-936F-C7B04A5C5FF1",
+    "name": "SecureBootDXE",
+    "phase": "DXE",
+    "size_3604": 7522,
+    "size_4655": 6658,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "4735EC40-F0B8-4102-A4C1-2E83B6B0C0BD",
+    "name": "FchHuashanDxe",
+    "phase": "DXE",
+    "size_3604": 40906,
+    "size_4655": 40906,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "4759E93E-8F44-448F-88A1-BD97FC47BEA5",
+    "name": "AmdPspP2CmboxV2",
+    "phase": "SMM",
+    "size_3604": 24274,
+    "size_4655": 25298,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "49FC00CF-BBD2-4FD4-B9D1-F084A51EB708",
+    "name": "ApobSspDxe",
+    "phase": "DXE",
+    "size_3604": 9638,
+    "size_4655": 9670,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "4A1A67D0-E77A-4F0A-AF1D-CC412BE93DC9",
+    "name": "AmdCcxZenZpDxe",
+    "phase": "DXE",
+    "size_3604": 69878,
+    "size_4655": 85014,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "4A3ED697-E9BC-40FE-BDD5-6F99FCDCE9F4",
+    "name": "AmdNbioAlibZpDxe",
+    "phase": "DXE",
+    "size_3604": 42454,
+    "size_4655": 42454,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "4A69756B-209B-4D57-8810-142DAC6BB7B5",
+    "name": "FchSandstoneSmmInit",
+    "phase": "SMM",
+    "size_3604": 38682,
+    "size_4655": 38682,
+    "ver_3604": "1.1",
+    "ver_4655": "1.1"
+   },
+   {
+    "guid": "4BEB96B4-C069-4C49-845F-1C1CC68CD8D6",
+    "name": "FchShastaSsdt",
+    "phase": "DXE",
+    "size_3604": 2794,
+    "size_4655": 2794,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "4BEECAFE-5F02-432E-44B9-3CA5CA5DF189",
+    "name": "AmdNbioBaseSspDxe",
+    "phase": "DXE",
+    "size_3604": 6486,
+    "size_4655": 6486,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "4C006CD9-19BA-4617-8483-609194A1ACFC",
+    "name": "UsbInt13",
+    "phase": "DXE",
+    "size_3604": 5126,
+    "size_4655": 5158,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "4C8BDF60-2085-4577-8A46-96CB180967BC",
+    "name": "Tpm20Acpi",
+    "phase": "DXE",
+    "size_3604": 10586,
+    "size_4655": 10586,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "4CC14F19-C626-4AB6-9DEA-CA6C01FD10CD",
+    "name": "1.0",
+    "phase": "PEI",
+    "size_3604": 498,
+    "size_4655": 498,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "4D3708A0-6D9B-47D3-AD87-E80C781BC0A7",
+    "name": "AmdApcbDxeV3",
+    "phase": "DXE",
+    "size_3604": 34838,
+    "size_4655": 33750,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "501F30E9-D14F-47DA-AE60-B101E4189D07",
+    "name": "AhciInt13Smm",
+    "phase": "SMM",
+    "size_3604": 10870,
+    "size_4655": 11402,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "50F6096D-7C98-4C78-9A1D-C5A1833B6A88",
+    "name": "AmiTcgNvflagSample",
+    "phase": "DXE",
+    "size_3604": 3830,
+    "size_4655": 2774,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "50FA026A-7DF0-4C61-A12A-951D3948DC25",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 5570,
+    "size_4655": 5570,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "529D3F93-E8E9-4E73-B1E1-BDF6A9D50113",
+    "name": "ArpDxe",
+    "phase": "DXE",
+    "size_3604": 13354,
+    "size_4655": 13482,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "52A9B223-FAB8-4A24-AEA6-461A59BD3F33",
+    "name": "AmdSmbiosDxe",
+    "phase": "DXE",
+    "size_3604": 18458,
+    "size_4655": 73146,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "5466B9AA-EE2F-4FDB-84A3-A330BE1301FF",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 8770,
+    "size_4655": 8770,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "55538D1E-B4C5-4BD5-B594-9B5BA9774F1E",
+    "name": "AodSetupDxe",
+    "phase": "DXE",
+    "size_3604": 104434,
+    "size_4655": 105554,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "56AA1233-7407-4058-9E17-88DE138EA15D",
+    "name": "AmdCcxZen3CznDxe",
+    "phase": "DXE",
+    "size_3604": 71958,
+    "size_4655": 85942,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "57E56594-CE95-46AD-9531-3C49310CA7CE",
+    "name": "Ofbd",
+    "phase": "SMM",
+    "size_3604": 20086,
+    "size_4655": 22134,
+    "ver_3604": "2.0",
+    "ver_4655": "2.0"
+   },
+   {
+    "guid": "57E9EEE9-EB7D-4453-BBF7-6C138BF06458",
+    "name": "AmdCpmDisplayFeatureDxe",
+    "phase": "DXE",
+    "size_3604": 16230,
+    "size_4655": 16230,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "580DD900-385D-11D7-883A-00500473D4EB",
+    "name": "Uhcd",
+    "phase": "DXE",
+    "size_3604": 71378,
+    "size_4655": 72818,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "59242DD8-E7CF-4979-B60E-A6067E2A185F",
+    "name": "LegacyRegion",
+    "phase": "DXE",
+    "size_3604": 12982,
+    "size_4655": 12982,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "599438A7-4292-4977-8C06-FFC16C445E83",
+    "name": "AmdApcbZpSmm",
+    "phase": "SMM",
+    "size_3604": 29358,
+    "size_4655": 29358,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "5A91B539-5D1E-46E3-A832-2ABA925863FF",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 59830,
+    "size_4655": 74390,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "5AD83885-8955-499B-8E9A-EBC24B6E76B1",
+    "name": "AmdNbioSmuV9Dxe",
+    "phase": "DXE",
+    "size_3604": 31802,
+    "size_4655": 31802,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "5B2820BB-9A8A-443D-A84C-73B925C5727A",
+    "name": "AmdApcbRvDxe",
+    "phase": "DXE",
+    "size_3604": 26774,
+    "size_4655": 25814,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C",
+    "name": "Ip6Dxe",
+    "phase": "DXE",
+    "size_3604": 80390,
+    "size_4655": 80646,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "5C0FB3B9-F7BB-467B-A4DC-89D7D5A58432",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 16610,
+    "size_4655": 18402,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "5CEBCDE6-1096-4FE2-9921-5F8E25281A3E",
+    "name": "CpuSmm",
+    "phase": "SMM",
+    "size_3604": 3686,
+    "size_4655": 7818,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "5E9CABA3-F2B1-497A-ADAC-24F575E9CDE9",
+    "name": "TcgDxe",
+    "phase": "DXE",
+    "size_3604": 26794,
+    "size_4655": 26890,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "5EA93CAF-A8DD-4400-9FF6-FE343BCAF308",
+    "name": "AodSmmSsp",
+    "phase": "SMM",
+    "size_3604": 24274,
+    "size_4655": 24274,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "5FECEF6B-5FA4-4570-8163-0CF72A9C04C5",
+    "name": "Ps2Main",
+    "phase": "DXE",
+    "size_3604": 24646,
+    "size_4655": 24710,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "60741965-84A0-4191-A04F-DF907E6E1F1E",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 78486,
+    "size_4655": 93782,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "61631080-5573-4310-9AC5-0BAFC95E1C1B",
+    "name": "AmdCcxZen3Smm",
+    "phase": "SMM",
+    "size_3604": 9390,
+    "size_4655": 9390,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "6169AB1C-B05F-4D9C-AFEA-192911E41CE2",
+    "name": "AmdPspSmmV2",
+    "phase": "SMM",
+    "size_3604": 15606,
+    "size_4655": 15606,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "628A497D-2BF6-4264-8741-069DBD3399D6",
+    "name": "ConSplitter",
+    "phase": "DXE",
+    "size_3604": 31750,
+    "size_4655": 31750,
+    "ver_3604": "0.1",
+    "ver_4655": "0.1"
+   },
+   {
+    "guid": "6298FE18-D5EF-42B7-BB0C-2953283F5704",
+    "name": "SleepSmi",
+    "phase": "SMM",
+    "size_3604": 10378,
+    "size_4655": 10378,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "634E8DB5-C432-43BE-A653-9CA2922CC458",
+    "name": "Nvme",
+    "phase": "DXE",
+    "size_3604": 31746,
+    "size_4655": 32066,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "64BEA199-7C6C-4F51-B0DA-F42C897DA5CC",
+    "name": "1.0",
+    "phase": "SMM",
+    "size_3604": 33894,
+    "size_4655": 33894,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "64E6D006-E62A-481E-8F5A-3F76C9184741",
+    "name": "AmdSmmCommunication",
+    "phase": "SMM",
+    "size_3604": 7798,
+    "size_4655": 8310,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "652EC62A-DC15-4B73-B6BD-DAA13BF1D88C",
+    "name": "Cf9ResetSmm",
+    "phase": "SMM",
+    "size_3604": 8346,
+    "size_4655": 8346,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "656F7E22-5701-4341-A9A7-99A5D40A5245",
+    "name": "AmdFabricSspDxe",
+    "phase": "DXE",
+    "size_3604": 40278,
+    "size_4655": 38326,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "668706B2-BCFC-4AD4-A185-75E79F3FE169",
+    "name": "NvmeDynamicSetup",
+    "phase": "DXE",
+    "size_3604": 32246,
+    "size_4655": 32246,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "688BC4BB-6FDB-4B33-A8E1-D7A952DF4B4A",
+    "name": "AmdSmmControl",
+    "phase": "DXE",
+    "size_3604": 7818,
+    "size_4655": 8842,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "6B35FEF5-022F-4596-8422-59AFA264C03A",
+    "name": "1.0",
+    "phase": "SMM",
+    "size_3604": 40622,
+    "size_4655": 40622,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "6B85F263-F584-44F8-BB5D-F02C40795D8E",
+    "name": "SmmTcgStorageSec",
+    "phase": "SMM",
+    "size_3604": 18570,
+    "size_4655": 18058,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "6BFF8B94-D98E-4C7E-8300-E5B64701C118",
+    "name": "ApobZpRvDxe",
+    "phase": "DXE",
+    "size_3604": 9318,
+    "size_4655": 10278,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "6D41FD71-562B-45C1-8C93-53AD8A28EABB",
+    "name": "1.0",
+    "phase": "SMM",
+    "size_3604": 12426,
+    "size_4655": 12426,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B",
+    "name": "Udp4Dxe",
+    "phase": "DXE",
+    "size_3604": 29642,
+    "size_4655": 29834,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "6E5950E5-8610-4AC9-9153-A3D352124A7A",
+    "name": "AmdCcxVhRnSmm",
+    "phase": "SMM",
+    "size_3604": 9390,
+    "size_4655": 9390,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "6F960C35-FFED-4778-99A1-4D998CE519B9",
+    "name": "AmdNbioSmuV10Dxe",
+    "phase": "DXE",
+    "size_3604": 30570,
+    "size_4655": 30570,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "70E1A818-0BE1-4449-BFD4-9EF68C7F02A8",
+    "name": "ReFlash",
+    "phase": "DXE",
+    "size_3604": 38590,
+    "size_4655": 38654,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "71A37E51-F3C8-4B99-B335-A661CA8AD13A",
+    "name": "AmdCpmOemInitDxe",
+    "phase": "DXE",
+    "size_3604": 5840,
+    "size_4655": 5872,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "729B3079-8913-4E12-AFEF-2CA264799469",
+    "name": "AmdAcpiDxe",
+    "phase": "DXE",
+    "size_3604": 19354,
+    "size_4655": 19354,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "73E8D659-D2A2-4720-8316-B9BAD21E5A29",
+    "name": "CbsBaseDxeRN",
+    "phase": "DXE",
+    "size_3604": 6722,
+    "size_4655": 6754,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "73F53712-2A64-4B86-961D-C25B63DF198C",
+    "name": "AmdNbioIOMMURVDxe",
+    "phase": "DXE",
+    "size_3604": 17306,
+    "size_4655": 17274,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "768BEDFD-7B4B-4C9F-B2FF-6377E3387243",
+    "name": "NTFS",
+    "phase": "DXE",
+    "size_3604": 23906,
+    "size_4655": 20866,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "7721929A-D56A-450D-2501-8EA51FA61974",
+    "name": "SbCmos",
+    "phase": "DXE",
+    "size_3604": 4290,
+    "size_4655": 4322,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "77509744-7507-4B5C-BF6C-3BAB83652F4D",
+    "name": "BctBaseSmmRV",
+    "phase": "SMM",
+    "size_3604": 13978,
+    "size_4655": 13978,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "77EB6C06-FD48-488B-A1B3-AE0A70801369",
+    "name": "CryptoDXE",
+    "phase": "DXE",
+    "size_3604": 63554,
+    "size_4655": 64066,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "79DE6AEF-BE2D-4BB2-ACBF-0A67E289DBAF",
+    "name": "AmdCcxVhSmm",
+    "phase": "SMM",
+    "size_3604": 9390,
+    "size_4655": 9390,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "7A54B36F-F745-462C-B11F-16E03E52B617",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 13986,
+    "size_4655": 68642,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "7B668A4F-45E1-4A26-8DEC-81A4A1E58888",
+    "name": "PspDxe",
+    "phase": "DXE",
+    "size_3604": 1058,
+    "size_4655": 1058,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "7C604CBD-5440-46E1-97F7-A4DF8DD09C1C",
+    "name": "AmdSmmControl",
+    "phase": "DXE",
+    "size_3604": 7818,
+    "size_4655": 8842,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "7D6DF4FD-3650-4E77-BF3A-84DC988A025C",
+    "name": "TcgStorageSecurity",
+    "phase": "DXE",
+    "size_3604": 50530,
+    "size_4655": 50466,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "7E68F4F6-3E06-4452-9678-50ED01A209C4",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 60918,
+    "size_4655": 75478,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "805D1C5A-EF12-490A-9E7B-9F4AA2F97E73",
+    "name": "AmiPspNvramSmm",
+    "phase": "SMM",
+    "size_3604": 5750,
+    "size_4655": 5750,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "80CF7257-87AB-47F9-A3FE-D50B76D89541",
+    "name": "PcdDxe",
+    "phase": "DXE",
+    "size_3604": 15390,
+    "size_4655": 15390,
+    "ver_3604": "7.0",
+    "ver_4655": "7.0"
+   },
+   {
+    "guid": "80D7491A-F7D9-479D-A8F7-1B393B02ED66",
+    "name": "FastBootRuntime",
+    "phase": "DXE",
+    "size_3604": 6226,
+    "size_4655": 6226,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "80E66E0A-CCD1-43FA-A7B1-2D5EE0F13910",
+    "name": "PciRootBridge",
+    "phase": "DXE",
+    "size_3604": 32606,
+    "size_4655": 32606,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "828C017B-BA8E-40E6-BDA4-45B6F9F6A8CD",
+    "name": "AmdNbioIOMMUDxe",
+    "phase": "DXE",
+    "size_3604": 24458,
+    "size_4655": 23882,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "82ADB73C-E005-4E07-976D-F7F75314EC4F",
+    "name": "FchSmmDispatcher",
+    "phase": "SMM",
+    "size_3604": 24730,
+    "size_4655": 24730,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "84CDF313-73BD-47C5-A810-81A2477154AA",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 11274,
+    "size_4655": 11274,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "871349B8-C7E6-443A-B9ED-91A41AFFFC82",
+    "name": "SmuV11Dxe",
+    "phase": "DXE",
+    "size_3604": 50618,
+    "size_4655": 63546,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "87C3E993-B28D-4226-89C9-120DBC92ACBF",
+    "name": "SmBusSmm",
+    "phase": "SMM",
+    "size_3604": 14966,
+    "size_4655": 15990,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "899407D7-99FE-43D8-9A21-79EC328CAC21",
+    "name": "Setup",
+    "phase": "DXE",
+    "size_3604": 1186734,
+    "size_4655": 1192846,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "8B786703-E8C7-4BEA-8F07-CDF991B90999",
+    "name": "AmdPspDxeV2Rv",
+    "phase": "DXE",
+    "size_3604": 24698,
+    "size_4655": 25050,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "8C8A2E6C-A56C-4A6C-8C9B-B4B6BB4208AE",
+    "name": "NvmeRaidDxe",
+    "phase": "DXE",
+    "size_3604": 2674,
+    "size_4655": 2674,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "8E09C390-1B30-415E-AF5C-D42AB0160F8C",
+    "name": "AmiCbsDxe",
+    "phase": "DXE",
+    "size_3604": 1938,
+    "size_4655": 1938,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "8E38A88A-C267-4131-A8CD-C0BC80A24CB5",
+    "name": "CbsSetupDxeSSP",
+    "phase": "DXE",
+    "size_3604": 182226,
+    "size_4655": 198130,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "8EEF9AD2-463E-425F-A4FE-2F6783D6F97E",
+    "name": "GenericSio",
+    "phase": "DXE",
+    "size_3604": 27370,
+    "size_4655": 27466,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "8F4B8F82-9B91-4028-86E6-F4DB7D4C1DFF",
+    "name": "Bds",
+    "phase": "DXE",
+    "size_3604": 107522,
+    "size_4655": 108514,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "8F5A2E02-538C-4D59-B920-C4786ACBC552",
+    "name": "Ahci",
+    "phase": "DXE",
+    "size_3604": 35714,
+    "size_4655": 35714,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "927AE345-BB7B-434F-8D29-71BE0D12AB2C",
+    "name": "AmdFabricZpDxe",
+    "phase": "DXE",
+    "size_3604": 29878,
+    "size_4655": 29878,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "94734718-0BBC-47FB-96A5-EE7A5AE6A2AD",
+    "name": "Dhcp4Dxe",
+    "phase": "DXE",
+    "size_3604": 34346,
+    "size_4655": 34506,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "95E3669D-34BE-4775-A651-7EA41B69D89E",
+    "name": "Dhcp6Dxe",
+    "phase": "DXE",
+    "size_3604": 33322,
+    "size_4655": 33546,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "95ECB758-627E-4A2E-B7B8-DC863EFE3425",
+    "name": "AmiDeviceGuardApi",
+    "phase": "DXE",
+    "size_3604": 7554,
+    "size_4655": 7554,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "9622E42C-8E38-4A08-9E8F-54F784652F6B",
+    "name": "AcpiTableDxe",
+    "phase": "DXE",
+    "size_3604": 18274,
+    "size_4655": 18274,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "97A03375-250D-4C59-93A8-F76796725E18",
+    "name": "AmdApcbRvSmm",
+    "phase": "SMM",
+    "size_3604": 27310,
+    "size_4655": 27310,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "97AF1D95-203C-42DE-8D6B-D13EB7E5A55A",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 28354,
+    "size_4655": 14146,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "98584C0B-49D6-4BAF-B542-ECEE2582409C",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 22050,
+    "size_4655": 22562,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "99F03B99-98D8-49DD-A8D3-3219D0FFE41E",
+    "name": "Mtftp6Dxe",
+    "phase": "DXE",
+    "size_3604": 32714,
+    "size_4655": 32874,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "9A29BBE9-74BB-41D3-BCAE-6B086E0FE0C5",
+    "name": "SmuV11DxeVMR",
+    "phase": "DXE",
+    "size_3604": 49850,
+    "size_4655": 63194,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "9B3ADA4F-AE56-4C24-8DEA-F03B7558AE50",
+    "name": "PcdPeim",
+    "phase": "PEI",
+    "size_3604": 11110,
+    "size_4655": 11190,
+    "ver_3604": "7.0",
+    "ver_4655": "7.0"
+   },
+   {
+    "guid": "9FB1A1F3-3B71-4324-B39A-745CBB015FFF",
+    "name": "Ip4Dxe",
+    "phase": "DXE",
+    "size_3604": 56798,
+    "size_4655": 57022,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "A062CF1F-8473-4AA3-8793-600BC4FFE9A8",
+    "name": "CsmDxe",
+    "phase": "DXE",
+    "size_3604": 54010,
+    "size_4655": 54010,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "A1902AB9-5394-45F2-857A-12824213EEFB",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 7270,
+    "size_4655": 7110,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "A2702A3C-62FD-402D-B8C3-1D18F6C6FDE5",
+    "name": "AodSetupDxe",
+    "phase": "DXE",
+    "size_3604": 104434,
+    "size_4655": 105554,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "A29A63E3-E4E7-495F-8A6A-07738300CBB3",
+    "name": "AmiTcgPlatformDxe",
+    "phase": "DXE",
+    "size_3604": 32686,
+    "size_4655": 32686,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "A2F436EA-A127-4EF8-957C-8048606FF670",
+    "name": "SnpDxe",
+    "phase": "DXE",
+    "size_3604": 24138,
+    "size_4655": 24266,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "A334E8C1-F49F-49AA-9F82-9210205FC1FB",
+    "name": "FchSandstoneDxe",
+    "phase": "DXE",
+    "size_3604": 38250,
+    "size_4655": 38250,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "A3FF0EF5-0C28-42F5-B544-8C7DE1E80014",
+    "name": "PiSmmCpuDxeSmm",
+    "phase": "SMM",
+    "size_3604": 38006,
+    "size_4655": 38006,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "A5E369C8-ABF9-4B43-B212-FF1BFD35666D",
+    "name": "CbsSetupDxeZP",
+    "phase": "DXE",
+    "size_3604": 133662,
+    "size_4655": 134110,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "A66AC9CD-1CDE-4854-9856-B9E3D049237B",
+    "name": "DummyMsoa",
+    "phase": "freeform",
+    "size_3604": 132,
+    "size_4655": 132,
+    "ver_3604": null,
+    "ver_4655": null
+   },
+   {
+    "guid": "A77C8452-0821-4544-AE47-257489855F91",
+    "name": "AmiPspNvramDxe",
+    "phase": "DXE",
+    "size_3604": 14386,
+    "size_4655": 14130,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "A9B700CF-019E-4D8B-A3A7-88E1EA01699E",
+    "name": "HddSecurity",
+    "phase": "DXE",
+    "size_3604": 25826,
+    "size_4655": 25890,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "AAF875D2-0968-4585-A40A-B35C9FE0CAEC",
+    "name": "AodSmmZp",
+    "phase": "SMM",
+    "size_3604": 21694,
+    "size_4655": 21694,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "AB4E44B3-1786-4BCB-BB8F-98C349140D69",
+    "name": "FchHuashanSsdt",
+    "phase": "DXE",
+    "size_3604": 2314,
+    "size_4655": 2314,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "AC3AE4F1-6050-4609-B701-6A90B0972E74",
+    "name": "AmdNbioAlibDxe",
+    "phase": "DXE",
+    "size_3604": 43990,
+    "size_4655": 43990,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "ACDEA335-34B9-4FD0-A4B8-FA4DD0F73958",
+    "name": "SmuV12DxeCZN",
+    "phase": "DXE",
+    "size_3604": 39182,
+    "size_4655": 38862,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "ADA1C665-7A8A-467C-84EA-7172B2B65862",
+    "name": "FchSSSataD3ColdSmm",
+    "phase": "SMM",
+    "size_3604": 11950,
+    "size_4655": 11950,
+    "ver_3604": "1.1",
+    "ver_4655": "1.1"
+   },
+   {
+    "guid": "ADD70A4D-1067-4FA3-A669-94C82877F106",
+    "name": "TpmNvmeSupport",
+    "phase": "DXE",
+    "size_3604": 1958,
+    "size_4655": 1190,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "ADFC6F79-AA9F-462B-ABDB-C48E0F6356BF",
+    "name": "AmdFabricRnDxe",
+    "phase": "DXE",
+    "size_3604": 30166,
+    "size_4655": 27446,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "AF1450C2-70DE-44D5-80B1-B90D44277990",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 10054,
+    "size_4655": 10310,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "B11E930D-A082-42E2-A7F2-C63767A4D3E7",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 12242,
+    "size_4655": 12434,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "B13EDD38-684C-41ED-A305-D7B7E32497DF",
+    "name": "Smbios",
+    "phase": "DXE",
+    "size_3604": 34186,
+    "size_4655": 88906,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "B1BAC051-D5C2-4AC1-AC7D-9D2F518A1E7B",
+    "name": "AmdApcbSmmV3",
+    "phase": "SMM",
+    "size_3604": 35502,
+    "size_4655": 34990,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "B219E140-DFFC-11E3-B956-0022681E6906",
+    "name": "DnsDxe",
+    "phase": "DXE",
+    "size_3604": 43306,
+    "size_4655": 43466,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "B342BEBB-41C3-40AB-AA70-E9F3742D1835",
+    "name": "AmdCcxZen3Dxe",
+    "phase": "DXE",
+    "size_3604": 71958,
+    "size_4655": 85942,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "B60BCA70-C90F-4808-8210-5A08BCD69A43",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 59702,
+    "size_4655": 74230,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "B7784107-973C-4957-905E-54455A47E07D",
+    "name": "AmdNbioPcieDxe",
+    "phase": "DXE",
+    "size_3604": 28490,
+    "size_4655": 28490,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "B7A1FDA8-CB3E-4E69-87AF-B67FEC563548",
+    "name": "GnbIoApicUpdate",
+    "phase": "DXE",
+    "size_3604": 5186,
+    "size_4655": 5186,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "B7D19491-E55A-470D-8508-85A5DFA41974",
+    "name": "SbDxe",
+    "phase": "DXE",
+    "size_3604": 12982,
+    "size_4655": 12982,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "B7EE4835-84CE-4B15-BF52-2D11574CE470",
+    "name": "HardwareSignatureEntry",
+    "phase": "DXE",
+    "size_3604": 7970,
+    "size_4655": 7970,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "B90510C4-A6DE-4E45-A50C-A46CCAFEEF91",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 12082,
+    "size_4655": 12434,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "B95E9FDA-26DE-48D2-8807-1F9107AC5E3A",
+    "name": "UefiPxeBcDxe",
+    "phase": "DXE",
+    "size_3604": 68554,
+    "size_4655": 68906,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "BA28936B-4051-48CF-A5CD-B63D7BFCA84A",
+    "name": "SmBusDxe",
+    "phase": "DXE",
+    "size_3604": 10642,
+    "size_4655": 11538,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "BB8C2CF3-A5E3-49EF-941B-4A01FAC6FD5F",
+    "name": "SmiFlashDxe",
+    "phase": "DXE",
+    "size_3604": 5202,
+    "size_4655": 4726,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "BBB77CB9-762D-436C-AC40-8EE4901C3446",
+    "name": "AmdPbsSetupDxe",
+    "phase": "DXE",
+    "size_3604": 48354,
+    "size_4655": 48642,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "BC327DBD-B982-4F55-9F79-056AD7E987C5",
+    "name": "SmiFlash",
+    "phase": "SMM",
+    "size_3604": 34458,
+    "size_4655": 38042,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "BDCE85BB-FBAA-4F4E-9264-501A2C249581",
+    "name": "S3SaveStateDxe",
+    "phase": "DXE",
+    "size_3604": 13986,
+    "size_4655": 13986,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "BE216BA8-38C4-4535-A6CA-5DCA5B43ADDF",
+    "name": "SmiVariable",
+    "phase": "SMM",
+    "size_3604": 8822,
+    "size_4655": 9334,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "C2C0E2E1-CBDB-454C-8F27-96ACEE196367",
+    "name": "BctBaseSmmZP",
+    "phase": "SMM",
+    "size_3604": 25754,
+    "size_4655": 25754,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "C4ECA0B2-5277-4F2B-3ECB-E4175C94812E",
+    "name": "AmiExtraS3Memory",
+    "phase": "DXE",
+    "size_3604": 1122,
+    "size_4655": 1122,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "C70522D0-0DDB-4623-AAB7-B84DFC47EFFD",
+    "name": "AodSmmSsp",
+    "phase": "SMM",
+    "size_3604": 24786,
+    "size_4655": 24786,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "C74F06D2-ED92-489B-879C-C0E428A22167",
+    "name": "UefiRaid",
+    "phase": "DXE",
+    "size_3604": 351938,
+    "size_4655": 348754,
+    "ver_3604": "1.0",
+    "ver_4655": "9.3.0.00308"
+   },
+   {
+    "guid": "C7A7030C-C3D8-45EE-BED9-5D9E76762953",
+    "name": "MouseDriver",
+    "phase": "DXE",
+    "size_3604": 17474,
+    "size_4655": 17474,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "C7A822FA-8FF3-4B43-8A45-BFDA0D1F6668",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 63926,
+    "size_4655": 79222,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "C7DD8530-96D8-40DD-BE88-CBDF446C6474",
+    "name": "Stibp",
+    "phase": "DXE",
+    "size_3604": 2226,
+    "size_4655": 2226,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "C8FD26C4-68B3-4C0D-B06F-338033D61A93",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 7218,
+    "size_4655": 7218,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "C99E42D0-4964-4B09-B924-4A59E13E4F04",
+    "name": "SbRunSmm",
+    "phase": "SMM",
+    "size_3604": 12954,
+    "size_4655": 13466,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "C9C30DD7-91D6-4F75-BF08-846E6020F1A8",
+    "name": "AmdNbioIOMMUZPDxe",
+    "phase": "DXE",
+    "size_3604": 18554,
+    "size_4655": 18490,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "CBC59C4A-383A-41EB-A8EE-4498AEA567E4",
+    "name": "FlashDriver",
+    "phase": "DXE",
+    "size_3604": 24642,
+    "size_4655": 27714,
+    "ver_3604": "0.0",
+    "ver_4655": "0.0"
+   },
+   {
+    "guid": "CCA91175-03E3-442A-B3B8-2E4A335C1DEA",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 26966,
+    "size_4655": 26966,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "CD1C556B-62BF-4EEC-8E73-7731F8E847B2",
+    "name": "AmdCpmGpioInitSmm",
+    "phase": "SMM",
+    "size_3604": 4726,
+    "size_4655": 5238,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "CEF68C66-06AB-4FB3-A3ED-5FFA885B5725",
+    "name": "SmbiosBoard",
+    "phase": "DXE",
+    "size_3604": 4918,
+    "size_4655": 17110,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "D14EA3F9-8BD2-49A3-A636-C6F6C08037D5",
+    "name": "AmdPspDxeV2Ssp",
+    "phase": "DXE",
+    "size_3604": 27786,
+    "size_4655": 30602,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "D4395796-6F4C-4C6B-B9D1-92DAA7199A84",
+    "name": "AmiRedFishApi",
+    "phase": "DXE",
+    "size_3604": 7682,
+    "size_4655": 7682,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "D4DCD37C-90A3-406E-B193-323C6AAC2428",
+    "name": "1.0",
+    "phase": "SMM",
+    "size_3604": 19062,
+    "size_4655": 21110,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "D4F90895-A60B-4E97-B446-2855246F8930",
+    "name": "AmdNbioBaseRVDxe",
+    "phase": "DXE",
+    "size_3604": 2162,
+    "size_4655": 2162,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "D57C852E-809F-45CF-A377-D77BC0CB78EE",
+    "name": "1.0",
+    "phase": "DXE",
+    "size_3604": 22710,
+    "size_4655": 22710,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "D60CF145-F97C-4085-A73D-8D399757DFE9",
+    "name": "AmiCpmWrapperDxe",
+    "phase": "DXE",
+    "size_3604": 4514,
+    "size_4655": 4514,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "D7908EC2-227A-472F-8095-6A159DD723D2",
+    "name": "AmdNbioPcieRVDxe",
+    "phase": "DXE",
+    "size_3604": 29878,
+    "size_4655": 29910,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "D8367B27-7A08-4AC5-AD1F-C93C3E94225E",
+    "name": "AodSmmRv",
+    "phase": "SMM",
+    "size_3604": 21182,
+    "size_4655": 21182,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "D890F055-873A-4E6E-A79F-1B8DD2427FE4",
+    "name": "AmdNbioBaseRnDxe",
+    "phase": "DXE",
+    "size_3604": 5558,
+    "size_4655": 5558,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "D912C7BC-F098-4367-92BA-E911083C7B0E",
+    "name": "Udp6Dxe",
+    "phase": "DXE",
+    "size_3604": 29162,
+    "size_4655": 29322,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "D9EA74E6-0B4D-4916-9821-EB58B86211D8",
+    "name": "SbPcdDxe",
+    "phase": "DXE",
+    "size_3604": 4946,
+    "size_4655": 4946,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "DC3641B8-2FA8-4ED3-BC1F-F9962A03454B",
+    "name": "Mtftp4Dxe",
+    "phase": "DXE",
+    "size_3604": 32138,
+    "size_4655": 32266,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "DC66C1E2-C114-4D0C-ACC0-003F15B3F729",
+    "name": "BctBaseSmmRN",
+    "phase": "SMM",
+    "size_3604": 12442,
+    "size_4655": 12442,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E03ABADF-E536-4E88-B3A0-B77F78EB34FE",
+    "name": "CpuDxe",
+    "phase": "DXE",
+    "size_3604": 19142,
+    "size_4655": 19142,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E048749B-68A4-40C2-9A83-DC2AB34819A8",
+    "name": "FchSmmDispatcher",
+    "phase": "SMM",
+    "size_3604": 23194,
+    "size_4655": 23194,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E05799E5-DB4B-451C-AC87-5893DD8E4295",
+    "name": "FchTaishanDxe",
+    "phase": "DXE",
+    "size_3604": 34198,
+    "size_4655": 34198,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E0E2C90C-F1AD-4759-8EA9-5B4E770576CD",
+    "name": "AmdNbioPcieZPDxe",
+    "phase": "DXE",
+    "size_3604": 31670,
+    "size_4655": 31670,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E1DB609A-D413-4791-C6EE-093D8BC047A4",
+    "name": "AmdNbioPcieDxe",
+    "phase": "DXE",
+    "size_3604": 51210,
+    "size_4655": 51210,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E21F35A8-42FF-4050-82D6-93F7CDFA7073",
+    "name": "PiSmmCommunicationSmm",
+    "phase": "SMM",
+    "size_3604": 6262,
+    "size_4655": 6262,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E23F86E1-056E-4888-B685-CFCD67C179D4",
+    "name": "SbRun",
+    "phase": "DXE",
+    "size_3604": 15426,
+    "size_4655": 17474,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E2A74738-8934-48F5-8412-99E948C8DC1B",
+    "name": "SmbiosDmiEdit",
+    "phase": "SMM",
+    "size_3604": 23230,
+    "size_4655": 23230,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E4ECD0B2-E277-4F2B-BECB-E4D75C9A812E",
+    "name": "NbDxe",
+    "phase": "DXE",
+    "size_3604": 12554,
+    "size_4655": 12554,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E51CF66A-7D79-43D0-9EE8-0A2084BDEAD4",
+    "name": "AmdRasRnDxe",
+    "phase": "DXE",
+    "size_3604": 8790,
+    "size_4655": 8822,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E59EA6B0-B05B-4B22-8F3A-242DCBE904A2",
+    "name": "AmdCcxVhRnDxe",
+    "phase": "DXE",
+    "size_3604": 68662,
+    "size_4655": 83414,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E5E2C9D9-5BF5-497E-8860-94F81A09ADE0",
+    "name": "NvmeSmm",
+    "phase": "SMM",
+    "size_3604": 12902,
+    "size_4655": 13430,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E68C55B8-C77B-4F66-834F-D73BFB9F29B3",
+    "name": "AodDxe",
+    "phase": "DXE",
+    "size_3604": 11218,
+    "size_4655": 11218,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E74CA1E2-6E5C-4F07-9831-8367B132DB89",
+    "name": "AmdPspDxeV2Rn",
+    "phase": "DXE",
+    "size_3604": 28634,
+    "size_4655": 30906,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E904C5F2-AC68-46D6-AFDA-3A78D9F0CB8C",
+    "name": "AmdNbioAlibDxe",
+    "phase": "DXE",
+    "size_3604": 44662,
+    "size_4655": 44662,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E90A7B5E-37B2-43E4-B281-4C8E349045E9",
+    "name": "ReFlashSmm",
+    "phase": "SMM",
+    "size_3604": 9318,
+    "size_4655": 9318,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E94F54CD-81EB-47ED-AEC3-856F5DC157A9",
+    "name": "PiSmmCore",
+    "phase": "SMM-core",
+    "size_3604": 54730,
+    "size_4655": 44586,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "E9D7735D-06E2-47B7-B856-2A20138FAEA4",
+    "name": "FchHuashanSmmInit",
+    "phase": "SMM",
+    "size_3604": 37674,
+    "size_4655": 37674,
+    "ver_3604": "1.1",
+    "ver_4655": "1.1"
+   },
+   {
+    "guid": "EA94D9D6-BE8B-4BD0-9481-B04348165CFB",
+    "name": "AmdPspSmmV2Ssp",
+    "phase": "SMM",
+    "size_3604": 15606,
+    "size_4655": 15606,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "ECADBBB6-B0AE-4571-94E3-313C3D27A611",
+    "name": "AmdNbioGfxRNDxe",
+    "phase": "DXE",
+    "size_3604": 18826,
+    "size_4655": 18666,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "ED8FD9DC-2097-425E-B743-64EFB99D5F0D",
+    "name": "AmdPspDxeV2Zp",
+    "phase": "DXE",
+    "size_3604": 26774,
+    "size_4655": 27062,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "EE8175EF-4C60-82AF-F5E2-8A9EF1FC0A9A",
+    "name": "AmdRasSspSmm",
+    "phase": "SMM",
+    "size_3604": 25278,
+    "size_4655": 25278,
+    "ver_3604": "1.1",
+    "ver_4655": "1.1"
+   },
+   {
+    "guid": "F27F4D0C-70E4-413B-A537-FF39A2199AA5",
+    "name": "CbsSetupDxeRN",
+    "phase": "DXE",
+    "size_3604": 140466,
+    "size_4655": 156242,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "F71AAB75-41BE-C209-A324-9B963BBDCB26",
+    "name": "AmdRasSspDxe",
+    "phase": "DXE",
+    "size_3604": 11946,
+    "size_4655": 11946,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "F7673C6A-9C5C-4C54-B086-C6E0B7D03DB8",
+    "name": "AmdSmmControl",
+    "phase": "DXE",
+    "size_3604": 7818,
+    "size_4655": 8842,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "F80697E9-7FD6-4665-8646-88E33EF71DFC",
+    "name": "SecurityStubDxe",
+    "phase": "DXE",
+    "size_3604": 44002,
+    "size_4655": 44290,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "FA20568B-548B-4B2B-81EF-1BA08D4A3CEC",
+    "name": "BootScriptExecutorDxe",
+    "phase": "DXE",
+    "size_3604": 37074,
+    "size_4655": 37170,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "FC8CFD34-4D25-478C-83F0-0309C93FFBA4",
+    "name": "AmdCcxVhDxe",
+    "phase": "DXE",
+    "size_3604": 68534,
+    "size_4655": 83254,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "FE6E1666-591E-4AB8-9531-2BF6433A3925",
+    "name": "ApobRnDxe",
+    "phase": "DXE",
+    "size_3604": 9542,
+    "size_4655": 9574,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "FE7D8450-446D-0F9E-FBE7-DBAFF5AF1FF0",
+    "name": "AmdSocAm4VmrDxe",
+    "phase": "DXE",
+    "size_3604": 9186,
+    "size_4655": 9218,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "FEC445CC-2466-4DCE-9052-7400E044554F",
+    "name": "CbsBaseDxeZP",
+    "phase": "DXE",
+    "size_3604": 9730,
+    "size_4655": 9730,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   },
+   {
+    "guid": "FECCA19A-D1D3-4CDD-B477-56573F58B1A3",
+    "name": "AmdNbioAlibRNDxe",
+    "phase": "DXE",
+    "size_3604": 35510,
+    "size_4655": 35478,
+    "ver_3604": "1.0",
+    "ver_4655": "1.0"
+   }
+  ],
+  "added_modules": [
+   {
+    "guid": "02076249-A52B-420E-BD53-AED044349379",
+    "name": "",
+    "phase": "freeform",
+    "size": 1361
+   },
+   {
+    "guid": "391626DB-3CEC-4339-A3D6-9CDFF4690E12",
+    "name": "PrepareWhiteListSmm",
+    "phase": "SMM",
+    "size": 17510
+   },
+   {
+    "guid": "4EB43107-09AC-49F6-B9DE-16778C13E446",
+    "name": "1.0",
+    "phase": "DXE",
+    "size": 4194
+   },
+   {
+    "guid": "51080191-ED06-4AA0-BFD7-F04837CF70DB",
+    "name": "SbRomArmorSmm",
+    "phase": "SMM",
+    "size": 5734
+   },
+   {
+    "guid": "6C289241-E240-483F-9E3E-872C0396B599",
+    "name": "FlashSmiSmm",
+    "phase": "SMM",
+    "size": 5750
+   },
+   {
+    "guid": "755877A6-4F10-4A5C-9B2E-852123B9682C",
+    "name": "FlashSmiDxe",
+    "phase": "DXE",
+    "size": 11346
+   },
+   {
+    "guid": "89BE47F4-80CE-4B87-ABD1-D279AB6A16AE",
+    "name": "",
+    "phase": "freeform",
+    "size": 11362
+   }
+  ],
+  "removed_modules": [
+   {
+    "guid": "21782819-FDA0-4ADE-BD36-C95F079F057D",
+    "name": "1.0",
+    "phase": "SMM",
+    "size": 7782
+   },
+   {
+    "guid": "827E45A4-C285-4E45-8BC7-CD8E58D9EE84",
+    "name": "1.0",
+    "phase": "SMM",
+    "size": 11914
+   }
+  ]
+ },
+ "reading": {
+  "churn": "46.3% of the GUID set is byte-identical across 4.5 years; the changed majority is AMD platform silicon support (AmdApcb*/AmdCcx*/AmdCpm* \u2014 the AGESA family), exactly the modules a vendor must rebuild per AGESA update",
+  "security_growth": "the 7 added modules are ASUS flash protection: PrepareWhiteListSmm, SbRomArmorSmm, FlashSmiSmm, FlashSmiDxe (+2 unnamed SMM/DXE) \u2014 the vendor's own flash-attack hardening appearing between 2022 and 2026",
+  "nvram_cross_check": "the NVRAM store file (CEF5B9A3-476D-497F-9FDC-E98143E0422C, the ring-14 anchor) changes content at identical size 130,952 B \u2014 factory defaults moved; the delta lens re-derives the ring-14 finding independently",
+  "one_byte": "1DF36FF9-\u2026 80,232 -> 80,231 B \u2014 a one-byte content change in a 78-KiB blob; body-hash identity sees it, size comparison never would"
+ },
+ "honesty": [
+  "body-hash identity ignores FFS header/state bits by design; a module could change only its header and be called unchanged (never observed, not proven impossible)",
+  "two releases measured; no claim about the 37 intermediate releases between 3604 and 4655",
+  "AGESA version strings stay shallow ('AGESA Driver' only) \u2014 the AGESA level per release is not recovered by this lens",
+  "names are a 532-GUID join, not this board's own UI voice"
+ ]
+}

@@ -1,0 +1,175 @@
+{
+ "schema": "omarchy-firmware/vendor-day0-chain@1",
+ "date": "2026-09-11",
+ "note": "the second generale: the vendor day-0 chain, two full runs back to back, every register byte-compared",
+ "verdict_semantics": "per-stage = exit code + register existence (mid-chain churn is data); chain identity = byte-equality of all six registers across runs, judged here",
+ "stages": [
+  "unwrap",
+  "census",
+  "versions",
+  "psp",
+  "nvar",
+  "depex"
+ ],
+ "runs": [
+  [
+   {
+    "stage": "unwrap",
+    "exit": 0,
+    "seconds": 0.34,
+    "register": "/home/z/my-project/scratch-vendor/ring12-unwrap.json",
+    "register_sha256_16": "b3c97b03c6996a1a",
+    "stderr_tail": ""
+   },
+   {
+    "stage": "census",
+    "exit": 0,
+    "seconds": 1.24,
+    "register": "/home/z/my-project/scratch-vendor/ring11-census.json",
+    "register_sha256_16": "4e7d2ab36df9db50",
+    "stderr_tail": ""
+   },
+   {
+    "stage": "versions",
+    "exit": 0,
+    "seconds": 2.34,
+    "register": "/home/z/my-project/scratch-vendor/ring13-versions.json",
+    "register_sha256_16": "90a1b04d85280a50",
+    "stderr_tail": ""
+   },
+   {
+    "stage": "psp",
+    "exit": 0,
+    "seconds": 3.32,
+    "register": "/home/z/my-project/scratch-vendor/ring13-psp.json",
+    "register_sha256_16": "46b42f9fce0b4cd7",
+    "stderr_tail": " file is 0x1000000, will assume ROM size of 16M\nWarning: Input  file is 0x1000000, will assume ROM size of 16M\nWarning: FET entry 0xffffff not found or invalid, skipping ...\nWarning: Input  file is 0x1000000, will assume ROM size of 16M\nWarning: FET entry 0xffffff not found or invalid, skipping ...\n"
+   },
+   {
+    "stage": "nvar",
+    "exit": 0,
+    "seconds": 0.27,
+    "register": "/home/z/my-project/scratch-vendor/ring14-nvar.json",
+    "register_sha256_16": "eb839fc80e4157d3",
+    "stderr_tail": ""
+   },
+   {
+    "stage": "depex",
+    "exit": 0,
+    "seconds": 0.45,
+    "register": "/home/z/my-project/scratch-vendor/ring11-depex.json",
+    "register_sha256_16": "7f59c28b30004723",
+    "stderr_tail": ""
+   },
+   {
+    "stage": "CHAIN",
+    "exit": 0,
+    "seconds": 7.97
+   }
+  ],
+  [
+   {
+    "stage": "unwrap",
+    "exit": 0,
+    "seconds": 0.33,
+    "register": "/home/z/my-project/scratch-vendor/ring12-unwrap.json",
+    "register_sha256_16": "b3c97b03c6996a1a",
+    "stderr_tail": ""
+   },
+   {
+    "stage": "census",
+    "exit": 0,
+    "seconds": 1.26,
+    "register": "/home/z/my-project/scratch-vendor/ring11-census.json",
+    "register_sha256_16": "4e7d2ab36df9db50",
+    "stderr_tail": ""
+   },
+   {
+    "stage": "versions",
+    "exit": 0,
+    "seconds": 2.43,
+    "register": "/home/z/my-project/scratch-vendor/ring13-versions.json",
+    "register_sha256_16": "90a1b04d85280a50",
+    "stderr_tail": ""
+   },
+   {
+    "stage": "psp",
+    "exit": 0,
+    "seconds": 3.35,
+    "register": "/home/z/my-project/scratch-vendor/ring13-psp.json",
+    "register_sha256_16": "46b42f9fce0b4cd7",
+    "stderr_tail": " file is 0x1000000, will assume ROM size of 16M\nWarning: Input  file is 0x1000000, will assume ROM size of 16M\nWarning: FET entry 0xffffff not found or invalid, skipping ...\nWarning: Input  file is 0x1000000, will assume ROM size of 16M\nWarning: FET entry 0xffffff not found or invalid, skipping ...\n"
+   },
+   {
+    "stage": "nvar",
+    "exit": 0,
+    "seconds": 0.28,
+    "register": "/home/z/my-project/scratch-vendor/ring14-nvar.json",
+    "register_sha256_16": "eb839fc80e4157d3",
+    "stderr_tail": ""
+   },
+   {
+    "stage": "depex",
+    "exit": 0,
+    "seconds": 0.45,
+    "register": "/home/z/my-project/scratch-vendor/ring11-depex.json",
+    "register_sha256_16": "7f59c28b30004723",
+    "stderr_tail": ""
+   },
+   {
+    "stage": "CHAIN",
+    "exit": 0,
+    "seconds": 8.1
+   }
+  ]
+ ],
+ "chain_identity": [
+  {
+   "stage": "unwrap",
+   "run1": "b3c97b03c6996a1a",
+   "run2": "b3c97b03c6996a1a",
+   "identical": true
+  },
+  {
+   "stage": "census",
+   "run1": "4e7d2ab36df9db50",
+   "run2": "4e7d2ab36df9db50",
+   "identical": true
+  },
+  {
+   "stage": "versions",
+   "run1": "90a1b04d85280a50",
+   "run2": "90a1b04d85280a50",
+   "identical": true
+  },
+  {
+   "stage": "psp",
+   "run1": "46b42f9fce0b4cd7",
+   "run2": "46b42f9fce0b4cd7",
+   "identical": true
+  },
+  {
+   "stage": "nvar",
+   "run1": "eb839fc80e4157d3",
+   "run2": "eb839fc80e4157d3",
+   "identical": true
+  },
+  {
+   "stage": "depex",
+   "run1": "7f59c28b30004723",
+   "run2": "7f59c28b30004723",
+   "identical": true
+  }
+ ],
+ "verdict": "REPRODUCIBLE",
+ "reading": {
+  "chain_runtime_seconds": 7.97,
+  "what_it_means": "the day-0 protocol now has a fixed vendor table: six lenses, ~8 s end to end, byte-reproducible across full runs \u2014 the 16/09 dump walks the same chain, plus the live-delta stages the factory images cannot exercise"
+ },
+ "nondeterminism_caught": {
+  "stage": "versions",
+  "species": "ordering instability \u2014 dict key order leaked from set iteration in mirror_census_delta.phases_delta (the same species ring 10 found in ring5_probe)",
+  "fix": "sorted() at the source; chain re-run REPRODUCIBLE",
+  "lesson": "the ring-10 lesson is institutional: every new instrument meets the ritual eventually"
+ }
+}
