@@ -197,7 +197,7 @@ human path; `fw.flash.write` does not even exist.
 | [docs/day0-protocol.md](docs/day0-protocol.md) | reading a vendor image: the lab pipeline stage order, the five tripwires, the report skeleton — the lab half of the day-0 doctrine |
 | [docs/day0-report-2026-09-16.md](docs/day0-report-2026-09-16.md) | the pre-filled day-0 report: empty tables (identity triangulation, delta, armor checklist, chain run, combo lens) and the fill-in procedures, ready for the live dump |
 | [lab/README.md](lab/README.md) | the disposable machine: the eighteen investigation rings, their JSON evidence, the doctrine |
-| [docs/research/](docs/research/) | the four-volume study *Beyond the BIOS*: per-volume summaries + the FR/EN editions (PDF release assets) |
+| [docs/research/](docs/research/) | the five-volume study *Beyond the BIOS*: per-volume summaries + the FR/EN editions (PDF release assets) |
 
 CI runs the full contract suite (Python 3.11/3.13) and the MCP conformance
 smoke on every push — see [.github/workflows/ci.yml](.github/workflows/ci.yml).
@@ -214,7 +214,7 @@ smoke on every push — see [.github/workflows/ci.yml](.github/workflows/ci.yml)
 
 ## Provenance
 
-Everything here descends from a four-volume study auditing the Omarchy repo,
+Everything here descends from a five-volume study auditing the Omarchy repo,
 the AM4 vendor BIOS landscape, and the question "what can an agent do that
 the vendor BIOS cannot?" — see [docs/research/](docs/research/). The full
 series (79 pages) is archived as **release assets**, not in-repo binaries:
