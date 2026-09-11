@@ -33,11 +33,14 @@ here, on machines that exist to be broken.
 | `findings-fourth-ring.md` | 7 fronts: the gates x-ray, the PE provenance (zero timestamps, no PDB), the entropy atlas (58.9 % void), the SMM anatomy |
 | `findings-fifth-ring.md` | 3 fronts: enrollment is data (secboot == ms == snakeoil, byte-identical), the facade package layer anchored, ACPI is templates not tables |
 | `findings-sixth-ring.md` | 2 fronts: the IFR grammar re-derived spec-fresh (FORMS = 0x02, `{OpCode:8, Length:7, Scope:1}` — why ring 5 locked), the facade counted in QUESTIONS (146 plain / 208 secboot, 21/21 packages close exactly) |
+| `findings-seventh-ring.md` | 4 fronts: the S2 lock was a category error (length-prefixed blobs, no package list ever ships — HiiAddPackages builds it at runtime), the SIBT layer decoded, the facade rendered in words (en-US + fr-FR), the facade's memory (varstores named, offsets, defaults, 48/146 questions behind a condition) |
 
 Every findings file carries the same honesty ledger: what is proven,
 what is flagged, what stays an open question — and ends with its
 consequences for day-0 (16/09). The ring-5 opcode lock was resolved by
-ring 6 (spec-fresh grammar); its ledger self-corrects there.
+ring 6 (spec-fresh grammar); ring 6's list-header lock was resolved by
+ring 7 (a category error — the list never ships); each ledger
+self-corrects where the answer lands.
 
 ### The artifacts (JSON, the evidence)
 
@@ -52,6 +55,7 @@ ring 6 (spec-fresh grammar); its ledger self-corrects there.
 | `ovmf-ifr-grammar.json` | fifth ring | the HII package-list hunt: what validated, what stays locked (opcode layer) |
 | `ovmf-acpi-footprint.json` | fifth ring | checksum-validated ACPI/SMBIOS scan of 5 builds: templates in builders, zero finished tables |
 | `ovmf-ifr-census.json` | sixth ring | the per-module IFR census: questions / options / pages per setup module, validated by exact consumption |
+| `ovmf-ifr-facade.json` | seventh ring | the facade rendered: formsets / forms / questions with resolved text (en-US + fr-FR), options with values, varstores with names and sizes, defaults, per-question conditions |
 
 ### The instruments
 

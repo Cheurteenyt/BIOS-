@@ -44,6 +44,18 @@ layers hide the rest:
   modules; secboot = **208 / 79** (SecureBootConfigDxe alone = 62). The same
   probe runs on the vendor dump — the ASUS setup gets its button count on
   day-0 without a single screenshot being interpreted by hand.
+- RING-7 (the facade speaks and remembers — see `lab/findings-seventh-ring.md`):
+  ring 6's locked list-header question dissolves as a category error (HII
+  packages ship as length-prefixed blobs; the package list is built at runtime
+  by `HiiAddPackages`), the SIBT string grammar is decoded, and the facade now
+  renders **in words** — every question with its text (296/301 ids resolved on
+  plain), its options with values, its **varstore name and byte offset**
+  (`SECUREBOOT_CONFIGURATION`, `ISCSI_CONFIG_IFR_NVDATA` 17,724 B,
+  `TCG2_CONFIGURATION` = 1 byte…), its defaults, and its condition:
+  **48/146 (plain) / 64/202 (secboot) questions sit behind SUPPRESS_IF /
+  GRAYOUT_IF / DISABLE_IF** — the hidden surface priced per question. The
+  Q1 ↔ Q5 bridge (what the UI asks ↔ what NVRAM holds) is now structural,
+  and OVMF turns out bilingual (5 en-US + 5 fr-FR strings packages in UiApp).
 - DAY-0: real module list vs. a manual inventory of every setup screen
   (screenshots). The delta is what the vendor ships but does not show.
 - VOL-5: per-vendor NVRAM editors (`setup_var`, AMISCE, SCEWIN) — referenced
@@ -330,6 +342,14 @@ IFR question census (`ring6_ifr_probe.py` in the sandbox, artifact
 `lab/ovmf-ifr-census.json`) — pierce, FFS walk, forms packages, exact-
 consumption opcode walk; counts questions/options/pages per setup module
 (Q1), vendor vs OVMF comparable.
+
+Seventh-ring instrument (same rule — offline from the dump, never live):
+the facade render (`ring7_facade_probe.py` in the sandbox, artifact
+`lab/ovmf-ifr-facade.json`) — length-prefixed blob model (no list header
+to anchor), SIBT string decode, scope-tracked IFR dissection; renders the
+vendor facade in words with varstore names, offsets, defaults and
+per-question conditions (Q1, Q5), vendor vs OVMF comparable in the same
+terms.
 
 ## Discipline
 

@@ -4,6 +4,43 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the seventh ring (the facade speaks and remembers)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+**Investigation (ring 7 — strings, memory, and the S2 dissolution)**
+- Ring 6's locked list-header question dissolved as a **category error**:
+  the PE ships HII packages as length-prefixed blobs
+  (`{ u32 = size + 4 }{ package }`, byte-proven on 20/21 forms packages)
+  and **no spec package list ever exists in the image** — `HiiAddPackages`
+  builds it at runtime. Zero closing list headers in UiApp /
+  SecureBootConfigDxe; the two dynamic-command carriers (tftp/http) that
+  do close as real lists are registered as the honest exception.
+- The SIBT string grammar decoded (ids sequential from 1, SKIP/DUPLICATE
+  honored, ≤ 3 B residual validator): 25/28 strings packages resolved per
+  build, including BdsDxe's — ring 3's utf-16 census explained at the
+  grammar level.
+- The facade rendered **in words**: every question carries its text
+  (296/301 ids resolved on plain, 369/375 on secboot) — "Secure Boot
+  Mode" (Standard/Custom), "Signature Format" (X509 SHA256/384/512),
+  "iSCSI Mode" (Disabled/Enabled/MPIO)… And the surprise: **UiApp ships
+  5 en-US + 5 fr-FR strings packages** — bilingual by structure, though
+  the sampled fr-FR text is largely untranslated.
+- The facade's **memory** named: 12 varstores on secboot
+  (`SECUREBOOT_CONFIGURATION` 100 B, `ISCSI_CONFIG_IFR_NVDATA` 17,724 B,
+  `BmmData` 3,576 B, Tcg2's `TCG2_CONFIGURATION` = 1 byte…) with
+  question → varstore → offset bindings — the Q1 ↔ Q5 bridge, plus
+  48/146 (plain) and 64/202 (secboot) questions behind a condition.
+- Cross-validation held: with the byte-proven 11-byte question header,
+  the structural walk reproduces ring 6 exactly (146/146 questions,
+  33/33 options on plain); the 6-question delta on secboot is fully
+  located in one package (two undefined opcode-0x00 records — registered,
+  not interpreted).
+- Artifacts: `lab/ovmf-ifr-facade.json` (render + summary + the pkg3
+  registration), `lab/findings-seventh-ring.md`; `lab/README.md` and
+  `docs/open-questions.md` indexed.
+
 ## Unreleased — the sixth ring and lever D
 
 Same session as the cleanup; still docs-only. The tool surface is
