@@ -4,6 +4,50 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the twenty-sixth ring (the chain speaks, and the chain is timed)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green. Volume 5's built firmware now boots a REAL OS on both
+firmware worlds, with the kernel self-qualifying its firmware mode from
+inside Linux; and the study gets its first measured firmware A/B.
+No chip is touched; day-0 (16/09) is untouched by design.
+
+**Three fronts, two artifacts**
+- **A bootable disk manufactured from nothing** (front 26a, `vol5-os-boot.json`):
+  debs extracted root-less (syslinux 6.04 from bullseye — gone from
+  bookworm/trixie — plus dosfstools/mtools/busybox-static/libdevmapper and
+  the signed trixie kernel resolved from its metapackage's Depends); the
+  initramfs written as byte-by-byte cpio-newc (rdevmajor/rdevminor console
+  node, hand-written `/init` that prints the evidence markers and powers
+  off); the UKI hand-built with objcopy — the Omarchy boot model. The
+  diagnostic trail is kept in the factory scripts: syslinux 6.04 AND GRUB
+  2.12 both reject a hand-verified-valid FAT behind a hand-written MBR
+  partition (two independent tools, two FAT flavors, one failure class),
+  the decisive superfloppy probe at LBA 0 mounts everywhere, and the final
+  layout is the one the BIOS boots naturally: a superfloppy whose boot
+  sector IS the FAT sector (OEM SYSLINUX).
+- **The chain, end to end, both worlds** (front 26b): coreboot-25.12
+  (ring-24 specimen, unchanged) → SeaBIOS → syslinux → Linux 6.12.94 →
+  busybox userspace → `FW26 firmware=bios` → `FW26 CHAIN OK` → S5 power
+  down (3/3); OVMF plain 4M → QemuKernelLoaderFsDxe → BdsDxe → kernel EFI
+  stub (`EFI stub: Loaded initrd from LINUX_EFI_INITRD_MEDIA_GUID`) →
+  `FW26 firmware=uefi` → power down (3/3). The mode is not claimed, it is
+  measured from inside the booted Linux.
+- **The first A/B of the study** (front 26c, `vol5-ab-timing.json`): same
+  q35, TCG, 512 MiB, same kernel/initramfs/cmdline, 3 runs per side,
+  medians — kernel start **4.57 s vs 3.46 s**, userspace **7.49 s vs
+  6.46 s**, the kernel stage invariant at ~3 s: the whole delta is the
+  firmware stage. Registered next to the numbers: TCG is not silicon, OVMF
+  is the vendor-native proxy (the ASUS AMI BIOS cannot run in QEMU), and
+  the loaders are asymmetric by construction (each firmware's native
+  machinery).
+- **Open threads, not hidden**: the hand-built UKI loads and STARTS under
+  OVMF (BdsDxe "starting", no failure status) then stays silent — the VMA
+  lesson chain recorded (VMA 0 → `Unsupported`; ukify-style `.initrd`
+  @0x3000000 → `Out of Resources` because objcopy recomputes SizeOfImage;
+  tight VMAs from the kernel's own SizeOfImage → loads) with earlyprintk
+  debugging next session.
+
 ## Unreleased — the twenty-fifth ring (the lens is code, the wall falls, the boot speaks)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

@@ -1,0 +1,127 @@
+{
+ "schema": "vol5-os-boot/1.0",
+ "title": "the full boot chain, both firmware worlds, to a real userspace",
+ "date": "2026-09-12",
+ "kernel": {
+  "release": "6.12.94+deb13-amd64",
+  "source": "linux-signed-amd64 6.12.94-1 (trixie)",
+  "sha256": "e7667ff961fcf0f872e2618a930454a6362ce58995f386431f60a5169c85f41a",
+  "initramfs": "busybox-static 1.37.0 + hand-written /init, cpio-newc built byte-by-byte in-probe",
+  "cmdline": "console=ttyS0,115200"
+ },
+ "disk": {
+  "kind": "FAT16 superfloppy (no partition table; the boot sector IS the FAT sector)",
+  "size_mib": 64,
+  "sha256": "962ec88201b829dd94ed8895ae15c58f4e036442aafde8841560f54b3b0a500d",
+  "populated_by": "mtools 4.0.48 (mformat-free: mkfs.vfat + mcopy; syslinux patches the FAT boot sector)"
+ },
+ "chains": {
+  "coreboot": {
+   "path": "coreboot-25.12 (cc0358747d2a-dirty, ring-24 specimen, unchanged) -> SeaBIOS rel-1.17.0 -> syslinux 6.04 -> /boot/vmlinuz",
+   "rom_sha256": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1",
+   "firmware_mode_selfevidenced": "bios (/sys/firmware/efi absent from inside Linux)",
+   "markers": [
+    "=== FW26 uname=6.12.94+deb13-amd64 ===",
+    "=== FW26 firmware=bios ===",
+    "=== FW26 hypervisor=1 ===",
+    "=== FW26 CHAIN OK ==="
+   ],
+   "exit_evidence": "[ 3.048317] ACPI: PM: Preparing to enter system sleep state S5 / reboot: Power down",
+   "runs": [
+    {
+     "head": [
+      "    0.039 \u001b[0m",
+      "    0.039 \u001b[0m",
+      "    0.040 \u001b[1m[NOTE ]  coreboot-cc0358747d2a-dirty Fri Sep 11 04:08:31 UTC 2026 x86_32 bootblock starting (log level: 7)...\u001b[0m"
+     ],
+     "tail": [
+      "    7.436 [    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved",
+      "    7.436 [    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved",
+      "    7.438 === FW26 CHAIN OK ==="
+     ]
+    },
+    {
+     "head": [
+      "    0.038 \u001b[0m",
+      "    0.038 \u001b[0m",
+      "    0.040 \u001b[1m[NOTE ]  coreboot-cc0358747d2a-dirty Fri Sep 11 04:08:31 UTC 2026 x86_32 bootblock starting (log level: 7)...\u001b[0m"
+     ],
+     "tail": [
+      "    7.483 [    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved",
+      "    7.483 [    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved",
+      "    7.485 === FW26 CHAIN OK ==="
+     ]
+    },
+    {
+     "head": [
+      "    0.039 \u001b[0m",
+      "    0.039 \u001b[0m",
+      "    0.040 \u001b[1m[NOTE ]  coreboot-cc0358747d2a-dirty Fri Sep 11 04:08:31 UTC 2026 x86_32 bootblock starting (log level: 7)...\u001b[0m"
+     ],
+     "tail": [
+      "    7.585 [    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved",
+      "    7.585 [    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved",
+      "    7.587 === FW26 CHAIN OK ==="
+     ]
+    }
+   ]
+  },
+  "ovmf": {
+   "path": "OVMF_CODE_4M.fd (plain, Debian 2025.02-8) -> QemuKernelLoaderFsDxe -> BdsDxe -> kernel EFI stub (fw_cfg kernel files)",
+   "code_sha256": "624e06de18b4fa535e90db7160d00d3d07d206422b89999bf1e27d920264e4e0",
+   "firmware_mode_selfevidenced": "uefi (/sys/firmware/efi present from inside Linux)",
+   "stub_evidence": "EFI stub: Loaded initrd from LINUX_EFI_INITRD_MEDIA_GUID device path",
+   "markers": [
+    "=== FW26 uname=6.12.94+deb13-amd64 ===",
+    "=== FW26 firmware=uefi ===",
+    "=== FW26 hypervisor=1 ===",
+    "=== FW26 CHAIN OK ==="
+   ],
+   "exit_evidence": "[ 3.260226] ACPI: PM: Preparing to enter system sleep state S5 / reboot: Power down",
+   "runs": [
+    {
+     "head": [
+      "    3.047 \u001b[2J\u001b[01;01H\u001b[=3h\u001b[2J\u001b[01;01H\u001b[2J\u001b[01;01H\u001b[=3h\u001b[2J\u001b[01;01H\u001b[2J\u001b[01;01H\u001b[=3h\u001b[2J\u001b[01;01HEFI stub: Loaded initrd from LINUX_EFI_INITRD_MEDIA_GUID device path",
+      "    3.460 [    0.000000] Linux version 6.12.94+deb13-amd64 (debian-kernel@lists.debian.org) (x86_64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0, GNU ld (GNU Binutils for Debian) 2.44) #1 SMP PREEMPT_DYNAMIC Debian 6.12.94-1 (2026-06-20)",
+      "    3.461 [    0.000000] Command line: console=ttyS0,115200 initrd=initrd"
+     ],
+     "tail": [
+      "    6.425 [    0.000000] BIOS-e820: [mem 0x0000000000100000-0x00000000007fffff] usable",
+      "    6.425 [    0.000000] BIOS-e820: [mem 0x0000000000800000-0x0000000000807fff] ACPI NVS",
+      "    6.426 === FW26 CHAIN OK ==="
+     ]
+    },
+    {
+     "head": [
+      "    3.041 \u001b[2J\u001b[01;01H\u001b[=3h\u001b[2J\u001b[01;01H\u001b[2J\u001b[01;01H\u001b[=3h\u001b[2J\u001b[01;01H\u001b[2J\u001b[01;01H\u001b[=3h\u001b[2J\u001b[01;01HEFI stub: Loaded initrd from LINUX_EFI_INITRD_MEDIA_GUID device path",
+      "    3.460 [    0.000000] Linux version 6.12.94+deb13-amd64 (debian-kernel@lists.debian.org) (x86_64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0, GNU ld (GNU Binutils for Debian) 2.44) #1 SMP PREEMPT_DYNAMIC Debian 6.12.94-1 (2026-06-20)",
+      "    3.461 [    0.000000] Command line: console=ttyS0,115200 initrd=initrd"
+     ],
+     "tail": [
+      "    6.482 [    0.000000] BIOS-e820: [mem 0x0000000000100000-0x00000000007fffff] usable",
+      "    6.482 [    0.000000] BIOS-e820: [mem 0x0000000000800000-0x0000000000807fff] ACPI NVS",
+      "    6.484 === FW26 CHAIN OK ==="
+     ]
+    },
+    {
+     "head": [
+      "    3.049 \u001b[2J\u001b[01;01H\u001b[=3h\u001b[2J\u001b[01;01H\u001b[2J\u001b[01;01H\u001b[=3h\u001b[2J\u001b[01;01H\u001b[2J\u001b[01;01H\u001b[=3h\u001b[2J\u001b[01;01HEFI stub: Loaded initrd from LINUX_EFI_INITRD_MEDIA_GUID device path",
+      "    3.456 [    0.000000] Linux version 6.12.94+deb13-amd64 (debian-kernel@lists.debian.org) (x86_64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0, GNU ld (GNU Binutils for Debian) 2.44) #1 SMP PREEMPT_DYNAMIC Debian 6.12.94-1 (2026-06-20)",
+      "    3.456 [    0.000000] Command line: console=ttyS0,115200 initrd=initrd"
+     ],
+     "tail": [
+      "    6.458 [    0.000000] BIOS-e820: [mem 0x0000000000100000-0x00000000007fffff] usable",
+      "    6.458 [    0.000000] BIOS-e820: [mem 0x0000000000800000-0x0000000000807fff] ACPI NVS",
+      "    6.462 === FW26 CHAIN OK ==="
+     ]
+    }
+   ]
+  }
+ },
+ "honesty": [
+  "the specimen coreboot.rom is UNCHANGED from ring 24/25 (SeaBIOS payload, no rebuild)",
+  "the kernel self-qualifies its firmware mode \u2014 the chain tells us which firmware booted it",
+  "the UKI-on-disk OVMF path (hand-built objcopy UKI) loads and STARTS (BdsDxe) but stays silent after \u2014 open thread, next session",
+  "debug history kept in the factory scripts: syslinux 6.04 rejects dosfstools-4.2 FAT behind a hand-written partition; GRUB 2.12 says \"unknown filesystem\" for the same; mtools superfloppy at LBA 0 mounts fine on both worlds \u2014 the failure class is \"hand-written MBR partition\", worked around, not solved"
+ ]
+}

@@ -507,6 +507,23 @@ board-status checks (hardware purchase), the azalea build rehearsal
 bench-day rehearsal itself (dump-first, external programmer — gated on
 the sacrificial hardware).
 
+Twenty-sixth ring — the chain gains its OS and its numbers: a bootable
+disk manufactured root-less (byte-by-byte cpio-newc initramfs, hand-built
+objcopy UKI), and BOTH worlds boot it with the kernel self-qualifying its
+firmware mode from inside Linux (`lab/vol5-os-boot.json`: bios via
+SeaBIOS+syslinux on the ring-24 specimen unchanged; uefi via OVMF's
+fw_cfg loader; 3/3 runs each, clean S5 power-down). The study's first
+measured A/B (`lab/vol5-ab-timing.json`): same q35/TCG/512 MiB/kernel —
+kernel start 4.57 s vs 3.46 s, userspace 7.49 s vs 6.46 s, the kernel
+stage invariant at ~3 s, so the whole delta is the firmware stage; TCG
+and the OVMF-as-vendor-proxy limits are registered next to the numbers.
+Open on this axis: the hand-built UKI loads and STARTS under OVMF but
+stays silent (earlyprintk debugging, next session), the syslinux/GRUB
+rejection of a valid FAT behind a hand-written MBR partition (superfloppy
+workaround), azalea rehearsal (vendor blob submodules), the purchase-time
+board-status checks, and the bench day itself (dump-first, external
+programmer — gated on the sacrificial hardware).
+
 ## Discipline
 
 None of the eight questions requires a single byte written to the SPI chip.

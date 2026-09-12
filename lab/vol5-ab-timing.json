@@ -1,0 +1,137 @@
+{
+ "schema": "vol5-ab-timing/1.0",
+ "config": {
+  "machine": "q35",
+  "accel": "tcg (no /dev/kvm in sandbox)",
+  "ram_mib": 512,
+  "kernel": "vmlinuz-6.12.94+deb13-amd64",
+  "initramfs": "busybox cpio-newc, built in-probe",
+  "cmdline": "console=ttyS0,115200",
+  "runs_per_side": 3,
+  "coreboot_loader": "SeaBIOS -> syslinux on a FAT16 superfloppy (the boot sector is the FAT sector)",
+  "ovmf_loader": "QemuKernelLoaderFsDxe -> BdsDxe -> kernel EFI stub (fw_cfg files)",
+  "ovmf": "ovmf-code-copy.fd (plain, non-secboot)"
+ },
+ "runs": [
+  {
+   "kind": "coreboot",
+   "run": 1,
+   "exit": 0,
+   "wall_s": 7.47,
+   "n_lines": 758,
+   "log": "/home/z/my-project/scratch-coreboot/ring26/ab/abrun-coreboot-1.log",
+   "segments": {
+    "first_byte": 0.039,
+    "payload_start": 0.192,
+    "kernel_start": 4.562,
+    "kernel_release": "6.12.94+deb13-amd64",
+    "firmware_mode": "bios",
+    "chain_ok": 7.438
+   }
+  },
+  {
+   "kind": "coreboot",
+   "run": 2,
+   "exit": 0,
+   "wall_s": 7.52,
+   "n_lines": 756,
+   "log": "/home/z/my-project/scratch-coreboot/ring26/ab/abrun-coreboot-2.log",
+   "segments": {
+    "first_byte": 0.038,
+    "payload_start": 0.197,
+    "kernel_start": 4.573,
+    "kernel_release": "6.12.94+deb13-amd64",
+    "firmware_mode": "bios",
+    "chain_ok": 7.485
+   }
+  },
+  {
+   "kind": "coreboot",
+   "run": 3,
+   "exit": 0,
+   "wall_s": 7.62,
+   "n_lines": 759,
+   "log": "/home/z/my-project/scratch-coreboot/ring26/ab/abrun-coreboot-3.log",
+   "segments": {
+    "first_byte": 0.039,
+    "payload_start": 0.236,
+    "kernel_start": 4.642,
+    "kernel_release": "6.12.94+deb13-amd64",
+    "firmware_mode": "bios",
+    "chain_ok": 7.587
+   }
+  },
+  {
+   "kind": "ovmf",
+   "run": 1,
+   "exit": 0,
+   "wall_s": 6.46,
+   "n_lines": 424,
+   "log": "/home/z/my-project/scratch-coreboot/ring26/ab/abrun-ovmf-1.log",
+   "segments": {
+    "first_byte": 3.047,
+    "kernel_start": 3.46,
+    "kernel_release": "6.12.94+deb13-amd64",
+    "firmware_mode": "uefi",
+    "chain_ok": 6.426
+   }
+  },
+  {
+   "kind": "ovmf",
+   "run": 2,
+   "exit": 0,
+   "wall_s": 6.52,
+   "n_lines": 424,
+   "log": "/home/z/my-project/scratch-coreboot/ring26/ab/abrun-ovmf-2.log",
+   "segments": {
+    "first_byte": 3.041,
+    "kernel_start": 3.46,
+    "kernel_release": "6.12.94+deb13-amd64",
+    "firmware_mode": "uefi",
+    "chain_ok": 6.484
+   }
+  },
+  {
+   "kind": "ovmf",
+   "run": 3,
+   "exit": 0,
+   "wall_s": 6.49,
+   "n_lines": 424,
+   "log": "/home/z/my-project/scratch-coreboot/ring26/ab/abrun-ovmf-3.log",
+   "segments": {
+    "first_byte": 3.049,
+    "kernel_start": 3.456,
+    "kernel_release": "6.12.94+deb13-amd64",
+    "firmware_mode": "uefi",
+    "chain_ok": 6.462
+   }
+  }
+ ],
+ "summary": {
+  "coreboot": {
+   "n_ok": 3,
+   "median_first_byte_s": 0.039,
+   "median_kernel_start_s": 4.573,
+   "median_chain_ok_s": 7.485,
+   "kernel_release": "6.12.94+deb13-amd64",
+   "firmware_mode": "bios"
+  },
+  "ovmf": {
+   "n_ok": 3,
+   "median_first_byte_s": 3.047,
+   "median_kernel_start_s": 3.46,
+   "median_chain_ok_s": 6.462,
+   "kernel_release": "6.12.94+deb13-amd64",
+   "firmware_mode": "uefi"
+  }
+ },
+ "honesty": [
+  "TCG software emulation: absolute times are NOT hardware times; the A/B is the only claim",
+  "OVMF plain is the vendor-native PI/FFS2 proxy of this study \u2014 not the ASUS AMI BIOS, which cannot run in QEMU",
+  "asymmetric loaders by construction: each firmware boots with its native machinery (SeaBIOS disk vs OVMF fw_cfg); the comparable metrics are the wall-clock boundaries on identical kernel/initramfs/VM",
+  "OVMF (RELEASE build) logs to port 0x402, not serial: its first serial byte is the kernel console, so its firmware stage is measured power-on->kernel-boundary, inclusively",
+  "open thread, not hidden: the hand-built UKI on the superfloppy loads and STARTS under OVMF (BdsDxe \"starting\" with no failure status) but stays silent afterward \u2014 earlyprintk debugging deferred to the next session; the syslinux 6.04 vs dosfstools 4.2 clash on partitioned layouts (both rejected, mtools-superfloppy accepted) is recorded in the disk factory scripts",
+  "the chain self-evidences its firmware mode from inside Linux: /sys/firmware/efi present = uefi, absent = bios"
+ ],
+ "os_boot_ref": "lab/vol5-os-boot.json"
+}
