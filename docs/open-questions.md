@@ -566,12 +566,30 @@ the payload FV never carries, `EFI_ABORTED` benign-by-design while
 coreboot→HOBs→AcpiTableDxe does the work (in RELEASE the dispatcher is
 silent); and the SMMSTORE lane on REAL writable flash at bench day as
 the calibration point for the 28-w4 q35 wall), and the FW29 follow-ups
-(the vendor-faithful RELEASE+EMU lane: 5/6 green with one measured
-intermittent storm crash — the trigger window between the HPET period
-and the common-entry TPL-restore under TCG; the `AuthcAMDenti`
-CPUID-vendor buffer's owner module, named by class only in the RELEASE
-layout; and the DEBUG-lane masking lesson: every green DEBUG number
-carries an unmeasured RELEASE error bar until re-run).
+— ALL THREE CLOSED by ring 30, measured in the surviving scratch
+environment (`lab/vol5-fw30.json`, "the storm and the static moat"):
+(1) the storm window is now a RATE — 2/40 fresh RELEASE+EMU boots
+(5.0%, pooled 3/46 ≈ 6.5%, honest binomial width) with NO
+coreboot-stage precursor, the green-vs-storm serial diff being pure
+BS-stage timing jitter; (2) the AuthcAMDenti buffer's owner is named
+at three levels — byte (the `cmpl $imm` stack compares live in exactly
+three DXEFV modules: DxeCore, CpuDxe, HpetTimerDxe), source
+(`MdePkg/Library/BaseCpuLib/X86BaseCpuLib.c`
+`StandardSignatureIsAuthenticAMD`), runtime (CpuDxe's
+`SetMemoryAttributes → MtrrSetMemoryAttributeInMsr` interrupt-restore
+boundary — `MtrrLib.c:354` — the exact site the storm interrupts);
+(3) the RO-writer/merge-agent pair is RESOLVED and REVISED: gdbstub
+watchpoints on PDE[38]@0x4803130 and PDE[39]@0x4803138 caught four
+writes, all in the payload's SEC module (SECURITY_CORE, 32-bit,
+pre-paging, at 0x800000) — the 2-MiB fill, the 4-K PT fill, and THE
+RO-clear pass — then ZERO writes to S5: no merge agent exists in the
+RELEASE+EMU lane; the moat is static and the storm is stack-boundary
+geometry (sixth 0x660 nesting crosses 0x4e00000 into the 2-MiB RO
+direct map). Ring 29's TLB-shadow/merge-back theory is falsified for
+that lane; residual: the SMMSTORE lane's post-mortem read
+(0x4c000e1 = 0x83+A+D, never RO'd) keeps THAT lane's merge-agent
+sub-question open until rebuilt; registered follow-up: a storming-boot
+watchpoint session (~1 storm per 20 boots).
 
 ## Discipline
 

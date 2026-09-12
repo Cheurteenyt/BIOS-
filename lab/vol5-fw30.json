@@ -1,0 +1,59 @@
+{
+ "schema": "lab/vol5 artifact",
+ "_meta": {
+  "ring": 30,
+  "date": "2026-09-12",
+  "title": "the storm and the static moat: the storm window as a rate, the ghost writers caught (and one ghost proven absent), the AuthcAMDenti owner named at three levels",
+  "objective": "close the three micro-threads of ring 29's honesty ledger by measurement, no hardware: (30a) the storm's trigger window as a Monte-Carlo rate on the vendor-faithful RELEASE+EMU lane, (30b) the writer of the RO entry and the agent of the merge caught via gdbstub watchpoints on the exact PDEs ring 29's post-mortem named, (30c) the AuthcAMDenti buffer's owner module by static fingerprint + source anchor + runtime path",
+  "environment": "scratch-ring28 surviving intact: coreboot 25.12 tree in the ring-29 RELEASE+EMU build state (CONFIG_EDK2_RELEASE=y, EMU variable lane), disk/fw28-disk.img, QEMU 10.0.11 deb lane, gdb; recipe unchanged from lab/vol5-fw28.json resurrection path",
+  "frozen_surface": "docs-only commit; 323/323 checks re-verified this session; bin/ lib/ tests/ untouched"
+ },
+ "front_30a_storm_window": {
+  "question": "ring 29: the RELEASE+EMU storm fired 1/6 once - what is its actual rate, and is there a precursor?",
+  "answer": "MEASURED: 2/40 this session (5.0%), pooled with ring 29: 3/46 ~ 6.5%, binomial width honest (Wilson 95% CI ~ [1.4%, 16.9%]); NO coreboot-stage precursor - the diff of green vs storm serial is pure BS-stage timing jitter (1-2 ms); the window is inside payload DXE dispatch and is a TCG-scheduling race",
+  "protocol": "40 boots, fw30_storm_mc.sh, bounded 60 s each, serial classification: green = exit 0 + CHAIN OK + S5; STORM = 'X64 Exception' in serial; runs 5 and 7 storm (log truncated ~22.6 KB vs green ~51 KB, CpuDeadLoop until timeout kill)",
+  "storm_signature": "byte-identical to ring 29: RELEASE dump resolves CpuDxe.dll ImageBase=0x1F97F000 at RIP=0x1F98CCAC -> RVA 0xDCAC (the exception-stub fxsave), CR2=0x4DFFF70 (same boundary-page family as ring 29's 0x4DFFF60), CR3=0x4801000 stable",
+  "consequence": "any DEBUG-lane matrix smaller than ~a dozen boots can hide the class entirely (ring 28's 3/3 green was such a matrix); the lane lesson 'every green DEBUG number carries an unmeasured RELEASE error bar' now has a measured error bar"
+ },
+ "front_30b_ghost_watchpoints": {
+  "question": "ring 29 left open: who writes the RO 4-K entry, and who merges the region back to 2-MiB RW?",
+  "method": "QEMU gdbstub hardware watchpoints from reset on PDE[38]@0x4803130 and PDE[39]@0x4803138 (targets from ring 29's post-mortem PD scan); identity mapping keeps linear==physical with paging off, in the 32-bit builder, and in DXE; 8-stop scripted gdb batch (gdb-fw30-ghost.cmds), all-in-one bounded call (fw30_ghost_watch.sh) against the sandbox reaper",
+  "stops": [
+   {"id": "A", "rip": "0x803f87", "write": "PDE[38] 0 -> 0x4c00000", "reading": "the 2-MiB PDE fill loop (mov %edx,0x4(%rsi); add $8,%esi), CR3=0, 32-bit pre-paging"},
+   {"id": "B", "rip": "0x803f8f", "write": "PDE[38] -> 0x4c00083", "reading": "same loop adding flags: P|RW|PS direct map"},
+   {"id": "C", "rip": "0x80181d", "write": "PDE[39] -> 0x4c04003", "reading": "the 4-K PT fill for the stack-top region (entries |3 = P|RW); PT at 0x4c04000"},
+   {"id": "D", "rip": "0x8042bc", "write": "PDE[38] 0x4c00083 -> 0x4c00081", "reading": "THE RO WRITER: the sub/sbb bounds loop clearing R/W over the protected region; 2-MiB RO moat"},
+   {"id": "E..", "write": "NONE", "reading": "zero further writes through paging-enable, full DXE, kernel, clean S5 - the merge agent does not exist in this lane"}
+  ],
+  "writer_identity": "all three sites fingerprint-matched by exact byte window into coreboot/build/UEFIPAYLOAD.fd at vaddr-0x800000: every hit in the first FFS file (0xe8-0x51a0, type SECURITY_CORE) = the payload's SEC module, 32-bit, pre-paging, at 0x800000",
+  "revised_mechanism": "the storm and the static moat: SEC builds the identity map with the protection baked in - stack-top region above 0x4e00000 4-K mapped RW, the 2-MiB region below RO direct; green boots keep the DxeCore stack above the boundary (deepest descent 0x4e00308, ring 29); the un-EOI'd HPET cascade consumes 0x660 per re-delivery from SP ~0x4e01c88; the sixth delivery's stub save write lands ~0xa0 past the boundary into the static moat -> deterministic #PF(0003) write-on-present-RO. No split, no merge, no TLB shadow - ring 29's 'stale RO translation while the tables merged back' is FALSIFIED for the RELEASE+EMU lane",
+  "lane_scoped_residual": "ring 29's SMMSTORE-lane post-mortem read PDE[38]=0x4c000e1 = bit-arithmetic 0x83 (builder RW) + hardware A(0x20) + D(0x40) - an entry never RO'd but written through; that lane's table state genuinely differs; its merge-agent sub-question stays open until the SMMSTORE lane is rebuilt (recipe in lab/vol5-fw28.json, cost registered, not paid)"
+ },
+ "front_30c_buffer_owner": {
+  "question": "ring 29: the AuthcAMDenti CPUID-vendor buffer's owner module, named by class only",
+  "method": "fw30_owner_probe.py - stdlib FV/FFS/section walker (LZMA-aware, nested-FV-aware) scanning DXEFV.Fv for the vendor-literal fingerprints; one walker bug fixed and registered (FF-named pad files are legitimate headers; treating any Name==FF*16 as free space silently ends the walk at the first large pad)",
+  "rollup": {
+   "cmpl_Genu_0x756e6547": ["DxeCore", "CpuDxe", "HpetTimerDxe"],
+   "Auth_cAMD_enti_triple_stack_cmp": ["CpuDxe"]
+  },
+  "source_anchor": "MdePkg/Library/BaseCpuLib/X86BaseCpuLib.c -> StandardSignatureIsAuthenticAMD(): AsmCpuid(CPUID_SIGNATURE) with EBX/ECX/EDX compared against the AMD constants - byte-for-byte the ring-29 buffer shape (the register-order anagram of AuthenticAMD); sibling copies = statically linked BaseCpuLib instances (the HpetTimerDxe copy is the storm's vector owner carrying its own copy of the victim code)",
+  "runtime_level": "the interrupted chain's image was CpuDxe (storm IP CpuDxe+0x1021 = the ret of AsmEnableInterrupts in CpuDxe's copy); CpuDxe.inf links CpuLib + MtrrLib; MtrrLib.c:354 SaveAndDisableInterrupts/restore is the interrupt window; the owner = CpuDxe's inlined StandardSignatureIsAuthenticAMD inside SetMemoryAttributes -> MtrrSetMemoryAttributeInMsr at the interrupt-restore boundary - the exact place where feature detection, IF re-enable, and the HPET storm intersect"
+ },
+ "honesty": [
+  "the Monte-Carlo rate carries binomial width (n=40 this session): an estimate, not a constant",
+  "the watchpoint session ran a green boot; moat writes are deterministic and the storm CR2 geometry matches the static-moat model, but the crashing boot's live PDE state in the EMU lane was inferred, not re-captured (storming-boot watchpoint session = registered follow-up at ~1 storm per 20 boots)",
+  "the SMMSTORE lane was not rebuilt; the 0x4c000e1 reinterpretation is bit arithmetic, not measurement",
+  "instruments are untracked sandbox code by house convention (fw30_owner_probe.py, fw30_storm_mc.sh, fw30_ghost_watch.sh, gdb-fw30-ghost.cmds); the JSON artifacts and the narrative are the durable output",
+  "session started from a stale continuation summary (claimed the ring-18 era a second time): drift #15 written off at the checkpoint; disk is truth"
+ ],
+ "commands": {
+  "monte_carlo": "qemu-system-x86_64 -L roms -L $R28/extract/usr/share/qemu -L /usr/share/qemu -bios coreboot/build/coreboot.rom -M q35 -m 512M -display none -no-reboot -serial file:serial-fw30-rel-runN.log -drive file=disk/fw28-disk.img,format=raw,if=ide (timeout 60)",
+  "watchpoint_session": "qemu-system-x86_64 <same flags> -S -gdb tcp::1234 & ; gdb -batch -x gdb-fw30-ghost.cmds; kill %1",
+  "owner_probe": "python3 fw30_owner_probe.py coreboot/payloads/external/edk2/workspace/Build/UefiPayloadPkgX64/RELEASE_GCC/FV/DXEFV.Fv > fw30-owner-probe.json"
+ },
+ "evidence_files": {
+  "serial_logs": "scratch-ring28/serial-fw30-rel-run{1..40}.log, serial-fw30-ghost.log",
+  "gdb_session": "scratch-ring28/gdb-fw30-ghost.out (4 stops + measured absence)",
+  "probe_outputs": "scratch-ring28/fw30-owner-probe.json, fw30-payload-probe.json (untracked instruments' outputs; rollups quoted here)"
+ }
+}

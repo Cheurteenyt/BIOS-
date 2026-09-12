@@ -4,6 +4,45 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the thirtieth ring (the storm and the static moat)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green. The three micro-threads of ring 29's honesty ledger
+close by measurement — and one ring-29 conclusion is falsified.
+
+- **Front 30a — the storm window as a rate.** Forty fresh boots of the
+  vendor-faithful RELEASE+EMU lane (same disk/stub/kernel/build):
+  38 green / 2 storm, pooled with ring 29 → 3/46 ≈ 6.5%, honest
+  binomial width. The storm signature is byte-identical (CpuDxe+0xDCAC,
+  CR2 on the boundary-page family, CR3 stable) and the green-vs-storm
+  serial diff shows no coreboot-stage precursor: the window is a pure
+  TCG-scheduling race inside payload DXE dispatch. Any DEBUG-lane
+  matrix under a dozen boots can hide the class entirely.
+- **Front 30b — the ghost caught in the act, and the ghost's
+  non-existence.** QEMU gdbstub hardware watchpoints on PDE[38]@
+  0x4803130 and PDE[39]@0x4803138 (ring 29's own post-mortem targets)
+  catch exactly four writes — the 2-MiB fill (RW), the 4-K PT fill for
+  the stack-top region, and the RO-clear pass
+  (0x4c00083 → 0x4c00081) — all fingerprint-matched into the payload's
+  SECURITY_CORE module (32-bit, pre-paging, at 0x800000). Then ZERO
+  writes to S5: the merge-back agent does not exist in the EMU lane.
+  The moat is static; the storm is stack-boundary geometry — the sixth
+  0x660 HPET nesting crosses 0x4e00000 into the 2-MiB RO direct map
+  and the stub's `fxsave` faults, deterministically. Ring 29's
+  "stale RO translation / merged-back tables" theory is falsified for
+  this lane; the SMMSTORE-lane residual is registered, not guessed.
+- **Front 30c — the AuthcAMDenti owner named at three levels.** Byte:
+  the vendor-literal `cmpl` fingerprints live in exactly three DXEFV
+  modules (DxeCore, CpuDxe, HpetTimerDxe). Source:
+  `MdePkg/Library/BaseCpuLib/X86BaseCpuLib.c`
+  `StandardSignatureIsAuthenticAMD()` — the exact EBX/ECX/EDX
+  register-order shape of the preserved buffer. Runtime: CpuDxe's
+  `SetMemoryAttributes → MtrrSetMemoryAttributeInMsr` interrupt-restore
+  boundary (`MtrrLib.c:354`) — the exact site the storm interrupts.
+  Method note registered: FF-named FFS pad files are legitimate
+  headers; treating any `Name == FF×16` as free space silently ends a
+  naive FFS walk at the first large pad.
+
 ## Unreleased — the twenty-ninth ring (the RELEASE lane, the interrupt storm, and the vestigial abort)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
