@@ -589,7 +589,24 @@ direct map). Ring 29's TLB-shadow/merge-back theory is falsified for
 that lane; residual: the SMMSTORE lane's post-mortem read
 (0x4c000e1 = 0x83+A+D, never RO'd) keeps THAT lane's merge-agent
 sub-question open until rebuilt; registered follow-up: a storming-boot
-watchpoint session (~1 storm per 20 boots).
+watchpoint session (~1 storm per 20 boots) — BOTH CLOSED by ring 31,
+measured in the surviving scratch environment (`lab/vol5-fw31.json`,
+"the storm, caught live"): (a) the storming boot WAS watched — 22
+watched boots in the EMU lane, 2 storms caught, their moat-write
+sequences byte-identical to green, fatal CR2s always just below
+0x4e00000; (b) the SMMSTORE lane WAS rebuilt (EMU state backed up and
+restored) and its deterministic storm watched — byte-identical to ring
+29 (RIP 0x1F970CAC, CR2 0x4DFFF60), 64 deliveries observed live with
+the 0x660 nesting step visible — and the whole paradox resolves as a
+FLAG-DECODE ERROR: 0x4c000e1 = P+A+D+PS with RW=0, the post-mortem PDE
+was STILL READ-ONLY, no merge-back ever happened, no merge agent exists
+in ANY lane (the only post-carve deltas are walk-time A/D bits,
+host-side softmmu, invisible to instruction watchpoints), and the
+storm is pure stack-boundary geometry over the static SEC-carved moat.
+Registered residuals: the frozen pre-fatal instant is uncapturable by
+per-delivery freezing (the observer effect defuses the storm); the
+QEMU gdbstub walls are named (watchpoint desync after stop D,
+conditional-breakpoint desync 3/4, walk-time A/D blind spot).
 
 ## Discipline
 

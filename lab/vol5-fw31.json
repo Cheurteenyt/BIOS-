@@ -1,0 +1,61 @@
+{
+ "_meta": {
+  "ring": 31,
+  "date": "2026-09-12",
+  "title": "the storm, caught live: the deterministic lane, the merge agent proven absent in every lane, and ring 29's post-mortem paradox resolved as a flag-decode error",
+  "objective": "close the two registered ring-30 residuals by measurement, no hardware: (31a) a storming boot under PDE watchpoints in the vendor-faithful RELEASE+EMU lane, (31b) the SMMSTORE lane rebuilt and its deterministic storm watched — does the moat exist there, and does any merge agent survive?",
+  "environment": "scratch-ring28 surviving intact: coreboot 25.12 tree (ring-30 RELEASE+EMU state, backed up and RESTORED at session end — sanity boot green: ec=0, CHAIN OK), disk/fw28-disk.img, QEMU 10.0.11 deb lane, gdb; payload mapping verified this session: payloads/external/edk2/Makefile 'ifeq ($(CONFIG_SMMSTORE_V2),y)' -> '-D VARIABLE_SUPPORT=SMMSTORE', else EMU",
+  "frozen_surface": "docs-only commit; 323/323 checks re-verified this session; bin/ lib/ tests/ untouched"
+ },
+ "fronts": {
+  "front_31a_storming_boot_watchpoints": {
+   "question": "ring-30 registered follow-up: the crashing boot's live PDE state in the EMU lane was inferred, not captured — catch a storming boot with the PDE[38]/PDE[39] watchpoints armed",
+   "instrument": "fw31_storm_hunt.sh (every boot under gdbstub, watchpoints from reset, classification by serial) + fw31_catch.sh / fw31_catchp.sh (repeated-continue instrument, 3 parallel catchers on ports 1234/1235/1236, per-catcher disk copies)",
+   "sample": "22 watched boots in the EMU lane (10 hunt + 6 catch + 6 parallel); 2 storms caught (hunt6, hunt7); rate under instrumentation 2/22, consistent with the unwatched 2/40 and pooled 3/46 of ring 30 (honest binomial width)",
+   "finding": "the storming boots' moat-write stop sequences are BYTE-IDENTICAL to the green boots (A: 2-MiB fill @0x803f87, B: PDE38=0x4c00083 RW, C: PT fill @0x80181d PDE39=0x4c04003, D: RO-clear @0x8042bc PDE38=0x4c00081) — the moat carve does not differ on the lane that dies",
+   "fatal_signature": "hunt6: #PF e=0003 RIP=0x1F98CCAC CR2=0x4DFFEC0; hunt7: RIP=0x1F98CBD7 CR2=0x4DFFFF8 — CR2 always just below 0x4e00000, inside the RO moat; the fatal RIP varies within the stub neighborhood (the interrupted context differs with nesting depth), the site class does not"
+  },
+  "front_31b_deterministic_smmstore_lane": {
+   "question": "ring-29's post-mortem read PDE[38]=0x4c000e1 kept THIS lane's merge-agent sub-question open until rebuilt — rebuild RELEASE+CONFIG_SMMSTORE_V2=y, watch the deterministic storm",
+   "rebuild": ".config SMMSTORE_V2=y (EMU lane backed up first: .config + coreboot.rom), olddefconfig, UPDATED_SUBMODULES=1 bounded make (iasl requires env.sh sourcing), DXEFV census: SmmStoreFvbRuntimeDxe + VariableRuntimeDxe present (3526656 bytes)",
+   "deterministic_reproduction": "catch20: storm within the boot window, BYTE-IDENTICAL to ring 29's fatal site: RIP=0x1F970CAC (ring 29: 0x1f970cac), CR2=0x4DFFF60 (ring 29: 0x4dfff60), e=0003, CR3=0x4801000 — the deterministic lane is the perfect storm catch",
+   "frozen_sessions": [
+    "phase 1 (watchpoints): stops A-D identical to the EMU lane — the SEC carve is universal",
+    "freeze (watchpoints deleted, hw breakpoint on the fatal fxsave 0x1F970CAC): HIT1 shows PDE38=0x4c000e1 PDE39=0x4c04023 RSP=0x4ed8560 CR3=0x4801000 — RSP still legal (0xd8560 above the boundary)",
+    "64-hit observation (watchpoints KEPT armed, breakpoint + continues): PDE38 stays 0x4c000e1 and PDE39 stays 0x4c04023 for the WHOLE cascade; RSP oscillates in the 0x4ed7xxx-0x4ed8xxx band with the ring-29 0x660 nesting step VISIBLE LIVE (HIT11-13: 0x4ed8320 -> 0x4ed81f0 -> 0x4ed7b90); min RSP 0x4ed77f0; NO fatal crossing under per-delivery freezing",
+    "conditional-breakpoint regime (condition 3 $sp < 0x4e00100): desync wall 3/4 attempts; unconditional breakpoint stable 3/3"
+   ]
+  },
+  "the_verdict": {
+   "1_ring29_decode_error": "0x4c000e1 = 0b1110_0001 = P + A + D + PS, RW=0 — the post-mortem PDE was STILL READ-ONLY; ring 29's JSON text '2-MiB, PRESENT, R/W=1' was a flag-decode error; 'the tables had been merged back to a 2-MiB direct map' and the TLB-shadow theory built on it are WRONG — the #PF e=0003 (write to present RO) is FULLY consistent with the static tables, no shadow translation needed",
+   "2_merge_agent_absent_everywhere": "watchpoints armed from reset in three regimes (EMU green, EMU storming, SMMSTORE deterministic) caught EVERY instruction-store to PDE[38]/PDE[39]: exactly the four SEC writes (A-D), then NOTHING — the only post-D deltas are PDE38 +A+D (0x4c00081 -> 0x4c000e1) and PDE39 +A (0x4c04003 -> 0x4c04023), which are page-walk-time flag updates (host-side softmmu writes in TCG, INVISIBLE to instruction watchpoints — the named blind spot); RW was never changed anywhere, in any lane, ever",
+   "3_ring30_verdict_extended": "the static moat is static in the storming lane and in the deterministic lane too; ring 30's 'no merge agent in the EMU lane' becomes 'no merge agent, period'",
+   "4_the_storm_is_geometry": "SEC carves a 2-MiB RO moat at 0x4c00000-0x4dfffff below the DxeCore stack region (0x4e00000+, 4-K mapped via the PT at 0x4c04000); the un-EOI'd HPET cascade nests 0x660 per re-delivery; the fatal delivery is the one whose compounded nesting pushes the exception-entry fxsave target below 0x4e00000 into the moat — observed CR2s: 0x4dfff60, 0x4dffec0, 0x4dffff8"
+  }
+ },
+ "instrument_walls": [
+  "gdbstub watchpoint desync: in both EMU storm sessions the continue after stop D was rejected with 'Cannot execute this command while the target is running' — the transcript cut, the guest kept running (storming boot hangs under gdb: no triple-fault reset while attached), gdb alive at timeout",
+  "conditional breakpoints on the QEMU gdbstub are desync-prone (3/4 attempts stuck); unconditional breakpoints are stable (3/3) — use unconditional + post-hoc filtering",
+  "the observer effect is real: per-delivery freezing defuses the storm — 64 observed deliveries absorbed, no fatal crossing (each freeze delays the next interrupt arrival, the handler unwinds between deliveries, the compounding nesting that crosses the boundary never builds); the frozen fatal instant is NOT capturable by this class of instrument",
+  "page-walk-time A/D flag updates are invisible to guest-instruction watchpoints (TCG softmmu updates PTE flags host-side) — a watchpoint proves the ABSENCE of software PDE writes, not the absence of flag deltas"
+ ],
+ "honesty": [
+  "the frozen pre-fatal instant remains uncaptured: the near-fatal delivery (RSP crossing 0x4e00100) never arrived under observation and the conditional instrument desyncs — registered residual with the wall named",
+  "the D bit set on PDE38 post-carve is a QEMU softmmu behavior (set on the faulting-write translation path); real silicon does not set D on a faulting write — the A/D deltas are instrument-visible artifacts of the walk, not agents; the verdict rests on RW=0 everywhere, which is decode-robust",
+  "the EMU-lane storm rate under instrumentation (2/22) carries binomial width and is consistent with ring 30's pooled 3/46; no probability claim",
+  "the SMMSTORE lane was rebuilt and RESTORED: the ring-30 EMU state (config + ROM) is back and sanity-booted green (ec=0, CHAIN OK) before persistence",
+  "session started from a stale continuation summary (claimed the ring-18 era a third time): drift #16 written off at the checkpoint; disk is truth",
+  "instruments are untracked sandbox code by house convention (fw31_storm_hunt.sh, fw31_catch.sh, fw31_catchp.sh, fw31_freeze*.sh, gdb-fw31-*.cmds); the JSON artifacts and the narrative are the durable output"
+ ],
+ "recipes": {
+  "lane_switch_smmstore": "cd scratch-ring28/coreboot && cp .config{,.ring31-emu-backup} && sed -i 's/^# CONFIG_SMMSTORE_V2 is not set/CONFIG_SMMSTORE_V2=y/' .config && make olddefconfig && source ../env.sh && UPDATED_SUBMODULES=1 make -j$(nproc)",
+  "lane_restore_emu": "cp .config.ring31-emu-backup .config && cp ../coreboot.rom.ring31-emu-backup build/coreboot.rom",
+  "storm_catch": "./fw31_catchp.sh <id> <port>  (parallel, per-catcher disk copies) — sig=STORM via serial 'X64 Exception', gdb_ec=124 = guest hangs under gdb",
+  "frozen_session": "./fw31_freeze2.sh (phase 1 watchpoints A-D, phase 2 breakpoint 0x1F970CAC + continues, PDE/CR3/RSP prints per hit)"
+ },
+ "file_inventory": {
+  "session_transcripts": "gdb-fw31-hunt*.out (10), gdb-fw31-catch*.out (7), gdb-fw31-para*.out (6), gdb-fw31-freeze*.out (5+), serial-fw31-*.log (matching set) — all in scratch-ring28/",
+  "scripts": "fw31_storm_hunt.sh, fw31_catch.sh, fw31_catchp.sh, fw31_freeze.sh, fw31_freeze2.sh, fw31_freeze3.sh, fw31_freeze3_retry.sh, gdb-fw31-hunt.cmds, gdb-fw31-catch.cmds, gdb-fw31-catchp.cmds, gdb-fw31-freeze.cmds, gdb-fw31-freeze2.cmds, gdb-fw31-freeze3.cmds",
+  "backups": "coreboot/.config.ring31-emu-backup, coreboot.rom.ring31-emu-backup, disk/fw31-catch-*.img (per-catcher copies)"
+ }
+}

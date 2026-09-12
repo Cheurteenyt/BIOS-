@@ -4,6 +4,37 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the thirty-first ring (the storm, caught live)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green. The two ring-30 residuals close by measurement —
+and ring 29's post-mortem paradox resolves as a flag-decode error.
+
+- **Front 31a — the storming boot, watched.** 22 boots of the
+  RELEASE+EMU lane under PDE watchpoints from reset (hunt + parallel
+  catchers on three ports): 20 green, 2 storms caught. The storming
+  boots' moat-write sequences are byte-identical to the green boots
+  (the SEC carve does not differ on the lane that dies); fatal CR2s
+  always just below 0x4e00000. Instrument wall named: the gdbstub
+  watchpoint desync after stop D.
+- **Front 31b — the deterministic lane.** RELEASE+SMMSTORE_V2 rebuilt
+  (EMU lane backed up and restored at session end, sanity boot green);
+  the deterministic storm reproduces byte-identical to ring 29 (RIP
+  0x1F970CAC, CR2 0x4DFFF60). Three frozen sessions: stops A-D
+  identical, HIT1 at the fxsave with legal RSP, 64 deliveries observed
+  live with the 0x660 nesting step visible — and no fatal crossing
+  under per-delivery freezing (the observer effect).
+- **The verdict.** 0x4c000e1 decodes P+A+D+PS with **RW=0**: ring 29's
+  post-mortem PDE was STILL READ-ONLY — "merged back to 2-MiB RW" and
+  the TLB-shadow theory were a flag-decode error. The merge agent is
+  ABSENT IN EVERY LANE (the only post-carve deltas are walk-time A/D
+  bits, host-side softmmu, invisible to instruction watchpoints). The
+  storm is pure stack-boundary geometry over a static SEC-carved moat.
+- **Instrument walls registered:** conditional breakpoints desync
+  systematically (3/4) while unconditional are stable (3/3); walk-time
+  A/D updates are the watchpoint blind spot; the frozen pre-fatal
+  instant remains the one registered residual.
+
 ## Unreleased — the thirtieth ring (the storm and the static moat)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
