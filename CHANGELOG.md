@@ -4,6 +4,40 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the thirty-eighth ring (l'examen blanc)
+
+Docs-only + one new lab instrument; the tool surface is untouched: 15 tools,
+MCP smoke 12, 323 checks green.
+
+- **the conductor**: `lab/fw38-exam.py` (tracked, fw33/fw35/fw36/fw37
+  precedent) — the fragmented day-0 chain (identify 33 → compare 34 → map 36
+  → walk 37 → score 35) becomes ONE command: `exam <image>` runs the full
+  measurable chain and assembles the fw35 findings draft, auto-filling 12 of
+  the 20 day-0 fields (rom, AGESA ladder, armor names/GUIDs, SMM census,
+  legacy SMM, module count, DSDT, AOD SSDT revision, Setup varstore, chip
+  whitelist) and labeling the 10 manual lenses instead of inventing them;
+  `exam-pair` fills 7 of the 8 release-41 fields (GUID-truth births/deaths
+  through the fw37 ledger) with the day-0 keys nulled so they cannot leak
+  into release-41 verdicts.
+- **the examen blanc**: `mock` rehearses the whole exam against the OVMF
+  stand-in with the discrimination invariant — on a non-target image the
+  oracle hit-set must be exactly the absence-predictions {P-04, P-05} for
+  day-0 and ∅ for release-41. Profile: 2 hit / 5 miss / 19 na (day-0), 0 hit
+  / 3 miss / 23 na (release-41); the wall re-derives at genome level (18
+  births / 9 deaths / +777,472 B). Seven assertions reported every run.
+- **the discoveries** (caught live by the gates): OVMF has NO static DSDT
+  (runtime-generated via QemuFwCfgAcpiPlatform — the lens honestly reports
+  None); the ring-36 footprint register's DSDT hit @2259668 was a
+  length-plausibility FALSE POSITIVE (garbage length 9,733,135, checksum
+  fail) — the new checksum-validated ACPI walk refuses all four DSDT sig
+  hits audibly while confirming the real 124-B SSDT @1871944; genome
+  transition labels carry the vendor prefix (`asus-4003->asus-4202` — a
+  naive bare-rung match silently matched nothing, gate R4 caught it); the
+  template's 32 observed-key slots map to 31 unique fields (P-20/P-25 share
+  `agesa_level_41`).
+- **the selftest**: two-tier, 20 gates (11 R register re-derivations + 9 I
+  live corpus re-derivations) — 20/20 PASS, tier I live, 3.9 s.
+
 ## Unreleased — the thirty-seventh ring (le differ, tracké)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
