@@ -31,6 +31,18 @@ machine. Never mixed with the guard.
 
 ## Candidate machines (coreboot/Dasharo ports, as of late 2026)
 
+> **Updated by ring 24** (`lab/vol5-board-matrix.json`): candidates
+> verified against `src/mainboard` of the coreboot 25.12 release we
+> actually built. The tree says `framework/azalea` is the **Framework 13
+> AMD 7040** — an AMD/AGESA machine, so the study's PSP lens transfers
+> directly (primary candidate for the coreboot lane); System76 has 13
+> in-tree models; **the T440p is absent from 25.12**; **the ASRock Rack
+> X470D4U lane is absent from 25.12** (zero hits across `src/` and
+> `Documentation/`); and `asus/h610i-plus-d4` proves consumer-ASUS
+> coreboot exists. "Port in tree" is not "port matured" — purchase-time
+> checks remain. The bench decision (a second used B450) is a separate
+> question and unchanged.
+
 | Machine | Port status | Notes |
 |---|---|---|
 | Framework Laptop 13/16 | Dasharo (official) | the smoothest modern path |

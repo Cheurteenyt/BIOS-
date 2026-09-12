@@ -1,0 +1,124 @@
+{
+  "schema": "vol5-board-matrix/1.0",
+  "date": "2026-09-12",
+  "source_of_truth": "coreboot-25.12 local tree (sha256 486a737f… tarball) — src/mainboard listing",
+  "tree_evidence": {
+    "framework": [
+      "azalea"
+    ],
+    "system76": [
+      "addw1",
+      "adl",
+      "bonw14",
+      "cml-u",
+      "gaze15",
+      "kbl-u",
+      "mtl",
+      "oryp5",
+      "oryp6",
+      "rpl",
+      "tgl-h",
+      "tgl-u",
+      "whl-u"
+    ],
+    "lenovo_x230": [
+      "x230"
+    ],
+    "lenovo_t440p": [],
+    "asus": [
+      "h61-series",
+      "h610i-plus-d4",
+      "maximus_iv_gene-z",
+      "p2b",
+      "p5gc-mx",
+      "p5qc",
+      "p5ql-em",
+      "p5qpl-am",
+      "p8x7x-series"
+    ],
+    "asrock_x470d4u": []
+  },
+  "criteria": [
+    "port_in_tree — a Kconfig-selectable mainboard in the release we built",
+    "platform_alignment — does the board share the study's lens (AMD/PSP/AGESA, cf. TWIN-1 day-0)?",
+    "containment — Boot Guard era, ME/PSP neutralizability, no fused vendor key",
+    "flash_logistics — SOIC8/SOIC16 clip reachability, chip size, CH341A compatibility",
+    "maturity — age of the port, known S3/memory-training quirks (to verify on board-status)",
+    "availability_price — TO VERIFY at purchase (no shopping data in this study)"
+  ],
+  "candidates": [
+    {
+      "machine": "Framework Laptop 13 (AMD Ryzen 7040, 'Azalea')",
+      "port_in_tree": true,
+      "tree_path": "framework/azalea",
+      "kconfig_label": "Azalea (Framework 13 AMD 7040)",
+      "platform_alignment": "AMD/AGESA — SAME platform family as the TWIN-1 study (PSP lens applies)",
+      "containment": "AMD platform — PSP signs AGESA; no Intel Boot Guard/FPF; ME question does not exist",
+      "flash_logistics": "to verify (Framework publishes board repair docs; CH341A clip reachability at purchase)",
+      "maturity": "in official tree + Dasharo offering; per-board quirks to verify",
+      "verdict": "PRIMARY CANDIDATE — the study's AMD knowledge transfers directly"
+    },
+    {
+      "machine": "Framework Laptop 13/16 (Intel)",
+      "port_in_tree": true,
+      "tree_path": "framework/ (azalea only — Intel Framework NOT in coreboot 25.12 tree)",
+      "platform_alignment": "Intel — off the study's AMD lens",
+      "containment": "Intel Boot Guard state to check per unit (Dasharo documents unlocked states)",
+      "verdict": "SECONDARY — Dasharo official path (doctrine's original 'smoothest'), but platform-divergent and not in the 25.12 tree"
+    },
+    {
+      "machine": "System76 machines",
+      "port_in_tree": true,
+      "tree_path": "system76/ (11 model dirs: addw1, adl, bonw14, gaze15, kbl-u, mtl, oryp5, oryp6, rpl, tgl-h, tgl-u, whl-u)",
+      "platform_alignment": "mixed Intel generations — off the AMD lens",
+      "containment": "coreboot ships from factory + open EC — the zero-boarding-risk lane",
+      "verdict": "SECONDARY — factory-coreboot lane, no flash ceremony needed, but no before/after experiment on one's own board"
+    },
+    {
+      "machine": "ThinkPad x230",
+      "port_in_tree": true,
+      "tree_path": "lenovo/x230",
+      "platform_alignment": "Intel Ivy Bridge — the classic school; me_cleaner-able",
+      "containment": "pre-Boot Guard era (fusing started Haswell+) — containment trivial",
+      "maturity": "the most-documented coreboot port in existence",
+      "verdict": "THE SCHOOL — maximal maturity and containment; hardware is 2012-old (DDR3), price minimal"
+    },
+    {
+      "machine": "ThinkPad T440p",
+      "port_in_tree": false,
+      "tree_path": "lenovo/ — t440p ABSENT from 25.12 Kconfig.name (was historically supported)",
+      "platform_alignment": "Intel Haswell",
+      "verdict": "DEMOTED — doctrine listed it, but the port is not in the 25.12 tree; verify board-status history before ever buying",
+      "honesty": "absence in tree is evidence of the release's supported set, not of history — re-check if considered"
+    },
+    {
+      "machine": "ASUS B450-PLUS (TWIN-1, the day-0 machine)",
+      "port_in_tree": false,
+      "tree_path": "asus/ — zero AM4 boards in 25.12 (p2b, p5q*, h61-series, maximus_iv_gene-z, p8x7x-series, h610i-plus-d4)",
+      "platform_alignment": "AMD AM4 — the study's control group",
+      "containment": "n/a — the rule that does not bend: the guard fleet is never flashed",
+      "verdict": "CONTROL GROUP ONLY — confirms the doctrine's 'no port' and the Volume-5 decision (the sacrificial bench is a second used B450, not a port); +0 octet forever"
+    },
+    {
+      "machine": "ASRock Rack X470D4U (AM4, the research README's lane B)",
+      "port_in_tree": false,
+      "tree_path": "zero hits for x470d4u across src/ and Documentation/ of 25.12 (asrock/ holds 21 Intel-era boards + h110m, imb-1222, spc741d8)",
+      "platform_alignment": "AMD AM4 — would have been the aligned lane",
+      "verdict": "ABSENT FROM 25.12 — the remembered port does not exist in the release we built; pursuing it means pinning an older coreboot or a fork, a maintenance cost the lane decision must own",
+      "honesty": "same evidence class as the T440p demotion — absence in tree is evidence of the release's supported set, not of history"
+    },
+    {
+      "machine": "ASUS H610I-PLUS D4 (LGA1700)",
+      "port_in_tree": true,
+      "tree_path": "asus/h610i-plus-d4",
+      "platform_alignment": "Intel Alder Lake-N/R — off the AMD lens, but a consumer ASUS with an in-tree port",
+      "verdict": "RESEARCH LANE — proves consumer-ASUS coreboot exists; maturity and Boot Guard state to verify before ranking"
+    }
+  ],
+  "recommendation": "coreboot-capable lane (separate question from the Volume-5 B450 bench): primary = Framework 13 AMD 7040 azalea (platform alignment with the study's AMD/PSP lens, in-tree, Dasharo lane); fallback = x230 for maximal maturity/containment at minimal cost; System76 if the before/after experiment matters less than a guaranteed-open machine. The two AM4 refutations (B450-PLUS, X470D4U absent from 25.12) close the 'coreboot on our audited platform' shortcut",
+  "honesty": [
+    "checked against the 25.12 tree only — port age, S3 quality and memory-training quirks need board-status data at purchase time",
+    "price/availability deliberately left as to-verify — this study does not shop",
+    "the doctrine's candidate table (lab/coreboot-notes.md) predates this matrix; azalea's AMD identity and both AM4 absences are new evidence"
+  ]
+}

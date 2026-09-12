@@ -1,0 +1,207 @@
+{
+  "schema": "vol5-qemu-photograph/1.0",
+  "date": "2026-09-12",
+  "title": "Volume 5 — the first photograph: vendor OVMF vs coreboot, same machine (QEMU q35), zero hardware touched",
+  "method": {
+    "instrument": "fw.spi.map via `omarchy-firmware spi-map --dump <image>` — the offline dump_path seam, read-only, stdlib parse (FVs, FFS, descriptor, Boot Guard manifests)",
+    "coreboot_layer": "cbfstool print (built from coreboot-25.12) — coreboot does not use the PI/FFS container, so the vendor instrument correctly reports zero FVs; the CBFS layer is the coreboot-native equivalent inventory",
+    "vendor_depth": "cross-cited from lab/ovmf-census.json (rings 1-8) on byte-identical images (sha256 match)",
+    "honesty": [
+      "offline image analysis — no chip was read or written; +0 octet holds",
+      "OVMF_CODE_4M*.fd are the CODE-only halves of a 4 MiB split (CODE+VARS); the NV varstore lives in OVMF_VARS_4M.fd, not in the photographed image",
+      "the vendor instrument's outer-layer scan shows 6 FFS files on OVMF because the DXE FV is nested inside an FFS file; the census pierced that nesting (135/144 files) — both numbers are labelled, not contradictory",
+      "no flash descriptor on any image: the OVMF .fd files are partial regions, coreboot.rom is a descriptorless QEMU image — on real boards the descriptor/IFD layout will differ"
+    ]
+  },
+  "images": {
+    "ovmf-plain": {
+      "path": "/home/z/my-project/scratch-ovmf/extract/usr/share/OVMF/OVMF_CODE_4M.fd",
+      "size_bytes": 3653632,
+      "sha256": "624e06de18b4fa535e90db7160d00d3d07d206422b89999bf1e27d920264e4e0",
+      "spi_map": {
+        "status": "ok",
+        "descriptor_present": false,
+        "firmware_volumes": 2,
+        "outer_ffs_files": 6,
+        "dxe_drivers_outer": 0,
+        "smm_drivers_outer": 0,
+        "nvram_names": 0,
+        "boot_guard": "no Intel Boot Guard manifests — expected on AMD boards (the PSP signs the AGESA blobs instead)"
+      },
+      "census_cross_reference": {
+        "source": "lab/ovmf-census.json",
+        "build": "OVMF_CODE_4M.fd",
+        "files_total": 135,
+        "files_by_phase": {
+          "DXE": 115,
+          "PEI": 14,
+          "freeform": 2,
+          "application": 2,
+          "PEI-core": 1,
+          "DXE-core": 1
+        }
+      }
+    },
+    "ovmf-secboot": {
+      "path": "/home/z/my-project/scratch-ovmf/extract/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+      "size_bytes": 3653632,
+      "sha256": "1a46295574430cfb7f825ee3e4dc64b052acbef08e310377ed7c64cb757a9dc1",
+      "spi_map": {
+        "status": "ok",
+        "descriptor_present": false,
+        "firmware_volumes": 2,
+        "outer_ffs_files": 6,
+        "dxe_drivers_outer": 0,
+        "smm_drivers_outer": 0,
+        "nvram_names": 0,
+        "boot_guard": "no Intel Boot Guard manifests — expected on AMD boards (the PSP signs the AGESA blobs instead)"
+      },
+      "census_cross_reference": {
+        "source": "lab/ovmf-census.json",
+        "build": "OVMF_CODE_4M.secboot.fd",
+        "files_total": 144,
+        "files_by_phase": {
+          "DXE": 113,
+          "PEI": 17,
+          "SMM": 8,
+          "freeform": 2,
+          "PEI-core": 1,
+          "DXE-core": 1,
+          "application": 1,
+          "SMM-core": 1
+        }
+      }
+    },
+    "coreboot-q35": {
+      "path": "/home/z/my-project/scratch-coreboot/coreboot-25.12/build/coreboot.rom",
+      "size_bytes": 8388608,
+      "sha256": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1",
+      "spi_map": {
+        "status": "ok",
+        "descriptor_present": false,
+        "firmware_volumes": 0,
+        "outer_ffs_files": 0,
+        "dxe_drivers_outer": 0,
+        "smm_drivers_outer": 0,
+        "nvram_names": 0,
+        "boot_guard": "no Intel Boot Guard manifests — expected on AMD boards (the PSP signs the AGESA blobs instead)"
+      },
+      "cbfs_entries": [
+        {
+          "name": "cbfs_master_header",
+          "offset": "0x0",
+          "type": "cbfs",
+          "size": "header",
+          "compression": "32"
+        },
+        {
+          "name": "fallback/romstage",
+          "offset": "0x80",
+          "type": "stage",
+          "size": "19768",
+          "compression": "none"
+        },
+        {
+          "name": "fallback/ramstage",
+          "offset": "0x4e40",
+          "type": "stage",
+          "size": "72826",
+          "compression": "LZMA"
+        },
+        {
+          "name": "config",
+          "offset": "0x16b40",
+          "type": "raw",
+          "size": "2599",
+          "compression": "LZMA"
+        },
+        {
+          "name": "revision",
+          "offset": "0x175c0",
+          "type": "raw",
+          "size": "768",
+          "compression": "none"
+        },
+        {
+          "name": "build_info",
+          "offset": "0x17900",
+          "type": "raw",
+          "size": "106",
+          "compression": "none"
+        },
+        {
+          "name": "fallback/dsdt.aml",
+          "offset": "0x179c0",
+          "type": "raw",
+          "size": "7175",
+          "compression": "none"
+        },
+        {
+          "name": "cmos_layout.bin",
+          "offset": "0x19600",
+          "type": "cmos_layout",
+          "size": "640",
+          "compression": "none"
+        },
+        {
+          "name": "fallback/postcar",
+          "offset": "0x198c0",
+          "type": "stage",
+          "size": "21808",
+          "compression": "none"
+        },
+        {
+          "name": "fallback/payload",
+          "offset": "0x1ee40",
+          "type": "simple",
+          "size": "elf",
+          "compression": "72999"
+        },
+        {
+          "name": "payload_config",
+          "offset": "0x30bc0",
+          "type": "raw",
+          "size": "1621",
+          "compression": "none"
+        },
+        {
+          "name": "payload_revision",
+          "offset": "0x31240",
+          "type": "raw",
+          "size": "223",
+          "compression": "none"
+        },
+        {
+          "name": "(empty)",
+          "offset": "0x31380",
+          "type": "null",
+          "size": "8166436",
+          "compression": "none"
+        },
+        {
+          "name": "bootblock",
+          "offset": "0x7fafc0",
+          "type": "bootblock",
+          "size": "16384",
+          "compression": "none"
+        }
+      ],
+      "cbfs_entry_count": 14,
+      "stages": [
+        "fallback/romstage",
+        "fallback/ramstage",
+        "fallback/dsdt.aml",
+        "fallback/postcar",
+        "fallback/payload",
+        "bootblock"
+      ]
+    }
+  },
+  "the_delta": [
+    "container: vendor OVMF is a PI firmware volume world (FFS2, nested FVs, 135-144 FFS files); coreboot is a CBFS world (flat named entries, 5 stages + payload + metadata) — the two firmwares do not share a container format",
+    "boot: vendor boots via DXE Core + 115 DXE drivers (plain) with an 8-module SMM island (secboot); coreboot boots via bootblock→romstage→ramstage→postcar→SeaBIOS payload — the 'payload' IS the architectural answer to what SMM/DXE used to be",
+    "NVRAM: vendor keeps variable stores in flash (OVMF_VARS_4M.fd, SECUREBOOT_CONFIGURATION etc. — ring 7); the coreboot q35 build carries cmos_layout.bin and no flash NV varstore",
+    "instruments: the repo's spi-map reads the vendor world natively and honestly reports zero FVs on coreboot — photographing a real coreboot board day-X will need a CBFS lens; that lens now exists in rehearsal form (cbfstool parse)",
+    "Boot Guard manifests: absent on all three images (QEMU) — the fused-vs-deactivated question stays hardware-only, unchanged from the doctrine"
+  ]
+}

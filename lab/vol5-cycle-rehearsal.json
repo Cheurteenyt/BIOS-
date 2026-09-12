@@ -1,0 +1,47 @@
+{
+  "schema": "vol5-cycle-rehearsal/1.0",
+  "date": "2026-09-12",
+  "level": "file-level rehearsal (chip-level waits for the sacrificial board)",
+  "steps": [
+    {
+      "step": "1. dump-first (read twice, hash, two media)",
+      "verdict": "pass",
+      "sha256_read1": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1",
+      "sha256_read2": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1",
+      "sha256_medium_one": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1",
+      "sha256_medium_two": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1"
+    },
+    {
+      "step": "2. identify-before-write",
+      "verdict": "pass",
+      "intended_image": "coreboot.rom (qemu-q35, SeaBIOS payload)",
+      "sha256": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1",
+      "note": "on the real board: flashrom --flash-name + port status + Boot Guard state"
+    },
+    {
+      "step": "3. write",
+      "verdict": "pass",
+      "bytes_written": 8388608
+    },
+    {
+      "step": "3b. verify-after-write (re-read, compare)",
+      "verdict": "pass",
+      "sha256_chip": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1",
+      "sha256_intended": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1"
+    },
+    {
+      "step": "4. failed-verify branch (one flipped byte)",
+      "verdict": "pass",
+      "caught_by_verify": true,
+      "protocol": "a failed verification is a re-clip, not a reboot — no boot attempt"
+    },
+    {
+      "step": "5. rollback (restore from medium-two, verify)",
+      "verdict": "pass",
+      "sha256_restored": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1",
+      "sha256_original": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1",
+      "rule": "restoring the original must succeed once, deliberately, before the board is ours"
+    }
+  ],
+  "verdict": "cycle rehearsed end-to-end at file level — 5/5 steps pass"
+}

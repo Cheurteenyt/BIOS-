@@ -476,6 +476,21 @@ never-asked Setup ranges at offset level), and the ACPI shipped-vs-built
 census (expect DSDT+SSDT shipped, zero FACP bytes — any FACP byte in the
 dump would be a corpus first).
 
+Twenty-fourth ring / Volume 5 in software (no chip touched): the
+replacement firmware exists — coreboot 25.12 built for QEMU q35
+(SeaBIOS payload) through three root-less toolchain walls (iasl + the
+cached xcompile, 32-bit libgcc for the unwrapped `__udivmoddi4`, the
+`-print-libgcc-file-name` lie under `-m32` fixed by a wrapper); the
+first before/after photograph is taken (`lab/vol5-qemu-photograph.json`:
+vendor PI/FFS2 vs coreboot CBFS — no shared container, so a CBFS lens
+is registered as the Volume-5 additive instrument task); the flash
+cycle is rehearsed file-level 5/5 (`lab/vol5-cycle-rehearsal.json`,
+failed-verify branch included); the candidate matrix is verified
+against the 25.12 tree (`lab/vol5-board-matrix.json` — azalea = AMD
+in-tree; T440p and X470D4U absent; two AM4 refutations). Open on this
+axis: QEMU boot of the built image (no QEMU binary without root), the
+CBFS lens as code, and the purchase-time board-status checks.
+
 ## Discipline
 
 None of the eight questions requires a single byte written to the SPI chip.

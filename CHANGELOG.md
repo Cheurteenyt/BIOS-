@@ -4,6 +4,60 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the twenty-fourth ring (Volume 5 rehearses in software)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green. No hardware was read or written; all scratch work
+lives outside the repo. Lands after rings 9–23; the Volume-5 bench
+decision (second used B450 + CH341A) stands — this ring is the
+software wing plus the coreboot-capable-lane question.
+
+**Four fronts, three artifacts**
+- **The replacement built** (front 24a): coreboot 25.12
+  (tarball sha256 `486a737f…`) configured for QEMU q35 with the SeaBIOS
+  payload, built with the system toolchain — 8 MiB ROM, CBFS verified
+  by cbfstool (14 entries). Three root-less toolchain walls crossed and
+  documented: the iasl path (extracted from the already-present
+  acpica-tools .deb; the cached `build/xcompile` silently ignores later
+  PATH fixes), the missing 32-bit libgcc (extracted from
+  `lib32gcc-14-dev`; coreboot links `__udivmoddi4` from the archive it
+  does not wrap), and the `-print-libgcc-file-name` lie under `-m32`
+  (fixed by a compiler wrapper that answers with the 32-bit archive —
+  no coreboot source modified).
+- **The first photograph** (`vol5-qemu-photograph.json`, front 24b):
+  `fw.spi.map --dump` on OVMF plain / secboot and coreboot.rom — the
+  vendor world is PI/FFS2 (2 FVs; census depth 135/144 files, the
+  8-module SMM island the rings 16/18/23 certified), coreboot is CBFS
+  (0 FVs — correct, the instrument is vendor-native; 14 entries incl.
+  6 stages/payload). The structural finding: the two firmwares do not
+  share a container; photographing a real coreboot board needs a CBFS
+  lens beside the FFS lens (registered as the Volume-5 additive
+  instrument task).
+- **The cycle rehearsed** (`vol5-cycle-rehearsal.json`, front 24c): the
+  doctrine's sequence walked file-level — dump-twice/two-media,
+  identify, write+verify, the flipped-byte failed-verify branch caught
+  ("a failed verification is a re-clip, not a reboot"), rollback from
+  the second medium — 5/5 pass; the chip-level pass belongs to the
+  bench, pre-scripted by this rehearsal.
+- **The candidate matrix** (`vol5-board-matrix.json`, front 24d):
+  every remembered candidate verified against `src/mainboard` of 25.12
+  (the web status page 404s; the tree is authoritative) —
+  **framework/azalea is the Framework 13 AMD 7040**, an in-tree AMD
+  port, so the study's PSP/AGESA lens transfers (primary candidate for
+  the coreboot lane); System76 = 13 in-tree models, factory lane; x230
+  = the school; **T440p AND the ASRock Rack X470D4U lane absent from
+  25.12** (the two AM4 refutations close the "coreboot on our audited
+  platform" shortcut); B450-PLUS control-only (+0 octet forever); bonus
+  lane `asus/h610i-plus-d4` — consumer ASUS coreboot exists.
+
+**Honesty**: "port in tree" is not "port matured" (board-status checks
+at purchase time); QEMU boot of the built image registered, not
+performed (no QEMU binary without root — next software lever); and the
+ring itself carries a reconciliation: first committed against a stale
+local clone as a "ninth ring", renumbered after the fetch revealed
+rings 9–23 — the evidence commit preserved (`ninth-ring-local`), the
+renumbering registered, nothing smoothed over.
+
 ## Unreleased — the twenty-third ring (the churn atlas, the blob authorship, and the speaking ladder)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
