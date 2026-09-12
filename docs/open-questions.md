@@ -553,11 +553,25 @@ programmer — gated on the sacrificial hardware), and the FW27 follow-ups
 LoadOptions A/B on TCG timings, and the stub as the pattern for the
 bench-day observability instrument if the vendor firmware stays silent),
 and the FW28 follow-ups (why the exception handler's fxsave stack page
-is present-but-RO in the broken-SMMSTORE RELEASE lane — the one open
-sub-question of wall 28-w4; the AcpiPlatform "start failed: Aborted"
-observation in the coreboot world; and the SMMSTORE lane on REAL
-writable flash at bench day as the calibration point for the 28-w4
-q35 wall).
+is present-but-RO in the broken-SMMSTORE RELEASE lane — CLOSED by ring
+29, front 29b: an un-EOI'd level-triggered HPET cascade
+(`PcdHpetLocalApicVector` = 0x40) descending the DxeCore stack 0x660
+bytes per re-delivery to the 0x4e00000 boundary, the fatal write the
+exception stub's `fxsave` against a stale RO translation while the
+tables had merged back to 2-MiB RW — micro-threads left open: the
+writer of the RO 4-K entry and the agent of the merge; the
+AcpiPlatform "start failed: Aborted" observation — CLOSED by ring 29,
+front 29c: the OVMF-heritage FV-table installer hunting a storage file
+the payload FV never carries, `EFI_ABORTED` benign-by-design while
+coreboot→HOBs→AcpiTableDxe does the work (in RELEASE the dispatcher is
+silent); and the SMMSTORE lane on REAL writable flash at bench day as
+the calibration point for the 28-w4 q35 wall), and the FW29 follow-ups
+(the vendor-faithful RELEASE+EMU lane: 5/6 green with one measured
+intermittent storm crash — the trigger window between the HPET period
+and the common-entry TPL-restore under TCG; the `AuthcAMDenti`
+CPUID-vendor buffer's owner module, named by class only in the RELEASE
+layout; and the DEBUG-lane masking lesson: every green DEBUG number
+carries an unmeasured RELEASE error bar until re-run).
 
 ## Discipline
 

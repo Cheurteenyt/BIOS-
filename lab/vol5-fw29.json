@@ -1,0 +1,65 @@
+{
+  "schema": "lab/vol5 artifact",
+  "_meta": {
+    "ring": 29,
+    "date": "2026-09-12",
+    "title": "the RELEASE lane: the vendor-faithful matrix, the interrupt storm, and the vestigial abort",
+    "objective": "close the two open threads of ring 28's honesty ledger (the wall 28-w4 stack-RO sub-question, the AcpiPlatform abort) and take the lab lane to vendor-faithfulness: the coreboot+EDK2 world rebuilt in RELEASE (what the vendor actually ships) and re-measured end to end",
+    "environment": "scratch-ring28 (untracked); recipe unchanged from lab/vol5-fw28.json resurrection path; gdb lane from the same deb extraction",
+    "frozen_surface": "docs-only commit; 323/323 checks re-verified at commit time; bin/ lib/ tests/ untouched"
+  },
+
+  "front_29b_stack_ro": {
+    "question": "ring 28-w4: in the RELEASE build the crash resolves to CpuDxe.dll because CpuDxe owns the exception handler, whose fxsave allegedly faults onto a present-but-RO stack page — measured, or guessed?",
+    "answer": "MEASURED, and richer than the guess: the fxsave is real, but the 'RO page' is the shadow of a nested interrupt cascade, not a static guard",
+    "lane": "RELEASE payload + CONFIG_SMMSTORE_V2=y (-> -D VARIABLE_SUPPORT=SMMSTORE, the failing lane), QEMU q35 512M, -d int,cpu_reset",
+    "chain_of_evidence": {
+      "1_qemu_int_log": "1806 events v=40 (periodic), exactly ONE v=0e; the last five v=40 all at IP CpuDxe+0x1021 with SP descending by exactly 0x660 each (0x4e01c88 -> 0x4e01628 -> 0x4e00fc8 -> 0x4e00968 -> 0x4e00308), then v=0e e=0003 (supervisor WRITE, PRESENT) CR2=SP=0x4dfff60",
+      "2_release_dump": "serial: X64 Exception 0E #PF(Write); RIP=0x1f970cac; CR2=RSP; CR0=0x80010011 (WP=1); CR3=0x4801000; FXSAVE_STATE=0x1fe18460; image resolution CpuDxe.dll (the only module owning the handler)",
+      "3_disassembly": "RVA 0xDCAC = 'fxsave (%rdi)' — the fault site INSIDE the exception entry stub (CpuExceptionHandlerLib asm); RVA 0x1021 = 'ret' of AsmEnableInterrupts ('sti; xor eax,eax; ret')",
+      "4_gdb_postmortem": "CR3 unchanged (0x4801000); PDE[38] for the fault region = 0x4c000e1 (2-MiB, PRESENT, R/W=1) — the memory tables at sample time CANNOT produce e=0003: the RO translation that faulted lived in the TLB while the tables had been merged back to a 2-MiB direct map; PDE[37] = 0x4a00081 (2-MiB RO+X = image-protected region) confirms the policy-driven split/merge machinery exists in the lane",
+      "5_preserved_frames": "the original stack above 0x4e00000 intact: repeated interrupted contexts at the EnableInterrupts ret, the level-0 caller frame holds a CPUID-vendor buffer assembled 'Auth'+'cAMD'+'enti' (EBX,ECX,EDX order — the register-order anagram of 'AuthenticAMD') followed by cmpl $0x756e6547 ('Genu') — CPU feature-detection code spinning with IF re-enabled"
+    },
+    "mechanism_verdict": "an interrupt cascade, not a guard page: a periodic level-triggered interrupt (vector 0x40) re-delivered immediately at the same RIP after each IRET (un-EOI'd level semantics), each delivery consuming 0x660 bytes of the DxeCore stack, five nestings reaching the 0x4e00000 page boundary, the sixth stub entry allocating its save-context via 'sub rsp' and faulting on its first real write — the fxsave — 0xa0 bytes inside the boundary page; CpuDxe's #PF handler (HEAP_GUARD_NONSTOP_MODE=FALSE by PCD default) dumps and CpuDeadLoop()s",
+    "vector_0x40_identity": "PcAtChipsetPkg/HpetTimerDxe: the HPET timer is the payload's EFI_TIMER_ARCH (LocalApicTimerDxe is NOT in the FV); it registers TimerInterruptHandler on PcdHpetLocalApicVector = 0x40 (PcAtChipsetPkg.dec:59) and routes the IRQ level-triggered through the IOAPIC (IoApicConfigureInterrupt(..., TRUE, ...)); green boots show the same vector absorbed normally (tick-magnet poll loop: RAX incrementing per delivery at a fixed IP)",
+    "ring28_correction": "ring 28-w4's 'its own fxsave onto a present-but-RO stack page faults first' is CONFIRMED in the letter (the fxsave IS the faulting instruction) and REWRITTEN in the mechanism (the RO is a translation-level artifact of a split/merged region during an un-EOI'd nested cascade — the guard was not a static wall but the floor the storm fell through)"
+  },
+
+  "front_29a_release_matrix": {
+    "purpose": "the vendor ships RELEASE firmware; ring 28's 3+3 matrix ran a DEBUG payload — rebuild the coreboot+EDK2 world with CONFIG_EDK2_RELEASE=y and re-run the matrix on the same disk, same stub, same kernel",
+    "constants": "same q35, 512 MiB, disk/fw28-disk.img, FW28 stub, 6.12.94 kernel; only the payload build type changed (DEBUG -> RELEASE, EMU variable lane, EDK2_SERIAL_SUPPORT=y kept)",
+    "boots": "6 runs: 5/6 green (exit 0, chain OK, kernel markers, S5 power-down, [world] verdict 'coreboot world (edk2 payload above it)'), 1/6 crashed BEFORE the stub with the SAME fault signature (release dump resolving CpuDxe at the +0xDCAC fxsave site)",
+    "green_run_evidence": "serial-fw29-rel-run{1,3,4,5,6}.log: FW28 block, verdict line, FW26 CHAIN OK, S5 — the stub speaks with ZERO DEBUG prints (ConOut -> TerminalDxe over serial survives RELEASE)",
+    "intermittent_storm": "the same un-EOI'd level-cascade of front 29b fires intermittently in RELEASE+EMU (run 2 crashed during DXE dispatch, before the stub); the DEBUG lane of ring 28 masked the class (slower, serialized, 3/3 green)",
+    "verdict": "the vendor-faithful lane EXISTS and boots the full chain 5/6, at the price of honesty about a measured latent interrupt-storm crash class that the DEBUG numbers hid",
+    "wall_29_w1": "the w2 submodule gate re-arms on every fresh make invocation: UPDATED_SUBMODULES=1 stays part of the resurrection recipe (re-measured, first build hung >580 s, second converged)"
+  },
+
+  "front_29c_acpiplatform_abort": {
+    "observation": "ring 28: 'Error: Image at 0001F850000 start failed: Aborted' in EVERY coreboot-lane boot right after AcpiPlatform.efi loads; chain unaffected",
+    "root_cause": "MdeModulePkg/Universal/Acpi/AcpiPlatformDxe (in UefiPayloadPkg.fdf:345) is the OVMF-heritage FV-storage installer: its entry calls LocateFvInstanceWithTables, which walks every EFI_FIRMWARE_VOLUME2 handle hunting for the PcdAcpiTableStorageFile FFS file; UefiPayloadPkg's DXEFV carries no such file (tables arrive from coreboot via HOBs), so the loop exhausts -> EFI_NOT_FOUND -> line 191 returns EFI_ABORTED -> CoreStartImage reports 'start failed: Aborted'",
+    "verdict": "benign-by-design: a vestigial OVMF-ism. The real table flow is coreboot -> HOBs -> payload entry -> AcpiTableDxe -> kernel, measured complete every boot (ACPI PM S0-S5, clean S5). In RELEASE the dispatcher is silent and the abort becomes invisible — the DEBUG lane simply spoke a truth the RELEASE lane swallows",
+    "consequence_day0": "the same message class, if ever seen on the real board's console, carries the same meaning: an optional FV-table installer failing while HOB-fed tables do the work"
+  },
+
+  "walls_registered": [
+    "29-w1: UPDATED_SUBMODULES=1 is a standing recipe item, not a one-shot fix (re-armed on fresh make)",
+    "29-w2: the HPET vector 0x40 is level-triggered through the IOAPIC; any stall inside its common-entry window can start an un-EOI'd re-delivery cascade that descends the DxeCore stack 0x660 per cycle — the crash floor is the 0x4e00000 boundary of the DXE stack HOB",
+    "29-w3: the RO bit that faulted existed only in the translation at fault time; the tables merged back to 2-MiB RW under the running system — the writer of the RO 4-K entry and the agent of the merge are measured-around but not yet named (registered micro-thread)",
+    "29-w4: LOCAL_APIC_TIMER_VECTOR=32 in OvmfPkg/LocalApicTimerDxe.h is a decoy for this lane — the driver is absent from the FV; the timer is HPET at 0x40"
+  ],
+
+  "honesty": [
+    "the intermittent storm sample size is 1 crash in 6 RELEASE+EMU boots (plus the deterministic SMMSTORE-lane reproduction); no claim of probability",
+    "the run-2 crash has no -d int capture (instrumentation added only after the first crash was observed); the same-signature evidence is the release dump's fxsave IP and ImageBase arithmetic",
+    "the 'AuthcAMDenti' buffer is measured in the preserved original stack; its owner module (code at 0x1f81a3e2, checking 'Genu') is named by function class (CPU feature detection) but not yet by module file — the RELEASE layout has no driver-name prints",
+    "the early 1800 v=40 deliveries of the deterministic run were absorbed normally; only the final six cascade — the trigger window is the un-EOI'd stall, not every tick",
+    "the OVMF-side logs are untouched ring-26/27/28 evidence; all new measurements are coreboot-lane"
+  ],
+
+  "consequences_day0": [
+    "the real board runs RELEASE vendor firmware; the lab now has a RELEASE lane whose verdicts and failure classes transfer (the stub speaks, the chain boots, storms and vestigial aborts included)",
+    "bench-day SMMSTORE calibration gains its software-half: VARIABLE_SUPPORT=SMMSTORE under -bios dies by interrupt-cascade into the stack floor, not by a static guard wall",
+    "the world-naming stub is RELEASE-grade: no DEBUG dependency anywhere in the chain"
+  ]
+}

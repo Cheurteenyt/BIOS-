@@ -4,6 +4,39 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the twenty-ninth ring (the RELEASE lane, the interrupt storm, and the vestigial abort)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green. The two open threads of ring 28's honesty ledger
+close measured, and the lab lane becomes vendor-faithful.
+
+- **Front 29b — the stack-RO sub-question, closed measured.** The
+  RELEASE+SMMSTORE fault is an **un-EOI'd level-triggered HPET
+  interrupt cascade** (`HpetTimerDxe`, vector `PcdHpetLocalApicVector`
+  = 0x40, IOAPIC level routing), not a static guard page: the last
+  five of 1806 `v=40` deliveries land at the same IP (the `ret` of
+  `AsmEnableInterrupts`, CpuDxe+0x1021) with the stack descending
+  exactly 0x660 bytes per cycle, and the fatal write is the exception
+  stub's `fxsave (%rdi)` (CpuDxe+0xDCAC) — e=0003 against a **stale RO
+  translation** while the gdb post-mortem shows the region's PDE
+  already merged back to a 2-MiB RW direct map. Ring 28 was right in
+  the letter (the fxsave), wrong in the mechanism (a storm and a
+  shadow, not a wall).
+- **Front 29a — the vendor-faithful matrix.** The coreboot+EDK2 world
+  rebuilt with `CONFIG_EDK2_RELEASE=y` on the same disk/stub/kernel:
+  **5/6 boots green** (exit 0, `[world]` verdict on the wire, CHAIN OK,
+  clean S5) with the FW28 stub speaking ZERO-DEBUG; 1/6 dies with the
+  same storm signature — the latent crash class the DEBUG lane masked.
+- **Front 29c — the AcpiPlatform abort, benign-by-design.**
+  `MdeModulePkg`'s AcpiPlatformDxe is the OVMF-heritage FV-table
+  installer; the payload FV never carries the storage file, the
+  locator exhausts, line 191 returns `EFI_ABORTED`. The real tables
+  flow coreboot → HOBs → AcpiTableDxe → kernel (S5 measured every
+  boot). In RELEASE the dispatcher is silent — the abort becomes
+  invisible.
+
+New artifacts: `lab/vol5-fw29.json`, `lab/findings-twenty-ninth-ring.md`.
+
 ## Unreleased — the twenty-eighth ring (the world-naming stub, and the second world)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
