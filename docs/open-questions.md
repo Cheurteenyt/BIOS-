@@ -524,6 +524,35 @@ workaround), azalea rehearsal (vendor blob submodules), the purchase-time
 board-status checks, and the bench day itself (dump-first, external
 programmer — gated on the sacrificial hardware).
 
+Twenty-seventh ring — the ring-26 silence is RESOLVED, and the study owns
+a loader (`lab/vol5-fw27.json`): the "UKI stays silent" thread decomposed
+into three measured root causes, none of them earlyprintk — RC1 the
+`.cmdline`/`.initrd` PE sections are inert on the x86 stub (systemd-stub's
+food; the control arm speaks and panics with the initramfs still embedded
+in its own PE), RC2 the decompression-buffer knife-edge (the misleading
+"Failed to decompress kernel" is `efi_random_alloc` returning
+EFI_OUT_OF_RESOURCES before any decompressor runs; fw_cfg floor measured
+128✗/192✓, alloc_size ∈ (~55, ~120] MiB; the UKI's 13.2 MiB pre-load
+flips the 512 MiB disk path), RC3 empty LoadOptions = a kernel that boots
+mute (earlyprintk closes with its true answer: delivering the cmdline is
+the whole game). Front 27b builds FW27, the study's own EFI stub (~260
+lines on gnu-efi 3.0.18, LoadFile2 defined from UEFI 2.10 §13.6): it
+speaks on ConOut, dumps the memory map the vendor's mute RELEASE build
+never prints, consumes its own sections, serves the initrd through
+EFI_LOAD_FILE2 (implementing the 6.12 consumer's EFI_BUFFER_TOO_SMALL
+probe contract — a registered spec divergence), LoadImages the pristine
+`\boot\vmlinuz` from the same volume and hands it a CHAR16-widened
+cmdline. The full chain — no shell, no boot entry, no fw_cfg — is green
+3/3 at 512 MiB with the kernel's own line naming OUR protocol as the
+initrd source. Open on this axis: the syslinux/GRUB rejection of a valid
+FAT behind a hand-written MBR partition (superfloppy workaround, class
+named), azalea rehearsal (vendor blob submodules), the purchase-time
+board-status checks, the bench day itself (dump-first, external
+programmer — gated on the sacrificial hardware), and the FW27 follow-ups
+(memory-map full dump for bench-day correlation, earlyprintk-vs-our-
+LoadOptions A/B on TCG timings, and the stub as the pattern for the
+bench-day observability instrument if the vendor firmware stays silent).
+
 ## Discipline
 
 None of the eight questions requires a single byte written to the SPI chip.

@@ -1,0 +1,154 @@
+{
+ "schema": "vol5-fw27/1.0",
+ "title": "the ring-26 silence decomposed (3 root causes, none is earlyprintk), and the study's own EFI stub boots the chain end to end",
+ "date": "2026-09-12",
+ "inherits": "vol5-os-boot/1.0 (same kernel, same FAT16 superfloppy, same FW26 markers)",
+ "kernel": {
+  "release": "6.12.94+deb13-amd64",
+  "sha256": "e7667ff961fcf0f872e2618a930454a6362ce58995f386431f60a5169c85f41a",
+  "fat_copy_sha256": "e7667ff961fcf0f872e2618a930454a6362ce58995f386431f60a5169c85f41a",
+  "fat_copy_note": "read back from the superfloppy via mtools \u2014 byte-identical, the FAT content is acquitted"
+ },
+ "ring26_open_thread": {
+  "registered": "the hand-built UKI loads and STARTS under OVMF (BdsDxe \"starting\", no failure status) but stays silent \u2014 earlyprintk debugging deferred to the next session",
+  "resolution": "the silence is TWO stacked causes and a dead-end hypothesis, all measured in ring 27; earlyprintk was never reachable \u2014 the stub died before any kernel printk, and its own ConOut errors were invisible under the ring-26 NVRAM"
+ },
+ "root_causes": [
+  {
+   "id": "RC1",
+   "name": "the UKI shape is inert on the x86 stub \u2014 .cmdline/.initrd sections are NEVER read",
+   "evidence": "v6.12 x86-stub.c: cmdline = efi_convert_cmdline(LoadOptions); initrd = LoadFile2 device path or cmdline initrd=; the PE sections belong to systemd-stub, which is not in the image. Arm A/C: pristine kernel speaks+panics WITH the 1 MiB initramfs still embedded in its own PE (arm A) \u2014 the stub never consumed it.",
+   "consequence": "a \"UKI\" without systemd-stub is a kernel with dead weight; the ring-26 objcopy recipe was mechanically perfect and architecturally moot"
+  },
+  {
+   "id": "RC2",
+   "name": "the decompression-buffer knife-edge: efi_random_alloc for max(output_len, kernel_total_size) fails near 512 MiB on the disk path",
+   "evidence": "v6.12 x86-stub.c efi_decompress_kernel: alloc_size = ALIGN(max(output_len, kernel_total_size), MIN_KERNEL_ALIGN) via efi_random_alloc(EFI_LOADER_CODE, LOAD_PHYSICAL_ADDR, ULONG_MAX); failure keeps the EFI_OUT_OF_RESOURCES status and prints the MISLEADING \"Failed to decompress kernel\" (x86-stub.c:1000) \u2014 no decompressor ever ran. fw_cfg floor measured: 128 MiB FAIL / 192 MiB OK \u2192 alloc_size \u2208 (~55, ~120] MiB. Disk path at 512 MiB: 5/5 stub-fails WITH the UKI pre-loaded (13.2 MiB LoaderCode), then C speaks with the pristine exec \u2014 the margin is single-digit MiB at that size.",
+   "consequence": "ring-26's \"Out of Resources\" lesson (~49 MiB on a 128 MiB VM) and this are one class at two scales; the vendor firmware reports OOR and stays mute about the mechanism"
+  },
+  {
+   "id": "RC3",
+   "name": "empty LoadOptions = a silent kernel even when the boot succeeds",
+   "evidence": "the UKI auto-boot at 512/1024 MiB sometimes SUCCEEDS the allocation and then hangs the VM silently: kernel runs with no console=, panics or waits invisibly (no -no-reboot escape from a mute panic)",
+   "consequence": "the earlyprintk front is closed with its true answer: earlyprintk was never the bottleneck \u2014 delivering the cmdline is"
+  },
+  {
+   "id": "RC4",
+   "name": "LoadOptions are CHAR16-only for the x86 stub (v1 stub lesson, caught before publication)",
+   "evidence": "v6.12 efi_convert_cmdline: options_chars = options_size / sizeof(efi_char16_t); a CHAR8 buffer becomes UTF-16 mojibake (first CHAR16 0x6f63 \u2192 3-byte garbage) \u2192 no console= \u2192 silent boot. FW27 v1 boot: full trail green up to \"Loaded initrd\", then silence. Fix: OUR stub widens its CHAR8 .cmdline section to CHAR16 \u2014 what systemd-stub does.",
+   "consequence": "the UEFI Shell works because IT passes CHAR16; the EFI_LOAD_OPTION descriptor path has its own FW_BUG quirk in the kernel"
+  },
+  {
+   "id": "RC5",
+   "name": "the 6.12 LoadFile2 size-probe contract: EFI_BUFFER_TOO_SMALL, not EFI_SUCCESS",
+   "evidence": "v6.12 efi_load_initrd_dev_path: \"status = lf2->load_file(lf2, dp, false, &initrd->size, NULL); if (status != EFI_BUFFER_TOO_SMALL) return EFI_LOAD_ERROR\" \u2014 a spec-naive provider breaks the load; FW27 implements the exact contract and the kernel line \"Loaded initrd from LINUX_EFI_INITRD_MEDIA_GUID device path\" confirms consumption",
+   "consequence": "registered as a spec-vs-consumer divergence (UEFI spec: Buffer=NULL \u2192 EFI_SUCCESS with the size)"
+  }
+ ],
+ "measurements": {
+  "fwcfg_ram_floor": {
+   "method": "single-run fw_cfg boots, descending ladder (vol27_ram_sweep.py)",
+   "runs": [
+    {
+     "ram_mib": 512,
+     "verdict": "CHAIN_OK"
+    },
+    {
+     "ram_mib": 384,
+     "verdict": "CHAIN_OK"
+    },
+    {
+     "ram_mib": 320,
+     "verdict": "CHAIN_OK"
+    },
+    {
+     "ram_mib": 256,
+     "verdict": "CHAIN_OK"
+    },
+    {
+     "ram_mib": 192,
+     "verdict": "CHAIN_OK"
+    },
+    {
+     "ram_mib": 128,
+     "verdict": "STUB_ALLOC_FAIL"
+    },
+    {
+     "ram_mib": 96,
+     "verdict": "STUB_ALLOC_FAIL"
+    }
+   ],
+   "bound": "alloc_size \u2208 (~55, ~120] MiB; the Debian System.map is a -dbg pointer stub, so this is the only measurement available"
+  },
+  "disk_probe_matrix": {
+   "A_uki_control_512": "stub alloc FAIL (Failed to decompress kernel, Out of Resources) \u2014 3/3 via shell-exec + 2/2 auto-boot",
+   "C_pristine_control_512": "SPEAKS then panics exactly as predicted (VFS: Unable to mount root fs) \u2014 no UKI pre-load, the 13.2 MiB LoaderCode block was the straw",
+   "D_pristine_repair_1024": "CHAIN OK \u2014 initrd= from the FAT via LoadOptions",
+   "D_pristine_repair_512": "CHAIN OK at the knife-edge size",
+   "M_memmap_512": "shell memmap: Available 462.6 MiB, 454.9 MiB inside [16M,512M), biggest descriptor 419.92 MiB \u2014 the vendor-visible map cannot explain the failures; debugcon (0x402) mute = RELEASE build",
+   "ukiauto_silent_512": "non-deterministic silent SUCCESS (boot hung silently = kernel ran with no console; observed twice at 512/1024) \u2014 RC3"
+  },
+  "registered_failures": [
+   "bcfg optional-data: this OVMF shell rejects it (\"bcfg: Invalid argument\", probeA-shell.log) \u2014 the shell-exec path replaced it",
+   "debugcon 0x402 on Debian OVMF plain: mute (RELEASE build) \u2014 the vendor voice does not exist, we built our own"
+  ]
+ },
+ "fw27_stub": {
+  "source": "scripts/fw27_stub.c (~260 lines C on gnu-efi)",
+  "architecture": "OVMF auto-boots \\EFI\\BOOT\\BOOTX64.EFI = FW27-stub: (1) speaks on ConOut; (2) dumps a memory-map summary \u2014 the observability the vendor refuses; (3) walks ITS OWN PE section table and consumes .cmdline/.initrd \u2014 the ring-26 sections finally read, by OUR code; (4) installs EFI_LOAD_FILE2 on LINUX_EFI_INITRD_MEDIA_GUID (RC5 contract); (5) LoadImage \\boot\\vmlinuz from the same FAT via a device path built from the volume\\'s, sets LoadOptions (CHAR16-widened .cmdline, RC4), StartImage; (6) if the kernel returns, prints the status \u2014 the vendor never tells you why",
+  "build": "gnu-efi 3.0.18-1+deb13u1 (trixie, extracted root-less per the house playbook) + gcc 14.2.0 + ld -T elf_x86_64_efi.lds + objcopy --target=efi-app-x86-64; .cmdline (81 B) + .initrd (1,063,434 B) appended post-build with the ring-26 VMAs recipe",
+  "size_bytes": 1124731,
+  "size_of_image": "0x115000 (~1.1 MiB \u2014 vs the 13.2 MiB UKI: the knife-edge load disappears)",
+  "subsystem": 10,
+  "machine": "x86_64 (0x8664)",
+  "sha256": "e82ce759a8386f59a24a717bc39b6f5d9771abb44ab38b54d422caa5521226ce",
+  "gnu_efi_note": "3.0.18 headers lack EFI_LOAD_FILE2_PROTOCOL (UEFI 2.2+) \u2014 defined in our source from UEFI 2.10 \u00a713.6"
+ },
+ "fw27_chain": {
+  "path": "OVMF plain 4M -> FatDxe -> \\EFI\\BOOT\\BOOTX64.EFI (FW27-stub) -> LoadImage(\\boot\\vmlinuz) -> kernel EFI stub <- initrd via OUR LoadFile2 + cmdline via OUR section (widened to CHAR16) -> busybox /init",
+  "no_shell_no_bootentry_no_fwcfg": true,
+  "ram_mib": 512,
+  "runs_green": 3,
+  "runs_total": 3,
+  "trail_witnessed": [
+   "BdsDxe: starting Boot0001 \"UEFI QEMU HARDDISK QM00001 \"",
+   "FW27-stub v1: the study's own loader speaks",
+   "FW27 memmap: 112 descriptors, conventional 462 MiB in 9 regions",
+   "FW27 memmap: biggest conventional 0x1780000-0x1BB6BFFF (419 MiB)",
+   "FW27 sections: .cmdline 81 B, .initrd 1063434 B \u2014 consumed by OUR code",
+   "FW27: EFI_LOAD_FILE2 installed on LINUX_EFI_INITRD_MEDIA_GUID",
+   "FW27: pristine kernel loaded from the same volume",
+   "FW27: LoadOptions set (164 B CHAR16 from the .cmdline section), starting the kernel",
+   "EFI stub: Loaded initrd from LINUX_EFI_INITRD_MEDIA_GUID device path",
+   "=== FW26 firmware=uefi ===",
+   "=== FW26 CHAIN OK ==="
+  ],
+  "initrd_consumption_proof": "the kernel's own line names the LINUX_EFI_INITRD_MEDIA_GUID device path \u2014 the fw_cfg path is absent in this boot, so OUR protocol instance is the only source"
+ },
+ "honesty": [
+  "the disk was modified in ring 27 (BOOTX64.EFI = FW27 stub; the ring-26 UKI preserved as BOOTX64.NOB; NvVars churn) \u2014 the ring-26 artifact's disk sha256 describes the disk BEFORE these changes; every transformation is a persisted mtools command in the session scripts",
+  "the coreboot world is UNCHANGED: same ring-24 specimen, same syslinux chain; ring 27 adds no coreboot claim",
+  "TCG absolute times are not hardware times; ring 27 adds no timing claim at all",
+  "the fw_cfg floor (128/192 MiB) is a single-run ladder, not a median \u2014 the bound is honest, not tight",
+  "the disk-path knife-edge at 512 MiB is non-deterministic (allocation headroom vs OVMF's own churn + KASLR seed); the matrix records both outcomes",
+  "FW27 v1 had the CHAR16 mojibake bug (RC4) \u2014 kept in the source comments and the trail (the first W run) as registered history, per house rules"
+ ],
+ "files": {
+  "generators": [
+   "scripts/vol27_bcfg_probe.py",
+   "scripts/vol27_shell_probe.py",
+   "scripts/vol27_ram_sweep.py",
+   "scripts/vol27_stub_build.sh",
+   "scripts/fw27_stub.c"
+  ],
+  "logs": "scratch-coreboot/ring26/ring27/ (arm logs, memmap, sweep, kernel sources fetched to ring27/src/)",
+  "kernel_sources_read": [
+   "arch/x86/boot/compressed/misc.c",
+   "drivers/firmware/efi/libstub/x86-stub.c",
+   "drivers/firmware/efi/libstub/efi-stub-helper.c",
+   "drivers/firmware/efi/libstub/efi-stub.c",
+   "drivers/firmware/efi/libstub/randomalloc.c",
+   "arch/x86/include/asm/efi.h"
+  ]
+ }
+}

@@ -4,6 +4,54 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the twenty-seventh ring (the silence decomposed, and our own stub speaks)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green. The ring-26 open thread ("the hand-built UKI loads and
+STARTS under OVMF but stays silent — earlyprintk debugging next session")
+is closed by measurement, and the study gains its own EFI loader.
+No chip is touched; day-0 (16/09) is untouched by design.
+
+**The silence decomposed — three root causes, none is earlyprintk**
+- **RC1 — the UKI sections are inert on the x86 stub**: the v6.12 stub
+  reads cmdline from LoadOptions and initrd from the LoadFile2 device
+  path (or cmdline `initrd=`) — the `.cmdline`/`.initrd` PE sections are
+  systemd-stub's food, and no systemd-stub is in the image. Control arm:
+  the pristine kernel speaks and panics with the whole initramfs still
+  embedded in its own PE.
+- **RC2 — the decompression knife-edge**: `efi_random_alloc` for
+  max(output_len, kernel_total_size) fails with the misleading
+  "Failed to decompress kernel" (x86-stub.c:1000) — an allocation
+  failure, before any decompressor runs. fw_cfg RAM floor measured
+  (128 MiB FAIL / 192 MiB OK → alloc_size ∈ (~55, ~120] MiB); at 512 MiB
+  the disk path flips on the UKI's 13.2 MiB pre-load (5/5 stub-fails)
+  while the pristine exec speaks.
+- **RC3 — empty LoadOptions = a mute boot**: the kernel runs with no
+  `console=` and fails invisibly. The earlyprintk front closes with its
+  true answer: delivering the cmdline is the whole game.
+- Two consumer contracts registered on the way: `bcfg` optional-data
+  rejected by this OVMF shell (Invalid argument), and the 6.12 LoadFile2
+  size probe MUST return EFI_BUFFER_TOO_SMALL (a spec-vs-consumer
+  divergence), both caught against the fetched kernel sources
+  (ring27/src/, v6.12).
+
+**FW27 — the study's own EFI stub** (`lab/vol5-fw27.json`): ~260 lines of
+C on gnu-efi 3.0.18 extracted root-less (LoadFile2 defined from UEFI 2.10
+§13.6 — the headers stop at 1.1). Auto-booted as `\EFI\BOOT\BOOTX64.EFI`
+it speaks on ConOut, dumps a memory-map summary (the observability the
+mute RELEASE-build vendor refuses), consumes its OWN `.cmdline`/`.initrd`
+sections (the ring-26 shape, finally load-bearing), installs
+EFI_LOAD_FILE2 on LINUX_EFI_INITRD_MEDIA_GUID, LoadImages the pristine
+`\boot\vmlinuz` from the same FAT volume, hands it the cmdline as
+CHAR16-widened LoadOptions (the v1 CHAR8 mojibake kept as registered
+history), and prints the kernel's exit status if it ever returns. The
+full chain — no shell, no boot-entry variables, no fw_cfg — is green 3/3
+at 512 MiB: `FW26 firmware=uefi`, `FW26 CHAIN OK`, clean S5 power-down,
+with the kernel's own line naming OUR protocol instance as the initrd
+source. 1.1 MiB where the UKI was 13.2 — the knife-edge load disappears
+with it. The coreboot world is untouched (same ring-24 specimen); the
+disk evolved (the ring-26 UKI preserved as `BOOTX64.NOB`).
+
 ## Unreleased — the twenty-sixth ring (the chain speaks, and the chain is timed)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
