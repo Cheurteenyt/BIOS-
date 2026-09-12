@@ -4,6 +4,42 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the thirty-seventh ring (le differ, tracké)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+- **the promotion**: the ring-34 registers (constellation, nx-pin,
+  vars-differ) were produced by session-side scripts the repo did not
+  track — leaving the project's most load-bearing capability (the
+  GUID-aligned module differ) untracked while both remaining
+  measurement events (the 16/09 dump, release-41) consume it.
+  `lab/fw37-differ.py` promotes the walkers (ring4_lib + ring9_differ)
+  into a tracked, stdlib-only, read-only instrument per the
+  fw33/fw35/fw36 precedent. No new JSON: the ring-34 registers ARE the
+  artifact, fw37 reproduces them live.
+- **16-gate two-tier selftest, tier I live**: tier R re-derives every
+  anchor from the registers; tier I re-derives them WITH the instrument
+  on the surviving OVMF corpus and byte-compares — identity classes
+  (5 builds → 3, symlink-resolved), module counts 135/144/144, the
+  wall ledger 126/6/120/+777,472 with only-in 9/18, the strictnx pair
+  144/142/2/0, the NX pins byte-exact (BdsDxe 1 B @35487 `01→00`,
+  IScsiDxe 2 B @94610 `66 2E→00 66`), the VARS census 0/39/39 with
+  states 21/17/1, and the key_delta (PK/KEK/db changed, dbx 76 B
+  same-bytes). Exit 2 on any drift.
+- **the pierce lesson**: the observed OVMF geometry is a type-0x02
+  COMPRESSION section carrying the LZMA custom-decompress GUID — a
+  naive "GUIDED = 0x17" filter silently rejects the only true hit
+  (caught live by gate I2 before freeze). fw37's generic pierce accepts
+  both geometries, all LZMA payloads, extended section sizes.
+- **vendor-ready**: UI sections (0x15) yield module names with no
+  census (gate I5b: BdsDxe/IScsiDxe from the image alone); scan mode
+  honors each FV's own header length; every mode takes arbitrary image
+  paths — the same command re-derives ring-34 today and walks the
+  day-0 dump and release40|release41 without modification. Ledger =
+  P-20..P-26 input; pins = the CAP comparator layer; vars = the store
+  lens; ledger(dump|3644) = the P-18 fingerprint generator.
+
 ## Unreleased — the thirty-sixth ring (la cartographie du delta)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

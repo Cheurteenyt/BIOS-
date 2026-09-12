@@ -150,11 +150,13 @@ each ledger self-corrects where the answer lands.
 | `ovmf-geometry.json` | thirty-sixth ring | the first OVMF-side geometry: FVMAIN_COMPACT + SECFV checksum-valid on every CODE build, plain 52.02/43.05 erased/packed vs secboot 48.43/44.84 (the rebuild wall invisible to layout), VARS plain 100% erased, NVAR census 0 — the NVAR clock registered AMI-specific |
 | `ovmf-delta-map.json` | thirty-sixth ring | the raw cartographies under the ring-34 ledgers: the 3-byte NX semantic truth amplifies 322,734x raw (9 B metadata + 968,194 B LZMA tail); the wall raw = 1,657,607 B in 26 runs — 1.63 MB LZMA tail + ~23 KB UNCOMPRESSED SECFV in-place deltas (SEC body + pointer runs shifted -9/-16, raw-visible build signal); VARS ms|snakeoil = ONE 7,309 B slab (PK/KEK/db), dbx absent |
 | `findings-thirty-sixth-ring.md` | thirty-sixth ring | the cartography ring report: the compression lies (raw diff measures the container, not the content), SECFV tells the truth (any rebuild changes it, no decompression needed), the symlink second verse of the identity class, the two-tier selftest discipline |
+| `findings-thirty-seventh-ring.md` | thirty-seventh ring | the promotion ring report: the ring-34 session differ (ring4_lib + ring9_differ) is now the tracked instrument fw37-differ.py — 16-gate two-tier selftest re-deriving every anchor live to the byte (identity classes, 135/144/144, the wall 126/6/120/+777472, the NX pins, the VARS census), the type-0x02 pierce lesson, UI names without census, and the day-0/release-41 linkage; no new JSON — the ring-34 registers ARE the artifact |
 
 ### The instruments
 
 | Path | What it is |
 |---|---|
+| `fw37-differ.py` | the GUID-aligned module differ, TRACKED (ring 37) — promoted from the session scripts that built the ring-34 registers: `scan` (FV census + generic LZMA pierce + FFS walk, UI names without census), `ledger` (the ring-34 §2 shape, release-41 P-20..P-26 input), `pin` (exact byte-run pins, the CAP comparator §3 layer), `vars` (the 60-byte-header auth walk + pairwise delta); two-tier selftest, 16 gates, tier I live on the surviving corpus — exits 2 on any drift |
 | `ovmf-smoke.sh` | boot OVMF in QEMU, headless, capture the boot log — the first "replacing the firmware" experiment, fully reversible by Ctrl-C |
 | `coreboot-notes.md` | the Volume 5 doctrine: the sacrificial board, dump-first, programmer, candidate machines |
 
@@ -162,7 +164,11 @@ The one-shot probe scripts (`*_probe.py`, `ring5_probe.py`, `ring4_lib`) are
 **session instruments of the sandbox, deliberately not tracked here** —
 they read the downloaded OVMF images from sandbox paths and print
 `bytes written: 0`; the findings quote them, the JSON artifacts are
-their durable output. The repo tracks knowledge, not scratch.
+their durable output. The repo tracks knowledge, not scratch. (Ring 37
+is the standing exception that proves the rule: the differ walkers
+behind the ring-34 registers were promoted into the tracked
+`fw37-differ.py` because both remaining measurement events consume
+them — the probes themselves stay sandbox-side.)
 
 ## Why a lab at all (the honest answer)
 
