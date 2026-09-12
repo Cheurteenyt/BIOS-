@@ -1,0 +1,658 @@
+{
+ "schema": "omarchy-firmware/ovmf-delta-map@1",
+ "ring": 36,
+ "date": "2026-09-13",
+ "title": "the delta cartography: raw byte-run maps the ring-34 module ledgers sit inside",
+ "instrument": "lab/fw36-atlas.py delta (gap-clustering at 64 B, structural classes from window entropy pairs)",
+ "honesty": {
+  "semantic_vs_raw": "the ring-34 numbers are SEMANTIC (decompressed-module granularity): 3 bytes for the NX policy, 126/6/120 +18/-9 for the wall. The RAW maps here are the container truth: LZMA re-encodes the stream tail from the first compressed semantic change, so semantic bytes amplify. Both truths are registered; the day-0 CAP comparator reads semantic deltas through the module walk and uses raw maps only to LOCATE container change."
+ },
+ "cartographies": {
+  "secboot|strictnx": {
+   "file_a": "OVMF_CODE_4M.secboot.fd",
+   "file_b": "OVMF_CODE_4M.secboot.strictnx.fd",
+   "size_a": 3653632,
+   "size_b": 3653632,
+   "size_delta": 0,
+   "sha_a": "1a46295574430cfb",
+   "sha_b": "9ee9f2382e0c6aa9",
+   "runs_total": 2,
+   "bytes_differing": 968203,
+   "runs_top": [
+    {
+     "off": 689161,
+     "len": 968194,
+     "class": "packed->code",
+     "hex_before": "cdce2a0a804d3970",
+     "hex_after": "77107e8e038f8ad7"
+    },
+    {
+     "off": 136,
+     "len": 9,
+     "class": "packed->code",
+     "hex_before": "dcaa0b00844919f8",
+     "hex_after": "cdaa0b00934919f8"
+    }
+   ],
+   "class_histogram": {
+    "packed->code": 968203
+   },
+   "blocks_total": 56,
+   "blocks_changed": 16,
+   "changed_blocks_top": [
+    [
+     1441792,
+     99.66
+    ],
+    [
+     786432,
+     99.64
+    ],
+    [
+     917504,
+     99.64
+    ],
+    [
+     1048576,
+     99.63
+    ],
+    [
+     1245184,
+     99.63
+    ],
+    [
+     720896,
+     99.62
+    ],
+    [
+     1376256,
+     99.61
+    ],
+    [
+     1572864,
+     99.61
+    ],
+    [
+     1507328,
+     99.6
+    ],
+    [
+     1114112,
+     99.59
+    ],
+    [
+     1179648,
+     99.59
+    ],
+    [
+     851968,
+     99.58
+    ],
+    [
+     983040,
+     99.58
+    ],
+    [
+     1310720,
+     99.56
+    ],
+    [
+     655360,
+     48.24
+    ],
+    [
+     1638400,
+     28.82
+    ]
+   ],
+   "runs": [
+    {
+     "off": 136,
+     "len": 9,
+     "class": "packed->code",
+     "hex_before": "dcaa0b00844919f8",
+     "hex_after": "cdaa0b00934919f8"
+    },
+    {
+     "off": 689161,
+     "len": 968194,
+     "class": "packed->code",
+     "hex_before": "cdce2a0a804d3970",
+     "hex_after": "77107e8e038f8ad7"
+    }
+   ]
+  },
+  "plain|secboot": {
+   "file_a": "OVMF_CODE_4M.fd",
+   "file_b": "OVMF_CODE_4M.secboot.fd",
+   "size_a": 3653632,
+   "size_b": 3653632,
+   "size_delta": 0,
+   "sha_a": "624e06de18b4fa53",
+   "sha_b": "1a46295574430cfb",
+   "runs_total": 26,
+   "bytes_differing": 1657607,
+   "runs_top": [
+    {
+     "off": 23287,
+     "len": 1634053,
+     "class": "packed->code",
+     "hex_before": "c7c5a1f91accae40",
+     "hex_after": "9e9a944b313b38f8"
+    },
+    {
+     "off": 3456604,
+     "len": 22104,
+     "class": "code->code",
+     "hex_before": "41bd00008200e8bb",
+     "hex_after": "4989f5e8beebffff"
+    },
+    {
+     "off": 3478804,
+     "len": 477,
+     "class": "code->code",
+     "hex_before": "60cfffff01d1ffff",
+     "hex_after": "57cffffff8d0ffff"
+    },
+    {
+     "off": 3481012,
+     "len": 265,
+     "class": "data->code",
+     "hex_before": "ef01fdff00000000",
+     "hex_after": "e601fdff00000000"
+    },
+    {
+     "off": 3451691,
+     "len": 187,
+     "class": "code->code",
+     "hex_before": "055d00004885c074",
+     "hex_after": "f55c00004885c074"
+    },
+    {
+     "off": 3456273,
+     "len": 138,
+     "class": "code->code",
+     "hex_before": "ef480000837de80a",
+     "hex_after": "df480000837de80a"
+    },
+    {
+     "off": 3455510,
+     "len": 108,
+     "class": "code->code",
+     "hex_before": "ea4b00004883c430",
+     "hex_after": "da4b00004883c430"
+    },
+    {
+     "off": 3451317,
+     "len": 97,
+     "class": "code->code",
+     "hex_before": "7b5e00004883c430",
+     "hex_after": "6b5e00004883c430"
+    },
+    {
+     "off": 3486108,
+     "len": 65,
+     "class": "data->code",
+     "hex_before": "d5a8e4a8f3a802a9",
+     "hex_after": "c5a8d4a8e3a8f2a8"
+    },
+    {
+     "off": 3451482,
+     "len": 36,
+     "class": "code->code",
+     "hex_before": "d65d00004885c074",
+     "hex_after": "c65d00004885c074"
+    },
+    {
+     "off": 3451588,
+     "len": 36,
+     "class": "code->code",
+     "hex_before": "6c5d00004885c074",
+     "hex_after": "5c5d00004885c074"
+    },
+    {
+     "off": 3454570,
+     "len": 15,
+     "class": "code->code",
+     "hex_before": "7652000031c94889",
+     "hex_after": "6652000031c94889"
+    },
+    {
+     "off": 136,
+     "len": 11,
+     "class": "packed->code",
+     "hex_before": "3faa0b0079f317f8",
+     "hex_after": "dcaa0b00844919f8"
+    },
+    {
+     "off": 3440956,
+     "len": 2,
+     "class": "data->code",
+     "hex_before": "0083",
+     "hex_after": "f082"
+    },
+    {
+     "off": 3449592,
+     "len": 2,
+     "class": "code->code",
+     "hex_before": "0863",
+     "hex_after": "f862"
+    },
+    {
+     "off": 3441701,
+     "len": 1,
+     "class": "data->code",
+     "hex_before": "43",
+     "hex_after": "33"
+    },
+    {
+     "off": 3450222,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "e2",
+     "hex_after": "d2"
+    },
+    {
+     "off": 3453518,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "82",
+     "hex_after": "72"
+    },
+    {
+     "off": 3454064,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "60",
+     "hex_after": "50"
+    },
+    {
+     "off": 3454178,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "ee",
+     "hex_after": "de"
+    },
+    {
+     "off": 3454261,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "9b",
+     "hex_after": "8b"
+    },
+    {
+     "off": 3454375,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "59",
+     "hex_after": "49"
+    },
+    {
+     "off": 3455735,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "39",
+     "hex_after": "29"
+    },
+    {
+     "off": 3455954,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "5e",
+     "hex_after": "4e"
+    }
+   ],
+   "class_histogram": {
+    "packed->code": 1634064,
+    "code->code": 23210,
+    "data->code": 333
+   },
+   "blocks_total": 56,
+   "blocks_changed": 28,
+   "changed_blocks_top": [
+    [
+     1114112,
+     99.65
+    ],
+    [
+     1179648,
+     99.64
+    ],
+    [
+     131072,
+     99.63
+    ],
+    [
+     917504,
+     99.63
+    ],
+    [
+     983040,
+     99.63
+    ],
+    [
+     1376256,
+     99.63
+    ],
+    [
+     1441792,
+     99.63
+    ],
+    [
+     65536,
+     99.62
+    ],
+    [
+     720896,
+     99.61
+    ],
+    [
+     851968,
+     99.61
+    ],
+    [
+     1048576,
+     99.61
+    ],
+    [
+     1245184,
+     99.61
+    ],
+    [
+     1310720,
+     99.61
+    ],
+    [
+     1507328,
+     99.61
+    ],
+    [
+     1572864,
+     99.61
+    ],
+    [
+     262144,
+     99.6
+    ],
+    [
+     393216,
+     99.6
+    ],
+    [
+     524288,
+     99.6
+    ],
+    [
+     786432,
+     99.6
+    ],
+    [
+     196608,
+     99.59
+    ],
+    [
+     327680,
+     99.58
+    ],
+    [
+     458752,
+     99.58
+    ],
+    [
+     589824,
+     99.58
+    ],
+    [
+     655360,
+     99.58
+    ]
+   ],
+   "runs": [
+    {
+     "off": 136,
+     "len": 11,
+     "class": "packed->code",
+     "hex_before": "3faa0b0079f317f8",
+     "hex_after": "dcaa0b00844919f8"
+    },
+    {
+     "off": 23287,
+     "len": 1634053,
+     "class": "packed->code",
+     "hex_before": "c7c5a1f91accae40",
+     "hex_after": "9e9a944b313b38f8"
+    },
+    {
+     "off": 3440956,
+     "len": 2,
+     "class": "data->code",
+     "hex_before": "0083",
+     "hex_after": "f082"
+    },
+    {
+     "off": 3441701,
+     "len": 1,
+     "class": "data->code",
+     "hex_before": "43",
+     "hex_after": "33"
+    },
+    {
+     "off": 3449592,
+     "len": 2,
+     "class": "code->code",
+     "hex_before": "0863",
+     "hex_after": "f862"
+    },
+    {
+     "off": 3450222,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "e2",
+     "hex_after": "d2"
+    },
+    {
+     "off": 3451317,
+     "len": 97,
+     "class": "code->code",
+     "hex_before": "7b5e00004883c430",
+     "hex_after": "6b5e00004883c430"
+    },
+    {
+     "off": 3451482,
+     "len": 36,
+     "class": "code->code",
+     "hex_before": "d65d00004885c074",
+     "hex_after": "c65d00004885c074"
+    },
+    {
+     "off": 3451588,
+     "len": 36,
+     "class": "code->code",
+     "hex_before": "6c5d00004885c074",
+     "hex_after": "5c5d00004885c074"
+    },
+    {
+     "off": 3451691,
+     "len": 187,
+     "class": "code->code",
+     "hex_before": "055d00004885c074",
+     "hex_after": "f55c00004885c074"
+    },
+    {
+     "off": 3453518,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "82",
+     "hex_after": "72"
+    },
+    {
+     "off": 3454064,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "60",
+     "hex_after": "50"
+    },
+    {
+     "off": 3454178,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "ee",
+     "hex_after": "de"
+    },
+    {
+     "off": 3454261,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "9b",
+     "hex_after": "8b"
+    },
+    {
+     "off": 3454375,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "59",
+     "hex_after": "49"
+    },
+    {
+     "off": 3454570,
+     "len": 15,
+     "class": "code->code",
+     "hex_before": "7652000031c94889",
+     "hex_after": "6652000031c94889"
+    },
+    {
+     "off": 3455510,
+     "len": 108,
+     "class": "code->code",
+     "hex_before": "ea4b00004883c430",
+     "hex_after": "da4b00004883c430"
+    },
+    {
+     "off": 3455735,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "39",
+     "hex_after": "29"
+    },
+    {
+     "off": 3455954,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "5e",
+     "hex_after": "4e"
+    },
+    {
+     "off": 3456087,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "d9",
+     "hex_after": "c9"
+    },
+    {
+     "off": 3456155,
+     "len": 1,
+     "class": "code->code",
+     "hex_before": "95",
+     "hex_after": "85"
+    },
+    {
+     "off": 3456273,
+     "len": 138,
+     "class": "code->code",
+     "hex_before": "ef480000837de80a",
+     "hex_after": "df480000837de80a"
+    },
+    {
+     "off": 3456604,
+     "len": 22104,
+     "class": "code->code",
+     "hex_before": "41bd00008200e8bb",
+     "hex_after": "4989f5e8beebffff"
+    },
+    {
+     "off": 3478804,
+     "len": 477,
+     "class": "code->code",
+     "hex_before": "60cfffff01d1ffff",
+     "hex_after": "57cffffff8d0ffff"
+    },
+    {
+     "off": 3481012,
+     "len": 265,
+     "class": "data->code",
+     "hex_before": "ef01fdff00000000",
+     "hex_after": "e601fdff00000000"
+    },
+    {
+     "off": 3486108,
+     "len": 65,
+     "class": "data->code",
+     "hex_before": "d5a8e4a8f3a802a9",
+     "hex_after": "c5a8d4a8e3a8f2a8"
+    }
+   ]
+  },
+  "vars_ms|vars_snakeoil": {
+   "file_a": "OVMF_VARS_4M.ms.fd",
+   "file_b": "OVMF_VARS_4M.snakeoil.fd",
+   "size_a": 540672,
+   "size_b": 540672,
+   "size_delta": 0,
+   "sha_a": "0d12f9839018a68f",
+   "sha_b": "e875a265aabb3fa9",
+   "runs_total": 1,
+   "bytes_differing": 7309,
+   "runs_top": [
+    {
+     "off": 5466,
+     "len": 7309,
+     "class": "code->data",
+     "hex_before": "1300000000000000",
+     "hex_after": "1c00000000000000"
+    }
+   ],
+   "class_histogram": {
+    "code->data": 7309
+   },
+   "blocks_total": 9,
+   "blocks_changed": 1,
+   "changed_blocks_top": [
+    [
+     0,
+     10.95
+    ]
+   ],
+   "runs": [
+    {
+     "off": 5466,
+     "len": 7309,
+     "class": "code->data",
+     "hex_before": "1300000000000000",
+     "hex_after": "1c00000000000000"
+    }
+   ]
+  }
+ },
+ "findings": {
+  "nx_amplification": {
+   "semantic_bytes": 3,
+   "raw_bytes": 968203,
+   "amplification_factor": 322734.3,
+   "anatomy": "run1 @0x88 len 9: FV-container metadata (dc->cd nibble-swap class); run2 @0xa8409 len 968194: the LZMA stream tail re-encoded from the first compressed semantic byte, ending where the compressed section ends (identical padding resumes)",
+   "start_window_class": "packed"
+  },
+  "wall_raw_anatomy": {
+   "lzma_tail": "run @0x5af7 len 1,634,053 (packed->code): the compressed-interior re-encoding carrying the whole semantic wall (120 changed modules + 18 SMM births + 9 plain-only removals)",
+   "secfv_inplace": "~23 KB of UNCOMPRESSED in-place deltas inside SECFV (0x348000-0x37C000): the 22,104 B SEC-core body run @0x34be5c plus ~20 small pointer runs shifted by -9/-16 \u2014 two compilations of the same SEC source with slightly different layouts (relocation deltas)",
+   "day0_value": "SECFV is raw-visible: ANY rebuild changes it. A raw-cartography hit inside SECFV is a build-difference signal that needs NO decompression; FVMAIN_COMPACT differences hide behind LZMA and demand the module walk"
+  },
+  "vars_pair": "PK/KEK/db bodies differ as ONE contiguous raw run of 7,309 B inside a mostly-identical 540,672 B store (the auth-key block); dbx byte-identical (ring 34) holds \u2014 its runs are absent from the map"
+ },
+ "_meta": {
+  "cross_citations": [
+   "ovmf-constellation.json (ring 34)",
+   "ovmf-nx-pin.json (ring 34)",
+   "ovmf-vars-differ.json (ring 34)"
+  ]
+ }
+}

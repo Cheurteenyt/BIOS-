@@ -1,0 +1,329 @@
+{
+ "schema": "omarchy-firmware/ovmf-geometry@1",
+ "ring": 36,
+ "date": "2026-09-13",
+ "title": "the OVMF-side geometry: first multi-scale atlas of the 4M builds (vendor-geometry.json's OVMF counterpart)",
+ "instrument": "lab/fw36-atlas.py (stdlib-only; scales window=4096, block=65536)",
+ "corpus": "/home/z/my-project/scratch-ovmf/extract/usr/share/OVMF",
+ "note": "the corpus survived the sandbox this time; ms/snakeoil CODE are SYMLINKS to secboot (Debian packaging) \u2014 the ring-34 identity class 1a462955 is one file under three names, proven here at filesystem level",
+ "symlink_topology": [
+  {
+   "file": "OVMF_CODE_4M.ms.fd",
+   "symlink_to": "OVMF_CODE_4M.secboot.fd",
+   "same_sha256_as_target": true
+  },
+  {
+   "file": "OVMF_CODE_4M.snakeoil.fd",
+   "symlink_to": "OVMF_CODE_4M.secboot.fd",
+   "same_sha256_as_target": true
+  }
+ ],
+ "atlases": {
+  "OVMF_CODE_4M.fd": {
+   "file": "OVMF_CODE_4M.fd",
+   "size": 3653632,
+   "sha256_16": "624e06de18b4fa53",
+   "symlink_to": null,
+   "fv_census": {
+    "count": 2,
+    "fvs": [
+     {
+      "offset": 0,
+      "length": 3440640,
+      "fs_guid": "78E58C8C3D8A1C4F9935896185C32DD3",
+      "checksum_ok": true,
+      "share_pct": 94.17
+     },
+     {
+      "offset": 3440640,
+      "length": 212992,
+      "fs_guid": "78E58C8C3D8A1C4F9935896185C32DD3",
+      "checksum_ok": true,
+      "share_pct": 5.83
+     }
+    ],
+    "coverage_pct": 100.0
+   },
+   "windows_64k": {
+    "count": 56,
+    "mean_entropy_bits": 3.535,
+    "max_entropy_bits": 7.998
+   },
+   "share_pct": {
+    "erased": 52.02,
+    "packed": 43.05,
+    "code": 0.0,
+    "data": 4.93
+   },
+   "ff_slack_tail_bytes": 0,
+   "nvar_magic_census": 0
+  },
+  "OVMF_CODE_4M.secboot.fd": {
+   "file": "OVMF_CODE_4M.secboot.fd",
+   "size": 3653632,
+   "sha256_16": "1a46295574430cfb",
+   "symlink_to": null,
+   "fv_census": {
+    "count": 2,
+    "fvs": [
+     {
+      "offset": 0,
+      "length": 3440640,
+      "fs_guid": "78E58C8C3D8A1C4F9935896185C32DD3",
+      "checksum_ok": true,
+      "share_pct": 94.17
+     },
+     {
+      "offset": 3440640,
+      "length": 212992,
+      "fs_guid": "78E58C8C3D8A1C4F9935896185C32DD3",
+      "checksum_ok": true,
+      "share_pct": 5.83
+     }
+    ],
+    "coverage_pct": 100.0
+   },
+   "windows_64k": {
+    "count": 56,
+    "mean_entropy_bits": 3.737,
+    "max_entropy_bits": 7.998
+   },
+   "share_pct": {
+    "erased": 48.43,
+    "packed": 44.84,
+    "code": 0.0,
+    "data": 6.73
+   },
+   "ff_slack_tail_bytes": 0,
+   "nvar_magic_census": 0
+  },
+  "OVMF_CODE_4M.secboot.strictnx.fd": {
+   "file": "OVMF_CODE_4M.secboot.strictnx.fd",
+   "size": 3653632,
+   "sha256_16": "9ee9f2382e0c6aa9",
+   "symlink_to": null,
+   "fv_census": {
+    "count": 2,
+    "fvs": [
+     {
+      "offset": 0,
+      "length": 3440640,
+      "fs_guid": "78E58C8C3D8A1C4F9935896185C32DD3",
+      "checksum_ok": true,
+      "share_pct": 94.17
+     },
+     {
+      "offset": 3440640,
+      "length": 212992,
+      "fs_guid": "78E58C8C3D8A1C4F9935896185C32DD3",
+      "checksum_ok": true,
+      "share_pct": 5.83
+     }
+    ],
+    "coverage_pct": 100.0
+   },
+   "windows_64k": {
+    "count": 56,
+    "mean_entropy_bits": 3.737,
+    "max_entropy_bits": 7.998
+   },
+   "share_pct": {
+    "erased": 48.43,
+    "packed": 44.84,
+    "code": 0.0,
+    "data": 6.73
+   },
+   "ff_slack_tail_bytes": 0,
+   "nvar_magic_census": 0
+  },
+  "OVMF_CODE_4M.ms.fd": {
+   "file": "OVMF_CODE_4M.ms.fd",
+   "size": 3653632,
+   "sha256_16": "1a46295574430cfb",
+   "symlink_to": "OVMF_CODE_4M.secboot.fd",
+   "fv_census": {
+    "count": 2,
+    "fvs": [
+     {
+      "offset": 0,
+      "length": 3440640,
+      "fs_guid": "78E58C8C3D8A1C4F9935896185C32DD3",
+      "checksum_ok": true,
+      "share_pct": 94.17
+     },
+     {
+      "offset": 3440640,
+      "length": 212992,
+      "fs_guid": "78E58C8C3D8A1C4F9935896185C32DD3",
+      "checksum_ok": true,
+      "share_pct": 5.83
+     }
+    ],
+    "coverage_pct": 100.0
+   },
+   "windows_64k": {
+    "count": 56,
+    "mean_entropy_bits": 3.737,
+    "max_entropy_bits": 7.998
+   },
+   "share_pct": {
+    "erased": 48.43,
+    "packed": 44.84,
+    "code": 0.0,
+    "data": 6.73
+   },
+   "ff_slack_tail_bytes": 0,
+   "nvar_magic_census": 0
+  },
+  "OVMF_CODE_4M.snakeoil.fd": {
+   "file": "OVMF_CODE_4M.snakeoil.fd",
+   "size": 3653632,
+   "sha256_16": "1a46295574430cfb",
+   "symlink_to": "OVMF_CODE_4M.secboot.fd",
+   "fv_census": {
+    "count": 2,
+    "fvs": [
+     {
+      "offset": 0,
+      "length": 3440640,
+      "fs_guid": "78E58C8C3D8A1C4F9935896185C32DD3",
+      "checksum_ok": true,
+      "share_pct": 94.17
+     },
+     {
+      "offset": 3440640,
+      "length": 212992,
+      "fs_guid": "78E58C8C3D8A1C4F9935896185C32DD3",
+      "checksum_ok": true,
+      "share_pct": 5.83
+     }
+    ],
+    "coverage_pct": 100.0
+   },
+   "windows_64k": {
+    "count": 56,
+    "mean_entropy_bits": 3.737,
+    "max_entropy_bits": 7.998
+   },
+   "share_pct": {
+    "erased": 48.43,
+    "packed": 44.84,
+    "code": 0.0,
+    "data": 6.73
+   },
+   "ff_slack_tail_bytes": 0,
+   "nvar_magic_census": 0
+  },
+  "OVMF_VARS_4M.fd": {
+   "file": "OVMF_VARS_4M.fd",
+   "size": 540672,
+   "sha256_16": "5d2ac383371b4083",
+   "symlink_to": null,
+   "fv_census": {
+    "count": 1,
+    "fvs": [
+     {
+      "offset": 0,
+      "length": 540672,
+      "fs_guid": "8D2BF1FF96768B4CA9852747075B4F50",
+      "checksum_ok": true,
+      "share_pct": 100.0
+     }
+    ],
+    "coverage_pct": 100.0
+   },
+   "windows_64k": {
+    "count": 9,
+    "mean_entropy_bits": 0.003,
+    "max_entropy_bits": 0.022
+   },
+   "share_pct": {
+    "erased": 100.0,
+    "packed": 0.0,
+    "code": 0.0,
+    "data": 0.0
+   },
+   "ff_slack_tail_bytes": 274400,
+   "nvar_magic_census": 0
+  },
+  "OVMF_VARS_4M.ms.fd": {
+   "file": "OVMF_VARS_4M.ms.fd",
+   "size": 540672,
+   "sha256_16": "0d12f9839018a68f",
+   "symlink_to": null,
+   "fv_census": {
+    "count": 1,
+    "fvs": [
+     {
+      "offset": 0,
+      "length": 540672,
+      "fs_guid": "8D2BF1FF96768B4CA9852747075B4F50",
+      "checksum_ok": true,
+      "share_pct": 100.0
+     }
+    ],
+    "coverage_pct": 100.0
+   },
+   "windows_64k": {
+    "count": 9,
+    "mean_entropy_bits": 0.218,
+    "max_entropy_bits": 1.956
+   },
+   "share_pct": {
+    "erased": 87.88,
+    "packed": 0.0,
+    "code": 0.0,
+    "data": 12.12
+   },
+   "ff_slack_tail_bytes": 274400,
+   "nvar_magic_census": 0
+  },
+  "OVMF_VARS_4M.snakeoil.fd": {
+   "file": "OVMF_VARS_4M.snakeoil.fd",
+   "size": 540672,
+   "sha256_16": "e875a265aabb3fa9",
+   "symlink_to": null,
+   "fv_census": {
+    "count": 1,
+    "fvs": [
+     {
+      "offset": 0,
+      "length": 540672,
+      "fs_guid": "8D2BF1FF96768B4CA9852747075B4F50",
+      "checksum_ok": true,
+      "share_pct": 100.0
+     }
+    ],
+    "coverage_pct": 100.0
+   },
+   "windows_64k": {
+    "count": 9,
+    "mean_entropy_bits": 0.154,
+    "max_entropy_bits": 1.377
+   },
+   "share_pct": {
+    "erased": 87.88,
+    "packed": 0.0,
+    "code": 0.0,
+    "data": 12.12
+   },
+   "ff_slack_tail_bytes": 274400,
+   "nvar_magic_census": 0
+  }
+ },
+ "reading": {
+  "fv_layout": "FVMAIN_COMPACT 0x0-0x348000 (fs GUID 78E58C8C..., checksum-valid) + SECFV 0x348000-0x37C000 on every CODE build; VARS_4M a single 0x84000 NVRAM FV",
+  "identical_atlas": "secboot's atlas holds verbatim for ms and snakeoil (symlinks) \u2014 three names, one geometry",
+  "plain_vs_secboot": "same size, same FV layout, different bodies \u2014 the rebuild wall is invisible to layout, visible to bodies",
+  "nvar_clock_is_ami_specific": "NVAR magic census = 0 on every OVMF image (the VARS store uses the auth-variable format, store GUID AAF32C78); the 18-19 NVAR counts of vendor-geometry.json are AMI-build artifacts \u2014 the NVAR clock is a VENDOR first-hour read, not a universal one",
+  "vars_plain": "100% erased at 64 KiB classification with the store header alone breaking the 0xFF tail at 0x42fe0 \u2014 the blank-store shape ring 34 walked",
+  "scale_note": "shares computed at 64 KiB (the vendor-geometry-comparable scale); the NX trio is far below any atlas scale (see ovmf-delta-map.json)"
+ },
+ "_meta": {
+  "cross_citations": [
+   "ovmf-constellation.json (ring 34)",
+   "ovmf-nx-pin.json (ring 34)",
+   "vendor-geometry.json (the vendor-side lens)"
+  ]
+ }
+}

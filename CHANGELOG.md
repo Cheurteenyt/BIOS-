@@ -4,6 +4,38 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the thirty-sixth ring (la cartographie du delta)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+- **the compression lies, by 322,734 to one**: the ring-34 NX truth is
+  3 semantic bytes in decompressed module bodies; the RAW whole-image
+  diff of the same two builds is 968,203 bytes in exactly 2 runs — a
+  9-byte FV-metadata run (0x88, incl. a dc→cd nibble-swap) and the
+  968,194-byte LZMA stream tail re-encoded from the first compressed
+  semantic change. Raw diffs of compressed firmware measure the
+  container, not the content; the CAP comparator's order stands.
+- **SECFV tells the truth**: the wall's raw map (1,657,607 B in 26 runs,
+  28/56 blocks) decomposes into the 1.63 MB LZMA tail plus ~23 KB of
+  UNCOMPRESSED in-place deltas inside SECFV — the 22,104 B SEC body run
+  and ~20 pointer runs shifted −9/−16 (two compilations, relocated).
+  Any rebuild changes SECFV; day-0 can read it raw, in seconds, with no
+  decompression.
+- **the stores and the clocks**: VARS ms↔snakeoil differ as ONE
+  contiguous 7,309-byte slab (PK/KEK/db; dbx absent — ring 34 holds);
+  the NVAR clock registered AMI-specific (census 0 on all OVMF images
+  vs 18–19 on vendor builds).
+- **the identity class, second verse**: ms/snakeoil CODE are SYMLINKS
+  to secboot — class `1a462955` is one file under three names, proven
+  at filesystem level.
+- **the instrument** (`lab/fw36-atlas.py`, tracked): stdlib-only
+  atlas/delta/vars with a two-tier selftest — tier R re-derives anchors
+  from the ring-34 registers, tier I re-derives them LIVE on the
+  surviving corpus and skips loudly when absent (14/14 PASS, tier I
+  live). New files: `lab/fw36-atlas.py`, `lab/ovmf-geometry.json`,
+  `lab/ovmf-delta-map.json`, `lab/findings-thirty-sixth-ring.md`.
+
 ## Unreleased — the thirty-fifth ring (l'oracle du jour 0)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
