@@ -1,0 +1,232 @@
+{
+  "schema": "omarchy-firmware/vendor-oracle@1",
+  "date": "2026-09-13",
+  "ring": 35,
+  "title": "the day-0 oracle: falsifiable predictions registered BEFORE the dump",
+  "note": "every prediction is derived from persisted registers only (zero downloads, zero hardware) and carries its own falsifier. The dump of 16/09 and the next vendor release become EXAMS with expected answers, scored mechanically by fw35-oracle.py score. A prediction is never edited after registration; a wrong prediction is scored miss and the cause is written in the next ring report. Bands are anchored on the target board's own measured values, never on corpus-wide ranges (the ASUS varstore share is 83.89%, below the 84-90% corpus band — corpus ranges must not be transplanted onto single boards).",
+  "targets": {
+    "day0-3644": "the physical board dump on 16/09 (ASUS B450-PLUS class, reports BIOS 3644) — resolves question_3644 (vendor-ledger-tuf.json H3)",
+    "release-41": "the next PRIME B450-PLUS release after 4655, whenever it lands — scored from the same ring-16 probe machinery on the new CAP"
+  },
+  "scoring": {
+    "verdicts": {
+      "hit": "observed inside the registered band / equal to the registered value / predicate true",
+      "partial": "observed inside the widened band but outside the registered one — direction right, magnitude off",
+      "miss": "outside both — the register is falsified on this point",
+      "na": "the predicate's precondition did not hold (only registered predicates can be na)"
+    },
+    "protocol": "score computed ONLY by lab/fw35-oracle.py score <findings.json>; the findings file maps prediction id to the observed value(s) named in each prediction's 'observed_key'; every partial and miss requires a written cause in the following ring report; the register file is frozen after commit"
+  },
+  "predictions": [
+    {
+      "id": "P-01", "target": "day0-3644", "field": "rom_bytes", "confidence": "high",
+      "claim": "the dump is a 16 MiB part: 16,777,216 bytes exactly",
+      "kind": "exact", "expect": 16777216, "widened": [],
+      "observed_key": "rom_bytes",
+      "basis": ["vendor-flash-armor.json probes: rom_bytes=16777216 at all nine rungs 3604-4655"],
+      "falsifier": "any other size (32 MiB part would falsify the board-class assumption itself)"
+    },
+    {
+      "id": "P-02", "target": "day0-3644", "field": "agesa_level", "confidence": "medium",
+      "claim": "the ComboAM4v2PI level sits in the closed set {1.2.0.6b, 1.2.0.6c, 1.2.0.7}; single-point guess 1.2.0.6c (3644 dates between 3604=1.2.0.6b 2022/03/16 and 3802=1.2.0.7 2022/05/12)",
+      "kind": "set",
+      "expect": ["1.2.0.6b", "1.2.0.6c", "1.2.0.7"],
+      "widened": ["1.2.0.6", "1.2.0.6a", "1.2.0.8"],
+      "observed_key": "agesa_level",
+      "basis": ["vendor-agesa.json: nine-point byte-verified chronology brackets 3644 between 1.2.0.6b and 1.2.0.7", "vendor-ledger-tuf.json question_3644: H3 open, the dump decides"],
+      "falsifier": "any level outside the widened set (e.g. 1.2.0.A) — would break the dated bracket and reopen the identity question wider than H3"
+    },
+    {
+      "id": "P-03", "target": "day0-3644", "field": "agesa_string_prefix", "confidence": "high",
+      "claim": "the AGESA version string carries the ComboAM4v2PI prefix (B450 is AM4; 9/9 rungs carry it)",
+      "kind": "prefix", "expect": "ComboAM4v2PI", "widened": [],
+      "observed_key": "agesa_string",
+      "basis": ["vendor-agesa.json first_hits: 'ComboAM4v2PI <level>' at every rung of the nine-point chronology"],
+      "falsifier": "any other prefix (ComboAM4v1 would falsify the board-generation assumption; ComboAM5 would falsify the socket)"
+    },
+    {
+      "id": "P-04", "target": "day0-3644", "field": "armor_quartet_present", "confidence": "high",
+      "claim": "the core armor quartet is ABSENT (3644 precedes the 3802 wave-1 boundary; last_without=3604)",
+      "kind": "exact", "expect": false, "widened": [],
+      "observed_key": "armor_quartet_present",
+      "basis": ["vendor-flash-armor.json wave1_boundary: first_with_core=3802, last_without=3604; probes[3604].core_armor=0, added_present=[]"],
+      "falsifier": "quartet present — would contradict the wave-1 boundary measured at probe granularity and demand a re-derivation of the bisect"
+    },
+    {
+      "id": "P-05", "target": "day0-3644", "field": "sbrom_armorsmm_present", "confidence": "high",
+      "claim": "the SbRomArmorSmm module is ABSENT (born 3802, one byte-identical body since)",
+      "kind": "exact", "expect": false, "widened": [],
+      "observed_key": "sbrom_armorsmm_present",
+      "basis": ["vendor-genome.json wave1_births: 5 species born exactly at 3802", "docs/day0-report-2026-09-16.md section 1.5: SbRomArmorSmm byte-identical since 3802"],
+      "falsifier": "module present at 3644 — births-before-wave would falsify the genome birth law"
+    },
+    {
+      "id": "P-06", "target": "day0-3644", "field": "chip_whitelist_families", "confidence": "medium",
+      "claim": "the SPI chip whitelist carries the 41-family predecessor set (the 46-family armor set expands only at 3802) and no 'AMD rom armor' banner",
+      "kind": "exact", "expect": 41, "widened": [],
+      "observed_key": "chip_whitelist_families",
+      "basis": ["vendor-armor-chipdb.json ladder_movement: 3604->3802 is the only expansion, 41->46, +5 (Cypress 25FS-S, Fudan FM25W, MXIC 77L, XMC 25RH, XMC 25RU); the whitelist belongs to the AMI flash driver and predates the armor"],
+      "falsifier": "46 families or the armor banner at 3644 — the whitelist would have moved without the armor, contradicting the single-expansion ladder"
+    },
+    {
+      "id": "P-07", "target": "day0-3644", "field": "legacy_smm_count", "confidence": "high",
+      "claim": "exactly 2 unnamed legacy SMM modules present (the 3604 removed_present pattern; they die at 4202 and 4402)",
+      "kind": "band", "expect": [2, 2], "widened": [1, 3],
+      "observed_key": "legacy_smm_count",
+      "basis": ["vendor-flash-armor.json probes[3604].removed_present: 2x 'SMM (unnamed)'", "vendor-genome.json: species deaths EXACTLY the two legacy retirements (4202, 4402)"],
+      "falsifier": "0 at 3644 would antedate the retirements; 4+ would antedate the wave births"
+    },
+    {
+      "id": "P-08", "target": "day0-3644", "field": "module_count", "confidence": "medium",
+      "claim": "total FFS modules in [600, 640]; point guess 618 (the 3604 sentinel count; 3644 is a close neighbor build)",
+      "kind": "band", "expect": [600, 640], "widened": [580, 660],
+      "observed_key": "module_count",
+      "basis": ["vendor-flash-armor.json probes[3604].modules = 618", "vendor-genome.json per_rung_file_counts: rung-to-rung file-count movement is tens, never hundreds, outside rebuild events"],
+      "falsifier": "outside the widened band — would make 3644 a distant build, not a neighbor (identity consequence feeds P-18)"
+    },
+    {
+      "id": "P-09", "target": "day0-3644", "field": "dsdt_sha16", "confidence": "high",
+      "claim": "the main DSDT body hash is 27d5e826e111d755 (generation 1, held unchanged 3604 through 4202)",
+      "kind": "exact", "expect": "27d5e826e111d755", "widened": [],
+      "observed_key": "dsdt_sha16",
+      "basis": ["vendor-ssdt-clock.json per_specimen: asus-3604/3802/3810/4003/4202 main_dsdt.sha16 = 27d5e826e111d755; generations move only at 4202->4402 and 4604->4631"],
+      "falsifier": "any other hash — a fourth DSDT generation before 4402 would break the three-generation clock"
+    },
+    {
+      "id": "P-10", "target": "day0-3644", "field": "aod_ssdt_revision", "confidence": "medium",
+      "claim": "the AOD SSDT sits at the pre-armor revision 15 (the rev-153 rewrite is the 3802 armor release)",
+      "kind": "band", "expect": [15, 15], "widened": [10, 20],
+      "observed_key": "aod_ssdt_revision",
+      "basis": ["vendor-ssdt-clock.json ssdt_movement_ladder: 3604->3802 moves one AOD table rev 15->153 (the armor release); the CPM-family wholesale rewrite is 3810->4003"],
+      "falsifier": "revision 153 at 3644 — the SSDT clock would have moved before the armor it currently dates"
+    },
+    {
+      "id": "P-11", "target": "day0-3644", "field": "trust_cert_distinct", "confidence": "high",
+      "claim": "exactly 4 distinct trust certificates (the 3604-3802 band; 6 only from 3810, then the count never changes again)",
+      "kind": "band", "expect": [4, 4], "widened": [5, 5],
+      "observed_key": "trust_cert_distinct",
+      "basis": ["vendor-der-inventory.json per_specimen: asus-3604 trust_distinct=4, asus-3810 trust_distinct=6; the count never changes after 3810 while bodies rotate"],
+      "falsifier": "6 certs at 3644 — the cert expansion would precede 3810; 3 or fewer would contradict the factory baseline"
+    },
+    {
+      "id": "P-12", "target": "day0-3644", "field": "ifr_questions_total", "confidence": "medium",
+      "claim": "the setup facade carries 7,900-8,050 questions; point guess 7,975 (the measured 3604-ref value; growth to 8,273 spans thirteen releases)",
+      "kind": "band", "expect": [7900, 8050], "widened": [7700, 8300],
+      "observed_key": "ifr_questions_total",
+      "basis": ["vendor-ifr-census.json specimens: asus-prime-b450-plus-ref (3604) questions=7,975 / pages=779; asus-prime-b450-plus (4655) questions=8,273 / pages=783"],
+      "falsifier": "outside the widened band — a facade shrink below 7,700 has no precedent in the chronology"
+    },
+    {
+      "id": "P-13", "target": "day0-3644", "field": "ifr_valid_fraction", "confidence": "high",
+      "claim": "100% of form packages valid by exact consumption (every HII package consumed to the last byte)",
+      "kind": "exact", "expect": 1.0, "widened": [0.98, 0.999],
+      "observed_key": "ifr_valid_fraction",
+      "basis": ["vendor-ifr-census.json: 100% exact consumption across the six vendor-representative specimens, 46,000+ questions"],
+      "falsifier": "any invalid package — would be the first in the corpus and would question the ring-6/19 grammar port"
+    },
+    {
+      "id": "P-14", "target": "day0-3644", "field": "setup_varstore_size", "confidence": "medium",
+      "claim": "the factory Setup varstore is 456 bytes (+/- 16) — the ring-14 blob ring-20 priced",
+      "kind": "band", "expect": [440, 472], "widened": [424, 488],
+      "observed_key": "setup_varstore_size",
+      "basis": ["vendor-unasked.json coverage[asus-prime-b450-plus-ref].setup_row: size=456, covered=314, questions=368"],
+      "falsifier": "size beyond +/-32 — the factory defaults blob is stable across the chronology; a big delta would signal a defaults rewrite"
+    },
+    {
+      "id": "P-15", "target": "day0-3644", "field": "setup_uncovered_bytes", "confidence": "medium",
+      "claim": "142 never-asked bytes inside the Setup varstore (+/- 16) — the unasked surface the UI cannot reach",
+      "kind": "band", "expect": [126, 158], "widened": [110, 174],
+      "observed_key": "setup_uncovered_bytes",
+      "basis": ["vendor-unasked.json coverage[asus-prime-b450-plus-ref].setup_row: uncovered=142 (456-314)"],
+      "falsifier": "0 uncovered — the hidden surface would have closed, contradicting the variable-level hiding law"
+    },
+    {
+      "id": "P-16", "target": "day0-3644", "field": "varstore_uncovered_share_pct", "confidence": "medium",
+      "claim": "83.0-86.0% of varstore bytes never referenced by any question (the ASUS board's own measured share, NOT the 84-90% corpus band)",
+      "kind": "band", "expect": [83.0, 86.0], "widened": [80.0, 90.0],
+      "observed_key": "varstore_uncovered_share_pct",
+      "basis": ["vendor-unasked.json coverage[asus-prime-b450-plus-ref].uncovered_share_pct = 83.89 (71 varstores, 26,027 bytes)"],
+      "falsifier": "below 80% — the never-asked share would have collapsed; above 90% would place 3644 outside every measured vendor value"
+    },
+    {
+      "id": "P-17", "target": "day0-3644", "field": "smm_census_total", "confidence": "high",
+      "claim": "SMM-class census (SMM + SMM-core) in [106, 109]; point guess 106 (the 3604 value 105+1)",
+      "kind": "band", "expect": [106, 109], "widened": [105, 111],
+      "observed_key": "smm_census_total",
+      "basis": ["vendor-lifecycles.json smm_anatomy.smm_census_per_rung: 3604 SMM=105+SMM-core=1; 3802-4003 SMM=108+1; 4202 SMM=107+1; 4402 SMM=106+1", "docs/day0-report-2026-09-16.md section 1.5: expected 107-109 (register convention)"],
+      "falsifier": "outside the widened band — the pre-armor SMM population has no registered excursion"
+    },
+    {
+      "id": "P-18", "target": "day0-3644", "field": "identity_h3", "confidence": "medium",
+      "claim": "question_3644 resolves to H3 (published-but-unlisted / region-split): the dump triangulates to NO release of the 40-release ledger and differs from both neighbors (3604, 3802) by at least 3 independent fingerprints (module count, DSDT/SSDT bodies, PSP table set, NVRAM defaults, IFR totals)",
+      "kind": "predicate", "checker": "identity_h3", "expect": true, "widened": [],
+      "observed_keys": ["matches_known_release", "distinct_fingerprints_count"],
+      "basis": ["vendor-ledger-tuf.json question_3644: H1 proven for the acquisition (240-byte HTML error page), H2 tested dead on both TUF ledgers, H3 open — the dump decides by fingerprints"],
+      "falsifier": "the dump matches a known ledger release exactly (H3 dead, H2-class variant instead), or differs from both neighbors by fewer than 3 fingerprints (then 3644 is metadata-only and the board already runs a known build)"
+    },
+    {
+      "id": "P-19", "target": "day0-3644", "field": "psp_overlap_direction", "confidence": "medium",
+      "claim": "the 3644 PSP body-hash set overlaps 3604's MORE than it overlaps 3802's: |h(3644) ∩ h(3604)| > |h(3644) ∩ h(3802)|",
+      "kind": "predicate", "checker": "psp_overlap_direction", "expect": true, "widened": [],
+      "observed_keys": ["psp_hashes_3644", "psp_hashes_3604", "psp_hashes_3802"],
+      "basis": ["vendor-psp-authorship.json: PSP bodies are per-rung material with rare universal bodies; a close-neighbor build should share more with its predecessor than with the next-wave rung", "vendor-agesa.json: 3644 brackets between 3604 and 3802"],
+      "falsifier": "the reversed inequality — 3644 would be PSP-closer to the armor release than to its chronological predecessor, an identity anomaly to investigate before anything else"
+    },
+    {
+      "id": "P-20", "target": "release-41", "field": "agesa_monotone", "confidence": "high",
+      "claim": "the AGESA level of the next release is >= 1.2.0.12 (never lower; the nine-point chronology is strictly monotone)",
+      "kind": "predicate", "checker": "agesa_monotone", "expect": true, "widened": [],
+      "observed_keys": ["agesa_level_41"],
+      "basis": ["vendor-agesa.json: 1.2.0.6b -> 1.2.0.12 monotone across all nine dated rungs"],
+      "falsifier": "a level below 1.2.0.12 — a downgrade has no precedent in 4.5 years"
+    },
+    {
+      "id": "P-21", "target": "release-41", "field": "armor_no_third_wave", "confidence": "medium",
+      "claim": "no third armor wave in a routine release: core_armor stays 4 and added stays 7 (waves are 2 in 4.5 years; both coincided with named security events)",
+      "kind": "predicate", "checker": "armor_no_third_wave", "expect": true, "widened": [],
+      "observed_keys": ["core_armor_41", "added_present_count_41"],
+      "basis": ["vendor-flash-armor.json probes: core_armor=4 and added=7 constant from 4604 through 4655", "vendor-genome.json: births EXACTLY the two security waves"],
+      "falsifier": "any added module beyond the 7 — a third wave (which would immediately re-open the causality question ring 18 corrected)"
+    },
+    {
+      "id": "P-22", "target": "release-41", "field": "no_births_no_deaths", "confidence": "medium",
+      "claim": "zero species born and zero dead in a routine release (births/deaths coincide with security waves and legacy retirements only)",
+      "kind": "predicate", "checker": "no_births_no_deaths", "expect": true, "widened": [],
+      "observed_keys": ["births_41", "deaths_41"],
+      "basis": ["vendor-genome.json: 330 species, births exactly the two waves (5 @3802, 2 @4604), deaths exactly the two retirements (4202, 4402)"],
+      "falsifier": "any birth or death — the genome law extends to a third event class"
+    },
+    {
+      "id": "P-23", "target": "release-41", "field": "trust_cert_distinct_41", "confidence": "high",
+      "claim": "the distinct trust certificate count stays 6 (unchanged since 3810 across seven rungs; bodies may rotate — the DigiCert chain re-issues at five frontiers)",
+      "kind": "band", "expect": [6, 6], "widened": [6, 8],
+      "observed_key": "trust_cert_distinct_41",
+      "basis": ["vendor-der-inventory.json per_specimen: 6 at every rung 3810-4655; trust_movement_ladder: bodies rotate, count frozen"],
+      "falsifier": "7+ would be a new cert class (count never moved); 5 or fewer would be a retirement with no precedent"
+    },
+    {
+      "id": "P-24", "target": "release-41", "field": "ifr_questions_total_41", "confidence": "medium",
+      "claim": "the facade never shrinks: questions >= 8,273 (the 4655 value)",
+      "kind": "band", "expect": [8273, null], "widened": [8273, null],
+      "observed_key": "ifr_questions_total_41",
+      "basis": ["vendor-ifr-census.json: ASUS chronology 7,975 (3604) -> 8,273 (4655), growth across the chronology; no measured shrink in the corpus"],
+      "falsifier": "below 8,273 — the first measured facade shrink (which would itself be a finding worth a ring)"
+    },
+    {
+      "id": "P-25", "target": "release-41", "field": "dsdt_conditional", "confidence": "medium",
+      "claim": "the DSDT generation moves ONLY if the AGESA level moves: if AGESA stays 1.2.0.12, the DSDT hash stays 0a4a6f162cad3e51 (generations moved only at AGESA-swap rungs 4202->4402 and 4604->4631)",
+      "kind": "predicate", "checker": "conditional_dsdt", "expect": true, "widened": [],
+      "observed_keys": ["agesa_level_41", "dsdt_sha16_41"],
+      "basis": ["vendor-ssdt-clock.json generations: three bodies across nine rungs, both moves at AGESA-swap transitions", "vendor-agesa.json: the same two transitions carry the largest module deltas (churn atlas)"],
+      "falsifier": "AGESA unchanged AND DSDT changed — the DSDT clock would have decoupled from the AGESA clock (scored miss); AGESA changed AND DSDT changed scores na (the precondition dissolved)"
+    },
+    {
+      "id": "P-26", "target": "release-41", "field": "chip_whitelist_families_41", "confidence": "high",
+      "claim": "the SPI chip whitelist stays at 46 families (zero set changes 3802 through 4655, 4.5 years)",
+      "kind": "exact", "expect": 46, "widened": [],
+      "observed_key": "chip_whitelist_families_41",
+      "basis": ["vendor-armor-chipdb.json: byte-identical table, zero set changes across all measured rungs since 3802"],
+      "falsifier": "any change — the frozen whitelist would have moved for the first time since the armor"
+    }
+  ]
+}

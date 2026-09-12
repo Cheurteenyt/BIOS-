@@ -4,6 +4,34 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the thirty-fifth ring (l'oracle du jour 0)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+- **the prediction register** (`lab/vendor-oracle.json`): 26 falsifiable
+  predictions across two targets, registered BEFORE the events —
+  `day0-3644` (19): the 16/09 physical dump, including the registered
+  resolution of `question_3644` (H3, P-18) and the directional PSP
+  identity test (P-19); `release-41` (7): the next vendor release after
+  4655. Every prediction carries kind, expect/widened, confidence, basis
+  citations into the persisted registers, and an explicit falsifier.
+  Bands are anchored on the board's OWN measured values, never on corpus
+  ranges (the P-16 transplant error caught and fixed pre-freeze:
+  84–90 % corpus → 83.0–86.0 board). The register is frozen at commit.
+- **the scorer** (`lab/fw35-oracle.py`, tracked in lab/ per the fw33
+  precedent): stdlib-only, five modes (list / show / template / score /
+  manifest) behind a 36-gate selftest that re-derives every basis number
+  from eleven registers and refuses loudly on drift (36/36 PASS); the
+  four-verdict scorecard (hit / partial / miss / na) with registered
+  checkers for the relational predicates; exit 1 on any miss, exit 2 on
+  register drift. `template` emits the day-0 fill-in sheet.
+- **what day-0 becomes**: a measurement against twenty-six registered
+  expectations — every miss localizes which law failed to extend, which
+  is the fastest route to a new ring. New files:
+  `lab/vendor-oracle.json`, `lab/fw35-oracle.py`,
+  `lab/findings-thirty-fifth-ring.md`.
+
 ## Unreleased — the thirty-fourth ring (the differ, re-derived)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
