@@ -1,0 +1,88 @@
+{
+ "_meta": {
+  "ring": 32,
+  "title": "l'instant en vol — the storm caught in flight (front 32a) + the species genome of the ladder (front 32b)",
+  "date": "2026-09-13",
+  "lane": "scratch-ring28, RELEASE+SMMSTORE_V2 rebuild (ring-32 build), EMU lane restored after",
+  "instrument": "QEMU -d int,cpu_reset passive per-exception logging — no gdb, no breakpoints, no watchpoints, no freezing: the observer that defused the storm in ring 31b is absent by design"
+ },
+ "fronts": {
+  "32a_in_flight": {
+   "question": "the frozen pre-fatal instant was named uncapturable by per-delivery freezing (ring 31 residual, the observer effect) — can the fatal geometry be captured WITHOUT freezing?",
+   "answer": "YES — passive -d int logging records the full fatal ladder in flight; the storm fires under logging; the ladder, the chain step, and the crossing are all measured",
+   "sample": {
+    "boots": 8,
+    "storm": 3,
+    "cascade_hang": 5,
+    "storm_ids": [1, 4, 5],
+    "hang_ids": [2, 3, 6, 7, 8],
+    "storm_rate": "3/8 (binomial width honest: n=8)"
+   },
+   "fatal_geometry_measured": {
+    "cascade_depth_consecutive_at_RET": [543, 543, 543],
+    "RET_site": "0x1f964021 = CpuDxe+0x1021 = the ret of AsmEnableInterrupts (base 0x1f963000)",
+    "chain_step_per_delivery": "-0x660 (measured on every tail step of every storm)",
+    "final_landing_above_moat": ["+0x308", "+0x2d8", "+0x228"],
+    "stub_frame_push": "0x3A8 (fatal SP = last legal landing - 0x3A8)",
+    "fatal_site": "0x1f970cac = CpuDxe+0xDCAC = the fxsave in the exception entry stub",
+    "CR2_measured": ["0x4dfff60", "0x4dfff30", "0x4dffe80"],
+    "CR2_as_moat_delta": ["moat-0xA0", "moat-0xD0", "moat-0x180"],
+    "error_code": "e=0003 (supervisor write, PRESENT) in all three",
+    "moat": "0x4e00000 (the SEC-carved 2-MiB RO direct map, ring 30b)"
+   },
+   "cascade_hangs_measured": {
+    "definition": "the five non-storm boots never completed DXE in 60-90 s: serial ends at coreboot's 'Jumping to boot code', the stub never speaks, the HPET cascade stays engaged until the kill",
+    "boot2": {"v40": 8910, "at_RET": 2367, "longest_run": 61, "RET_SP_band": "0x4ec02e8-0x4ed8258"},
+    "boot3": {"v40": 9163, "at_RET": 4276, "longest_run": 513, "RET_SP_band": "0x4e0c228-0x4ed8328"},
+    "reading": "the cascade oscillates: chained re-deliveries descend 0x660 per step, partial unwinds recover toward the band top (~0x4ed8xxx — exactly the band ring 31b saw live under freezing); a run can go 513 deep and RECOVER (boot 3); the fatal boots crossed on the 543rd consecutive re-delivery"
+   },
+   "mechanism_unified": "the un-EOI'd level-triggered HPET cascade (ring 29) re-delivers into the still-executing handler; every chained re-delivery consumes exactly 0x660 of stack (now measured per-step in flight, was inferred frozen); between chains, partial unwinds produce the oscillation; the walk's fate — fatal crossing vs indefinite oscillation — is decided per delivery by TCG scheduling (ring 30a's race); the crossing happens when the exception stub's 0x3A8 push from the last legal landing dips below the SEC-carved moat 0x4e00000, and the fxsave writes its buffer at moat-0xA0 on the dominant residue",
+   "corrections": [
+    "ring 31b's 'deterministic storm' label is BUILD-SCOPED: the ring-32 rebuild (same recipe) storms at 3/8, not 100% — determinism belonged to the ring-31 build, not to the lane",
+    "the 'byte-identical CR2' claim (rings 29/31, 0x4DFFF60) is QUANTIZED-NOT-UNIQUE: the ring-32 build produces three crossing residues {moat-0xA0, moat-0xD0, moat-0x180}; moat-0xA0 is the dominant one and is what rings 29/31 observed — small-sample coincidence on the dominant residue, now registered as such",
+    "the SMMSTORE lane NEVER completes a boot: 'green' in this lane = indefinite cascade oscillation (a hang), not a completed DXE — the lane's only two end states are fatal crossing or hang"
+   ],
+   "residual_closed": "the frozen pre-fatal instant — ring 31's registered residual — is CLOSED: passive in-flight logging captures the entire fatal ladder without freezing; the observer effect applies to freezing (ring 31b), not to passive logging (ring 32)"
+  },
+  "32b_genome": {
+   "question": "can nine rings of scattered registers be fused into ONE queryable species catalog of the ASUS ladder — the ladder genome — with zero downloads?",
+   "answer": "YES — 330 species ever touched by a frontier event, with birth/death rungs, move counts, body-hash chains, and armor flags (lab/vendor-genome.json)",
+   "inputs": ["vendor-churn-atlas.json (9 frontiers, born/dead/moved + from/to hash chains)", "vendor-smm-quorum.json (armor cross-vendor join)", "vendor-vocabulary-clock.json (word-frontier cross-read)"],
+   "headline_numbers": {
+    "species_total": 330,
+    "wave1_births": 5,
+    "wave2_births": 2,
+    "legacy_deaths": 2,
+    "alive": 328,
+    "move_distribution": {"0": 4, "1": 91, "2": 31, "3": 22, "4": 30, "5": 98, "6": 20, "7": 8, "8": 26},
+    "quiet_pair_3802_3810": "born=0 dead=0 moved=45 (ring 23 confirmed at genome level)",
+    "top_movers": "26 species moved at all 8 frontiers (the AGESA chronic family)"
+   },
+   "genome_level_reads": [
+    "SbRomArmorSmm (51080191) moves=0: ONE body across 4.5 years — ring 19's finding now exact at genome granularity",
+    "the armor quartet is NOT uniformly frozen: PrepareWhiteListSmm and FlashSmiDxe moved twice, FlashSmiSmm and the 89BE47F4 freeform once, SbRomArmorSmm never",
+    "the ladder's churn spine: 98 species moved exactly 5 times, 54 chronic movers (6+), 26 at every frontier",
+    "births are EXACTLY the security waves: five at 3802, two at 4604, zero elsewhere; deaths are EXACTLY the two legacy smm_driver retirements (4202, 4402)"
+   ],
+   "day0_service": "any GUID found in the day-0 dump can be placed instantly: birth rung, death rung, move count, hash chain, armor flags — the genome is the lookup table the day-0 checklist was missing"
+  }
+ },
+ "recipes": {
+  "lane_switch_smmstore_ring32": "cd scratch-ring28/coreboot && cp .config .config.ring32-emu-backup && sed -i 's/^# CONFIG_SMMSTORE_V2 is not set/CONFIG_SMMSTORE_V2=y/' .config && make olddefconfig && source ../env.sh && UPDATED_SUBMODULES=1 make -j$(nproc)",
+  "lane_restore_emu_ring32": "cp .config.ring31-emu-backup .config && cp ../coreboot.rom.ring31-emu-backup build/coreboot.rom (sanity: ec=0, CHAIN OK)",
+  "in_flight_boot": "./fw32_inflight.sh <id> <timeout_s> — QEMU -d int,cpu_reset -D int-fw32-<id>.log, serial to serial-fw32-inflight<id>.log, no gdb",
+  "ladder_parse": "python3 fw32_parse.py int-fw32-<id>.log — tail ladder, SP steps, convergence depth, longest same-IP run, fatal geometry vs moat"
+ },
+ "file_inventory": {
+  "scripts": ["scratch-ring28/fw32_inflight.sh", "scratch-ring28/fw32_parse.py", "scripts/fw32_genome.py (sandbox-external)"],
+  "logs": ["int-fw32-{1..8}.log", "serial-fw32-inflight{1..8}.log", "serial-fw32-sanity.log"],
+  "registers": ["lab/vendor-genome.json (front 32b)", "lab/vol5-fw32.json (this file)"]
+ },
+ "honesty": [
+  "n=8 boots, one build: the storm rate 3/8 carries a wide binomial interval; only the ring-32 build was measured in flight — rings 29/31 numbers stay scoped to their builds",
+  "-d int logging itself was not A/B-measured as a perturber in this ring (ring 30's no-log EMU boots do not transfer to this lane); the in-flight rates are logging-conditioned by construction",
+  "the 'consecutive at RET' depth counts logged landings, which include partial unwinds between chains — it is not a monotone nesting depth",
+  "the genome covers only species TOUCHED by frontier events; the never-touched static core is not enumerable from registers (per-rung GUID sets were computed in-session and not persisted) — registered in the genome's honesty block",
+  "the 665-entry GUID-name join map body was never persisted (map_size only); names join in only at the armor quartet"
+ ]
+}

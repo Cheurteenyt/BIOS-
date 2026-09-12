@@ -606,7 +606,24 @@ storm is pure stack-boundary geometry over the static SEC-carved moat.
 Registered residuals: the frozen pre-fatal instant is uncapturable by
 per-delivery freezing (the observer effect defuses the storm); the
 QEMU gdbstub walls are named (watchpoint desync after stop D,
-conditional-breakpoint desync 3/4, walk-time A/D blind spot).
+conditional-breakpoint desync 3/4, walk-time A/D blind spot) —
+BOTH CLOSED/RESOLVED by ring 32 (`lab/vol5-fw32.json`, "l'instant en
+vol"): (a) the frozen pre-fatal instant is captured IN FLIGHT by the
+passive `-d int` instrument — nothing freezes, the storm fires, and
+the fatal ladder measures whole: 543 consecutive re-deliveries at
+CpuDxe+0x1021 descending exactly 0x660 per step, zero below the moat,
+the 544th stub push 0x3A8 crossing at fxsave CR2 = moat−0xA0; (b) the
+gdbstub walls stand as walls, but the corrections land: ring 31b's
+"deterministic storm" was BUILD-scoped (ring-32 rebuild: 3/8), the
+"byte-identical CR2" is quantized-not-unique ({moat−0xA0, −0xD0,
+−0x180} observed — rings 29/31 saw the dominant residue), and the
+SMMSTORE lane NEVER completes a boot (its "green" is an indefinite
+cascade oscillation — runs up to 513 deep observed recovering; the
+lane's only end states are fatal crossing or hang). Storm follow-ups
+now open by choice, not by need: a multi-build rate study
+(logging-conditioned, one build measured so far), and the residue
+class census of the crossing (what sets the final landing above the
+boundary).
 
 ## Discipline
 

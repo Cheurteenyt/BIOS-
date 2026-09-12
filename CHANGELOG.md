@@ -4,6 +4,45 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the thirty-second ring (l'instant en vol)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green. The last storm residual closes with a passive
+instrument, two frozen-era claims are corrected by measurement, and
+the study gets its first species genome.
+
+- **Front 32a — the storm caught IN FLIGHT.** QEMU `-d int,cpu_reset`
+  logging is passive: nothing freezes, and the storm fires (the
+  observer effect belongs to stopping the CPU, not to logging). The
+  fatal ladder is captured whole on the ring-32 SMMSTORE rebuild:
+  543 consecutive re-deliveries at CpuDxe+0x1021 descending exactly
+  0x660 per step, zero deliveries below the moat, the 544th stub push
+  0x3A8 crossing it — fxsave CR2 = moat−0xA0, e=0003, byte-identical
+  site to rings 29/31. The mechanism unifies: chained re-deliveries
+  and partial unwinds form an oscillating walk at the boundary whose
+  fate is decided per delivery by TCG scheduling.
+- **Three measured corrections.** (1) Ring 31b's "deterministic
+  storm" was BUILD-scoped: the ring-32 rebuild (same recipe) storms
+  3/8. (2) The "byte-identical CR2" is quantized-not-unique: three
+  crossing residues observed {moat−0xA0, −0xD0, −0x180}; rings 29/31
+  saw the dominant one. (3) The SMMSTORE lane never completes a boot —
+  its "green" is an indefinite cascade oscillation (runs up to 513
+  deep observed RECOVERING), so the lane's only end states are fatal
+  crossing or hang. The frozen pre-fatal instant residual: CLOSED.
+- **Front 32b — the species genome.** Nine rings of registers fused
+  with zero downloads into `lab/vendor-genome.json`: 330 species ever
+  touched by a frontier event on the nine-rung ASUS ladder, each with
+  birth rung, death rung, move count, body-hash chain and armor
+  flags. Births are EXACTLY the two security waves (5 at 3802, 2 at
+  4604), deaths EXACTLY the two legacy retirements; SbRomArmorSmm has
+  moves=0 (one body in 4.5 years, genome-exact); 26 chronic movers
+  move at every frontier (the AGESA engine room). Day-0 service: any
+  GUID found in the dump is placed instantly.
+- **Honesty.** Drift #17 written off at the opening checkpoint (the
+  continuation summary claimed the ring-18 era for the fourth time;
+  the disk showed rings 24-31 done). Rates are logging-conditioned
+  and one-build scoped; the genome covers touched species only.
+
 ## Unreleased — the thirty-first ring (the storm, caught live)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
