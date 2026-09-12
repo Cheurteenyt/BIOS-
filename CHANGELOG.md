@@ -4,6 +4,37 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the thirty-third ring (la loi de l'atterrissage)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green. Two deliverables: the study's first TRACKED instrument —
+the day-0 triage weapon — and a closed-form law for the storm's fatal
+geometry, verified on every storm the study has captured in flight.
+
+- **Front 33a — the day-0 triage weapon** (`lab/fw33-triage-engine.py`,
+  tracked in `lab/` so it survives the sandbox, unlike every prior
+  instrument). Seven registers fused into one stdlib-only engine with
+  eight modes (guid / body / rung / plan / wave / agesa / selftest /
+  manifest); 29 genome-exact self-test gates refuse service on any
+  register drift (AGESA pin at load, gates at self-test, chain-integrity
+  across all 330 species). Three register-drift lessons caught by the
+  gates before they could become silent errors: presence-vs-event probe
+  lists, move-distribution semantics, and the two ROM size classes
+  (16 MiB sentinels vs 16515072-byte capsule payloads).
+- **Front 33b — the law of the landing.** A 32-boot census (24 fresh on
+  a third lane rebuild + the 8 surviving ring-32 logs; 5 storms / 27
+  oscillation hangs, passive `-d int`) closes the residue-class thread
+  with three formulas verified 5/5 over two builds: the fatal window
+  [moat−0x2B8, moat+0x3A8) has width exactly one chain step (0x3A8 +
+  0x2B8 = 0x660), so exactly ONE delivery per chain is fatal, forced by
+  the onset SP alone (k* = ⌊(onset−moat+0x2B8)/0x660⌋+1 = 543, invariant
+  on the observed onset band); landing = onset − 542×0x660; residue =
+  0x3A8 − ((onset−moat) mod 0x660) — the "mysterious" residues {0xA0,
+  0xD0, 0x180} are exactly the recovery-alignment classes {0x308, 0x2D8,
+  0x228}. Hangs recover from runs up to 542 deep; both lane terminals
+  are kills (fatal-crossing-then-silence measured); the second build's
+  rate (2/24 vs 3/8) confirms build-scoping with a second data point.
+
 ## Unreleased — the thirty-second ring (l'instant en vol)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

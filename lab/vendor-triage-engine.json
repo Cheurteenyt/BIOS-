@@ -1,0 +1,629 @@
+{
+ "_meta": {
+  "ring": 33,
+  "title": "the day-0 triage weapon (front 33a)",
+  "instrument": "fw33-triage-engine.py (this manifest is its self-test + demo transcript)",
+  "inputs": {
+   "genome": {
+    "file": "vendor-genome.json",
+    "sha256_16": "2cde13b1c2c28d82"
+   },
+   "churn": {
+    "file": "vendor-churn-atlas.json",
+    "sha256_16": "89bdd9222c278f7a"
+   },
+   "agesa": {
+    "file": "vendor-agesa.json",
+    "sha256_16": "ce142916431de71c"
+   },
+   "armor": {
+    "file": "vendor-flash-armor.json",
+    "sha256_16": "2459e5c7ab55f296"
+   },
+   "acquisition": {
+    "file": "vendor-acquisition.json",
+    "sha256_16": "88438035063211b1"
+   },
+   "quorum": {
+    "file": "vendor-smm-quorum.json",
+    "sha256_16": "b81aefd8429216f5"
+   },
+   "chipdb": {
+    "file": "vendor-armor-chipdb.json",
+    "sha256_16": "fcb70419b9817132"
+   }
+  }
+ },
+ "selftest": {
+  "mode": "selftest",
+  "gates": 29,
+  "all_pass": true,
+  "detail": [
+   {
+    "gate": "species_total==330",
+    "want": 330,
+    "got": 330,
+    "pass": true
+   },
+   {
+    "gate": "edges==8",
+    "want": 8,
+    "got": 8,
+    "pass": true
+   },
+   {
+    "gate": "ladder==9 rungs",
+    "want": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "got": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "pass": true
+   },
+   {
+    "gate": "quiet edge 3802->3810 {born,dead,moved}=={0,0,45}",
+    "want": {
+     "born": 0,
+     "dead": 0,
+     "moved": 45
+    },
+    "got": {
+     "born": 0,
+     "dead": 0,
+     "moved": 45
+    },
+    "pass": true
+   },
+   {
+    "gate": "wave1 births==5 all born 3604->3802",
+    "want": [
+     5,
+     "asus-3604->asus-3802"
+    ],
+    "got": [
+     5,
+     "asus-3604->asus-3802"
+    ],
+    "pass": true
+   },
+   {
+    "gate": "wave2 births==2 all born 4402->4604",
+    "want": [
+     2,
+     "asus-4402->asus-4604"
+    ],
+    "got": [
+     2,
+     "asus-4402->asus-4604"
+    ],
+    "pass": true
+   },
+   {
+    "gate": "SbRomArmorSmm moves==0 (genome-exact)",
+    "want": 0,
+    "got": 0,
+    "pass": true
+   },
+   {
+    "gate": "SbRomArmorSmm name anchor",
+    "want": "SbRomArmorSmm",
+    "got": "SbRomArmorSmm",
+    "pass": true
+   },
+   {
+    "gate": "armor quartet == the 4 named members",
+    "want": [
+     "391626DB-3CEC-4339-A3D6-9CDFF4690E12",
+     "51080191-ED06-4AA0-BFD7-F04837CF70DB",
+     "6C289241-E240-483F-9E3E-872C0396B599",
+     "755877A6-4F10-4A5C-9B2E-852123B9682C"
+    ],
+    "got": [
+     "391626DB-3CEC-4339-A3D6-9CDFF4690E12",
+     "51080191-ED06-4AA0-BFD7-F04837CF70DB",
+     "6C289241-E240-483F-9E3E-872C0396B599",
+     "755877A6-4F10-4A5C-9B2E-852123B9682C"
+    ],
+    "pass": true
+   },
+   {
+    "gate": "legacy death @4202 == 827E45A4",
+    "want": [
+     "827E45A4-C285-4E45-8BC7-CD8E58D9EE84"
+    ],
+    "got": [
+     "827E45A4-C285-4E45-8BC7-CD8E58D9EE84"
+    ],
+    "pass": true
+   },
+   {
+    "gate": "legacy death @4402 == 21782819",
+    "want": [
+     "21782819-FDA0-4ADE-BD36-C95F079F057D"
+    ],
+    "got": [
+     "21782819-FDA0-4ADE-BD36-C95F079F057D"
+    ],
+    "pass": true
+   },
+   {
+    "gate": "move_distribution covers 330 species",
+    "want": 330,
+    "got": 330,
+    "pass": true
+   },
+   {
+    "gate": "total move events across genome",
+    "want": ">0",
+    "got": 1213,
+    "pass": true
+   },
+   {
+    "gate": "all-frontier movers (moves==8) == 26",
+    "want": 26,
+    "got": 26,
+    "pass": true
+   },
+   {
+    "gate": "static-since-birth (moves==0) == 4",
+    "want": 4,
+    "got": 4,
+    "pass": true
+   },
+   {
+    "gate": "AGESA ladder points == 9",
+    "want": 9,
+    "got": 9,
+    "pass": true
+   },
+   {
+    "gate": "AGESA monotone non-decreasing (ranked)",
+    "want": true,
+    "got": true,
+    "pass": true
+   },
+   {
+    "gate": "AGESA single tie 3802==3810",
+    "want": [
+     [
+      "3802",
+      "1.2.0.7"
+     ],
+     [
+      "3810",
+      "1.2.0.7"
+     ]
+    ],
+    "got": [
+     [
+      "3802",
+      "1.2.0.7"
+     ],
+     [
+      "3810",
+      "1.2.0.7"
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "gate": "armor wave scores replay == register reading",
+    "want": {
+     "3604": [
+      0,
+      2
+     ],
+     "3802": [
+      5,
+      2
+     ],
+     "3810": [
+      5,
+      2
+     ],
+     "4003": [
+      5,
+      2
+     ],
+     "4202": [
+      5,
+      1
+     ],
+     "4402": [
+      5,
+      0
+     ],
+     "4604": [
+      7,
+      0
+     ],
+     "4631": [
+      7,
+      0
+     ],
+     "4655": [
+      7,
+      0
+     ]
+    },
+    "got": {
+     "3604": [
+      0,
+      2
+     ],
+     "3802": [
+      5,
+      2
+     ],
+     "3810": [
+      5,
+      2
+     ],
+     "4003": [
+      5,
+      2
+     ],
+     "4202": [
+      5,
+      1
+     ],
+     "4402": [
+      5,
+      0
+     ],
+     "4604": [
+      7,
+      0
+     ],
+     "4631": [
+      7,
+      0
+     ],
+     "4655": [
+      7,
+      0
+     ]
+    },
+    "pass": true
+   },
+   {
+    "gate": "armor boundary first_complete==4604",
+    "want": "4604",
+    "got": "4604",
+    "pass": true
+   },
+   {
+    "gate": "armor boundary last_incomplete==4402",
+    "want": "4402",
+    "got": "4402",
+    "pass": true
+   },
+   {
+    "gate": "wave1 first_with_core==3802",
+    "want": "3802",
+    "got": "3802",
+    "pass": true
+   },
+   {
+    "gate": "chain integrity: every step links from==prev.to",
+    "want": 0,
+    "got": 0,
+    "pass": true
+   },
+   {
+    "gate": "chain steps total",
+    "want": ">0",
+    "got": 1213,
+    "pass": true
+   },
+   {
+    "gate": "probes==9, every one with a rom sha256_16 anchor",
+    "want": 9,
+    "got": 9,
+    "pass": true
+   },
+   {
+    "gate": "rom sizes == {capsule payload 16515072, full 16777216}",
+    "want": [
+     16515072,
+     16777216
+    ],
+    "got": [
+     16515072,
+     16777216
+    ],
+    "pass": true
+   },
+   {
+    "gate": "sentinels == {3604, 4655}",
+    "want": [
+     "3604",
+     "4655"
+    ],
+    "got": [
+     "3604",
+     "4655"
+    ],
+    "pass": true
+   },
+   {
+    "gate": "churn per_rung covers the ladder",
+    "want": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "got": [
+     "3604",
+     "3802",
+     "3810",
+     "4003",
+     "4202",
+     "4402",
+     "4604",
+     "4631",
+     "4655"
+    ],
+    "pass": true
+   },
+   {
+    "gate": "the_3644_question registered",
+    "want": true,
+    "got": true,
+    "pass": true
+   }
+  ]
+ },
+ "coverage": {
+  "species": 330,
+  "edges": 8,
+  "rungs": [
+   "3604",
+   "3802",
+   "3810",
+   "4003",
+   "4202",
+   "4402",
+   "4604",
+   "4631",
+   "4655"
+  ],
+  "probed_rungs": [
+   "3604",
+   "3802",
+   "3810",
+   "4003",
+   "4202",
+   "4402",
+   "4604",
+   "4631",
+   "4655"
+  ],
+  "body_chain_steps_indexed": 1536,
+  "named_anchors": 7
+ },
+ "demos": {
+  "demo_sbromarmor": {
+   "mode": "guid",
+   "guid": "51080191-ED06-4AA0-BFD7-F04837CF70DB",
+   "verdict": "PLACED",
+   "name": "SbRomArmorSmm",
+   "types": [
+    "smm_driver"
+   ],
+   "flags": [
+    "wave1_birth",
+    "armor_quartet"
+   ],
+   "wave": "wave1 (core SMM armor, 2022-05-12)",
+   "born_at": "asus-3604->asus-3802",
+   "birth_agesa": "1.2.0.7",
+   "birth_date": "2022/05/12",
+   "dead_at": null,
+   "death_agesa": null,
+   "moves": 0,
+   "move_class": "static-since-birth",
+   "hash_chain": [],
+   "body_changes_on": [
+    "no body change on the ladder — diff work is pointless; placement is the product"
+   ]
+  },
+  "demo_wave2_freeform": {
+   "mode": "guid",
+   "guid": "02076249-A52B-420E-BD53-AED044349379",
+   "verdict": "PLACED",
+   "name": "freeform (unnamed)",
+   "types": [
+    "freeform"
+   ],
+   "flags": [
+    "wave2_birth"
+   ],
+   "wave": "wave2 (armor completion, 2024-04-08)",
+   "born_at": "asus-4402->asus-4604",
+   "birth_agesa": "1.2.0.Ca",
+   "birth_date": "2024/04/08",
+   "dead_at": null,
+   "death_agesa": null,
+   "moves": 0,
+   "move_class": "static-since-birth",
+   "hash_chain": [],
+   "body_changes_on": [
+    "no body change on the ladder — diff work is pointless; placement is the product"
+   ]
+  },
+  "demo_plan_4655": {
+   "mode": "plan",
+   "title": "day-0 triage card — ASUS PRIME B450-PLUS, 16 MiB ROM",
+   "ladder": [
+    {
+     "rung": "3604",
+     "date": "2022/03/16",
+     "agesa": "1.2.0.6b",
+     "wave_score": "0/7",
+     "legacy_score": "2/2",
+     "rom_sha256_16": "dbabcc8c1d7e6dc4"
+    },
+    {
+     "rung": "3802",
+     "date": "2022/05/12",
+     "agesa": "1.2.0.7",
+     "wave_score": "5/7",
+     "legacy_score": "2/2",
+     "rom_sha256_16": "f9bb9ac5f2552369"
+    },
+    {
+     "rung": "3810",
+     "date": "2022/12/15",
+     "agesa": "1.2.0.7",
+     "wave_score": "5/7",
+     "legacy_score": "2/2",
+     "rom_sha256_16": "4c925f66864446e8"
+    },
+    {
+     "rung": "4003",
+     "date": "2023/03/21",
+     "agesa": "1.2.0.8",
+     "wave_score": "5/7",
+     "legacy_score": "2/2",
+     "rom_sha256_16": "a11dff75cbb9d953"
+    },
+    {
+     "rung": "4202",
+     "date": "2023/08/02",
+     "agesa": "1.2.0.A",
+     "wave_score": "5/7",
+     "legacy_score": "1/2",
+     "rom_sha256_16": "5ff8f8e27c8b2d73"
+    },
+    {
+     "rung": "4402",
+     "date": "2024/01/08",
+     "agesa": "1.2.0.B",
+     "wave_score": "5/7",
+     "legacy_score": "0/2",
+     "rom_sha256_16": "916bcaca825ac3ca"
+    },
+    {
+     "rung": "4604",
+     "date": "2024/04/08",
+     "agesa": "1.2.0.Ca",
+     "wave_score": "7/7",
+     "legacy_score": "0/2",
+     "rom_sha256_16": "eddccf1e75f28adc"
+    },
+    {
+     "rung": "4631",
+     "date": "2025/04/01",
+     "agesa": "1.2.0.E",
+     "wave_score": "7/7",
+     "legacy_score": "0/2",
+     "rom_sha256_16": "39e778a1a6141aeb"
+    },
+    {
+     "rung": "4655",
+     "date": "2026/08/27",
+     "agesa": "1.2.0.12",
+     "wave_score": "7/7",
+     "legacy_score": "0/2",
+     "rom_sha256_16": "284ea676ee6cbf42"
+    }
+   ],
+   "procedure": [
+    "1. dump the ROM (2x16 MiB clip or in-system), never flash first",
+    "2. sha256 the dump; match a ladder rom_sha256_16 above — if it matches a probed rung, every expectation on that row applies as-is; if not, bracket between probed neighbors",
+    "3. census the FFS files; for each GUID call: engine guid <G>",
+    "4. UNPLACED verdicts are the payload of the day: they are either the never-touched static core or NEW events — diff them against the 3802 and 4604 sentinels first",
+    "5. check armor by expectation: >=3802 must show the 5 wave-1 members, >=4604 the 7; legacy SMM count must read 2/2 (<=4003), 1/2 (4202), 0/2 (>=4402)",
+    "6. read AGESA: the dump must show the row's version string; a mismatch means the release is off-ledger (escalate)",
+    "7. 3644 question: {\"fact\": \"no BIOS 3644 exists in the official ASUS PRIME B450-PLUS ledger (39 entries checked; the series jumps 3604 (2022-03-16) to 3802 (2022-05-12)); the TUF"
+   ],
+   "sentinels": {
+    "3604": "dbabcc8c1d7e6dc4",
+    "4655": "284ea676ee6cbf42"
+   },
+   "downloads_total": 7,
+   "honesty": [
+    "expectations are measured at 9 probed rungs only; the other 31 of 40 ledger releases are bracketed, not measured",
+    "the static core is not enumerable from registers",
+    "LogoFail correlation stays year-granular"
+   ],
+   "focus_rung": {
+    "mode": "rung",
+    "rung": "4655",
+    "census": {
+     "files": 613,
+     "modules": 613,
+     "deleted": 0,
+     "planes": 21,
+     "payload_bytes": 24315785
+    },
+    "agesa": "1.2.0.12",
+    "wave_score": "7/0",
+    "armor_members": [
+     "DXE (unnamed '1.0')",
+     "FlashSmiDxe",
+     "FlashSmiSmm",
+     "PrepareWhiteListSmm",
+     "SbRomArmorSmm",
+     "freeform (unnamed)",
+     "freeform (unnamed)"
+    ],
+    "legacy_smm_present": 0,
+    "in_edge": "asus-4631->asus-4655",
+    "out_edge": null,
+    "probe": {
+     "version": "4655",
+     "date": "2026/08/27",
+     "sentinel": true,
+     "url": "on disk (ring 12 acquisition)",
+     "rom_bytes": 16777216,
+     "rom_sha256_16": "284ea676ee6cbf42",
+     "modules": 623,
+     "added_present": [
+      "DXE (unnamed '1.0')",
+      "FlashSmiDxe",
+      "FlashSmiSmm",
+      "PrepareWhiteListSmm",
+      "SbRomArmorSmm",
+      "freeform (unnamed)",
+      "freeform (unnamed)"
+     ],
+     "removed_present": [],
+     "armor_complete": true,
+     "core_armor": 4
+    }
+   }
+  }
+ },
+ "honesty": [
+  "the engine knows only what the registers know",
+  "the never-touched static core is not enumerable",
+  "frontier names join only via the armor watchlist (7 anchors)",
+  "unprobed releases (31 of 40) are bracketed, not measured",
+  "any register drift aborts the engine at load (AGESA pin) or at self-test (every gate)"
+ ]
+}

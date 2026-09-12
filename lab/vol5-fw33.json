@@ -1,0 +1,108 @@
+{
+ "_meta": {
+  "ring": 33,
+  "title": "la loi de l'atterrissage + l'arme du jour 0 — the law of the landing + the day-0 triage weapon (fronts 33a/33b)",
+  "date": "2026-09-13",
+  "lane": "scratch-ring28, RELEASE+SMMSTORE_V2 rebuild (ring-33 build #3 of the study), EMU lane restored after with green sanity boot",
+  "instrument": "front 33a: fw33-triage-engine.py — pure register fusion, zero downloads, TRACKED in lab/ so it survives the sandbox; front 33b: passive QEMU -d int,cpu_reset logging (the ring-32 instrument, nothing freezes) over 24 fresh boots + the 8 surviving ring-32 logs",
+  "inputs_33a": [
+   "lab/vendor-genome.json (330 species, 8 transitions, waves, move distribution)",
+   "lab/vendor-churn-atlas.json (per-rung census, frontier GUID events)",
+   "lab/vendor-agesa.json (the 9-point dated AGESA ladder in .timeline)",
+   "lab/vendor-flash-armor.json (9 probes, boundaries, watchlist names, downloads_total)",
+   "lab/vendor-acquisition.json (ledger, the_3644_question)",
+   "lab/vendor-smm-quorum.json (armor_identity body facts)",
+   "lab/vendor-armor-chipdb.json (the chip whitelist)"
+  ]
+ },
+ "fronts": {
+  "33a_triage_engine": {
+   "question": "nine rings of registers can answer any day-0 question — but only if a human assembles them per GUID. can the registers themselves become ONE queryable weapon that places any future dump artifact instantly, and can it prove its own correctness before it is trusted?",
+   "answer": "YES — lab/fw33-triage-engine.py (tracked in lab/, stdlib-only, loads the seven registers relative to its own directory) exposes guid / body / rung / plan / wave / agesa / selftest / manifest modes; the self-test runs 29 genome-exact gates and the engine REFUSES to serve if any register drifts (AGESA pin aborts at load, gates abort at self-test)",
+   "gates": 29,
+   "gates_all_pass": true,
+   "modes": {
+    "guid": "placement: name (watchlist join), types, wave, birth edge + AGESA + date, death edge, moves + move class, body chain, the edges where the body actually changed (diff advice), armor identity facts",
+    "body": "chain-index placement: any body sha256_16 from a dump maps to species+edges via the from/to chain index (1536 hash anchors indexed)",
+    "rung": "frontier report: census, AGESA, armor score, members, legacy count, in/out edges, next frontier events",
+    "plan": "the day-0 card: the 9-rung ladder with dates/AGESA/armor expectations/sentinel hashes, the 7-step dump triage procedure, the 3644 question status, and the honesty block (31 of 40 releases bracketed, not measured)"
+   },
+   "demo_genome_exact": {
+    "guid_51080191": "SbRomArmorSmm: wave1 (2022-05-12), born asus-3604->asus-3802 at AGESA 1.2.0.7, moves=0 static-since-birth, armor_quartet, empty chain — 'diff work is pointless; placement is the product'",
+    "guid_02076249": "wave2 freeform: born asus-4402->asus-4604 at AGESA 1.2.0.Ca, moves=0",
+    "plan_4655": "the bench-day card: 7/7 wave, 0/2 legacy, AGESA 1.2.0.12, sentinel 284ea676ee6cbf42"
+   },
+   "register_drift_lessons": [
+    "the genome's move_distribution keys are move-count classes; the species sum is sum(values) — the move-weighted sum (1213) is the total move EVENTS across the genome, a different (and interesting) number",
+    "vendor-flash-armor.json probes carry PRESENCE lists (added_present = the wave members present in that image), not per-release addition events — replaying them cumulatively double-counts (5->10->15); each probe's list IS that rung's expected membership",
+    "probed ROM sizes split in two classes: full 16777216-byte sentinel images (3604, 4655) vs 16515072-byte capsule payloads (3802-4631, 256 KiB wrapper difference) — day-0 dump matching must know which class an anchor refers to"
+   ],
+   "survival": "the engine is the FIRST ring instrument deliberately tracked in lab/ — every prior instrument died with its sandbox; the weapon must survive to bench day"
+  },
+  "33b_law_of_the_landing": {
+   "question": "ring 32 left the residue-class census as an open-by-choice thread: WHAT sets the final landing above the boundary — why {moat-0xA0, -0xD0, -0x180} and not one value, and why depth 543 in every storm so far?",
+   "answer": "THE LAW: the fatal window has width EXACTLY one chain step (0x660 = 0x3A8 stub push + 0x2B8 write offset), so every chain has EXACTLY one fatal delivery, forced by the onset SP alone; depth is invariant (543) because the onset band is narrow, and the residue is a pure function of the onset alignment mod 0x660",
+   "census": {
+    "boots_total": 32,
+    "ring33_build": {"boots": 24, "storms": 2, "storm_ids": [13, 23], "hangs": 22, "rate": "2/24"},
+    "ring32_logs_survived": {"boots": 8, "storms": 3, "storm_ids": [1, 4, 5], "hangs": 5, "rate": "3/8"},
+    "pooled": {"storms": 5, "boots": 32},
+    "parallel_batches": "8 batches x 3 parallel QEMU instances, separate disk copies, 90 s timeouts, passive -d int"
+   },
+   "law_verified_per_storm": {
+    "count": 5,
+    "chain_step_uniform_minus_0x660": true,
+    "landing_equals_onset_minus_(k-1)*0x660": true,
+    "landing_always_in_fatal_window": true,
+    "cr2_equals_landing_minus_0x3A8": true,
+    "depth_formula_holds": true,
+    "residue_predicted_from_onset_alignment": true
+   },
+   "the_three_formulas": {
+    "depth": "k* = floor((onset - MOAT + 0x2B8) / 0x660) + 1",
+    "landing": "landing = onset - (k*-1) * 0x660",
+    "residue": "MOAT - CR2 = 0x3A8 - ((onset - MOAT) mod 0x660)"
+   },
+   "measured": {
+    "fatal_depths": [543, 543, 543, 543, 543],
+    "onset_band": ["0x4ed8168", "0x4ed8248"],
+    "onset_alignments": ["0x308", "0x2d8", "0x228"],
+    "landings_above_moat": ["0x308", "0x2d8", "0x228"],
+    "residues": ["0xa0", "0xd0", "0x180"],
+    "residue_law": "residue = 0x3A8 - alignment, verified 5/5 (0x3A8-0x308=0xA0, 0x3A8-0x2D8=0xD0, 0x3A8-0x228=0x180)"
+   },
+   "why_depth_is_invariant": "the fatal window [MOAT-0x2B8, MOAT+0x3A8) has width exactly 0x660 = one chain step, so exactly ONE delivery of any chain lands in it regardless of onset; every observed onset sits in the recovery-ceiling band [MOAT+0xD8168, MOAT+0xD8248], which maps to k*=543; the depth was never a coincidence — it is forced geometry",
+   "why_residues_vary": "the landing = onset - 542*0x660 inherits the onset's sub-0x660 alignment; the oscillation's partial unwinds recover to different alignments (0x30/0xB0-granular steps observed), and the residue is just 0x3A8 minus that alignment — the residue classes ARE the recovery-alignment classes of the oscillation ceiling",
+   "hang_census": {
+    "longest_runs_top10": [542, 530, 513, 440, 367, 358, 349, 346, 320, 312],
+    "reading": "runs up to 542 consecutive at-RET deliveries observed RECOVERING (one step short of the fatal 543) — the fatal window entry, not exhaustion, is the only killer; ring 32's 513-deep recovery is now part of a 10-point depth distribution"
+   },
+   "terminal_state_refinement": "both ring-33 storms show ec=124 (process did NOT exit): after the fatal #PF the event stream goes SILENT (no further -d int events until the kill) — the lane's terminals measured precisely: (a) indefinite oscillation, (b) fatal-crossing-then-silence; ring 32's 'only end states are fatal crossing or hang' refines to 'both terminals are kills'"
+   ,
+   "rate_second_build": "the ring-33 build storms 2/24 (binomial honesty: rule-of-three upper bound ~12.5% at 95%) vs the ring-32 build's 3/8 — a SECOND data point confirming ring 32's correction: the rate is BUILD-scoped, not a constant of the design; pooled 5/32"
+  }
+ },
+ "walls": [
+  "the residue support is NOT exhausted: three classes observed over five storms; the law predicts the full support = {0x3A8 - a : a in reachable recovery alignments}, and the alignment set of future storms is a property of the TCG scheduler, not of the payload",
+  "the law is lane-scoped: it describes the SMMSTORE lane's HPET cascade over the SEC-carved moat; the EMU lane's green boots never enter the cascade",
+  "the QEMU softmmu caveat stands (ring 31): walk-time A/D bits are host-side; the law's verdicts rest only on RW=0 geometry and SP/CR2 arithmetic, robust to that subtlety",
+  "TCG scheduling dependence: onset selection and per-delivery fate are scheduler properties; on real silicon the constants (0x660, 0x3A8, 0x2B8, the window) may differ but the LAW-FORM (one fatal delivery per chain, forced depth, alignment-determined residue) is geometry and is expected to survive with silicon-specific constants"
+ ],
+ "lane_restore": {
+  "recipe": "sed SMMSTORE_V2 back to not-set, olddefconfig, make UPDATED_SUBMODULES=1 (bounded call), sanity boot",
+  "sanity_boot": "ec=0, FW26 CHAIN OK, S5 clean power-down"
+ },
+ "recipes": {
+  "smmstore_lane": "cd $R28/coreboot; sed -i 's/^# CONFIG_SMMSTORE_V2 is not set/CONFIG_SMMSTORE_V2=y/' .config; make olddefconfig; make UPDATED_SUBMODULES=1 -j$(nproc)  # iasl needs env.sh sourced",
+  "census_batch": "scratch-ring28/fw33_census_batch.sh <offset> — 3 parallel boots (disk copies, separate serial/int logs), 90 s timeout each",
+  "census_parse": "python3 scratch-ring28/fw33_census_parse.py — parses int-fw33-census-*.log AND the surviving int-fw32-*.log, writes fw33-census.json, prints the aggregate with all five law checks",
+  "engine": "python3 lab/fw33-triage-engine.py selftest | manifest | guid <G> | body <h16> | rung <v> | plan [rung] | wave | agesa"
+ },
+ "honesty": [
+  "drift #18 write-off: the continuation summary claimed the ring-18 era for the FIFTH time (Volume 5 'not started', corpus instruments 'not created') while the disk stood at ring 32 — reconciled by this checkpoint",
+  "the census instrument and its logs are untracked per house convention; the full geometry of every storm and the aggregate are inlined HERE and in the findings — the science survives, the bytes die",
+  "5 storms is a small sample; every 'all storms' statement is a statement about 5 events over 2 builds — the form of the law is arithmetic (window width = chain step), the constants are lane-scoped",
+  "the engine knows only what the registers know: the never-touched static core is not enumerable, frontier names join only at the 7 watchlist anchors, 31 of 40 ledger releases are bracketed not measured",
+  "front 33b consumed the ring-32 logs as a storm corpus — same instrument, different build instance; the pooled rate mixes builds and is labeled as such"
+ ]
+}

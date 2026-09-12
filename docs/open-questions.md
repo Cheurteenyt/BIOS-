@@ -620,10 +620,19 @@ gdbstub walls stand as walls, but the corrections land: ring 31b's
 SMMSTORE lane NEVER completes a boot (its "green" is an indefinite
 cascade oscillation — runs up to 513 deep observed recovering; the
 lane's only end states are fatal crossing or hang). Storm follow-ups
-now open by choice, not by need: a multi-build rate study
-(logging-conditioned, one build measured so far), and the residue
-class census of the crossing (what sets the final landing above the
-boundary).
+now CLOSED by ring 33 (`lab/vol5-fw33.json`, "la loi de l'atterrissage"):
+the residue-class census yielded a closed-form LAW verified 5/5 over two
+builds — the fatal window [moat−0x2B8, moat+0x3A8) has width exactly one
+chain step (0x3A8+0x2B8 = 0x660), so exactly ONE delivery per chain is
+fatal, forced by the onset SP alone (k* = ⌊(onset−moat+0x2B8)/0x660⌋+1,
+invariantly 543 on the observed onset band), and the residue is pure
+onset alignment: moat−CR2 = 0x3A8 − ((onset−moat) mod 0x660) — the three
+residues ARE the recovery-alignment classes {0x308, 0x2D8, 0x228}; the
+multi-build rate study has its second data point (ring-33 build 2/24 vs
+ring-32 build 3/8 — build-scoping confirmed, pooled 5/32). The ring also
+delivered the day-0 triage weapon (`lab/fw33-triage-engine.py`, TRACKED,
+29 genome-exact gates): any GUID or body hash from the 16/09 dump is
+placed instantly, with the bench-day card one command away.
 
 ## Discipline
 
