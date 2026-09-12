@@ -491,6 +491,22 @@ in-tree; T440p and X470D4U absent; two AM4 refutations). Open on this
 axis: QEMU boot of the built image (no QEMU binary without root), the
 CBFS lens as code, and the purchase-time board-status checks.
 
+Twenty-fifth ring — the ring-24 registrations resolved in software:
+the CBFS lens IS code now (`lab/vol5-cbfs-census.json` — FMAP + CBFS
+walked spec-fresh from the 25.12 tree headers imported at runtime,
+13/13 identical vs cbfstool AND vs the ring-24 photograph, the payload
+segment table decoded, the image self-describing via its defconfig +
+`cc0358747d2a-dirty` build stamp); the "no QEMU without root" wall fell
+to the deb-extraction playbook (QEMU 10.0.11 running root-less in the
+sandbox); and the built image BOOTS (`lab/vol5-qemu-boot.json` — exit 0
+under TCG, the four-stage chain to SeaBIOS 1.17.0 and the expected
+no-bootable-device branch; the runtime confirms the static census 4/4
+fetches + mcache 13/13). Still open on this axis: the purchase-time
+board-status checks (hardware purchase), the azalea build rehearsal
+(needs the vendor blob submodules — registered, not attempted), and the
+bench-day rehearsal itself (dump-first, external programmer — gated on
+the sacrificial hardware).
+
 ## Discipline
 
 None of the eight questions requires a single byte written to the SPI chip.

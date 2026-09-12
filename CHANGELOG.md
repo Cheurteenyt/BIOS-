@@ -4,6 +4,55 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the twenty-fifth ring (the lens is code, the wall falls, the boot speaks)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green. Volume 5's software wing closes the two fronts ring 24
+registered; no chip is touched and day-0 (16/09) is untouched by design.
+
+**Three fronts, two artifacts**
+- **The CBFS lens as code** (`vol5-cbfs-census.json`, front 25a): FMAP +
+  CBFS parsed by a standalone instrument whose constants are imported at
+  runtime from the 25.12 tree's own serialized headers — never from memory.
+  The FMAP layer validates candidates by header semantics (three `__FMAP__`
+  string literals compiled into stage error messages would have hijacked a
+  naive signature scan); the CBFS layer measures the canonical pointer as
+  little-endian and the metadata as big-endian, finds the master header
+  wrapped inside a `cbfs_master_header` entry, and walks 13 entries with
+  attribute chains, per-entry sha256, in-probe LZMA decompression, the
+  payload segment table (CODE LZMA at load 0xDE060 + ENTRY at 0xFD25A) and
+  a full space audit (11 alignment gaps all below 64 B; the free-space
+  entry fills the tail exactly up to bootblock — zero unaccounted bytes).
+  Cross-citation: names and offsets identical 13/13 against `cbfstool
+  print` AND 13/13 against the ring-24 photograph. The image is
+  self-describing: its config entry is the defconfig (255 lines) plus the
+  build stamp `coreboot cc0358747d2a-dirty` — the tree's 628-line `.config`
+  is the olddefconfig expansion, an expected divergence registered as a
+  verdict, not a mismatch.
+- **The fourth wall falls** (front 25b): "no QEMU without root" — the last
+  named software wall — falls to ring 24's own deb-extraction playbook:
+  a 96-package recursive Depends closure of `qemu-system-x86`, 28 missing
+  packages downloaded and extracted with zero failures, `ldd` clean, and
+  QEMU 10.0.11 running with no root, no `apt install`, no system mutation.
+  The option-ROM blobs (`vgabios-stdvga.bin`, NIC roms) come from the
+  `seabios` and `ipxe-qemu` packages the same way.
+- **The first boot** (`vol5-qemu-boot.json`, front 25c): the study's own
+  coreboot.rom boots under the tree's own documented q35 command — exit 0
+  in 73 s under TCG (no `/dev/kvm`; timings are path timings). The serial
+  log is the complete chain: bootblock → romstage (SMBus, QEMU fw_cfg,
+  CBMEM) → postcar → ramstage (the full BS state machine, coreboot table
+  written) → SeaBIOS rel-1.17.0 (AHCI/PS2/e820) → the expected
+  `No bootable device` branch with zero disks, `-no-reboot` turning the
+  payload's reset loop into a clean exit. The cross-citation closes the
+  ring: every runtime CBFS fetch matches the static lens 4/4 at identical
+  offsets and sizes, and the runtime's own mcache counts **13 files** —
+  the image confirming its census by consuming itself.
+
+Two parser bugs caught before publication and registered (the
+name→value dictionary direction; the `cbfs_payload_segment` field order —
+`offset` u32 precedes the u64 `load_addr`, stride 28): exact consumption
+remains the only honest referee of a grammar.
+
 ## Unreleased — the twenty-fourth ring (Volume 5 rehearses in software)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,

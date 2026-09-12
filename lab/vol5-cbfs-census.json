@@ -1,0 +1,487 @@
+{
+  "schema": "vol5-cbfs-census/1.0",
+  "date": "2026-09-12",
+  "title": "Volume 5, front 25a \u2014 the CBFS lens as code: the first independent census of the image we built",
+  "_meta": {
+    "method": "FMAP + CBFS parsed spec-fresh from the 25.12 tree headers imported at runtime; constants never from memory; packed layouts validated by exact consumption",
+    "instrument_lane": "sandbox probe (scripts/vol5_cbfs_lens.py) \u2014 the repo's frozen surface untouched; this lens is the Volume 5 companion to fw.spi.map, which natively reports zero FVs on the CBFS world",
+    "honesty": [
+      "read-only: no byte of the ROM changed; +0 octet holds",
+      "LZMA decompression uses the Python stdlib on the LZMA-alone format; any entry that fails to decompress is registered, never faked",
+      "the walk resyncs past voids in 64-byte steps; inter-entry voids are accounted, not skipped",
+      "attribute chain parse bounded by CBFS_METADATA_MAX_SIZE per header semantics"
+    ],
+    "imported": {
+      "headers_imported": {
+        "src/commonlib/bsd/include/commonlib/bsd/cbfs_serialized.h": {
+          "sha256": "448538efa44bc82185dc58e04f2c31a0beb2543d91ec928d6231b8042fce6c1e"
+        },
+        "src/commonlib/bsd/include/commonlib/bsd/fmap_serialized.h": {
+          "sha256": "f6a04a365d2d893011a998dad100784deabc47ef206c733120d888ac776a7168"
+        }
+      },
+      "imported": {
+        "cbfs_type": {
+          "CBFS_TYPE_QUERY": 0,
+          "CBFS_TYPE_DELETED": 0,
+          "CBFS_TYPE_NULL": 4294967295,
+          "CBFS_TYPE_BOOTBLOCK": 1,
+          "CBFS_TYPE_CBFSHEADER": 2,
+          "CBFS_TYPE_LEGACY_STAGE": 16,
+          "CBFS_TYPE_STAGE": 17,
+          "CBFS_TYPE_SELF": 32,
+          "CBFS_TYPE_FIT_PAYLOAD": 33,
+          "CBFS_TYPE_OPTIONROM": 48,
+          "CBFS_TYPE_BOOTSPLASH": 64,
+          "CBFS_TYPE_RAW": 80,
+          "CBFS_TYPE_VSA": 81,
+          "CBFS_TYPE_MBI": 82,
+          "CBFS_TYPE_MICROCODE": 83,
+          "CBFS_TYPE_INTEL_FIT": 84,
+          "CBFS_TYPE_FSP": 96,
+          "CBFS_TYPE_MRC": 97,
+          "CBFS_TYPE_MMA": 98,
+          "CBFS_TYPE_EFI": 99,
+          "CBFS_TYPE_STRUCT": 112,
+          "CBFS_TYPE_AMDFW": 128,
+          "CBFS_TYPE_CMOS_DEFAULT": 170,
+          "CBFS_TYPE_SPD": 171,
+          "CBFS_TYPE_MRC_CACHE": 172,
+          "CBFS_TYPE_CMOS_LAYOUT": 426
+        },
+        "cbfs_compression": {
+          "CBFS_COMPRESS_NONE": 0,
+          "CBFS_COMPRESS_LZMA": 1,
+          "CBFS_COMPRESS_LZ4": 2
+        },
+        "attr_tags": {
+          "CBFS_FILE_ATTR_TAG_UNUSED": 0,
+          "CBFS_FILE_ATTR_TAG_UNUSED2": 4294967295,
+          "CBFS_FILE_ATTR_TAG_COMPRESSION": 1111710284,
+          "CBFS_FILE_ATTR_TAG_HASH": 1752392008,
+          "CBFS_FILE_ATTR_TAG_POSITION": 1111708496,
+          "CBFS_FILE_ATTR_TAG_ALIGNMENT": 1111706689,
+          "CBFS_FILE_ATTR_TAG_IBB": 843661890,
+          "CBFS_FILE_ATTR_TAG_PADDING": 1195655504,
+          "CBFS_FILE_ATTR_TAG_STAGEHEADER": 1400137544
+        },
+        "CBFS_HEADER_MAGIC": "0x4f524243",
+        "CBFS_FILE_MAGIC": "LARCHIVE",
+        "CBFS_ALIGNMENT": 64,
+        "FMAP_SIGNATURE": "__FMAP__"
+      }
+    }
+  },
+  "image": {
+    "path": "/home/z/my-project/scratch-coreboot/coreboot-25.12/build/coreboot.rom",
+    "size_bytes": 8388608,
+    "sha256": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1"
+  },
+  "fmap": {
+    "file_offset": 0,
+    "ver": "1.1",
+    "base": "0x0",
+    "size": 8388608,
+    "name": "FLASH",
+    "nareas": 3,
+    "areas": [
+      {
+        "name": "BIOS",
+        "offset": 0,
+        "size": 8388608,
+        "flags": 0
+      },
+      {
+        "name": "FMAP",
+        "offset": 0,
+        "size": 512,
+        "flags": 0
+      },
+      {
+        "name": "COREBOOT",
+        "offset": 4096,
+        "size": 8384512,
+        "flags": 0
+      }
+    ],
+    "signature_hit_rejects": [
+      {
+        "file_offset": 22786,
+        "reason": "not a header (string literal)",
+        "ver_major": 0,
+        "nareas": 17741
+      },
+      {
+        "file_offset": 128896,
+        "reason": "not a header (string literal)",
+        "ver_major": 0,
+        "nareas": 25120
+      },
+      {
+        "file_offset": 8383896,
+        "reason": "not a header (string literal)",
+        "ver_major": 0,
+        "nareas": 9504
+      }
+    ]
+  },
+  "cbfs_master_header": {
+    "file_offset": 4140,
+    "wrapped_by_entry": "cbfs_master_header (type CBFS_TYPE_CBFSHEADER \u2014 the struct is entry DATA on this image)",
+    "region_offset": "0x2c",
+    "version": "0x31313132",
+    "romsize": 8388608,
+    "bootblocksize": 4,
+    "align": 64,
+    "offset": 4096,
+    "architecture": "0xffffffff",
+    "byte_order": "big-endian on disk"
+  },
+  "cbfs_discovery": {
+    "canonical_pointer_last4": {
+      "raw": "0xff80102c",
+      "resolved_file_offset": 4140,
+      "endianness": "little (x86 native)"
+    },
+    "region_start_candidate_file_offset": 4096,
+    "agree": true
+  },
+  "entries": [
+    {
+      "name": "fallback/romstage",
+      "raw_name_empty": false,
+      "region_offset": "0x80",
+      "file_offset": "0x1080",
+      "type": "CBFS_TYPE_STAGE",
+      "type_raw": "0x11",
+      "size": 19768,
+      "attributes_offset": 72,
+      "data_offset": 96,
+      "sha256_stored": "8ba63d589a8cf3f2bfb213cb0fdc64a134ea15c81982293e40d5b35ef13852d2",
+      "attrs": [
+        {
+          "tag": "CBFS_FILE_ATTR_TAG_STAGEHEADER",
+          "loadaddr": "0xff8010e0",
+          "entry_offset": "0x31",
+          "memlen": 19768
+        }
+      ]
+    },
+    {
+      "name": "fallback/ramstage",
+      "raw_name_empty": false,
+      "region_offset": "0x4e40",
+      "file_offset": "0x5e40",
+      "type": "CBFS_TYPE_STAGE",
+      "type_raw": "0x11",
+      "size": 72826,
+      "attributes_offset": 44,
+      "data_offset": 84,
+      "sha256_stored": "3fd7a673772218047365b31f018800a4c0fe00cb7ae7cfe042216d878a720817",
+      "attrs": [
+        {
+          "tag": "CBFS_FILE_ATTR_TAG_STAGEHEADER",
+          "loadaddr": "0x0",
+          "entry_offset": "0x0",
+          "memlen": 1240912
+        },
+        {
+          "tag": "CBFS_FILE_ATTR_TAG_COMPRESSION",
+          "compression": "CBFS_COMPRESS_LZMA",
+          "decompressed_size": 150428
+        }
+      ],
+      "decompressed_sha256": "216ff86289349d3abccf561e4ef1dc2186e04c87df8aba9b3e18c0bbf000e9c9",
+      "decompressed_ok": true
+    },
+    {
+      "name": "config",
+      "raw_name_empty": false,
+      "region_offset": "0x16b40",
+      "file_offset": "0x17b40",
+      "type": "CBFS_TYPE_RAW",
+      "type_raw": "0x50",
+      "size": 2599,
+      "attributes_offset": 32,
+      "data_offset": 48,
+      "sha256_stored": "e6a7529158eb2773ed6749c7d5a2f89cd6af50a51d4966faa96ccc39c3650654",
+      "attrs": [
+        {
+          "tag": "CBFS_FILE_ATTR_TAG_COMPRESSION",
+          "compression": "CBFS_COMPRESS_LZMA",
+          "decompressed_size": 8145
+        }
+      ],
+      "decompressed_sha256": "50f670454b15921be98d36846447c3088767be2c7d0159f35995a71de269ccd4",
+      "decompressed_ok": true,
+      "config_text": "# This image was built using coreboot cc0358747d2a-dirty\nCONFIG_ANY_TOOLCHAIN=y\nCONFIG_BOARD_EMULATION_QEMU_X86_Q35=y\n# End of defconfig. Derivable values start here.\nCONFIG_LOCALVERSION=\"\"\nCONFIG_CBFS_PREFIX=\"fallback\"\nCONFIG_COMPILER_GCC=y\nCONFIG_OPTION_BACKEND_NONE=y\nCONFIG_COMPRESS_RAMSTAGE_LZMA=y\nCONFIG_SEPARATE_ROMSTAGE=y\nCONFIG_INCLUDE_CONFIG_FILE=y\nCONFIG_COLLECT_TIMESTAMPS=y\nCONFIG_USE_BLOBS=y\nCONFIG_HAVE_ASAN_IN_RAMSTAGE=y\nCONFIG_NO_STAGE_CACHE=y\nCONFIG_VENDOR_EMULATION=y\nCONFIG_BOARD_SPECIFIC_OPTIONS=y\nCONFIG_MAINBOARD_PART_NUMBER=\"QEMU x86 q35/ich9\"\nCONFIG_MAINBOARD_VERSION=\"1.0\"\nCONFIG_MAINBOARD_DIR=\"emulation/qemu-q35\"\nCONFIG_DIMM_MAX=4\nCONFIG_DIMM_SPD_SIZE=256\nCONFIG_FMDFILE=\"\"\nCONFIG_MAINBOARD_VENDOR=\"Emulation\"\nCONFIG_CBFS_SIZE=0x00800000\nCONFIG_CONSOLE_SERIAL=y\nCONFIG_MAX_CPUS=4\nCONFIG_POST_DEVICE=y\nCONFIG_POST_IO=y\nCONFIG_UART_FOR_CONSOLE=0\nCONFIG_OVERRIDE_DEVICETREE=\"\"\nCONFIG_DEVICETREE=\"devicetree.cb\"\nCONFIG_VBOOT_VBNV_OFFSET=0x2c\nCONFIG_MAINBOARD_SMBIOS_MANUFACTURER=\"Emulation\"\nCONFIG_ECAM_MMCONF_BASE_ADDRESS=0xb0000000\nCONFIG_ECAM_MMCONF_BUS_NUMBER=256\nCONFIG_MEMLAYOUT_LD_FILE=\"src/arch/x86/memlayout.ld\"\nCONFIG_PRERAM_CBMEM_CONSOLE_SIZE=0xc00\nCONFIG_MAINBOARD_SMBIOS_PRODUCT_NAME=\"QEMU x86 q35/ich9\"\nCONFIG_MAX_SOCKET=1\nCONFIG_CMOS_DEFAULT_FILE=\"src/mainboard/$(MAINBOARDDIR)/cmos.default\"\nCONFIG_CMOS_LAYOUT_FILE=\"src/mainboard/$(MAINBOARDDIR)/cmos.layout\"\nCONFIG_PAYLOAD_CONFIGFILE=\"\"\nCONFIG_TPM_PIRQ=0x0\nCONFIG_SEABIOS_PS2_TIMEOUT=0\nCONFIG_DCACHE_RAM_BASE=0x10000\nCONFIG_DCACHE_RAM_SIZE=0x90000\nCONFIG_C_ENV_BOOTBLOCK_SIZE=0x40000\nCONFIG_DCACHE_BSP_STACK_SIZE=0x4000\nCONFIG_MAX_ACPI_TABLE_SIZE_KB=224\nCONFIG_DRIVERS_INTEL_WIFI=y\nCONFIG_CONSOLE_CBMEM_BUFFER_SIZE=0x20000\nCONFIG_SEABIOS_HARDWARE_IRQ=y\nCONFIG_CARDBUS_PLUGIN_SUPPORT=y\nCONFIG_PCIEXP_HOTPLUG_BUSES=8\nCONFIG_PCIEXP_HOTPLUG_MEM=0x800000\nCONFIG_PCIEXP_HOTPLUG_PREFETCH_MEM=0x10000000\nCONFIG_PS2K_EISAID=\"PNP0303\"\nCONFIG_PS2M_EISAID=\"PNP0F13\"\nCONFIG_TTYS0_BAUD=115200\nCONFIG_D3COLD_SUPPORT=y\nCONFIG_DRIVERS_UART_8250IO=y\nCONFIG_PC_CMOS_BASE_PORT_BANK1=0x72\nCONFIG_HEAP_SIZE=0x100000\nCONFIG_EC_GPE_SCI=0x6e\nCONFIG_EC_STARLABS_BATTERY_MODEL=\"Unknown\"\nCONFIG_EC_STARLABS_BATTERY_TYPE=\"LION\"\nCONFIG_EC_STARLABS_BATTERY_OEM=\"Unknown\"\nCONFIG_BOARD_ROMSIZE_KB_8192=y\nCONFIG_COREBOOT_ROMSIZE_KB_8192=y\nCONFIG_COREBOOT_ROMSIZE_KB=8192\nCONFIG_ROM_SIZE=0x00800000\nCONFIG_HAVE_POWER_STATE_AFTER_FAILURE=y\nCONFIG_HAVE_POWER_STATE_PREVIOUS_AFTER_FAILURE=y\nCONFIG_POWER_STATE_OFF_AFTER_FAILURE=y\nCONFIG_MAINBOARD_POWER_FAILURE_STATE=0\nCONFIG_CHIPSET_DEVICETREE=\"\"\nCONFIG_CBFS_MCACHE_SIZE=0x4000\nCONFIG_ROMSTAGE_ADDR=0x2000000\nCONFIG_VERSTAGE_ADDR=0x2000000\nCONFIG_SMM_MODULE_STACK_SIZE=0x400\nCONFIG_CPU_PT_ROM_MAP_GB=4\nCONFIG_PRERAM_CBFS_CACHE_SIZE=0x4000\nCONFIG_DOMAIN_RESOURCE_32BIT_LIMIT=0xfe000000\nCONFIG_EHCI_BAR=0xfef00000\nCONFIG_ACPI_CPU_STRING=\"CP%02X\"\nCONFIG_STACK_SIZE=0x2000\nCONFIG_INTEL_GMA_BCLV_OFFSET=0xc8254\nCONFIG_INTEL_GMA_BCLV_WIDTH=16\nCONFIG_INTEL_GMA_BCLM_OFFSET=0xc8256\nCONFIG_INTEL_GMA_BCLM_WIDTH=16\nCONFIG_BOOTBLOCK_IN_CBFS=y\nCONFIG_HPET_MIN_TICKS=0x80\nCONFIG_SOC_PHYSICAL_ADDRESS_WIDTH=0\nCONFIG_DEBUG_STACK_OVERFLOW_BREAKPOINTS=y\nCONFIG_RAMSTAGE_CBFS_CACHE_SIZE=0x4000\nCONFIG_CBFS_CACHE_ALIGN=8\nCONFIG_FIXED_SMBUS_IO_BASE=0x400\nCONFIG_UART_BITBANG_TX_DELAY_MS=5\nCONFIG_CPU_QEMU_X86=y\nCONFIG_CPU_QEMU_X86_ASEG_SMM=y\nCONFIG_PARALLEL_MP=y\nCONFIG_XAPIC_ONLY=y\nCONFIG_UDELAY_TSC=y\nCONFIG_UNKNOWN_TSC_RATE=y\nCONFIG_TSC_MONOTONIC_TIMER=y\nCONFIG_HAVE_SMI_HANDLER=y\nCONFIG_NEED_SMALL_2MB_PAGE_TABLES=y\nCONFIG_SMM_ASEG=y\nCONFIG_SMM_PCI_RESOURCE_STORE_NUM_SLOTS=8\nCONFIG_AP_STACK_SIZE=0x800\nCONFIG_SMP=y\nCONFIG_PCIEXP_HOTPLUG=y\nCONFIG_SOUTHBRIDGE_INTEL_I82801IX=y\nCONFIG_SOUTHBRIDGE_INTEL_COMMON_RESET=y\nCONFIG_SOUTHBRIDGE_INTEL_COMMON_RTC=y\nCONFIG_SOUTHBRIDGE_INTEL_COMMON_PMCLIB=y\nCONFIG_SOUTHBRIDGE_INTEL_COMMON_PMBASE=y\nCONFIG_SOUTHBRIDGE_INTEL_COMMON_GPIO=y\nCONFIG_SOUTHBRIDGE_INTEL_COMMON_EARLY_SMBUS=y\nCONFIG_SOUTHBRIDGE_INTEL_COMMON_SMBUS=y\nCONFIG_SOUTHBRIDGE_INTEL_COMMON_PIRQ_ACPI_GEN=y\nCONFIG_SOUTHBRIDGE_INTEL_COMMON_RCBA_PIRQ=y\nCONFIG_SOUTHBRIDGE_INTEL_COMMON_SMM=y\nCONFIG_SOUTHBRIDGE_INTEL_COMMON_USB_DEBUG=y\nCONFIG_INTEL_DESCRIPTOR_MODE_CAPABLE=y\nCONFIG_TCO_SPACE_NOT_YET_SPLIT=y\nCONFIG_SOUTHBRIDGE_INTEL_COMMON_WATCHDOG=y\nCONFIG_FIXED_RCBA_MMIO_BASE=0xfed1c000\nCONFIG_RCBA_LENGTH=0x4000\nCONFIG_MAINBOARD_HAS_CHROMEOS=y\nCONFIG_ACPI_FNKEY_GEN_SCANCODE=0\nCONFIG_ARCH_X86=y\nCONFIG_ARCH_BOOTBLOCK_X86_32=y\nCONFIG_ARCH_VERSTAGE_X86_32=y\nCONFIG_ARCH_ROMSTAGE_X86_32=y\nCONFIG_ARCH_POSTCAR_X86_32=y\nCONFIG_ARCH_RAMSTAGE_X86_32=y\nCONFIG_ARCH_ALL_STAGES_X86_32=y\nCONFIG_HAVE_X86_64_SUPPORT=y\nCONFIG_X86_TOP4G_BOOTMEDIA_MAP=y\nCONFIG_POSTRAM_CBFS_CACHE_IN_BSS=y\nCONFIG_PC80_SYSTEM=y\nCONFIG_HAVE_CMOS_DEFAULT=y\nCONFIG_POSTCAR_STAGE=y\nCONFIG_BOOTBLOCK_SIMPLE=y\nCONFIG_COLLECT_TIMESTAMPS_TSC=y\nCONFIG_IDT_IN_EVERY_STAGE=y\nCONFIG_HAVE_CF9_RESET=y\nCONFIG_DEBUG_HW_BREAKPOINTS=y\nCONFIG_DEBUG_HW_BREAKPOINTS_IN_ALL_STAGES=y\nCONFIG_DEBUG_NULL_DEREF_BREAKPOINTS=y\nCONFIG_DEBUG_NULL_DEREF_BREAKPOINTS_IN_ALL_STAGES=y\nCONFIG_X86_BOOTBLOCK_EXTRA_PROGRAM_SZ=0\nCONFIG_DEFAULT_EBDA_LOWMEM=0x100000\nCONFIG_DEFAULT_EBDA_SEGMENT=0xF600\nCONFIG_DEFAULT_EBDA_SIZE=0x400\nCONFIG_HAVE_VGA_TEXT_FRAMEBUFFER=y\nCONFIG_HAVE_LINEAR_FRAMEBUFFER=y\nCONFIG_MAINBOARD_HAS_NATIVE_VGA_INIT=y\nCONFIG_MAINBOARD_FORCE_NATIVE_VGA_INIT=y\nCONFIG_MAINBOARD_DO_NATIVE_VGA_INIT=y\nCONFIG_NO_EARLY_GFX_INIT=y\nCONFIG_VGA_TEXT_FRAMEBUFFER=y\nCONFIG_DEFAULT_SCREEN_ROTATION_INT=0\nCONFIG_PCI=y\nCONFIG_ECAM_MMCONF_SUPPORT=y\nCONFIG_PCIX_PLUGIN_SUPPORT=y\nCONFIG_AZALIA_HDA_CODEC_SUPPORT=y\nCONFIG_AZALIA_USE_LEGACY_VERB_TABLE=y\nCONFIG_PCIEXP_PLUGIN_SUPPORT=y\nCONFIG_ECAM_MMCONF_LENGTH=0x10000000\nCONFIG_PCI_ALLOW_BUS_MASTER=y\nCONFIG_PCI_SET_BUS_MASTER_PCI_BRIDGES=y\nCONFIG_PCI_ALLOW_BUS_MASTER_ANY_DEVICE=y\nCONFIG_PCIEXP_HOTPLUG_PREFETCH_MEM_ABOVE_4G=y\nCONFIG_PCIEXP_HOTPLUG_IO=0x800\nCONFIG_SUBSYSTEM_VENDOR_ID=0x0000\nCONFIG_SUBSYSTEM_DEVICE_ID=0x0000\nCONFIG_I2C_TRANSFER_TIMEOUT_US=500000\nCONFIG_RESOURCE_ALLOCATION_TOP_DOWN=y\nCONFIG_CRB_TPM_BASE_ADDRESS=0xfed40000\nCONFIG_DRIVERS_UART=y\nCONFIG_HAVE_USBDEBUG=y\nCONFIG_HAVE_USBDEBUG_OPTIONS=y\nCONFIG_DRIVERS_EMULATION_QEMU_BOCHS=y\nCONFIG_DRIVERS_EMULATION_QEMU_CIRRUS=y\nCONFIG_DRIVERS_EMULATION_QEMU_FW_CFG=y\nCONFIG_DRIVERS_MC146818=y\nCONFIG_USE_PC_CMOS_ALTCENTURY=y\nCONFIG_PC_CMOS_BASE_PORT_BANK0=0x70\nCONFIG_MEMORY_MAPPED_TPM=y\nCONFIG_TPM_TIS_BASE_ADDRESS=0xfed40000\nCONFIG_VGA=y\nCONFIG_DRIVERS_WIFI_GENERIC=y\nCONFIG_DRIVERS_MTK_WIFI=y\nCONFIG_NO_TPM=y\nCONFIG_PCR_BOOT_MODE=1\nCONFIG_PCR_HWID=1\nCONFIG_PCR_SRTM=2\nCONFIG_PCR_FW_VER=10\nCONFIG_PCR_RUNTIME_DATA=3\nCONFIG_PLATFORM_HAS_DRAM_CLEAR=y\nCONFIG_BOOTMEDIA_LOCK_NONE=y\nCONFIG_ACPI_HAVE_PCAT_8259=y\nCONFIG_ACPI_INTEL_HARDWARE_SLEEP_VALUES=y\nCONFIG_ACPI_SOC_NVS=y\nCONFIG_ACPI_NO_CUSTOM_MADT=y\nCONFIG_ACPI_COMMON_MADT_LAPIC=y\nCONFIG_ACPI_COMMON_MADT_IOAPIC=y\nCONFIG_HAVE_ACPI_TABLES=y\nCONFIG_BOOT_DEVICE_NOT_SPI_FLASH=y\nCONFIG_BOOT_DEVICE_MEMORY_MAPPED=y\nCONFIG_BOOT_DEVICE_SUPPORTS_WRITES=y\nCONFIG_BOOTBLOCK_CONSOLE=y\nCONFIG_POSTCAR_CONSOLE=y\nCONFIG_SQUELCH_EARLY_SMP=y\nCONFIG_TTYS0_BASE=0x3f8\nCONFIG_CONSOLE_SERIAL_115200=y\nCONFIG_TTYS0_LCS=3\nCONFIG_CONSOLE_CBMEM=y\nCONFIG_CONSOLE_QEMU_DEBUGCON=y\nCONFIG_CONSOLE_QEMU_DEBUGCON_PORT=0x402\nCONFIG_DEFAULT_CONSOLE_LOGLEVEL_7=y\nCONFIG_DEFAULT_CONSOLE_LOGLEVEL=7\nCONFIG_CONSOLE_USE_LOGLEVEL_PREFIX=y\nCONFIG_CONSOLE_USE_ANSI_ESCAPES=y\nCONFIG_POST_DEVICE_NONE=y\nCONFIG_POST_IO_PORT=0x80\nCONFIG_HWBASE_DEBUG_CB=y\nCONFIG_HAVE_MONOTONIC_TIMER=y\nCONFIG_HAVE_OPTION_TABLE=y\nCONFIG_IOAPIC=y\nCONFIG_USE_WATCHDOG_ON_BOOT=y\nCONFIG_GENERATE_SMBIOS_TABLES=y\nCONFIG_BIOS_VENDOR=\"coreboot\"\nCONFIG_MAINBOARD_SERIAL_NUMBER=\"123456789\"\nCONFIG_PAYLOAD_SEABIOS=y\nCONFIG_PAYLOAD_FILE=\"payloads/external/SeaBIOS/seabios/out/bios.bin.elf\"\nCONFIG_SEABIOS_BOOTORDER_FILE=\"\"\nCONFIG_PAYLOAD_BUILD_SEABIOS=y\nCONFIG_SEABIOS_STABLE=y\nCONFIG_SEABIOS_DEBUG_LEVEL=-1\nCONFIG_COMPRESSED_PAYLOAD_LZMA=y\nCONFIG_COMPRESS_SECONDARY_PAYLOAD=y\nCONFIG_HAVE_DEBUG_SMBUS=y\nCONFIG_DECOMPRESS_OFAST=y\nCONFIG_PROBE_RAM=y\nCONFIG_WARNINGS_ARE_ERRORS=y\nCONFIG_MAX_REBOOT_CNT=3\nCONFIG_RELOCATABLE_MODULES=y\nCONFIG_GENERIC_GPIO_LIB=y\nCONFIG_HAVE_BOOTBLOCK=y\nCONFIG_HAVE_ROMSTAGE=y\nCONFIG_HAVE_RAMSTAGE=y\n"
+    },
+    {
+      "name": "revision",
+      "raw_name_empty": false,
+      "region_offset": "0x175c0",
+      "file_offset": "0x185c0",
+      "type": "CBFS_TYPE_RAW",
+      "type_raw": "0x50",
+      "size": 768,
+      "attributes_offset": 0,
+      "data_offset": 36,
+      "sha256_stored": "6ed40eb2d975f86474ee698bc7f7defede2240b87066a38b73d01c19bd2eb8d5",
+      "attrs": [],
+      "text": "/* build system definitions (autogenerated) */\n#ifndef __BUILD_H\n#define __BUILD_H\n\n#define COREBOOT_VERSION \"cc0358747d2a-dirty\"\n/* timesource: git */\n#define COREBOOT_VERSION_TIMESTAMP 1789099711\n#define COREBOOT_ORIGIN_GIT_REVISION \"cc0358747d2a\"\n#define COREBOOT_ORIGIN_TREE_REVISION \"b975d5f9fe32\"\n#define COREBOOT_EXTRA_VERSION \"\"\n#define COREBOOT_MAJOR_VERSION 0\n#define COREBOOT_MINOR_VERSION 0\n#define COREBOOT_BUILD \"Fri Sep 11 04:08:31 UTC 2026\"\n#define COREBOOT_BUILD_YEAR_BCD 0x26\n#define COREBOOT_BUILD_MONTH_BCD 0x09\n#define COREBOOT_BUILD_DAY_BCD 0x11\n#define COREBOOT_BUILD_WEEKDAY_BCD 0x5\n#define COREBOOT_BUILD_EPOCH \"1789099711\"\n#define COREBOOT_DMI_DATE \"09/11/2026\"\n\n#define COREBOOT_COMPILE_TIME \"04:08:31\"\n#define ASL_VERSION 0x20250404\n#endif\n"
+    },
+    {
+      "name": "build_info",
+      "raw_name_empty": false,
+      "region_offset": "0x17900",
+      "file_offset": "0x18900",
+      "type": "CBFS_TYPE_RAW",
+      "type_raw": "0x50",
+      "size": 106,
+      "attributes_offset": 0,
+      "data_offset": 36,
+      "sha256_stored": "41fe9f10dc75170dc5f922dbb28245cc14b1aaf67b7442d91672c1e847384fe9",
+      "attrs": [],
+      "text": "COREBOOT_VERSION: cc0358747d2a-dirty\nMAINBOARD_VENDOR: Emulation\nMAINBOARD_PART_NUMBER: QEMU x86 q35/ich9\n"
+    },
+    {
+      "name": "fallback/dsdt.aml",
+      "raw_name_empty": false,
+      "region_offset": "0x179c0",
+      "file_offset": "0x189c0",
+      "type": "CBFS_TYPE_RAW",
+      "type_raw": "0x50",
+      "size": 7175,
+      "attributes_offset": 0,
+      "data_offset": 44,
+      "sha256_stored": "a37f4c995ccfb33b63bee3d2be8a3b8c3fb6fbb82807dd468cf0a9ed44c5142f",
+      "attrs": []
+    },
+    {
+      "name": "cmos_layout.bin",
+      "raw_name_empty": false,
+      "region_offset": "0x19600",
+      "file_offset": "0x1a600",
+      "type": "CBFS_TYPE_CMOS_LAYOUT",
+      "type_raw": "0x1aa",
+      "size": 640,
+      "attributes_offset": 0,
+      "data_offset": 40,
+      "sha256_stored": "051281dad4f8ec83ea01070c14fd81448d38aaeae9e6d3debbe8e27b0e6932a9",
+      "attrs": []
+    },
+    {
+      "name": "fallback/postcar",
+      "raw_name_empty": false,
+      "region_offset": "0x198c0",
+      "file_offset": "0x1a8c0",
+      "type": "CBFS_TYPE_STAGE",
+      "type_raw": "0x11",
+      "size": 21808,
+      "attributes_offset": 44,
+      "data_offset": 68,
+      "sha256_stored": "1a693e589af6a0f65472267f94c0e8e8d327929b9b9d4d9bb40d463d22cda3cc",
+      "attrs": [
+        {
+          "tag": "CBFS_FILE_ATTR_TAG_STAGEHEADER",
+          "loadaddr": "0x0",
+          "entry_offset": "0x0",
+          "memlen": 46448
+        }
+      ]
+    },
+    {
+      "name": "fallback/payload",
+      "raw_name_empty": false,
+      "region_offset": "0x1ee40",
+      "file_offset": "0x1fe40",
+      "type": "CBFS_TYPE_SELF",
+      "type_raw": "0x20",
+      "size": 72999,
+      "attributes_offset": 0,
+      "data_offset": 44,
+      "sha256_stored": "c26da747c17c8635cadd5826df5722be2d472e90862733809f397ac5478cfc48",
+      "attrs": [],
+      "payload_segments": [
+        {
+          "type": "PAYLOAD_SEGMENT_CODE",
+          "compression": "CBFS_COMPRESS_LZMA",
+          "offset": 56,
+          "load_addr": "0xde060",
+          "len": 72943,
+          "mem_len": 139168
+        },
+        {
+          "type": "PAYLOAD_SEGMENT_ENTRY",
+          "compression": "CBFS_COMPRESS_NONE",
+          "offset": 0,
+          "load_addr": "0xfd25a",
+          "len": 0,
+          "mem_len": 0
+        }
+      ]
+    },
+    {
+      "name": "payload_config",
+      "raw_name_empty": false,
+      "region_offset": "0x30bc0",
+      "file_offset": "0x31bc0",
+      "type": "CBFS_TYPE_RAW",
+      "type_raw": "0x50",
+      "size": 1621,
+      "attributes_offset": 0,
+      "data_offset": 40,
+      "sha256_stored": "62c2f4828facc1b773fd8e84549c2ae74bf6b8ffbdf3e96af97039dca2bbc3ef",
+      "attrs": []
+    },
+    {
+      "name": "payload_revision",
+      "raw_name_empty": false,
+      "region_offset": "0x31240",
+      "file_offset": "0x32240",
+      "type": "CBFS_TYPE_RAW",
+      "type_raw": "0x50",
+      "size": 223,
+      "attributes_offset": 0,
+      "data_offset": 44,
+      "sha256_stored": "7ce143f981f27a61ffbb5bb8f201f1d1962ba1d6baba9bd6d42f9b1b8e8752fd",
+      "attrs": [],
+      "text": "\n/* DO NOT EDIT!  This is an autogenerated file.  See scripts/buildversion.py. */\n#define BUILD_VERSION \"rel-1.17.0-0-gb52ca86e\"\n#define BUILD_TOOLS \"gcc: (Debian 14.2.0-19) 14.2.0 binutils: (GNU Binutils for Debian) 2.44\"\n"
+    },
+    {
+      "name": "(empty)",
+      "raw_name_empty": true,
+      "region_offset": "0x31380",
+      "file_offset": "0x32380",
+      "type": "CBFS_TYPE_NULL",
+      "type_raw": "0xffffffff",
+      "size": 8166436,
+      "attributes_offset": 0,
+      "data_offset": 28,
+      "sha256_stored": "37cf0f1fd0ec9255a277233906203e671c515b8d16c9ae830d33d1f56d43615a",
+      "attrs": []
+    },
+    {
+      "name": "bootblock",
+      "raw_name_empty": false,
+      "region_offset": "0x7fafc0",
+      "file_offset": "0x7fbfc0",
+      "type": "CBFS_TYPE_BOOTBLOCK",
+      "type_raw": "0x1",
+      "size": 16384,
+      "attributes_offset": 0,
+      "data_offset": 64,
+      "sha256_stored": "2b0b051a1b391b89d34e657ac789b4d8f8c692c17e990955a6c59c7f1ec5b2a4",
+      "attrs": []
+    }
+  ],
+  "entry_count": 13,
+  "stages_seen": [
+    "bootblock",
+    "fallback/payload",
+    "fallback/postcar",
+    "fallback/ramstage",
+    "fallback/romstage"
+  ],
+  "space": {
+    "region": "COREBOOT",
+    "region_size": 8384512,
+    "walk_coverage_to": "0x7fe000",
+    "sum_entry_footprints": 8384337,
+    "inter_entry_alignment_gaps": [
+      {
+        "from": "0x4e18",
+        "to": "0x4e40",
+        "bytes": 40
+      },
+      {
+        "from": "0x16b0e",
+        "to": "0x16b40",
+        "bytes": 50
+      },
+      {
+        "from": "0x17597",
+        "to": "0x175c0",
+        "bytes": 41
+      },
+      {
+        "from": "0x178e4",
+        "to": "0x17900",
+        "bytes": 28
+      },
+      {
+        "from": "0x1798e",
+        "to": "0x179c0",
+        "bytes": 50
+      },
+      {
+        "from": "0x195f3",
+        "to": "0x19600",
+        "bytes": 13
+      },
+      {
+        "from": "0x198a8",
+        "to": "0x198c0",
+        "bytes": 24
+      },
+      {
+        "from": "0x1ee34",
+        "to": "0x1ee40",
+        "bytes": 12
+      },
+      {
+        "from": "0x30b93",
+        "to": "0x30bc0",
+        "bytes": 45
+      },
+      {
+        "from": "0x3123d",
+        "to": "0x31240",
+        "bytes": 3
+      },
+      {
+        "from": "0x3134b",
+        "to": "0x31380",
+        "bytes": 53
+      }
+    ],
+    "inter_entry_gap_bytes_total": 359,
+    "inter_entry_gap_max": 53,
+    "all_gaps_below_align": true,
+    "free_space_entry": "(empty) fills the region tail exactly up to the bootblock entry \u2014 zero unaccounted bytes"
+  },
+  "cross_reference": {
+    "cbfstool_runtime": {
+      "lens_entries": 13,
+      "cbfstool_entries": 13,
+      "names_and_offsets_identical": true
+    },
+    "ring24_photograph": {
+      "ring24_entries": 13,
+      "lens_entries": 13,
+      "names_and_offsets_identical": true
+    },
+    "config_vs_build_dir": {
+      "rom_config_sha256": "50f670454b15921be98d36846447c3088767be2c7d0159f35995a71de269ccd4",
+      "candidates": {
+        ".config": {
+          "sha256": "1907bfef09c92437d26f32b5ef33001cde755d24ece8f8622f14814a26cdc808",
+          "byte_identical": false
+        },
+        "build/auto.conf": {
+          "sha256": "bd058aa2dcc079eff0278465eb711aabd8a72fc0f238d353d841bce69a51269d",
+          "byte_identical": false
+        },
+        "build/config.h": {
+          "sha256": "858530dfd0054829fa721fe4c656b65fc1f053c6d153a7a7c17b1b4ac68c02aa",
+          "byte_identical": false
+        }
+      },
+      "any_byte_identical": false,
+      "verdict": "expected divergence, not a mismatch: the image carries the DEFCONFIG (the tree's .config is the olddefconfig expansion with every derivable value filled in); the ROM config ends at 'End of defconfig' and names the exact build revision",
+      "rom_config_lines": 255,
+      "rom_ends_at_defconfig_marker": true,
+      "build_stamp": "# This image was built using coreboot cc0358747d2a-dirty"
+    }
+  }
+}

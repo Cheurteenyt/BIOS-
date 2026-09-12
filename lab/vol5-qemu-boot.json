@@ -1,0 +1,231 @@
+{
+  "schema": "vol5-qemu-boot/1.0",
+  "date": "2026-09-12",
+  "title": "Volume 5, fronts 25b+25c \u2014 the first boot of a firmware built in this study, and the runtime's confirmation of the static census",
+  "_meta": {
+    "command_source": "the tree's own doc: Documentation/mainboard/emulation/qemu-q35.md",
+    "command": "qemu-system-x86_64 -L <share dirs> -bios build/coreboot.rom -M q35 -display none -no-reboot -serial file:serial.log",
+    "deviations_registered": [
+      "-serial file: instead of -serial stdio (scripted capture, same device)",
+      "-display none (qemu-system-gui absent; no GUI libs in this environment)",
+      "-no-reboot (a payload reset loop must end the run, not loop it)",
+      "-L share dirs pointing at EXTRACTED debs (qemu-system-data, seabios, ipxe-qemu) \u2014 vgabios-stdvga.bin and NIC roms live there"
+    ],
+    "honesty": [
+      "TCG software emulation, no /dev/kvm \u2014 timings measure code PATHS, not silicon performance",
+      "-bios maps our image as QEMU's BIOS \u2014 no flash chip involved; +0 octet holds",
+      "exit 0 after the payload's no-bootable-device reset loop = clean shutdown, not a silent success story",
+      "the runtime CBFS fetch log is the image measuring ITSELF by consuming itself \u2014 an independent re-measurement of the ring-25 lens census"
+    ],
+    "boot_script": "scripts/vol5_qemu_boot.sh",
+    "wall_seconds": 73,
+    "exit_code": 0
+  },
+  "image": {
+    "path": "/home/z/my-project/scratch-coreboot/coreboot-25.12/build/coreboot.rom",
+    "sha256": "76a0e9c8c22d22603bd55506a35d52741efcc6a22ba4adf089c32011f8fe17d1"
+  },
+  "stages": [
+    {
+      "version": "cc0358747d2a-dirty",
+      "arch": "x86_32",
+      "stage": "bootblock",
+      "log_level": 7
+    },
+    {
+      "version": "cc0358747d2a-dirty",
+      "arch": "x86_32",
+      "stage": "romstage",
+      "log_level": 7
+    },
+    {
+      "version": "cc0358747d2a-dirty",
+      "arch": "x86_32",
+      "stage": "postcar",
+      "log_level": 7
+    },
+    {
+      "version": "cc0358747d2a-dirty",
+      "arch": "x86_32",
+      "stage": "ramstage",
+      "log_level": 7
+    }
+  ],
+  "bootstate_timeline_ms": [
+    {
+      "state": "bootblock",
+      "exec_ms": null,
+      "console_ms": 2
+    },
+    {
+      "state": "romstage",
+      "exec_ms": null,
+      "console_ms": 3
+    },
+    {
+      "state": "postcar",
+      "exec_ms": null,
+      "console_ms": 2
+    },
+    {
+      "state": "BS_DEV_INIT_CHIPS",
+      "exec_ms": 2,
+      "console_ms": 0
+    },
+    {
+      "state": "BS_DEV_ENUMERATE",
+      "exec_ms": 3,
+      "console_ms": 3
+    },
+    {
+      "state": "BS_DEV_RESOURCES",
+      "exec_ms": 7,
+      "console_ms": 6
+    },
+    {
+      "state": "BS_DEV_ENABLE",
+      "exec_ms": 1,
+      "console_ms": 1
+    },
+    {
+      "state": "BS_DEV_INIT",
+      "exec_ms": 16,
+      "console_ms": 6
+    },
+    {
+      "state": "BS_WRITE_TABLES",
+      "exec_ms": 11,
+      "console_ms": 4
+    },
+    {
+      "state": "BS_PAYLOAD_LOAD",
+      "exec_ms": 27,
+      "console_ms": 1
+    }
+  ],
+  "cbfs_runtime_fetches": [
+    {
+      "name": "fallback/romstage",
+      "region_offset": "0x80",
+      "size": 19768
+    },
+    {
+      "name": "fallback/postcar",
+      "region_offset": "0x198c0",
+      "size": 21808
+    },
+    {
+      "name": "fallback/ramstage",
+      "region_offset": "0x4e40",
+      "size": 72826
+    },
+    {
+      "name": "fallback/payload",
+      "region_offset": "0x1ee40",
+      "size": 72999
+    }
+  ],
+  "cbfs_mcache": {
+    "files": 13,
+    "used_bytes": 692
+  },
+  "fmap_as_seen_by_runtime": {
+    "name": "FLASH",
+    "version": "1.1",
+    "at": "0x0",
+    "areas": 3,
+    "cbfs_area": {
+      "name": "COREBOOT",
+      "offset": 4096,
+      "size": 8384512
+    }
+  },
+  "payload": {
+    "seabios_versions": [
+      "rel-1.17.0-0-gb52ca86e"
+    ],
+    "boot_attempts": [
+      "COREBOOT region\u001b[0m",
+      "COREBOOT region\u001b[0m",
+      "COREBOOT region\u001b[0m",
+      "COREBOOT region\u001b[0m",
+      "DVD/CD",
+      "ROM",
+      "ca00:0386",
+      "Floppy",
+      "Hard Disk"
+    ],
+    "end_state": {
+      "verdict": "no bootable device \u2014 the EXPECTED payload end state with zero disks attached",
+      "line": "No bootable device.  Retrying in 60 seconds.",
+      "retry": "SeaBIOS retries after 60 s, then resets; -no-reboot turned the reset into QEMU exit 0"
+    }
+  },
+  "cross_reference_lens_vs_runtime": {
+    "summary": {
+      "fetches_checked": 4,
+      "all_match": true,
+      "mcache_files_vs_lens_entry_count": {
+        "runtime": 13,
+        "lens": 13,
+        "match": true
+      },
+      "fmap_vs_lens": {
+        "runtime": {
+          "name": "FLASH",
+          "version": "1.1",
+          "at": "0x0",
+          "areas": 3,
+          "cbfs_area": {
+            "name": "COREBOOT",
+            "offset": 4096,
+            "size": 8384512
+          }
+        },
+        "lens": {
+          "name": "FLASH",
+          "version": "1.1",
+          "areas": 3
+        }
+      }
+    },
+    "fetches": [
+      {
+        "name": "fallback/romstage",
+        "runtime_offset": "0x80",
+        "lens_offset": "0x80",
+        "runtime_size": 19768,
+        "lens_size": 19768,
+        "match": true
+      },
+      {
+        "name": "fallback/postcar",
+        "runtime_offset": "0x198c0",
+        "lens_offset": "0x198c0",
+        "runtime_size": 21808,
+        "lens_size": 21808,
+        "match": true
+      },
+      {
+        "name": "fallback/ramstage",
+        "runtime_offset": "0x4e40",
+        "lens_offset": "0x4e40",
+        "runtime_size": 72826,
+        "lens_size": 72826,
+        "match": true
+      },
+      {
+        "name": "fallback/payload",
+        "runtime_offset": "0x1ee40",
+        "lens_offset": "0x1ee40",
+        "runtime_size": 72999,
+        "lens_size": 72999,
+        "match": true
+      }
+    ]
+  },
+  "log": {
+    "path": "/home/z/my-project/scratch-coreboot/boot-rehearsal/serial.log",
+    "lines": 420
+  }
+}

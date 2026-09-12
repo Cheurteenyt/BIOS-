@@ -29,6 +29,29 @@ machine. Never mixed with the guard.
    `original.bin` from the external programmer must succeed once,
    deliberately, before the board is considered "ours".
 
+## The rehearsal state (after ring 25)
+
+The software wing of the sequence is rehearsed end to end — steps 3-4
+remain hardware-gated, but everything around them is green:
+
+- **the replacement image exists and boots** — coreboot 25.12
+  (`cc0358747d2a-dirty`, QEMU q35, SeaBIOS payload) boots to its payload
+  under the tree's own documented command: bootblock → romstage →
+  postcar → ramstage → SeaBIOS rel-1.17.0, then the expected
+  no-bootable-device branch (`lab/vol5-qemu-boot.json`); QEMU itself now
+  runs root-less in the sandbox (10.0.11, deb-extraction lane);
+- **the flash cycle is rehearsed file-level 5/5** — dump-twice, identify,
+  write+verify, the flipped-byte failed-verify branch caught, rollback
+  (`lab/vol5-cycle-rehearsal.json`, ring 24);
+- **the read instruments exist on both worlds** — `fw.spi.map` for the
+  vendor PI/FFS image, the ring-25 CBFS lens (`lab/vol5-cbfs-census.json`)
+  for the coreboot world, each cross-cited; the boot confirmed the static
+  census by consuming it (4/4 fetches, mcache 13/13).
+
+What the bench day adds is only what software cannot rehearse: a real
+clip on a real SOIC8, a real chip that answers `--flash-name`, and a real
+rollback from the second medium. The dump-first rule does not move.
+
 ## Candidate machines (coreboot/Dasharo ports, as of late 2026)
 
 > **Updated by ring 24** (`lab/vol5-board-matrix.json`): candidates
