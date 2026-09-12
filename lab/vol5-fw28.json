@@ -1,0 +1,89 @@
+{
+  "schema": "vol5-fw28/1.0",
+  "_meta": {
+    "ring": 28,
+    "date": "2026-09-12",
+    "title": "the world-naming stub: the same disk, the same stub, the same kernel, two worlds",
+    "objective": "FW27's chain extended into the dual-world contract: the stub NAMES ITS WORLD (gST->FirmwareVendor, SMBIOS type 0/1 via config tables, honest unknown), and boots the identical FAT disk under OVMF AND under coreboot+EDK2 (UefiPayloadPkg) — the first time a firmware built by this study carries an EFI environment above it",
+    "environment": "scratch-ring28 (sandbox, untracked); recipe below is the full resurrection path after the rings 9-27 instrument loss",
+    "frozen_surface": "docs-only commit; 323/323 checks re-verified at commit time; bin/ lib/ tests/ untouched"
+  },
+  "fw28_stub": {
+    "evolution": "FW27 (lab/vol5-fw27.json) + name_the_world(): (1) gST->FirmwareVendor/Revision read and printed (UEFI 2.10 4.1.1); (2) every config-table GUID dumped with a 5-byte content anchor; (3) SMBIOS2/SMBIOS3 entry points located, type 0/1 strings walked until type 127; (4) verdict: 'coreboot' anchor on SMBIOS type0 vendor or type1 manufacturer/product, 'OVMF' anchor on vendor/sysman containing OVMF, else 'unknown world — evidence printed above, no guess made'",
+    "design_note": "matching 'EDK II' on FirmwareVendor would BREAK the design: the edk2 UefiPayloadPkg announces 'EDK II' in BOTH worlds; the discriminating instrument is SMBIOS type 0, filled by the host firmware (Debian EDK II vs coreboot)",
+    "source": "scratch-ring28/src/fw28.c (~24 KB C, gnu-efi 3.0.18, GUIDs byte-explicit)",
+    "disk": "fw28-disk.img 64 MiB FAT+MBR, BOOTX64.EFI = FW28, \\boot\\vmlinuz 6.12.94, initramfs embedded in stub .initrd section (ring-26 vintage markers, labeled FW26 — the disk is unchanged)",
+    "bootx64_sha16": "see scratch fw28-evidence.json"
+  },
+  "dual_world_matrix": {
+    "constants": "same q35 machine, same 512 MiB, same disk image, same stub, same kernel; only -bios differs",
+    "ovmf_world": {
+      "firmware": "Debian OVMF_CODE_4M.fd (2025.02-8+deb13u1), pflash",
+      "runs": "3/3 green: chain OK, kernel markers, S5 power-down, exit 0",
+      "verdict": "[world] VERDICT: unknown world — evidence printed above, no guess made",
+      "why": "FirmwareVendor = 'Debian distribution of EDK II' — a DISTRIBUTOR-masked identity; neither 'OVMF' nor 'coreboot' appears; the stub's honesty contract fires exactly as designed",
+      "kernel_evidence": "EFI stub: Loaded initrd from LINUX_EFI_INITRD_MEDIA_GUID device path (the kernel names OUR protocol instance)"
+    },
+    "coreboot_world": {
+      "firmware": "coreboot 25.12 (cc0358747d2a, q35/ich9) + EDK2 UefiPayloadPkg (edk2-stable202608), -bios ROM mode",
+      "runs": "3/3 green: serial-cb-emu-run{2,3,4}.log, exit 0, S5",
+      "verdict": "[world] VERDICT: coreboot world (edk2 payload above it)",
+      "evidence_chain": "SMBIOS type0 bios-vendor 'coreboot', type0 version '25.12-dirty' (coreboot wrote its own SMBIOS, passed via HOBs to the payload, SmbiosDxe rebuilt and exported it); gST->FirmwareVendor = 'EDK II' (the payload); kernel: 'EFI stub: Loaded initrd from LINUX_EFI_INITRD_MEDIA_GUID device path' + cmdline 'console=ttyS0,115200' delivered by the stub from its own .cmdline section",
+      "bds_path": "BdsDxe: FSOpen '\\EFI\\BOOT\\BOOTX64.EFI' Success on PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x0,0xFFFF,0x0) — same SATA path the OVMF world uses"
+    }
+  },
+  "walls_registered": [
+    {
+      "id": "28-w1",
+      "wall": "coreboot tree snapshot lost mid-fetch (payloads/ intact, no .git, empty download log); git commands resolved to the PARENT repo — genbuild_h saw 'inside a work tree' then 'git describe' died on 'No names found'",
+      "fix": "a coreboot .git backup existed (.git-ring28-backup, with 25.12 tag) — restored as .git; describe returns exactly 25.12; dangling submodule .git pointer files checked, none dangling after restore",
+      "lesson": "a tree whose git resolves to a parent repo poisons coreboot's version step silently; keep the .git with the tree"
+    },
+    {
+      "id": "28-w2",
+      "wall": "restoring .git re-activated coreboot's own submodule gate ('Updating git submodules.' → git submodule update --init over the network for repos whose .git/modules entries are gone) — make hung there >9 min, twice",
+      "fix": "UPDATED_SUBMODULES=1 — coreboot's own documented escape; all 16 3rdparty submodule worktrees already had content",
+      "lesson": "no-.git and restored-.git are DIFFERENT build environments; the gate only exists in the second"
+    },
+    {
+      "id": "28-w3",
+      "wall": "ring-24 toolchain walls re-encountered AND deepened: the -print-libgcc-file-name lie under -m32 is cached as GCC_COMPILER_RT_x86_32, but coreboot selects the PREFIXED compiler (x86_64-linux-gnu-gcc) — a wrapper named only 'gcc' is bypassed and the lie still gets cached",
+      "fix": "wrapper must exist under BOTH names (bin32wrap/gcc + bin32wrap/x86_64-linux-gnu-gcc), first on PATH, xcompile regenerated; 32-bit libgcc.a re-extracted from lib32gcc-14-dev_14.2.0-19 (dpkg -x); iasl re-used from scratch-ovmf x-acpica",
+      "lesson": "ring-24's recipe was correct but under-specified: catch every name coreboot might select"
+    },
+    {
+      "id": "28-w4",
+      "wall": "the SMMSTORE variable chain fails on QEMU q35 -bios lane: SmmStoreFvbRuntimeDxe loads but its entry point fails — 'SmmStoreLibInitialize: No memory space descriptor for com buffer found' → 'SmmStoreInitialize: Fail to create instance' → 'Device Error' → FVB never installed → VariableRuntimeDxe (depex FVB AND FTW) never dispatched → Variable/VariableWrite/RealTimeClock/MonotonicCounter/Capsule arch protocols all missing → CoreAllEfiServicesAvailable = Not Found → DEBUG build asserts at DxeMain.c:578; RELEASE builds crash instead (dump resolves to CpuDxe.dll because CpuDxe owns the exception handler — the handler's own fxsave onto its stack faults: the stack page is present-but-RO, sub-question registered)",
+      "fix": "CONFIG_SMMSTORE_V2=n → coreboot Makefile drops VARIABLE_SUPPORT=SMMSTORE → FDF EMU branch → plain VariableRuntimeDxe (depex TRUE) → variables install → DxeCore reaches BDS",
+      "principle": "with -bios, QEMU flash behaves as ROM (coreboot's own log line) — the SMMSTORE medium cannot be written; EMU is the CORRECT q35-sandbox lane, not a workaround; on a real board (bench day) SMMSTORE on writable flash is the right target and this wall is the calibration point",
+      "co_finding": "reproducible on edk2 master (edk2-stable202608-197) AND edk2-stable202608 AND at 512 MiB AND 1024 MiB — deterministic, not a flake"
+    },
+    {
+      "id": "28-w5",
+      "wall": "after switching EDK2_DEBUG=y, CONFIG_EDK2_SERIAL_SUPPORT stayed 'not set' — olddefconfig preserves an explicit negation and does not re-derive it from a changed dependency default → Makefile added -D DISABLE_SERIAL_TERMINAL=TRUE → TerminalDxe EXCLUDED from DXEFV → ConOut had no serial terminal instance → FW28's prints (and any UEFI app's) went to the VGA path only; serial showed a green chain with a SILENT stub",
+      "fix": "CONFIG_EDK2_SERIAL_SUPPORT=y explicitly → TerminalDxe in FV → [world] block reaches serial",
+      "lesson": "a silent stub was a console-routing fact, not a stub failure — the cmdline/initrd/LoadFile2 contracts had ALL worked while nothing appeared on the wire; never diagnose boot chains through one output channel only"
+    },
+    {
+      "id": "28-w6",
+      "wall": "sandbox reaper: EVERY background process is killed at the tool-call boundary — nohup, setsid, disown all ineffective; a >10-min build cannot survive across calls",
+      "fix": "build inside a single call with timeout < 600 s; edk2's build.py is incremental — a killed call still leaves its objects on disk, so N calls converge",
+      "lesson": "measured, not assumed: a detached 'sleep 600' died across the boundary"
+    }
+  ],
+  "edk2_tag_decision": {
+    "master_repro": "cloned at edk2-stable202608-197-gcd2a06cd31 — CpuDxe-resolved crash (same as stable: the wall 28-w4 signature)",
+    "pinned": "edk2-stable202608 via CONFIG_EDK2_TAG_OR_REV (coreboot 25.12 default is origin/master; the workspace checkout alone is NOT enough — the Makefile re-fetches and re-checkouts per its own flow, so the PIN must live in .config)",
+    "note": "the crash turned out to be world-28-w4, not a master regression — pin kept anyway for reproducibility"
+  },
+  "measurement_fidelity": {
+    "evidence_source": "scratch-ring28/fw28-evidence.json (6 serial logs, marker lines extracted verbatim, ANSI stripped)",
+    "commands": "qemu-system-x86_64 -L roms -L extract/usr/share/qemu -L /usr/share/qemu -bios <fw> -M q35 -m 512M -display none -no-reboot -serial file:<log> -drive file=disk/fw28-disk.img,format=raw,if=ide ; OVMF runs predate this session (serial-ovmf-run{1,2,3}.log, same parameters, pflash lane)",
+    "honesty": [
+      "the initramfs markers still print 'FW26' — the disk is unchanged since ring 28's stub was built on top of the ring-26/27 assets; the labels name the MARKER vintage, not the boot vintage",
+      "the OVMF-side runs were inherited from the previous session's logs; the coreboot-side runs (2,3,4) are this session's",
+      "AcpiPlatform 'start failed: Aborted' in the coreboot world (ACPI tables reach the payload via HOBs but AcpiPlatformDxe aborted) — chain unaffected, registered as an open observation",
+      "the '28-w4' stack-RO sub-question (why the exception handler's fxsave page is present-but-RO) is OPEN, not guessed"
+    ]
+  }
+}

@@ -551,7 +551,13 @@ board-status checks, the bench day itself (dump-first, external
 programmer — gated on the sacrificial hardware), and the FW27 follow-ups
 (memory-map full dump for bench-day correlation, earlyprintk-vs-our-
 LoadOptions A/B on TCG timings, and the stub as the pattern for the
-bench-day observability instrument if the vendor firmware stays silent).
+bench-day observability instrument if the vendor firmware stays silent),
+and the FW28 follow-ups (why the exception handler's fxsave stack page
+is present-but-RO in the broken-SMMSTORE RELEASE lane — the one open
+sub-question of wall 28-w4; the AcpiPlatform "start failed: Aborted"
+observation in the coreboot world; and the SMMSTORE lane on REAL
+writable flash at bench day as the calibration point for the 28-w4
+q35 wall).
 
 ## Discipline
 

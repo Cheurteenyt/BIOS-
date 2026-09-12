@@ -4,6 +4,41 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the twenty-eighth ring (the world-naming stub, and the second world)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green. Ring 27's hook ("the coreboot world is untouched") is
+closed by measurement: the study's first **dual-world boot matrix** —
+the same 64 MiB disk, the same FW28 stub, the same 6.12.94 kernel, booted
+under Debian OVMF (3/3 green) AND under coreboot 25.12 + EDK2
+UefiPayloadPkg (edk2-stable202608, 3/3 green, exit 0, S5).
+
+- FW28 = FW27 + identity: gST->FirmwareVendor/Revision, every
+  config-table GUID dumped with a 5-byte content anchor, SMBIOS2/SMBIOS3
+  entry points parsed byte-explicitly, type 0/1 strings walked to type
+  127, and a verdict that refuses to guess ("unknown world — evidence
+  printed above"). Design note: the discriminator is SMBIOS type 0,
+  because the edk2 payload announces "EDK II" in BOTH worlds.
+- On the wire: OVMF → `unknown world` (Debian masks the upstream
+  identity; the honesty contract fires as designed); coreboot world →
+  `coreboot world (edk2 payload above it)` via SMBIOS type 0
+  `bios-vendor: "coreboot"`, `bios-version: "25.12-dirty"` (coreboot →
+  HOBs → SmbiosDxe → config table → our stub). The kernel confirms
+  delivery in both worlds: "EFI stub: Loaded initrd from
+  LINUX_EFI_INITRD_MEDIA_GUID device path" + the stub's own `.cmdline`.
+- Six walls named (full recipe in `lab/vol5-fw28.json`): parent-repo git
+  poisoning coreboot's version step; the restored-.git submodule gate
+  (UPDATED_SUBMODULES=1); the prefixed-compiler libgcc lie under -m32
+  (ring-24's recipe, deepened); the SMMSTORE → no-FVB → arch-protocol
+  cascade ending at DxeMain.c:578, with EMU variables as the principled
+  q35 answer (QEMU flash is ROM under -bios) and the real-board
+  SMMSTORE lane registered as the bench-day calibration point; the
+  stale EDK2_SERIAL_SUPPORT negation that excluded TerminalDxe and made
+  the stub silent while the chain booted green; the sandbox reaper that
+  kills background processes at the call boundary (measured).
+- edk2 pinned to edk2-stable202608 in .config (the workspace checkout
+  alone does not survive coreboot's re-checkout flow).
+
 ## Unreleased — the twenty-seventh ring (the silence decomposed, and our own stub speaks)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
