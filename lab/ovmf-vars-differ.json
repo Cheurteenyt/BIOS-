@@ -1,0 +1,859 @@
+{
+ "_meta": {
+  "ring": 34,
+  "date": "2026-09-13",
+  "title": "the differ \u2014 identity classes, module ledgers, byte pins, variable-store deltas",
+  "instruments": "ring9_differ.py; ring4_lib walkers reused; 60-byte auth-var header derived on live bytes (debug4-7 persisted)",
+  "read_only": true,
+  "zero_bytes_written": true,
+  "corpus": {
+   "code": {
+    "plain": "OVMF_CODE_4M.fd",
+    "secboot": "OVMF_CODE_4M.secboot.fd",
+    "strictnx": "OVMF_CODE_4M.secboot.strictnx.fd",
+    "snakeoil": "OVMF_CODE_4M.snakeoil.fd",
+    "ms": "OVMF_CODE_4M.ms.fd"
+   },
+   "vars": {
+    "plain": "OVMF_VARS_4M.fd",
+    "snakeoil": "OVMF_VARS_4M.snakeoil.fd",
+    "ms": "OVMF_VARS_4M.ms.fd"
+   }
+  },
+  "front": "C",
+  "renumbered_from": "locally committed as a 'ninth ring' against a stale clone (evidence commit preserved: tag thirty-fourth-ring-local); the fetch revealed rings 9-33 on the remote and the ring renumbered \u2014 the same reconciliation the twenty-fourth ring already lived through",
+  "relation_to_prior_rings": {
+   "ring2 (ovmf-keyring)": "VARS walk re-derived: 21 live / 18 deleted confirmed; new here: the 0x3C/0x3D decomposition (17 transition-obsolete + 1 replaced), the BootOrder 0x3D-without-successor nuance, and the explicit 60-byte header derivation (no PublishSequence field)",
+   "ring3 (front T2)": "the three-byte NX pin re-derived blind by an independent walker: same modules, same bytes, same counts (BdsDxe 01->00, IScsiDxe 66 2E -> 00 66); ring 3's offsets stand, this probe's runs add the NOP-padding reading",
+   "ring4 (ovmf-build-delta)": "the rebuild wall confirmed exactly (126 common, 6 identical, +18/-9); new here: whole-image sha256 identity classes (secboot == snakeoil == ms byte-identical images) and the module-ledger pairwise table",
+   "ring5 (ovmf-ms-delta)": "enrollment-is-data confirmed at whole-image granularity (the CODE never carries key material)"
+  }
+ },
+ "stores": {
+  "plain": {
+   "file": "OVMF_VARS_4M.fd",
+   "size": 540672,
+   "sha8": "5d2ac383371b4083",
+   "fv_guid": "FFF12B8D-7696-4C8B-A985-2747075B4F50",
+   "fv_len": 540672,
+   "store_guid": "AAF32C78-947B-439A-A180-2E144EC37792",
+   "store_size": 262072,
+   "format": 90,
+   "store_state": 254,
+   "records": 0,
+   "state_histogram": {},
+   "erased_pct_after_walk": 100.0,
+   "distinct_variables": 0,
+   "live_variables": 0,
+   "latest": [],
+   "key_variables": []
+  },
+  "snakeoil": {
+   "file": "OVMF_VARS_4M.snakeoil.fd",
+   "size": 540672,
+   "sha8": "e875a265aabb3fa9",
+   "fv_guid": "FFF12B8D-7696-4C8B-A985-2747075B4F50",
+   "fv_len": 540672,
+   "store_guid": "AAF32C78-947B-439A-A180-2E144EC37792",
+   "store_size": 262072,
+   "format": 90,
+   "store_state": 254,
+   "records": 39,
+   "state_histogram": {
+    "obsolete(transition)": 17,
+    "live": 21,
+    "replaced": 1
+   },
+   "erased_pct_after_walk": 100.0,
+   "distinct_variables": 22,
+   "live_variables": 21,
+   "latest": [
+    {
+     "name": "Boot0000",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 62,
+     "sha": "3197be1e300fa160"
+    },
+    {
+     "name": "Boot0001",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 110,
+     "sha": "7d43f8316be25778"
+    },
+    {
+     "name": "BootOrder",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "replaced",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 4,
+     "sha": "6b1e73a0094b7b81"
+    },
+    {
+     "name": "ConIn",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 195,
+     "sha": "db4a6cb9ca1e2898"
+    },
+    {
+     "name": "ConOut",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 146,
+     "sha": "7640d1e914ca3e25"
+    },
+    {
+     "name": "CustomMode",
+     "vguid": "C076EC0C-7028-4399-A072-71EE5C448B9F",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access"
+     ],
+     "size": 1,
+     "sha": "6e340b9cffb37a98"
+    },
+    {
+     "name": "ErrOut",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 146,
+     "sha": "7640d1e914ca3e25"
+    },
+    {
+     "name": "KEK",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ],
+     "size": 1031,
+     "sha": "e7f332a0f996573f"
+    },
+    {
+     "name": "Key0000",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 14,
+     "sha": "7c1bdb4a08e19c76"
+    },
+    {
+     "name": "Key0001",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 14,
+     "sha": "d20fb9e6af12f754"
+    },
+    {
+     "name": "Lang",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 4,
+     "sha": "71872dcd42d448e7"
+    },
+    {
+     "name": "MTC",
+     "vguid": "EB704011-1402-11D3-8E77-00A0C969723B",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 4,
+     "sha": "67abdd721024f0ff"
+    },
+    {
+     "name": "MemoryTypeInformation",
+     "vguid": "4C19049F-4137-4DD3-9C10-8B97A83FFDFA",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access"
+     ],
+     "size": 48,
+     "sha": "c5dfe821ad4f0493"
+    },
+    {
+     "name": "PK",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ],
+     "size": 1031,
+     "sha": "6057fff6d9f9ea13"
+    },
+    {
+     "name": "PlatformLang",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 3,
+     "sha": "6d045d0432f6e365"
+    },
+    {
+     "name": "SecureBootEnable",
+     "vguid": "F0A30BC7-AF08-4556-99C4-001009C93A44",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access"
+     ],
+     "size": 1,
+     "sha": "4bf5122f344554c5"
+    },
+    {
+     "name": "Timeout",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 2,
+     "sha": "96a296d224f285c6"
+    },
+    {
+     "name": "VarErrorFlag",
+     "vguid": "04B37FE8-F6AE-480B-BDD5-37D98C5E89AA",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 1,
+     "sha": "a8100ae6aa1940d0"
+    },
+    {
+     "name": "VendorKeysNv",
+     "vguid": "9073E4E0-60EC-4B6E-9903-4C223C260F3C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "time-based-auth"
+     ],
+     "size": 1,
+     "sha": "6e340b9cffb37a98"
+    },
+    {
+     "name": "certdb",
+     "vguid": "D9BEE56E-75DC-49D9-B4D7-B534210F637A",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ],
+     "size": 4,
+     "sha": "fb5e512425fc9449"
+    },
+    {
+     "name": "db",
+     "vguid": "D719B2CB-3D3A-4596-A3BC-DAD00E67656F",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ],
+     "size": 1031,
+     "sha": "e7f332a0f996573f"
+    },
+    {
+     "name": "dbx",
+     "vguid": "D719B2CB-3D3A-4596-A3BC-DAD00E67656F",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ],
+     "size": 76,
+     "sha": "6cc1e93b2b3f263e"
+    }
+   ],
+   "key_variables": [
+    {
+     "name": "db",
+     "size": 1031,
+     "sha": "e7f332a0f996573f",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ]
+    },
+    {
+     "name": "dbx",
+     "size": 76,
+     "sha": "6cc1e93b2b3f263e",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ]
+    },
+    {
+     "name": "KEK",
+     "size": 1031,
+     "sha": "e7f332a0f996573f",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ]
+    },
+    {
+     "name": "PK",
+     "size": 1031,
+     "sha": "6057fff6d9f9ea13",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ]
+    }
+   ]
+  },
+  "ms": {
+   "file": "OVMF_VARS_4M.ms.fd",
+   "size": 540672,
+   "sha8": "0d12f9839018a68f",
+   "fv_guid": "FFF12B8D-7696-4C8B-A985-2747075B4F50",
+   "fv_len": 540672,
+   "store_guid": "AAF32C78-947B-439A-A180-2E144EC37792",
+   "store_size": 262072,
+   "format": 90,
+   "store_state": 254,
+   "records": 39,
+   "state_histogram": {
+    "obsolete(transition)": 17,
+    "live": 21,
+    "replaced": 1
+   },
+   "erased_pct_after_walk": 100.0,
+   "distinct_variables": 22,
+   "live_variables": 21,
+   "latest": [
+    {
+     "name": "Boot0000",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 62,
+     "sha": "3197be1e300fa160"
+    },
+    {
+     "name": "Boot0001",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 110,
+     "sha": "7d43f8316be25778"
+    },
+    {
+     "name": "BootOrder",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "replaced",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 4,
+     "sha": "6b1e73a0094b7b81"
+    },
+    {
+     "name": "ConIn",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 195,
+     "sha": "db4a6cb9ca1e2898"
+    },
+    {
+     "name": "ConOut",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 146,
+     "sha": "7640d1e914ca3e25"
+    },
+    {
+     "name": "CustomMode",
+     "vguid": "C076EC0C-7028-4399-A072-71EE5C448B9F",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access"
+     ],
+     "size": 1,
+     "sha": "6e340b9cffb37a98"
+    },
+    {
+     "name": "ErrOut",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 146,
+     "sha": "7640d1e914ca3e25"
+    },
+    {
+     "name": "KEK",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ],
+     "size": 2565,
+     "sha": "398f3cd481726ede"
+    },
+    {
+     "name": "Key0000",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 14,
+     "sha": "7c1bdb4a08e19c76"
+    },
+    {
+     "name": "Key0001",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 14,
+     "sha": "d20fb9e6af12f754"
+    },
+    {
+     "name": "Lang",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 4,
+     "sha": "71872dcd42d448e7"
+    },
+    {
+     "name": "MTC",
+     "vguid": "EB704011-1402-11D3-8E77-00A0C969723B",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 4,
+     "sha": "67abdd721024f0ff"
+    },
+    {
+     "name": "MemoryTypeInformation",
+     "vguid": "4C19049F-4137-4DD3-9C10-8B97A83FFDFA",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access"
+     ],
+     "size": 48,
+     "sha": "c5dfe821ad4f0493"
+    },
+    {
+     "name": "PK",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ],
+     "size": 1005,
+     "sha": "fb514c4fa21477bb"
+    },
+    {
+     "name": "PlatformLang",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 3,
+     "sha": "6d045d0432f6e365"
+    },
+    {
+     "name": "SecureBootEnable",
+     "vguid": "F0A30BC7-AF08-4556-99C4-001009C93A44",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access"
+     ],
+     "size": 1,
+     "sha": "4bf5122f344554c5"
+    },
+    {
+     "name": "Timeout",
+     "vguid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 2,
+     "sha": "96a296d224f285c6"
+    },
+    {
+     "name": "VarErrorFlag",
+     "vguid": "04B37FE8-F6AE-480B-BDD5-37D98C5E89AA",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access"
+     ],
+     "size": 1,
+     "sha": "a8100ae6aa1940d0"
+    },
+    {
+     "name": "VendorKeysNv",
+     "vguid": "9073E4E0-60EC-4B6E-9903-4C223C260F3C",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "time-based-auth"
+     ],
+     "size": 1,
+     "sha": "6e340b9cffb37a98"
+    },
+    {
+     "name": "certdb",
+     "vguid": "D9BEE56E-75DC-49D9-B4D7-B534210F637A",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ],
+     "size": 4,
+     "sha": "fb5e512425fc9449"
+    },
+    {
+     "name": "db",
+     "vguid": "D719B2CB-3D3A-4596-A3BC-DAD00E67656F",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ],
+     "size": 3143,
+     "sha": "30a99e7b4cab47dd"
+    },
+    {
+     "name": "dbx",
+     "vguid": "D719B2CB-3D3A-4596-A3BC-DAD00E67656F",
+     "state_name": "live",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ],
+     "size": 76,
+     "sha": "6cc1e93b2b3f263e"
+    }
+   ],
+   "key_variables": [
+    {
+     "name": "db",
+     "size": 3143,
+     "sha": "30a99e7b4cab47dd",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ]
+    },
+    {
+     "name": "dbx",
+     "size": 76,
+     "sha": "6cc1e93b2b3f263e",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ]
+    },
+    {
+     "name": "KEK",
+     "size": 2565,
+     "sha": "398f3cd481726ede",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ]
+    },
+    {
+     "name": "PK",
+     "size": 1005,
+     "sha": "fb514c4fa21477bb",
+     "attrs": [
+      "non-volatile",
+      "boot-access",
+      "runtime-access",
+      "time-based-auth"
+     ]
+    }
+   ]
+  }
+ },
+ "delta": {
+  "ms|plain": {
+   "only_in_ms": [
+    "Boot0000",
+    "Boot0001",
+    "BootOrder",
+    "ConIn",
+    "ConOut",
+    "CustomMode",
+    "ErrOut",
+    "KEK",
+    "Key0000",
+    "Key0001",
+    "Lang",
+    "MTC",
+    "MemoryTypeInformation",
+    "PK",
+    "PlatformLang",
+    "SecureBootEnable",
+    "Timeout",
+    "VarErrorFlag",
+    "VendorKeysNv",
+    "certdb",
+    "db",
+    "dbx"
+   ],
+   "only_in_plain": [],
+   "common": 0,
+   "identical": 0,
+   "changed": [],
+   "key_delta": {
+    "KEK": [
+     2565,
+     null,
+     "absent"
+    ],
+    "PK": [
+     1005,
+     null,
+     "absent"
+    ],
+    "dbx": [
+     76,
+     null,
+     "absent"
+    ],
+    "db": [
+     3143,
+     null,
+     "absent"
+    ]
+   }
+  },
+  "ms|snakeoil": {
+   "only_in_ms": [],
+   "only_in_snakeoil": [],
+   "common": 22,
+   "identical": 19,
+   "changed": [
+    "KEK (2565->1031 B)",
+    "PK (1005->1031 B)",
+    "db (3143->1031 B)"
+   ],
+   "key_delta": {
+    "KEK": [
+     2565,
+     1031,
+     "changed"
+    ],
+    "PK": [
+     1005,
+     1031,
+     "changed"
+    ],
+    "dbx": [
+     76,
+     76,
+     "same-bytes"
+    ],
+    "db": [
+     3143,
+     1031,
+     "changed"
+    ]
+   }
+  },
+  "plain|snakeoil": {
+   "only_in_plain": [],
+   "only_in_snakeoil": [
+    "Boot0000",
+    "Boot0001",
+    "BootOrder",
+    "ConIn",
+    "ConOut",
+    "CustomMode",
+    "ErrOut",
+    "KEK",
+    "Key0000",
+    "Key0001",
+    "Lang",
+    "MTC",
+    "MemoryTypeInformation",
+    "PK",
+    "PlatformLang",
+    "SecureBootEnable",
+    "Timeout",
+    "VarErrorFlag",
+    "VendorKeysNv",
+    "certdb",
+    "db",
+    "dbx"
+   ],
+   "common": 0,
+   "identical": 0,
+   "changed": [],
+   "key_delta": {
+    "KEK": [
+     null,
+     1031,
+     "absent"
+    ],
+    "PK": [
+     null,
+     1031,
+     "absent"
+    ],
+    "dbx": [
+     null,
+     76,
+     "absent"
+    ],
+    "db": [
+     null,
+     1031,
+     "absent"
+    ]
+   }
+  }
+ }
+}

@@ -4,7 +4,35 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
-## Unreleased — the thirty-third ring (la loi de l'atterrissage)
+## Unreleased — the thirty-fourth ring (the differ, re-derived)
+
+Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
+323 checks green.
+
+- **the reconciliation**: this ring was first committed against a stale
+  local clone as a "ninth ring"; the fetch revealed rings 9–33 and the
+  ring renumbered (evidence commit preserved as tag
+  `thirty-fourth-ring-local`) — the same wrinkle the twenty-fourth ring
+  already lived, and the same resolution: the disque/remote ledger
+  absorbs it. The redundant Volume 5 preparation of the evidence commit
+  (a readiness ledger and runbook already surpassed by rings 24–26's
+  rehearsal state) is dropped from the tree.
+- **four re-derivations, four agreements**: ring 4's rebuild wall
+  (126 common, 6 identical, +18/−9), ring 5's enrollment-is-data at
+  whole-image granularity (sha256 identity classes: secboot == snakeoil
+  == ms), ring 3's three NX bytes (BdsDxe `01→00` + the IScsiDxe
+  `66 2E → 00 66` NOP-shift fingerprint), ring 2's VARS census (21 live
+  / 18 not-live).
+- **the new deltas**: the `0x3C`/`0x3D` state decomposition with the
+  replaced-BootOrder-without-successor nuance registered; the 60-byte
+  auth record header derived on live bytes (no PublishSequence field);
+  the dbx cross-image invariance stated explicitly; the fused
+  differ pipeline (identity classes → ledgers → byte pins → var-walk)
+  positioned as the day-0 CAP comparator.
+- artifacts: `lab/ovmf-constellation.json`, `lab/ovmf-nx-pin.json`,
+  `lab/ovmf-vars-differ.json`, `lab/findings-thirty-fourth-ring.md`.
+
+## The thirty-third ring (la loi de l'atterrissage)
 
 Docs-only; the tool surface is untouched: 15 tools, MCP smoke 12,
 323 checks green. Two deliverables: the study's first TRACKED instrument —

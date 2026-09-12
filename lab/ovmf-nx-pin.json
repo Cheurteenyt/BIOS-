@@ -1,0 +1,73 @@
+{
+ "_meta": {
+  "ring": 34,
+  "date": "2026-09-13",
+  "title": "the differ \u2014 identity classes, module ledgers, byte pins, variable-store deltas",
+  "instruments": "ring9_differ.py; ring4_lib walkers reused; 60-byte auth-var header derived on live bytes (debug4-7 persisted)",
+  "read_only": true,
+  "zero_bytes_written": true,
+  "corpus": {
+   "code": {
+    "plain": "OVMF_CODE_4M.fd",
+    "secboot": "OVMF_CODE_4M.secboot.fd",
+    "strictnx": "OVMF_CODE_4M.secboot.strictnx.fd",
+    "snakeoil": "OVMF_CODE_4M.snakeoil.fd",
+    "ms": "OVMF_CODE_4M.ms.fd"
+   },
+   "vars": {
+    "plain": "OVMF_VARS_4M.fd",
+    "snakeoil": "OVMF_VARS_4M.snakeoil.fd",
+    "ms": "OVMF_VARS_4M.ms.fd"
+   }
+  },
+  "front": "B",
+  "renumbered_from": "locally committed as a 'ninth ring' against a stale clone (evidence commit preserved: tag thirty-fourth-ring-local); the fetch revealed rings 9-33 on the remote and the ring renumbered \u2014 the same reconciliation the twenty-fourth ring already lived through",
+  "relation_to_prior_rings": {
+   "ring2 (ovmf-keyring)": "VARS walk re-derived: 21 live / 18 deleted confirmed; new here: the 0x3C/0x3D decomposition (17 transition-obsolete + 1 replaced), the BootOrder 0x3D-without-successor nuance, and the explicit 60-byte header derivation (no PublishSequence field)",
+   "ring3 (front T2)": "the three-byte NX pin re-derived blind by an independent walker: same modules, same bytes, same counts (BdsDxe 01->00, IScsiDxe 66 2E -> 00 66); ring 3's offsets stand, this probe's runs add the NOP-padding reading",
+   "ring4 (ovmf-build-delta)": "the rebuild wall confirmed exactly (126 common, 6 identical, +18/-9); new here: whole-image sha256 identity classes (secboot == snakeoil == ms byte-identical images) and the module-ledger pairwise table",
+   "ring5 (ovmf-ms-delta)": "enrollment-is-data confirmed at whole-image granularity (the CODE never carries key material)"
+  }
+ },
+ "pairs": [
+  {
+   "guid": "6D33944A-EC75-4855-A54D-809C75241F6C",
+   "name": "BdsDxe",
+   "len": [
+    82338,
+    82338
+   ],
+   "head_differs": false,
+   "byte_diffs": 1,
+   "runs": [
+    {
+     "off": 35487,
+     "len": 1,
+     "secboot": "01e84531000080bd",
+     "strictnx": "00e84531000080bd"
+    }
+   ],
+   "runs_total": 1
+  },
+  {
+   "guid": "86CDDF93-4872-4597-8AF9-A35AE4D3725F",
+   "name": "IScsiDxe",
+   "len": [
+    103666,
+    103666
+   ],
+   "head_differs": false,
+   "byte_diffs": 2,
+   "runs": [
+    {
+     "off": 94610,
+     "len": 2,
+     "secboot": "662e0f1f84000000",
+     "strictnx": "00660f1f84000000"
+    }
+   ],
+   "runs_total": 1
+  }
+ ],
+ "total_byte_diffs": 3
+}
