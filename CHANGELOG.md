@@ -4,6 +4,51 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the fortieth ring (la soudure)
+
+Docs-only + one new lab instrument + one new register; the tool surface is
+untouched: 15 tools, MCP smoke 12, 323 checks green.
+
+- **the weld**: `lab/fw40-merge.py` (tracked, fw33/35/36/37/38/39
+  precedent) — the last manual seam of the day-0 chain (ring 38's own
+  report: "the operator merges the two drafts before the final score")
+  becomes a machine-checked instrument with four laws: schema (only
+  fw35 template keys — 31 unique/32 slots), separation (day-0 and
+  release-41 keys never mix; violation = exit 2), precedence (identify
+  deep-truth > exam shallow-walk for the judge-owned keys; the
+  operator lens fills only the 10 manual slots; `--lens-wins`
+  overrides are journaled, never silent), provenance (every filled
+  value carries exam|identify|lens in the weld report).
+- **the ONE commands**: `chain <image>` runs the whole day-0 protocol
+  (exam + identify + weld + score) in one pass;
+  `chain-pair <old> <new>` is the release-41 counterpart
+  (exam_pair + identify on the new image + weld + score); `ceiling`
+  re-measures the scoreline envelope on known rungs any time.
+- **the precedence law paid for itself on the first live run**: the
+  exam shallow walk picks DSDT `20b7e802eb7c0a7a` while the judge's
+  deep truth picks the registered anchor `27d5e826e111d755` — without
+  the weld, P-09 would have scored miss on a byte-identical known
+  release (the conflict fires on 3802 too, ×3, with the nested-LZMA
+  armor booleans).
+- **the whitelist convention trap (caught live)**: the judge's
+  day-0 41-family whitelist convention would have corrupted P-26 on
+  the release-41 target — the count is convention-DEPENDENT and
+  exam_pair's target parameterization stands; pinned by gate R13c.
+- **the scoreline envelope**: `lab/vendor-scorelines.json` — the full
+  welded chain (no lenses) scored against the 26 frozen predictions on
+  3604/3802/3810/4655 + the OVMF floor. THE MONOTONE DECLINE 10→8→7→4
+  hits with chronological distance; every decline step is a registered
+  event (armor wave 3802, cert freeze 3810, AGESA/legacy/DSDT
+  crossings 4655). The stranger signature {P-04, P-05, P-18} on a
+  foreign image is STRONGER than the ring-38 mock invariant
+  ({P-04, P-05} without the judge). The release-41 null-model (pair
+  3802→3810: 3 hit / 2 miss / 21 na) shows a true release-41 must hit
+  P-20/P-21 where the historical pair cannot.
+- **the selftest**: 34 gates, two tiers, tier I live on the vendor
+  corpus (R: the four laws incl. both leak refusals and the all-None →
+  26-na pass-through; I: 3604/3802 scorelines == register, the OVMF
+  stranger signature, the pair null-model).
+
 ## Unreleased — the thirty-ninth ring (le moteur d'identité)
 
 Docs-only + one new lab instrument + one new register; the tool surface is
