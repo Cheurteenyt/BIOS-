@@ -1,0 +1,447 @@
+{
+ "calibration_rungs": [
+  "3604",
+  "3802",
+  "4655"
+ ],
+ "date": "2026-09-14",
+ "honesty": [
+  "the register is regenerated deterministically from the frozen corpus + frozen source registers; a rerun that disagrees with this file is a loud L2 refusal, not a silent re-base",
+  "the IFR/cross grammar was re-derived THIS ring against all four registered specimens (per-package-list scopes, instance-unique keys, EFI varstore ring-20 offsets, ONE_OF default-option width) \u2014 the derivation is in findings-forty-third-ring.md",
+  "psp rows exist only where vendor-psp-authorship.json has a per_specimen row (3604, 3802); ifr/cross rows only where the census/unasked registers have specimens (3604, 4655)"
+ ],
+ "note": "collected through fw43.verify() itself: the SAME code path the proposers run is what gets calibrated. agree=True calibrates the group, agree=False marks it BROKEN (law L2 refuses to propose), agree=None is a note row (no register row for that proposer on that rung).",
+ "ring": 43,
+ "rows": [
+  {
+   "agree": true,
+   "field": "dirs_found",
+   "proposer": "psp",
+   "registered": 14,
+   "reproduced": 14,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "dirs_valid",
+   "proposer": "psp",
+   "registered": 14,
+   "reproduced": 14,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "blobs",
+   "proposer": "psp",
+   "registered": 223,
+   "reproduced": 223,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "skipped_entries",
+   "proposer": "psp",
+   "registered": 10,
+   "reproduced": 10,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "by_magic",
+   "proposer": "psp",
+   "registered": {
+    "$BHD": 5,
+    "$BL2": 2,
+    "$PL2": 2,
+    "$PSP": 5
+   },
+   "reproduced": {
+    "$BHD": 5,
+    "$BL2": 2,
+    "$PL2": 2,
+    "$PSP": 5
+   },
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "packages",
+   "proposer": "ifr",
+   "registered": 64,
+   "reproduced": 64,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "valid",
+   "proposer": "ifr",
+   "registered": 64,
+   "reproduced": 64,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "pages",
+   "proposer": "ifr",
+   "registered": 779,
+   "reproduced": 779,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "questions",
+   "proposer": "ifr",
+   "registered": 7975,
+   "reproduced": 7975,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "options",
+   "proposer": "ifr",
+   "registered": 18222,
+   "reproduced": 18222,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "varstore_count",
+   "proposer": "cross",
+   "registered": 71,
+   "reproduced": 71,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "varstore_bytes_total",
+   "proposer": "cross",
+   "registered": 26027,
+   "reproduced": 26027,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "varstore_bytes_covered",
+   "proposer": "cross",
+   "registered": 4194,
+   "reproduced": 4194,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "uncovered_share_pct",
+   "proposer": "cross",
+   "registered": 83.89,
+   "reproduced": 83.89,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "zero_question_varstores",
+   "proposer": "cross",
+   "registered": 10,
+   "reproduced": 10,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "setup.size",
+   "proposer": "cross",
+   "registered": 456,
+   "reproduced": 456,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "setup.covered",
+   "proposer": "cross",
+   "registered": 314,
+   "reproduced": 314,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "setup.uncovered",
+   "proposer": "cross",
+   "registered": 142,
+   "reproduced": 142,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "setup.questions",
+   "proposer": "cross",
+   "registered": 368,
+   "reproduced": 368,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "setup.offsets_beyond_size",
+   "proposer": "cross",
+   "registered": 0,
+   "reproduced": 0,
+   "rung": "3604"
+  },
+  {
+   "agree": true,
+   "field": "dirs_found",
+   "proposer": "psp",
+   "registered": 14,
+   "reproduced": 14,
+   "rung": "3802"
+  },
+  {
+   "agree": true,
+   "field": "dirs_valid",
+   "proposer": "psp",
+   "registered": 14,
+   "reproduced": 14,
+   "rung": "3802"
+  },
+  {
+   "agree": true,
+   "field": "blobs",
+   "proposer": "psp",
+   "registered": 223,
+   "reproduced": 223,
+   "rung": "3802"
+  },
+  {
+   "agree": true,
+   "field": "skipped_entries",
+   "proposer": "psp",
+   "registered": 10,
+   "reproduced": 10,
+   "rung": "3802"
+  },
+  {
+   "agree": true,
+   "field": "by_magic",
+   "proposer": "psp",
+   "registered": {
+    "$BHD": 5,
+    "$BL2": 2,
+    "$PL2": 2,
+    "$PSP": 5
+   },
+   "reproduced": {
+    "$BHD": 5,
+    "$BL2": 2,
+    "$PL2": 2,
+    "$PSP": 5
+   },
+   "rung": "3802"
+  },
+  {
+   "agree": null,
+   "field": "(row)",
+   "proposer": "ifr",
+   "registered": "no census row for 3802",
+   "reproduced": "\u2014",
+   "rung": "3802"
+  },
+  {
+   "agree": null,
+   "field": "(row)",
+   "proposer": "cross",
+   "registered": "no unasked coverage row",
+   "reproduced": "\u2014",
+   "rung": "3802"
+  },
+  {
+   "agree": true,
+   "field": "dirs_found",
+   "proposer": "psp",
+   "registered": 14,
+   "reproduced": 14,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "dirs_valid",
+   "proposer": "psp",
+   "registered": 14,
+   "reproduced": 14,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "blobs",
+   "proposer": "psp",
+   "registered": 223,
+   "reproduced": 223,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "skipped_entries",
+   "proposer": "psp",
+   "registered": 10,
+   "reproduced": 10,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "by_magic",
+   "proposer": "psp",
+   "registered": {
+    "$BHD": 5,
+    "$BL2": 2,
+    "$PL2": 2,
+    "$PSP": 5
+   },
+   "reproduced": {
+    "$BHD": 5,
+    "$BL2": 2,
+    "$PL2": 2,
+    "$PSP": 5
+   },
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "packages",
+   "proposer": "ifr",
+   "registered": 61,
+   "reproduced": 61,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "valid",
+   "proposer": "ifr",
+   "registered": 61,
+   "reproduced": 61,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "pages",
+   "proposer": "ifr",
+   "registered": 783,
+   "reproduced": 783,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "questions",
+   "proposer": "ifr",
+   "registered": 8273,
+   "reproduced": 8273,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "options",
+   "proposer": "ifr",
+   "registered": 18337,
+   "reproduced": 18337,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "varstore_count",
+   "proposer": "cross",
+   "registered": 72,
+   "reproduced": 72,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "varstore_bytes_total",
+   "proposer": "cross",
+   "registered": 26285,
+   "reproduced": 26285,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "varstore_bytes_covered",
+   "proposer": "cross",
+   "registered": 4356,
+   "reproduced": 4356,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "uncovered_share_pct",
+   "proposer": "cross",
+   "registered": 83.43,
+   "reproduced": 83.43,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "zero_question_varstores",
+   "proposer": "cross",
+   "registered": 10,
+   "reproduced": 10,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "setup.size",
+   "proposer": "cross",
+   "registered": 456,
+   "reproduced": 456,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "setup.covered",
+   "proposer": "cross",
+   "registered": 314,
+   "reproduced": 314,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "setup.uncovered",
+   "proposer": "cross",
+   "registered": 142,
+   "reproduced": 142,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "setup.questions",
+   "proposer": "cross",
+   "registered": 368,
+   "reproduced": 368,
+   "rung": "4655"
+  },
+  {
+   "agree": true,
+   "field": "setup.offsets_beyond_size",
+   "proposer": "cross",
+   "registered": 0,
+   "reproduced": 0,
+   "rung": "4655"
+  }
+ ],
+ "schema": "omarchy-firmware/vendor-proposal-calibration@1",
+ "status": {
+  "cross": "calibrated",
+  "ifr": "calibrated",
+  "psp": "calibrated"
+ },
+ "summary": {
+  "cross": {
+   "agree": 20,
+   "disagree": 0,
+   "notes": 1
+  },
+  "ifr": {
+   "agree": 10,
+   "disagree": 0,
+   "notes": 1
+  },
+  "psp": {
+   "agree": 15,
+   "disagree": 0,
+   "notes": 0
+  }
+ },
+ "title": "the proposers' calibration \u2014 proposer-vs-register evidence rows (law L2)"
+}

@@ -4,6 +4,65 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the forty-third ring (les propositions, the last manual surface meets the machine)
+
+Docs-only + one new lab instrument + one new register; the tool surface is
+untouched: 15 tools, MCP smoke 12, 323 checks green.
+
+After ring 42 the day-0 protocol ran as ONE command, but seven slots
+stayed LENS_ONLY — seven manual pastes, seven chances for a transposed
+digit. `lab/fw43-proposal.py` TRACKED (fw33/35/36/37/38/39/40/41/42
+precedent) removes the PASTE, not the operator: two proposers
+(PSP: the registered layout, fletcher32-validated directories, one L2
+hop, sha256_16 body-hash SETs for the dump plus the 3604/3802 rungs;
+IFR + varstore cross: the ring-6 exact-consumption walk and the
+ring-20 coverage cross at ring-19 scope over the fw39 deep walk)
+machine-draft all seven slots with provenance, and the operator reviews
+corrects before `--lenses` re-welds. Four laws as gate families:
+L1 proposal-not-measurement (the document's keys are exactly
+fw40.LENS_ONLY, judge-owned slots NEVER proposed), L2
+calibration-before-proposal (a slot is proposed only when its proposer
+reproduced every registered row — any disagreement = group BROKEN =
+refusal), L3 loud degradation (omitted slots carry reasons, never
+guesses), L4 zero writes (grep-policed).
+
+The calibration war (five grammar facts caught by live gates before
+anything froze): (1) the big AMI IFR modules carry NO UI sections
+anywhere in the 38-rom corpus — the names come from the ring-19 GUID
+join (vendor-versions.json, cross-board UI precedence) wired as a
+provenance fallback; (2) varstores live PER PACKAGE LIST with
+instance-unique keys — the register's four same-GUID AmdSetup rows and
+four AOD_SETUP rows prove the copies never merge (58 → 70 → 71);
+(3) the EFI varstore layout is ring-20's own (vs_id +2, size +24) — the
+modern-spec offsets parse the GUID's tail and match no registered
+aggregate (the mojibake "GdgNvmeVar" utf-16 story is ASCII
+"TcgNvmeVar"); (4) straddler bindings count beyond and contribute
+NOTHING to the coverage union (no partial clamp — MyRCVirtDisks 159 →
+157); (5) THE ONE_OF LAW — the register's effective grammar binds the
+width of the ONE_OF's DEFAULT-flagged option's type (flag 0x10,
+fallback widest attributed, nothing attributed → 1): the honesty
+note's plain "widest option type" over-counted (159/143 where the
+register froze 157/136) and the default-option rule reproduces all four
+registered specimens EXACTLY (3604 4194, 4655 4356, Gigabyte 3255,
+ASRock 3452). Pre-freeze catches: the R6/R7b KAT streams were
+internally inconsistent with their own gates (scope bit, NUM16 type,
+binding outside the exercised varstore) and the R9 gate matched its
+own source (needles now built split); the extended-header scope corner
+(raw 0xFF) hardened with its own gate R6c. One deviation registered,
+register frozen: the ring-20 MSI row derives differently under any
+faithful re-run (165/41889 vs 88/26303 — a scope-method artifact);
+day-0 consumes no MSI rows.
+
+NEW REGISTER `lab/vendor-proposal-calibration.json` (via
+scripts/ring43_artifact.py, resume-safe): 47 proposer-vs-register rows
+collected through fw43.verify() ITSELF — 45 agree, 0 disagree, 2 notes,
+groups psp+ifr+cross all calibrated; a rerun that disagrees is a loud
+L2 refusal. Selftest two-tier 38 gates (19 R laws + KATs, 19 I live):
+the day-0 `propose dump.rom` fills 7/7 slots, 0 omitted, and every
+proposal survives the weld unchanged (I6d/I6e through fw40's own
+machinery). Day-0: propose → review → `dossier dump.rom --lenses
+proposals.json` — corrections beat proposals, always.
+
 ## Unreleased — the forty-second ring (le dossier, the triptych machine)
 
 Docs-only + one new lab instrument + one new register; the tool surface is
