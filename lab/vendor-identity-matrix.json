@@ -1,0 +1,2292 @@
+{
+ "schema": "omarchy-firmware/vendor-identity-matrix@1",
+ "date": "2026-09-13",
+ "ring": 39,
+ "title": "the identity matrix \u2014 the H3 machine, calibrated on the corpus before the exam",
+ "instrument": "lab/fw39-identity.py",
+ "note": "every rung anchor re-derived from its source register (vendor-agesa/-flash-armor/-genome/-acpi/-armor-chipdb/-lifecycles/-der-inventory) \u2014 nothing here invents; the live column was measured this ring on the surviving corpus and is evidence, not authority",
+ "conventions": {
+  "rom_sha": "per-rung from the probe rom_bytes: 16777216 -> FULL file; 16515072 -> BODY rom[0x40000:] (the CAP-strip geometry, cap_wrapper_first_fv 0x40800 minus the 2 KiB CAP header). Both forms are always computed from any dump.",
+  "trust_certs": "raw-plane DER census (X.509 structure walk, sha256[:16]); sightings = occurrences (PK/KEK/db ship each cert x3)",
+  "module_count": "REPORT-ONLY: three-way semantics mismatch measured live @3604 \u2014 fw37 walk 580 vs probes 618 vs genome 608"
+ },
+ "axes_scored": [
+  "rom_sha",
+  "agesa_level",
+  "dsdt_sha16_set",
+  "smm_census",
+  "trust_certs",
+  "armor_core",
+  "armor_added",
+  "genome_profile"
+ ],
+ "axes_report_only": [
+  "module_count",
+  "whitelist_str",
+  "genome_full_set",
+  "psp"
+ ],
+ "anchors": {
+  "3604": {
+   "rom_bytes": 16777216,
+   "rom_sha": "dbabcc8c1d7e6dc4",
+   "sha_convention": "FULL",
+   "agesa_level": "1.2.0.6b",
+   "dsdt_sha16_set": [
+    "20b7e802eb7c0a7a",
+    "27d5e826e111d755",
+    "bee5db7ca70bba65",
+    "ce269e0581d5a4f7"
+   ],
+   "smm_census": {
+    "SMM": 105,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "trust_certs": [
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "b3109006bc0ad983",
+    "ca8d0f4736454aec"
+   ],
+   "armor_core": 0,
+   "armor_added": 0,
+   "genome_profile": [
+    0,
+    0,
+    2
+   ],
+   "files": 608,
+   "probe_modules": 618
+  },
+  "3802": {
+   "rom_bytes": 16515072,
+   "rom_sha": "f9bb9ac5f2552369",
+   "sha_convention": "BODY0x40000",
+   "agesa_level": "1.2.0.7",
+   "dsdt_sha16_set": [
+    "20b7e802eb7c0a7a",
+    "27d5e826e111d755",
+    "bee5db7ca70bba65",
+    "ce269e0581d5a4f7"
+   ],
+   "smm_census": {
+    "SMM": 108,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "trust_certs": [
+    "281734d4592d1291",
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "9da69015c349c6c1"
+   ],
+   "armor_core": 4,
+   "armor_added": 5,
+   "genome_profile": [
+    5,
+    0,
+    2
+   ],
+   "files": 613,
+   "probe_modules": 623
+  },
+  "3810": {
+   "rom_bytes": 16515072,
+   "rom_sha": "4c925f66864446e8",
+   "sha_convention": "BODY0x40000",
+   "agesa_level": "1.2.0.7",
+   "dsdt_sha16_set": [
+    "20b7e802eb7c0a7a",
+    "27d5e826e111d755",
+    "bee5db7ca70bba65",
+    "ce269e0581d5a4f7"
+   ],
+   "smm_census": {
+    "SMM": 108,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "trust_certs": [
+    "281734d4592d1291",
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "c7f4e1be32288920",
+    "e9158c6af5688cfc"
+   ],
+   "armor_core": 4,
+   "armor_added": 5,
+   "genome_profile": [
+    5,
+    0,
+    2
+   ],
+   "files": 613,
+   "probe_modules": 623
+  },
+  "4003": {
+   "rom_bytes": 16515072,
+   "rom_sha": "a11dff75cbb9d953",
+   "sha_convention": "BODY0x40000",
+   "agesa_level": "1.2.0.8",
+   "dsdt_sha16_set": [
+    "20b7e802eb7c0a7a",
+    "27d5e826e111d755",
+    "bee5db7ca70bba65",
+    "ce269e0581d5a4f7"
+   ],
+   "smm_census": {
+    "SMM": 108,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "trust_certs": [
+    "281734d4592d1291",
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "c7f4e1be32288920",
+    "e9158c6af5688cfc"
+   ],
+   "armor_core": 4,
+   "armor_added": 5,
+   "genome_profile": [
+    5,
+    0,
+    2
+   ],
+   "files": 613,
+   "probe_modules": 623
+  },
+  "4202": {
+   "rom_bytes": 16515072,
+   "rom_sha": "5ff8f8e27c8b2d73",
+   "sha_convention": "BODY0x40000",
+   "agesa_level": "1.2.0.A",
+   "dsdt_sha16_set": [
+    "20b7e802eb7c0a7a",
+    "27d5e826e111d755",
+    "bee5db7ca70bba65",
+    "ce269e0581d5a4f7"
+   ],
+   "smm_census": {
+    "SMM": 107,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "trust_certs": [
+    "281734d4592d1291",
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "c7f4e1be32288920",
+    "e9158c6af5688cfc"
+   ],
+   "armor_core": 4,
+   "armor_added": 5,
+   "genome_profile": [
+    5,
+    0,
+    1
+   ],
+   "files": 612,
+   "probe_modules": 622
+  },
+  "4402": {
+   "rom_bytes": 16515072,
+   "rom_sha": "916bcaca825ac3ca",
+   "sha_convention": "BODY0x40000",
+   "agesa_level": "1.2.0.B",
+   "dsdt_sha16_set": [
+    "6aef1067d6cd5a76",
+    "7f47587bc0c8d90b",
+    "a6eb677d97b0699c",
+    "f23c571b48b6d9e6"
+   ],
+   "smm_census": {
+    "SMM": 106,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "trust_certs": [
+    "281734d4592d1291",
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "d2f6e46ded7422cc",
+    "e9158c6af5688cfc"
+   ],
+   "armor_core": 4,
+   "armor_added": 5,
+   "genome_profile": [
+    5,
+    0,
+    0
+   ],
+   "files": 611,
+   "probe_modules": 621
+  },
+  "4604": {
+   "rom_bytes": 16515072,
+   "rom_sha": "eddccf1e75f28adc",
+   "sha_convention": "BODY0x40000",
+   "agesa_level": "1.2.0.Ca",
+   "dsdt_sha16_set": [
+    "6aef1067d6cd5a76",
+    "7f47587bc0c8d90b",
+    "a6eb677d97b0699c",
+    "f23c571b48b6d9e6"
+   ],
+   "smm_census": {
+    "SMM": 106,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "trust_certs": [
+    "281734d4592d1291",
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "69a5f4a923962bbf",
+    "d2f6e46ded7422cc",
+    "e9158c6af5688cfc"
+   ],
+   "armor_core": 4,
+   "armor_added": 7,
+   "genome_profile": [
+    5,
+    2,
+    0
+   ],
+   "files": 613,
+   "probe_modules": 623
+  },
+  "4631": {
+   "rom_bytes": 16515072,
+   "rom_sha": "39e778a1a6141aeb",
+   "sha_convention": "BODY0x40000",
+   "agesa_level": "1.2.0.E",
+   "dsdt_sha16_set": [
+    "0a4a6f162cad3e51",
+    "436b88118401a7c9",
+    "7563a34eb7358304",
+    "b2a32b917633f8a0"
+   ],
+   "smm_census": {
+    "SMM": 106,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "trust_certs": [
+    "281734d4592d1291",
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "76769fa8f2632f1f",
+    "dd60cc7a1b77ee9a",
+    "e9158c6af5688cfc"
+   ],
+   "armor_core": 4,
+   "armor_added": 7,
+   "genome_profile": [
+    5,
+    2,
+    0
+   ],
+   "files": 613,
+   "probe_modules": 623
+  },
+  "4655": {
+   "rom_bytes": 16777216,
+   "rom_sha": "284ea676ee6cbf42",
+   "sha_convention": "FULL",
+   "agesa_level": "1.2.0.12",
+   "dsdt_sha16_set": [
+    "0a4a6f162cad3e51",
+    "436b88118401a7c9",
+    "7563a34eb7358304",
+    "b2a32b917633f8a0"
+   ],
+   "smm_census": {
+    "SMM": 106,
+    "SMM-DXE": 0,
+    "SMM-core": 1
+   },
+   "trust_certs": [
+    "33846b545a49c9be",
+    "46011ede1c147eb2",
+    "4aa03fa22cd75c84",
+    "ca0b1554ecd901ea",
+    "dd60cc7a1b77ee9a",
+    "e9158c6af5688cfc"
+   ],
+   "armor_core": 4,
+   "armor_added": 7,
+   "genome_profile": [
+    5,
+    2,
+    0
+   ],
+   "files": 613,
+   "probe_modules": 623
+  }
+ },
+ "matrix": {
+  "pairs": [
+   {
+    "pair": "3604|3802",
+    "full": 7,
+    "semantic": 6
+   },
+   {
+    "pair": "3604|3810",
+    "full": 7,
+    "semantic": 6
+   },
+   {
+    "pair": "3604|4003",
+    "full": 7,
+    "semantic": 6
+   },
+   {
+    "pair": "3604|4202",
+    "full": 7,
+    "semantic": 6
+   },
+   {
+    "pair": "3604|4402",
+    "full": 8,
+    "semantic": 7
+   },
+   {
+    "pair": "3604|4604",
+    "full": 8,
+    "semantic": 7
+   },
+   {
+    "pair": "3604|4631",
+    "full": 8,
+    "semantic": 7
+   },
+   {
+    "pair": "3604|4655",
+    "full": 8,
+    "semantic": 7
+   },
+   {
+    "pair": "3802|3810",
+    "full": 2,
+    "semantic": 1
+   },
+   {
+    "pair": "3802|4003",
+    "full": 3,
+    "semantic": 2
+   },
+   {
+    "pair": "3802|4202",
+    "full": 5,
+    "semantic": 4
+   },
+   {
+    "pair": "3802|4402",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "3802|4604",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "3802|4631",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "3802|4655",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "3810|4003",
+    "full": 2,
+    "semantic": 1
+   },
+   {
+    "pair": "3810|4202",
+    "full": 4,
+    "semantic": 3
+   },
+   {
+    "pair": "3810|4402",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "3810|4604",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "3810|4631",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "3810|4655",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "4003|4202",
+    "full": 4,
+    "semantic": 3
+   },
+   {
+    "pair": "4003|4402",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "4003|4604",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "4003|4631",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "4003|4655",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "4202|4402",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "4202|4604",
+    "full": 7,
+    "semantic": 6
+   },
+   {
+    "pair": "4202|4631",
+    "full": 7,
+    "semantic": 6
+   },
+   {
+    "pair": "4202|4655",
+    "full": 7,
+    "semantic": 6
+   },
+   {
+    "pair": "4402|4604",
+    "full": 4,
+    "semantic": 3
+   },
+   {
+    "pair": "4402|4631",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "4402|4655",
+    "full": 6,
+    "semantic": 5
+   },
+   {
+    "pair": "4604|4631",
+    "full": 4,
+    "semantic": 3
+   },
+   {
+    "pair": "4604|4655",
+    "full": 4,
+    "semantic": 3
+   },
+   {
+    "pair": "4631|4655",
+    "full": 3,
+    "semantic": 2
+   }
+  ],
+  "floor_full": 2,
+  "floor_semantic": 1,
+  "n_pairs": 36
+ },
+ "h3_calibration": {
+  "floor_full": 2,
+  "floor_semantic": 1,
+  "reading": "no two known rungs ever separate by >=3 semantic axes; the P-18 threshold of 3 is STRICTER than the adjacent-pair floor, so a dump clearing it against every rung is more distinct than any pair in the whole chronology \u2014 the frozen P-18 semantics (hit>=3 / partial=2 / miss otherwise) stand, now with a measured context"
+ },
+ "live_selfid": {
+  "3604": {
+   "image": "asus-prime-b450-plus-ref.rom",
+   "observed": {
+    "rom_bytes": 16777216,
+    "rom_sha_full": "dbabcc8c1d7e6dc4",
+    "rom_sha_body": "caf42871b50517e7",
+    "agesa_level": "1.2.0.6b",
+    "agesa_multi": null,
+    "dsdt_sha16_set": [
+     "20b7e802eb7c0a7a",
+     "27d5e826e111d755",
+     "bee5db7ca70bba65",
+     "ce269e0581d5a4f7"
+    ],
+    "dsdt_primary": "27d5e826e111d755",
+    "dsdt_instances": {
+     "20b7e802eb7c0a7a": 1,
+     "bee5db7ca70bba65": 1,
+     "27d5e826e111d755": 2,
+     "ce269e0581d5a4f7": 1
+    },
+    "smm_census": {
+     "SMM": 105,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "trust_sightings": 12,
+    "trust_certs": [
+     "46011ede1c147eb2",
+     "69a5f4a923962bbf",
+     "b3109006bc0ad983",
+     "ca8d0f4736454aec"
+    ],
+    "armor_core": 0,
+    "armor_added": 0,
+    "armor_quartet_present": false,
+    "sbrom_armorsmm_present": false,
+    "genome_profile": [
+     0,
+     0,
+     2
+    ],
+    "legacy_smm_count": 2,
+    "chip_whitelist_families": 41,
+    "module_count": 604,
+    "pierce_depth": 3,
+    "blobs_walked": 22
+   },
+   "per_rung": {
+    "3604": {
+     "diffs": 0,
+     "diff_axes": [],
+     "na_axes": [],
+     "sha_hit": true
+    },
+    "3802": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3810": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4003": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4202": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4402": {
+     "diffs": 8,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4604": {
+     "diffs": 8,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4631": {
+     "diffs": 8,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4655": {
+     "diffs": 8,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    }
+   },
+   "verdict": {
+    "verdict": "known-release",
+    "matches_known_release": true,
+    "distinct_fingerprints_count": 0,
+    "matched_release": "3604",
+    "note": "byte-identity under the registered sha convention"
+   },
+   "wall_seconds": 2.4
+  },
+  "3802": {
+   "image": "asus-prime-b450-plus-3802.rom",
+   "observed": {
+    "rom_bytes": 16777216,
+    "rom_sha_full": "4ff704de056ee2f5",
+    "rom_sha_body": "f9bb9ac5f2552369",
+    "agesa_level": "1.2.0.7",
+    "agesa_multi": null,
+    "dsdt_sha16_set": [
+     "20b7e802eb7c0a7a",
+     "27d5e826e111d755",
+     "bee5db7ca70bba65",
+     "ce269e0581d5a4f7"
+    ],
+    "dsdt_primary": "27d5e826e111d755",
+    "dsdt_instances": {
+     "20b7e802eb7c0a7a": 1,
+     "bee5db7ca70bba65": 1,
+     "27d5e826e111d755": 2,
+     "ce269e0581d5a4f7": 1
+    },
+    "smm_census": {
+     "SMM": 108,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "trust_sightings": 12,
+    "trust_certs": [
+     "281734d4592d1291",
+     "46011ede1c147eb2",
+     "69a5f4a923962bbf",
+     "9da69015c349c6c1"
+    ],
+    "armor_core": 4,
+    "armor_added": 5,
+    "armor_quartet_present": true,
+    "sbrom_armorsmm_present": true,
+    "genome_profile": [
+     5,
+     0,
+     2
+    ],
+    "legacy_smm_count": 2,
+    "chip_whitelist_families": 41,
+    "module_count": 609,
+    "pierce_depth": 3,
+    "blobs_walked": 22
+   },
+   "per_rung": {
+    "3604": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3802": {
+     "diffs": 0,
+     "diff_axes": [],
+     "na_axes": [],
+     "sha_hit": true
+    },
+    "3810": {
+     "diffs": 2,
+     "diff_axes": [
+      "rom_sha",
+      "trust_certs"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4003": {
+     "diffs": 3,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "trust_certs"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4202": {
+     "diffs": 5,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "trust_certs",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4402": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4604": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4631": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4655": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    }
+   },
+   "verdict": {
+    "verdict": "known-release",
+    "matches_known_release": true,
+    "distinct_fingerprints_count": 0,
+    "matched_release": "3802",
+    "note": "byte-identity under the registered sha convention"
+   },
+   "wall_seconds": 2.3
+  },
+  "3810": {
+   "image": "asus-prime-b450-plus-3810.rom",
+   "observed": {
+    "rom_bytes": 16777216,
+    "rom_sha_full": "c3cc23f06b7f6796",
+    "rom_sha_body": "4c925f66864446e8",
+    "agesa_level": "1.2.0.7",
+    "agesa_multi": null,
+    "dsdt_sha16_set": [
+     "20b7e802eb7c0a7a",
+     "27d5e826e111d755",
+     "bee5db7ca70bba65",
+     "ce269e0581d5a4f7"
+    ],
+    "dsdt_primary": "27d5e826e111d755",
+    "dsdt_instances": {
+     "20b7e802eb7c0a7a": 1,
+     "bee5db7ca70bba65": 1,
+     "27d5e826e111d755": 2,
+     "ce269e0581d5a4f7": 1
+    },
+    "smm_census": {
+     "SMM": 108,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "trust_sightings": 18,
+    "trust_certs": [
+     "281734d4592d1291",
+     "33846b545a49c9be",
+     "46011ede1c147eb2",
+     "69a5f4a923962bbf",
+     "c7f4e1be32288920",
+     "e9158c6af5688cfc"
+    ],
+    "armor_core": 4,
+    "armor_added": 5,
+    "armor_quartet_present": true,
+    "sbrom_armorsmm_present": true,
+    "genome_profile": [
+     5,
+     0,
+     2
+    ],
+    "legacy_smm_count": 2,
+    "chip_whitelist_families": 41,
+    "module_count": 609,
+    "pierce_depth": 3,
+    "blobs_walked": 22
+   },
+   "per_rung": {
+    "3604": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3802": {
+     "diffs": 2,
+     "diff_axes": [
+      "rom_sha",
+      "trust_certs"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3810": {
+     "diffs": 0,
+     "diff_axes": [],
+     "na_axes": [],
+     "sha_hit": true
+    },
+    "4003": {
+     "diffs": 2,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4202": {
+     "diffs": 4,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4402": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4604": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4631": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4655": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    }
+   },
+   "verdict": {
+    "verdict": "known-release",
+    "matches_known_release": true,
+    "distinct_fingerprints_count": 0,
+    "matched_release": "3810",
+    "note": "byte-identity under the registered sha convention"
+   },
+   "wall_seconds": 2.4
+  },
+  "4003": {
+   "image": "asus-prime-b450-plus-4003.rom",
+   "observed": {
+    "rom_bytes": 16777216,
+    "rom_sha_full": "99560208f9df0ff9",
+    "rom_sha_body": "a11dff75cbb9d953",
+    "agesa_level": "1.2.0.8",
+    "agesa_multi": null,
+    "dsdt_sha16_set": [
+     "20b7e802eb7c0a7a",
+     "27d5e826e111d755",
+     "bee5db7ca70bba65",
+     "ce269e0581d5a4f7"
+    ],
+    "dsdt_primary": "27d5e826e111d755",
+    "dsdt_instances": {
+     "20b7e802eb7c0a7a": 1,
+     "bee5db7ca70bba65": 1,
+     "27d5e826e111d755": 2,
+     "ce269e0581d5a4f7": 1
+    },
+    "smm_census": {
+     "SMM": 108,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "trust_sightings": 18,
+    "trust_certs": [
+     "281734d4592d1291",
+     "33846b545a49c9be",
+     "46011ede1c147eb2",
+     "69a5f4a923962bbf",
+     "c7f4e1be32288920",
+     "e9158c6af5688cfc"
+    ],
+    "armor_core": 4,
+    "armor_added": 5,
+    "armor_quartet_present": true,
+    "sbrom_armorsmm_present": true,
+    "genome_profile": [
+     5,
+     0,
+     2
+    ],
+    "legacy_smm_count": 2,
+    "chip_whitelist_families": 41,
+    "module_count": 609,
+    "pierce_depth": 3,
+    "blobs_walked": 22
+   },
+   "per_rung": {
+    "3604": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3802": {
+     "diffs": 3,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "trust_certs"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3810": {
+     "diffs": 2,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4003": {
+     "diffs": 0,
+     "diff_axes": [],
+     "na_axes": [],
+     "sha_hit": true
+    },
+    "4202": {
+     "diffs": 4,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4402": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4604": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4631": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4655": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    }
+   },
+   "verdict": {
+    "verdict": "known-release",
+    "matches_known_release": true,
+    "distinct_fingerprints_count": 0,
+    "matched_release": "4003",
+    "note": "byte-identity under the registered sha convention"
+   },
+   "wall_seconds": 2.4
+  },
+  "4202": {
+   "image": "asus-prime-b450-plus-4202.rom",
+   "observed": {
+    "rom_bytes": 16777216,
+    "rom_sha_full": "11ea4bc5f2486a20",
+    "rom_sha_body": "5ff8f8e27c8b2d73",
+    "agesa_level": "1.2.0.A",
+    "agesa_multi": null,
+    "dsdt_sha16_set": [
+     "20b7e802eb7c0a7a",
+     "27d5e826e111d755",
+     "bee5db7ca70bba65",
+     "ce269e0581d5a4f7"
+    ],
+    "dsdt_primary": "27d5e826e111d755",
+    "dsdt_instances": {
+     "20b7e802eb7c0a7a": 1,
+     "bee5db7ca70bba65": 1,
+     "27d5e826e111d755": 2,
+     "ce269e0581d5a4f7": 1
+    },
+    "smm_census": {
+     "SMM": 107,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "trust_sightings": 18,
+    "trust_certs": [
+     "281734d4592d1291",
+     "33846b545a49c9be",
+     "46011ede1c147eb2",
+     "69a5f4a923962bbf",
+     "c7f4e1be32288920",
+     "e9158c6af5688cfc"
+    ],
+    "armor_core": 4,
+    "armor_added": 5,
+    "armor_quartet_present": true,
+    "sbrom_armorsmm_present": true,
+    "genome_profile": [
+     5,
+     0,
+     1
+    ],
+    "legacy_smm_count": 1,
+    "chip_whitelist_families": 41,
+    "module_count": 608,
+    "pierce_depth": 3,
+    "blobs_walked": 22
+   },
+   "per_rung": {
+    "3604": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3802": {
+     "diffs": 5,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "trust_certs",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3810": {
+     "diffs": 4,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4003": {
+     "diffs": 4,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "smm_census",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4202": {
+     "diffs": 0,
+     "diff_axes": [],
+     "na_axes": [],
+     "sha_hit": true
+    },
+    "4402": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4604": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4631": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4655": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    }
+   },
+   "verdict": {
+    "verdict": "known-release",
+    "matches_known_release": true,
+    "distinct_fingerprints_count": 0,
+    "matched_release": "4202",
+    "note": "byte-identity under the registered sha convention"
+   },
+   "wall_seconds": 2.6
+  },
+  "4402": {
+   "image": "asus-prime-b450-plus-4402.rom",
+   "observed": {
+    "rom_bytes": 16777216,
+    "rom_sha_full": "932fb62489233259",
+    "rom_sha_body": "916bcaca825ac3ca",
+    "agesa_level": "1.2.0.B",
+    "agesa_multi": null,
+    "dsdt_sha16_set": [
+     "6aef1067d6cd5a76",
+     "7f47587bc0c8d90b",
+     "a6eb677d97b0699c",
+     "f23c571b48b6d9e6"
+    ],
+    "dsdt_primary": "f23c571b48b6d9e6",
+    "dsdt_instances": {
+     "a6eb677d97b0699c": 1,
+     "7f47587bc0c8d90b": 1,
+     "f23c571b48b6d9e6": 2,
+     "6aef1067d6cd5a76": 1
+    },
+    "smm_census": {
+     "SMM": 106,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "trust_sightings": 18,
+    "trust_certs": [
+     "281734d4592d1291",
+     "33846b545a49c9be",
+     "46011ede1c147eb2",
+     "69a5f4a923962bbf",
+     "d2f6e46ded7422cc",
+     "e9158c6af5688cfc"
+    ],
+    "armor_core": 4,
+    "armor_added": 5,
+    "armor_quartet_present": true,
+    "sbrom_armorsmm_present": true,
+    "genome_profile": [
+     5,
+     0,
+     0
+    ],
+    "legacy_smm_count": 0,
+    "chip_whitelist_families": 41,
+    "module_count": 607,
+    "pierce_depth": 3,
+    "blobs_walked": 22
+   },
+   "per_rung": {
+    "3604": {
+     "diffs": 8,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3802": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3810": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4003": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4202": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4402": {
+     "diffs": 0,
+     "diff_axes": [],
+     "na_axes": [],
+     "sha_hit": true
+    },
+    "4604": {
+     "diffs": 4,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4631": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "trust_certs",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4655": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "trust_certs",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    }
+   },
+   "verdict": {
+    "verdict": "known-release",
+    "matches_known_release": true,
+    "distinct_fingerprints_count": 0,
+    "matched_release": "4402",
+    "note": "byte-identity under the registered sha convention"
+   },
+   "wall_seconds": 2.4
+  },
+  "4604": {
+   "image": "asus-prime-b450-plus-4604.rom",
+   "observed": {
+    "rom_bytes": 16777216,
+    "rom_sha_full": "30ac09e07f539973",
+    "rom_sha_body": "eddccf1e75f28adc",
+    "agesa_level": "1.2.0.Ca",
+    "agesa_multi": null,
+    "dsdt_sha16_set": [
+     "6aef1067d6cd5a76",
+     "7f47587bc0c8d90b",
+     "a6eb677d97b0699c",
+     "f23c571b48b6d9e6"
+    ],
+    "dsdt_primary": "f23c571b48b6d9e6",
+    "dsdt_instances": {
+     "a6eb677d97b0699c": 1,
+     "7f47587bc0c8d90b": 1,
+     "f23c571b48b6d9e6": 2,
+     "6aef1067d6cd5a76": 1
+    },
+    "smm_census": {
+     "SMM": 106,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "trust_sightings": 18,
+    "trust_certs": [
+     "281734d4592d1291",
+     "33846b545a49c9be",
+     "46011ede1c147eb2",
+     "69a5f4a923962bbf",
+     "d2f6e46ded7422cc",
+     "e9158c6af5688cfc"
+    ],
+    "armor_core": 4,
+    "armor_added": 7,
+    "armor_quartet_present": true,
+    "sbrom_armorsmm_present": true,
+    "genome_profile": [
+     5,
+     2,
+     0
+    ],
+    "legacy_smm_count": 0,
+    "chip_whitelist_families": 41,
+    "module_count": 609,
+    "pierce_depth": 3,
+    "blobs_walked": 23
+   },
+   "per_rung": {
+    "3604": {
+     "diffs": 8,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3802": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3810": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4003": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4202": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4402": {
+     "diffs": 4,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4604": {
+     "diffs": 0,
+     "diff_axes": [],
+     "na_axes": [],
+     "sha_hit": true
+    },
+    "4631": {
+     "diffs": 4,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "trust_certs"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4655": {
+     "diffs": 4,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "trust_certs"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    }
+   },
+   "verdict": {
+    "verdict": "known-release",
+    "matches_known_release": true,
+    "distinct_fingerprints_count": 0,
+    "matched_release": "4604",
+    "note": "byte-identity under the registered sha convention"
+   },
+   "wall_seconds": 2.3
+  },
+  "4631": {
+   "image": "asus-prime-b450-plus-4631.rom",
+   "observed": {
+    "rom_bytes": 16777216,
+    "rom_sha_full": "29ca1e0f9c42da1d",
+    "rom_sha_body": "39e778a1a6141aeb",
+    "agesa_level": "1.2.0.E",
+    "agesa_multi": null,
+    "dsdt_sha16_set": [
+     "0a4a6f162cad3e51",
+     "436b88118401a7c9",
+     "7563a34eb7358304",
+     "b2a32b917633f8a0"
+    ],
+    "dsdt_primary": "0a4a6f162cad3e51",
+    "dsdt_instances": {
+     "7563a34eb7358304": 1,
+     "436b88118401a7c9": 1,
+     "0a4a6f162cad3e51": 2,
+     "b2a32b917633f8a0": 1
+    },
+    "smm_census": {
+     "SMM": 106,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "trust_sightings": 18,
+    "trust_certs": [
+     "281734d4592d1291",
+     "33846b545a49c9be",
+     "46011ede1c147eb2",
+     "76769fa8f2632f1f",
+     "dd60cc7a1b77ee9a",
+     "e9158c6af5688cfc"
+    ],
+    "armor_core": 4,
+    "armor_added": 7,
+    "armor_quartet_present": true,
+    "sbrom_armorsmm_present": true,
+    "genome_profile": [
+     5,
+     2,
+     0
+    ],
+    "legacy_smm_count": 0,
+    "chip_whitelist_families": 41,
+    "module_count": 609,
+    "pierce_depth": 3,
+    "blobs_walked": 23
+   },
+   "per_rung": {
+    "3604": {
+     "diffs": 8,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3802": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3810": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4003": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4202": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4402": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "trust_certs",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4604": {
+     "diffs": 4,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "trust_certs"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4631": {
+     "diffs": 0,
+     "diff_axes": [],
+     "na_axes": [],
+     "sha_hit": true
+    },
+    "4655": {
+     "diffs": 3,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "trust_certs"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    }
+   },
+   "verdict": {
+    "verdict": "known-release",
+    "matches_known_release": true,
+    "distinct_fingerprints_count": 0,
+    "matched_release": "4631",
+    "note": "byte-identity under the registered sha convention"
+   },
+   "wall_seconds": 2.4
+  },
+  "4655": {
+   "image": "asus-prime-b450-plus.rom",
+   "observed": {
+    "rom_bytes": 16777216,
+    "rom_sha_full": "284ea676ee6cbf42",
+    "rom_sha_body": "f5a826295bc8d7eb",
+    "agesa_level": "1.2.0.12",
+    "agesa_multi": null,
+    "dsdt_sha16_set": [
+     "0a4a6f162cad3e51",
+     "436b88118401a7c9",
+     "7563a34eb7358304",
+     "b2a32b917633f8a0"
+    ],
+    "dsdt_primary": "0a4a6f162cad3e51",
+    "dsdt_instances": {
+     "7563a34eb7358304": 1,
+     "436b88118401a7c9": 1,
+     "0a4a6f162cad3e51": 2,
+     "b2a32b917633f8a0": 1
+    },
+    "smm_census": {
+     "SMM": 106,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "trust_sightings": 18,
+    "trust_certs": [
+     "33846b545a49c9be",
+     "46011ede1c147eb2",
+     "4aa03fa22cd75c84",
+     "ca0b1554ecd901ea",
+     "dd60cc7a1b77ee9a",
+     "e9158c6af5688cfc"
+    ],
+    "armor_core": 4,
+    "armor_added": 7,
+    "armor_quartet_present": true,
+    "sbrom_armorsmm_present": true,
+    "genome_profile": [
+     5,
+     2,
+     0
+    ],
+    "legacy_smm_count": 0,
+    "chip_whitelist_families": 41,
+    "module_count": 609,
+    "pierce_depth": 3,
+    "blobs_walked": 23
+   },
+   "per_rung": {
+    "3604": {
+     "diffs": 8,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3802": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3810": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4003": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4202": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4402": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "trust_certs",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4604": {
+     "diffs": 4,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "trust_certs"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4631": {
+     "diffs": 3,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "trust_certs"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4655": {
+     "diffs": 0,
+     "diff_axes": [],
+     "na_axes": [],
+     "sha_hit": true
+    }
+   },
+   "verdict": {
+    "verdict": "known-release",
+    "matches_known_release": true,
+    "distinct_fingerprints_count": 0,
+    "matched_release": "4655",
+    "note": "byte-identity under the registered sha convention"
+   },
+   "wall_seconds": 2.1
+  },
+  "tuf-4645": {
+   "image": "TUF-B450-PLUS-GAMING-ASUS-4645.rom",
+   "observed": {
+    "rom_bytes": 16777216,
+    "rom_sha_full": "026fbecb0d8d05c8",
+    "rom_sha_body": "1bf8a64961d822e2",
+    "agesa_level": "1.2.0.F",
+    "agesa_multi": null,
+    "dsdt_sha16_set": [
+     "8e33767ebe4cadce",
+     "8ea0557b71e9777d",
+     "d0cfcdcc4f195b5a",
+     "ee7dff7720009c84"
+    ],
+    "dsdt_primary": "ee7dff7720009c84",
+    "dsdt_instances": {
+     "8e33767ebe4cadce": 1,
+     "d0cfcdcc4f195b5a": 1,
+     "ee7dff7720009c84": 2,
+     "8ea0557b71e9777d": 1
+    },
+    "smm_census": {
+     "SMM": 106,
+     "SMM-DXE": 0,
+     "SMM-core": 1
+    },
+    "trust_sightings": 18,
+    "trust_certs": [
+     "33846b545a49c9be",
+     "46011ede1c147eb2",
+     "4aa03fa22cd75c84",
+     "ca0b1554ecd901ea",
+     "dd60cc7a1b77ee9a",
+     "e9158c6af5688cfc"
+    ],
+    "armor_core": 4,
+    "armor_added": 7,
+    "armor_quartet_present": true,
+    "sbrom_armorsmm_present": true,
+    "genome_profile": [
+     5,
+     2,
+     0
+    ],
+    "legacy_smm_count": 0,
+    "chip_whitelist_families": 41,
+    "module_count": 609,
+    "pierce_depth": 3,
+    "blobs_walked": 23
+   },
+   "per_rung": {
+    "3604": {
+     "diffs": 8,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_core",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3802": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "3810": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4003": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4202": {
+     "diffs": 7,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "smm_census",
+      "trust_certs",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4402": {
+     "diffs": 6,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "trust_certs",
+      "armor_added",
+      "genome_profile"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4604": {
+     "diffs": 4,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "trust_certs"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4631": {
+     "diffs": 4,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set",
+      "trust_certs"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    },
+    "4655": {
+     "diffs": 3,
+     "diff_axes": [
+      "rom_sha",
+      "agesa_level",
+      "dsdt_sha16_set"
+     ],
+     "na_axes": [],
+     "sha_hit": false
+    }
+   },
+   "verdict": {
+    "verdict": "no-match-h3-eligible",
+    "matches_known_release": false,
+    "distinct_fingerprints_count": 3,
+    "nearest_release": "4655",
+    "nearest_diff_axes": [
+     "rom_sha",
+     "agesa_level",
+     "dsdt_sha16_set"
+    ],
+    "note": "differs from EVERY registered release by >=3 independent fingerprints \u2014 the P-18 H3 shape"
+   },
+   "wall_seconds": 2.4
+  }
+ },
+ "cross_vendor": {
+  "msi-b450-tomahawk-max": {
+   "sightings": 0,
+   "distinct": []
+  },
+  "gigabyte-b450-aorus-pro": {
+   "sightings": 0,
+   "distinct": []
+  },
+  "asrock-b450-steel-legend": {
+   "sightings": 0,
+   "distinct": []
+  }
+ },
+ "cert_lens_validation": {
+  "asus-3604": {
+   "registered": 4,
+   "live": 4,
+   "set_equal": true
+  },
+  "asus-3802": {
+   "registered": 4,
+   "live": 4,
+   "set_equal": true
+  },
+  "asus-3810": {
+   "registered": 6,
+   "live": 6,
+   "set_equal": true
+  },
+  "asus-4003": {
+   "registered": 6,
+   "live": 6,
+   "set_equal": true
+  },
+  "asus-4202": {
+   "registered": 6,
+   "live": 6,
+   "set_equal": true
+  },
+  "asus-4402": {
+   "registered": 6,
+   "live": 6,
+   "set_equal": true
+  },
+  "asus-4604": {
+   "registered": 6,
+   "live": 6,
+   "set_equal": true
+  },
+  "asus-4631": {
+   "registered": 6,
+   "live": 6,
+   "set_equal": true
+  },
+  "asus-4655": {
+   "registered": 6,
+   "live": 6,
+   "set_equal": true
+  },
+  "tuf-4645": {
+   "registered": 6,
+   "live": 6,
+   "set_equal": true
+  }
+ },
+ "honesty": {
+  "psp": "report-only (ring-38 ledger stands: no verdict without specimen-validated reimplementation)",
+  "whitelist_str": "the family STRING pool is measured per fingerprint; if rung-invariant it carries no identity signal \u2014 check live_selfid",
+  "anchors_are_registers": "the anchor column IS the registers; the live column is this ring's measurement \u2014 a future drift between them is a finding, never a fix"
+ }
+}

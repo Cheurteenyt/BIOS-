@@ -4,6 +4,47 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the thirty-ninth ring (le moteur d'identité)
+
+Docs-only + one new lab instrument + one new register; the tool surface is
+untouched: 15 tools, MCP smoke 12, 323 checks green.
+
+- **the identity engine**: `lab/fw39-identity.py` (tracked,
+  fw33/fw35/fw36/fw37/fw38 precedent) — the H3 machine. The question the
+  16/09 dump will pose had no instrument: is this image one of the nine
+  known PRIME B450-PLUS releases, or a published-but-unlisted build (P-18)?
+  Eight scored axes (rom_sha under both measured conventions, AGESA,
+  DSDT 4-variant set, SMM census, trust certs, armor core/added by GUID,
+  genome profile) + report-only axes (module_count, whitelist strings,
+  PSP); `identify` emits verdicts wired straight to `fw35`'s
+  `ck_identity_h3` (known-release / no-match-h3-eligible ≥3 /
+  no-match-below-floor 1-2); `matrix` calibrates the threshold.
+- **new register**: `lab/vendor-identity-matrix.json` — anchors for all
+  nine rungs re-derived from their source registers, the 36-pair
+  separation matrix (floor_full 2, floor_semantic 1), the live self-ID
+  table, the trust-lens validation 10/10 specimens, cross-vendor zero.
+- **measured before frozen** (the dress-rehearsal discipline paying off):
+  (1) the sha16 anchors are DUAL — 3604/4655 hash the FULL file,
+  3802..4631 hash the BODY rom[0x40000:] (the CAP-strip geometry); the
+  engine computes both from any dump. (2) The armor wave hides behind a
+  NESTED guided LZMA section the level-1 pierce misses — the shallow
+  under-report would have inflated a repack's diff count to exactly the
+  fake-H3 threshold (sha + armor + wave1 = 3); the lens pierces
+  recursively (depth 3, 22 blobs) and the self-diffs drop to 0 on all
+  nine rungs. (3) The trust-cert lens is born: raw-plane X.509 walk,
+  12 sightings / 4 distinct / ×3 each on 3604, set-equality with the
+  ring-22 register on 10/10 specimens, cross-vendor zero re-derived.
+  (4) The quartet counts by genome-flag GUIDs (`armor_quartet`), not UI
+  names (AMI strips them). (5) DSDTs ship as FOUR checksum-valid
+  variants per rung, occ-2 being the dsdt_clock anchor. (6) The live
+  verdict table: 9/9 known-releases at 0 diffs, TUF 4645 no-match at 3,
+  OVMF no-match — discrimination complete at ~2.4 s/image.
+- **P-18 calibrated**: no two known rungs ever separate by ≥3 semantic
+  axes (floor 1: 3802↔3810 differ only in trust certs); the frozen
+  hit≥3/partial=2/miss semantics stand, now with a measured context.
+- selftest: two-tier, 54 gates, tier I live — exits 2 on any register
+  drift, 1 on any live failure.
+
 ## Unreleased — the thirty-eighth ring (l'examen blanc)
 
 Docs-only + one new lab instrument; the tool surface is untouched: 15 tools,
