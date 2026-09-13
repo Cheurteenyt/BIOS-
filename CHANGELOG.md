@@ -4,6 +4,53 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the forty-second ring (le dossier, the triptych machine)
+
+Docs-only + one new lab instrument + one new register; the tool surface is
+untouched: 15 tools, MCP smoke 12, 323 checks green.
+
+- `lab/fw42-dossier.py` (TRACKED, precedent fw33/35/36/37/38/39/40/41):
+  the fourth weld — the third reading (fw41) ran BESIDE the chain and
+  the operator was the only place the three readings met. fw42 welds
+  oracle (fw35, via the fw40 weld of exam 38 + identify 39) + judge +
+  detector into ONE document (`dossier <image>` — the day-0 ONE
+  command, lenses pass through; `dossier-pair <old> <new>` — the
+  release-41 command) and adds the coherence layer: the blind-spot map
+  (each of the 26 predictions → the detector axis that could confirm a
+  miss, or blind with a reason — measured: 14 set / 2 co-travel /
+  **9 blind** / 1 identity), coupling classes (aligned/confirmed/bare/
+  blind/identity), identity couplings (known-clean / coherent-foreign /
+  suspicious / refused-contradiction — impossible by the fw41 coverage
+  proof, exit 2 not a class), claim-free profiles (clean / stranger /
+  suspicious / refused, clean-pair / event-pair; the H3 question is
+  deliberately NOT a profile). Four laws: L1 completeness, L2 coherence,
+  L3 calibration (byte-identity forces the scoreline onto the registered
+  ceiling — deviation = refusal), L4 separation (the fw40 law, echoed).
+  Pair mode adds the beyond-register event class: brand-new species =
+  births that even the register universe cannot claim.
+- `lab/vendor-dossier-register.json` (via `scripts/ring42_artifact.py`,
+  resume-safe one-write-per-unit): the triptych calibration — the NINE
+  clean dossiers (every rung profile clean, zero unregistered; the
+  monotone decline measured on the FULL ladder **10→8→7→6→5→4→4→4→4**
+  hits with the late plateau = the four constants P-01/P-09/P-17/P-23),
+  the stranger signature re-proven through the welded chain ({P-04,
+  P-05, P-18}, OVMF 109 unregistered), the sibling residue (TUF 4645:
+  no-match at 3 diffs, 5 unregistered), the pair null as a dossier
+  (3802→3810: clean-pair, births=0 deaths=0, 3/2/21).
+- Two pure performance welds, measured: one deep walk per image (a
+  process-wide memoization of fw39._deep_inventory — gates I2/I9 count
+  5 walks for 5 images across the whole live tier) and one universes
+  build per process (build_universes deep-walks all nine rungs — 159.6 s
+  measured once; every subsequent novelty reading 17.7 s, a 9× saving;
+  fw41 untouched, its public `novelty(image, universes)` signature
+  already exposed the seam).
+- Selftest: 23 gates, two-tier, tier I live (R1–R14 laws + I1–I9 live
+  corpus: the clean ceiling anchors, the walk discipline, the stranger
+  signature exact, the pair null exact, register freshness roundtrip).
+- Docs: lab/findings-forty-second-ring.md, lab/README (+3 rows), README
+  (forty-two), docs/day0-report §2 (Ring-42 encart: the dossier command
+  and how to read the profile), CHANGELOG (this section).
+
 ## Unreleased — the forty-first ring (the unregistered detector)
 
 Docs-only + one new lab instrument + one new register; the tool surface is

@@ -1,0 +1,363 @@
+{
+  "schema": "omarchy-firmware/vendor-dossier-register@1",
+  "date": "2026-09-13",
+  "ring": 42,
+  "title": "the dossier envelope \u2014 the triptych calibration: clean dossiers for all nine rungs, the stranger signature, the sibling residue, the pair null; the 16/09 dump lands against measured profiles",
+  "instrument": "fw42-dossier",
+  "laws": [
+    "L1 completeness",
+    "L2 coherence",
+    "L3 calibration",
+    "L4 separation"
+  ],
+  "axis_map": {
+    "P-01": [
+      "rom",
+      "blind",
+      "the detector reports rom_bytes but sizes carry no class"
+    ],
+    "P-02": [
+      "agesa",
+      "set",
+      "the agesa axis classifies the version token directly"
+    ],
+    "P-03": [
+      "agesa",
+      "co",
+      "the prefix travels inside the token the agesa axis extracts; a prefix-only swap is co-travel, not set proof"
+    ],
+    "P-04": [
+      "species",
+      "set",
+      "the armor quartet are genome species (born 3802)"
+    ],
+    "P-05": [
+      "species",
+      "set",
+      "SbRomArmorSmm is a genome species (born 3802)"
+    ],
+    "P-06": [
+      "whitelist",
+      "set",
+      "the chip-table axis diffs families both ways"
+    ],
+    "P-07": [
+      "smm",
+      "set",
+      "legacy SMM presence is a set phenomenon on the smm axis"
+    ],
+    "P-08": [
+      "species",
+      "co",
+      "a pure recount (same GUIDs, different count) is invisible to sets; count deviations usually co-travel with births/deaths"
+    ],
+    "P-09": [
+      "dsdt",
+      "set",
+      "the dsdt axis diffs checksum-valid DSDT variants"
+    ],
+    "P-10": [
+      "acpi-ssdt",
+      "blind",
+      "the dsdt universe tracks DSDT hashes only; AOD SSDT revisions leave no trace on it"
+    ],
+    "P-11": [
+      "certs",
+      "set",
+      "the certs axis diffs X.509 bodies against the DER universe"
+    ],
+    "P-12": [
+      "ifr",
+      "blind",
+      "no detector axis reads the setup facade"
+    ],
+    "P-13": [
+      "ifr",
+      "blind",
+      "no detector axis reads form-package validity"
+    ],
+    "P-14": [
+      "varstore",
+      "blind",
+      "no detector axis reads the factory Setup varstore"
+    ],
+    "P-15": [
+      "varstore",
+      "blind",
+      "never-asked bytes live only in lens territory"
+    ],
+    "P-16": [
+      "varstore",
+      "blind",
+      "the never-asked share is a varstore-derived ratio"
+    ],
+    "P-17": [
+      "smm",
+      "set",
+      "the smm axis diffs SMM-typed GUID sets"
+    ],
+    "P-18": [
+      "identity",
+      "identity",
+      "the H3 verdict IS the identity layer; the row rides on identity_coupling"
+    ],
+    "P-19": [
+      "psp",
+      "blind",
+      "no detector axis reads PSP bodies"
+    ],
+    "P-20": [
+      "agesa",
+      "set",
+      "the agesa axis carries the P-20 floor class"
+    ],
+    "P-21": [
+      "species",
+      "set",
+      "a third armor wave would surface as armor-species set changes"
+    ],
+    "P-22": [
+      "species",
+      "set",
+      "births/deaths are set phenomena on the species axis"
+    ],
+    "P-23": [
+      "certs",
+      "set",
+      "the certs axis diffs the DER trust set"
+    ],
+    "P-24": [
+      "ifr",
+      "blind",
+      "the facade floor is IFR territory"
+    ],
+    "P-25": [
+      "dsdt",
+      "set",
+      "the dsdt axis diffs checksum-valid DSDT variants"
+    ],
+    "P-26": [
+      "whitelist",
+      "set",
+      "the chip-table axis diffs families both ways"
+    ]
+  },
+  "blind_spot_counts": {
+    "set": 14,
+    "co": 2,
+    "blind": 9,
+    "identity": 1
+  },
+  "definitions": {
+    "couplings": {
+      "aligned": "the row hit \u2014 nothing to explain",
+      "na": "the row could not be scored (unfilled slot)",
+      "confirmed": "miss/partial AND the detector has unregistered entries on the same axis \u2014 the third reading explains the miss",
+      "bare": "miss/partial with NO detector entry on the axis \u2014 lens or measurement error, or a divergence deeper than the detector names",
+      "blind": "miss/partial on a prediction the detector cannot see (the 9-row blind spot) \u2014 the operator lens is the only witness",
+      "identity": "P-18 rides on identity_coupling"
+    },
+    "identity_couplings": {
+      "known-clean": "known-release + zero unregistered",
+      "coherent-foreign": "no-match + unregistered content",
+      "suspicious": "no-match + zero unregistered \u2014 the judge sees differences the detector cannot name; check the blind axes",
+      "refused-contradiction": "known-release + unregistered content \u2014 impossible by the fw41 coverage proof; exit 2"
+    },
+    "profiles": {
+      "clean": "the image IS a known release, exactly",
+      "stranger": "no-match + the detector names the residue",
+      "suspicious": "no-match + the detector is silent",
+      "refused": "an instrument disagreement \u2014 no profile claimed",
+      "clean-pair": "a routine pair: zero births, zero deaths",
+      "event-pair": "a pair with births/deaths \u2014 registered or beyond-register"
+    }
+  },
+  "clean_dossiers": {
+    "3604": {
+      "image": "asus-prime-b450-plus-ref.rom",
+      "verdict": "known-release",
+      "matched_release": "3604",
+      "counts": {
+        "hit": 10,
+        "partial": 1,
+        "miss": 1,
+        "na": 14
+      },
+      "unregistered_total": 0,
+      "identity_coupling": "known-clean",
+      "profile": "clean",
+      "ceiling_note": "scoreline == 3604 ceiling"
+    },
+    "3802": {
+      "image": "asus-prime-b450-plus-3802.rom",
+      "verdict": "known-release",
+      "matched_release": "3802",
+      "counts": {
+        "hit": 8,
+        "partial": 1,
+        "miss": 3,
+        "na": 14
+      },
+      "unregistered_total": 0,
+      "identity_coupling": "known-clean",
+      "profile": "clean",
+      "ceiling_note": "scoreline == 3802 ceiling"
+    },
+    "3810": {
+      "image": "asus-prime-b450-plus-3810.rom",
+      "verdict": "known-release",
+      "matched_release": "3810",
+      "counts": {
+        "hit": 7,
+        "partial": 1,
+        "miss": 4,
+        "na": 14
+      },
+      "unregistered_total": 0,
+      "identity_coupling": "known-clean",
+      "profile": "clean",
+      "ceiling_note": "scoreline == 3810 ceiling"
+    },
+    "4003": {
+      "image": "asus-prime-b450-plus-4003.rom",
+      "verdict": "known-release",
+      "matched_release": "4003",
+      "counts": {
+        "hit": 6,
+        "partial": 2,
+        "miss": 4,
+        "na": 14
+      },
+      "unregistered_total": 0,
+      "identity_coupling": "known-clean",
+      "profile": "clean",
+      "ceiling_note": "byte-identical to 4003; no ceiling registered for that rung (extension lives in vendor-dossier-register.json)"
+    },
+    "4202": {
+      "image": "asus-prime-b450-plus-4202.rom",
+      "verdict": "known-release",
+      "matched_release": "4202",
+      "counts": {
+        "hit": 5,
+        "partial": 2,
+        "miss": 5,
+        "na": 14
+      },
+      "unregistered_total": 0,
+      "identity_coupling": "known-clean",
+      "profile": "clean",
+      "ceiling_note": "byte-identical to 4202; no ceiling registered for that rung (extension lives in vendor-dossier-register.json)"
+    },
+    "4402": {
+      "image": "asus-prime-b450-plus-4402.rom",
+      "verdict": "known-release",
+      "matched_release": "4402",
+      "counts": {
+        "hit": 4,
+        "partial": 1,
+        "miss": 7,
+        "na": 14
+      },
+      "unregistered_total": 0,
+      "identity_coupling": "known-clean",
+      "profile": "clean",
+      "ceiling_note": "byte-identical to 4402; no ceiling registered for that rung (extension lives in vendor-dossier-register.json)"
+    },
+    "4604": {
+      "image": "asus-prime-b450-plus-4604.rom",
+      "verdict": "known-release",
+      "matched_release": "4604",
+      "counts": {
+        "hit": 4,
+        "partial": 1,
+        "miss": 7,
+        "na": 14
+      },
+      "unregistered_total": 0,
+      "identity_coupling": "known-clean",
+      "profile": "clean",
+      "ceiling_note": "byte-identical to 4604; no ceiling registered for that rung (extension lives in vendor-dossier-register.json)"
+    },
+    "4631": {
+      "image": "asus-prime-b450-plus-4631.rom",
+      "verdict": "known-release",
+      "matched_release": "4631",
+      "counts": {
+        "hit": 4,
+        "partial": 1,
+        "miss": 7,
+        "na": 14
+      },
+      "unregistered_total": 0,
+      "identity_coupling": "known-clean",
+      "profile": "clean",
+      "ceiling_note": "byte-identical to 4631; no ceiling registered for that rung (extension lives in vendor-dossier-register.json)"
+    },
+    "4655": {
+      "image": "asus-prime-b450-plus.rom",
+      "verdict": "known-release",
+      "matched_release": "4655",
+      "counts": {
+        "hit": 4,
+        "partial": 1,
+        "miss": 7,
+        "na": 14
+      },
+      "unregistered_total": 0,
+      "identity_coupling": "known-clean",
+      "profile": "clean",
+      "ceiling_note": "scoreline == 4655 ceiling"
+    }
+  },
+  "foreign_dossier": {
+    "image": "scratch-ovmf/unified-4M.fd",
+    "verdict": "no-match-h3-eligible",
+    "counts": {
+      "hit": 3,
+      "partial": 0,
+      "miss": 6,
+      "na": 17
+    },
+    "hit_set": [
+      "P-04",
+      "P-05",
+      "P-18"
+    ],
+    "unregistered_total": 109,
+    "identity_coupling": "coherent-foreign",
+    "profile": "stranger",
+    "note": "the stranger signature: the welded hit-set is exactly the two absence predictions plus P-18 itself \u2014 the H3 prediction agreeing with the H3 machine"
+  },
+  "sibling_dossier": {
+    "image": "asus/TUF-B450-PLUS-GAMING-ASUS-4645.rom",
+    "verdict": "no-match-h3-eligible",
+    "distinct_fingerprints_count": 3,
+    "counts": {
+      "hit": 5,
+      "partial": 1,
+      "miss": 6,
+      "na": 14
+    },
+    "unregistered_total": 5,
+    "identity_coupling": "coherent-foreign",
+    "profile": "stranger",
+    "note": "a same-vendor sibling is almost inside the universe; the residue the detector names is exactly the kind of silent difference the third reading exists for"
+  },
+  "pair_null_dossier": {
+    "old": "asus-prime-b450-plus-3802.rom",
+    "new": "asus-prime-b450-plus-3810.rom",
+    "counts": {
+      "hit": 3,
+      "partial": 0,
+      "miss": 2,
+      "na": 21
+    },
+    "births": 0,
+    "deaths": 0,
+    "brand_new_species": 0,
+    "coupling": "clean-pair",
+    "identity_coupling": "known-clean",
+    "profile": "clean-pair",
+    "note": "the release-41 null model as a dossier: a routine historical pair scores clean-pair \u2014 P-22/P-23/P-26 hit, P-20/P-21 miss (what a true release-41 must hit that this pair cannot)"
+  }
+}
