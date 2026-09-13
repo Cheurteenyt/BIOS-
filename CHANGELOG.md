@@ -4,6 +4,44 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the forty-first ring (the unregistered detector)
+
+Docs-only + one new lab instrument + one new register; the tool surface is
+untouched: 15 tools, MCP smoke 12, 323 checks green.
+
+- `lab/fw41-novelty.py` (TRACKED, precedent fw33/35/36/37/38/39/40): the
+  unregistered detector — the third reading. The oracle (fw35) measures
+  against 26 frozen predictions, the judge (fw39) against the nine known
+  rungs; nothing yet answered "what lies OUTSIDE every register and every
+  envelope". Six axes (species, certs, dsdt, agesa, whitelist, smm), each
+  a universe re-derived from the registers plus a live extraction; classes
+  known / anticipated (P-02 day-0 envelope, P-20 floor within the 1.2.0.x
+  line) / unregistered; loud claim-free degradation when the corpus cannot
+  calibrate a live universe; modes novelty/ledger/selftest/manifest.
+- `lab/vendor-novelty-ledger.json`: the ZERO ledger — entries=[] BY PROOF
+  (I1/I2: zero unregistered on 3604 and 4655; I3: the foreign stand-in
+  scores 109 unregistered), register snapshot beside live calibration
+  (species universe 615 = 330 register transition species + 285 quiet,
+  SMM universe 109, the one-name extractor deviation).
+- Ring discoveries: the genome's 330 species are the TRANSITION species
+  only (the quiet majority lives only in the corpus — gate R13 proves
+  register ⊆ live union); the 'AMD rom armor' banner is an ENTRY born at
+  3802, not a header (the register's banner method cannot see 3604); the
+  STRUCTURAL chip-table extractor (NUL-terminated 8-aligned chains,
+  digit-bearing ≤4-token names) is strictly more faithful than the
+  register — `STM/Micron/Numonyx 25PF/PX Series` rides all nine rungs and
+  was dropped by the original probe (deviation registered, register stays
+  frozen); the AGESA ladder is the AMD scheme 6b < 7 < 8 < A < B < Ca <
+  E < 12; the P-02 envelope parses from structured fields, not prose.
+- Selftest two-tier 25 gates (13 R + 12 I, tier I live): the needle gate
+  (one flipped GUID byte on a known rung → exactly one unregistered
+  species), the extractor gate (register covered 9/9, deviation stable),
+  the agreement gate (judge known-release == detector clean), the
+  degraded-honesty gate. Exit 2 on any drift.
+- Docs: lab/findings-forty-first-ring.md, lab/README (+2 rows), README
+  (forty-one), docs/day0-report §2 (Ring-41 encart: the third-reading
+  command beside the chain).
+
 ## Unreleased — the fortieth ring (la soudure)
 
 Docs-only + one new lab instrument + one new register; the tool surface is

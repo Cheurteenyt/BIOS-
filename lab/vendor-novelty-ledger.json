@@ -1,0 +1,53 @@
+{
+ "schema": "omarchy-firmware/vendor-novelty-ledger@1",
+ "date": "2026-09-13",
+ "ring": 41,
+ "title": "the zero ledger — everything measured so far is inside the universe; entries begin at the first event that surprises the registers",
+ "instrument": "fw41-novelty",
+ "axes": [
+  "species",
+  "certs",
+  "dsdt",
+  "agesa",
+  "whitelist",
+  "smm"
+ ],
+ "universe_snapshot": {
+  "species": 330,
+  "certs": 14,
+  "dsdt": 12,
+  "whitelist": 46
+ },
+ "live_calibration": {
+  "note": "measured at ring-41 freeze on the surviving corpus; re-derived live by the instrument, never authoritative",
+  "species_live_universe": 615,
+  "smm_live_universe": 109,
+  "whitelist_extractor_deviation": [
+   "STM/Micron/Numonyx 25PF/PX Series"
+  ],
+  "deviation_note": "STM/Micron/Numonyx 25PF/PX Series is carried by the firmware's chip table on ALL NINE rungs but absent from vendor-armor-chipdb.json — the original probe lost it; the register stays frozen (P-06/P-26 count the REGISTER's families), the instrument registers the deviation instead"
+ },
+ "universe_sources": {
+  "species": "vendor-genome.json 330 TRANSITION species + the live union across the nine rungs (the quiet majority never changes and is absent from the register — gate R13 proves register ⊆ live union)",
+  "certs": "vendor-der-inventory.json (per-rung trust_distinct; 4 @3604, frozen 6 from 3810, union 14)",
+  "dsdt": "vendor-acpi.json (checksum-valid shipped variants per rung; clock anchors 27d5e826e111d755 / 0a4a6f162cad3e51)",
+  "agesa": "vendor-agesa.json ladder (6b < 7 < 8 < A < B < Ca < E < 12, the AMD scheme) + vendor-oracle.json P-02 day-0 envelope and P-20 floor 1.2.0.12",
+  "whitelist": "vendor-armor-chipdb.json (41@3604 union 46) + the live extractor deviation (gate I11: register covered 9/9, deviation stable)",
+  "smm": "LIVE corpus union across the nine rungs (no register stores SMM GUID sets; loud degradation when absent)"
+ },
+ "entries": [],
+ "coverage": {
+  "gates": [
+   "I1",
+   "I2",
+   "I3"
+  ],
+  "statement": "fw41 selftest tier I proves ZERO unregistered on the known rungs 3604 and 4655 (both sha conventions) and unavoidable novelty on the foreign stand-in; a known image landing anywhere but inside-universe is an instrument bug, not a finding."
+ },
+ "honesty": [
+  "the species, SMM and whitelist-deviation universes are live-derived, not registered — every claim from them degrades loudly when the corpus is absent (gate I9)",
+  "the whitelist extractor is STRUCTURAL (NUL-terminated 8-aligned chains, digit-bearing <=4-token names), not the register's lost banner method; it is gate-validated against all nine table_sets and found STRICTLY MORE FAITHFUL than the register (one name the original probe dropped)",
+  "contradiction is not a class here: expectation violations are the oracle's (fw35) verdicts; fw41 only enumerates the outside",
+  "PSP remains report-only (ring-38 honesty ledger stands)"
+ ]
+}
