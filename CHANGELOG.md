@@ -4,6 +4,62 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the forty-seventh ring (the pair witness — set-anchored pair coherence, measured)
+
+Docs-only + one new tracked instrument + one new register; the tool
+surface is untouched: 15 tools, MCP smoke 12, 323 checks green; the
+ring composes on top of the unchanged fw37/42/43/45 machinery (the
+fw46 pattern) — never instead.
+
+- **The pair layer anchored to the SETS** (`lab/fw47-pairmarks.py`
+  TRACKED): ring 46 healed the count-blindness inside the day-0 fused
+  chain, but fw42's `dossier_pair` — the release-41 command the board
+  meets AFTER a flash — still read the pair through module SPECIES
+  only. The measured release 3644→3645 births ZERO species and kills
+  ZERO species: its fw42 profile reads clean-pair, the NULL profile,
+  on the exact pair the registers proclaim to be THE discriminator
+  event. fw47 reads the PSP body-hash sets live on both images, marks
+  them against `vendor-b550-lens.json psp_set_deltas` (release 37/37,
+  board 65/65 — anchor-checked both directions or a loud refusal;
+  unknown pairs claim no anchor, never invented), and derives the
+  corrected class from the full evidence: refused >
+  beyond-register-births > registered-births > **swap-event** (NEW —
+  content swapped inside stable containers) > clean-pair (now REQUIRES
+  set delta == 0). Counts are emitted only as the labeled blindness
+  witness, never as a mark (L1); frozen registers are read, never
+  rewritten (L3).
+- **The crown measured** (`vendor-pairmarks-register.json`, one write,
+  assertion-gated, roundtrip-checked): the release pair
+  (`cohere b550w2-3644.rom b550w2-3645.rom`, 206 s) — PSP != 37/37,
+  count witness ==, 0/0 species, 18 modules changed (−992 B module-
+  size drift against the differ's 7,544,486 B run-level), fw42
+  clean-pair CORRECTED to swap-event with the correction NAMED in the
+  same document; side readings identity no-match-h3-eligible and
+  novelty 75 unregistered (74 on 3644 — +1, a real release
+  observation, recorded). The board pair (same version number, sibling
+  board): 65/65, 0 births / **4 deaths**, 108 changed —
+  registered-births: the version-number trap gets its pair-level
+  signature (the release kills zero species; the board kills four).
+- **The null3802 verdict**: the ring-42 frozen pair-null (3802→3810,
+  clean-pair) was itself count-blind — 17/17 PSP hashes inside
+  193-hash sets, 34 modules changed (−86,264 B). Verdict: corrected;
+  the correction lives in the new register, the frozen register is
+  never rewritten. The ring-46 lesson reached back and corrected the
+  null model every later pair was judged against.
+- **The pre-registration ledger**: 8 PRs frozen in the gate names
+  before the crown ran — 7 hit, PR-6 (board 0/0 species) REFUTED by
+  the measurement (0/4) and kept visible pre-freeze (the ring-45
+  precedent). First-run selftest 29/32 (one test-data bug + the PR-6
+  refutation arriving through the gates); final 32/32 with the crown
+  register live.
+- `selftest` two-tier 32 gates (tier I live: the release pair, the
+  board pair, the null re-read, the crown register cross-check);
+  `marks`, `cohere`, `null3802`, `manifest`; L4 zero writes
+  (assembled-pattern police). Day-1 usage pre-registered: a
+  flashed-3645 board is a swap-event vs stock-3644 (37/37, zero
+  births, zero deaths) — any deviation is the board's own NVRAM/flash
+  story.
+
 ## Unreleased — the forty-sixth ring (the auto-dossier — the day-0 chain fused into ONE command, measured)
 
 Docs-only + one new tracked instrument + one new register; the tool

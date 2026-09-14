@@ -1,0 +1,147 @@
+{
+ "corrected_taxonomy": {
+  "clean-pair": "now REQUIRES set delta == 0 (the ring-47 correction of the species-only taxonomy)",
+  "precedence": [
+   "refused",
+   "beyond-register-births",
+   "registered-births",
+   "swap-event",
+   "clean-pair"
+  ],
+  "swap-event": "NEW class \u2014 content swapped inside stable containers (0 species births/deaths, set delta > 0)"
+ },
+ "crown": {
+  "board_pair": {
+   "corrected_profile": "registered-births",
+   "new": "b550-nw-3644.rom",
+   "old": "b550w2-3644.rom",
+   "pr6_refuted": "PR-6 predicted 0 births / 0 deaths for the same-version sibling; the measurement says 0/4 \u2014 the sibling kills 4 species. The prediction is kept visible, the measurement wins (pre-freeze correction, ring-45 precedent)",
+   "psp": {
+    "added": 65,
+    "anchor": "board 65/65 (vendor-b550-lens.json psp_set_deltas)",
+    "count_witness": "==",
+    "new_count": 203,
+    "old_count": 203,
+    "removed": 65
+   },
+   "species": {
+    "births": 0,
+    "byte_delta": -13008,
+    "changed_modules": 108,
+    "deaths": 4
+   }
+  },
+  "null3802": {
+   "frozen_row": {
+    "births": 0,
+    "deaths": 0,
+    "profile": "clean-pair",
+    "source": "vendor-dossier-register.json pair_null_dossier (ring 42)"
+   },
+   "note": "the ring-42 null model was itself count-blind: 3802->3810 swapped 17 PSP hashes inside 193-hash sets and changed 34 modules (-86,264 B) under a clean-pair profile. The correction lives HERE; the frozen register is never rewritten",
+   "re_reading": {
+    "psp": {
+     "added": 17,
+     "anchor": null,
+     "count_witness": "==",
+     "new_count": 193,
+     "old_count": 193,
+     "removed": 17
+    },
+    "species": {
+     "births": 0,
+     "byte_delta": -86264,
+     "changed_modules": 34,
+     "deaths": 0
+    }
+   },
+   "verdict": "corrected"
+  },
+  "release_pair": {
+   "corrected_profile": "swap-event",
+   "fw42_profile": "clean-pair",
+   "fw42_side_readings": {
+    "identity_on_3645": "no-match-h3-eligible",
+    "note": "ring 44 measured 74 unregistered on 3644 \u2014 the release carries +1 (a real release observation, recorded, not smoothed)",
+    "novelty_unregistered_total_3645": 75
+   },
+   "new": "b550w2-3645.rom",
+   "new_sha256_16": "0a1b5bda5be78e4b",
+   "old": "b550w2-3644.rom",
+   "old_sha256_16": "5f7a0e439772c160",
+   "profile_correction": "clean-pair -> swap-event (the correction is NAMED in the dossier, never smoothed)",
+   "psp": {
+    "added": 37,
+    "anchor": "release 37/37 (vendor-b550-lens.json psp_set_deltas)",
+    "count_witness": "==",
+    "new_count": 203,
+    "old_count": 203,
+    "removed": 37
+   },
+   "species": {
+    "births": 0,
+    "byte_delta": -992,
+    "changed_modules": 18,
+    "common": 616,
+    "deaths": 0,
+    "identical": 598
+   },
+   "wall_seconds": 206
+  }
+ },
+ "date": "2026-09-15",
+ "day1_usage": [
+  "python3 lab/fw47-pairmarks.py marks dump.rom b550w2-3645.rom        # post-flash: the set-level review of what the flash changed",
+  "python3 lab/fw47-pairmarks.py cohere b550w2-3644.rom b550w2-3645.rom        # the corrected pair dossier, the release-41 event named",
+  "a flashed-3645 board is a swap-event vs stock-3644 (37/37, 0 births/deaths); a deviation from THOSE marks is the board's own NVRAM/flash story"
+ ],
+ "honesty": [
+  "the byte_delta values are MODULE-SIZE deltas (fw37 ledger); the run-level 22.5% (7,544,486 B) is the ring-44 differ's \u2014 different rulers, both recorded",
+  "the B450 null pair claims NO anchor (no registered B450 sets) \u2014 the 17/17 is a measurement, not a reproduction",
+  "fw42 is FROZEN and untouched: the correction composes on top (the fw46 pattern), the frozen registers are read, never rewritten"
+ ],
+ "instrument": "fw47-pairmarks",
+ "laws": {
+  "L1": "set-truth-over-count \u2014 pair marks read the PSP sets; counts are witnesses, never marks",
+  "L2": "anchors-before-marks \u2014 registered pairs must reproduce their registered delta or refuse; unknown pairs claim no anchor, never invented",
+  "L3": "corrected-taxonomy \u2014 clean-pair requires set delta == 0; frozen registers are read, never rewritten; contradictions are recorded as named corrections",
+  "L4": "zero writes \u2014 the instrument's only write site is the --out document (grep-policed)"
+ },
+ "pre_registrations": {
+  "PR-1": {
+   "claim": "release pair births=0 deaths=0",
+   "outcome": "HIT"
+  },
+  "PR-2": {
+   "claim": "release psp 37/37 (lens reproduction)",
+   "outcome": "HIT"
+  },
+  "PR-3": {
+   "claim": "release count witness == (203/203)",
+   "outcome": "HIT"
+  },
+  "PR-4": {
+   "claim": "release corrected swap-event, fw42 clean-pair, correction named",
+   "outcome": "HIT"
+  },
+  "PR-5": {
+   "claim": "board psp 65/65 (lens reproduction)",
+   "outcome": "HIT"
+  },
+  "PR-6": {
+   "claim": "board births=0 deaths=0",
+   "outcome": "REFUTED \u2014 measured 0/4"
+  },
+  "PR-7": {
+   "claim": "null3802 births/deaths reproduce the frozen row 0/0",
+   "outcome": "HIT"
+  },
+  "PR-8": {
+   "claim": "null3802 PSP delta unknown (no registered B450 sets) \u2014 verdict by measurement",
+   "outcome": "RESOLVED \u2014 17/17, corrected"
+  }
+ },
+ "ring": 47,
+ "schema": "vendor-pairmarks-register/1.0",
+ "title": "the pair witness: set-anchored pair coherence, measured"
+}
