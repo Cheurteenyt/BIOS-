@@ -1,0 +1,821 @@
+{
+ "schema": "omarchy-firmware/ring44-ledger-b550w2@1",
+ "date": "2026-09-14",
+ "title": "the corrected board: TUF GAMING B550-PLUS WIFI II — question_3644 resolved by acquisition, not by the dump",
+ "founder_correction": {
+  "was": "the physical board reports BIOS 3644 (ASUS B450-PLUS class)",
+  "now": "TUF GAMING B550-PLUS WIFI II (CAP name TG550PW2.CAP)",
+  "impact": "every B450-anchored day-0 reading keeps its register frozen; the scoreline is read against the measured stranger point below"
+ },
+ "question_3644": {
+  "H1_contaminated_acquisition": "proven (ring 14) for the bogus zip",
+  "H2_board_model_variant": "PROVEN this ring — 3644 lives in the WIFI II and non-WIFI B550 ledgers (both 2026/08/27), absent from every B450 ledger (rings 12/14) and from the WI-FI v1 ledger (dead at 3636, 2026/01/27)",
+  "H3_published_but_unlisted": "refuted in the literal B450 frame (3644 IS published — for another family); the MACHINE H3 class (no-match vs the B450 corpus) is independently confirmed by fw39 on the acquired 3644: both were right at their own level",
+  "metadata_rehabilitation": "the ring-12 'contaminated' metadata (Aug 2026, AGESA 1.2.0.12) matches the WIFI II 3644 release EXACTLY — the founder's brief was right about version/date/AGESA, wrong only about the family"
+ },
+ "ledgers": {
+  "tuf_gaming_b550_plus_wifi_ii": {
+   "model": "TUF GAMING B550-PLUS WIFI II",
+   "api": "GetPDBIOS (website=global, cpu=AM4)",
+   "count": 17,
+   "releases": [
+    {
+     "version": "3645",
+     "date": "2026/09/14",
+     "size": "16.28 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3645.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"Improve system compatibility<br/><br/>Before running the USB BIOS Flashback tool，please rename the BIOS file "
+    },
+    {
+     "version": "3644",
+     "date": "2026/08/27",
+     "size": "16.28 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3644.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"1. Update AGESA version to ComboV2 PI 1.2.0.12.<br/>2. Mitigate fTPM vulnerabilities (CVE-2026-6726, CVE-2026"
+    },
+    {
+     "version": "3636",
+     "date": "2026/01/28",
+     "size": "16.19 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3636.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"Improve system compatibility<br/>Before running the USB BIOS Flashback tool，please rename the BIOS file (TG55"
+    },
+    {
+     "version": "3634",
+     "date": "2025/09/22",
+     "size": "16.2 MB",
+     "is_release": false,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3634.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"This BIOS update for Ryzen™ 5000 G-Series /4000 G-Series /3000 G-Series /2000 G-Series systems includes a cri"
+    },
+    {
+     "version": "3631",
+     "date": "2025/08/14",
+     "size": "16.2 MB",
+     "is_release": false,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3631.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"1. Updated AGESA version to ComboV2 PI 1.2.0.F.<br/>2. Implemented security updates.<br/>Before running the U"
+    },
+    {
+     "version": "3621",
+     "date": "2025/04/01",
+     "size": "16.17 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3621.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"1. Updated AGESA version to ComboV2 PI 1.2.0.E.<br/>2. Implemented security updates.<br/>Before running the U"
+    },
+    {
+     "version": "3611",
+     "date": "2024/11/04",
+     "size": "16.15 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3611.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"1.Updated AGESA to version ComboV2PI 1.2.0.Cc.<br/>2.Resolved CPU exception when adjusting items like \"\"When "
+    },
+    {
+     "version": "3607",
+     "date": "2024/04/03",
+     "size": "16.15 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3607.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"Update AGESA version to ComboV2PI 1.2.0.Ca.<br/>Fix AMD processor vulnerabilities security.<br/>Before runnin"
+    },
+    {
+     "version": "3405",
+     "date": "2024/01/08",
+     "size": "16.14 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3405.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"1.This update includes the patch for the LogoFAIL vulnerabilities <br/>2.Support graphics card with M.2 stora"
+    },
+    {
+     "version": "3404",
+     "date": "2023/10/23",
+     "size": "16.15 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3404.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"1. Update AGESA version to ComboV2PI 1.2.0.B<br/>2. Update AMD 5000/3000 Series CPU fTPM version, please back"
+    },
+    {
+     "version": "3205",
+     "date": "2023/08/29",
+     "size": "16.03 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3205.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"Recommended for vital update to mitigate the potential security vulnerabilities <br/><br/>Before running the "
+    },
+    {
+     "version": "3202",
+     "date": "2023/07/14",
+     "size": "16.03 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3202.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"1. Update AGESA version to ComboV2PI 1.2.0.A<br/>2. Mitigate the AMD potential security vulnerabilities for A"
+    },
+    {
+     "version": "3002",
+     "date": "2023/03/14",
+     "size": "20.34 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3002.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"1. Update AGESA version to ComboV2PI 1208<br/>2. Mitigate the AMD potential security vulnerabilities for AMD "
+    },
+    {
+     "version": "2806",
+     "date": "2022/11/29",
+     "size": "20.32 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-2806.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"Improve system compatibility,<br/>Before running the USB flashback tool，please rename the BIOS file(TG550PW2."
+    },
+    {
+     "version": "2803",
+     "date": "2022/04/29",
+     "size": "20.31 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-2803.zip?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "\"1. Update AMD AM4 AGESA V2 PI 1.2.0.7.<br/>2. Fix AMD fTPM issue causes random stuttering.<br/><br/>Before ru"
+    },
+    {
+     "version": "2604",
+     "date": "2022/03/07",
+     "size": "20.26 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-2604.ZIP?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "1. Update AMD AM4 AGESA V2 PI 1.2.0.6b<br/><br/>2. Improve system performance and stability<br/><br/><br/>3. I"
+    },
+    {
+     "version": "0303",
+     "date": "2021/10/21",
+     "size": "20.2 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-0303.ZIP?model=TUF GAMING B550-PLUS WIFI II",
+     "desc_head": "First Release<br/>Before running the USB BIOS Flashback tool, please rename the BIOS file (TG550PW2.CAP) using"
+    }
+   ]
+  },
+  "tuf_gaming_b550_plus": {
+   "model": "TUF GAMING B550-PLUS",
+   "api": "GetPDBIOS (website=global, cpu=AM4)",
+   "count": 34,
+   "releases": [
+    {
+     "version": "3645",
+     "date": "2026/09/14",
+     "size": "16.28 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-3645.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"Improve system compatibility<br/><br/>Before running the USB BIOS Flashback tool, please rename the BIOS file"
+    },
+    {
+     "version": "3644",
+     "date": "2026/08/27",
+     "size": "16.28 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-3644.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1. Update AGESA version to ComboV2 PI 1.2.0.12.<br/>2. Mitigate fTPM vulnerabilities (CVE-2026-6726, CVE-2026"
+    },
+    {
+     "version": "3636",
+     "date": "2026/01/28",
+     "size": "16.18 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-3636.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"Improve system compatibility<br/>Before running the USB flashback tool，please rename the BIOS file(TGB550PS.C"
+    },
+    {
+     "version": "3634",
+     "date": "2025/09/22",
+     "size": "16.2 MB",
+     "is_release": false,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-3634.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"This BIOS update for Ryzen™ 5000 G-Series /4000 G-Series /3000 G-Series /2000 G-Series systems includes a cri"
+    },
+    {
+     "version": "3631",
+     "date": "2025/08/14",
+     "size": "16.19 MB",
+     "is_release": false,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-3631.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1. Updated AGESA version to ComboV2 PI 1.2.0.F.<br/>2. Implemented security updates.<br/>Before running the U"
+    },
+    {
+     "version": "3621",
+     "date": "2025/04/07",
+     "size": "16.16 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/MB/BIOS/TUF-GAMING-B550-PLUS-ASUS-3621.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "1. Updated AGESA version to ComboV2 PI 1.2.0.E.<br/>2. Implemented security updates.<br/>Before running the US"
+    },
+    {
+     "version": "3611",
+     "date": "2024/11/01",
+     "size": "16.15 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-3611.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1.Updated AGESA to version ComboV2PI 1.2.0.Cc.<br/>2.Resolved CPU exception when adjusting items like \"\"When "
+    },
+    {
+     "version": "3607",
+     "date": "2024/04/03",
+     "size": "16.15 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-3607.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"Update AGESA version to ComboV2PI 1.2.0.Ca.<br/>Fix AMD processor vulnerabilities security.<br/>Before runnin"
+    },
+    {
+     "version": "3405",
+     "date": "2024/01/08",
+     "size": "16.14 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-3405.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1.This update includes the patch for the LogoFAIL vulnerabilities <br/>2.Support graphics card with M.2 stora"
+    },
+    {
+     "version": "3404",
+     "date": "2023/10/23",
+     "size": "16.14 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-3404.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1. Update AGESA version to ComboV2PI 1.2.0.B<br/>2. Update AMD 5000/3000 Series CPU fTPM version, please back"
+    },
+    {
+     "version": "3205",
+     "date": "2023/09/04",
+     "size": "16.03 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-3205.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"Recommended for vital update to mitigate the potential security vulnerabilities <br/>Before running the USB B"
+    },
+    {
+     "version": "3202",
+     "date": "2023/07/31",
+     "size": "16.02 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-3202.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1. Update AGESA version to ComboV2PI 1.2.0.A<br/>2. Mitigate the AMD potential security vulnerabilities for A"
+    },
+    {
+     "version": "3002",
+     "date": "2023/03/14",
+     "size": "20.34 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-3002.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1. Update AGESA version to ComboV2PI 1208<br/>2. Mitigate the AMD potential security vulnerabilities for AMD "
+    },
+    {
+     "version": "2806",
+     "date": "2022/12/12",
+     "size": "20.31 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-2806.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"Improve system compatibility,<br/>Before running the USB BIOS Flashback tool, please rename the BIOS file (TG"
+    },
+    {
+     "version": "2803",
+     "date": "2022/04/29",
+     "size": "20.31 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-2803.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1. Update AMD AM4 AGESA V2 PI 1.2.0.7.<br/>2. Fix AMD fTPM issue causes random stuttering.<br/><br/><br/>Befo"
+    },
+    {
+     "version": "2604",
+     "date": "2022/03/07",
+     "size": "20.26 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-2604.ZIP?model=TUF GAMING B550-PLUS",
+     "desc_head": "1. Update AMD AM4 AGESA V2 PI 1.2.0.6b<br/><br/>2. Improve system performance and stability<br/><br/><br/>3. I"
+    },
+    {
+     "version": "2423",
+     "date": "2021/08/26",
+     "size": "20.18 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-2423.ZIP?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1. Update AMD AM4 AGESA V2 PI 1.2.0.3 Patch C<br/>2. Improve system performance<br/><br/>Before running the U"
+    },
+    {
+     "version": "2407",
+     "date": "2021/08/04",
+     "size": "20.16 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-2407.ZIP?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"Support Windows 11 by default, no settings changes required in the UEFI BIOS.<br/><br/><br/>before running th"
+    },
+    {
+     "version": "2403",
+     "date": "2021/06/21",
+     "size": "20.15 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-ASUS-2403.ZIP?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1. Update AMD AM4 AGESA V2 PI 1.2.0.3 Patch A<br/>2. Improve system stability<br/><br/>Before running the USB"
+    },
+    {
+     "version": "2006",
+     "date": "2021/04/08",
+     "size": "20.03 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-2006.ZIP?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"- Update AMD AM4 AGESA V2 PI 1.2.0.1 Patch A<br/>- Fix USB connectivity issue<br/>Before running the USB BIOS"
+    },
+    {
+     "version": "2003",
+     "date": "2021/03/27",
+     "size": "20.03 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-2003.ZIP?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"- Update AMD AM4 AGESA V2 PI 1.2.0.1<br/>- Support Smart Access Memory for Ryzen 3000 Series Processors<br/>-"
+    },
+    {
+     "version": "1804",
+     "date": "2021/02/09",
+     "size": "20 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-1804.ZIP?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1.     Update AMD AM4 AGESA V2 PI 1.2.0.0<br/>2.     Update AMD RAID UEFI driver<br/>3.     Improve system st"
+    },
+    {
+     "version": "1602",
+     "date": "2021/01/08",
+     "size": "19.8 MB",
+     "is_release": false,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-1602.ZIP?model=TUF GAMING B550-PLUS",
+     "desc_head": "Update AMD AM4 AGESA V2 PI 1.1.9.0.<br/>Before running the BIOS Flashback tool, please rename the BIOS file (T"
+    },
+    {
+     "version": "1401",
+     "date": "2020/12/25",
+     "size": "19.7 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-1401.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1.New CPU support <br/> 2.Add a ReSize BAR shortcut for AMD SAM support<br/><br/> Before running the USB BIOS"
+    },
+    {
+     "version": "1216",
+     "date": "2020/11/25",
+     "size": "19.58 MB",
+     "is_release": false,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-1216.ZIP?model=TUF GAMING B550-PLUS",
+     "desc_head": "1. Support AMD AM4 AGESA V2 PI 1.1.0.0 Patch C<br/>2. Improve system stability <br/>3. Improve DRAM compatibil"
+    },
+    {
+     "version": "1212",
+     "date": "2020/11/05",
+     "size": "19.58 MB",
+     "is_release": false,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-1212.ZIP?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1. Update AMD AM4 AGESA V2 PI 1.1.0.0 Patch C<br/>2. Improve system stability <br/>3. Improve DRAM compatibil"
+    },
+    {
+     "version": "1202",
+     "date": "2020/10/28",
+     "size": "19.58 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-1202.ZIP?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"1. Updated AMD AM4 AGESA V2 PI 1.1.0.0 Patch B<br/> 2. Improve system performance and stability<br/> 3. Impro"
+    },
+    {
+     "version": "1004",
+     "date": "2020/08/18",
+     "size": "18.63 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-1004.ZIP?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"Improve system performance and stability<br/>Improve Fan control function<br/>Improve DRAM stability<br/>Upda"
+    },
+    {
+     "version": "0805",
+     "date": "2020/07/03",
+     "size": "18.45 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-0805.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "\"- Improved system performance and compatibility<br/>- Improved DRAM compatibility<br/>- Update AM4 combo V2 P"
+    },
+    {
+     "version": "0608",
+     "date": "2020/06/16",
+     "size": "17.06 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-0608.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "Add APE function in BIOS settings. Improve system performance and stability."
+    },
+    {
+     "version": "0603",
+     "date": "2020/06/11",
+     "size": "18.41 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-0603.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "Update AMD AM4 AGESA PI 1.0.0.1"
+    },
+    {
+     "version": "0244",
+     "date": "2020/05/20",
+     "size": "17.01 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-0244.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": "Improve system performance"
+    },
+    {
+     "version": "0243",
+     "date": "2020/05/20",
+     "size": "17.01 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-0243.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": ""
+    },
+    {
+     "version": "0242",
+     "date": "2020/05/20",
+     "size": "17.01 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS/TUF-GAMING-B550-PLUS-ASUS-0242.zip?model=TUF GAMING B550-PLUS",
+     "desc_head": ""
+    }
+   ]
+  },
+  "tuf_gaming_b550_plus_wi_fi_v1": {
+   "model": "TUF GAMING B550-PLUS (WI-FI)",
+   "api": "GetPDBIOS (website=global, cpu=AM4)",
+   "count": 24,
+   "releases": [
+    {
+     "version": "3636",
+     "date": "2026/01/27",
+     "size": "16.18 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-3636.zip?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"Improve system compatibility<br/>Before running the USB BIOS Flashback tool, please rename the BIOS file (GB5"
+    },
+    {
+     "version": "3634",
+     "date": "2025/09/24",
+     "size": "16.19 MB",
+     "is_release": false,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-3634.zip?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"This BIOS update for Ryzen™ 5000 G-Series /4000 G-Series /3000 G-Series /2000 G-Series systems includes a cri"
+    },
+    {
+     "version": "3631",
+     "date": "2025/08/14",
+     "size": "16.19 MB",
+     "is_release": false,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-3631.zip?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"1. Updated AGESA version to ComboV2 PI 1.2.0.F.<br/>2. Implemented security updates.<br/>Before running the U"
+    },
+    {
+     "version": "3621",
+     "date": "2025/04/01",
+     "size": "16.16 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-3621.zip?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"1. Updated AGESA version to ComboV2 PI 1.2.0.E.<br/>2. Implemented security updates.<br/>Before running the U"
+    },
+    {
+     "version": "3611",
+     "date": "2024/11/04",
+     "size": "16.15 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-3611.zip?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"1. Updated AGESA to version ComboV2PI 1.2.0.Cc.<br/>2. Resolved CPU exception when adjusting items like \"\"Whe"
+    },
+    {
+     "version": "3607",
+     "date": "2024/04/03",
+     "size": "16.15 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-3607.zip?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"Update AGESA version to ComboV2PI 1.2.0.Ca.<br/>Fix AMD processor vulnerabilities security.<br/>Before runnin"
+    },
+    {
+     "version": "3404",
+     "date": "2023/10/31",
+     "size": "16.14 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-3404.zip?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"1. Update AGESA version to ComboV2PI 1.2.0.B<br/>2. Update AMD 5000/3000 Series CPU fTPM version, please back"
+    },
+    {
+     "version": "3202",
+     "date": "2023/07/27",
+     "size": "16.02 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-3202.zip?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"1. Update AGESA version to ComboV2PI 1.2.0.A<br/>2. Mitigate the AMD potential security vulnerabilities for A"
+    },
+    {
+     "version": "3002",
+     "date": "2023/03/14",
+     "size": "20.34 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-3002.zip?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"1. Update AGESA version to ComboV2PI 1208<br/>2. Mitigate the AMD potential security vulnerabilities for AMD "
+    },
+    {
+     "version": "2806",
+     "date": "2022/11/25",
+     "size": "20.31 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-2806.zip?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"Improve system compatibility,<br/>Before running the USB flashback tool，please rename the BIOS file(GB550PW.C"
+    },
+    {
+     "version": "2803",
+     "date": "2022/04/29",
+     "size": "20.31 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-2803.zip?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"1. Update AMD AM4 AGESA V2 PI 1.2.0.7.<br/>2. Fix AMD fTPM issue causes random stuttering.<br/><br/><br/>Befo"
+    },
+    {
+     "version": "2604",
+     "date": "2022/03/07",
+     "size": "20.26 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-2604.ZIP?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "1. Update AMD AM4 AGESA V2 PI 1.2.0.6b<br/><br/>2. Improve system performance and stability<br/><br/><br/>3. I"
+    },
+    {
+     "version": "2423",
+     "date": "2021/08/26",
+     "size": "20.18 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-2423.ZIP?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"1. Update AMD AM4 AGESA V2 PI 1.2.0.3 Patch C<br/>2. Improve system performance<br/><br/>Before running the U"
+    },
+    {
+     "version": "2407",
+     "date": "2021/08/04",
+     "size": "20.16 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-2407.ZIP?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"Support Windows 11 by default, no settings changes required in the UEFI BIOS.<br/><br/><br/>Before running th"
+    },
+    {
+     "version": "2403",
+     "date": "2021/06/19",
+     "size": "20.15 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/BIOS/TUF-GAMING-B550-PLUS-WIFI-ASUS-2403.ZIP?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"1. Update AMD AM4 AGESA V2 PI 1.2.0.3 Patch A<br/>2. Improve system stability<br/><br/>Before running the USB"
+    },
+    {
+     "version": "2006",
+     "date": "2021/04/08",
+     "size": "20.03 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS_(WI-FI)/TUF-GAMING-B550-PLUS-WIFI-ASUS-2006.ZIP?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"- Update AMD AM4 AGESA V2 PI 1.2.0.1 Patch A<br/>- Fix USB connectivity issue<br/>Before running the USB BIOS"
+    },
+    {
+     "version": "2003",
+     "date": "2021/03/27",
+     "size": "20.03 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS_(WI-FI)/TUF-GAMING-B550-PLUS-WIFI-ASUS-2003.ZIP?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"- Update AMD AM4 AGESA V2 PI 1.2.0.1<br/>- Support Smart Access Memory for Ryzen 3000 Series Processors<br/>-"
+    },
+    {
+     "version": "1804",
+     "date": "2021/02/09",
+     "size": "20 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS_(WI-FI)/TUF-GAMING-B550-PLUS-WIFI-ASUS-1804.ZIP?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"1.     Update AMD AM4 AGESA V2 PI 1.2.0.0<br/>2.     Update AMD RAID UEFI driver<br/>3.     Improve system st"
+    },
+    {
+     "version": "1602",
+     "date": "2021/01/08",
+     "size": "19.8 MB",
+     "is_release": false,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS_(WI-FI)/TUF-GAMING-B550-PLUS-WIFI-ASUS-1602.ZIP?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "Update AMD AM4 AGESA V2 PI 1.1.9.0.<br/>Before running the BIOS Flashback tool, please rename the BIOS file (T"
+    },
+    {
+     "version": "1216",
+     "date": "2020/11/25",
+     "size": "19.58 MB",
+     "is_release": false,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS_(WI-FI)/TUF-GAMING-B550-PLUS-WIFI-ASUS-1216.ZIP?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "1. Support AMD AM4 AGESA V2 PI 1.1.0.0 Patch C<br/>2. Improve system stability <br/>3. Improve DRAM compatibil"
+    },
+    {
+     "version": "1212",
+     "date": "2020/11/05",
+     "size": "19.58 MB",
+     "is_release": false,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS_(WI-FI)/TUF-GAMING-B550-PLUS-WIFI-ASUS-1212.ZIP?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"1. Update AMD AM4 AGESA V2 PI 1.1.0.0 Patch C<br/>2. Improve system stability <br/>3. Improve DRAM compatibil"
+    },
+    {
+     "version": "1202",
+     "date": "2020/10/28",
+     "size": "19.58 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS_(WI-FI)/TUF-GAMING-B550-PLUS-WIFI-ASUS-1202.ZIP?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"1. Updated AMD AM4 AGESA V2 PI 1.1.0.0 Patch B<br/> 2. Improve system performance and stability<br/> 3. Impro"
+    },
+    {
+     "version": "1004",
+     "date": "2020/08/18",
+     "size": "18.63 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS_(WI-FI)/TUF-GAMING-B550-PLUS-WIFI-ASUS-1004.ZIP?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": "\"Improve system performance and stability<br/>Improve Fan control function<br/>Improve DRAM stability<br/>Upda"
+    },
+    {
+     "version": "0307",
+     "date": "2020/07/15",
+     "size": "18.45 MB",
+     "is_release": true,
+     "url": "https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/TUF_GAMING_B550-PLUS_(WI-FI)/TUF-GAMING-B550-PLUS-WIFI-ASUS-0307.zip?model=TUF GAMING B550-PLUS (WI-FI)",
+     "desc_head": ""
+    }
+   ]
+  }
+ },
+ "cap_convention": {
+  "b450_corpus": {
+   "header": 2048,
+   "rom": 16777216,
+   "note": "single 0x800 header, registered ring 12"
+  },
+  "b550_wifi_ii": {
+   "header": 4096,
+   "rom": 33554432,
+   "note": "TWO 0x800 blocks (flash block descriptors 0x1000/0x800 differ); rom = cap[0x1000:], 32 MiB exact; all 10 _FVH checksums valid"
+  },
+  "p01_effect": "P-01 (rom_bytes 16777216) misses on the corrected board: the geometry doubles"
+ },
+ "acquisitions": [
+  {
+   "zip": "TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3644.zip",
+   "zip_sha256": "045ab2854c5463f8e0ee3ffdf49b9121873e9573d02137d69d21b3825b42d048",
+   "zip_bytes": 17075686,
+   "cap": "b550w2_3644/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3644.CAP",
+   "cap_bytes": 33558528,
+   "cap_header": 4096,
+   "rom": "b550w2-3644.rom",
+   "rom_bytes": 33554432,
+   "rom_sha256_16": "5f7a0e439772c160",
+   "body_sha256_16": "4ce2c5852bbf29d0",
+   "version": "3644",
+   "board": "wifi2",
+   "date": "2026/08/27",
+   "desc": "Update AGESA to ComboV2 PI 1.2.0.12; mitigate fTPM CVE-2026-6726/CVE-2026-6727"
+  },
+  {
+   "zip": "TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3645.zip",
+   "zip_sha256": "2249632c72aee71434eeab692b76ffc7ebc61efce315228671919d7566542309",
+   "zip_bytes": 17075245,
+   "cap": "b550w2_3645/TUF-GAMING-B550-PLUS-WIFI-II-ASUS-3645.CAP",
+   "cap_bytes": 33558528,
+   "cap_header": 4096,
+   "rom": "b550w2-3645.rom",
+   "rom_bytes": 33554432,
+   "rom_sha256_16": "0a1b5bda5be78e4b",
+   "body_sha256_16": "3a88aef86ad61aa4",
+   "version": "3645",
+   "board": "wifi2",
+   "date": "2026/09/14",
+   "desc": "Improve system compatibility"
+  },
+  {
+   "zip": "TUF-GAMING-B550-PLUS-ASUS-3644.zip",
+   "zip_sha256": "48ca90de98f1d972b61d5bf9bba59f0e6e3b98c405dd5ae3b960eed5bc3b97cb",
+   "zip_bytes": 17067783,
+   "cap": "b550_nw_3644/TUF-GAMING-B550-PLUS-ASUS-3644.CAP",
+   "cap_bytes": 33558528,
+   "cap_header": 4096,
+   "rom": "b550-nw-3644.rom",
+   "rom_bytes": 33554432,
+   "rom_sha256_16": "939f90f62de71402",
+   "body_sha256_16": "8c981e32f7bc18de",
+   "version": "3644",
+   "board": "non-wifi",
+   "date": "2026/08/27",
+   "desc": "same-day sibling wave"
+  }
+ ],
+ "sibling_same_version_test": {
+  "wifi2_3644_sha16": "5f7a0e439772c160",
+  "nonwifi_3644_sha16": "939f90f62de71402",
+  "bytes_differing": 10741113,
+  "pct": 32.011,
+  "law": "same version number + same date + same AGESA desc is NOT the same ROM — 32.0% of bytes differ across boards; a version number never identifies an image"
+ },
+ "triptych_on_real_3644": {
+  "instrument": "fw42-dossier dossier b550w2-3644.rom --target day0",
+  "profile": "stranger",
+  "identity_coupling": "coherent-foreign",
+  "identity_verdict": "no-match-h3-eligible",
+  "scoreline": {
+   "hit": 4,
+   "partial": 0,
+   "miss": 8,
+   "na": 14
+  },
+  "hit_set": [
+   "P-03",
+   "P-06",
+   "P-08",
+   "P-18"
+  ],
+  "hit_meaning": "exactly the board-independent invariants: P-03 ComboAM4v2PI prefix, P-06 41 whitelist families, P-08 module count 616 in [600,640], P-18 H3-eligibility machine-confirmed",
+  "miss_list": [
+   "P-01 rom_bytes (32 MiB, not 16)",
+   "P-02 AGESA 1.2.0.12 not in {6b,6c,7}",
+   "P-04 armor quartet PRESENT",
+   "P-05 SbRomArmorSmm PRESENT",
+   "P-07 legacy SMM 0, not 2",
+   "P-09 DSDT bdd18b8af25e0c7a (new board)",
+   "P-11 certs 6, not 4",
+   "P-17 SMM census 186, not 106-109"
+  ],
+  "exam_findings": {
+   "rom_bytes": 33554432,
+   "agesa_level": "1.2.0.12",
+   "agesa_string": "ComboAM4v2PI",
+   "armor_quartet_present": true,
+   "sbrom_armorsmm_present": true,
+   "chip_whitelist_families": 41,
+   "legacy_smm_count": 0,
+   "module_count": 616,
+   "dsdt_sha16": "bdd18b8af25e0c7a",
+   "aod_ssdt_revision": null,
+   "trust_cert_distinct": 6,
+   "smm_census_total": 186,
+   "matches_known_release": false,
+   "distinct_fingerprints_count": 3
+  },
+  "conflicts": "3 weld conflicts, all 'judge wins (deep truth)' (armor quartet, SbRomArmorSmm, DSDT) — the nested-LZMA shallow-walk lesson reproduces on B550",
+  "novelty_axes": {
+   "species": {
+    "universe": 615,
+    "observed": 644,
+    "known": 596,
+    "unregistered": 48
+   },
+   "certs": {
+    "universe": 14,
+    "observed": 6,
+    "known": 6,
+    "unregistered": 0
+   },
+   "dsdt": {
+    "universe": 12,
+    "observed": 4,
+    "known": 0,
+    "unregistered": 4
+   },
+   "agesa": {
+    "universe": null,
+    "observed": null,
+    "known": null,
+    "unregistered": 0
+   },
+   "whitelist": {
+    "universe": 47,
+    "observed": null,
+    "known": null,
+    "unregistered": 0
+   },
+   "smm": {
+    "universe": 109,
+    "observed": 112,
+    "known": 104,
+    "unregistered": 8
+   }
+  },
+  "novelty_verdict": "novel",
+  "genome_transfer": "596/644 observed species known to the B450 universe (92.5%) — the AM4 platform genome transfers across the chipset divide",
+  "certs_transfer": "the 6-cert DER set of B550 3644 is fully inside the B450 universe (the 3810 freeze level transfers verbatim)",
+  "ifr_lens_slots": "loud-degraded (null) — the fw43 proposers are B450-calibrated; L3 refused to guess"
+ },
+ "differ_3644_3645": {
+  "note": "what 'un meilleur bios' (2026/09/14) changes, byte-level",
+  "summary": {
+   "size_a": 33554432,
+   "size_b": 33554432,
+   "size_delta": 0,
+   "runs_total": 53,
+   "bytes_differing": 7544486,
+   "blocks_total": 512,
+   "blocks_changed": 133,
+   "class_histogram": {
+    "packed->code": 7461826,
+    "code->code": 81167,
+    "data->code": 1493
+   }
+  },
+  "uncompressed_code_delta": 81167,
+  "reading": "the compressed volumes re-pack wholesale (packed->code dominates); the UNCOMPRESSED code delta is the honest logic-change floor"
+ },
+ "honesty": [
+  "novelty summary says unregistered_total=74; the per-axis walk sums 60 — a coherence-vs-novelty accounting delta (14) to reconcile in ring 45; both numbers are machine-derived and registered as-is",
+  "the oracle register stays frozen: 4/8/14 is a scoreline, not a correction; the transfer/decomposition reading is the ring's product, not a register edit",
+  "the WI-FI v1 ledger was fetched with the parenthesized model string 'TUF GAMING B550-PLUS (WI-FI)' — the bare string answers FAIL (registered for future fetches)"
+ ]
+}

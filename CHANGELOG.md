@@ -4,6 +4,61 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the forty-fourth ring (the corrected board — question_3644 resolved by acquisition)
+
+Docs-only + one new register; the tool surface is untouched: 15 tools,
+MCP smoke 12, 323 checks green; both instruments this ring (fw36
+cartography, fw42 triptych) ran unchanged against a target they were
+never calibrated for.
+
+The founder corrected the board identity BEFORE the 16/09 dump: the
+physical board is a **TUF GAMING B550-PLUS WIFI II** (TG550PW2.CAP),
+not the declared B450-PLUS class. Three GetPDBIOS fetches (ring-12
+recipe, unchanged) collapse the mystery that survived three B450
+ledgers: **3644 is published and listed — in the WIFI II ledger
+(2026/08/27, AGESA ComboV2 PI 1.2.0.12, fTPM CVE-2026-6726/6727) and
+the non-WIFI sibling's, absent from the WI-FI v1 line (quiet since
+3636, 2026/01)**. H2 proven, literal-H3 refuted, machine-H3 confirmed
+— both were right at their own level; and the ring-12 "contaminated"
+metadata (Aug 2026, 1.2.0.12) is rehabilitated: the founder's brief
+had version, date and AGESA right, wrong only the family.
+
+Measured, no hardware touched:
+
+- **CAP convention doubles**: B550 CAPs carry two 0x800 header blocks;
+  rom = cap[0x1000:] = 32 MiB exact (all ten _FVH checksums valid) —
+  P-01's miss is structural, the geometry itself doubles.
+- **The triptych on the real 3644** (fw42, unchanged): scoreline 4 hit
+  / 8 miss / 14 na, profile `stranger`, identity coupling
+  `coherent-foreign`, verdict `no-match-h3-eligible`. The 4 hits are
+  exactly the board-independent invariants {P-03 ComboAM4v2PI prefix,
+  P-06 41 whitelist families, P-08 module count 616, P-18 H3-
+  eligibility}; the 8 misses exactly the board-dependent facts (32 MiB,
+  AGESA 1.2.0.12, armor quartet + SbRomArmorSmm PRESENT, 0 legacy SMM,
+  DSDT bdd18b8af25e0c7a, 6 certs, SMM census 186). The ring-40
+  precedence law reproduces verbatim on an uncalibrated board; the
+  fw43 lens slots loud-degrade (null), never guess.
+- **Genome transfer measured**: 596/644 species known to the B450
+  universe (92.5%), SMM 104/112, certs 0 unregistered (the 3810
+  freeze level transfers verbatim), DSDT 0/4 (the board's own
+  lineage). A 74-vs-60 unregistered accounting delta is flagged in
+  the register, not smoothed.
+- **3644 → 3645 (released 2026/09/14, TODAY)**: the ring-36
+  cartography differ, unchanged — 53 runs, 7,544,486 bytes (22.5%),
+  133/512 blocks; the UNCOMPRESSED code delta is 81,167 B, the honest
+  logic-change floor of "improve system compatibility". The byte map
+  of the flash target, registered before any flash.
+- **The version-number trap, measured**: the sibling's same-day 3644
+  differs from the WIFI II's by 10,741,113 bytes (32.0%) — a version
+  number never identifies an image; the identity key is (board,
+  version), and only bytes settle it.
+
+NEW REGISTER `lab/vendor-ledger-b550w2.json` (via
+`scripts/ring44_artifact.py`, one write, self-checked): the three
+ledgers, the question_3644 verdicts, the CAP convention table, three
+vendor-verified acquisitions (sha256 + CAP proof), the sibling test,
+the triptych stranger point, the differ summary, the honesty notes.
+
 ## Unreleased — the forty-third ring (les propositions, the last manual surface meets the machine)
 
 Docs-only + one new lab instrument + one new register; the tool surface is
