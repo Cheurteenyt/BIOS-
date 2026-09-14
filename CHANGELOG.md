@@ -4,6 +4,53 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the forty-sixth ring (the auto-dossier — the day-0 chain fused into ONE command, measured)
+
+Docs-only + one new tracked instrument + one new register; the tool
+surface is untouched: 15 tools, MCP smoke 12, 323 checks green; the
+ring's measurement ran through the existing chain (fw35/38/39/40/41/42/
+45) plus the new fw46 layer on top — never instead.
+
+- **The fusion** (`lab/fw46-autodossier.py` TRACKED): after ring 45
+  the day-0 protocol was THREE commands and one memory (`fw45 propose`
+  → operator review → `fw42 dossier --lenses`) — the operator was the
+  only place the stages met, the exact weld-class failure one layer
+  higher. `fused <image>` runs propose (fw45's L2-transfer gates
+  FIRST — every B550 anchor re-derives or the fusion refuses whole),
+  marks every slot against the stock-3644 anchor, composes the lenses
+  (operator corrections hold L1 precedence, journaled
+  operator_correction vs proposal), and lands the full triptych
+  dossier — the whole provenance chain (proposal → mark → journal →
+  dossier) in ONE artifact. `--review-only` keeps the cheap review
+  moment; `--lenses corrections.json` keeps the operator in command —
+  corrections beat proposals, always.
+- **The count-blindness find** (measured before the crown): the
+  ring-45 review marks compared PSP sets by COUNT, but the release
+  delta 3644→3645 swaps 37 body hashes INSIDE a 203-hash set — on
+  `b550w2-3645.rom` every count-level mark reads `== stock-3644`
+  while the sets differ 37/37: a flashed-3645 board would have been
+  certified stock by its own review table. The fix is structural:
+  fw46 anchors the SETS (203/194/193 sha256_16 registered from the
+  crown proposals) — the same probe now marks `!=` with added 37 /
+  removed 37, and the selftest asserts the lesson BOTH ways on the
+  same proposal (set != AND count ==).
+- **The crown** (`lab/vendor-autodossier-register.json`): the
+  ring-45 DERIVED lens-witnessed scoreline is now MEASURED end-to-end
+  through the fused chain — 6 hit {P-03, P-06, P-08, P-13, P-16,
+  P-18} / 1 partial {P-15} / 10 miss / 9 na in 3m42.8s on
+  b550w2-3644.rom, `measured_vs_derived: agree`; the ring-44 stranger
+  point reproduced WITH lenses (no-match-h3-eligible /
+  coherent-foreign / stranger / unregistered 74); the weld journaled
+  all 7 as lenses, 0 overrides. Both prior scorelines stand as
+  registered — the crown is a measurement, not a correction.
+- The selftest: 38/38 gates, tier I live (the discriminator firing
+  both ways on 3645; live compose through the real weld; THE CROWN
+  re-run live; artifact roundtrip). Two pre-freeze catches banked:
+  the refusal order must name the true violation (judge-owned before
+  outside-LENS_ONLY), and the zero-writes gate must not match its own
+  source (the ring-43 R9 lesson, bitten again, fixed by
+  pattern-assembly).
+
 ## Unreleased — the forty-fifth ring (the B550 lens layer — transfer calibration, anchored proposals, the reconciliation)
 
 Docs-only + one new tracked instrument + two new registers; the tool
