@@ -1,0 +1,328 @@
+{
+ "correction_context": "ring 44 read the seven lens slots as loud-degraded nulls and attributed the nulls to calibration non-transfer; ring 45 measures the attribution as over-cautious \u2014 the fw43 proposers run on B550 unchanged (7/7 slots, IFR validity 1.00); the nulls were the missing --lenses file. What B550 lacked was its own L2 basis; this register is it.",
+ "cross_anchors": {
+  "b550-nw-3644": {
+   "setup_row": {
+    "covered": 353,
+    "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+    "name": "Setup",
+    "offsets_beyond_size": 0,
+    "questions": 407,
+    "size": 514,
+    "uncovered": 161
+   },
+   "uncovered_share_pct": 85.73,
+   "varstore_bytes_covered": 6234,
+   "varstore_bytes_total": 43693,
+   "varstore_count": 145,
+   "zero_question_varstores": 32
+  },
+  "b550w2-3644": {
+   "setup_row": {
+    "covered": 354,
+    "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+    "name": "Setup",
+    "offsets_beyond_size": 0,
+    "questions": 408,
+    "size": 515,
+    "uncovered": 161
+   },
+   "uncovered_share_pct": 85.73,
+   "varstore_bytes_covered": 6236,
+   "varstore_bytes_total": 43695,
+   "varstore_count": 145,
+   "zero_question_varstores": 32
+  },
+  "b550w2-3645": {
+   "setup_row": {
+    "covered": 354,
+    "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+    "name": "Setup",
+    "offsets_beyond_size": 0,
+    "questions": 408,
+    "size": 515,
+    "uncovered": 161
+   },
+   "uncovered_share_pct": 85.73,
+   "varstore_bytes_covered": 6236,
+   "varstore_bytes_total": 43695,
+   "varstore_count": 145,
+   "zero_question_varstores": 32
+  }
+ },
+ "cross_family_overlap": {
+  "3604": 40,
+  "3802": 40,
+  "note": "the psp_overlap_direction checker's inputs on a B550 day-0 dump: 40 == 40 -> strict inequality fails -> P-19 miss, machine-derived"
+ },
+ "date": "2026-09-14",
+ "day0_lens_expectation": {
+  "p14_note": "P-14's observed key (setup_varstore_size) is the exam's NVRAM variable row, null on B550 acquisitions \u2014 the IFR cross's varstore size 515 is a DIFFERENT quantity; the conflation is pre-empted here",
+  "reading": "a stock 3644 board reproduces these anchors exactly (the lens slots are firmware, not NVRAM); any deviation is the board's own story \u2014 flashed-forward (PSP delta 37 vs 3645, IFR unchanged) or modified",
+  "stock_3644": {
+   "ifr_questions_total": 14431,
+   "ifr_valid_fraction": 1.0,
+   "psp_hash_count": 203,
+   "psp_hashes_3604_count": 194,
+   "psp_hashes_3802_count": 193,
+   "setup_uncovered_bytes": 161,
+   "varstore_uncovered_share_pct": 85.73
+  }
+ },
+ "day0_usage": [
+  "python3 lab/fw45-b550-lens.py propose dump.rom --out proposals.json",
+  "operator review (corrections beat proposals, always)",
+  "python3 lab/fw42-dossier.py dossier dump.rom --lenses proposals.json"
+ ],
+ "honesty": [
+  "the ring-44 'L3 refused to guess' attribution is corrected by measurement: the proposers never refused; the dossier ran without --lenses",
+  "the B550 anchor set is proposer-derived and cross-checked for consistency across three vendor-verified images \u2014 it is NOT an independent-ring register in the B450 sense; the transfer laws and the shared-path B450 calibration are what make it a basis",
+  "the sibling's Setup varstore is 1 byte smaller with 1 fewer question while uncovered stays EXACTLY 161 \u2014 measured, registered, not smoothed",
+  "fw43 is untouched: its B450 calibration rows remain the only basis it accepts; fw45 is the B550 layer",
+  "zero writes on the frozen surface: bin/, lib/, tests/ untouched; the ring adds lab knowledge only"
+ ],
+ "ifr_anchors": {
+  "b550-nw-3644": {
+   "options": 33226,
+   "packages": 105,
+   "pages": 1145,
+   "questions": 14548,
+   "valid": 105
+  },
+  "b550w2-3644": {
+   "options": 33158,
+   "packages": 104,
+   "pages": 1144,
+   "questions": 14431,
+   "valid": 104
+  },
+  "b550w2-3645": {
+   "options": 33158,
+   "packages": 104,
+   "pages": 1144,
+   "questions": 14431,
+   "valid": 104
+  }
+ },
+ "images": {
+  "b550-nw-3644": {
+   "file": "b550-nw-3644.rom",
+   "ifr": {
+    "cross": {
+     "uncovered_share_pct": 85.73,
+     "varstore_bytes_covered": 6234,
+     "varstore_bytes_total": 43693,
+     "varstore_count": 145,
+     "zero_question_varstores": 32
+    },
+    "setup_row": {
+     "covered": 353,
+     "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+     "name": "Setup",
+     "offsets_beyond_size": 0,
+     "questions": 407,
+     "size": 514,
+     "uncovered": 161
+    },
+    "totals": {
+     "options": 33226,
+     "packages": 105,
+     "pages": 1145,
+     "questions": 14548,
+     "valid": 105
+    }
+   },
+   "psp": {
+    "blobs": 221,
+    "by_magic": {
+     "$BHD": 5,
+     "$BL2": 2,
+     "$PL2": 2,
+     "$PSP": 5
+    },
+    "dirs_found": 14,
+    "dirs_valid": 14,
+    "hash_count": 203,
+    "skipped_entries": 10
+   },
+   "rom_sha256_16": "939f90f62de71402"
+  },
+  "b550w2-3644": {
+   "file": "b550w2-3644.rom",
+   "ifr": {
+    "cross": {
+     "uncovered_share_pct": 85.73,
+     "varstore_bytes_covered": 6236,
+     "varstore_bytes_total": 43695,
+     "varstore_count": 145,
+     "zero_question_varstores": 32
+    },
+    "setup_row": {
+     "covered": 354,
+     "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+     "name": "Setup",
+     "offsets_beyond_size": 0,
+     "questions": 408,
+     "size": 515,
+     "uncovered": 161
+    },
+    "totals": {
+     "options": 33158,
+     "packages": 104,
+     "pages": 1144,
+     "questions": 14431,
+     "valid": 104
+    }
+   },
+   "psp": {
+    "blobs": 221,
+    "by_magic": {
+     "$BHD": 5,
+     "$BL2": 2,
+     "$PL2": 2,
+     "$PSP": 5
+    },
+    "dirs_found": 14,
+    "dirs_valid": 14,
+    "hash_count": 203,
+    "skipped_entries": 10
+   },
+   "rom_sha256_16": "5f7a0e439772c160"
+  },
+  "b550w2-3645": {
+   "file": "b550w2-3645.rom",
+   "ifr": {
+    "cross": {
+     "uncovered_share_pct": 85.73,
+     "varstore_bytes_covered": 6236,
+     "varstore_bytes_total": 43695,
+     "varstore_count": 145,
+     "zero_question_varstores": 32
+    },
+    "setup_row": {
+     "covered": 354,
+     "guid": "ec87d643-eba4-4bb5-a1e5-3f3e36b20da9",
+     "name": "Setup",
+     "offsets_beyond_size": 0,
+     "questions": 408,
+     "size": 515,
+     "uncovered": 161
+    },
+    "totals": {
+     "options": 33158,
+     "packages": 104,
+     "pages": 1144,
+     "questions": 14431,
+     "valid": 104
+    }
+   },
+   "psp": {
+    "blobs": 221,
+    "by_magic": {
+     "$BHD": 5,
+     "$BL2": 2,
+     "$PL2": 2,
+     "$PSP": 5
+    },
+    "dirs_found": 14,
+    "dirs_valid": 14,
+    "hash_count": 203,
+    "skipped_entries": 10
+   },
+   "rom_sha256_16": "0a1b5bda5be78e4b"
+  }
+ },
+ "integration_proof": {
+  "cheap_live_weld": "7/7 proposals survive fw40.weld unchanged, all journaled as lens-provenance",
+  "full_dossier_session_evidence": "dossier45-b550w2-3644-lensed.json (session): the full fw42 dossier with --lenses on b550w2-3644.rom \u2014 31 slots, 20 filled, 0 overrides, the 7 lens values land in the findings; the 11 unfilled are exactly the _41 keys + aod_ssdt_revision + setup_varstore_size"
+ },
+ "lens_witnessed_scoreline": {
+  "hit": 6,
+  "hit_set": [
+   "P-03",
+   "P-06",
+   "P-08",
+   "P-13",
+   "P-16",
+   "P-18"
+  ],
+  "instrument": "fw35-oracle.score on the ring-44 exam findings + the B550 lens values",
+  "miss": 10,
+  "na": 9,
+  "no_register_edit": "the frozen 4/8/14 ring-44 scoreline stands as measured WITHOUT lenses; 6/1/10/9 is the WITH-lenses expectation \u2014 both are scorelines, neither is a correction",
+  "partial": 1,
+  "partial_set": [
+   "P-15"
+  ],
+  "reading": "with the ring-45 lenses, a stock 3644 day-0 scores 6/1/10/9: P-13 and P-16 join the hits (validity 1.00, share 85.73 inside [83.0,86.0]); P-12 and P-19 join the misses (14,431 out of band; 40==40 fails the strict inequality); P-15 lands PARTIAL \u2014 161 is out of the frozen band [126,158] but inside its registered widened [110,174], the register's own semantics, not an estimate; P-10 and P-14 stay na; P-20..26 stay release-41"
+ },
+ "psp_anchors": {
+  "b550-nw-3644": {
+   "blobs": 221,
+   "by_magic": {
+    "$BHD": 5,
+    "$BL2": 2,
+    "$PL2": 2,
+    "$PSP": 5
+   },
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "hash_count": 203,
+   "skipped_entries": 10
+  },
+  "b550w2-3644": {
+   "blobs": 221,
+   "by_magic": {
+    "$BHD": 5,
+    "$BL2": 2,
+    "$PL2": 2,
+    "$PSP": 5
+   },
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "hash_count": 203,
+   "skipped_entries": 10
+  },
+  "b550w2-3645": {
+   "blobs": 221,
+   "by_magic": {
+    "$BHD": 5,
+    "$BL2": 2,
+    "$PL2": 2,
+    "$PSP": 5
+   },
+   "dirs_found": 14,
+   "dirs_valid": 14,
+   "hash_count": 203,
+   "skipped_entries": 10
+  }
+ },
+ "psp_set_deltas": {
+  "board": {
+   "nw_3644_minus_w2_3644": 65,
+   "w2_3644_minus_nw_3644": 65
+  },
+  "release": {
+   "w2_3644_minus_w2_3645": 37,
+   "w2_3645_minus_w2_3644": 37
+  }
+ },
+ "ring": 45,
+ "schema": "omarchy-firmware/vendor-b550-lens@1",
+ "title": "the B550 lens layer \u2014 transfer calibration on the corrected board",
+ "transfer_laws": {
+  "delta_ordering_note": "release 37 < board 65 \u2014 the same ordering as the whole-ROM differ (22.5% < 32.0%); the version-number trap law reproduced on the PSP axis",
+  "psp_board_delta": 65,
+  "psp_discriminates_3644_vs_3645": true,
+  "psp_discriminator_note": "the IFR quartet CANNOT separate 3644 from 3645 (identity); the PSP set can (37-body delta) \u2014 the day-0 flash-state discriminator",
+  "psp_release_delta": 37,
+  "psp_structure_stability": "14 dirs / 221 blobs / 10 skipped on all three; the same by_magic {PSP:5, BHD:5, PL2:2, BL2:2} as the B450 3604 row",
+  "release_ifr_identity": true,
+  "release_ifr_identity_note": "3644 and 3645 are EXACTLY identical on all five census totals and the whole cross \u2014 'improve system compatibility' touched zero form grammar",
+  "setup_note": "the Setup varstore GUID (ec87d643-eba4-4bb5-a1e5-3f3e36b20da9) is the B450 register's own GUID; size 515 (w2) / 514 (sibling) vs the B450 456",
+  "setup_uncovered_equal": 161,
+  "share_equal_across_three": 85.73,
+  "validity_100": true,
+  "validity_note": "104/104 exact-consumption packages on both WIFI II releases, 105/105 on the sibling \u2014 P-13's law transfers to B550"
+ }
+}

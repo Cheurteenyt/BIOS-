@@ -4,6 +4,65 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the forty-fifth ring (the B550 lens layer — transfer calibration, anchored proposals, the reconciliation)
+
+Docs-only + one new tracked instrument + two new registers; the tool
+surface is untouched: 15 tools, MCP smoke 12, 323 checks green; the
+ring's measurements all came through the existing tracked instruments
+plus the new fw45 layer.
+
+Two ring-44 pre-registered jobs, both done — and the second one's
+premise did not survive measurement:
+
+- **The 74-vs-60 reconciliation** (`lab/vendor-novelty-recon.json`):
+  the flagged accounting delta is a KEY-NAMING asymmetry, not a
+  counting bug — the novelty summary counts the whitelist axis's
+  unregistered names from its local `extra` list (74 =
+  48+0+4+14+8+0) while the serialized per-axis walk read only
+  `unregistered` keys (60). fw41 is UNCHANGED (its summary was the
+  full honest count; the coherence layer already agreed at 74). The
+  14 rows have names: six AUX fan-header strings + eight Level
+  strings — the WIFI II's fan-control vocabulary swept by the
+  ring-41 structural extractor; `missing = 0`, the 47-family chip
+  whitelist transfers WHOLE (zero new chip families on B550).
+- **The B550 lens layer** (`lab/fw45-b550-lens.py` TRACKED,
+  `lab/vendor-b550-lens.json`): the ring-44 "L3 refused to guess"
+  attribution is corrected by measurement — fw43's proposers ran on
+  the corrected board UNCHANGED (7/7 slots, 0 omitted, IFR validity
+  1.00, in 5.2 s); the ring-44 nulls were the missing `--lenses`
+  file. What B550 lacked was its own L2 basis, and the register is
+  it: the three vendor-verified acquisitions become 57 re-derivable
+  anchor rows + 10 shared B450 rows, with the transfer laws frozen as
+  gates — release IFR IDENTITY (3644 ≡ 3645 on all census totals and
+  the whole cross: "improve system compatibility" touched zero form
+  grammar), validity 100 % transfers (104/104, 105/105), share
+  85.73 % and Setup uncovered EXACTLY 161 B on all three, PSP
+  structure 14/221/10 with the B450 by_magic signature, set deltas
+  37 release vs 65 board (the version-trap ordering reproduced on the
+  PSP axis), and the discriminator law: the PSP set separates 3644
+  from 3645 where the IFR cannot. The day-0 lens expectation is
+  anchored (stock 3644 ⇒ 14431 / 1.00 / 161 / 85.73 / 203 / 194 /
+  193) and the lens-witnessed scoreline is MACHINE-DERIVED through
+  the frozen oracle: **6 hit / 1 partial (P-15, 161 inside its
+  registered widened [110,174] — the register's own semantics
+  corrected the ring's manual reading) / 10 miss / 9 na**; the
+  cross-family PSP overlaps measure 40 == 40, so P-19's strict
+  inequality fails on B550 — machine-derived, pre-registered.
+- The 16/09 protocol gains its first-class B550 path:
+  `fw45 propose dump.rom --out proposals.json` (L2-transfer gate:
+  67 anchor rows re-derive before anything is proposed; the review
+  table marks each slot `== stock-3644 anchor` or `!=`) → operator
+  review → `fw42 dossier dump.rom --lenses proposals.json` (the weld
+  consumes 7/7 as journaled lenses — proven live both cheap and
+  full-dossier). Both 16/09 scorelines are now pre-registered: 4/8/14
+  without lenses, 6/1/10/9 with.
+- Honesty: the correction of the ring-44 attribution lives in the NEW
+  registers (frozen ledgers are never rewritten); the B550 anchor set
+  is declared proposer-derived with its basis stated where it lives;
+  the sibling's Setup uncovered staying exactly 161 B while the
+  varstore shrinks one byte is registered, not smoothed; bin/, lib/,
+  tests/ 0 diff.
+
 ## Unreleased — the forty-fourth ring (the corrected board — question_3644 resolved by acquisition)
 
 Docs-only + one new register; the tool surface is untouched: 15 tools,

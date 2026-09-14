@@ -1,0 +1,67 @@
+{
+ "attribution": {
+  "b450_3604_probe": "zero AUX/Level names in the B450 ref extraction (the 14 are B550-only within the corpus)",
+  "fan_names_count": 6,
+  "finding": "zero new chip families on B550: missing == 0, the 47-family chip whitelist transfers whole; the whole extra set is board UI vocabulary",
+  "level_names_count": 8,
+  "missing": 0,
+  "names": [
+   "AUX0 Fan",
+   "AUX0 fan PWM-DC",
+   "AUX1 Fan",
+   "AUX1 fan PWM-DC",
+   "AUX2 fan PWM-DC",
+   "AUX4 Fan",
+   "Level 1",
+   "Level 2",
+   "Level 3",
+   "Level 4",
+   "Level 5",
+   "Level 6",
+   "Level 7",
+   "Level 8"
+  ],
+  "statement": "the 14 are REAL strings in the B550 image \u2014 the WIFI II's fan-control vocabulary \u2014 swept into the whitelist axis by the ring-41 structural extractor's digit-bearing <=4-token rule; NOT chip families"
+ },
+ "consequences": [
+  "fw41 is unchanged \u2014 its summary was the full honest count all along",
+  "the ring-44 ledger's per-axis walk (60) was the incomplete accounting; it stays registered as-is (no rewrite of a frozen register)",
+  "future consumers of the serialized novelty axes must read the whitelist 'extra' key (or re-derive) \u2014 the recon register is the pointer",
+  "the dossier's coherence layer already counted 74 \u2014 summary and coherence agreed; only the walk lagged"
+ ],
+ "date": "2026-09-14",
+ "flag": "ring-44 honesty: 'novelty summary says unregistered_total=74; the per-axis walk sums 60'",
+ "honesty": [
+  "the reconciliation is a KEY-NAMING asymmetry, not a counting bug in any instrument",
+  "the 'coherence-vs-novelty' wording in the ring-44 note is re-read here: both layers said 74; the 60 was the walk's view",
+  "the extractor-scope caveat stands: on B550 the whitelist axis's extra carries non-chip vocabulary; day-0 readers classify before counting"
+ ],
+ "mechanism": {
+  "coherence_layer_agreed_with_summary": true,
+  "fw41_summary_was_correct": true,
+  "fw41_unchanged": true,
+  "keys": {
+   "summary_rule": "species+certs+dsdt+whitelist.extra+smm+agesa(unregistered)",
+   "walk_rule": "the 'unregistered' key of the serialized axes only"
+  },
+  "statement": "fw41's novelty summary counts the whitelist axis's unregistered names from the LOCAL extra list (obs['whitelist']['extra']); the serialized per-axis walk reads only 'unregistered' keys \u2014 and the whitelist axis stores its unregistered count under 'extra'. The walk therefore dropped exactly the whitelist contribution."
+ },
+ "question": "two machine-derived totals on the same reading differed by 14; both were registered as-is and the delta was left for this ring to reconcile",
+ "resolution": {
+  "axis_counts": {
+   "agesa": 0,
+   "certs": 0,
+   "dsdt": 4,
+   "smm": 8,
+   "species": 48,
+   "whitelist": 14
+  },
+  "delta": 14,
+  "delta_axis": "whitelist.extra",
+  "full_count": 74,
+  "walk_count": 60
+ },
+ "ring": 45,
+ "schema": "omarchy-firmware/vendor-novelty-recon@1",
+ "title": "the 74-vs-60 reconciliation \u2014 the whitelist axis's extra list was the delta"
+}
