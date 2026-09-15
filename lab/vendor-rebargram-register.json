@@ -1,0 +1,2948 @@
+{
+ "schema": "omarchy-firmware/vendor-rebargram-register@1",
+ "ring": 52,
+ "date": "2026-09-15",
+ "title": "the grammar of the Setup variable \u2014 the vendor ships the C source of its own varstore, and the census of who reads it",
+ "instruments": "lab/fw52-rebargram.py (grammar/executor/pair/null450/day0/selftest/manifest), composing frozen fw49/fw51 (and through them fw37/fw43)",
+ "laws": "L1 TEXT-OVER-GUESSES  an offset is claimed only from the walked text;\n                        a field whose type has no fixed size (UINTN and\n                        friends) poisons the walk \u2014 the instrument\n                        refuses rather than guess (the SETUP_DATA text\n                        is measured type-pure: UINT8/16/32/64/BOOLEAN).\n  L2 ANCHORS-BEFORE-MARKS  every gate offset must reproduce the ring-49\n                        crown (imported, never re-typed); the packed\n                        size must equal the ring-51 blob size; the B450\n                        walk must reproduce the ring-51 register's\n                        reliable name-table anchors \u2014 or loud Refusal.\n  L3 ZERO WRITES        this instrument reads; the crown register is\n                        written once by scripts/ring52_register.py.\n  L4 COMPOSE-ON-FROZEN  fw49 imported (and through it fw37/fw43) for the\n                        pierce and the crown constants; fw51 imported for\n                        the factory anchors \u2014 never rewritten.",
+ "pre_reg_ledger": {
+  "frozen_in": "lab/fw52-rebargram.py PRE_REG_LEDGER, written before the instrument's own live runs",
+  "prs": {
+   "PR-1": {
+    "claim": "the SETUP_DATA text walk lands every gate field on the ring-49 crown voff (0x1B6/0x1BA/0x1BB/0x1BC/0x1F2) on b550w2-3644 \u2014 a third independent source agreeing with the IFR census (ring 50) and the NVRAM canon (ring 51)",
+    "basis": "probe9 (packed walk 5/5 == crown)",
+    "measured": "gates {\"MmioAddrLimit\": \"0x1B6\", \"Above4gDecode\": \"0x1BA\", \"ResizeBarSupport\": \"0x1BB\", \"SriovSupport\": \"0x1BC\", \"CsmSupport\": \"0x1F2\"} == crown on 3644 (and 3645/nw-3644); third source agrees with ring-50 IFR and ring-51 NVRAM",
+    "verdict": "HIT"
+   },
+   "PR-2": {
+    "claim": "the packed size equals the measured Setup-blob size PER BOARD: 515 == 515 on 3644 and 3645, 514 == 514 on nw-3644 (the sibling's text carries 395 fields)",
+    "basis": "probe9/probe10 (515/515/514 vs the ring-51 blobs)",
+    "measured": "packed 515==blob 515 (3644), 515==515 (3645), 514==514 (nw-3644), all size_cross agree",
+    "verdict": "HIT"
+   },
+   "PR-3": {
+    "claim": "the B450 null grammar: 361 fields, packed 456 == the ring-51 B450 blob; MmioAddrLimit/Above4gDecode/ResizeBarSupport/SriovSupport land on the ring-51 register's reliable name-table anchors (0x187/0x18A/0x18B/0x18C); CsmSupport is text-claimed only (the register's 0x0 meta stays unclaimed)",
+    "basis": "probe10 (456 exact, anchors exact)",
+    "measured": "361 fields, packed 456==blob 456, gates {\"Above4gDecode\": \"0x18A\", \"MmioAddrLimit\": \"0x187\", \"ResizeBarSupport\": \"0x18B\", \"SriovSupport\": \"0x18C\"} == the ring-51 register's reliable anchors; CsmSupport text-only (0x1B9), the 0x0 meta stays unclaimed",
+    "verdict": "HIT"
+   },
+   "PR-4": {
+    "claim": "grammar pair laws: release 3644->3645 text sha16 equal (9bfea5a1540da7f1); board pair differs (eef483c4097bffff) and the delta is NAMED \u2014 the field MyAsusControl (@0x201, span [513,514]) present on the WIFI II and absent on the sibling: ring 51's anonymous tail span [513,514] gets its field name",
+    "basis": "probe10 (shas, 396 vs 395 fields, tail listing)",
+    "measured": "release text sha16 equal (9bfea5a1540da7f1); board differs (eef483c4097bffff); tail delta [\"MyAsusControl\"] \u2014 ring 51's anonymous [513,514] span is MyAsusControl",
+    "verdict": "HIT"
+   },
+   "PR-5": {
+    "claim": "the executor census: exactly 34 Setup-GUID consumers per B550 acquisition, the SAME GUID set across release and board; exactly one consumer is >= 1 MB (the 4,254,978 B bridge 49818FD1), carrying the variable names L\"Setup\"/L\"QFan\"/L\"SetupLedData\"",
+    "basis": "probe4/probe6/probe10 (34/34/34, one >= 1 MB, the three UTF-16 names)",
+    "measured": "34/34/34 consumers, same GUID set (sha a0da64f48529c2a3); but TWO consumers are >= 1 MB: the bridge 49818FD1 (4,254,978 B) AND the Setup module itself 899407D7 (1,421,242 B, the varstore's owner, x24 GUID refs) \u2014 the probe-formed claim forgot the owner; the UTF-16 names (Setup/QFan/SetupLedData, no SystemAccess) hold",
+    "verdict": "REFUTED (informative: owner-vs-reader; the corrected law is enforced by selftest I3)"
+   },
+   "PR-6": {
+    "claim": "executor pair laws: the bridge is release-INVARIANT (sha16 cbf56bec7d3cfaac on 3644 and 3645) and board-variant (f2fbd03edccf722a on nw-3644) \u2014 the 16/09 flash cannot change the ReBAR executor's code",
+    "basis": "probe3 (sha16s)",
+    "measured": "bridge sha16 cbf56bec7d3cfaac on 3644 AND 3645 (release-invariant); f2fbd03edccf722a on nw-3644 (board-variant)",
+    "verdict": "HIT"
+   },
+   "PR-7": {
+    "claim": "the bridge is B550-GENERATION: 49818FD1 is ABSENT on the B450 null (which runs its own consumer set under other GUIDs) \u2014 the executor census is per-generation",
+    "basis": "probe9 (absent; B450 triad otherwise present)",
+    "measured": "49818FD1 ABSENT on asus-prime-b450-plus-ref; B450 runs its own census (32 consumers, no >= 4 MB module)",
+    "verdict": "HIT"
+   },
+   "PR-8": {
+    "claim": "the name-table carrier (64BEA199) exists on all four images; its body sha16 is equal across the three B550 acquisitions and differs on B450 (33,894 B vs 37,478 B) \u2014 same role, per-generation build",
+    "basis": "probe3/probe9 (sizes, sections)",
+    "measured": "carrier present on all four; RELEASE-invariant (body sha16 c3af43f04b68d805 on 3644 AND 3645, 37,454 B) but BOARD-variant (0afc22419271b572 on nw-3644, same size) \u2014 the claim's across-board equality is refuted; the carrier joins the board-marker class (the ring-48 DSDT pattern at module level); B450 body 6cb6b8941112ac78 (33,870 B)",
+    "verdict": "REFUTED (informative: the carrier is a board marker, not board-invariant; kept visible)"
+   },
+   "PR-9": {
+    "claim": "the decode family (Above4gDecode/ResizeBarSupport names) is ABSENT from every CBS_CONFIG text on B550 (the decode chain is Setup-grammar-owned, never CBS-owned); B550 carries four CBS texts, B450 three",
+    "basis": "probe1/probe9 (token scans)",
+    "measured": "decode-field names absent from all CBS texts on both generations (B550 4 texts, B450 3 texts); decode_absent_everywhere True",
+    "verdict": "HIT"
+   },
+   "PR-10": {
+    "claim": "SystemAccess is ABSENT from every SETUP_DATA text \u2014 the grayout gate is not a Setup field; ring 50's varstore independence gains its text anchor",
+    "basis": "probe10 (absence cross)",
+    "measured": "systemaccess_in_setup_data False on all four images \u2014 the grayout gate is not a Setup field (text anchor for ring 50)",
+    "verdict": "HIT"
+   },
+   "PR-11": {
+    "claim": "the 1M/2M/4M/8M u32 ladder is NOT executor evidence \u2014 a generic data pattern with dozens of owners; the claim is REFUTED BY PROBE and kept visible (the pre-named informative outcome)",
+    "basis": "probe7 (dozens of ladder4 owners)",
+    "measured": "ladder4 (1M/2M/4M/8M u32) owned by dozens of modules with debug/GUID-table contexts \u2014 generic pattern, no executor value",
+    "verdict": "REFUTED (pre-named informative; kept visible)"
+   },
+   "PR-12": {
+    "claim": "the SETUP_DATA walk is size-UNAMBIGUOUS: zero UINTN/pointer-typed fields (measured census UINT8 x379, UINT16 x7, UINT32 x9, UINT64 x1, four fixed arrays); any UINTN poisons the walk and the instrument refuses",
+    "basis": "probe11 (type census)",
+    "measured": "type census {\"UINT16\": 7, \"UINT32\": 9, \"UINT64\": 1, \"UINT8\": 379} \u2014 zero UINTN; the walk is size-unambiguous; KAT-3 enforces the refusal",
+    "verdict": "HIT"
+   }
+  },
+  "hit": 9,
+  "refuted": 3
+ },
+ "grammar": {
+  "law": "each generation ships its own SETUP_DATA text (raw C-source FFS, GUID AB017B39-014F-4A69-A457-7E16B09DE825); its packed size equals that generation's measured Setup blob; the five decode gates land exactly on the ring-49 crown voffs",
+  "per_acquisition": {
+   "b550w2-3644": {
+    "guid": "AB017B39-014F-4A69-A457-7E16B09DE825",
+    "text_sha16": "9bfea5a1540da7f1",
+    "text_size": 53026,
+    "typedefs_in_file": 90,
+    "field_count": 396,
+    "packed_size": 515,
+    "gates": {
+     "MmioAddrLimit": "0x1B6",
+     "Above4gDecode": "0x1BA",
+     "ResizeBarSupport": "0x1BB",
+     "SriovSupport": "0x1BC",
+     "CsmSupport": "0x1F2"
+    },
+    "systemaccess_in_setup_data": false,
+    "type_census": {
+     "UINT16": 7,
+     "UINT32": 9,
+     "UINT64": 1,
+     "UINT8": 379
+    },
+    "tail_fields": [
+     {
+      "name": "EzModeEnable",
+      "type": "UINT8",
+      "off": "0x1FD"
+     },
+     {
+      "name": "EzOCMode",
+      "type": "UINT8",
+      "off": "0x1FE"
+     },
+     {
+      "name": "SetupAnimator",
+      "type": "UINT8",
+      "off": "0x1FF"
+     },
+     {
+      "name": "SetupFanAnimator",
+      "type": "UINT8",
+      "off": "0x200"
+     },
+     {
+      "name": "MyAsusControl",
+      "type": "UINT8",
+      "off": "0x201"
+     },
+     {
+      "name": "AsusWpbtFlag",
+      "type": "UINT8",
+      "off": "0x202"
+     }
+    ],
+    "blob_size": 515,
+    "blob_sha16": "8fddea6c421714c3",
+    "size_cross": "agree"
+   },
+   "b550w2-3645": {
+    "guid": "AB017B39-014F-4A69-A457-7E16B09DE825",
+    "text_sha16": "9bfea5a1540da7f1",
+    "text_size": 53026,
+    "typedefs_in_file": 90,
+    "field_count": 396,
+    "packed_size": 515,
+    "gates": {
+     "MmioAddrLimit": "0x1B6",
+     "Above4gDecode": "0x1BA",
+     "ResizeBarSupport": "0x1BB",
+     "SriovSupport": "0x1BC",
+     "CsmSupport": "0x1F2"
+    },
+    "systemaccess_in_setup_data": false,
+    "type_census": {
+     "UINT16": 7,
+     "UINT32": 9,
+     "UINT64": 1,
+     "UINT8": 379
+    },
+    "tail_fields": [
+     {
+      "name": "EzModeEnable",
+      "type": "UINT8",
+      "off": "0x1FD"
+     },
+     {
+      "name": "EzOCMode",
+      "type": "UINT8",
+      "off": "0x1FE"
+     },
+     {
+      "name": "SetupAnimator",
+      "type": "UINT8",
+      "off": "0x1FF"
+     },
+     {
+      "name": "SetupFanAnimator",
+      "type": "UINT8",
+      "off": "0x200"
+     },
+     {
+      "name": "MyAsusControl",
+      "type": "UINT8",
+      "off": "0x201"
+     },
+     {
+      "name": "AsusWpbtFlag",
+      "type": "UINT8",
+      "off": "0x202"
+     }
+    ],
+    "blob_size": 515,
+    "blob_sha16": "8fddea6c421714c3",
+    "size_cross": "agree"
+   },
+   "b550-nw-3644": {
+    "guid": "AB017B39-014F-4A69-A457-7E16B09DE825",
+    "text_sha16": "eef483c4097bffff",
+    "text_size": 53002,
+    "typedefs_in_file": 90,
+    "field_count": 395,
+    "packed_size": 514,
+    "gates": {
+     "MmioAddrLimit": "0x1B6",
+     "Above4gDecode": "0x1BA",
+     "ResizeBarSupport": "0x1BB",
+     "SriovSupport": "0x1BC",
+     "CsmSupport": "0x1F2"
+    },
+    "systemaccess_in_setup_data": false,
+    "type_census": {
+     "UINT16": 7,
+     "UINT32": 9,
+     "UINT64": 1,
+     "UINT8": 378
+    },
+    "tail_fields": [
+     {
+      "name": "OldOpRom",
+      "type": "UINT8",
+      "off": "0x1FC"
+     },
+     {
+      "name": "EzModeEnable",
+      "type": "UINT8",
+      "off": "0x1FD"
+     },
+     {
+      "name": "EzOCMode",
+      "type": "UINT8",
+      "off": "0x1FE"
+     },
+     {
+      "name": "SetupAnimator",
+      "type": "UINT8",
+      "off": "0x1FF"
+     },
+     {
+      "name": "SetupFanAnimator",
+      "type": "UINT8",
+      "off": "0x200"
+     },
+     {
+      "name": "AsusWpbtFlag",
+      "type": "UINT8",
+      "off": "0x201"
+     }
+    ],
+    "blob_size": 514,
+    "blob_sha16": "6ac8ce9efe955a13",
+    "size_cross": "agree"
+   }
+  },
+  "b450_null": {
+   "acq": "asus-prime-b450-plus-ref",
+   "field_count": 361,
+   "packed_size": 456,
+   "blob_size": 456,
+   "size_cross": "agree",
+   "gate_offsets": {
+    "Above4gDecode": "0x18A",
+    "MmioAddrLimit": "0x187",
+    "ResizeBarSupport": "0x18B",
+    "SriovSupport": "0x18C"
+   },
+   "anchor_source": "vendor-rebarfact-register.json b450_null (reliable metas only)",
+   "text_sha16": "279bd8825055ee5f",
+   "text_size": 50462,
+   "bridge_present": false,
+   "consumer_count": 32,
+   "name_table_carrier": {
+    "present": true,
+    "size": 33870,
+    "sha16": "6cb6b8941112ac78"
+   },
+   "cbs": {
+    "texts": [
+     {
+      "guid": "7961C026-4B04-4959-A2E2-0B3926DE8F60",
+      "present": true,
+      "size": 12566,
+      "sha16": "d8ffdbbe5ecc3698",
+      "cbs_config_fields": 366,
+      "cbs_config_packed": 1439,
+      "decode_field_names_present": []
+     },
+     {
+      "guid": "93F18B9F-71D8-49DC-B62B-8B257A284D28",
+      "present": true,
+      "size": 21667,
+      "sha16": "d2fdc36a8bf86804",
+      "cbs_config_fields": 587,
+      "cbs_config_packed": 1521,
+      "decode_field_names_present": []
+     },
+     {
+      "guid": "89BE47F4-80CE-4B87-ABD1-D279AB6A16AE",
+      "present": false
+     },
+     {
+      "guid": "129E7F52-DE9B-402B-BFE8-2B41E5D254ED",
+      "present": true,
+      "size": 11767,
+      "sha16": "978d60f62c8cbd3b",
+      "cbs_config_fields": 337,
+      "cbs_config_packed": 1415,
+      "decode_field_names_present": []
+     }
+    ],
+    "count": 3,
+    "decode_absent_everywhere": true
+   }
+  },
+  "setup_data_fields_b550w2_3644": [
+   {
+    "name": "Numlock",
+    "type": "UINT8",
+    "off": 0,
+    "count": 1
+   },
+   {
+    "name": "FastBoot",
+    "type": "UINT8",
+    "off": 1,
+    "count": 1
+   },
+   {
+    "name": "FbSata",
+    "type": "UINT8",
+    "off": 2,
+    "count": 1
+   },
+   {
+    "name": "FbVga",
+    "type": "UINT8",
+    "off": 3,
+    "count": 1
+   },
+   {
+    "name": "FbUsb",
+    "type": "UINT8",
+    "off": 4,
+    "count": 1
+   },
+   {
+    "name": "FbPs2",
+    "type": "UINT8",
+    "off": 5,
+    "count": 1
+   },
+   {
+    "name": "FbRedirection",
+    "type": "UINT8",
+    "off": 6,
+    "count": 1
+   },
+   {
+    "name": "FbNetworkStack",
+    "type": "UINT8",
+    "off": 7,
+    "count": 1
+   },
+   {
+    "name": "FbNvme",
+    "type": "UINT8",
+    "off": 8,
+    "count": 1
+   },
+   {
+    "name": "TpmEnable",
+    "type": "UINT8",
+    "off": 9,
+    "count": 1
+   },
+   {
+    "name": "TpmOperation",
+    "type": "UINT8",
+    "off": 10,
+    "count": 1
+   },
+   {
+    "name": "TpmEnaDisable",
+    "type": "UINT8",
+    "off": 11,
+    "count": 1
+   },
+   {
+    "name": "TpmActDeact",
+    "type": "UINT8",
+    "off": 12,
+    "count": 1
+   },
+   {
+    "name": "TpmOwnedUnowned",
+    "type": "UINT8",
+    "off": 13,
+    "count": 1
+   },
+   {
+    "name": "TpmSupport",
+    "type": "UINT8",
+    "off": 14,
+    "count": 1
+   },
+   {
+    "name": "TcgSupportEnabled",
+    "type": "UINT8",
+    "off": 15,
+    "count": 1
+   },
+   {
+    "name": "TcmSupportEnabled",
+    "type": "UINT8",
+    "off": 16,
+    "count": 1
+   },
+   {
+    "name": "TpmHrdW",
+    "type": "UINT8",
+    "off": 17,
+    "count": 1
+   },
+   {
+    "name": "TpmAuthenticate",
+    "type": "UINT8",
+    "off": 18,
+    "count": 1
+   },
+   {
+    "name": "SuppressTcg",
+    "type": "UINT8",
+    "off": 19,
+    "count": 1
+   },
+   {
+    "name": "TpmError",
+    "type": "UINT8",
+    "off": 20,
+    "count": 1
+   },
+   {
+    "name": "Tpm20Device",
+    "type": "UINT8",
+    "off": 21,
+    "count": 1
+   },
+   {
+    "name": "Tcg2SpecVersion",
+    "type": "UINT8",
+    "off": 22,
+    "count": 1
+   },
+   {
+    "name": "PlatformHierarchy",
+    "type": "UINT8",
+    "off": 23,
+    "count": 1
+   },
+   {
+    "name": "StorageHierarchy",
+    "type": "UINT8",
+    "off": 24,
+    "count": 1
+   },
+   {
+    "name": "EndorsementHierarchy",
+    "type": "UINT8",
+    "off": 25,
+    "count": 1
+   },
+   {
+    "name": "InterfaceSel",
+    "type": "UINT8",
+    "off": 26,
+    "count": 1
+   },
+   {
+    "name": "DeviceType",
+    "type": "UINT8",
+    "off": 27,
+    "count": 1
+   },
+   {
+    "name": "PhRandomization",
+    "type": "UINT8",
+    "off": 28,
+    "count": 1
+   },
+   {
+    "name": "Sha1Supported",
+    "type": "UINT8",
+    "off": 29,
+    "count": 1
+   },
+   {
+    "name": "Sha256Supported",
+    "type": "UINT8",
+    "off": 30,
+    "count": 1
+   },
+   {
+    "name": "Sha384Supported",
+    "type": "UINT8",
+    "off": 31,
+    "count": 1
+   },
+   {
+    "name": "Sha512Supported",
+    "type": "UINT8",
+    "off": 32,
+    "count": 1
+   },
+   {
+    "name": "SM3Supported",
+    "type": "UINT8",
+    "off": 33,
+    "count": 1
+   },
+   {
+    "name": "Sha1",
+    "type": "UINT8",
+    "off": 34,
+    "count": 1
+   },
+   {
+    "name": "Sha256",
+    "type": "UINT8",
+    "off": 35,
+    "count": 1
+   },
+   {
+    "name": "Sha384",
+    "type": "UINT8",
+    "off": 36,
+    "count": 1
+   },
+   {
+    "name": "Sha512",
+    "type": "UINT8",
+    "off": 37,
+    "count": 1
+   },
+   {
+    "name": "SM3",
+    "type": "UINT8",
+    "off": 38,
+    "count": 1
+   },
+   {
+    "name": "ForceTpmEnable",
+    "type": "UINT8",
+    "off": 39,
+    "count": 1
+   },
+   {
+    "name": "PpiSpecVersion",
+    "type": "UINT8",
+    "off": 40,
+    "count": 1
+   },
+   {
+    "name": "BlockSidSetup",
+    "type": "UINT8",
+    "off": 41,
+    "count": 1
+   },
+   {
+    "name": "NvmeDeviceFound",
+    "type": "UINT8",
+    "off": 42,
+    "count": 1
+   },
+   {
+    "name": "fTPMSwitch",
+    "type": "UINT8",
+    "off": 43,
+    "count": 1
+   },
+   {
+    "name": "EraseFtpmNv",
+    "type": "UINT8",
+    "off": 44,
+    "count": 1
+   },
+   {
+    "name": "SaveSetupProfile",
+    "type": "UINT8",
+    "off": 45,
+    "count": 1
+   },
+   {
+    "name": "LoadSetupProfile",
+    "type": "UINT8",
+    "off": 46,
+    "count": 1
+   },
+   {
+    "name": "SaveSetupProfileName",
+    "type": "UINT16",
+    "off": 47,
+    "count": 14
+   },
+   {
+    "name": "SaveSetupProfileToUsb",
+    "type": "UINT8",
+    "off": 75,
+    "count": 1
+   },
+   {
+    "name": "LoadSetupProfileFromUsb",
+    "type": "UINT8",
+    "off": 76,
+    "count": 1
+   },
+   {
+    "name": "LastSetupProfileName",
+    "type": "UINT8",
+    "off": 77,
+    "count": 1
+   },
+   {
+    "name": "EmptySetupProfile",
+    "type": "UINT8",
+    "off": 78,
+    "count": 1
+   },
+   {
+    "name": "PNOW_ASL_MODE",
+    "type": "UINT8",
+    "off": 79,
+    "count": 1
+   },
+   {
+    "name": "PPC_LIMIT",
+    "type": "UINT8",
+    "off": 80,
+    "count": 1
+   },
+   {
+    "name": "PPC_CTRL",
+    "type": "UINT8",
+    "off": 81,
+    "count": 1
+   },
+   {
+    "name": "SVM_MODE",
+    "type": "UINT8",
+    "off": 82,
+    "count": 1
+   },
+   {
+    "name": "NX_MODE",
+    "type": "UINT8",
+    "off": 83,
+    "count": 1
+   },
+   {
+    "name": "StibpStatus",
+    "type": "UINT8",
+    "off": 84,
+    "count": 1
+   },
+   {
+    "name": "CORE_LEVELING",
+    "type": "UINT8",
+    "off": 85,
+    "count": 1
+   },
+   {
+    "name": "CpuCcdCtrl",
+    "type": "UINT8",
+    "off": 86,
+    "count": 1
+   },
+   {
+    "name": "SMTMode",
+    "type": "UINT8",
+    "off": 87,
+    "count": 1
+   },
+   {
+    "name": "AcpiAuto",
+    "type": "UINT8",
+    "off": 88,
+    "count": 1
+   },
+   {
+    "name": "AcpiSleepState",
+    "type": "UINT16",
+    "off": 89,
+    "count": 1
+   },
+   {
+    "name": "AcpiHibernate",
+    "type": "UINT8",
+    "off": 91,
+    "count": 1
+   },
+   {
+    "name": "S3ResumeVideoRepost",
+    "type": "UINT8",
+    "off": 92,
+    "count": 1
+   },
+   {
+    "name": "ForceToAcpi1",
+    "type": "UINT8",
+    "off": 93,
+    "count": 1
+   },
+   {
+    "name": "SB_SUPPRESS_IF",
+    "type": "UINT8",
+    "off": 94,
+    "count": 1
+   },
+   {
+    "name": "SataController",
+    "type": "UINT8",
+    "off": 95,
+    "count": 1
+   },
+   {
+    "name": "SataClass",
+    "type": "UINT8",
+    "off": 96,
+    "count": 1
+   },
+   {
+    "name": "SataSelRaid5",
+    "type": "UINT8",
+    "off": 97,
+    "count": 1
+   },
+   {
+    "name": "SataIdeMode",
+    "type": "UINT8",
+    "off": 98,
+    "count": 1
+   },
+   {
+    "name": "SataIdeCombinedMode",
+    "type": "UINT8",
+    "off": 99,
+    "count": 1
+   },
+   {
+    "name": "Xhci0Enable",
+    "type": "UINT8",
+    "off": 100,
+    "count": 1
+   },
+   {
+    "name": "Xhci1Enable",
+    "type": "UINT8",
+    "off": 101,
+    "count": 1
+   },
+   {
+    "name": "Usb1Ehci",
+    "type": "UINT8",
+    "off": 102,
+    "count": 1
+   },
+   {
+    "name": "Usb0PortEn0",
+    "type": "UINT8",
+    "off": 103,
+    "count": 1
+   },
+   {
+    "name": "Usb0PortEn1",
+    "type": "UINT8",
+    "off": 104,
+    "count": 1
+   },
+   {
+    "name": "Usb0HubPortEn0",
+    "type": "UINT8",
+    "off": 105,
+    "count": 1
+   },
+   {
+    "name": "Usb0HubPortEn1",
+    "type": "UINT8",
+    "off": 106,
+    "count": 1
+   },
+   {
+    "name": "Usb0HubPortEn2",
+    "type": "UINT8",
+    "off": 107,
+    "count": 1
+   },
+   {
+    "name": "Usb0HubPortEn3",
+    "type": "UINT8",
+    "off": 108,
+    "count": 1
+   },
+   {
+    "name": "Xhci0PortEn0",
+    "type": "UINT8",
+    "off": 109,
+    "count": 1
+   },
+   {
+    "name": "Xhci0PortEn1",
+    "type": "UINT8",
+    "off": 110,
+    "count": 1
+   },
+   {
+    "name": "Xhci0PortEn2",
+    "type": "UINT8",
+    "off": 111,
+    "count": 1
+   },
+   {
+    "name": "Xhci0PortEn3",
+    "type": "UINT8",
+    "off": 112,
+    "count": 1
+   },
+   {
+    "name": "Xhci0PortEn4",
+    "type": "UINT8",
+    "off": 113,
+    "count": 1
+   },
+   {
+    "name": "Xhci0PortEn5",
+    "type": "UINT8",
+    "off": 114,
+    "count": 1
+   },
+   {
+    "name": "Xhci1PortEn0",
+    "type": "UINT8",
+    "off": 115,
+    "count": 1
+   },
+   {
+    "name": "Xhci1PortEn1",
+    "type": "UINT8",
+    "off": 116,
+    "count": 1
+   },
+   {
+    "name": "UsbAllEnable",
+    "type": "UINT8",
+    "off": 117,
+    "count": 1
+   },
+   {
+    "name": "IrConfig",
+    "type": "UINT8",
+    "off": 118,
+    "count": 1
+   },
+   {
+    "name": "SdConfig",
+    "type": "UINT8",
+    "off": 119,
+    "count": 1
+   },
+   {
+    "name": "SdClockControl",
+    "type": "UINT8",
+    "off": 120,
+    "count": 1
+   },
+   {
+    "name": "SdSpeed",
+    "type": "UINT8",
+    "off": 121,
+    "count": 1
+   },
+   {
+    "name": "SdBitwidth",
+    "type": "UINT8",
+    "off": 122,
+    "count": 1
+   },
+   {
+    "name": "SdHostControllerVersion",
+    "type": "UINT8",
+    "off": 123,
+    "count": 1
+   },
+   {
+    "name": "SdForce18",
+    "type": "UINT8",
+    "off": 124,
+    "count": 1
+   },
+   {
+    "name": "SdDbgConfig",
+    "type": "UINT8",
+    "off": 125,
+    "count": 1
+   },
+   {
+    "name": "GpioAcpiEnabled",
+    "type": "UINT8",
+    "off": 126,
+    "count": 1
+   },
+   {
+    "name": "I2C0Enable",
+    "type": "UINT8",
+    "off": 127,
+    "count": 1
+   },
+   {
+    "name": "I2C1Enable",
+    "type": "UINT8",
+    "off": 128,
+    "count": 1
+   },
+   {
+    "name": "I2C2Enable",
+    "type": "UINT8",
+    "off": 129,
+    "count": 1
+   },
+   {
+    "name": "I2C3Enable",
+    "type": "UINT8",
+    "off": 130,
+    "count": 1
+   },
+   {
+    "name": "Uart0Enable",
+    "type": "UINT8",
+    "off": 131,
+    "count": 1
+   },
+   {
+    "name": "Uart1Enable",
+    "type": "UINT8",
+    "off": 132,
+    "count": 1
+   },
+   {
+    "name": "AbClockGating",
+    "type": "UINT8",
+    "off": 133,
+    "count": 1
+   },
+   {
+    "name": "PcibClockRun",
+    "type": "UINT8",
+    "off": 134,
+    "count": 1
+   },
+   {
+    "name": "SataEspPort0",
+    "type": "UINT8",
+    "off": 135,
+    "count": 1
+   },
+   {
+    "name": "SataEspPort1",
+    "type": "UINT8",
+    "off": 136,
+    "count": 1
+   },
+   {
+    "name": "SataEspPort2",
+    "type": "UINT8",
+    "off": 137,
+    "count": 1
+   },
+   {
+    "name": "SataEspPort3",
+    "type": "UINT8",
+    "off": 138,
+    "count": 1
+   },
+   {
+    "name": "SataEspPort4",
+    "type": "UINT8",
+    "off": 139,
+    "count": 1
+   },
+   {
+    "name": "SataEspPort5",
+    "type": "UINT8",
+    "off": 140,
+    "count": 1
+   },
+   {
+    "name": "SataEspPort6",
+    "type": "UINT8",
+    "off": 141,
+    "count": 1
+   },
+   {
+    "name": "SataEspPort7",
+    "type": "UINT8",
+    "off": 142,
+    "count": 1
+   },
+   {
+    "name": "SataPower0",
+    "type": "UINT8",
+    "off": 143,
+    "count": 1
+   },
+   {
+    "name": "SataPower1",
+    "type": "UINT8",
+    "off": 144,
+    "count": 1
+   },
+   {
+    "name": "SataPower2",
+    "type": "UINT8",
+    "off": 145,
+    "count": 1
+   },
+   {
+    "name": "SataPower3",
+    "type": "UINT8",
+    "off": 146,
+    "count": 1
+   },
+   {
+    "name": "SataPower4",
+    "type": "UINT8",
+    "off": 147,
+    "count": 1
+   },
+   {
+    "name": "SataPower5",
+    "type": "UINT8",
+    "off": 148,
+    "count": 1
+   },
+   {
+    "name": "SataPower6",
+    "type": "UINT8",
+    "off": 149,
+    "count": 1
+   },
+   {
+    "name": "SataPower7",
+    "type": "UINT8",
+    "off": 150,
+    "count": 1
+   },
+   {
+    "name": "SataPortMode0",
+    "type": "UINT8",
+    "off": 151,
+    "count": 1
+   },
+   {
+    "name": "SataPortMode1",
+    "type": "UINT8",
+    "off": 152,
+    "count": 1
+   },
+   {
+    "name": "SataPortMode2",
+    "type": "UINT8",
+    "off": 153,
+    "count": 1
+   },
+   {
+    "name": "SataPortMode3",
+    "type": "UINT8",
+    "off": 154,
+    "count": 1
+   },
+   {
+    "name": "SataPortMode4",
+    "type": "UINT8",
+    "off": 155,
+    "count": 1
+   },
+   {
+    "name": "SataPortMode5",
+    "type": "UINT8",
+    "off": 156,
+    "count": 1
+   },
+   {
+    "name": "SataPortMode6",
+    "type": "UINT8",
+    "off": 157,
+    "count": 1
+   },
+   {
+    "name": "SataPortMode7",
+    "type": "UINT8",
+    "off": 158,
+    "count": 1
+   },
+   {
+    "name": "SataHotRemoveEnh",
+    "type": "UINT8",
+    "off": 159,
+    "count": 1
+   },
+   {
+    "name": "Sata6AhciCap",
+    "type": "UINT8",
+    "off": 160,
+    "count": 1
+   },
+   {
+    "name": "SataInternal100Spread",
+    "type": "UINT8",
+    "off": 161,
+    "count": 1
+   },
+   {
+    "name": "SataMaxGen2Cap",
+    "type": "UINT8",
+    "off": 162,
+    "count": 1
+   },
+   {
+    "name": "SataClkMode",
+    "type": "UINT8",
+    "off": 163,
+    "count": 1
+   },
+   {
+    "name": "SataAggrLinkPmCap",
+    "type": "UINT8",
+    "off": 164,
+    "count": 1
+   },
+   {
+    "name": "SataPortMultCap",
+    "type": "UINT8",
+    "off": 165,
+    "count": 1
+   },
+   {
+    "name": "SataClkAutoOff",
+    "type": "UINT8",
+    "off": 166,
+    "count": 1
+   },
+   {
+    "name": "SataPscCap",
+    "type": "UINT8",
+    "off": 167,
+    "count": 1
+   },
+   {
+    "name": "SataFisBasedSwitching",
+    "type": "UINT8",
+    "off": 168,
+    "count": 1
+   },
+   {
+    "name": "SataCccSupport",
+    "type": "UINT8",
+    "off": 169,
+    "count": 1
+   },
+   {
+    "name": "SataSscCap",
+    "type": "UINT8",
+    "off": 170,
+    "count": 1
+   },
+   {
+    "name": "SataMsiCapability",
+    "type": "UINT8",
+    "off": 171,
+    "count": 1
+   },
+   {
+    "name": "SataTargetSupport8Device",
+    "type": "UINT8",
+    "off": 172,
+    "count": 1
+   },
+   {
+    "name": "SataDisableGenericMode",
+    "type": "UINT8",
+    "off": 173,
+    "count": 1
+   },
+   {
+    "name": "SataAhciEnclosureManagement",
+    "type": "UINT8",
+    "off": 174,
+    "count": 1
+   },
+   {
+    "name": "SataSgpio0",
+    "type": "UINT8",
+    "off": 175,
+    "count": 1
+   },
+   {
+    "name": "SataSgpio1",
+    "type": "UINT8",
+    "off": 176,
+    "count": 1
+   },
+   {
+    "name": "SataPhyPllShutDown",
+    "type": "UINT8",
+    "off": 177,
+    "count": 1
+   },
+   {
+    "name": "AcdcChangeMessageDelivery",
+    "type": "UINT8",
+    "off": 178,
+    "count": 1
+   },
+   {
+    "name": "TimerTickTracking",
+    "type": "UINT8",
+    "off": 179,
+    "count": 1
+   },
+   {
+    "name": "ClockInterruptTag",
+    "type": "UINT8",
+    "off": 180,
+    "count": 1
+   },
+   {
+    "name": "EhciTrafficHanding",
+    "type": "UINT8",
+    "off": 181,
+    "count": 1
+   },
+   {
+    "name": "FusionMessageCMultiCore",
+    "type": "UINT8",
+    "off": 182,
+    "count": 1
+   },
+   {
+    "name": "FusionMessageCState",
+    "type": "UINT8",
+    "off": 183,
+    "count": 1
+   },
+   {
+    "name": "SpiAutoMode",
+    "type": "UINT8",
+    "off": 184,
+    "count": 1
+   },
+   {
+    "name": "SpiMode",
+    "type": "UINT8",
+    "off": 185,
+    "count": 1
+   },
+   {
+    "name": "SpiSpeed",
+    "type": "UINT8",
+    "off": 186,
+    "count": 1
+   },
+   {
+    "name": "SpiFastSpeed",
+    "type": "UINT8",
+    "off": 187,
+    "count": 1
+   },
+   {
+    "name": "SPI100_Enable",
+    "type": "UINT8",
+    "off": 188,
+    "count": 1
+   },
+   {
+    "name": "SpiBurstWrite",
+    "type": "UINT8",
+    "off": 189,
+    "count": 1
+   },
+   {
+    "name": "I2C0D3",
+    "type": "UINT8",
+    "off": 190,
+    "count": 1
+   },
+   {
+    "name": "I2C1D3",
+    "type": "UINT8",
+    "off": 191,
+    "count": 1
+   },
+   {
+    "name": "I2C2D3",
+    "type": "UINT8",
+    "off": 192,
+    "count": 1
+   },
+   {
+    "name": "I2C3D3",
+    "type": "UINT8",
+    "off": 193,
+    "count": 1
+   },
+   {
+    "name": "I2C4D3",
+    "type": "UINT8",
+    "off": 194,
+    "count": 1
+   },
+   {
+    "name": "I2C5D3",
+    "type": "UINT8",
+    "off": 195,
+    "count": 1
+   },
+   {
+    "name": "UART0D3",
+    "type": "UINT8",
+    "off": 196,
+    "count": 1
+   },
+   {
+    "name": "UART1D3",
+    "type": "UINT8",
+    "off": 197,
+    "count": 1
+   },
+   {
+    "name": "UART2D3",
+    "type": "UINT8",
+    "off": 198,
+    "count": 1
+   },
+   {
+    "name": "UART3D3",
+    "type": "UINT8",
+    "off": 199,
+    "count": 1
+   },
+   {
+    "name": "SATAD3",
+    "type": "UINT8",
+    "off": 200,
+    "count": 1
+   },
+   {
+    "name": "EHCID3",
+    "type": "UINT8",
+    "off": 201,
+    "count": 1
+   },
+   {
+    "name": "XHCID3",
+    "type": "UINT8",
+    "off": 202,
+    "count": 1
+   },
+   {
+    "name": "SDD3",
+    "type": "UINT8",
+    "off": 203,
+    "count": 1
+   },
+   {
+    "name": "S0I3",
+    "type": "UINT8",
+    "off": 204,
+    "count": 1
+   },
+   {
+    "name": "MobilePowerSavings",
+    "type": "UINT8",
+    "off": 205,
+    "count": 1
+   },
+   {
+    "name": "SpreadSpectrum",
+    "type": "UINT8",
+    "off": 206,
+    "count": 1
+   },
+   {
+    "name": "HpetTimer",
+    "type": "UINT8",
+    "off": 207,
+    "count": 1
+   },
+   {
+    "name": "HpetMsiDis",
+    "type": "UINT8",
+    "off": 208,
+    "count": 1
+   },
+   {
+    "name": "NativePcieSupport",
+    "type": "UINT8",
+    "off": 209,
+    "count": 1
+   },
+   {
+    "name": "UsbPhyPowerDown",
+    "type": "UINT8",
+    "off": 210,
+    "count": 1
+   },
+   {
+    "name": "PcibClkStopOverride",
+    "type": "UINT16",
+    "off": 211,
+    "count": 1
+   },
+   {
+    "name": "UsbMsi",
+    "type": "UINT8",
+    "off": 213,
+    "count": 1
+   },
+   {
+    "name": "LpcMsi",
+    "type": "UINT8",
+    "off": 214,
+    "count": 1
+   },
+   {
+    "name": "PcibMsi",
+    "type": "UINT8",
+    "off": 215,
+    "count": 1
+   },
+   {
+    "name": "AbMsi",
+    "type": "UINT8",
+    "off": 216,
+    "count": 1
+   },
+   {
+    "name": "SbMtC1eEnable",
+    "type": "UINT8",
+    "off": 217,
+    "count": 1
+   },
+   {
+    "name": "SpreadSpectrumOptions",
+    "type": "UINT8",
+    "off": 218,
+    "count": 1
+   },
+   {
+    "name": "SBPowerState",
+    "type": "UINT8",
+    "off": 219,
+    "count": 1
+   },
+   {
+    "name": "SdbEnable",
+    "type": "UINT8",
+    "off": 220,
+    "count": 1
+   },
+   {
+    "name": "FchCsHwReduced",
+    "type": "UINT8",
+    "off": 221,
+    "count": 1
+   },
+   {
+    "name": "PTXhciGen1",
+    "type": "UINT8",
+    "off": 222,
+    "count": 1
+   },
+   {
+    "name": "PTXhciGen2",
+    "type": "UINT8",
+    "off": 223,
+    "count": 1
+   },
+   {
+    "name": "Equalization4",
+    "type": "UINT8",
+    "off": 224,
+    "count": 1
+   },
+   {
+    "name": "Redriver",
+    "type": "UINT8",
+    "off": 225,
+    "count": 1
+   },
+   {
+    "name": "PTUsb31P0",
+    "type": "UINT8",
+    "off": 226,
+    "count": 1
+   },
+   {
+    "name": "PTUsb31P1",
+    "type": "UINT8",
+    "off": 227,
+    "count": 1
+   },
+   {
+    "name": "PTUsb30P0",
+    "type": "UINT8",
+    "off": 228,
+    "count": 1
+   },
+   {
+    "name": "PTUsb30P1",
+    "type": "UINT8",
+    "off": 229,
+    "count": 1
+   },
+   {
+    "name": "PTUsb30P2",
+    "type": "UINT8",
+    "off": 230,
+    "count": 1
+   },
+   {
+    "name": "PTUsb30P3",
+    "type": "UINT8",
+    "off": 231,
+    "count": 1
+   },
+   {
+    "name": "PTUsb30P4",
+    "type": "UINT8",
+    "off": 232,
+    "count": 1
+   },
+   {
+    "name": "PTUsb30P5",
+    "type": "UINT8",
+    "off": 233,
+    "count": 1
+   },
+   {
+    "name": "PTUsb20P0",
+    "type": "UINT8",
+    "off": 234,
+    "count": 1
+   },
+   {
+    "name": "PTUsb20P1",
+    "type": "UINT8",
+    "off": 235,
+    "count": 1
+   },
+   {
+    "name": "PTUsb20P2",
+    "type": "UINT8",
+    "off": 236,
+    "count": 1
+   },
+   {
+    "name": "PTUsb20P3",
+    "type": "UINT8",
+    "off": 237,
+    "count": 1
+   },
+   {
+    "name": "PTUsb20P4",
+    "type": "UINT8",
+    "off": 238,
+    "count": 1
+   },
+   {
+    "name": "PTUsb20P5",
+    "type": "UINT8",
+    "off": 239,
+    "count": 1
+   },
+   {
+    "name": "PTAOAC",
+    "type": "UINT8",
+    "off": 240,
+    "count": 1
+   },
+   {
+    "name": "PTHW_LPM",
+    "type": "UINT8",
+    "off": 241,
+    "count": 1
+   },
+   {
+    "name": "PTDbC",
+    "type": "UINT8",
+    "off": 242,
+    "count": 1
+   },
+   {
+    "name": "PTXHC_PME",
+    "type": "UINT8",
+    "off": 243,
+    "count": 1
+   },
+   {
+    "name": "PTSystemSpreadSpectrum",
+    "type": "UINT8",
+    "off": 244,
+    "count": 1
+   },
+   {
+    "name": "PTSataPortEnable",
+    "type": "UINT8",
+    "off": 245,
+    "count": 1
+   },
+   {
+    "name": "PTSataMode",
+    "type": "UINT8",
+    "off": 246,
+    "count": 1
+   },
+   {
+    "name": "PTSataAggresiveDevSlpP0",
+    "type": "UINT8",
+    "off": 247,
+    "count": 1
+   },
+   {
+    "name": "PTSataAggresiveDevSlpP1",
+    "type": "UINT8",
+    "off": 248,
+    "count": 1
+   },
+   {
+    "name": "PTSataAggrLinkPmCap",
+    "type": "UINT8",
+    "off": 249,
+    "count": 1
+   },
+   {
+    "name": "PTSataPscCap",
+    "type": "UINT8",
+    "off": 250,
+    "count": 1
+   },
+   {
+    "name": "PTSataSscCap",
+    "type": "UINT8",
+    "off": 251,
+    "count": 1
+   },
+   {
+    "name": "PTSataMsiCapability",
+    "type": "UINT8",
+    "off": 252,
+    "count": 1
+   },
+   {
+    "name": "PTSataPortMdPort0",
+    "type": "UINT8",
+    "off": 253,
+    "count": 1
+   },
+   {
+    "name": "PTSataPortMdPort1",
+    "type": "UINT8",
+    "off": 254,
+    "count": 1
+   },
+   {
+    "name": "PTSataHotPlug",
+    "type": "UINT8",
+    "off": 255,
+    "count": 1
+   },
+   {
+    "name": "PromontoryPCIeEnable",
+    "type": "UINT8",
+    "off": 256,
+    "count": 1
+   },
+   {
+    "name": "PromontoryPCIeASPM",
+    "type": "UINT8",
+    "off": 257,
+    "count": 1
+   },
+   {
+    "name": "GppNumber",
+    "type": "UINT8",
+    "off": 258,
+    "count": 1
+   },
+   {
+    "name": "XhciVID",
+    "type": "UINT16",
+    "off": 259,
+    "count": 1
+   },
+   {
+    "name": "SataID",
+    "type": "UINT32",
+    "off": 261,
+    "count": 1
+   },
+   {
+    "name": "GpioID",
+    "type": "UINT32",
+    "off": 265,
+    "count": 1
+   },
+   {
+    "name": "FwVersion",
+    "type": "UINT64",
+    "off": 269,
+    "count": 1
+   },
+   {
+    "name": "PCIEPorts",
+    "type": "UINT8",
+    "off": 277,
+    "count": 8
+   },
+   {
+    "name": "LPPTGPPClkForceOn",
+    "type": "UINT8",
+    "off": 285,
+    "count": 8
+   },
+   {
+    "name": "SataPorts",
+    "type": "UINT8",
+    "off": 293,
+    "count": 8
+   },
+   {
+    "name": "AmiCbsAcpiS3Support",
+    "type": "UINT8",
+    "off": 301,
+    "count": 1
+   },
+   {
+    "name": "OnBoardPXENIC",
+    "type": "UINT8",
+    "off": 302,
+    "count": 1
+   },
+   {
+    "name": "CrbOnBoardTpm",
+    "type": "UINT8",
+    "off": 303,
+    "count": 1
+   },
+   {
+    "name": "CrbSdConnector",
+    "type": "UINT8",
+    "off": 304,
+    "count": 1
+   },
+   {
+    "name": "CrbWhckEhciDebugPort",
+    "type": "UINT8",
+    "off": 305,
+    "count": 1
+   },
+   {
+    "name": "SmartSelfTest",
+    "type": "UINT8",
+    "off": 306,
+    "count": 1
+   },
+   {
+    "name": "SpdSlot",
+    "type": "UINT8",
+    "off": 307,
+    "count": 1
+   },
+   {
+    "name": "DimmPresent",
+    "type": "UINT8",
+    "off": 308,
+    "count": 1
+   },
+   {
+    "name": "PrimaryVideo",
+    "type": "UINT8",
+    "off": 309,
+    "count": 1
+   },
+   {
+    "name": "AmdGopPlatformToDriver",
+    "type": "UINT8",
+    "off": 310,
+    "count": 1
+   },
+   {
+    "name": "AmdGopPlatformToDriverData1",
+    "type": "UINT32",
+    "off": 311,
+    "count": 1
+   },
+   {
+    "name": "AmdGopPlatformToDriverData2",
+    "type": "UINT32",
+    "off": 315,
+    "count": 1
+   },
+   {
+    "name": "AmdGopPlatformToDriverData3",
+    "type": "UINT32",
+    "off": 319,
+    "count": 1
+   },
+   {
+    "name": "AmdGopPlatformToDriverData4",
+    "type": "UINT32",
+    "off": 323,
+    "count": 1
+   },
+   {
+    "name": "AmdGopPlatformToDriverData5",
+    "type": "UINT32",
+    "off": 327,
+    "count": 1
+   },
+   {
+    "name": "AmdGopPlatformToDriverData6",
+    "type": "UINT32",
+    "off": 331,
+    "count": 1
+   },
+   {
+    "name": "AmdGopLcdBootUpBlLevel",
+    "type": "UINT8",
+    "off": 335,
+    "count": 1
+   },
+   {
+    "name": "iGpuControl",
+    "type": "UINT8",
+    "off": 336,
+    "count": 1
+   },
+   {
+    "name": "UmaFrameBufferSize",
+    "type": "UINT32",
+    "off": 337,
+    "count": 1
+   },
+   {
+    "name": "UmaMode",
+    "type": "UINT8",
+    "off": 341,
+    "count": 1
+   },
+   {
+    "name": "UmaVersion",
+    "type": "UINT8",
+    "off": 342,
+    "count": 1
+   },
+   {
+    "name": "PsppPolicy",
+    "type": "UINT8",
+    "off": 343,
+    "count": 1
+   },
+   {
+    "name": "IommuSupport",
+    "type": "UINT8",
+    "off": 344,
+    "count": 1
+   },
+   {
+    "name": "GnbRemoteDisplaySupport",
+    "type": "UINT8",
+    "off": 345,
+    "count": 1
+   },
+   {
+    "name": "GnbHdAudio",
+    "type": "UINT8",
+    "off": 346,
+    "count": 1
+   },
+   {
+    "name": "G3BootMode",
+    "type": "UINT8",
+    "off": 347,
+    "count": 1
+   },
+   {
+    "name": "RTLSupport",
+    "type": "UINT8",
+    "off": 348,
+    "count": 1
+   },
+   {
+    "name": "RTLOpRom",
+    "type": "UINT8",
+    "off": 349,
+    "count": 1
+   },
+   {
+    "name": "ASUSWifiEnable",
+    "type": "UINT8",
+    "off": 350,
+    "count": 1
+   },
+   {
+    "name": "AzaliaController",
+    "type": "UINT8",
+    "off": 351,
+    "count": 1
+   },
+   {
+    "name": "AzaliaFrontPanel",
+    "type": "UINT8",
+    "off": 352,
+    "count": 1
+   },
+   {
+    "name": "AzaliaSpdifHdmiType",
+    "type": "UINT8",
+    "off": 353,
+    "count": 1
+   },
+   {
+    "name": "EUP",
+    "type": "UINT8",
+    "off": 354,
+    "count": 1
+   },
+   {
+    "name": "EnergyStarReady",
+    "type": "UINT8",
+    "off": 355,
+    "count": 1
+   },
+   {
+    "name": "CecReady",
+    "type": "UINT8",
+    "off": 356,
+    "count": 1
+   },
+   {
+    "name": "LastState",
+    "type": "UINT8",
+    "off": 357,
+    "count": 1
+   },
+   {
+    "name": "PowerupKB",
+    "type": "UINT8",
+    "off": 358,
+    "count": 1
+   },
+   {
+    "name": "PowerupMS",
+    "type": "UINT8",
+    "off": 359,
+    "count": 1
+   },
+   {
+    "name": "PowerupPCI",
+    "type": "UINT8",
+    "off": 360,
+    "count": 1
+   },
+   {
+    "name": "PowerupPCIE",
+    "type": "UINT8",
+    "off": 361,
+    "count": 1
+   },
+   {
+    "name": "PowerupRING",
+    "type": "UINT8",
+    "off": 362,
+    "count": 1
+   },
+   {
+    "name": "PowerupRTC",
+    "type": "UINT8",
+    "off": 363,
+    "count": 1
+   },
+   {
+    "name": "PowerupRTCAlarmDate",
+    "type": "UINT8",
+    "off": 364,
+    "count": 1
+   },
+   {
+    "name": "PowerupRTCHour",
+    "type": "UINT8",
+    "off": 365,
+    "count": 1
+   },
+   {
+    "name": "PowerupRTCMinute",
+    "type": "UINT8",
+    "off": 366,
+    "count": 1
+   },
+   {
+    "name": "PowerupRTCSecond",
+    "type": "UINT8",
+    "off": 367,
+    "count": 1
+   },
+   {
+    "name": "PxeBootOption",
+    "type": "UINT8",
+    "off": 368,
+    "count": 1
+   },
+   {
+    "name": "Depop",
+    "type": "UINT8",
+    "off": 369,
+    "count": 1
+   },
+   {
+    "name": "FbPostTime",
+    "type": "UINT8",
+    "off": 370,
+    "count": 1
+   },
+   {
+    "name": "PostReportSupport",
+    "type": "UINT8",
+    "off": 371,
+    "count": 1
+   },
+   {
+    "name": "waitForF1",
+    "type": "UINT8",
+    "off": 372,
+    "count": 1
+   },
+   {
+    "name": "PCIEX16_1_GEN",
+    "type": "UINT8",
+    "off": 373,
+    "count": 1
+   },
+   {
+    "name": "M2_1_GEN",
+    "type": "UINT8",
+    "off": 374,
+    "count": 1
+   },
+   {
+    "name": "M2_2_GEN",
+    "type": "UINT8",
+    "off": 375,
+    "count": 1
+   },
+   {
+    "name": "SB_GEN",
+    "type": "UINT8",
+    "off": 376,
+    "count": 1
+   },
+   {
+    "name": "PtGpp0",
+    "type": "UINT8",
+    "off": 377,
+    "count": 1
+   },
+   {
+    "name": "PtGpp1",
+    "type": "UINT8",
+    "off": 378,
+    "count": 1
+   },
+   {
+    "name": "PtGpp2",
+    "type": "UINT8",
+    "off": 379,
+    "count": 1
+   },
+   {
+    "name": "PtGpp3",
+    "type": "UINT8",
+    "off": 380,
+    "count": 1
+   },
+   {
+    "name": "PtGpp4",
+    "type": "UINT8",
+    "off": 381,
+    "count": 1
+   },
+   {
+    "name": "PtGpp5",
+    "type": "UINT8",
+    "off": 382,
+    "count": 1
+   },
+   {
+    "name": "PtGpp6",
+    "type": "UINT8",
+    "off": 383,
+    "count": 1
+   },
+   {
+    "name": "PtGpp7",
+    "type": "UINT8",
+    "off": 384,
+    "count": 1
+   },
+   {
+    "name": "PtGpp8",
+    "type": "UINT8",
+    "off": 385,
+    "count": 1
+   },
+   {
+    "name": "PtGpp9",
+    "type": "UINT8",
+    "off": 386,
+    "count": 1
+   },
+   {
+    "name": "PcieAspmMode",
+    "type": "UINT8",
+    "off": 387,
+    "count": 1
+   },
+   {
+    "name": "PcieSwitchJ10",
+    "type": "UINT8",
+    "off": 388,
+    "count": 1
+   },
+   {
+    "name": "CpuGfx0Switch",
+    "type": "UINT8",
+    "off": 389,
+    "count": 1
+   },
+   {
+    "name": "PT_switch_2X_4X",
+    "type": "UINT8",
+    "off": 390,
+    "count": 1
+   },
+   {
+    "name": "AiCharge",
+    "type": "UINT8",
+    "off": 391,
+    "count": 1
+   },
+   {
+    "name": "MultiMonitor",
+    "type": "UINT8",
+    "off": 392,
+    "count": 1
+   },
+   {
+    "name": "SataControllerAllEnable",
+    "type": "UINT8",
+    "off": 393,
+    "count": 1
+   },
+   {
+    "name": "CbsCmnBixbySata0Enable",
+    "type": "UINT8",
+    "off": 394,
+    "count": 1
+   },
+   {
+    "name": "CbsCmnBixbySata1Enable",
+    "type": "UINT8",
+    "off": 395,
+    "count": 1
+   },
+   {
+    "name": "CbsCmnSataClass",
+    "type": "UINT8",
+    "off": 396,
+    "count": 1
+   },
+   {
+    "name": "SataHotPlug",
+    "type": "UINT8",
+    "off": 397,
+    "count": 32
+   },
+   {
+    "name": "NvmeRaid",
+    "type": "UINT8",
+    "off": 429,
+    "count": 1
+   },
+   {
+    "name": "RvPcieSwitch",
+    "type": "UINT8",
+    "off": 430,
+    "count": 1
+   },
+   {
+    "name": "AsusNvmeNativeDriverSupport",
+    "type": "UINT8",
+    "off": 431,
+    "count": 1
+   },
+   {
+    "name": "BtEnable",
+    "type": "UINT8",
+    "off": 432,
+    "count": 1
+   },
+   {
+    "name": "ImageRollbackSupport",
+    "type": "UINT8",
+    "off": 433,
+    "count": 1
+   },
+   {
+    "name": "qfanSourceVRM0",
+    "type": "UINT8",
+    "off": 434,
+    "count": 1
+   },
+   {
+    "name": "qfanSourceExt",
+    "type": "UINT8",
+    "off": 435,
+    "count": 1
+   },
+   {
+    "name": "qfanSourceMix",
+    "type": "UINT8",
+    "off": 436,
+    "count": 1
+   },
+   {
+    "name": "Ec2QFanActiveEnabled",
+    "type": "UINT8",
+    "off": 437,
+    "count": 1
+   },
+   {
+    "name": "MmioAddrLimit",
+    "type": "UINT8",
+    "off": 438,
+    "count": 1
+   },
+   {
+    "name": "GopOutputSelect",
+    "type": "UINT8",
+    "off": 439,
+    "count": 1
+   },
+   {
+    "name": "DBGPEnable",
+    "type": "UINT8",
+    "off": 440,
+    "count": 1
+   },
+   {
+    "name": "DBG2Enable",
+    "type": "UINT8",
+    "off": 441,
+    "count": 1
+   },
+   {
+    "name": "Above4gDecode",
+    "type": "UINT8",
+    "off": 442,
+    "count": 1
+   },
+   {
+    "name": "ResizeBarSupport",
+    "type": "UINT8",
+    "off": 443,
+    "count": 1
+   },
+   {
+    "name": "SriovSupport",
+    "type": "UINT8",
+    "off": 444,
+    "count": 1
+   },
+   {
+    "name": "BmeDmaMitigation",
+    "type": "UINT8",
+    "off": 445,
+    "count": 1
+   },
+   {
+    "name": "PciLatency",
+    "type": "UINT8",
+    "off": 446,
+    "count": 1
+   },
+   {
+    "name": "VgaPallete",
+    "type": "UINT8",
+    "off": 447,
+    "count": 1
+   },
+   {
+    "name": "PerrEnable",
+    "type": "UINT8",
+    "off": 448,
+    "count": 1
+   },
+   {
+    "name": "SerrEnable",
+    "type": "UINT8",
+    "off": 449,
+    "count": 1
+   },
+   {
+    "name": "PciXLatency",
+    "type": "UINT8",
+    "off": 450,
+    "count": 1
+   },
+   {
+    "name": "RelaxedOrdering",
+    "type": "UINT8",
+    "off": 451,
+    "count": 1
+   },
+   {
+    "name": "ExtTagField",
+    "type": "UINT8",
+    "off": 452,
+    "count": 1
+   },
+   {
+    "name": "NoSnoop",
+    "type": "UINT8",
+    "off": 453,
+    "count": 1
+   },
+   {
+    "name": "MaxPayload",
+    "type": "UINT8",
+    "off": 454,
+    "count": 1
+   },
+   {
+    "name": "MaxReadRequest",
+    "type": "UINT8",
+    "off": 455,
+    "count": 1
+   },
+   {
+    "name": "AspmMode",
+    "type": "UINT8",
+    "off": 456,
+    "count": 1
+   },
+   {
+    "name": "ExtendedSynch",
+    "type": "UINT8",
+    "off": 457,
+    "count": 1
+   },
+   {
+    "name": "LnkTrRetry",
+    "type": "UINT8",
+    "off": 458,
+    "count": 1
+   },
+   {
+    "name": "LnkTrTimeout",
+    "type": "UINT16",
+    "off": 459,
+    "count": 1
+   },
+   {
+    "name": "LnkDisable",
+    "type": "UINT8",
+    "off": 461,
+    "count": 1
+   },
+   {
+    "name": "S3PciExpressScripts",
+    "type": "UINT8",
+    "off": 462,
+    "count": 1
+   },
+   {
+    "name": "DontResetVcMapping",
+    "type": "UINT8",
+    "off": 463,
+    "count": 1
+   },
+   {
+    "name": "ComplTimeOut",
+    "type": "UINT8",
+    "off": 464,
+    "count": 1
+   },
+   {
+    "name": "AriFwd",
+    "type": "UINT8",
+    "off": 465,
+    "count": 1
+   },
+   {
+    "name": "AtomOpReq",
+    "type": "UINT8",
+    "off": 466,
+    "count": 1
+   },
+   {
+    "name": "AtomOpEgressBlk",
+    "type": "UINT8",
+    "off": 467,
+    "count": 1
+   },
+   {
+    "name": "IDOReq",
+    "type": "UINT8",
+    "off": 468,
+    "count": 1
+   },
+   {
+    "name": "IDOCompl",
+    "type": "UINT8",
+    "off": 469,
+    "count": 1
+   },
+   {
+    "name": "LtrReport",
+    "type": "UINT8",
+    "off": 470,
+    "count": 1
+   },
+   {
+    "name": "E2ETlpPrBlk",
+    "type": "UINT8",
+    "off": 471,
+    "count": 1
+   },
+   {
+    "name": "LnkSpeed",
+    "type": "UINT8",
+    "off": 472,
+    "count": 1
+   },
+   {
+    "name": "DeEmphasis",
+    "type": "UINT8",
+    "off": 473,
+    "count": 1
+   },
+   {
+    "name": "ClockPm",
+    "type": "UINT8",
+    "off": 474,
+    "count": 1
+   },
+   {
+    "name": "ComplSos",
+    "type": "UINT8",
+    "off": 475,
+    "count": 1
+   },
+   {
+    "name": "HwAutoWidth",
+    "type": "UINT8",
+    "off": 476,
+    "count": 1
+   },
+   {
+    "name": "HwAutoSpeed",
+    "type": "UINT8",
+    "off": 477,
+    "count": 1
+   },
+   {
+    "name": "HotPlugEnable",
+    "type": "UINT8",
+    "off": 478,
+    "count": 1
+   },
+   {
+    "name": "BusPadd",
+    "type": "UINT8",
+    "off": 479,
+    "count": 1
+   },
+   {
+    "name": "IoPadd",
+    "type": "UINT8",
+    "off": 480,
+    "count": 1
+   },
+   {
+    "name": "Mmio32Padd",
+    "type": "UINT8",
+    "off": 481,
+    "count": 1
+   },
+   {
+    "name": "Mmio32PfPadd",
+    "type": "UINT8",
+    "off": 482,
+    "count": 1
+   },
+   {
+    "name": "Mmio64Padd",
+    "type": "UINT16",
+    "off": 483,
+    "count": 1
+   },
+   {
+    "name": "Mmio64PfPadd",
+    "type": "UINT16",
+    "off": 485,
+    "count": 1
+   },
+   {
+    "name": "UsbPortAllEnable",
+    "type": "UINT8",
+    "off": 487,
+    "count": 1
+   },
+   {
+    "name": "PTPlusUsbSsp0",
+    "type": "UINT8",
+    "off": 488,
+    "count": 1
+   },
+   {
+    "name": "PTPlusUsbSsp1",
+    "type": "UINT8",
+    "off": 489,
+    "count": 1
+   },
+   {
+    "name": "PTPlusUsbSs0",
+    "type": "UINT8",
+    "off": 490,
+    "count": 1
+   },
+   {
+    "name": "PTPlusUsbSs1",
+    "type": "UINT8",
+    "off": 491,
+    "count": 1
+   },
+   {
+    "name": "PTPlusU2P4",
+    "type": "UINT8",
+    "off": 492,
+    "count": 1
+   },
+   {
+    "name": "PTPlusU2P5",
+    "type": "UINT8",
+    "off": 493,
+    "count": 1
+   },
+   {
+    "name": "PTPlusU2P6",
+    "type": "UINT8",
+    "off": 494,
+    "count": 1
+   },
+   {
+    "name": "PTPlusU2P7",
+    "type": "UINT8",
+    "off": 495,
+    "count": 1
+   },
+   {
+    "name": "PTPlusU2P8",
+    "type": "UINT8",
+    "off": 496,
+    "count": 1
+   },
+   {
+    "name": "PTPlusU2P9",
+    "type": "UINT8",
+    "off": 497,
+    "count": 1
+   },
+   {
+    "name": "CsmSupport",
+    "type": "UINT8",
+    "off": 498,
+    "count": 1
+   },
+   {
+    "name": "ExpansionCardText",
+    "type": "UINT8",
+    "off": 499,
+    "count": 1
+   },
+   {
+    "name": "I19Trap",
+    "type": "UINT8",
+    "off": 500,
+    "count": 1
+   },
+   {
+    "name": "ZipEmulation",
+    "type": "UINT8",
+    "off": 501,
+    "count": 1
+   },
+   {
+    "name": "HddOrderAdjustment",
+    "type": "UINT8",
+    "off": 502,
+    "count": 1
+   },
+   {
+    "name": "KeepGA20Active",
+    "type": "UINT8",
+    "off": 503,
+    "count": 1
+   },
+   {
+    "name": "BootOptionFilter",
+    "type": "UINT8",
+    "off": 504,
+    "count": 1
+   },
+   {
+    "name": "PxeOpRom",
+    "type": "UINT8",
+    "off": 505,
+    "count": 1
+   },
+   {
+    "name": "MassStorageOpRom",
+    "type": "UINT8",
+    "off": 506,
+    "count": 1
+   },
+   {
+    "name": "VideoOpRom",
+    "type": "UINT8",
+    "off": 507,
+    "count": 1
+   },
+   {
+    "name": "OldOpRom",
+    "type": "UINT8",
+    "off": 508,
+    "count": 1
+   },
+   {
+    "name": "EzModeEnable",
+    "type": "UINT8",
+    "off": 509,
+    "count": 1
+   },
+   {
+    "name": "EzOCMode",
+    "type": "UINT8",
+    "off": 510,
+    "count": 1
+   },
+   {
+    "name": "SetupAnimator",
+    "type": "UINT8",
+    "off": 511,
+    "count": 1
+   },
+   {
+    "name": "SetupFanAnimator",
+    "type": "UINT8",
+    "off": 512,
+    "count": 1
+   },
+   {
+    "name": "MyAsusControl",
+    "type": "UINT8",
+    "off": 513,
+    "count": 1
+   },
+   {
+    "name": "AsusWpbtFlag",
+    "type": "UINT8",
+    "off": 514,
+    "count": 1
+   }
+  ],
+  "type_census_b550w2_3644": {
+   "UINT16": 7,
+   "UINT32": 9,
+   "UINT64": 1,
+   "UINT8": 379
+  }
+ },
+ "executor": {
+  "law": "the Setup-variable readers are 34 modules per B550 acquisition, the SAME GUID set across release and board; exactly ONE AGESA-sized reader beyond the Setup owner \u2014 the bridge 49818FD1 (4.25 MB stringless PE32+), release-invariant, board-variant, B550-generation; the name-table carrier follows the same release/board split; the Auto heuristic's internal logic stays vendor-code territory (named open question)",
+  "census": {
+   "b550w2-3644": {
+    "consumer_count": 34,
+    "consumer_guid_set_sha16": "a0da64f48529c2a3",
+    "big": [
+     {
+      "guid": "899407D7-99FE-43D8-9A21-79EC328CAC21",
+      "size": 1421242,
+      "sha16": "8151c22ddeefbda1",
+      "utf16_variable_names": null
+     },
+     {
+      "guid": "49818FD1-7413-4C71-84CF-6BFE670C6496",
+      "size": 4254978,
+      "sha16": "cbf56bec7d3cfaac",
+      "utf16_variable_names": {
+       "Setup": true,
+       "QFan": true,
+       "SetupLedData": true,
+       "SystemAccess": false
+      }
+     }
+    ],
+    "systemaccess_guid_consumers": 8,
+    "name_table_carrier": {
+     "present": true,
+     "size": 37454,
+     "sha16": "c3af43f04b68d805"
+    }
+   },
+   "b550w2-3645": {
+    "consumer_count": 34,
+    "consumer_guid_set_sha16": "a0da64f48529c2a3",
+    "big": [
+     {
+      "guid": "899407D7-99FE-43D8-9A21-79EC328CAC21",
+      "size": 1421242,
+      "sha16": "90a38a9e02119a24",
+      "utf16_variable_names": null
+     },
+     {
+      "guid": "49818FD1-7413-4C71-84CF-6BFE670C6496",
+      "size": 4254978,
+      "sha16": "cbf56bec7d3cfaac",
+      "utf16_variable_names": {
+       "Setup": true,
+       "QFan": true,
+       "SetupLedData": true,
+       "SystemAccess": false
+      }
+     }
+    ],
+    "systemaccess_guid_consumers": 8,
+    "name_table_carrier": {
+     "present": true,
+     "size": 37454,
+     "sha16": "c3af43f04b68d805"
+    }
+   },
+   "b550-nw-3644": {
+    "consumer_count": 34,
+    "consumer_guid_set_sha16": "a0da64f48529c2a3",
+    "big": [
+     {
+      "guid": "899407D7-99FE-43D8-9A21-79EC328CAC21",
+      "size": 1419706,
+      "sha16": "28cd20c2d08ff487",
+      "utf16_variable_names": null
+     },
+     {
+      "guid": "49818FD1-7413-4C71-84CF-6BFE670C6496",
+      "size": 4254978,
+      "sha16": "f2fbd03edccf722a",
+      "utf16_variable_names": {
+       "Setup": true,
+       "QFan": true,
+       "SetupLedData": true,
+       "SystemAccess": false
+      }
+     }
+    ],
+    "systemaccess_guid_consumers": 8,
+    "name_table_carrier": {
+     "present": true,
+     "size": 37454,
+     "sha16": "0afc22419271b572"
+    }
+   }
+  }
+ },
+ "pair_laws": {
+  "release_3644_3645": {
+   "grammar": {
+    "text_sha16_old": "9bfea5a1540da7f1",
+    "text_sha16_new": "9bfea5a1540da7f1",
+    "text_equal": true,
+    "packed_old": 515,
+    "packed_new": 515,
+    "gate_bytes_equal": true
+   },
+   "tail_delta_fields": [],
+   "executor": {
+    "bridge_sha16_old": "cbf56bec7d3cfaac",
+    "bridge_sha16_new": "cbf56bec7d3cfaac",
+    "bridge_release_invariant": true,
+    "consumer_set_equal": true,
+    "consumer_count_old": 34,
+    "consumer_count_new": 34
+   },
+   "name_table_equal": true
+  },
+  "board_3644_nw3644": {
+   "grammar": {
+    "text_sha16_old": "9bfea5a1540da7f1",
+    "text_sha16_new": "eef483c4097bffff",
+    "text_equal": false,
+    "packed_old": 515,
+    "packed_new": 514,
+    "gate_bytes_equal": true
+   },
+   "tail_delta_fields": [
+    "MyAsusControl"
+   ],
+   "executor": {
+    "bridge_sha16_old": "cbf56bec7d3cfaac",
+    "bridge_sha16_new": "f2fbd03edccf722a",
+    "bridge_release_invariant": false,
+    "consumer_set_equal": true,
+    "consumer_count_old": 34,
+    "consumer_count_new": 34
+   },
+   "name_table_equal": false
+  },
+  "named_tail_delta": "MyAsusControl (SETUP_DATA @0x201, span [513,514]) \u2014 ring 51's anonymous factory tail byte gets its field name"
+ },
+ "cbs": {
+  "b550w2-3644": {
+   "texts": [
+    {
+     "guid": "7961C026-4B04-4959-A2E2-0B3926DE8F60",
+     "present": true,
+     "size": 13837,
+     "sha16": "f44cfe86c2390db2",
+     "cbs_config_fields": 391,
+     "cbs_config_packed": 1439,
+     "decode_field_names_present": []
+    },
+    {
+     "guid": "93F18B9F-71D8-49DC-B62B-8B257A284D28",
+     "present": true,
+     "size": 22969,
+     "sha16": "e0a938483868a2f8",
+     "cbs_config_fields": 613,
+     "cbs_config_packed": 1521,
+     "decode_field_names_present": []
+    },
+    {
+     "guid": "89BE47F4-80CE-4B87-ABD1-D279AB6A16AE",
+     "present": true,
+     "size": 11012,
+     "sha16": "4c412db2764d78c9",
+     "cbs_config_fields": 314,
+     "cbs_config_packed": 1416,
+     "decode_field_names_present": []
+    },
+    {
+     "guid": "129E7F52-DE9B-402B-BFE8-2B41E5D254ED",
+     "present": true,
+     "size": 13039,
+     "sha16": "ea08bb208dd9d164",
+     "cbs_config_fields": 362,
+     "cbs_config_packed": 1415,
+     "decode_field_names_present": []
+    }
+   ],
+   "count": 4,
+   "decode_absent_everywhere": true
+  },
+  "b450": {
+   "texts": [
+    {
+     "guid": "7961C026-4B04-4959-A2E2-0B3926DE8F60",
+     "present": true,
+     "size": 12566,
+     "sha16": "d8ffdbbe5ecc3698",
+     "cbs_config_fields": 366,
+     "cbs_config_packed": 1439,
+     "decode_field_names_present": []
+    },
+    {
+     "guid": "93F18B9F-71D8-49DC-B62B-8B257A284D28",
+     "present": true,
+     "size": 21667,
+     "sha16": "d2fdc36a8bf86804",
+     "cbs_config_fields": 587,
+     "cbs_config_packed": 1521,
+     "decode_field_names_present": []
+    },
+    {
+     "guid": "89BE47F4-80CE-4B87-ABD1-D279AB6A16AE",
+     "present": false
+    },
+    {
+     "guid": "129E7F52-DE9B-402B-BFE8-2B41E5D254ED",
+     "present": true,
+     "size": 11767,
+     "sha16": "978d60f62c8cbd3b",
+     "cbs_config_fields": 337,
+     "cbs_config_packed": 1415,
+     "decode_field_names_present": []
+    }
+   ],
+   "count": 3,
+   "decode_absent_everywhere": true
+  },
+  "law": "the decode family never lives in the CBS variables \u2014 the chain is Setup-grammar-owned"
+ },
+ "day0_card": {
+  "dump_expectations": {
+   "setup_data_text_sha16": "9bfea5a1540da7f1",
+   "setup_data_packed": 515,
+   "bridge_sha16": "cbf56bec7d3cfaac",
+   "consumer_count": 34,
+   "consumer_guid_set_sha16": "a0da64f48529c2a3",
+   "name_table_sha16": "c3af43f04b68d805"
+  },
+  "live_gate_court": {
+   "Above4gDecode": "0x01 (else the question is SUPPRESSED \u2014 the founder could not read it)",
+   "ResizeBarSupport": "0x01 (the form says Auto)",
+   "CsmSupport": "0x00 (the board ships UEFI-only)"
+  },
+  "delta_protocol": "ring-14 live-minus-factory, gate-scoped; the factory bytes are ring-51's (all 0x00 but Mmio 0x27)",
+  "os_half": "diag-gpu BAR1 <= 256 MiB -> 'Resizable BAR likely disabled'; lspci 'Physical Resizable BAR' current size; dmesg rebar lines; /proc/iomem above 4 GB"
+ },
+ "open_questions": [
+  "the Auto heuristic's internal decision (inside the bridge's 4.25 MB stringless .text) \u2014 vendor-code territory, the SystemAccess precedent",
+  "the bridge's exact consumption path (Setup variable -> AGESA policy/APCB) \u2014 the copy is code, the token homes are named",
+  "the CBS variable texts' runtime role (variables absent from factory NVRAM \u2014 created on demand)"
+ ]
+}

@@ -4,6 +4,50 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the fifty-second ring (the grammar of the Setup variable — what the vendor's own C source says the bytes ARE)
+
+Docs-only + one new tracked instrument + one new register; the tool
+surface is untouched: 15 tools, MCP smoke 12, 323 checks green; the
+ring composes on the unchanged fw49 machinery (and through it
+fw37/fw43).
+
+- **SOURCE T — the SETUP_DATA text** (`lab/fw52-rebargram.py` TRACKED,
+  crown `vendor-rebargram-register.json`): the image ships the AMI
+  SETUP_DATA structure as raw C-source FFS text (GUID AB017B39-…,
+  53,050 B): 396 named fields, packed **515 B — byte-equal to the
+  measured Setup variable** (ring 50's census, ring 51's factory
+  blob). Every gate lands EXACTLY on the ring-49 crown voffs (Mmio
+  0x1B6, Above4g 0x1BA, **ResizeBarSupport 0x1BB**, Sriov 0x1BC, Csm
+  0x1F2) — the THIRD independent source, the only one that speaks
+  field NAMES. The walk is size-unambiguous (UINT8 ×379, UINT16 ×7,
+  UINT32 ×9, UINT64 ×1, zero UINTN — KAT-3 enforces the refusal). The
+  B450 null carries its own generation's text (361 fields, packed 456
+  == its blob, gates 0x187/0x18A/0x18B/0x18C) — the grammar law is
+  GENERATION-WIDE.
+- **SOURCE E — the executors**: 34 EC87D643 consumers per acquisition,
+  the SAME GUID set (sha16 a0da64f48529c2a3); exactly TWO ≥ 1 MB — the
+  **policy bridge** 49818FD1 (4,254,978 B, L"Setup"/L"QFan"/
+  L"SetupLedData", release-invariant cbf56bec7d3cfaac, board-variant
+  f2fbd03edccf722a, B550-generation) and the **owner** (the Setup
+  module itself — PR-5's informative refutation, corrected law
+  enforced by selftest I3). The Auto heuristic is BOUNDED, not read:
+  behind 34 readers, inside one 4.25 MB release-invariant binary.
+- **The NAMED tail**: the board pair's grammar delta is the single
+  field `MyAsusControl` (@0x201, span [513,514]) — ring 51's anonymous
+  tail span gets its field name; no gate inside, every decode gate at
+  the same voff on both boards.
+- **The census laws**: the decode family names are ABSENT from every
+  CBS text on both generations (Setup-grammar-owned, never CBS-owned);
+  SystemAccess is ABSENT from every SETUP_DATA text (ring 50's
+  varstore independence gains its text anchor); the 1M/2M/4M/8M u32
+  ladder is REFUTED as executor evidence (a generic pattern with
+  dozens of owners — pre-named informative outcome).
+- **Day-0 additions**: the dump inherits the grammar identity (text
+  sha16 9bfea5a1540da7f1, packed 515) and the executor identity
+  (bridge cbf56bec7d3cfaac, 34 consumers, set a0da64f48529c2a3,
+  name-table c3af43f04b68d805) — both flash-immune; the
+  live-minus-factory delta now speaks FIELD NAMES.
+
 ## Unreleased — the fifty-first ring (the factory law of the ReBAR chain — what the vendor actually ships)
 
 Docs-only + one new tracked instrument + one new register; the tool
