@@ -4,7 +4,70 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
-## Unreleased — the fiftieth ring (the ReBAR language — what the options actually say)
+## Unreleased — the fifty-first ring (the factory law of the ReBAR chain — what the vendor actually ships)
+
+Docs-only + one new tracked instrument + one new register; the tool
+surface is untouched: 15 tools, MCP smoke 12, 323 checks green; the
+ring composes on the unchanged fw49 machinery and carries the ring-14
+NVAR grammar verbatim — never instead.
+
+- **The B550 factory store, first parse** (`lab/fw51-rebarfact.py`
+  TRACKED, crown `vendor-rebarfact-register.json`): the acquisitions'
+  NVAR stores had never been walked (ring 14's specimens were the six
+  B450 boards). Measured: TWO stores per 32-MiB image (both SPI
+  windows, FFS anchors 0x40078 / 0x1040078), each outer store holding
+  EXACTLY ONE variable — `StdDefaults` (GUID 4599D26F-…, 6,823 B /
+  6,822 B sibling), byte-identical across windows — whose NESTED store
+  walks clean (17 entries, zero errors, zero broken links) and carries
+  the inner `Setup` blob (515 B / 514 B — matching the ring-50 IFR
+  varstore census; the ring-20 bridge holds from the NVRAM side). The
+  B550 factory grammar is named entry by entry; **SystemAccess ships
+  nowhere — the grayout gate is factory-open**.
+- **THE FACTORY LAW**: the five gates read from the factory canon and
+  crossed with the IFR defaults — MmioAddrLimit 0x27, Above4gDecode
+  **0x00 Disabled**, **ResizeBarSupport 0x00 Disabled**, SriovSupport
+  0x00, CsmSupport 0x00, on ALL THREE acquisitions, 15/15 source
+  crosses agreeing. **The vendor ships the whole decode chain OFF**,
+  and the design is coherent: with Above 4G shipped at 0x00, the
+  ring-49 SUPPRESS_IF hides the ReBAR question entirely — a
+  factory-fresh board does not even show it. Ring 49's raw `5B-06`
+  "ami value ops" are RESOLVED as standard EFI_IFR_DEFAULT statements
+  (DefaultId 0 and 1, both 0x00 for the decode family), the layout
+  DERIVED per question by the uniqueness+membership chooser —
+  ambiguous and raw-only states stay unclaimed.
+- **The founder's word re-read**: *"il détecte mal alors que c'est en
+  auto"* — against the factory law, **"c'est en auto" is a WRITTEN
+  state, not the factory state**: his live NVRAM must hold 0x01 at
+  0x1BA (else the question is hidden) and 0x01 at 0x1BB (the form
+  shows Auto). The 16/09 dump's live-minus-factory delta (ring-14's
+  protocol, gate-scoped) names the board's history byte by byte.
+- **The factory pair laws**: release 3644→3645 factory-INVARIANT
+  (StdDefaults and Setup blobs byte-identical, zero diff spans — the
+  invariance chain of rings 47-50 reaches the NVRAM floor); board
+  3644↔nw-3644 invariant MODULO the tail span [513, 514] — the
+  one-byte factory delta sits at the blob's end, no gate within reach;
+  and the B450 3604 null ships the SAME disabled chain (Above4g 0x00
+  @0x18A, ResizeBarSupport 0x00 @0x18B — the field in the name table
+  since 2022, IFR-coherent): **the law is generation-wide**. CsmSupport
+  on B450 stays UNMEASURED (name-table meta 0x0 — reported, never
+  claimed).
+- **The 9-PR ledger**: 7 hit / 2 REFUTED — and both refutations
+  (PR-1 "factory says Auto", PR-2 "factory Above4g says Enabled") were
+  pre-named in the instrument source as the informative outcomes,
+  frozen before the bytes were read (rings 45/47/48/50 precedent).
+- **Day-0 additions**: the five-gate byte court — the dump's
+  StdDefaults must reproduce sha16 `c127f5cb3e69cbb5` (else flash
+  history, fw48's marks first); the live-minus-factory delta per gate
+  with the expectations REVERSED by this ring (live Above4g expected
+  0x01, live ReBAR expected 0x01, live CSM 0x00); the live
+  SystemAccess read (factory ships none; a live 0x01 = the option is
+  GRAYED on the board); and the verdicts — all-five-faithful at the
+  engaged values means the firmware chain is byte-faithful and the
+  symptom lives in the Auto heuristic (vendor code) or the OS half.
+  Selftest first runs caught four instrument bugs and one bad KAT (a
+  dict double-inversion starving the question scan, a crown-scope leak
+  onto the B450 null, a tautological gate, an ill-chosen raw-only
+  case); final **13/13 with the crown live**.
 
 Docs-only + one new tracked instrument + one new register; the tool
 surface is untouched: 15 tools, MCP smoke 12, 323 checks green; the

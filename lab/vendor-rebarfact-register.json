@@ -1,0 +1,1015 @@
+{
+ "schema": "omarchy-firmware/vendor-rebarfact-register@1",
+ "ring": 51,
+ "date": "2026-09-15",
+ "title": "the factory law of the ReBAR chain — what the vendor actually ships, where the Auto heuristic starts",
+ "instruments": "lab/fw51-rebarfact.py (fact/pair/null450/day0/selftest/manifest), composing frozen fw49 (and through it fw37/fw43); the NVAR grammar is the ring-14 walker carried verbatim (UEFITool ami_nvar, BSD-2; authority in lab/vendor-nvram.json)",
+ "laws": [
+  "L1 bytes-over-guesses: a default is claimed only from measured bytes; the IFR layout is DERIVED per question (unique default-ids + option-value membership), ambiguous and raw-only stay unclaimed",
+  "L2 anchors-before-marks: stores, entries, voffs, qids, toks extracted live; the B550 gates must reproduce the ring-49 crown or refuse; the B450 null runs under its OWN board-relative constructs (no crown comparison)",
+  "L3 zero writes: the instrument reads; this register is the single write of the ring",
+  "L4 compose-on-frozen: fw49 imported, never rewritten; the ring-14 NVAR grammar carried verbatim, pinned by KATs and the probe-measured store shapes"
+ ],
+ "pre_reg_ledger": {
+  "PR-1": {
+   "claim": "the factory canon says Auto: StdDefaults Setup[0x1BB] (ResizeBarSupport) == 0x01 on b550w2-3644 — the founder's board reports 'c'est en auto' without intervention",
+   "measured": "factory ResizeBarSupport == 0x00 on b550w2-3644 (and 0x00 / 0x00 on 3645 / nw-3644)",
+   "verdict": "REFUTED",
+   "consequence": "the pre-named alternative materialized: the factory canon says DISABLED — the founder's 'c'est en auto' is a WRITTEN state on his board, not the factory state; the dump's live-minus-factory delta will name the board's history"
+  },
+  "PR-2": {
+   "claim": "the factory canon says Enabled: StdDefaults Setup[0x1BA] (Above4gDecode) == 0x01 — else the ReBAR question would be SUPPRESSED on a factory-fresh board and the shipped chain dead-on-arrival",
+   "measured": "factory Above4gDecode == 0x00 (and 0x00 / 0x00)",
+   "verdict": "REFUTED",
+   "consequence": "the shipped chain IS dead-on-arrival: the vendor ships the whole decode chain OFF, and by the SUPPRESS_IF the ReBAR question is HIDDEN on a factory-fresh board — a coherent design (enable Above 4G first; the question then appears), not a defect"
+  },
+  "PR-3": {
+   "claim": "the factory canon says CSM off: StdDefaults Setup[0x1F2] (CsmSupport) == 0x00 — the vendor help's own chain requires it and the B550 generation boots UEFI-only",
+   "measured": "factory CsmSupport == 0x00",
+   "verdict": "hit"
+  },
+  "PR-4": {
+   "claim": "the two sources AGREE on every gate: the IFR default (resolved under the coherent layout) equals the factory NVRAM byte; the informative-miss alternative is pre-named — 'the shipped StdDefaults outrank the IFR defaults' (the AMI factory law)",
+   "measured": "15/15 gate crosses read agree (all three acquisitions, all five gates; layout A resolved coherently everywhere it was claimed)",
+   "verdict": "hit",
+   "consequence": "the pre-named informative miss (nvram-outranks-ifr) did NOT happen: AMI's two default sources are byte-coherent — and ring 49's raw '5B-06 value ops' are now RESOLVED as standard EFI_IFR_DEFAULT (DefaultId 0 and 1, both 0x00 for the decode family)"
+  },
+  "PR-5": {
+   "claim": "release law: the factory StdDefaults blob is byte-identical 3644 -> 3645 (sha16 equal, both windows), gate bytes included — the cert-only release of rings 47-50 cannot move the factory canon",
+   "measured": "release pair verdict 'factory-invariant', diff spans []",
+   "verdict": "hit"
+  },
+  "PR-6": {
+   "claim": "board law: the sibling's factory gate bytes equal the WIFI II's on all five gates; the measured 1-B blob delta (6,823 vs 6,822; Setup 515 vs 514) sits OUTSIDE the gate offsets",
+   "measured": "board pair verdict 'factory-invariant-modulo-non-gate-bytes', diff spans [[513, 514]], gates in diff [], gate bytes equal True",
+   "verdict": "hit",
+   "consequence": "the entire factory Setup difference between the WIFI II and the sibling is the tail span [513, 514] — one byte at the blob's end, no gate anywhere near it"
+  },
+  "PR-7": {
+   "claim": "absence law: SystemAccess (1 B, GUID E770BB69-…) ships in NO StdDefaults on any acquisition — the grayout gate is factory-open (absence reads as unrestricted); measured, not decoded",
+   "measured": "SystemAccess paths found: [] on all three acquisitions",
+   "verdict": "hit"
+  },
+  "PR-8": {
+   "claim": "factory-store shape: each B550 CAP's outer NVAR store carries EXACTLY ONE variable (StdDefaults) — no live Setup in the factory image; the live variables materialize on the board, so the dump's outer store will differ and the ring-14 live-minus-factory delta lands on this contrast",
+   "measured": "outer store variables == ['StdDefaults'] on all three acquisitions",
+   "verdict": "hit"
+  },
+  "PR-9": {
+   "claim": "generational null: the B450 3604 factory chain reads (Above4gDecode == 0x00, ResizeBarSupport == 0x00) — dead-on-arrival, the generational opposite of the B550; CsmSupport on B450 stays UNMEASURED (its name-table meta reads 0x0 — reported, never claimed)",
+   "measured": "B450 3604: Above4gDecode 0x00 @ 394, ResizeBarSupport 0x00 @ 395; CsmSupport unmeasured (meta 0x0) as pre-stated",
+   "verdict": "hit",
+   "consequence": "the anticipated generational CONTRAST died: the B450 3604 ships the SAME disabled chain (field present in its name table at 0x18A/0x18B since 2022, IFR-coherent) — the factory law is generation-wide, not B550-specific"
+  }
+ },
+ "factory": {
+  "b550w2-3644": {
+   "stddef": {
+    "data_size": 6823,
+    "sha16": "c127f5cb3e69cbb5"
+   },
+   "setup_blob": {
+    "data_size": 515,
+    "sha16": "8fddea6c421714c3"
+   },
+   "outer_variables": [
+    "StdDefaults"
+   ],
+   "nested_entries": 17,
+   "nested_names": [
+    "Setup",
+    "PlatformLang",
+    "Timeout",
+    "AMITSESetup",
+    "PcieSataModVar",
+    "XhciDID",
+    "SetupLedData",
+    "NV_SIO0_LD2",
+    "PcieExpressNative",
+    "SetupHWMOneof",
+    "QFan",
+    "UsbSupport",
+    "NetworkStackVar",
+    "HddSmartInfo",
+    "SecureBootSetup",
+    "VARSTORE_OCMR_SETTINGS_NAME",
+    "SIBoardItemControl"
+   ],
+   "systemaccess_paths": [],
+   "gates": {
+    "MmioAddrLimit": {
+     "voff": "0x1b6",
+     "factory": {
+      "voff": 438,
+      "byte": 39,
+      "hex": "0x27"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 39,
+       "value_hex": "0x27"
+      }
+     ],
+     "ifr_std_default": "0x27",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 696,
+       "flags": 0,
+       "type": 0,
+       "value": "26"
+      },
+      {
+       "tok": 697,
+       "flags": 0,
+       "type": 48,
+       "value": "27"
+      },
+      {
+       "tok": 698,
+       "flags": 0,
+       "type": 0,
+       "value": "28"
+      },
+      {
+       "tok": 699,
+       "flags": 0,
+       "type": 0,
+       "value": "29"
+      },
+      {
+       "tok": 700,
+       "flags": 0,
+       "type": 0,
+       "value": "2a"
+      },
+      {
+       "tok": 701,
+       "flags": 0,
+       "type": 0,
+       "value": "2b"
+      }
+     ],
+     "verdict": "agree"
+    },
+    "Above4gDecode": {
+     "voff": "0x1ba",
+     "factory": {
+      "voff": 442,
+      "byte": 0,
+      "hex": "0x00"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      },
+      {
+       "default_id": 1,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      }
+     ],
+     "ifr_std_default": "0x00",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 4,
+       "flags": 0,
+       "type": 0,
+       "value": "00"
+      },
+      {
+       "tok": 3,
+       "flags": 0,
+       "type": 0,
+       "value": "01"
+      }
+     ],
+     "verdict": "agree"
+    },
+    "ResizeBarSupport": {
+     "voff": "0x1bb",
+     "factory": {
+      "voff": 443,
+      "byte": 0,
+      "hex": "0x00"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      },
+      {
+       "default_id": 1,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      }
+     ],
+     "ifr_std_default": "0x00",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 4,
+       "flags": 0,
+       "type": 0,
+       "value": "00"
+      },
+      {
+       "tok": 5,
+       "flags": 0,
+       "type": 0,
+       "value": "01"
+      }
+     ],
+     "verdict": "agree"
+    },
+    "SriovSupport": {
+     "voff": "0x1bc",
+     "factory": {
+      "voff": 444,
+      "byte": 0,
+      "hex": "0x00"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      },
+      {
+       "default_id": 1,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      }
+     ],
+     "ifr_std_default": "0x00",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 4,
+       "flags": 0,
+       "type": 0,
+       "value": "00"
+      },
+      {
+       "tok": 3,
+       "flags": 0,
+       "type": 0,
+       "value": "01"
+      }
+     ],
+     "verdict": "agree"
+    },
+    "CsmSupport": {
+     "voff": "0x1f2",
+     "factory": {
+      "voff": 498,
+      "byte": 0,
+      "hex": "0x00"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      },
+      {
+       "default_id": 1,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      }
+     ],
+     "ifr_std_default": "0x00",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 4,
+       "flags": 0,
+       "type": 0,
+       "value": "00"
+      },
+      {
+       "tok": 3,
+       "flags": 0,
+       "type": 0,
+       "value": "01"
+      }
+     ],
+     "verdict": "agree"
+    }
+   }
+  },
+  "b550w2-3645": {
+   "stddef": {
+    "data_size": 6823,
+    "sha16": "c127f5cb3e69cbb5"
+   },
+   "setup_blob": {
+    "data_size": 515,
+    "sha16": "8fddea6c421714c3"
+   },
+   "outer_variables": [
+    "StdDefaults"
+   ],
+   "nested_entries": 17,
+   "nested_names": [
+    "Setup",
+    "PlatformLang",
+    "Timeout",
+    "AMITSESetup",
+    "PcieSataModVar",
+    "XhciDID",
+    "SetupLedData",
+    "NV_SIO0_LD2",
+    "PcieExpressNative",
+    "SetupHWMOneof",
+    "QFan",
+    "UsbSupport",
+    "NetworkStackVar",
+    "HddSmartInfo",
+    "SecureBootSetup",
+    "VARSTORE_OCMR_SETTINGS_NAME",
+    "SIBoardItemControl"
+   ],
+   "systemaccess_paths": [],
+   "gates": {
+    "MmioAddrLimit": {
+     "voff": "0x1b6",
+     "factory": {
+      "voff": 438,
+      "byte": 39,
+      "hex": "0x27"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 39,
+       "value_hex": "0x27"
+      }
+     ],
+     "ifr_std_default": "0x27",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 696,
+       "flags": 0,
+       "type": 0,
+       "value": "26"
+      },
+      {
+       "tok": 697,
+       "flags": 0,
+       "type": 48,
+       "value": "27"
+      },
+      {
+       "tok": 698,
+       "flags": 0,
+       "type": 0,
+       "value": "28"
+      },
+      {
+       "tok": 699,
+       "flags": 0,
+       "type": 0,
+       "value": "29"
+      },
+      {
+       "tok": 700,
+       "flags": 0,
+       "type": 0,
+       "value": "2a"
+      },
+      {
+       "tok": 701,
+       "flags": 0,
+       "type": 0,
+       "value": "2b"
+      }
+     ],
+     "verdict": "agree"
+    },
+    "Above4gDecode": {
+     "voff": "0x1ba",
+     "factory": {
+      "voff": 442,
+      "byte": 0,
+      "hex": "0x00"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      },
+      {
+       "default_id": 1,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      }
+     ],
+     "ifr_std_default": "0x00",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 4,
+       "flags": 0,
+       "type": 0,
+       "value": "00"
+      },
+      {
+       "tok": 3,
+       "flags": 0,
+       "type": 0,
+       "value": "01"
+      }
+     ],
+     "verdict": "agree"
+    },
+    "ResizeBarSupport": {
+     "voff": "0x1bb",
+     "factory": {
+      "voff": 443,
+      "byte": 0,
+      "hex": "0x00"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      },
+      {
+       "default_id": 1,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      }
+     ],
+     "ifr_std_default": "0x00",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 4,
+       "flags": 0,
+       "type": 0,
+       "value": "00"
+      },
+      {
+       "tok": 5,
+       "flags": 0,
+       "type": 0,
+       "value": "01"
+      }
+     ],
+     "verdict": "agree"
+    },
+    "SriovSupport": {
+     "voff": "0x1bc",
+     "factory": {
+      "voff": 444,
+      "byte": 0,
+      "hex": "0x00"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      },
+      {
+       "default_id": 1,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      }
+     ],
+     "ifr_std_default": "0x00",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 4,
+       "flags": 0,
+       "type": 0,
+       "value": "00"
+      },
+      {
+       "tok": 3,
+       "flags": 0,
+       "type": 0,
+       "value": "01"
+      }
+     ],
+     "verdict": "agree"
+    },
+    "CsmSupport": {
+     "voff": "0x1f2",
+     "factory": {
+      "voff": 498,
+      "byte": 0,
+      "hex": "0x00"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      },
+      {
+       "default_id": 1,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      }
+     ],
+     "ifr_std_default": "0x00",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 4,
+       "flags": 0,
+       "type": 0,
+       "value": "00"
+      },
+      {
+       "tok": 3,
+       "flags": 0,
+       "type": 0,
+       "value": "01"
+      }
+     ],
+     "verdict": "agree"
+    }
+   }
+  },
+  "b550-nw-3644": {
+   "stddef": {
+    "data_size": 6822,
+    "sha16": "0f8adf40e172b2c1"
+   },
+   "setup_blob": {
+    "data_size": 514,
+    "sha16": "6ac8ce9efe955a13"
+   },
+   "outer_variables": [
+    "StdDefaults"
+   ],
+   "nested_entries": 17,
+   "nested_names": [
+    "Setup",
+    "PlatformLang",
+    "Timeout",
+    "AMITSESetup",
+    "PcieSataModVar",
+    "XhciDID",
+    "SetupLedData",
+    "NV_SIO0_LD2",
+    "PcieExpressNative",
+    "SetupHWMOneof",
+    "QFan",
+    "UsbSupport",
+    "NetworkStackVar",
+    "HddSmartInfo",
+    "SecureBootSetup",
+    "VARSTORE_OCMR_SETTINGS_NAME",
+    "SIBoardItemControl"
+   ],
+   "systemaccess_paths": [],
+   "gates": {
+    "MmioAddrLimit": {
+     "voff": "0x1b6",
+     "factory": {
+      "voff": 438,
+      "byte": 39,
+      "hex": "0x27"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 39,
+       "value_hex": "0x27"
+      }
+     ],
+     "ifr_std_default": "0x27",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 696,
+       "flags": 0,
+       "type": 0,
+       "value": "26"
+      },
+      {
+       "tok": 697,
+       "flags": 0,
+       "type": 48,
+       "value": "27"
+      },
+      {
+       "tok": 698,
+       "flags": 0,
+       "type": 0,
+       "value": "28"
+      },
+      {
+       "tok": 699,
+       "flags": 0,
+       "type": 0,
+       "value": "29"
+      },
+      {
+       "tok": 700,
+       "flags": 0,
+       "type": 0,
+       "value": "2a"
+      },
+      {
+       "tok": 701,
+       "flags": 0,
+       "type": 0,
+       "value": "2b"
+      }
+     ],
+     "verdict": "agree"
+    },
+    "Above4gDecode": {
+     "voff": "0x1ba",
+     "factory": {
+      "voff": 442,
+      "byte": 0,
+      "hex": "0x00"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      },
+      {
+       "default_id": 1,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      }
+     ],
+     "ifr_std_default": "0x00",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 4,
+       "flags": 0,
+       "type": 0,
+       "value": "00"
+      },
+      {
+       "tok": 3,
+       "flags": 0,
+       "type": 0,
+       "value": "01"
+      }
+     ],
+     "verdict": "agree"
+    },
+    "ResizeBarSupport": {
+     "voff": "0x1bb",
+     "factory": {
+      "voff": 443,
+      "byte": 0,
+      "hex": "0x00"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      },
+      {
+       "default_id": 1,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      }
+     ],
+     "ifr_std_default": "0x00",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 4,
+       "flags": 0,
+       "type": 0,
+       "value": "00"
+      },
+      {
+       "tok": 5,
+       "flags": 0,
+       "type": 0,
+       "value": "01"
+      }
+     ],
+     "verdict": "agree"
+    },
+    "SriovSupport": {
+     "voff": "0x1bc",
+     "factory": {
+      "voff": 444,
+      "byte": 0,
+      "hex": "0x00"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      },
+      {
+       "default_id": 1,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      }
+     ],
+     "ifr_std_default": "0x00",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 4,
+       "flags": 0,
+       "type": 0,
+       "value": "00"
+      },
+      {
+       "tok": 3,
+       "flags": 0,
+       "type": 0,
+       "value": "01"
+      }
+     ],
+     "verdict": "agree"
+    },
+    "CsmSupport": {
+     "voff": "0x1f2",
+     "factory": {
+      "voff": 498,
+      "byte": 0,
+      "hex": "0x00"
+     },
+     "ifr_layout": "A",
+     "ifr_defaults": [
+      {
+       "default_id": 0,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      },
+      {
+       "default_id": 1,
+       "type": 0,
+       "value": 0,
+       "value_hex": "0x00"
+      }
+     ],
+     "ifr_std_default": "0x00",
+     "ifr_flag_defaults": [],
+     "ifr_options": [
+      {
+       "tok": 4,
+       "flags": 0,
+       "type": 0,
+       "value": "00"
+      },
+      {
+       "tok": 3,
+       "flags": 0,
+       "type": 0,
+       "value": "01"
+      }
+     ],
+     "verdict": "agree"
+    }
+   }
+  }
+ },
+ "pair_laws": {
+  "release_3644_to_3645": {
+   "pair": "b550w2-3644->b550w2-3645",
+   "stddef": [
+    {
+     "data_size": 6823,
+     "sha16": "c127f5cb3e69cbb5"
+    },
+    {
+     "data_size": 6823,
+     "sha16": "c127f5cb3e69cbb5"
+    }
+   ],
+   "setup_blob": [
+    {
+     "data_size": 515,
+     "sha16": "8fddea6c421714c3"
+    },
+    {
+     "data_size": 515,
+     "sha16": "8fddea6c421714c3"
+    }
+   ],
+   "diff_spans": [],
+   "gates_in_diff": [],
+   "gate_bytes_equal": true,
+   "verdict": "factory-invariant"
+  },
+  "board_3644_to_nw3644": {
+   "pair": "b550w2-3644->b550-nw-3644",
+   "stddef": [
+    {
+     "data_size": 6823,
+     "sha16": "c127f5cb3e69cbb5"
+    },
+    {
+     "data_size": 6822,
+     "sha16": "0f8adf40e172b2c1"
+    }
+   ],
+   "setup_blob": [
+    {
+     "data_size": 515,
+     "sha16": "8fddea6c421714c3"
+    },
+    {
+     "data_size": 514,
+     "sha16": "6ac8ce9efe955a13"
+    }
+   ],
+   "diff_spans": [
+    [
+     513,
+     514
+    ]
+   ],
+   "gates_in_diff": [],
+   "gate_bytes_equal": true,
+   "verdict": "factory-invariant-modulo-non-gate-bytes"
+  }
+ },
+ "b450_null": {
+  "acq": "asus-prime-b450-plus-ref",
+  "name_table": {
+   "CsmSupport": "0x0",
+   "MmioAddrLimit": "0x187",
+   "Above4gDecode": "0x18a",
+   "ResizeBarSupport": "0x18b",
+   "SriovSupport": "0x18c"
+  },
+  "unreliable_metas": [
+   "CsmSupport"
+  ],
+  "setup_blob": {
+   "data_size": 456,
+   "sha16": "ce93163a0471257b"
+  },
+  "gates": {
+   "Above4gDecode": {
+    "voff": "0x18a",
+    "factory": {
+     "voff": 394,
+     "byte": 0,
+     "hex": "0x00"
+    },
+    "ifr_layout": "A",
+    "ifr_defaults": [
+     {
+      "default_id": 0,
+      "type": 0,
+      "value": 0,
+      "value_hex": "0x00"
+     },
+     {
+      "default_id": 1,
+      "type": 0,
+      "value": 0,
+      "value_hex": "0x00"
+     }
+    ],
+    "ifr_std_default": "0x00",
+    "verdict": "agree"
+   },
+   "ResizeBarSupport": {
+    "voff": "0x18b",
+    "factory": {
+     "voff": 395,
+     "byte": 0,
+     "hex": "0x00"
+    },
+    "ifr_layout": "A",
+    "ifr_defaults": [
+     {
+      "default_id": 0,
+      "type": 0,
+      "value": 0,
+      "value_hex": "0x00"
+     },
+     {
+      "default_id": 1,
+      "type": 0,
+      "value": 0,
+      "value_hex": "0x00"
+     }
+    ],
+    "ifr_std_default": "0x00",
+    "verdict": "agree"
+   },
+   "SriovSupport": {
+    "voff": "0x18c",
+    "factory": {
+     "voff": 396,
+     "byte": 0,
+     "hex": "0x00"
+    },
+    "ifr_layout": "A",
+    "ifr_defaults": [
+     {
+      "default_id": 0,
+      "type": 0,
+      "value": 0,
+      "value_hex": "0x00"
+     },
+     {
+      "default_id": 1,
+      "type": 0,
+      "value": 0,
+      "value_hex": "0x00"
+     }
+    ],
+    "ifr_std_default": "0x00",
+    "verdict": "agree"
+   },
+   "MmioAddrLimit": {
+    "voff": "0x187",
+    "factory": {
+     "voff": 391,
+     "byte": 39,
+     "hex": "0x27"
+    },
+    "ifr_layout": "none",
+    "ifr_defaults": [],
+    "ifr_std_default": null,
+    "verdict": "no-ifr-default"
+   }
+  }
+ },
+ "day0_day1": {
+  "factory_identity": "the dump's StdDefaults blob must reproduce sha16 c127f5cb3e69cbb5 (stock-3644); a different sha is a flash-history marker — read with fw48's marks before anything else",
+  "live_minus_factory": "the dump's OUTER store will carry live variables (the CAP ships StdDefaults only); read the live Setup blob at 0x1B6/0x1BA/0x1BB/0x1BC/0x1F2 and delta against the factory canon per gate",
+  "the_five_gate_byte_court": {
+   "Above4gDecode": "expect live 0x01 (the founder SEES the ReBAR question, which the SUPPRESS_IF hides at factory 0x00) — 0x00 means the chain is broken at gate 1 and the report cannot be about this build's screen",
+   "ResizeBarSupport": "expect live 0x01 ('Auto', as the founder reports) — 0x00 means the form shows Disabled and the engagement story restarts",
+   "CsmSupport": "expect live 0x00 (factory-faithful) — 0x01 breaks the vendor's own chain",
+   "SriovSupport": "neighbor control, no gate claim",
+   "MmioAddrLimit": "context for Above 4G, no gate claim"
+  },
+  "systemaccess": "the live SystemAccess variable (1 B, GUID E770BB69-BCB4-4D04-9E97-23FF9456FEAC) — the factory ships none; a live 0x01 means the option is GRAYED on the board",
+  "os_half": "omarchy-firmware diag-gpu (gpu-bar1-small: BAR1 <= 256 MiB), lspci 'Physical Resizable BAR', dmesg rebar lines, /proc/iomem above 4 GB",
+  "verdicts": "all-five-faithful-at-engaged-values => the firmware chain is engaged and faithful, the symptom lives in the Auto heuristic (vendor code, the named open question) or the OS half"
+ },
+ "open_questions": [
+  "SystemAccess's value semantics stay vendor-code territory (ring 50, unchanged)",
+  "the Auto heuristic's internals — what AMI/AMD code does when ResizeBarSupport == 0x01 — live in the vendor binaries; this register measures what the option SAYS and what the factory SHIPS, not what the heuristic thinks",
+  "who or what wrote 0x01 into the founder's live chain — the 16/09 dump's live-minus-factory delta names the board-side history byte by byte"
+ ]
+}
