@@ -1,0 +1,508 @@
+{
+ "schema": "omarchy-firmware/vendor-rebarlang-register@1",
+ "ring": 50,
+ "date": "2026-09-15",
+ "title": "the ReBAR language — the option labels decoded at the package floor; the founder's Auto byte-true; the grayout operand named",
+ "instruments": "lab/fw50-rebarlang.py (lang/pair/nulllang/selftest/manifest), composing frozen fw49 machinery (and through it fw37/fw43); the honest label index is the FORWARD map from the measured package floor",
+ "laws": [
+  "L1 labels-over-guesses: a label is claimed only when the forward map from a MEASURED floor reproduces it and the floor->anchor count matches (1280 + anchor text) — both directions honest",
+  "L2 anchors-before-marks: every header/floor/qid/vsid/voff is extracted live; the four sisters reproduce the ring-49 crown or the instrument refuses loud",
+  "L3 zero writes: the instrument reads; this register is the single write of the ring",
+  "L4 compose-on-frozen: fw49 imported, never rewritten; entry_before used only where its semantics are proven (the mis-step census)"
+ ],
+ "pre_reg_ledger": {
+  "PR-1": {
+   "claim": "the forward map from the measured floor reaches the anchor in EXACTLY 1280 steps on b550w2-3644 (tok = ordinal + 1; HII StringId 1 = the language name 'English')",
+   "verdict": "hit"
+  },
+  "PR-2": {
+   "claim": "the ReBAR ONE_OF vocabulary is {0x00: tok4 'Disabled', 0x01: tok5 'Auto'} with no third option",
+   "verdict": "hit"
+  },
+  "PR-3": {
+   "claim": "Above4gDecode/SriovSupport/CsmSupport are {0x00: 'Disabled', 0x01: 'Enabled'} (tok 4 / tok 3) — ReBAR is the ONLY Auto-valued question in the decoding family",
+   "verdict": "hit"
+  },
+  "PR-4": {
+   "claim": "the grayout operand qid 0x361 is a hidden NUMERIC u8 bound to varstore 4 offset 0 (prompt tok 0)",
+   "verdict": "hit"
+  },
+  "PR-5": {
+   "claim": "varstore 4 is 'SystemAccess', 1 byte, GUID E770BB69-BCB4-4D04-9E97-23FF9456FEAC",
+   "verdict": "hit"
+  },
+  "PR-6": {
+   "claim": "varstore 48 is 'SecureVarPresent', 6 bytes, GUID 7B59104A-C00D-4158-87FF-F04D6396A915, and the two extra WIFI II questions read SecureVarPresent[0]/[4] — ring 49's 'WIFI questions' reading is REFUTED",
+   "verdict": "hit — ring 49's 'WIFI questions' reading REFUTED and kept visible (rings 45/47/48 precedent)"
+  },
+  "PR-7": {
+   "claim": "the language (toks 1..8 + the sisters' option vocabulary) is identical across all three acquisitions",
+   "verdict": "hit"
+  },
+  "PR-8": {
+   "claim": "ring 49's SCSU reading is CORRECTED: toks 3/4/5 are plain UTF-16 at the package floor; the failure was the unvalidated backward walk (empty-entry skips)",
+   "verdict": "hit — ring 49's SCSU reading CORRECTED, never rewritten (L3 of ring 49)"
+  }
+ },
+ "package_3644": {
+  "hdr": 367586,
+  "length": 269762,
+  "type": 4,
+  "hdr_size": 52,
+  "string_info": 52,
+  "language_name_id": 1,
+  "tag": "en-US",
+  "floor": 367639,
+  "note": "one standard EFI_HII_PACKAGE_HEADER (Type 0x04 STRINGS, LanguageWindow all-zero, StringId 1 = the language name) directly above the forms' closing ENDs; SIBT blocks are ID-LESS utf16z runs (marker 0x14 = the AMI variant of SIBT_STRING_UCS2): block ordinal k IS StringId k+1"
+ },
+ "base_law": "tok = ordinal + 1; verified by the forward count floor->anchor = 1280 with the anchor text 'Above 4G Decoding' (tok 1281)",
+ "toks_1_8": {
+  "1": "English",
+  "2": "",
+  "3": "Enabled",
+  "4": "Disabled",
+  "5": "Auto",
+  "6": "Setup",
+  "7": "Setup",
+  "8": "Main"
+ },
+ "sisters_3644": {
+  "Above4gDecode": {
+   "qid": "0x20e",
+   "voff": "0x1ba",
+   "options": [
+    {
+     "value": "00",
+     "tok": 4,
+     "label": "Disabled"
+    },
+    {
+     "value": "01",
+     "tok": 3,
+     "label": "Enabled"
+    }
+   ],
+   "ami_value_ops": [
+    "00000000",
+    "01000000"
+   ]
+  },
+  "ResizeBarSupport": {
+   "qid": "0x20f",
+   "voff": "0x1bb",
+   "options": [
+    {
+     "value": "00",
+     "tok": 4,
+     "label": "Disabled"
+    },
+    {
+     "value": "01",
+     "tok": 5,
+     "label": "Auto"
+    }
+   ],
+   "ami_value_ops": [
+    "00000000",
+    "01000000"
+   ]
+  },
+  "SriovSupport": {
+   "qid": "0x210",
+   "voff": "0x1bc",
+   "options": [
+    {
+     "value": "00",
+     "tok": 4,
+     "label": "Disabled"
+    },
+    {
+     "value": "01",
+     "tok": 3,
+     "label": "Enabled"
+    }
+   ],
+   "ami_value_ops": [
+    "00000000",
+    "01000000"
+   ]
+  },
+  "CsmSupport": {
+   "qid": "0x2900",
+   "voff": "0x1f2",
+   "options": [
+    {
+     "value": "00",
+     "tok": 4,
+     "label": "Disabled"
+    },
+    {
+     "value": "01",
+     "tok": 3,
+     "label": "Enabled"
+    }
+   ],
+   "ami_value_ops": [
+    "00000000",
+    "01000000"
+   ]
+  },
+  "MmioAddrLimit": {
+   "qid": "0x310",
+   "voff": "0x1b6",
+   "options": [
+    {
+     "value": "26",
+     "tok": 696,
+     "label": "38bit (256GB)"
+    },
+    {
+     "value": "27",
+     "tok": 697,
+     "label": "39bit (512GB)"
+    },
+    {
+     "value": "28",
+     "tok": 698,
+     "label": "40bit (1TB)"
+    },
+    {
+     "value": "29",
+     "tok": 699,
+     "label": "41bit (2TB)"
+    },
+    {
+     "value": "2a",
+     "tok": 700,
+     "label": "42bit (4TB)"
+    },
+    {
+     "value": "2b",
+     "tok": 701,
+     "label": "43bit (8TB)"
+    }
+   ],
+   "ami_value_ops": [
+    "00000027"
+   ]
+  }
+ },
+ "grayout_3644": {
+  "qid": "0x361",
+  "op": "0x7",
+  "prompt": 0,
+  "vsid": 4,
+  "voff": "0x0",
+  "varstore": {
+   "name": "SystemAccess",
+   "size": 1,
+   "guid": "E770BB69-BCB4-4D04-9E97-23FF9456FEAC"
+  },
+  "reading": "GRAY_OUT_IF(SystemAccess[0] == 1): the ReBAR option grays out for restricted sessions (the AMI TSE session privilege variable); the precise value semantics stay vendor-code territory (open question)"
+ },
+ "vsid_rows_1_51": {
+  "1": {
+   "name": "Setup",
+   "size": 515,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "2": {
+   "name": "PlatformLang",
+   "size": 2,
+   "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+  },
+  "3": {
+   "name": "PlatformLangCodes",
+   "size": 2,
+   "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+  },
+  "4": {
+   "name": "SystemAccess",
+   "size": 1,
+   "guid": "E770BB69-BCB4-4D04-9E97-23FF9456FEAC"
+  },
+  "5": {
+   "name": "AMICallback",
+   "size": 2,
+   "guid": "9CF0F18E-7C7D-49DE-B5AA-BBBAD6B21007"
+  },
+  "6": {
+   "name": "AMITSESetup",
+   "size": 81,
+   "guid": "C811FA38-42C8-4579-A9BB-60E94EDDFB34"
+  },
+  "7": {
+   "name": "BootManager",
+   "size": 2,
+   "guid": "B4909CF3-7B93-4751-9BD8-5BA8220B9BB2"
+  },
+  "8": {
+   "name": "Timeout",
+   "size": 2,
+   "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+  },
+  "9": {
+   "name": "BootOrder",
+   "size": 2,
+   "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+  },
+  "10": {
+   "name": "AddBootOption",
+   "size": 284,
+   "guid": "19D96D3F-6A6A-47D2-B195-7B2432DA3BE2"
+  },
+  "11": {
+   "name": "DelBootOption",
+   "size": 2,
+   "guid": "F6C73719-F34C-479C-B32F-277FCBBCFE4F"
+  },
+  "12": {
+   "name": "LegacyDev",
+   "size": 2,
+   "guid": "A56074DB-65FE-45F7-BD21-2D2BDD8E9652"
+  },
+  "13": {
+   "name": "LegacyGroup",
+   "size": 2,
+   "guid": "A56074DB-65FE-45F7-BD21-2D2BDD8E9652"
+  },
+  "14": {
+   "name": "LegacyDevOrder",
+   "size": 2,
+   "guid": "A56074DB-65FE-45F7-BD21-2D2BDD8E9652"
+  },
+  "15": {
+   "name": "BootNowCount",
+   "size": 2,
+   "guid": "052E6EB0-F240-42C5-8309-45874545C6B4"
+  },
+  "16": {
+   "name": "Shell",
+   "size": 2,
+   "guid": "C57AD6B7-0515-40A8-9D21-551652854E37"
+  },
+  "17": {
+   "name": "PcieSataModVar",
+   "size": 3,
+   "guid": "5E9A565F-CDC0-413B-AD13-1FE8713FFDCD"
+  },
+  "18": {
+   "name": "PcieSataSetupVar",
+   "size": 36,
+   "guid": "FAE2664D-C098-4DB5-9CD8-9B429CF93351"
+  },
+  "20": {
+   "name": "SetupCpuFeatures",
+   "size": 7,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "21": {
+   "name": "AmiAmdSbSuppressIfSetupData",
+   "size": 1,
+   "guid": "B66B8637-96C0-4615-B8BD-D98EFD5D3B17"
+  },
+  "22": {
+   "name": "XhciDID",
+   "size": 2,
+   "guid": "A7E92950-4EC9-4502-8576-F851308F8C18"
+  },
+  "23": {
+   "name": "SetupAPMFeatures",
+   "size": 2,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "24": {
+   "name": "SetupLedData",
+   "size": 2,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "25": {
+   "name": "VV_SIO0_LD1",
+   "size": 9,
+   "guid": "560BF58A-1E0D-4D7E-953F-2980A261E031"
+  },
+  "26": {
+   "name": "NV_SIO0_LD1",
+   "size": 3,
+   "guid": "560BF58A-1E0D-4D7E-953F-2980A261E031"
+  },
+  "27": {
+   "name": "VV_SIO0_LD2",
+   "size": 9,
+   "guid": "560BF58A-1E0D-4D7E-953F-2980A261E031"
+  },
+  "28": {
+   "name": "NV_SIO0_LD2",
+   "size": 3,
+   "guid": "560BF58A-1E0D-4D7E-953F-2980A261E031"
+  },
+  "29": {
+   "name": "VV_SIO0_LD3",
+   "size": 9,
+   "guid": "560BF58A-1E0D-4D7E-953F-2980A261E031"
+  },
+  "30": {
+   "name": "NV_SIO0_LD3",
+   "size": 3,
+   "guid": "560BF58A-1E0D-4D7E-953F-2980A261E031"
+  },
+  "31": {
+   "name": "AutoDetectData",
+   "size": 54,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "32": {
+   "name": "PcieExpressNative",
+   "size": 1,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "33": {
+   "name": "SetupHWMFeatures",
+   "size": 15,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "34": {
+   "name": "SetupHWMOneof",
+   "size": 15,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "35": {
+   "name": "QFan",
+   "size": 115,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "36": {
+   "name": "QFanConfig",
+   "size": 18,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "37": {
+   "name": "DriverManager",
+   "size": 2,
+   "guid": "C0B4FB05-15E5-4588-9FE9-B3D39C067715"
+  },
+  "38": {
+   "name": "DriverOrder",
+   "size": 2,
+   "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+  },
+  "39": {
+   "name": "AmiGopPolicySetupData",
+   "size": 2,
+   "guid": "C143929C-BF5D-423B-999B-0F2DD2B61FF7"
+  },
+  "40": {
+   "name": "UsbMassDevNum",
+   "size": 2,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "41": {
+   "name": "UsbMassDevValid",
+   "size": 32,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "42": {
+   "name": "UsbControllerNum",
+   "size": 4,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "43": {
+   "name": "UsbSupport",
+   "size": 49,
+   "guid": "EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9"
+  },
+  "44": {
+   "name": "NetworkStackVar",
+   "size": 8,
+   "guid": "D1405D16-7AFC-4695-BB12-41459D3695A2"
+  },
+  "45": {
+   "name": "IDESecDev",
+   "size": 146,
+   "guid": "3DD0DE67-02D7-4129-914A-9F377CC34B0D"
+  },
+  "46": {
+   "name": "HddSmartInfo",
+   "size": 2,
+   "guid": "A6F44860-B2E8-4FDA-BD45-78368994B6AE"
+  },
+  "47": {
+   "name": "SecureBootSetup",
+   "size": 7,
+   "guid": "7B59104A-C00D-4158-87FF-F04D6396A915"
+  },
+  "48": {
+   "name": "SecureVarPresent",
+   "size": 6,
+   "guid": "7B59104A-C00D-4158-87FF-F04D6396A915"
+  },
+  "49": {
+   "name": "VendorKeys",
+   "size": 1,
+   "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+  },
+  "50": {
+   "name": "SetupMode",
+   "size": 1,
+   "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+  },
+  "51": {
+   "name": "SecureBoot",
+   "size": 1,
+   "guid": "8BE4DF61-93CA-11D2-AA0D-00E098032B8C"
+  }
+ },
+ "pair_laws": {
+  "release_3644_3645": {
+   "pair": "b550w2-3644->b550w2-3645",
+   "same_toks": true,
+   "same_options": true,
+   "same_package_length": true,
+   "grayout_qids": [
+    "0x361",
+    "0x361"
+   ],
+   "verdict": "rebar-language-invariant"
+  },
+  "board_3644_nw3644": {
+   "pair": "b550w2-3644->b550-nw-3644",
+   "same_toks": true,
+   "same_options": true,
+   "same_package_length": false,
+   "grayout_qids": [
+    "0x361",
+    "0x35f"
+   ],
+   "verdict": "rebar-language-invariant-modulo-grayout-qid"
+  },
+  "law": "the language (toks + the sisters' vocabularies) is INVARIANT across all three acquisitions; the only mover stays the grayout operand's qid 0x361 <-> 0x35F (ring 49's pair law, now at the language level)"
+ },
+ "corrections": {
+  "ring49_scsu_reading": "REFUTED and corrected: toks 3/4/5 are plain UTF-16 at the package floor; the ring-49 failure mode was its own backward walker (entry_before skips empty entries; the unvalidated 1400-step anchor_table walk lands in machine code) — measured 111 mis-steps over 2000 entries, 111 empty entries",
+  "ring49_wifi_reading": "REFUTED: the two extra WIFI II questions read SecureVarPresent[0]/[4] (varstore 48, Secure Boot variable-presence), not wifi questions",
+  "register_ring49": "never rewritten (frozen registers are read, never edited); the corrections live here"
+ },
+ "day0_day1": {
+  "vocabulary_law": "Resize BAR Support offers {Disabled, Auto} — NO Enabled: Auto is the only positive value; 'il détecte mal alors que c'est en auto' is byte-true and the Auto heuristic is the ONLY path to engagement",
+  "auto_chain": [
+   "Above 4G Decoding must be Enabled (0x01) — else the ReBAR question is SUPPRESSED entirely (Above4gDecode==0)",
+   "ResizeBarSupport = Auto (0x01) — the founder's state",
+   "CSM disabled in the Boot section (the vendor help's own NOTE; CsmSupport = 0x00)",
+   "a ReBAR-capable GPU on the bus",
+   "the setup session unrestricted (SystemAccess[0] != 1, else the option GRAYS OUT)"
+  ],
+  "live_check": [
+   "omarchy-firmware diag-gpu -> gpu-bar1-small if BAR1 <= 256 MiB (ReBAR off)",
+   "sudo lspci -vv -s <gpu> | grep -A4 'Physical Resizable BAR'",
+   "dmesg | grep -iE 'rebar|resizable'",
+   "cat /proc/iomem -> GPU BARs above the 4 GB line"
+  ],
+  "dump_row": "the language is invariant under the 16/09 flash (pair law); the stock NVRAM Setup bytes 0x1BA/0x1BB decide the chain and are readable by fw49's axis mode on the dump"
+ },
+ "module_sha16_3644": "d1f8b81801258527",
+ "open_questions": [
+  "the precise value semantics of SystemAccess (0 vs 1 vs 2: administrator/user/view-only) live in the AMI TSE binary, not the IFR — named but not semantically decoded",
+  "the SecureVarPresent rows the WIFI II adds ([0] and [4]) name no specific variable in the IFR — the 6-byte bitmap's field order is vendor-code territory",
+  "whether CSM's own form lives in another formset (ring 49's note) — the question RECORD is in the walked bodies (qid 0x2900); only its DISPLAY page is open"
+ ]
+}

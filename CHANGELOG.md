@@ -4,6 +4,55 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the fiftieth ring (the ReBAR language — what the options actually say)
+
+Docs-only + one new tracked instrument + one new register; the tool
+surface is untouched: 15 tools, MCP smoke 12, 323 checks green; the
+ring composes on the unchanged fw49 machinery — never instead.
+
+- **The ReBAR language decoded** (`lab/fw50-rebarlang.py` TRACKED,
+  crown `vendor-rebarlang-register.json`): ring 49 froze the ReBAR AXIS
+  and left the LANGUAGE open ("the option-label tokens 3/4/5 live in an
+  SCSU-compressed package"). Ring 50 measures the language and corrects
+  the reading: the Setup module carries ONE standard HII STRING package
+  header (Length 0x041DC2, Type 0x04, HdrSize 0x34, LanguageWindow
+  all-zero, LanguageName 1, tag "en-US") whose id-less SIBT blocks obey
+  **tok = ordinal + 1** — verified by the forward map reaching the
+  ring-49 anchor in EXACTLY 1280 steps (tok 1281 "Above 4G Decoding").
+  THE VOCABULARY: tok 3 "Enabled", tok 4 "Disabled", tok 5 "Auto" —
+  Above4gDecode/SriovSupport/CsmSupport are {Disabled, Enabled}, and
+  **ResizeBarSupport is {0x00: Disabled, 0x01: Auto} — the ONLY
+  Auto-valued question of the family, with NO Enabled option: the
+  founder's "c'est en auto" is byte-true and Auto is the only path to
+  engagement**.
+- **The grayout operand NAMED**: qid 0x361 (sibling 0x35F) is a hidden
+  NUMERIC u8 at varstore 4 offset 0 — varstore 4 = **"SystemAccess"**
+  (1 byte, GUID E770BB69-BCB4-4D04-9E97-23FF9456FEAC): the ReBAR option
+  grays out for restricted setup sessions (SystemAccess[0] == 1).
+- **Two ring-49 readings REFUTED, kept visible** (the frozen register
+  never rewritten): the toks 3/4/5 "SCSU" reading (plain UTF-16 at the
+  floor; the failure was ring 49's own backward walker — `entry_before`
+  skips empty entries, 50 mis-steps over 1280 steps measured by
+  `nulllang`, plus the unvalidated 1400-step `anchor_table` dive into
+  machine code), and the "WIFI questions" reading of the sibling's
+  two-question difference (the WIFI II's extra qids 0x35D/0x35E read
+  **SecureVarPresent[0]/[4]**, varstore 48 — Secure Boot
+  variable-presence, nothing to do with wifi).
+- **The pair law at the language level**: toks 1-8 and the four
+  sisters' vocabularies are identical across 3644 / 3645 / nw-3644
+  (the sibling's package is 177 B shorter, floor at 367530); the only
+  mover stays the grayout qid — the 16/09 flash changes nothing in what
+  the options SAY.
+- Pre-registration ledger: 8 PRs frozen in the instrument source BEFORE
+  measurement, 8 hit, two of them carrying ring-49's refutations
+  (PR-6 SecureVarPresent, PR-8 the SCSU correction). Selftest first run
+  12/15 (three TEST bugs + a KAT calling the wrapper instead of the
+  inner walker), final **15/15** with the crown live.
+- Day-0/day-1: the Auto chain now has FIVE named gates (Above 4G
+  enabled — else the question is SUPPRESSED entirely; ReBAR = Auto; CSM
+  disabled; a ReBAR-capable GPU; an unrestricted session), each
+  readable before any hardware is touched.
+
 ## Unreleased — the forty-ninth ring (the ReBAR axis — the founder's mis-detected Auto, measured to the byte)
 
 Docs-only + one new tracked instrument + one new register; the tool
