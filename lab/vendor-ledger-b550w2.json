@@ -1,5 +1,6 @@
 {
  "schema": "omarchy-firmware/ring44-ledger-b550w2@1",
+ "ring": 44,
  "date": "2026-09-14",
  "title": "the corrected board: TUF GAMING B550-PLUS WIFI II — question_3644 resolved by acquisition, not by the dump",
  "founder_correction": {

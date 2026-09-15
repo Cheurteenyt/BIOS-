@@ -1,4 +1,5 @@
 {
+ "schema": "omarchy-firmware/vendor-pairaxes-register@1",
  "axes": {
   "agesa": "fw38.x_agesa \u2014 the level set (picked + any multiple)",
   "certs": "fw39.trust_census \u2014 the DER trust set (sha16s)",
