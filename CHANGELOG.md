@@ -4,6 +4,52 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the forty-ninth ring (the ReBAR axis — the founder's mis-detected Auto, measured to the byte)
+
+Docs-only + one new tracked instrument + one new register; the tool
+surface is untouched: 15 tools, MCP smoke 12, 323 checks green; the
+ring composes on the unchanged fw37/43 machinery — never instead.
+
+- **The ReBAR axis made observable** (`lab/fw49-rebar.py` TRACKED):
+  the founder reported "le reshade bar ... il détecte mal alors que
+  c'est en auto" and the repo's own diag-gpu states the BIOS half of
+  Resizable BAR is "not observable from the OS" (`gpu-bar1-small`
+  renders the OS half only). fw49 measures that half on the vendor
+  images: the vocabulary law ("Resizable" is ABSENT from ~48.6 MB
+  decompressed ×3 — recursive LZMA pierce; the ASUS label is **"Resize
+  BAR Support"**, the word drops the "able"), the AMI SMM name-table
+  decode (ResizeBarSupport @Setup-varstore 0x1BB, between Above4gDecode
+  0x1BA and SriovSupport 0x1BC; driver 64BEA199, file type 0x0A,
+  outside image_modules' filter — walked around, never patched), the
+  axis triptych in the Setup module's IFR via fw43.direct_forms (the
+  ReBAR ONE_OF qid 0x20F tok 1403, options {0x00, 0x01} + the AMI
+  0x5B-06 value ops, wrapped in SUPPRESS_IF(Above4gDecode==0) and
+  GRAY_OUT_IF(qid 0x361==1)), and the label resolution through the
+  Setup module's packed-UTF-16 string table (utf16z entries separated
+  by ONE 0x14 byte) anchored on tok 1281 "Above 4G Decoding" verified
+  BOTH ways (L1) — the vendor help tok 1404 documents the detection
+  chain verbatim: 64-bit PCI decoding + CSM disabled in the Boot
+  section + a ReBAR-capable GPU.
+- **The pair law** (the crown `vendor-rebar-register.json`, one
+  write, assertion-gated, roundtrip-checked): the release 3644→3645 is
+  rebar-axis-INVARIANT (same construct hash — the 16/09 flash changes
+  nothing on this axis, consistent with rings 47-48's cert-only
+  rotation); the board pair 3644↔nw-3644 is invariant MODULO exactly
+  ONE byte — the grayout operand's qid 0x361 → 0x35F (the sibling's
+  question space is two questions shorter, the WIFI questions it
+  lacks). The feature is the same feature on both boards.
+- **The day-0/day-1 chain**: the OS half (gpu-bar1-small) + the
+  firmware half (the option, its conditions, its invariance under the
+  flash) + the Linux verification commands (lspci "Physical Resizable
+  BAR" current size, dmesg rebar lines, /proc/iomem above the 4 GB
+  line) — "il détecte mal alors que c'est en auto" explained at byte
+  level before any hardware is touched.
+- Selftest: first run 3/6 (four real instrument bugs: the voffs dict
+  inverted, an exclusive scan bound, the packed-table backward walk
+  landing on the current separator, the ONE_OF depth model), final
+  **11/11** with the crown live. The measurements were never in doubt
+  — the gates were.
+
 ## Unreleased — the forty-eighth ring (the full-axis pair witness — the set lens on every axis, measured)
 
 Docs-only + one new tracked instrument + one new register; the tool

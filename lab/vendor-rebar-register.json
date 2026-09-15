@@ -1,0 +1,161 @@
+{
+ "schema": "omarchy-firmware/vendor-rebar-register@1",
+ "ring": 49,
+ "date": "2026-09-15",
+ "title": "the ReBAR axis — the founder's mis-detected Auto, measured to the byte",
+ "instruments": "lab/fw49-rebar.py (axis/pair/nullrebar/selftest/manifest), composing frozen fw37 pierce + fw43 module/forms machinery; ring-8 SCSU machinery reached through the packed-UTF-16 label table instead (the Setup module's strings are utf16z entries separated by one 0x14 byte)",
+ "laws": [
+  "L1 labels-over-guesses: a string is claimed only when anchor-verified both ways (tok 1281 'Above 4G Decoding' -> tok 1283 'SR-IOV Support' forward, clean entry backward); unresolved tokens stay raw",
+  "L2 anchors-before-marks: every qid/tok/voff is extracted live and must reproduce this register or the instrument refuses loud",
+  "L3 zero writes: the instrument reads; this register is the single write of the ring",
+  "L4 compose-on-frozen: fw37/fw43 imported, never rewritten"
+ ],
+ "vocabulary_law": {
+  "finding": "the word 'Resizable' is ABSENT from the whole decompressed surface of all three acquisitions (raw + recursive LZMA, ~48.6 MB each); the ASUS label is 'Resize BAR Support' — canonical-name searches find nothing",
+  "founder_report": "'le reshade bar ... il detecte mal alors que c'est en auto' = this option"
+ },
+ "anchor": {
+  "tok": 1281,
+  "off": 428385,
+  "text": "Above 4G Decoding",
+  "verified": [
+   "forward SR-IOV Support",
+   "backward clean entry"
+  ]
+ },
+ "axis_3644_wifi": {
+  "varstore": "Setup (vsid 1, AMI IFR)",
+  "name_table_driver": "64BEA199-7C6C-4F51-B0DA-F42C897DA5CC (SMM, type 0x0A)",
+  "questions": [
+   {
+    "name": "MmioAddrLimit",
+    "voff": "0x1b6",
+    "qid": "0x310",
+    "tok": 694,
+    "label": null,
+    "options": null,
+    "ami_value_ops": null
+   },
+   {
+    "name": "Above4gDecode",
+    "voff": "0x1ba",
+    "qid": "0x20e",
+    "tok": 1281,
+    "label": "Above 4G Decoding",
+    "options": null,
+    "ami_value_ops": null
+   },
+   {
+    "name": "ResizeBarSupport",
+    "voff": "0x1bb",
+    "qid": "0x20f",
+    "tok": 1403,
+    "label": "Resize BAR Support",
+    "options": [
+     {
+      "tok": 4,
+      "flags": 0,
+      "type": 0,
+      "value": "00"
+     },
+     {
+      "tok": 5,
+      "flags": 0,
+      "type": 0,
+      "value": "01"
+     }
+    ],
+    "ami_value_ops": [
+     "00000000",
+     "01000000"
+    ]
+   },
+   {
+    "name": "SriovSupport",
+    "voff": "0x1bc",
+    "qid": "0x210",
+    "tok": 1283,
+    "label": "SR-IOV Support",
+    "options": null,
+    "ami_value_ops": null
+   },
+   {
+    "name": "CsmSupport",
+    "voff": "0x1f2",
+    "qid": "0x2900",
+    "tok": 1602,
+    "label": null,
+    "options": null,
+    "ami_value_ops": null
+   }
+  ],
+  "rebar": {
+   "label": "Resize BAR Support",
+   "help_tok": 1404,
+   "predicates": [
+    "op0x0a: Above4gDecode==0x0 op0x19 qid0x361==0x1",
+    "op0x19: qid0x361==0x1 op0x05 op0x09"
+   ],
+   "grayout_qid": "0x361",
+   "construct_bytes": 61,
+   "region_sha16": "8250ad8927dfcead"
+  },
+  "rebar_help_text_tok1404": "If the system has Resize BAR capable PCIe Devices, this option Enables or Disables Resize BAR Support.(Only if System Support 64 bit PCI Decoding)\r\nNOTE: To enable Resize BAR Support to fully harness GPU memory, please navigate to Boot section and disable CSM(Compatibility Support Module).",
+  "module_sha16": "d1f8b81801258527"
+ },
+ "name_table_fields_all": {
+  "MmioAddrLimit": "0x1b6",
+  "Above4gDecode": "0x1ba",
+  "ResizeBarSupport": "0x1bb",
+  "SriovSupport": "0x1bc",
+  "CsmSupport": "0x1f2"
+ },
+ "pair_laws": {
+  "release_3644_3645": {
+   "pair": "b550w2-3644->b550w2-3645",
+   "same_questions": true,
+   "same_region": true,
+   "same_name_table": true,
+   "same_help": true,
+   "same_construct_len": true,
+   "grayout_qid": [
+    "0x361",
+    "0x361"
+   ],
+   "verdict": "rebar-axis-invariant"
+  },
+  "board_3644_nw3644": {
+   "pair": "b550w2-3644->b550-nw-3644",
+   "same_questions": true,
+   "same_region": false,
+   "same_name_table": true,
+   "same_help": true,
+   "same_construct_len": true,
+   "grayout_qid": [
+    "0x361",
+    "0x35f"
+   ],
+   "verdict": "rebar-axis-invariant-modulo-grayout-qid"
+  },
+  "law": "the release is rebar-axis-INVARIANT (rings 47-48: it rotates one DER certificate, not one setup bit); the board pair is invariant MODULO exactly one byte - the grayout operand's qid 0x361 -> 0x35F (the sibling's question space is two questions shorter, the WIFI questions it lacks)"
+ },
+ "day0_day1": {
+  "os_side": {
+   "tool": "fw.diag.gpu finding gpu-bar1-small",
+   "rule": "BAR1 total <= 256 MiB -> 'Resizable BAR likely disabled' (mis-adjusted, not defective)",
+   "note": "the finding itself says the BIOS half is not observable from the OS — ring 49 is that half, measured"
+  },
+  "firmware_side": "the option stays 'Resize BAR Support' [Auto] through the 16/09 flash (the release is axis-invariant); Auto engages only when the vendor help's conditions hold: 64-bit PCI decoding (Above 4G Decoding) + CSM disabled in the Boot section + a ReBAR-capable GPU",
+  "linux_verification": [
+   "omarchy-firmware diag-gpu -> gpu-bar1-small if BAR1 <= 256 MiB (ReBAR off)",
+   "sudo lspci -vv -s <gpu> | grep -A4 'Physical Resizable BAR' -> 'current size' equals VRAM when engaged",
+   "dmesg | grep -iE 'rebar|resizable' (amdgpu/nova)",
+   "cat /proc/iomem -> GPU BARs above the 4 GB line when Above 4G decoding is active"
+  ]
+ },
+ "open_questions": [
+  "the option-label tokens 3/4/5 live in the SCSU-compressed strings package the ring-8 walker cannot cleanly decode (garbage windows) — the common labels (Auto/Enabled/Disabled) stay unresolved; the axis labels are anchor-resolved and unaffected",
+  "qid 0x361 (grayout operand, WIFI II) / 0x35F (sibling) is a hidden question (prompt tok 0 in the walked candidates) — its identity is open; the vendor help names the CSM condition independently",
+  "the CSM question itself lives in the Boot formset, outside this ring's walked bodies"
+ ]
+}
