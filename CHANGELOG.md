@@ -4,6 +4,166 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the forty-eighth ring (the full-axis pair witness — the set lens on every axis, measured)
+
+Docs-only + one new tracked instrument + one new register; the tool
+surface is untouched: 15 tools, MCP smoke 12, 323 checks green; the
+ring composes on top of the unchanged fw37/38/39/41/43/45/47
+machinery (the fw46/47 pattern) — never instead.
+
+- **The set lens extended to ALL axes** (`lab/fw48-pairaxes.py`
+  TRACKED): ring 47 anchored the pair coherence to the PSP sets, but
+  the release's other content axes were pair-blind. fw48 composes on
+  fw47 (frozen, never rewritten): `axes <image>` extracts the live
+  axis sets of ONE image (certs via fw39.trust_census, dsdt via
+  fw38.x_acpi checksum-valid sha16s, whitelist via fw41._armor_names,
+  smm via the SMM-typed GUIDs, agesa via fw38.x_agesa — items carried
+  whole); `marks <old> <new>` adds the five axis marks to fw47's
+  PSP+species witness (anchor-checked against this ring's crown
+  register when present — reproduce or refuse; unknown pairs and the
+  exploratory null claim nothing, L2), classifies every axis, and
+  derives THE SIGNATURE from the full evidence (registered-births >
+  psp-localized-swap > multi-axis-swap > clean-pair) with the
+  multi-axis blindness witness; `null3802` re-reads the B450 founder
+  pair on ALL axes (exploratory, no anchor). L1 per-axis
+  set-truth-over-count / L2 anchors-before-marks / L3
+  corrected-taxonomy / L4 zero writes.
+- **THE AXIS MAP, measured on three pairs** (66 s / 65 s / 39 s; the
+  crown `vendor-pairaxes-register.json`, one write, assertion-gated,
+  roundtrip-checked): the release pair (3644→3645) psp 37/37
+  reproduced, **certs +1/−1 — one DER certificate rotated
+  (`2da09da7f4131f9f` → `4aa03fa22cd75c84`) inside a stable count of
+  6** — the ring-46 blindness class caught on a NEW axis; dsdt,
+  whitelist (61=61), smm (112=112), agesa all `==`; container 0/0
+  reproduced; signature **multi-axis-swap**. The board pair
+  (3644↔nw-3644, same version number) psp 65/65, **dsdt +4/−4 — FOUR
+  entirely different variants, zero overlap, at a stable count of 4**
+  (the WIFI II's primary `bdd18b8af25e0c7a` is SKU-exclusive); certs,
+  whitelist, smm, agesa all `==`; container 0/4 reproduced; signature
+  **registered-births**. The B450 null (3802→3810, exploratory) psp
+  17/17, **certs +1/−3 — the trust store rebuilt 4→6: the corpus's
+  freeze point, pair-explained**; every other non-PSP axis `==`.
+- **THE ORTHOGONALITY LAW**: certs is a RELEASE marker (a release
+  touches the trust store, never the ACPI lineage — on BOTH
+  families); dsdt is a BOARD marker (a board change replaces the ACPI
+  lineage, never the trust store). Both event axes hid behind stable
+  counts (6 vs 6, 4 vs 4) — neither count-level mark could see
+  either. The campaign's first asymmetric set deltas are the certs
+  rows; the fw47 orientation (added = old-only) is inherited verbatim
+  and now documented.
+- **The 8-PR pre-registration ledger: 5 hit / 3 refuted, all
+  visible** (the ring-45/47 precedent). Hits: PR-1 (release dsdt == 0
+  — the P-25 analog), PR-3 (release whitelist == 0), PR-4 (release
+  smm == 0 — the law corollary: species 0/0 ⇒ every GUID subset
+  stable), PR-5 (release agesa == 0), PR-6 (board dsdt != 0 — the
+  version-number trap reaches the DSDT axis). Refuted, each more
+  informative refuted: **PR-2** (the release rotates one certificate
+  — "improve system compatibility" changed the trust store under a
+  stable count, with zero species events and zero form grammar; only
+  the set lens saw it), **PR-7** (the sibling's whitelist is
+  IDENTICAL, fan vocabulary included — the 14 AUX/Level strings are
+  B550-generation, not WIFI-II-specific), **PR-8** (the release is
+  NOT psp-localized — the cert swap widens it to multi-axis-swap; the
+  class stays defined, no measured pair instantiates it). First
+  selftest 30/32 (two TEST bugs — the R2 gate asserted the wrong side
+  of the inherited orientation, R9 compared JSON lists to live
+  tuples); final **32/32** with the crown live.
+- **The dump law for 16/09**: the cert set alone discriminates
+  stock-3644 from flashed-3645 (the rotation items are registered —
+  count-blind-proof, alongside the PSP set), and the DSDT set alone
+  certifies the board identity. Day-0 additions: `fw48 axes dump.rom`
+  (the cheap per-image reading), `fw48 marks dump.rom
+  b550w2-3645.rom` (the full-axis flash story: psp 37/37 + the cert
+  rotation are the expected swap marks; any OTHER axis moving is the
+  board's own story), `fw48 marks dump.rom b550w2-3644.rom` (the
+  stock story: every content axis expected `==`).
+- Battery: 323/323, MCP smoke OK, fw35 36/36, fw42 23/23, fw46
+  38/38, fw47 32/32, fw48 32/32, frozen surface 0 diff. Docs:
+  `lab/findings-forty-eighth-ring.md`; lab/README (+3 rows); README
+  root (forty-eight); CHANGELOG (section ring 48); day0-report §2
+  (encart Ring-48: the full-axis reading of the dump, the axis map,
+  the dump law).
+
+## Unreleased — the forty-eighth ring (the full-axis pair witness — the set lens on every axis, measured)
+
+Docs-only + one new tracked instrument + one new register; the tool
+surface is untouched: 15 tools, MCP smoke 12, 323 checks green; the
+ring composes on top of the unchanged fw37/38/39/41/43/45/47
+machinery (the fw46/47 pattern) — never instead.
+
+- **The set lens extended to ALL axes** (`lab/fw48-pairaxes.py`
+  TRACKED): ring 47 anchored the pair coherence to the PSP sets, but
+  the release's other content axes were pair-blind. fw48 composes on
+  fw47 (frozen, never rewritten): `axes <image>` extracts the live
+  axis sets of ONE image (certs via fw39.trust_census, dsdt via
+  fw38.x_acpi checksum-valid sha16s, whitelist via fw41._armor_names,
+  smm via the SMM-typed GUIDs, agesa via fw38.x_agesa — items carried
+  whole); `marks <old> <new>` adds the five axis marks to fw47's
+  PSP+species witness (anchor-checked against this ring's crown
+  register when present — reproduce or refuse; unknown pairs and the
+  exploratory null claim nothing, L2), classifies every axis, and
+  derives THE SIGNATURE from the full evidence (registered-births >
+  psp-localized-swap > multi-axis-swap > clean-pair) with the
+  multi-axis blindness witness; `null3802` re-reads the B450 founder
+  pair on ALL axes (exploratory, no anchor). L1 per-axis
+  set-truth-over-count / L2 anchors-before-marks / L3
+  corrected-taxonomy / L4 zero writes.
+- **THE AXIS MAP, measured on three pairs** (66 s / 65 s / 39 s; the
+  crown `vendor-pairaxes-register.json`, one write, assertion-gated,
+  roundtrip-checked): the release pair (3644→3645) psp 37/37
+  reproduced, **certs +1/−1 — one DER certificate rotated
+  (`2da09da7f4131f9f` → `4aa03fa22cd75c84`) inside a stable count of
+  6** — the ring-46 blindness class caught on a NEW axis; dsdt,
+  whitelist (61=61), smm (112=112), agesa all `==`; container 0/0
+  reproduced; signature **multi-axis-swap**. The board pair
+  (3644↔nw-3644, same version number) psp 65/65, **dsdt +4/−4 — FOUR
+  entirely different variants, zero overlap, at a stable count of 4**
+  (the WIFI II's primary `bdd18b8af25e0c7a` is SKU-exclusive); certs,
+  whitelist, smm, agesa all `==`; container 0/4 reproduced; signature
+  **registered-births**. The B450 null (3802→3810, exploratory) psp
+  17/17, **certs +1/−3 — the trust store rebuilt 4→6: the corpus's
+  freeze point, pair-explained**; every other non-PSP axis `==`.
+- **THE ORTHOGONALITY LAW**: certs is a RELEASE marker (a release
+  touches the trust store, never the ACPI lineage — on BOTH
+  families); dsdt is a BOARD marker (a board change replaces the ACPI
+  lineage, never the trust store). Both event axes hid behind stable
+  counts (6 vs 6, 4 vs 4) — neither count-level mark could see
+  either. The campaign's first asymmetric set deltas are the certs
+  rows; the fw47 orientation (added = old-only) is inherited verbatim
+  and now documented.
+- **The 8-PR pre-registration ledger: 5 hit / 3 refuted, all
+  visible** (the ring-45/47 precedent). Hits: PR-1 (release dsdt == 0
+  — the P-25 analog), PR-3 (release whitelist == 0), PR-4 (release
+  smm == 0 — the law corollary: species 0/0 ⇒ every GUID subset
+  stable), PR-5 (release agesa == 0), PR-6 (board dsdt != 0 — the
+  version-number trap reaches the DSDT axis). Refuted, each more
+  informative refuted: **PR-2** (the release rotates one certificate
+  — "improve system compatibility" changed the trust store under a
+  stable count, with zero species events and zero form grammar; only
+  the set lens saw it), **PR-7** (the sibling's whitelist is
+  IDENTICAL, fan vocabulary included — the 14 AUX/Level strings are
+  B550-generation, not WIFI-II-specific), **PR-8** (the release is
+  NOT psp-localized — the cert swap widens it to multi-axis-swap; the
+  class stays defined, no measured pair instantiates it). First
+  selftest 30/32 (two TEST bugs — the R2 gate asserted the wrong side
+  of the inherited orientation, R9 compared JSON lists to live
+  tuples); final **32/32** with the crown live.
+- **The dump law for 16/09**: the cert set alone discriminates
+  stock-3644 from flashed-3645 (the rotation items are registered —
+  count-blind-proof, alongside the PSP set), and the DSDT set alone
+  certifies the board identity. Day-0 additions: `fw48 axes dump.rom`
+  (the cheap per-image reading), `fw48 marks dump.rom
+  b550w2-3645.rom` (the full-axis flash story: psp 37/37 + the cert
+  rotation are the expected swap marks; any OTHER axis moving is the
+  board's own story), `fw48 marks dump.rom b550w2-3644.rom` (the
+  stock story: every content axis expected `==`).
+- Battery: 323/323, MCP smoke OK, fw35 36/36, fw42 23/23, fw46
+  38/38, fw47 32/32, fw48 32/32, frozen surface 0 diff. Docs:
+  `lab/findings-forty-eighth-ring.md`; lab/README (+3 rows); README
+  root (forty-eight); CHANGELOG (section ring 48); day0-report §2
+  (encart Ring-48: the full-axis reading of the dump, the axis map,
+  the dump law).
+
 ## Unreleased — the forty-seventh ring (the pair witness — set-anchored pair coherence, measured)
 
 Docs-only + one new tracked instrument + one new register; the tool

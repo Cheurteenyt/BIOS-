@@ -1,0 +1,414 @@
+{
+ "axes": {
+  "agesa": "fw38.x_agesa \u2014 the level set (picked + any multiple)",
+  "certs": "fw39.trust_census \u2014 the DER trust set (sha16s)",
+  "dsdt": "fw38.x_acpi \u2014 checksum-valid DSDT variants (sha16s, instances + primary)",
+  "psp": "fw43.psp_bodies on fw37.load (fw47's axis, composed)",
+  "smm": "SMM-typed GUIDs of fw41's deep walk",
+  "whitelist": "fw41._armor_names \u2014 chip names + the AUX/Level fan vocabulary, extracted whole"
+ },
+ "crown": {
+  "board_pair": {
+   "axis_deltas": {
+    "agesa": [
+     0,
+     0
+    ],
+    "certs": [
+     0,
+     0
+    ],
+    "dsdt": [
+     4,
+     4
+    ],
+    "psp": [
+     65,
+     65
+    ],
+    "smm": [
+     0,
+     0
+    ],
+    "whitelist": [
+     0,
+     0
+    ]
+   },
+   "blindness_axes": [
+    "dsdt"
+   ],
+   "container": {
+    "births": 0,
+    "byte_delta": -13008,
+    "changed_modules": 108,
+    "deaths": 4
+   },
+   "fw47_class": "registered-births",
+   "new": "b550-nw-3644.rom",
+   "old": "b550w2-3644.rom",
+   "per_axis_classes": {
+    "agesa": "axis-clean",
+    "certs": "axis-clean",
+    "dsdt": "axis-swap",
+    "psp": "!=",
+    "smm": "axis-clean",
+    "whitelist": "axis-clean"
+   },
+   "signature": "registered-births",
+   "wall_seconds": 64.9
+  },
+  "null3802_axes": {
+   "anchor": false,
+   "axis_deltas": {
+    "agesa": [
+     0,
+     0
+    ],
+    "certs": [
+     1,
+     3
+    ],
+    "dsdt": [
+     0,
+     0
+    ],
+    "psp": [
+     17,
+     17
+    ],
+    "smm": [
+     0,
+     0
+    ],
+    "whitelist": [
+     0,
+     0
+    ]
+   },
+   "container": {
+    "births": 0,
+    "byte_delta": -86264,
+    "changed_modules": 34,
+    "deaths": 0
+   },
+   "fw47_verdict": "corrected",
+   "new": "asus-prime-b450-plus-3810.rom",
+   "note": "exploratory \u2014 no anchor claimed (L2); the row becomes an anchor only if a later ring pre-registers it",
+   "old": "asus-prime-b450-plus-3802.rom",
+   "per_axis_classes": {
+    "agesa": "axis-clean",
+    "certs": "axis-swap",
+    "dsdt": "axis-clean",
+    "psp": "!=",
+    "smm": "axis-clean",
+    "whitelist": "axis-clean"
+   },
+   "signature": "multi-axis-swap",
+   "wall_seconds": 38.7
+  },
+  "release_pair": {
+   "axis_deltas": {
+    "agesa": [
+     0,
+     0
+    ],
+    "certs": [
+     1,
+     1
+    ],
+    "dsdt": [
+     0,
+     0
+    ],
+    "psp": [
+     37,
+     37
+    ],
+    "smm": [
+     0,
+     0
+    ],
+    "whitelist": [
+     0,
+     0
+    ]
+   },
+   "blindness_axes": [
+    "certs"
+   ],
+   "container": {
+    "births": 0,
+    "byte_delta": -992,
+    "changed_modules": 18,
+    "deaths": 0
+   },
+   "fw47_class": "swap-event",
+   "new": "b550w2-3645.rom",
+   "new_sha256_16": "0a1b5bda5be78e4b",
+   "old": "b550w2-3644.rom",
+   "old_sha256_16": "5f7a0e439772c160",
+   "per_axis_classes": {
+    "agesa": "axis-clean",
+    "certs": "axis-swap",
+    "dsdt": "axis-clean",
+    "psp": "!=",
+    "smm": "axis-clean",
+    "whitelist": "axis-clean"
+   },
+   "signature": "multi-axis-swap",
+   "wall_seconds": 66.3
+  }
+ },
+ "date": "2026-09-15",
+ "day1_usage": [
+  "fw48 marks dump.rom b550w2-3645.rom \u2014 the full-axis flash story: psp 37/37 + the cert rotation are the expected swap marks; any OTHER axis moving is the board's own story",
+  "fw48 marks dump.rom b550w2-3644.rom \u2014 the stock story: every content axis expected == (the dump's NVRAM does not reach these sets)",
+  "fw48 axes dump.rom \u2014 the cheap per-image reading the marks are built from"
+ ],
+ "honesty": [
+  "PR-2, PR-7 and PR-8 are REFUTED by measurement and stay visible pre-freeze (the ring-45/47 precedent) \u2014 the cert rotation and the B550-generation fan vocabulary are the two claims the correction kills, and both are more informative refuted",
+  "the crown anchors are FIRST-MEASUREMENT anchors (this ring's own crown run, anchor-checked by the selftest's live re-derivation); the null3802 axes row is exploratory and anchors nothing",
+  "the orientation of added/removed is fw47's, inherited verbatim and now documented \u2014 it mattered only from the first asymmetric delta onward",
+  "no frozen surface touched: bin/, lib/, tests/ 0 diff; fw47/fw45/fw42/fw41 consumed unchanged"
+ ],
+ "images": {
+  "b550-nw-3644": {
+   "agesa": 1,
+   "certs": 6,
+   "dsdt": 4,
+   "smm": 112,
+   "whitelist": 61
+  },
+  "b550w2-3644": {
+   "agesa": 1,
+   "certs": 6,
+   "dsdt": 4,
+   "smm": 112,
+   "whitelist": 61
+  },
+  "b550w2-3645": {
+   "agesa": 1,
+   "certs": 6,
+   "dsdt": 4,
+   "smm": 112,
+   "whitelist": 61
+  }
+ },
+ "instrument": "fw48-pairaxes",
+ "laws": {
+  "L1": "set-truth-over-count \u2014 every axis marks on its set; counts are witnesses, never marks",
+  "L2": "anchors-before-marks \u2014 PSP anchors live in the ring-45 lens register (fw47 enforces); the non-PSP anchors live here, crown-anchored (first measurement, this ring \u2014 the basis is stated where the anchors live); unknown pairs and the exploratory null row claim no anchor, never invented",
+  "L3": "corrected-taxonomy \u2014 the signature reads the FULL evidence {axis deltas, species births/deaths}; a container event outranks axis swaps; frozen registers are read, never rewritten",
+  "L4": "zero writes \u2014 read-only on images, one write site"
+ },
+ "orientation_note": "the axis marks inherit fw47's set-diff orientation verbatim: added = present in the OLD image only, removed = present in the NEW image only. The campaign's first asymmetric deltas are the certs rows (3802->3810: one cert left the old set, three entered the new).",
+ "pair_axes": {
+  "board": {
+   "anchor": true,
+   "axes": {
+    "agesa": [
+     0,
+     0
+    ],
+    "certs": [
+     0,
+     0
+    ],
+    "dsdt": [
+     4,
+     4
+    ],
+    "smm": [
+     0,
+     0
+    ],
+    "whitelist": [
+     0,
+     0
+    ]
+   },
+   "pair_ids": [
+    "b550w2-3644",
+    "b550-nw-3644"
+   ]
+  },
+  "null3802": {
+   "anchor": false,
+   "axes": {
+    "agesa": [
+     0,
+     0
+    ],
+    "certs": [
+     1,
+     3
+    ],
+    "dsdt": [
+     0,
+     0
+    ],
+    "smm": [
+     0,
+     0
+    ],
+    "whitelist": [
+     0,
+     0
+    ]
+   },
+   "pair_ids": [
+    "asus-prime-b450-plus-3802",
+    "asus-prime-b450-plus-3810"
+   ]
+  },
+  "release": {
+   "anchor": true,
+   "axes": {
+    "agesa": [
+     0,
+     0
+    ],
+    "certs": [
+     1,
+     1
+    ],
+    "dsdt": [
+     0,
+     0
+    ],
+    "smm": [
+     0,
+     0
+    ],
+    "whitelist": [
+     0,
+     0
+    ]
+   },
+   "pair_ids": [
+    "b550w2-3644",
+    "b550w2-3645"
+   ]
+  }
+ },
+ "pre_registrations": {
+  "PR-1": {
+   "axis": "dsdt",
+   "measured": {
+    "axis": "dsdt",
+    "delta": [
+     0,
+     0
+    ],
+    "pair": "release"
+   },
+   "outcome": "hit",
+   "pair": "release"
+  },
+  "PR-2": {
+   "axis": "certs",
+   "measured": {
+    "axis": "certs",
+    "delta": [
+     1,
+     1
+    ],
+    "items": {
+     "entered": [
+      "2da09da7f4131f9f"
+     ],
+     "left": [
+      "4aa03fa22cd75c84"
+     ]
+    },
+    "pair": "release"
+   },
+   "outcome": "refuted",
+   "pair": "release"
+  },
+  "PR-3": {
+   "axis": "whitelist",
+   "measured": {
+    "axis": "whitelist",
+    "delta": [
+     0,
+     0
+    ],
+    "pair": "release"
+   },
+   "outcome": "hit",
+   "pair": "release"
+  },
+  "PR-4": {
+   "axis": "smm",
+   "measured": {
+    "axis": "smm",
+    "delta": [
+     0,
+     0
+    ],
+    "pair": "release"
+   },
+   "outcome": "hit",
+   "pair": "release"
+  },
+  "PR-5": {
+   "axis": "agesa",
+   "measured": {
+    "axis": "agesa",
+    "delta": [
+     0,
+     0
+    ],
+    "pair": "release"
+   },
+   "outcome": "hit",
+   "pair": "release"
+  },
+  "PR-6": {
+   "axis": "dsdt",
+   "measured": {
+    "axis": "dsdt",
+    "delta": [
+     4,
+     4
+    ],
+    "overlap": 0,
+    "pair": "board"
+   },
+   "outcome": "hit",
+   "pair": "board"
+  },
+  "PR-7": {
+   "axis": "whitelist",
+   "measured": {
+    "axis": "whitelist",
+    "delta": [
+     0,
+     0
+    ],
+    "pair": "board"
+   },
+   "outcome": "refuted",
+   "pair": "board"
+  },
+  "PR-8": {
+   "axis": "signature",
+   "measured": {
+    "axis": "signature",
+    "pair": "release",
+    "signature": "multi-axis-swap"
+   },
+   "outcome": "refuted",
+   "pair": "release"
+  }
+ },
+ "ring": 48,
+ "the_axis_map": {
+  "dump_law": "on 16/09 the cert set alone discriminates stock-3644 from flashed-3645 (alongside the PSP set, and count-blind-proof), and the DSDT set alone certifies the board identity",
+  "law": "certs is a RELEASE marker (3644->3645 rotates exactly one certificate 2da09da7f4131f9f -> 4aa03fa22cd75c84 inside a stable count of 6; 3802->3810 rebuilds the trust store 4->6 \u2014 the corpus's freeze point, pair-explained); dsdt is a BOARD marker (the same-version sibling swaps ALL FOUR variants, zero overlap, at stable count 4; releases keep the DSDT set identical on BOTH families); whitelist, smm and agesa moved on NO measured pair",
+  "orthogonality": "a release touches the trust store and not the ACPI lineage; a board change touches the ACPI lineage and not the trust store \u2014 the two event types have orthogonal axis signatures"
+ },
+ "title": "the full-axis pair witness \u2014 the axis map of release vs board events, measured"
+}
