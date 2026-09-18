@@ -1,0 +1,2 @@
+000000:05ffff	protected-head
+060000:1ffffff	readable-body

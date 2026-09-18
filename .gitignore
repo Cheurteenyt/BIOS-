@@ -6,3 +6,4 @@ venv/
 *.tar.gz
 .DS_Store
 *.pdf
+*.CAP
