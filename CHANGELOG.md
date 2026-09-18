@@ -4,6 +4,29 @@ All notable changes to `omarchy-firmware`. The tool contract (tiers,
 tool names, refusal behaviour) is frozen between phases: changes are
 additive, and every tool keeps its refusal test.
 
+## Unreleased — the intel enshrined (2026-09-18): the four web-intel memos + the 3 788-repo catalog enter `lab/intel/`
+
+Docs-only enshrining, zero measurements, zero tool changes: the surface
+stays 15 tools, MCP smoke 12, 323 checks green. The four memos lived
+OUTSIDE the repo during the Tasks 52-55 read-only doctrine — each one's
+own header says "prête à être canonisée dans `lab/` sur ordre du
+fondateur"; the founder's order is given, they enter the repo verbatim
+(as do their HEAD references, frozen at `f608f36` — archival statements
+of when each wave ran, not claims about today's tree).
+
+- `lab/intel/intel-web-rebar-b550w2-2026-09-17.md` — vague 1: the
+  founder's 3 URLs, the official NVIDIA chain, the ASUS Auto heuristic,
+  the vBIOS 256 MB cap, the Linux chain, ReBarUEFI.
+- `lab/intel/intel-web2-forums-chinois-github-2026-09-17.md` — vague 2:
+  the Chinese forums + 18 GitHub repos, up to the obscurest.
+- `lab/intel/intel-web3-github-500plus-2026-09-17.md` — vague 3: the
+  query-network sweep across ≥ 500 repositories, recent ones included.
+- `lab/intel/intel-synthese-consolidee-2026-09-18.md` — the consolidated
+  synthesis: repo audit + the three waves against the founder's
+  "il détecte mal alors que c'est en auto" symptom.
+- `lab/intel/github-intel-catalog-vague3-2026-09-17.csv` — the raw
+  machine-readable catalog: 3 788 repositories.
+
 ## Unreleased — the fifty-second ring (the grammar of the Setup variable — what the vendor's own C source says the bytes ARE)
 
 Docs-only + one new tracked instrument + one new register; the tool
